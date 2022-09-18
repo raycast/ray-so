@@ -1,0 +1,31 @@
+.code-highlight .keyword {
+  color: #ff659c;
+}
+
+.code-highlight .function {
+  color: #73dfa5;
+}
+
+.code-highlight .function.property-access {
+  color: #1ac8ff;
+}
+
+.code-highlight .punctuation {
+  color: #fff;
+}
+
+.code-highlight .parameter {
+  color: #73dfa5;
+}
+
+.code-highlight .operator {
+  color: #ff659c;
+}
+
+.code-highlight .string {
+  color: #dfd473;
+}
+
+.code-highlight .class-name {
+  color: #73dfa5;
+}

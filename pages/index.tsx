@@ -1,16 +1,22 @@
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
+import Frame from "../components/Frame";
 import styles from "../styles/Home.module.css";
-
-const DynamicEditor = dynamic(() => import("../components/Editor"), {
-  ssr: false,
-});
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
+  const [theme, setTheme] = useState<string>("dark");
+
+  useEffect(() => {
+    const defaultDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setTheme(defaultDark ? "dark" : "light");
+  }, []);
+
   return (
-    <>
-      <DynamicEditor />
-    </>
+    <div className={styles.app} data-theme={theme}>
+      <Frame />
+    </div>
   );
 };
 

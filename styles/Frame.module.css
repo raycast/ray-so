@@ -1,0 +1,13 @@
+.frame {
+  background: linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248));
+  padding: 64px;
+}
+
+.window {
+  background: var(--frame-background);
+  border-radius: 10px;
+  min-width: 600px;
+  min-height: 120px;
+  display: flex;
+  align-items: stretch;
+}
