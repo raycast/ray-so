@@ -227,7 +227,7 @@ const unfold = (f, seed) => {
   return (
     <div
       className={styles.editor}
-      style={{ "--editor-padding": "32px" } as React.CSSProperties}
+      style={{ "--editor-padding": "16px" } as React.CSSProperties}
     >
       <textarea
         autoComplete="off"
