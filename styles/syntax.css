@@ -33,3 +33,7 @@
 .code-highlight .comment {
   color: #807796;
 }
+
+.code-highlight .number {
+  color: #7a7ffd;
+}

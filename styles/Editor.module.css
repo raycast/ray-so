@@ -7,7 +7,10 @@
 .textarea,
 .formatted {
   font-size: 15px;
+  font-weight: 500;
+  font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.1px;
+  white-space: pre-wrap;
   line-height: 22.5px;
   grid-column: 1 / 1;
   grid-row: 1 / 1;
@@ -30,4 +33,9 @@
 
 .formatted > pre {
   margin: 0;
+  white-space: pre-wrap;
+}
+
+.formatted > pre > code {
+  font-family: "JetBrains Mono", monospace;
 }

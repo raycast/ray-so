@@ -156,7 +156,16 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
 function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = React.useState(
-    `function add(a, b) {\n  return a + b;\n}`
+    `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
+
+const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
+
+const unfold = (f, seed) => {
+  const go = (f, seed, acc) => {
+    return res ? go(f, res[1], acc.concat([res[0]])) : acc
+  }
+  return go(f, seed, [])
+}`
   );
 
   const html = useMemo(
