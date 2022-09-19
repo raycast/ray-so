@@ -61,6 +61,21 @@ function dedentText(text: string) {
     .join("\n");
 }
 
+function getCurrentlySelectedLine(textarea: HTMLTextAreaElement) {
+  const original = textarea.value;
+
+  const selectionStart = textarea.selectionStart;
+  const beforeStart = original.slice(0, selectionStart);
+
+  return original
+    .slice(
+      beforeStart.lastIndexOf("\n") != -1
+        ? beforeStart.lastIndexOf("\n") + 1
+        : 0
+    )
+    .split("\n")[0];
+}
+
 function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
   const original = textarea.value;
 
@@ -69,13 +84,7 @@ function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
 
   const beforeStart = original.slice(0, start);
 
-  const currentLine = original
-    .slice(
-      beforeStart.lastIndexOf("\n") != -1
-        ? beforeStart.lastIndexOf("\n") + 1
-        : 0
-    )
-    .split("\n")[0];
+  const currentLine = getCurrentlySelectedLine(textarea);
 
   if (start === end) {
     // No text selected
@@ -117,18 +126,7 @@ function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
 }
 
 function handleEnter(textarea: HTMLTextAreaElement) {
-  const original = textarea.value;
-
-  const start = textarea.selectionStart;
-  const beforeStart = original.slice(0, start);
-
-  const currentLine = original
-    .slice(
-      beforeStart.lastIndexOf("\n") != -1
-        ? beforeStart.lastIndexOf("\n") + 1
-        : 0
-    )
-    .split("\n")[0];
+  const currentLine = getCurrentlySelectedLine(textarea);
 
   const currentIndentationMatch = currentLine.match(/^(\s+)/);
   let wantedIndentation = currentIndentationMatch
@@ -140,6 +138,17 @@ function handleEnter(textarea: HTMLTextAreaElement) {
   }
 
   document.execCommand("insertText", false, `\n${wantedIndentation}`);
+}
+
+function handleBracketClose(textarea: HTMLTextAreaElement) {
+  const currentLine = getCurrentlySelectedLine(textarea);
+  const { selectionStart, selectionEnd } = textarea;
+
+  if (selectionStart === selectionEnd && currentLine.match(/^\s{2,}$/)) {
+    textarea.setSelectionRange(selectionStart - 2, selectionEnd);
+  }
+
+  document.execCommand("insertText", false, "}");
 }
 
 function Editor() {
@@ -172,14 +181,19 @@ function Editor() {
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
     (event) => {
+      const textarea = textareaRef.current!;
       switch (event.key) {
         case "Tab":
           event.preventDefault();
-          handleTab(textareaRef.current!, event.shiftKey);
+          handleTab(textarea, event.shiftKey);
+          break;
+        case "}":
+          event?.preventDefault();
+          handleBracketClose(textarea);
           break;
         case "Enter":
           event.preventDefault();
-          handleEnter(textareaRef.current!);
+          handleEnter(textarea);
           break;
       }
     },
@@ -201,6 +215,11 @@ function Editor() {
         value={code}
         onChange={(event) => {
           setCode(event.target.value);
+        }}
+        onInput={() => {
+          const textarea = textareaRef.current!;
+          textarea.style.height = "0px";
+          textarea.style.height = `${textarea.scrollHeight}px`;
         }}
         onKeyDown={handleKeyDown}
       />

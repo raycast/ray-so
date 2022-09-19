@@ -1,6 +1,7 @@
 .editor {
-  position: relative;
   width: 100%;
+  display: grid;
+  grid-template: 1fr / 1fr;
 }
 
 .textarea,
@@ -8,6 +9,9 @@
   font-size: 15px;
   letter-spacing: 0.1px;
   line-height: 22.5px;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  padding: var(--editor-padding);
 }
 
 .textarea {
@@ -15,21 +19,13 @@
   background: transparent;
   border: none;
   -webkit-text-fill-color: transparent;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  padding: var(--editor-padding);
   caret-color: white;
+  z-index: 2;
 }
 
 .textarea:focus {
   border: none;
   outline: none;
-}
-
-.formatted {
-  padding: var(--editor-padding);
 }
 
 .formatted > pre {
