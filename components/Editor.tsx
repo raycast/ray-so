@@ -3,6 +3,8 @@ import React, {
   useCallback,
   KeyboardEventHandler,
   useRef,
+  ChangeEventHandler,
+  FormEventHandler,
 } from "react";
 import styles from "styles/Editor.module.css";
 import { rehype } from "rehype";
@@ -200,6 +202,19 @@ function Editor() {
     []
   );
 
+  const handleInput = useCallback<FormEventHandler<HTMLTextAreaElement>>(() => {
+    const textarea = textareaRef.current!;
+    textarea.style.height = "0px";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, []);
+
+  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
+    (event) => {
+      setCode(event.target.value);
+    },
+    []
+  );
+
   return (
     <div
       className={styles.editor}
@@ -213,14 +228,8 @@ function Editor() {
         ref={textareaRef}
         className={styles.textarea}
         value={code}
-        onChange={(event) => {
-          setCode(event.target.value);
-        }}
-        onInput={() => {
-          const textarea = textareaRef.current!;
-          textarea.style.height = "0px";
-          textarea.style.height = `${textarea.scrollHeight}px`;
-        }}
+        onChange={handleChange}
+        onInput={handleInput}
         onKeyDown={handleKeyDown}
       />
       {preView}
