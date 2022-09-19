@@ -1,7 +1,13 @@
 .editor {
   position: relative;
   width: 100%;
+}
+
+.textarea,
+.formatted {
   font-size: 15px;
+  letter-spacing: 0.1px;
+  line-height: 22.5px;
 }
 
 .textarea {
@@ -14,7 +20,6 @@
   position: absolute;
   inset: 0;
   padding: var(--editor-padding);
-  font-size: 15px;
   caret-color: white;
 }
 

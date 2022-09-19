@@ -29,3 +29,7 @@
 .code-highlight .class-name {
   color: #73dfa5;
 }
+
+.code-highlight .comment {
+  color: #807796;
+}
