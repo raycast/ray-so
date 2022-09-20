@@ -1,6 +1,7 @@
 .frame {
   background: linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248));
   padding: 64px;
+  position: relative;
 }
 
 .window {
@@ -40,4 +41,36 @@
   line-height: 12px;
   font-weight: 500;
   letter-spacing: 0.32px;
+}
+
+.windowSizeDragPoint {
+  position: absolute;
+  top: 50%;
+  transform: translate(var(--translate-x), -50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.windowSizeDragPoint::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.left {
+  left: 0;
+  --translate-x: -50%;
+}
+
+.right {
+  right: 0;
+  --translate-x: 50%;
 }
