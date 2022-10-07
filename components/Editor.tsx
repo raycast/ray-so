@@ -9,6 +9,8 @@ import React, {
 import styles from "styles/Editor.module.css";
 import { rehype } from "rehype";
 import rehypePrism from "rehype-prism-plus";
+import { useAtom } from "jotai";
+import { selectedLanguageAtom } from "../store/language";
 
 const processHtml = (html: string) => {
   return rehype()
@@ -167,15 +169,16 @@ const unfold = (f, seed) => {
   return go(f, seed, [])
 }`
   );
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
 
   const html = useMemo(
     () =>
       processHtml(
-        `<pre><code class="language-javascript">${htmlEncode(
-          code
-        )}</code></pre>`
+        `<pre><code class="language-${
+          selectedLanguage?.className
+        }">${htmlEncode(code)}</code></pre>`
       ),
-    [code]
+    [code, selectedLanguage]
   );
 
   const preView = useMemo(
