@@ -3,11 +3,19 @@
 }
 
 .frame {
-  background: linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248));
   max-width: 920px;
   min-width: 520px;
 
   transition: padding 200ms;
+
+  &.noBackground {
+    background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+      linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #1d1d1d 0),
+      linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  }
 }
 
 .window {

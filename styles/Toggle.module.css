@@ -1,0 +1,29 @@
+.toggle {
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  > input {
+    display: none;
+  }
+
+  &.checked {
+    .frame {
+      fill: #56c2ff;
+    }
+
+    .circle {
+      transform: translateX(11px);
+    }
+  }
+
+  .frame {
+    fill: hsla(0, 0%, 100%, 0.2);
+    transition: fill 0.3s ease;
+  }
+
+  .circle {
+    transition: all 0.3s ease;
+  }
+}
