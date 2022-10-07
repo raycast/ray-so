@@ -1,0 +1,20 @@
+.exportButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 16px;
+
+  color: #ff6363;
+
+  background: rgba(255, 99, 99, 0.15);
+  border-radius: 6px;
+
+  transition: background-color 200ms;
+
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 99, 99, 0.25);
+  }
+}

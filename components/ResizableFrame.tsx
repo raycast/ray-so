@@ -79,8 +79,6 @@ const ResizableFrame: React.FC<PropsWithChildren<PropTypes>> = ({
     [mouseMoveHandler, mouseUpHandler]
   );
 
-  console.info(!!(windowWidth && !isResizing));
-
   return (
     <div className={className}>
       <div
