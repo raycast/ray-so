@@ -6,18 +6,18 @@
   height: 24px;
   cursor: col-resize;
   user-select: none;
-}
 
-.windowSizeDragPoint::after {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 3px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  &:after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 3px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .left {
@@ -58,20 +58,20 @@
   }
 }
 
-.resetWindowWidthEnter {
+.fadeEnter {
   opacity: 0;
 }
 
-.resetWindowWidthEnterActive {
+.fadeEnterActive {
   opacity: 1;
   transition: opacity 200ms;
 }
 
-.resetWindowWidthExit {
+.fadeExit {
   opacity: 1;
 }
 
-.resetWindowWidthExitActive {
+.fadeExitActive {
   opacity: 0;
   transition: opacity 200ms;
 }

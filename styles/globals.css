@@ -13,10 +13,10 @@ body {
 body {
   background: #131313;
   color: white;
-}
 
-body > :first-child {
-  height: 100%;
+  > :first-child {
+    height: 100%;
+  }
 }
 
 a {

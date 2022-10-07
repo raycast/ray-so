@@ -101,10 +101,10 @@ const ResizableFrame: React.FC<PropsWithChildren<PropTypes>> = ({
         unmountOnExit
         timeout={200}
         classNames={{
-          enter: styles.resetWindowWidthEnter,
-          enterActive: styles.resetWindowWidthEnterActive,
-          exit: styles.resetWindowWidthExit,
-          exitActive: styles.resetWindowWidthExitActive,
+          enter: styles.fadeEnter,
+          enterActive: styles.fadeEnterActive,
+          exit: styles.fadeExit,
+          exitActive: styles.fadeExitActive,
         }}
       >
         <div className={styles.resetWidthContainer} ref={resetWindowWidthRef}>
@@ -127,10 +127,10 @@ const ResizableFrame: React.FC<PropsWithChildren<PropTypes>> = ({
         unmountOnExit
         timeout={200}
         classNames={{
-          enter: styles.resetWindowWidthEnter,
-          enterActive: styles.resetWindowWidthEnterActive,
-          exit: styles.resetWindowWidthExit,
-          exitActive: styles.resetWindowWidthExitActive,
+          enter: styles.fadeEnter,
+          enterActive: styles.fadeEnterActive,
+          exit: styles.fadeExit,
+          exitActive: styles.fadeExitActive,
         }}
       >
         <div ref={rulerRef} className={styles.ruler}>

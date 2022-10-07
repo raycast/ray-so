@@ -24,11 +24,11 @@
   -webkit-text-fill-color: transparent;
   caret-color: white;
   z-index: 2;
-}
 
-.textarea:focus {
-  border: none;
-  outline: none;
+  &:focus {
+    border: none;
+    outline: none;
+  }
 }
 
 .formatted > pre {
