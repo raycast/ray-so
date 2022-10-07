@@ -5,6 +5,7 @@
   transform: translateX(-50%);
 
   display: flex;
+  gap: 32px;
 
   background: #191919;
 

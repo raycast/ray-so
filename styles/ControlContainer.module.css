@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.controlTitle {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.1px;
+
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.control {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}

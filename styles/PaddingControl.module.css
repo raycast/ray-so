@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  gap: 8px;
+}
+
+.option {
+  display: flex;
+  align-item: center;
+  justify-content: center;
+
+  padding: 4px 6px;
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  transition: color 200ms, background-color 200ms;
+
+  &.selected {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+}
