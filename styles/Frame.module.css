@@ -31,14 +31,15 @@
 .header {
   display: grid;
   height: 24px;
-  grid-template-columns: 1fr auto 1fr;
+  padding: 0 16px;
+  grid-template-columns: 45px 1fr 45px;
+  grid-gap: 12px;
   align-items: center;
 }
 
 .controls {
   display: flex;
-  gap: 8px;
-  padding: 0 16px;
+  gap: 6px;
 }
 
 .control {
@@ -49,9 +50,34 @@
 }
 
 .fileName {
-  font-size: 12px;
+  position: relative;
+  height: 16px;
   color: hsla(0, 0%, 100%, 0.3);
+  font-size: 12px;
   line-height: 12px;
   font-weight: 500;
   letter-spacing: 0.32px;
+  text-align: center;
+
+  > input:focus + span {
+    display: none;
+  }
+
+  > input {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 500;
+    letter-spacing: 0.32px;
+
+    border: none;
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    background-color: transparent;
+    color: rgba(255 255 255 / 0.6);
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
