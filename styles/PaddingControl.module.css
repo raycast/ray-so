@@ -19,6 +19,10 @@
 
   transition: color 200ms, background-color 200ms;
 
+  &:hover {
+    color: white;
+  }
+
   &.selected {
     color: white;
     background: rgba(255, 255, 255, 0.1);
