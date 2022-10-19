@@ -2,29 +2,29 @@ import { useAtom } from "jotai";
 import React from "react";
 import { availableLanguages, selectedLanguageAtom } from "../store/language";
 import ControlContainer from "./ControlContainer";
+import FilterableSelect from "./FilterableSelect";
 
 const LanguageControl: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   return (
     <ControlContainer title="Language">
-      <select
-        name=""
-        id=""
-        value={selectedLanguage?.className}
-        onChange={(event) => {
-          const newLanguage = availableLanguages.find(
-            (el) => el.className === event.target.value
-          );
-
-          if (newLanguage) setSelectedLanguage(newLanguage);
-        }}
-      >
+      <FilterableSelect>
+        <FilterableSelect.Item
+          onClick={() => setSelectedLanguage(null)}
+          selected={selectedLanguage === null}
+        >
+          Auto-Detect
+        </FilterableSelect.Item>
         {availableLanguages.map((language) => (
-          <option key={language.className} value={language.className}>
+          <FilterableSelect.Item
+            key={language.className}
+            selected={selectedLanguage?.className === language.className}
+            onClick={() => setSelectedLanguage(language)}
+          >
             {language.name}
-          </option>
+          </FilterableSelect.Item>
         ))}
-      </select>
+      </FilterableSelect>
     </ControlContainer>
   );
 };
