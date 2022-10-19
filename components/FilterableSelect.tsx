@@ -83,6 +83,11 @@ const FilterableSelect: {
             placeholder="Search"
             ref={inputRef}
             value={searchInput}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                setOpen(false);
+              }
+            }}
             onChange={(event) => setSearchInput(event.target.value)}
             className={styles.searchInput}
           />
