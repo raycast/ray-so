@@ -7,49 +7,9 @@ import React, {
   FormEventHandler,
 } from "react";
 import styles from "styles/Editor.module.css";
-import { rehype } from "rehype";
-import rehypePrism from "rehype-prism-plus";
+import { highlight } from "highlightjs";
 import { useAtom } from "jotai";
 import { codeAtom, selectedLanguageAtom } from "../store/code";
-
-const processHtml = (html: string) => {
-  return rehype()
-    .data("settings", { fragment: true })
-    .use([[rehypePrism, { ignoreMissing: true }]])
-    .processSync(`${html}`)
-    .toString();
-};
-
-function htmlEncode(sHtml: string) {
-  return sHtml
-    .replace(
-      /```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g,
-      (str: string) => {
-        return str.replace(
-          /[<&"]/g,
-          (c: string) =>
-            ((
-              {
-                "<": "&lt;",
-                ">": "&gt;",
-                "&": "&amp;",
-                '"': "&quot;",
-              } as Record<string, string>
-            )[c])
-        );
-      }
-    )
-    .replace(
-      /[<&"]/g,
-      (c: string) =>
-        ((
-          { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" } as Record<
-            string,
-            string
-          >
-        )[c])
-    );
-}
 
 function indentText(text: string) {
   return text
@@ -160,15 +120,13 @@ function Editor() {
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
 
-  const html = useMemo(
-    () =>
-      processHtml(
-        `<pre><code class="language-${
-          selectedLanguage?.className
-        }">${htmlEncode(code)}</code></pre>`
-      ),
-    [code, selectedLanguage]
-  );
+  const html = useMemo(() => {
+    if (selectedLanguage) {
+      return highlight(selectedLanguage.className, code).value;
+    } else {
+      return code;
+    }
+  }, [code, selectedLanguage]);
 
   const preView = useMemo(
     () => (
