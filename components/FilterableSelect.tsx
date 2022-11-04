@@ -2,7 +2,6 @@ import React, {
   FC,
   MouseEventHandler,
   PropsWithChildren,
-  ReactElement,
   useCallback,
   useEffect,
   useRef,
@@ -15,11 +14,21 @@ import styles from "styles/FilterableSelect.module.css";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 
-type PropTypes = {};
+type Item = {
+  value: string;
+  onSelect: () => void;
+  selected: boolean;
+};
 
-const FilterableSelect: {
-  Item: FC<PropsWithChildren<ItemPropTypes>>;
-} & FC<PropsWithChildren<PropTypes>> = ({ children }) => {
+type PropTypes = {
+  items: Item[];
+  className?: string;
+};
+
+const FilterableSelect: FC<PropsWithChildren<PropTypes>> = ({
+  items,
+  className,
+}) => {
   const [open, setOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,17 +65,17 @@ const FilterableSelect: {
     }
   }, [open]);
 
-  const filteredChildren = React.Children.toArray(children).filter((child) => {
-    const { selected, children } = (child as ReactElement)
-      .props as ItemPropTypes;
-    return (
-      selected || (children as string).toLowerCase().indexOf(searchInput) !== -1
-    );
+  const filteredChildren = items.filter(({ value, selected }) => {
+    return selected || value.toLowerCase().indexOf(searchInput) !== -1;
   });
+
+  const selectedItem = items.find(({ selected }) => selected) as Item;
 
   return (
     <div
-      className={classNames(styles.container, { [styles.open]: open })}
+      className={classNames(styles.container, className, {
+        [styles.open]: open,
+      })}
       ref={containerRef}
     >
       <div
@@ -77,23 +86,25 @@ const FilterableSelect: {
           if (!open) setOpen(true);
         }}
       >
-        {open ? (
-          <input
-            type="text"
-            placeholder="Search"
-            ref={inputRef}
-            value={searchInput}
-            onKeyDown={(event) => {
-              if (event.key === "Escape") {
-                setOpen(false);
-              }
-            }}
-            onChange={(event) => setSearchInput(event.target.value)}
-            className={styles.searchInput}
-          />
-        ) : (
-          "Auto Detect"
-        )}
+        <span>
+          {open ? (
+            <input
+              type="text"
+              placeholder="Search"
+              ref={inputRef}
+              value={searchInput}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  setOpen(false);
+                }
+              }}
+              onChange={(event) => setSearchInput(event.target.value)}
+              className={styles.searchInput}
+            />
+          ) : (
+            selectedItem.value
+          )}
+        </span>
         <ChevronUpIcon />
       </div>
       <CSSTransition
@@ -104,7 +115,20 @@ const FilterableSelect: {
         unmountOnExit
       >
         <div className={styles.list} ref={listRef}>
-          {searchInput.length ? filteredChildren : children}
+          {(searchInput.length ? filteredChildren : items).map(
+            (item, index) => (
+              <Item
+                key={index}
+                onClick={() => {
+                  setOpen(false);
+                  item.onSelect();
+                }}
+                selected={item.selected}
+              >
+                {item.value}
+              </Item>
+            )
+          )}
         </div>
       </CSSTransition>
     </div>
@@ -126,7 +150,5 @@ const Item: FC<ItemPropTypes> = ({ children, selected, onClick }) => {
     </a>
   );
 };
-
-FilterableSelect.Item = Item;
 
 export default FilterableSelect;

@@ -4,6 +4,7 @@
 
 .anchor {
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
@@ -26,6 +27,10 @@
   user-select: none;
 
   transition: border-color 200ms;
+
+  > span {
+    flex-grow: 1;
+  }
 
   &:hover,
   .open & {
