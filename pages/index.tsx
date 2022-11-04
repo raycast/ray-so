@@ -4,19 +4,21 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import Controls from "../components/Controls";
 import FrameContextStore from "../store/FrameContextStore";
+import { useAtom } from "jotai";
+import { darkModeAtom } from "../store/themes";
 
 const Home: NextPage = () => {
-  const [theme, setTheme] = useState<string>("dark");
+  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
   useEffect(() => {
     const defaultDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    setTheme(defaultDark ? "dark" : "light");
-  }, []);
+    setDarkMode(defaultDark);
+  }, [setDarkMode]);
 
   return (
-    <div className={styles.app} data-theme={theme}>
+    <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
       <FrameContextStore>
         <Frame />
         <Controls />

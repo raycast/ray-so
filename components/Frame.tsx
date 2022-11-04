@@ -6,6 +6,7 @@ import styles from "styles/Frame.module.css";
 import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
+import { themeBackgroundAtom } from "../store/themes";
 import Editor from "./Editor";
 
 import ResizableFrame from "./ResizableFrame";
@@ -15,6 +16,7 @@ const Frame: React.FC = () => {
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [themeBackground] = useAtom(themeBackgroundAtom);
 
   return (
     <div className={styles.frameContainer}>
@@ -26,9 +28,7 @@ const Frame: React.FC = () => {
           ref={frameContext}
           style={{
             padding,
-            backgroundImage: showBackground
-              ? `linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248))`
-              : ``,
+            backgroundImage: showBackground ? themeBackground : ``,
           }}
         >
           <div className={styles.window}>

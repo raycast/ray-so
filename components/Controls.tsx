@@ -2,6 +2,7 @@ import React from "react";
 
 import styles from "styles/Controls.module.css";
 import BackgroundControl from "./BackgroundControl";
+import DarkModeControl from "./DarkModeControl";
 import ExportButton from "./ExportButton";
 import LanguageControl from "./LanguageControl";
 import PaddingControl from "./PaddingControl";
@@ -10,6 +11,7 @@ const Controls: React.FC = () => {
   return (
     <div className={styles.controls}>
       <BackgroundControl />
+      <DarkModeControl />
       <PaddingControl />
       <LanguageControl />
       <ExportButton />

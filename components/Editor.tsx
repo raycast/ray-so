@@ -10,6 +10,8 @@ import styles from "styles/Editor.module.css";
 import { highlight } from "highlightjs";
 import { useAtom } from "jotai";
 import { codeAtom, selectedLanguageAtom } from "../store/code";
+import { themeCSSAtom } from "../store/themes";
+import classNames from "classnames";
 
 function indentText(text: string) {
   return text
@@ -119,6 +121,7 @@ function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const [themeCSS] = useAtom(themeCSSAtom);
 
   const html = useMemo(() => {
     if (selectedLanguage) {
@@ -131,7 +134,7 @@ function Editor() {
   const preView = useMemo(
     () => (
       <div
-        className={styles.formatted}
+        className={classNames(styles.formatted, "hljs")}
         dangerouslySetInnerHTML={{
           __html: html,
         }}
@@ -177,7 +180,7 @@ function Editor() {
   return (
     <div
       className={styles.editor}
-      style={{ "--editor-padding": "16px" } as React.CSSProperties}
+      style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
     >
       <textarea
         autoComplete="off"

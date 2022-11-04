@@ -26,6 +26,7 @@
   flex-direction: column;
   align-items: stretch;
   padding: 16px 0;
+  box-shadow: 15px 25px 96px -25px rgba(0, 0, 0, 0.75);
 }
 
 .header {
@@ -46,13 +47,13 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsla(0, 0%, 100%, 0.2);
+  background-color: var(--frame-control-color);
 }
 
 .fileName {
   position: relative;
   height: 16px;
-  color: hsla(0, 0%, 100%, 0.3);
+  color: var(--frame-title-placeholder-color);
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
@@ -74,7 +75,7 @@
     inset: 0;
     text-align: center;
     background-color: transparent;
-    color: rgba(255 255 255 / 0.6);
+    color: var(--frame-title-color);
 
     &:focus {
       outline: none;
