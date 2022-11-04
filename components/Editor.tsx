@@ -213,7 +213,7 @@ function Editor() {
     (event) => {
       setCode(event.target.value);
     },
-    []
+    [setCode]
   );
 
   return (
