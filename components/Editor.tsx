@@ -10,7 +10,7 @@ import styles from "styles/Editor.module.css";
 import { rehype } from "rehype";
 import rehypePrism from "rehype-prism-plus";
 import { useAtom } from "jotai";
-import { selectedLanguageAtom } from "../store/language";
+import { codeAtom, selectedLanguageAtom } from "../store/code";
 
 const processHtml = (html: string) => {
   return rehype()
@@ -157,18 +157,7 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
 
 function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [code, setCode] = React.useState(
-    `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
-
-const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
-
-const unfold = (f, seed) => {
-  const go = (f, seed, acc) => {
-    return res ? go(f, res[1], acc.concat([res[0]])) : acc
-  }
-  return go(f, seed, [])
-}`
-  );
+  const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
 
   const html = useMemo(

@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React from "react";
-import { availableLanguages, selectedLanguageAtom } from "../store/language";
+import { availableLanguages, selectedLanguageAtom } from "../store/code";
 import ControlContainer from "./ControlContainer";
 import FilterableSelect from "./FilterableSelect";
 
@@ -15,7 +15,7 @@ const LanguageControl: React.FC = () => {
         >
           Auto-Detect
         </FilterableSelect.Item>
-        {availableLanguages.map((language) => (
+        {Object.values(availableLanguages).map((language) => (
           <FilterableSelect.Item
             key={language.className}
             selected={selectedLanguage?.className === language.className}
