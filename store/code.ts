@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { highlightAuto } from "highlightjs";
 import { LANGUAGES, Language } from "../util/languages";
 
 type CodeSample = {
@@ -46,11 +47,32 @@ export default function Command() {
   },
 ];
 
+const detectLanguage: (input: string) => Promise<string> = async (input) => {
+  return new Promise((resolve) => {
+    resolve(highlightAuto(input, Object.keys(LANGUAGES)).language);
+  });
+};
+
+export const autoDetectLanguageAtom = atom<boolean>((get) => {
+  return get(userInputtedLanguageAtom) === null;
+});
+
+const detectedLanguageAtom = atom<Language | null>(null);
 const userInputtedLanguageAtom = atom<Language | null>(null);
 
 export const selectedLanguageAtom = atom<Language | null, Language | null>(
-  (get) =>
-    get(userInputtedLanguageAtom) || get(codeExampleAtom)?.language || null,
+  (get) => {
+    if (get(userInputtedLanguageAtom) === null) {
+      const codeSampleValue = get(codeExampleAtom);
+      if (get(userInputtedCodeAtom) === null && codeSampleValue) {
+        return codeSampleValue.language;
+      } else {
+        return get(detectedLanguageAtom);
+      }
+    } else {
+      return get(userInputtedLanguageAtom);
+    }
+  },
   (get, set, newLanguage) => {
     set(userInputtedLanguageAtom, newLanguage);
   }
@@ -64,8 +86,13 @@ codeExampleAtom.onMount = (setAtom) => {
 export const userInputtedCodeAtom = atom<string | null>(null);
 
 export const codeAtom = atom<string, string>(
-  (get) => get(userInputtedCodeAtom) || get(codeExampleAtom)?.code || "",
+  (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
   (get, set, newCode) => {
     set(userInputtedCodeAtom, newCode);
+    detectLanguage(newCode).then((language) => {
+      if (LANGUAGES[language] && get(userInputtedLanguageAtom) === null) {
+        set(detectedLanguageAtom, LANGUAGES[language]);
+      }
+    });
   }
 );

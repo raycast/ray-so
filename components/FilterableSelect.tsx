@@ -23,11 +23,13 @@ type Item = {
 type PropTypes = {
   items: Item[];
   className?: string;
+  labelFormatter?: (label: string) => string;
 };
 
 const FilterableSelect: FC<PropsWithChildren<PropTypes>> = ({
   items,
   className,
+  labelFormatter = (str) => str,
 }) => {
   const [open, setOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
@@ -102,7 +104,7 @@ const FilterableSelect: FC<PropsWithChildren<PropTypes>> = ({
               className={styles.searchInput}
             />
           ) : (
-            selectedItem.value
+            labelFormatter(selectedItem.value)
           )}
         </span>
         <ChevronUpIcon />

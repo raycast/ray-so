@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React from "react";
-import { selectedLanguageAtom } from "../store/code";
+import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
 import ControlContainer from "./ControlContainer";
 import FilterableSelect from "./FilterableSelect";
 import { LANGUAGES } from "../util/languages";
@@ -9,10 +9,15 @@ import styles from "styles/LanguageControl.module.css";
 
 const LanguageControl: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
+  const [autoDetectLanguage] = useAtom(autoDetectLanguageAtom);
+
   return (
     <ControlContainer title="Language">
       <FilterableSelect
         className={styles.languageSelect}
+        labelFormatter={(label) =>
+          `${label}${autoDetectLanguage ? " (auto)" : ""}`
+        }
         items={[
           {
             value: "Auto-Detect",
