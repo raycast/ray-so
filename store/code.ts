@@ -1,16 +1,5 @@
 import { atom } from "jotai";
-
-type Language = {
-  className: string;
-  name: string;
-};
-
-export const availableLanguages: { [index: string]: Language } = {
-  javascript: { className: "javascript", name: "JavaScript" },
-  ruby: { className: "ruby", name: "Ruby" },
-  tsx: { className: "tsx", name: "TSX" },
-  swift: { className: "swift", name: "Swift" },
-};
+import { LANGUAGES, Language } from "../util/languages";
 
 type CodeSample = {
   language: Language;
@@ -19,7 +8,7 @@ type CodeSample = {
 
 const CODE_SAMPLES: CodeSample[] = [
   {
-    language: availableLanguages.javascript,
+    language: LANGUAGES.javascript,
     code: `module.exports = leftpad;
 
 function leftpad(str, len, ch) {
@@ -37,7 +26,7 @@ function leftpad(str, len, ch) {
 }`,
   },
   {
-    language: availableLanguages.swift,
+    language: LANGUAGES.swift,
     code: `import SwiftUI
 
 struct CircleImage: View {
@@ -48,7 +37,7 @@ struct CircleImage: View {
 }`,
   },
   {
-    language: availableLanguages.tsx,
+    language: LANGUAGES.tsx,
     code: `import { Detail } from "@raycast/api";
 
 export default function Command() {
