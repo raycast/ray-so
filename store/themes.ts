@@ -44,7 +44,7 @@ function convertToHljsTheme(syntaxObject: SyntaxObject): CSSProperties {
   } as CSSProperties;
 }
 
-type Theme = {
+export type Theme = {
   name: string;
   background: {
     from: string;
