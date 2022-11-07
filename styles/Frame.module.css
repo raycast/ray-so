@@ -20,6 +20,7 @@
 
 .window {
   background: var(--frame-background);
+  transition: all ease 0.3s;
   border-radius: 10px;
   min-height: 120px;
   display: flex;
