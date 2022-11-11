@@ -10,6 +10,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
+  overflow: hidden;
 
   letter-spacing: 0.1px;
   background: transparent;
