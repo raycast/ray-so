@@ -6,6 +6,7 @@ import Controls from "../components/Controls";
 import FrameContextStore from "../store/FrameContextStore";
 import { useAtom } from "jotai";
 import { darkModeAtom } from "../store/themes";
+import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
 
 const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
@@ -19,6 +20,8 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
+      <KeyboardShortcutsPanel />
+
       <FrameContextStore>
         <Frame />
         <Controls />

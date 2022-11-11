@@ -1,0 +1,115 @@
+.container {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.anchor {
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  background: #fff1;
+  border-radius: 6px;
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+
+  color: #ffffff;
+  cursor: pointer;
+
+  transition: background-color 300ms ease;
+  user-select: none;
+
+  &:hover {
+    background: #fff2;
+  }
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #0006;
+  z-index: 7;
+}
+
+.popover {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  background: #191919;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+
+  padding: 32px;
+
+  z-index: 10;
+
+  > strong {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.05px;
+
+    color: #ffffff;
+  }
+}
+
+.shortcuts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 24px 20px;
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.keys {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  background: #333333;
+  border-radius: 5px;
+  height: 24px;
+
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.1px;
+
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.enter {
+  opacity: 0;
+}
+.enterActive {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.exit {
+  opacity: 1;
+}
+.exitActive {
+  opacity: 0;
+  transition: opacity 200ms;
+}
