@@ -1,3 +1,8 @@
+.resizableFrame {
+  position: relative;
+  display: inline-block;
+}
+
 .windowSizeDragPoint {
   position: absolute;
   top: 50%;
@@ -6,6 +11,7 @@
   height: 24px;
   cursor: col-resize;
   user-select: none;
+  z-index: 2;
 
   &:after {
     content: "";
@@ -95,7 +101,7 @@
 
   > span {
     padding: 0 1em;
-    background-color: #131313;
+    background-color: #0d0d0d;
   }
 
   &:before {

@@ -19,14 +19,7 @@ type Handle = "right" | "left";
 let maxWidth = 920;
 let minWidth = 520;
 
-type PropTypes = {
-  className?: string;
-};
-
-const ResizableFrame: React.FC<PropsWithChildren<PropTypes>> = ({
-  children,
-  className,
-}) => {
+const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
   const currentHandleRef = useRef<Handle>();
   const windowRef = useRef<HTMLDivElement>(null);
   const startWidthRef = useRef<number>();
@@ -80,7 +73,7 @@ const ResizableFrame: React.FC<PropsWithChildren<PropTypes>> = ({
   );
 
   return (
-    <div className={className}>
+    <div className={styles.resizableFrame}>
       <div
         className={classnames(styles.windowSizeDragPoint, styles.left)}
         onMouseDown={handleResizeFrameX("left")}

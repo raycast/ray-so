@@ -1,8 +1,11 @@
 .frameContainer {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  grid-area: content;
 }
 
 .frame {
+  position: relative;
   max-width: 920px;
   min-width: 520px;
 

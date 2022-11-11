@@ -1,12 +1,16 @@
 import type { NextPage } from "next";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+
 import Frame from "../components/Frame";
-import styles from "../styles/Home.module.css";
-import { useEffect, useState } from "react";
 import Controls from "../components/Controls";
 import FrameContextStore from "../store/FrameContextStore";
-import { useAtom } from "jotai";
 import { darkModeAtom } from "../store/themes";
 import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
+
+import FullLogoSVG from "assets/full-logo.svg";
+
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
@@ -26,6 +30,20 @@ const Home: NextPage = () => {
         <Frame />
         <Controls />
       </FrameContextStore>
+
+      <div className={styles.footer}>
+        <span className={styles.madeBy}>
+          Made by{" "}
+          <a
+            href="https://www.raycast.com"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.logoLink}
+          >
+            <FullLogoSVG />
+          </a>
+        </span>
+      </div>
     </div>
   );
 };

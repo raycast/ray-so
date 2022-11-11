@@ -1,8 +1,49 @@
 .app {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px auto 200px;
+  grid-template-areas:
+    "top"
+    "content"
+    "footer";
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   min-width: 100vw;
   isolation: isolate;
+}
+
+.footer {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 40px;
+  justify-content: center;
+  background-image: url("~/assets/footer-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 700px 245px;
+  grid-area: footer;
+  height: 200px;
+
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.1px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.madeBy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  transition: transform 300ms ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
