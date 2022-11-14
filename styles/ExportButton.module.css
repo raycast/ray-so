@@ -1,3 +1,7 @@
+.hoverContainer {
+  position: relative;
+}
+
 .exportButton {
   display: flex;
   align-items: center;
@@ -16,7 +20,51 @@
 
   cursor: pointer;
 
-  &:hover {
+  .hoverContainer:hover & {
     background: rgba(255, 99, 99, 0.25);
+  }
+}
+
+.popoverContainer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: 100%;
+
+  .hoverContainer:hover & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.popover {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-background);
+  border: 1px solid var(--panel-dropdown-border);
+  border-radius: 6px;
+  list-style: none;
+  padding: 12px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.option {
+  white-space: nowrap;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  text-decoration: none;
+  color: var(--panel-text-color);
+  transition: color 0.3s ease;
+
+  svg {
+    margin-right: 6px;
+  }
+
+  &:hover {
+    color: var(--panel-padding-selected);
   }
 }
