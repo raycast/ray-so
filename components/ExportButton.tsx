@@ -8,25 +8,42 @@ import { FrameContext } from "../store/FrameContextStore";
 import download from "../util/download";
 
 import styles from "styles/ExportButton.module.css";
+import useHotkeys from "../util/useHotkeys";
+import { KeyHandler } from "hotkeys-js";
 
 const ExportButton: React.FC = () => {
   const frameContext = useContext(FrameContext);
 
-  const handleExport = useCallback<MouseEventHandler>(
+  const exportToPng = useCallback(() => {
+    if (frameContext && frameContext.current) {
+      toPng(frameContext.current).then((dataURL) => {
+        download(dataURL, "ray-so-export.png");
+      });
+    }
+  }, [frameContext]);
+
+  const handleExportClick = useCallback<MouseEventHandler>(
     (event) => {
       event.preventDefault();
 
-      if (frameContext && frameContext.current) {
-        toPng(frameContext.current).then((dataURL) => {
-          download(dataURL, "ray-so-export.png");
-        });
-      }
+      exportToPng();
     },
-    [frameContext]
+    [exportToPng]
   );
 
+  const handleExportHotkey = useCallback<KeyHandler>(
+    (event) => {
+      event.preventDefault();
+
+      exportToPng();
+    },
+    [exportToPng]
+  );
+
+  useHotkeys("ctrl+s,cmd+s", handleExportHotkey);
+
   return (
-    <a onClick={handleExport} className={styles.exportButton}>
+    <a onClick={handleExportClick} className={styles.exportButton}>
       Export <DownloadIcon />
     </a>
   );

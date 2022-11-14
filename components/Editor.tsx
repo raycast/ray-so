@@ -12,6 +12,7 @@ import { useAtom } from "jotai";
 import { codeAtom, selectedLanguageAtom } from "../store/code";
 import { themeCSSAtom } from "../store/themes";
 import classNames from "classnames";
+import useHotkeys from "../util/useHotkeys";
 
 function indentText(text: string) {
   return text
@@ -122,6 +123,17 @@ function Editor() {
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
+
+  useHotkeys("f", (event) => {
+    event.preventDefault();
+    textareaRef.current?.focus();
+  });
+
+  useHotkeys("esc", (event) => {
+    if (textareaRef.current === event.target) {
+      textareaRef.current?.blur();
+    }
+  });
 
   const html = useMemo(() => {
     if (selectedLanguage) {

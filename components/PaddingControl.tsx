@@ -5,9 +5,19 @@ import ControlContainer from "./ControlContainer";
 import styles from "styles/PaddingControl.module.css";
 import { useAtom } from "jotai";
 import { paddingAtom, PADDING_OPTIONS } from "../store/padding";
+import useHotkeys from "../util/useHotkeys";
 
 const PaddingControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
+
+  useHotkeys("p", () => {
+    const currentIndex = PADDING_OPTIONS.indexOf(padding);
+    if (PADDING_OPTIONS[currentIndex + 1]) {
+      setPadding(PADDING_OPTIONS[currentIndex + 1]);
+    } else {
+      setPadding(PADDING_OPTIONS[0]);
+    }
+  });
 
   return (
     <ControlContainer title="Padding">

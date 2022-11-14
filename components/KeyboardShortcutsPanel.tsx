@@ -1,9 +1,10 @@
-import React, { PropsWithChildren, useRef, useState } from "react";
+import React, { PropsWithChildren, useCallback, useRef, useState } from "react";
 
 import styles from "styles/KeyboardShortcutsPanel.module.css";
 
 import KeyboardIcon from "assets/icons/keyboard-16.svg";
 import { CSSTransition } from "react-transition-group";
+import useHotkeys from "../util/useHotkeys";
 
 const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({
   children,
@@ -25,6 +26,12 @@ const KeyboardShortcutsPanel: React.FC = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const togglePopover = useCallback(
+    () => setPopoverOpen((old) => !old),
+    [setPopoverOpen]
+  );
+
+  useHotkeys("shift+/", togglePopover);
 
   return (
     <>

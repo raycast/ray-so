@@ -6,9 +6,19 @@ import ControlContainer from "./ControlContainer";
 import { Select, SelectItem } from "./Select";
 
 import styles from "styles/ThemeControl.module.css";
+import useHotkeys from "../util/useHotkeys";
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, setTheme] = useAtom(themeAtom);
+
+  useHotkeys("c", () => {
+    const currentIndex = Object.values(THEMES).indexOf(currentTheme);
+    if (Object.values(THEMES)[currentIndex + 1]) {
+      setTheme(Object.values(THEMES)[currentIndex + 1]);
+    } else {
+      setTheme(Object.values(THEMES)[0]);
+    }
+  });
 
   return (
     <ControlContainer title="Theme">
