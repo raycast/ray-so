@@ -12,6 +12,7 @@
     "@radix-ui/react-select": "^1.1.1",
     "classnames": "^2.3.2",
     "highlightjs": "^9.16.2",
+    "hotkeys-js": "^3.10.0",
     "html-to-image": "^1.10.8",
     "jotai": "^1.8.4",
     "next": "12.3.0",
