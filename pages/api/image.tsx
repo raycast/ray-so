@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import satori, { init } from "satori/wasm";
+import { Resvg, initWasm } from "@resvg/resvg-wasm";
 
 // @ts-expect-error
 import yoga_wasm from "yoga-wasm-web/dist/yoga.wasm?module";
@@ -105,13 +106,19 @@ const code = `const btn = document.getElementById('btn')
   }
 })`;
 
-export default async function handler(req: NextRequest) {
-  const yoga = await getYoga;
-  init(yoga);
+const resvgPromise = initWasm(
+  new URL("../../node_modules/@resvg/resvg-wasm/index_bg.wasm", import.meta.url)
+);
 
-  const font = await fetch(
-    new URL("../../vendor/JetBrainsMono-Regular.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
+export default async function handler(req: NextRequest) {
+  const [, yoga, font] = await Promise.all([
+    resvgPromise,
+    getYoga,
+    fetch(
+      new URL("../../vendor/JetBrainsMono-Regular.ttf", import.meta.url)
+    ).then((res) => res.arrayBuffer()),
+  ]);
+  init(yoga);
 
   const tree = lowlight.highlight("js", code);
   const jsx = (
@@ -162,9 +169,19 @@ export default async function handler(req: NextRequest) {
     }
   );
 
-  return new Response(svg, {
+  const resvg = new Resvg(svg, {
+    fitTo: {
+      mode: "width",
+      value: 920 * 2,
+    },
+  });
+
+  const pngData = resvg.render();
+  const pngBuffer = pngData.asPng();
+
+  return new Response(pngBuffer, {
     headers: {
-      "Content-Type": "image/svg+xml",
+      "Content-Type": "image/png",
     },
   });
 }
