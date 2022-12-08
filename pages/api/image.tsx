@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+
 import satori, { init as initSatori } from "satori/wasm";
 import { Resvg, initWasm as initResvg } from "@resvg/resvg-wasm";
 
@@ -121,6 +122,7 @@ const code = `const btn = document.getElementById('btn')
 
 export default async function handler(req: NextRequest) {
   const tree = lowlight.highlight("js", code);
+
   const jsx = (
     <div style={{ display: "flex", flexWrap: "wrap", whiteSpace: "pre-wrap" }}>
       {transform(tree, "#f8f8f2")}
@@ -176,8 +178,10 @@ export default async function handler(req: NextRequest) {
 
   const result = new ReadableStream({
     async start(controller) {
-      await Promise.all([initializedResvg, initializedYoga]);
+      await initializedResvg;
+      await initializedYoga;
 
+      console.time("resvg");
       const resvgJS = new Resvg(svg, {
         fitTo: {
           mode: "width",
@@ -186,6 +190,7 @@ export default async function handler(req: NextRequest) {
       });
 
       controller.enqueue(resvgJS.render());
+      console.timeEnd("resvg");
       controller.close();
     },
   });
