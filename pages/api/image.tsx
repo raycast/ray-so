@@ -1,16 +1,29 @@
 import { NextRequest } from "next/server";
-import satori, { init } from "satori/wasm";
-import { Resvg, initWasm } from "@resvg/resvg-wasm";
+import satori, { init as initSatori } from "satori/wasm";
+import { Resvg, initWasm as initResvg } from "@resvg/resvg-wasm";
 
-// @ts-expect-error
-import yoga_wasm from "yoga-wasm-web/dist/yoga.wasm?module";
 import initYoga from "yoga-wasm-web";
+
+// @ts-ignore
+import yogaWasm from "yoga-wasm-web/dist/yoga.wasm?module";
+
+// @ts-ignore
+import resvgWasm from "../../node_modules/@resvg/resvg-wasm/index_bg.wasm?module";
 
 import { lowlight } from "lowlight/lib/common";
 import { Root, Span, Text } from "lowlight/lib/core";
 import { ReactNode } from "react";
+import Yoga from "yoga-layout";
 
-const getYoga = initYoga(yoga_wasm);
+const initializedYoga = initYoga(yogaWasm).then((yoga: typeof Yoga) =>
+  initSatori(yoga)
+);
+
+const initializedResvg = initResvg(resvgWasm);
+
+const fontPromise = fetch(
+  new URL("../../vendor/JetBrainsMono-Regular.ttf", import.meta.url)
+).then((res) => res.arrayBuffer());
 
 export const config = {
   runtime: "experimental-edge",
@@ -106,19 +119,12 @@ const code = `const btn = document.getElementById('btn')
   }
 })`;
 
-const resvgPromise = initWasm(
-  new URL("../../node_modules/@resvg/resvg-wasm/index_bg.wasm", import.meta.url)
-);
-
 export default async function handler(req: NextRequest) {
   const [, yoga, font] = await Promise.all([
-    resvgPromise,
-    getYoga,
-    fetch(
-      new URL("../../vendor/JetBrainsMono-Regular.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer()),
+    initializedResvg,
+    initializedYoga,
+    fontPromise,
   ]);
-  init(yoga);
 
   const tree = lowlight.highlight("js", code);
   const jsx = (
