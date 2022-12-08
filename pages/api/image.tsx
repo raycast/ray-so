@@ -5,10 +5,10 @@ import { Resvg, initWasm as initResvg } from "@resvg/resvg-wasm";
 import initYoga from "yoga-wasm-web";
 
 // @ts-ignore
-import yogaWasm from "../../vendor/yoga.wasm?module";
+import yogaWasm from "yoga-wasm-web/dist/yoga.wasm?module";
 
 // @ts-ignore
-import resvgWasm from "../../vendor/resvg.simd.wasm?module";
+import resvgWasm from "../../node_modules/@resvg/resvg-wasm/index_bg.wasm?module";
 
 import { lowlight } from "lowlight/lib/common";
 import { Root, Span, Text } from "lowlight/lib/core";
