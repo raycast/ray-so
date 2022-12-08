@@ -189,7 +189,8 @@ export default async function handler(req: NextRequest) {
         },
       });
 
-      controller.enqueue(resvgJS.render());
+      const pngData = resvgJS.render();
+      controller.enqueue(pngData.asPng());
       console.timeEnd("resvg");
       controller.close();
     },
