@@ -144,8 +144,8 @@ export default async function handler(req: NextRequest) {
           borderRadius: 10,
           padding: "16px 0",
           border: "1px solid rgba(255, 255, 255, 0.2)",
-          boxShadow:
-            "0px 0px 20px rgba(0, 0, 0, 0.15), 0px 25px 30px rgba(0, 0, 0, 0.35)",
+          // boxShadow:
+          //   "0px 0px 20px rgba(0, 0, 0, 0.15), 0px 25px 30px rgba(0, 0, 0, 0.35)",
           background: "rgba(0, 0, 0, 0.75)",
         }}
       >
