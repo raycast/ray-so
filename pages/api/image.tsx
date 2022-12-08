@@ -5,10 +5,10 @@ import { Resvg, initWasm as initResvg } from "@resvg/resvg-wasm";
 import initYoga from "yoga-wasm-web";
 
 // @ts-ignore
-import yogaWasm from "yoga-wasm-web/dist/yoga.wasm?module";
+import yogaWasm from "../../vendor/yoga.wasm?module";
 
 // @ts-ignore
-import resvgWasm from "../../node_modules/@resvg/resvg-wasm/index_bg.wasm?module";
+import resvgWasm from "../../vendor/resvg.simd.wasm?module";
 
 import { lowlight } from "lowlight/lib/common";
 import { Root, Span, Text } from "lowlight/lib/core";
@@ -120,12 +120,6 @@ const code = `const btn = document.getElementById('btn')
 })`;
 
 export default async function handler(req: NextRequest) {
-  const [, yoga, font] = await Promise.all([
-    initializedResvg,
-    initializedYoga,
-    fontPromise,
-  ]);
-
   const tree = lowlight.highlight("js", code);
   const jsx = (
     <div style={{ display: "flex", flexWrap: "wrap", whiteSpace: "pre-wrap" }}>
@@ -170,22 +164,33 @@ export default async function handler(req: NextRequest) {
       width: 920,
       height: 458,
       fonts: [
-        { name: "JetBrains Mono", data: font, weight: 400, style: "normal" },
+        {
+          name: "JetBrains Mono",
+          data: await fontPromise,
+          weight: 400,
+          style: "normal",
+        },
       ],
     }
   );
 
-  const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: "width",
-      value: 920 * 2,
+  const result = new ReadableStream({
+    async start(controller) {
+      await Promise.all([initializedResvg, initializedYoga]);
+
+      const resvgJS = new Resvg(svg, {
+        fitTo: {
+          mode: "width",
+          value: 920 * 2,
+        },
+      });
+
+      controller.enqueue(resvgJS.render());
+      controller.close();
     },
   });
 
-  const pngData = resvg.render();
-  const pngBuffer = pngData.asPng();
-
-  return new Response(pngBuffer, {
+  return new Response(result, {
     headers: {
       "Content-Type": "image/png",
     },
