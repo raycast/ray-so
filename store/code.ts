@@ -2,6 +2,7 @@ import { atom } from "jotai";
 import { Base64 } from "js-base64";
 import { highlightAuto } from "highlightjs";
 import { LANGUAGES, Language } from "../util/languages";
+import { atomWithHash } from "jotai/utils";
 
 type CodeSample = {
   language: Language;
@@ -59,7 +60,31 @@ export const autoDetectLanguageAtom = atom<boolean>((get) => {
 });
 
 const detectedLanguageAtom = atom<Language | null>(null);
-const userInputtedLanguageAtom = atom<Language | null>(null);
+const userInputtedLanguageAtom = atomWithHash<Language | null>(
+  "language",
+  null,
+  {
+    delayInit: true,
+    serialize(language) {
+      const key = Object.keys(LANGUAGES).find(
+        (key) => LANGUAGES[key] === language
+      );
+
+      if (key) {
+        return key;
+      } else {
+        return "";
+      }
+    },
+    deserialize(key) {
+      if (key) {
+        return LANGUAGES[key];
+      } else {
+        return null;
+      }
+    },
+  }
+);
 
 export const selectedLanguageAtom = atom<Language | null, Language | null>(
   (get) => {
@@ -78,15 +103,6 @@ export const selectedLanguageAtom = atom<Language | null, Language | null>(
     set(userInputtedLanguageAtom, newLanguage);
   }
 );
-selectedLanguageAtom.onMount = (setValue) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  const searchParamsLanguage = searchParams.get("language");
-
-  if (searchParamsLanguage && searchParamsLanguage in LANGUAGES) {
-    setValue(LANGUAGES[searchParamsLanguage]);
-  }
-};
 
 export const codeExampleAtom = atom<CodeSample | null>(null);
 codeExampleAtom.onMount = (setAtom) => {
@@ -100,7 +116,7 @@ export const codeAtom = atom<string, string>(
   (get, set, newCode) => {
     set(userInputtedCodeAtom, newCode);
     detectLanguage(newCode).then((language) => {
-      if (LANGUAGES[language] && get(userInputtedLanguageAtom) === null) {
+      if (LANGUAGES[language]) {
         set(detectedLanguageAtom, LANGUAGES[language]);
       }
     });
@@ -108,8 +124,7 @@ export const codeAtom = atom<string, string>(
 );
 
 codeAtom.onMount = (setValue) => {
-  const searchParams = new URLSearchParams(location.search);
-
+  const searchParams = new URLSearchParams(location.hash.slice(1));
   const searchParamsCode = searchParams.get("code");
 
   if (searchParamsCode) {
