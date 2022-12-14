@@ -16,6 +16,7 @@
 .footer {
   display: flex;
   align-items: flex-end;
+  gap: 40px;
   padding-bottom: 40px;
   justify-content: center;
   background-image: url("~/assets/footer-background.jpg");
@@ -30,11 +31,33 @@
   line-height: 14px;
   letter-spacing: 0.1px;
   color: rgba(255, 255, 255, 0.4);
+
+  > * {
+    display: flex;
+    align-items: center;
+    height: 22px;
+  }
+}
+
+.footerLink {
+  transition: color 300ms ease;
+
+  > svg {
+    margin-left: 4px;
+    width: 1em;
+    height: 1em;
+    transition: transform 200ms;
+  }
+
+  &:hover {
+    color: white;
+    > svg {
+      transform: translate(2px, -2px);
+    }
+  }
 }
 
 .madeBy {
-  display: flex;
-  align-items: center;
   gap: 9px;
 }
 
