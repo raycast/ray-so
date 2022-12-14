@@ -422,6 +422,8 @@ darkModeAtom.onMount = (setValue) => {
 
   if (searchParamsDarkMode) {
     setValue(searchParamsDarkMode === "true");
+  } else {
+    setValue(window.matchMedia("(prefers-color-scheme: dark)").matches);
   }
 };
 

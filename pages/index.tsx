@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
 import { useAtom } from "jotai";
 
 import Frame from "../components/Frame";
@@ -13,14 +12,7 @@ import FullLogoSVG from "assets/full-logo.svg";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
-
-  useEffect(() => {
-    const defaultDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    setDarkMode(defaultDark);
-  }, [setDarkMode]);
+  const [darkMode] = useAtom(darkModeAtom);
 
   return (
     <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
