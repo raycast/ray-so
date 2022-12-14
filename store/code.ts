@@ -114,7 +114,12 @@ export const userInputtedCodeAtom = atom<string | null>(null);
 export const codeAtom = atom<string, string>(
   (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
   (get, set, newCode) => {
+    const searchParams = new URLSearchParams(location.hash.slice(1));
     set(userInputtedCodeAtom, newCode);
+
+    searchParams.set("code", Base64.encodeURI(newCode));
+    window.location.hash = `#${searchParams.toString()}`;
+
     detectLanguage(newCode).then((language) => {
       if (LANGUAGES[language]) {
         set(detectedLanguageAtom, LANGUAGES[language]);
