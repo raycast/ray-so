@@ -44,7 +44,7 @@ const KeyboardShortcutsPanel: React.FC = () => {
           }}
         >
           <KeyboardIcon />
-          keyboard shortcuts
+          keyboard Shortcuts
         </a>
         <CSSTransition
           in={popoverOpen}
