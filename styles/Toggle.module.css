@@ -1,6 +1,6 @@
 .toggle {
   user-select: none;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   align-items: center;
 

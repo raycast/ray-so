@@ -22,7 +22,7 @@
   letter-spacing: 0.1px;
 
   color: #ffffff;
-  cursor: pointer;
+  cursor: default;
 
   transition: background-color 300ms ease;
   user-select: none;

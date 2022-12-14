@@ -18,7 +18,7 @@
 
   transition: background-color 200ms;
 
-  cursor: pointer;
+  cursor: default;
 
   .hoverContainer:hover & {
     background: rgba(255, 99, 99, 0.25);
