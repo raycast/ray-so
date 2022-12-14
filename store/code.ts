@@ -132,7 +132,7 @@ codeAtom.onMount = (setValue) => {
   const searchParams = new URLSearchParams(location.hash.slice(1));
   const searchParamsCode = searchParams.get("code");
 
-  if (searchParamsCode) {
+  if (typeof searchParamsCode === "string") {
     try {
       const code = Base64.decode(searchParamsCode);
       setValue(code);
