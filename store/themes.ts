@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { atomWithHash } from "jotai/utils";
 import { CSSProperties } from "react";
 
 type SyntaxObject = {
@@ -403,29 +404,23 @@ export const THEMES: { [index: string]: Theme } = {
   },
 };
 
-const themeAtom = atom<Theme>(THEMES.candy);
-themeAtom.onMount = (setValue) => {
-  const searchParams = new URLSearchParams(location.search);
+const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
+  delayInit: true,
+  serialize(value) {
+    return value.name.toLowerCase();
+  },
+  deserialize(key) {
+    if (key) {
+      return THEMES[key];
+    } else {
+      return THEMES.candy;
+    }
+  },
+});
 
-  const searchParamsTheme = searchParams.get("theme");
-
-  if (searchParamsTheme && searchParamsTheme in THEMES) {
-    setValue(THEMES[searchParamsTheme]);
-  }
-};
-
-const darkModeAtom = atom<boolean>(true);
-darkModeAtom.onMount = (setValue) => {
-  const searchParams = new URLSearchParams(location.search);
-
-  const searchParamsDarkMode = searchParams.get("darkMode");
-
-  if (searchParamsDarkMode) {
-    setValue(searchParamsDarkMode === "true");
-  } else {
-    setValue(window.matchMedia("(prefers-color-scheme: dark)").matches);
-  }
-};
+const darkModeAtom = atomWithHash<boolean>("darkMode", true, {
+  delayInit: true,
+});
 
 const themeCSSAtom = atom<CSSProperties>(
   (get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]
