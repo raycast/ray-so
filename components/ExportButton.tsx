@@ -57,6 +57,10 @@ const ExportButton: React.FC = () => {
     [savePng]
   );
 
+  const copyUrl = useCallback(() => {
+    navigator.clipboard.writeText(window.location.toString());
+  }, []);
+
   useHotkeys("ctrl+s,cmd+s", (event) => {
     event.preventDefault();
     savePng();
@@ -64,6 +68,10 @@ const ExportButton: React.FC = () => {
   useHotkeys("ctrl+c,cmd+c", (event) => {
     event.preventDefault();
     copyPng();
+  });
+  useHotkeys("ctrl+shift+c,cmd+shift+c", (event) => {
+    event.preventDefault();
+    copyUrl();
   });
   useHotkeys("ctrl+shift+s,cmd+shift+s", (event) => {
     event.preventDefault();
@@ -103,7 +111,14 @@ const ExportButton: React.FC = () => {
             <ClipboardIcon />
             Copy Image
           </a>
-          <a href="#" className={styles.option}>
+          <a
+            href="#"
+            className={styles.option}
+            onClick={(event) => {
+              event.preventDefault();
+              copyUrl();
+            }}
+          >
             <LinkIcon />
             Copy URL
           </a>
