@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { Base64 } from "js-base64";
 import { highlightAuto } from "highlightjs";
 import { LANGUAGES, Language } from "../util/languages";
 
@@ -77,6 +78,15 @@ export const selectedLanguageAtom = atom<Language | null, Language | null>(
     set(userInputtedLanguageAtom, newLanguage);
   }
 );
+selectedLanguageAtom.onMount = (setValue) => {
+  const searchParams = new URLSearchParams(location.search);
+
+  const searchParamsLanguage = searchParams.get("language");
+
+  if (searchParamsLanguage && searchParamsLanguage in LANGUAGES) {
+    setValue(LANGUAGES[searchParamsLanguage]);
+  }
+};
 
 export const codeExampleAtom = atom<CodeSample | null>(null);
 codeExampleAtom.onMount = (setAtom) => {
@@ -96,3 +106,19 @@ export const codeAtom = atom<string, string>(
     });
   }
 );
+
+codeAtom.onMount = (setValue) => {
+  const searchParams = new URLSearchParams(location.search);
+
+  const searchParamsCode = searchParams.get("code");
+
+  if (searchParamsCode) {
+    try {
+      const code = Base64.decode(searchParamsCode);
+      setValue(code);
+    } catch (e) {
+      console.error("decoding code query parameter failed");
+      console.error(e);
+    }
+  }
+};
