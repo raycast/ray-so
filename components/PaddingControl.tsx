@@ -1,10 +1,16 @@
-import classNames from "classnames";
 import React from "react";
-import ControlContainer from "./ControlContainer";
-
-import styles from "styles/PaddingControl.module.css";
 import { useAtom } from "jotai";
-import { paddingAtom, PADDING_OPTIONS } from "../store/padding";
+import classNames from "classnames";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
+
+import ControlContainer from "./ControlContainer";
+import styles from "styles/PaddingControl.module.css";
+import {
+  isPadding,
+  Padding,
+  paddingAtom,
+  PADDING_OPTIONS,
+} from "../store/padding";
 import useHotkeys from "../util/useHotkeys";
 
 const PaddingControl: React.FC = () => {
@@ -21,23 +27,29 @@ const PaddingControl: React.FC = () => {
 
   return (
     <ControlContainer title="Padding">
-      <div className={styles.container}>
+      <ToggleGroup.Root
+        className={styles.toggleGroup}
+        type="single"
+        value={`${padding}`}
+        aria-label="Frame Padding"
+        onValueChange={(value) => {
+          const intValue = parseInt(value, 10);
+          if (isPadding(intValue)) {
+            setPadding(intValue);
+          }
+        }}
+      >
         {PADDING_OPTIONS.map((paddingOption) => (
-          <a
-            href=""
+          <ToggleGroup.Item
             key={paddingOption}
-            className={classNames(styles.option, {
-              [styles.selected]: paddingOption === padding,
-            })}
-            onClick={(event) => {
-              event.preventDefault();
-              setPadding(paddingOption);
-            }}
+            className={styles.toggleGroupItem}
+            value={`${paddingOption}`}
+            aria-label={`${paddingOption}`}
           >
             {paddingOption}
-          </a>
+          </ToggleGroup.Item>
         ))}
-      </div>
+      </ToggleGroup.Root>
     </ControlContainer>
   );
 };
