@@ -13,12 +13,18 @@
 
   color: #ff6363;
 
-  background: rgba(255, 99, 99, 0.15);
+  --button-color: rgba(255, 99, 99, 0.15);
+  background: var(--button-color);
   border-radius: 6px;
 
   transition: background-color 200ms;
 
   cursor: default;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--button-color);
+  }
 
   .hoverContainer:hover & {
     background: rgba(255, 99, 99, 0.25);

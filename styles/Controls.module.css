@@ -7,7 +7,7 @@
   display: flex;
   gap: 32px;
 
-  background: #191919;
+  background: var(--panel-background);
 
   padding: 24px;
 
