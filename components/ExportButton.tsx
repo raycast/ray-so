@@ -1,8 +1,11 @@
 import React, { MouseEventHandler, useContext } from "react";
+import * as Popover from "@radix-ui/react-popover";
 
 import DownloadIcon from "assets/icons/download-16.svg";
 import ImageIcon from "assets/icons/image-16.svg";
 import LinkIcon from "assets/icons/link-16.svg";
+import ChevronDownIcon from "assets/icons/chevron-down-16.svg";
+import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
 import ClipboardIcon from "assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
@@ -12,6 +15,7 @@ import { toPng, toSvg, toBlob } from "../lib/image";
 import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
+import classNames from "classnames";
 
 const ExportButton: React.FC = () => {
   const pngClipboardSupported = usePngClipboardSupported();
@@ -84,53 +88,67 @@ const ExportButton: React.FC = () => {
   });
 
   return (
-    <div className={styles.hoverContainer}>
-      <a href="#" onClick={handleExportClick} className={styles.exportButton}>
-        Export <DownloadIcon />
-      </a>
-      <div className={styles.popoverContainer}>
-        <div className={styles.popover}>
-          <a href="#" onClick={handleExportClick} className={styles.option}>
-            <ImageIcon />
-            Save PNG
-          </a>
-          <a
-            href="#"
-            className={styles.option}
-            onClick={(event) => {
-              event.preventDefault();
-              saveSvg();
-            }}
+    <div className={styles.container}>
+      <button
+        onClick={handleExportClick}
+        className={styles.button}
+        aria-label="Export as PNG"
+      >
+        Export
+      </button>
+      <Popover.Root>
+        <Popover.Trigger asChild>
+          <button
+            className={classNames(styles.button, styles.small)}
+            aria-label="See other export options"
           >
-            <ImageIcon />
-            Save SVG
-          </a>
-          {pngClipboardSupported && (
+            <ChevronUpIcon />
+          </button>
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content className={styles.popover} sideOffset={5}>
+            <a href="#" onClick={handleExportClick} className={styles.option}>
+              <ImageIcon />
+              Save PNG
+            </a>
             <a
               href="#"
               className={styles.option}
               onClick={(event) => {
                 event.preventDefault();
-                copyPng();
+                saveSvg();
               }}
             >
-              <ClipboardIcon />
-              Copy Image
+              <ImageIcon />
+              Save SVG
             </a>
-          )}
-          <a
-            href="#"
-            className={styles.option}
-            onClick={(event) => {
-              event.preventDefault();
-              copyUrl();
-            }}
-          >
-            <LinkIcon />
-            Copy URL
-          </a>
-        </div>
-      </div>
+            {pngClipboardSupported && (
+              <a
+                href="#"
+                className={styles.option}
+                onClick={(event) => {
+                  event.preventDefault();
+                  copyPng();
+                }}
+              >
+                <ClipboardIcon />
+                Copy Image
+              </a>
+            )}
+            <a
+              href="#"
+              className={styles.option}
+              onClick={(event) => {
+                event.preventDefault();
+                copyUrl();
+              }}
+            >
+              <LinkIcon />
+              Copy URL
+            </a>
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
     </div>
   );
 };
