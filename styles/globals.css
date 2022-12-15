@@ -29,42 +29,21 @@ a {
 }
 
 :root {
-  --panel-background: #fff;
-  --panel-border: 1px solid transparent;
-  --panel-text-color: #999;
-  --panel-heading-color: #0d0d0d;
-  --panel-dropdown-border: rgba(0, 0, 0, 0.1);
-  --panel-dropdown-hover-border: rgba(0, 0, 0, 0.3);
-  --key-background: rgba(0, 0, 0, 0.1);
-  --key-text-color: #666;
-  --panel-dropdown-chevron-color: #0d0d0d;
-  --panel-padding-selected: #191919;
-  --toggle-enabled-background: #56c2ff;
-  --toggle-disabled-background: #bfbfbf;
+  --panel-background: #191919;
+  --panel-border: 1px solid rgba(255, 255, 255, 0.2);
+  --panel-text-color: rgba(255, 255, 255, 0.4);
+  --panel-dropdown-border: rgba(255, 255, 255, 0.1);
+  --panel-padding-selected: #fff;
+
   --frame-background: rgba(255, 255, 255, 0.75);
   --frame-control-color: rgba(0, 0, 0, 0.2);
   --frame-title-placeholder-color: rgba(0, 0, 0, 0.3);
   --frame-title-color: rgba(0, 0, 0, 0.6);
-  --selection-color: #d7d4f0;
-  --yellow-transparent-dark: #342b17;
-  --yellow-dark: #ffc531;
 }
 
 [data-theme="dark"] {
-  --panel-background: #191919;
-  --panel-border: 1px solid rgba(255, 255, 255, 0.2);
-  --panel-text-color: rgba(255, 255, 255, 0.4);
-  --panel-heading-color: #fff;
-  --panel-dropdown-border: rgba(255, 255, 255, 0.1);
-  --panel-dropdown-hover-border: rgba(255, 255, 255, 0.3);
-  --key-background: #333;
-  --key-text-color: rgba(255, 255, 255, 0.4);
-  --panel-dropdown-chevron-color: #fff;
-  --panel-padding-selected: #fff;
-  --toggle-disabled-background: rgba(255, 255, 255, 0.2);
   --frame-background: rgba(0, 0, 0, 0.75);
   --frame-control-color: rgba(255, 255, 255, 0.2);
   --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
   --frame-title-color: rgba(255, 255, 255, 0.6);
-  --selection-color: rgba(255, 255, 255, 0.1);
 }
