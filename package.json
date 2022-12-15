@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-select": "^1.1.1",
+    "@radix-ui/react-switch": "^1.0.1",
     "@radix-ui/react-toggle-group": "^1.0.1",
     "@resvg/resvg-wasm": "^2.2.0",
     "classnames": "^2.3.2",

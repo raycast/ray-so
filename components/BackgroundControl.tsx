@@ -14,12 +14,7 @@ const BackgroundControl: React.FC = () => {
 
   return (
     <ControlContainer title="Background">
-      <Toggle
-        checked={showBackground}
-        onChange={(newValue) => {
-          setShowBackground(newValue);
-        }}
-      />
+      <Toggle checked={showBackground} onCheckedChange={setShowBackground} />
     </ControlContainer>
   );
 };

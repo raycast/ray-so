@@ -1,29 +1,34 @@
-.toggle {
-  user-select: none;
-  cursor: default;
-  display: flex;
-  align-items: center;
+.switchRoot {
+  background: hsla(0, 0%, 100%, 0.2);
+  border: none;
+  width: 28px;
+  height: 16px;
+  border-radius: 9px;
+  padding: 0 3px;
+  transition: background-color 300ms ease;
 
-  > input {
-    display: none;
+  --focus-ring-color: rgba(255, 255, 255, 0.1);
+
+  &[data-state="checked"] {
+    background: #56c2ff;
   }
 
-  &.checked {
-    .frame {
-      fill: #56c2ff;
-    }
-
-    .circle {
-      transform: translateX(11px);
-    }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background),
+      0 0 0 4px var(--focus-ring-color);
   }
+}
 
-  .frame {
-    fill: hsla(0, 0%, 100%, 0.2);
-    transition: fill 0.3s ease;
-  }
+.switchThumb {
+  display: block;
+  background: white;
+  border-radius: 100px;
+  width: 10px;
+  height: 10px;
+  transition: transform 300ms ease;
 
-  .circle {
-    transition: all 0.3s ease;
+  &[data-state="checked"] {
+    transform: translateX(12px);
   }
 }
