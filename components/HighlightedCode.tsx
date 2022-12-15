@@ -1,9 +1,13 @@
-import classNames from "classnames";
-import { highlight } from "highlightjs";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Language } from "../util/languages";
+import { createStarryNight } from "@wooorm/starry-night";
+import sourceJs from "@wooorm/starry-night/lang/source.js.js";
+import { Root } from "hast";
+import { toH } from "hast-to-hyperscript";
 
 import styles from "styles/Editor.module.css";
+
+const starryNightPromise = createStarryNight([sourceJs]);
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -11,27 +15,25 @@ type PropTypes = {
 };
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
-  const html = useMemo(() => {
-    if (selectedLanguage) {
-      return highlight(selectedLanguage.className, code).value;
-    } else {
-      return code;
-    }
+  const [tree, setTree] = useState<Root | undefined>();
+
+  useEffect(() => {
+    starryNightPromise.then((starryNight) => {
+      if (!selectedLanguage || !code) return;
+
+      const tree = starryNight.highlight(code, sourceJs.scopeName);
+
+      setTree(tree);
+    });
   }, [code, selectedLanguage]);
 
-  const preView = useMemo(
-    () => (
-      <div
-        className={classNames(styles.formatted, "hljs")}
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      />
-    ),
-    [html]
-  );
+  const preView = useMemo(() => {
+    if (!tree) return;
 
-  return preView;
+    return toH(React.createElement, tree);
+  }, [tree]);
+
+  return <div className={styles.formatted}>{preView}</div>;
 };
 
 export default HighlightedCode;

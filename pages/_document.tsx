@@ -19,6 +19,10 @@ export default function Document() {
           rel="stylesheet"
           crossOrigin="anonymous"
         />
+        <link
+          rel="stylesheet"
+          href="https://esm.sh/@wooorm/starry-night@1/style/dark.css"
+        />
       </Head>
       <body>
         <Main />
