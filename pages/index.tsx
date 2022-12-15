@@ -9,51 +9,94 @@ import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
 
 import FullLogoSVG from "assets/full-logo.svg";
 import ArrowNeIcon from "assets/icons/arrow-ne-16.svg";
+import CoverPhoto from "assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
+import Head from "next/head";
+
+const coverPhotoUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
 const Home: NextPage = () => {
   const [darkMode] = useAtom(darkModeAtom);
 
   return (
-    <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
-      <KeyboardShortcutsPanel />
+    <>
+      <Head>
+        <title>Create beautiful images of your code</title>
+        <link rel="shortcut icon" href="/favicon.png" />
+        <meta name="title" content="Create beautiful images of your code" />
+        <meta
+          name="description"
+          content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
+        />
 
-      <FrameContextStore>
-        <Frame />
-        <Controls />
-      </FrameContextStore>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ray.so/" />
+        <meta
+          property="og:title"
+          content="Ray.so - Create beautiful images of your code"
+        />
+        <meta
+          property="og:description"
+          content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
+        />
+        <meta property="og:image" content={coverPhotoUrl} />
 
-      <div className={styles.footer}>
-        <a
-          href="mailto:feedback+rayso@raycast.com"
-          className={styles.footerLink}
-        >
-          Send Feedback
-          <ArrowNeIcon />
-        </a>
-        <span className={styles.madeBy}>
-          Made by{" "}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://ray.so/" />
+        <meta
+          property="twitter:title"
+          content="Ray.so - Create beautiful images of your code"
+        />
+        <meta
+          property="twitter:description"
+          content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
+        />
+        <meta property="twitter:image" content={coverPhotoUrl} />
+        <meta
+          name="keywords"
+          content="generate, create, convert, source, code, snippet, image, picture, share, export"
+        />
+      </Head>
+      <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
+        <KeyboardShortcutsPanel />
+
+        <FrameContextStore>
+          <Frame />
+          <Controls />
+        </FrameContextStore>
+
+        <div className={styles.footer}>
           <a
-            href="https://www.raycast.com"
-            target="_blank"
-            rel="noreferrer"
-            className={styles.logoLink}
+            href="mailto:feedback+rayso@raycast.com"
+            className={styles.footerLink}
           >
-            <FullLogoSVG />
+            Send Feedback
+            <ArrowNeIcon />
           </a>
-        </span>
-        <a
-          href="https://www.raycast.com/garrett/ray-so"
-          target="_blank"
-          className={styles.footerLink}
-          rel="noreferrer"
-        >
-          Get Raycast Extension
-          <ArrowNeIcon />
-        </a>
+          <span className={styles.madeBy}>
+            Made by{" "}
+            <a
+              href="https://www.raycast.com"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.logoLink}
+            >
+              <FullLogoSVG />
+            </a>
+          </span>
+          <a
+            href="https://www.raycast.com/garrett/ray-so"
+            target="_blank"
+            className={styles.footerLink}
+            rel="noreferrer"
+          >
+            Get Raycast Extension
+            <ArrowNeIcon />
+          </a>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
