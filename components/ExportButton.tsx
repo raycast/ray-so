@@ -13,7 +13,8 @@ import download from "../util/download";
 import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 
-const imageFilter = (node: HTMLElement) => node.tagName !== "TEXTAREA";
+const imageFilter = (node: HTMLElement) =>
+  node.tagName !== "TEXTAREA" && !node.dataset?.ignoreInExport;
 
 const ExportButton: React.FC = () => {
   const frameContext = useContext(FrameContext);

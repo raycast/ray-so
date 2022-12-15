@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useAtom } from "jotai";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import styles from "styles/Frame.module.css";
 import { fileNameAtom, showBackgroundAtom } from "../store";
@@ -45,7 +45,9 @@ const Frame: React.FC = () => {
                   onChange={(event) => setFileName(event.target.value)}
                   spellCheck={false}
                 />
-                {fileName.length === 0 ? <span>Untitled-1</span> : null}
+                {fileName.length === 0 ? (
+                  <span data-ignore-in-export>Untitled-1</span>
+                ) : null}
               </div>
             </div>
             <Editor />
