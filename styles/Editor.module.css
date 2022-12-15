@@ -22,7 +22,7 @@
   background: transparent;
   border: none;
   -webkit-text-fill-color: transparent;
-  caret-color: white;
+  caret-color: var(--syntax-text);
   z-index: 2;
 
   &:focus {
