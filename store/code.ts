@@ -109,6 +109,11 @@ codeExampleAtom.onMount = (setAtom) => {
   setAtom(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
 };
 
+export const isCodeExampleAtom = atom<boolean>(
+  (get) =>
+    !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom))
+);
+
 export const userInputtedCodeAtom = atom<string | null>(null);
 
 export const codeAtom = atom<string, string>(

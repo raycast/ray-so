@@ -5,11 +5,16 @@ import React, {
   useRef,
   ChangeEventHandler,
   FormEventHandler,
+  FocusEventHandler,
 } from "react";
 import styles from "styles/Editor.module.css";
 import { highlight } from "highlightjs";
 import { useAtom } from "jotai";
-import { codeAtom, selectedLanguageAtom } from "../store/code";
+import {
+  codeAtom,
+  isCodeExampleAtom,
+  selectedLanguageAtom,
+} from "../store/code";
 import { themeCSSAtom } from "../store/themes";
 import classNames from "classnames";
 import useHotkeys from "../util/useHotkeys";
@@ -123,6 +128,7 @@ function Editor() {
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
+  const [isCodeExample] = useAtom(isCodeExampleAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -189,12 +195,19 @@ function Editor() {
     [setCode]
   );
 
+  const handleFocus = useCallback<FocusEventHandler>(() => {
+    if (isCodeExample && textareaRef.current) {
+      textareaRef.current.select();
+    }
+  }, [isCodeExample]);
+
   return (
     <div
       className={styles.editor}
       style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
     >
       <textarea
+        tabIndex={1}
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
@@ -205,6 +218,7 @@ function Editor() {
         onChange={handleChange}
         onInput={handleInput}
         onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
       />
       {preView}
     </div>
