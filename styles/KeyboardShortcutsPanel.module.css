@@ -15,6 +15,7 @@
   padding: 9px 16px;
   background: #fff1;
   border-radius: 6px;
+  border: none;
 
   font-weight: 500;
   font-size: 13px;
@@ -30,36 +31,79 @@
   &:hover {
     background: #fff2;
   }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px #fff1;
+  }
 }
 .overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: #0006;
   z-index: 7;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .popover {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 32px;
 
   background: var(--panel-background);
 
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
   border-radius: 8px;
 
-  padding: 32px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
+
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 
   z-index: 10;
+}
 
-  > strong {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 21px;
-    letter-spacing: -0.05px;
+.dialogTitle {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.05px;
+  margin: 0 0 24px 0;
 
-    color: #ffffff;
+  color: #ffffff;
+}
+
+.closeButton {
+  font-family: inherit;
+  border-radius: 100%;
+  background: transparent;
+  display: flex;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+  padding: 2px;
+  transition: background-color 300ms ease;
+  --button-color: rgba(255, 255, 255, 0.4);
+
+  &:hover {
+    background: var(--button-color);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--button-color);
+  }
+
+  > svg {
+    width: 1em;
+    height: 1em;
   }
 }
 
@@ -74,6 +118,11 @@
   letter-spacing: 0.1px;
 
   color: rgba(255, 255, 255, 0.6);
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .keys {
@@ -99,17 +148,22 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
-.enter {
-  opacity: 0;
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.enterActive {
-  opacity: 1;
-  transition: opacity 200ms;
-}
-.exit {
-  opacity: 1;
-}
-.exitActive {
-  opacity: 0;
-  transition: opacity 200ms;
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }

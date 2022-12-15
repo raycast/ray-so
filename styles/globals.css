@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background: #0d0d0d;
+  background: var(--background);
   color: white;
 
   > :first-child {
@@ -29,6 +29,7 @@ a {
 }
 
 :root {
+  --background: #0d0d0d;
   --panel-background: #191919;
   --panel-border: 1px solid rgba(255, 255, 255, 0.2);
   --panel-text-color: rgba(255, 255, 255, 0.4);

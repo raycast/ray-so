@@ -1,10 +1,11 @@
 import React, { PropsWithChildren, useCallback, useRef, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 import styles from "styles/KeyboardShortcutsPanel.module.css";
 
 import KeyboardIcon from "assets/icons/keyboard-16.svg";
-import { CSSTransition } from "react-transition-group";
 import useHotkeys from "../util/useHotkeys";
+import MultiplyIcon from "assets/icons/multiply-16.svg";
 
 const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({
   children,
@@ -36,56 +37,44 @@ const KeyboardShortcutsPanel: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <a
-          className={styles.anchor}
-          onClick={(event) => {
-            event.preventDefault();
-            setPopoverOpen(!popoverOpen);
-          }}
-        >
-          <KeyboardIcon />
-          keyboard Shortcuts
-        </a>
-        <CSSTransition
-          in={popoverOpen}
-          nodeRef={popoverRef}
-          timeout={300}
-          classNames={styles}
-          unmountOnExit
-        >
-          <div ref={popoverRef} className={styles.popover}>
-            <strong>Keyboard Shortcuts</strong>
-            <div className={styles.shortcuts}>
-              <Shortcut keys={["F"]}>Focus text editor</Shortcut>
-              <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
-              <Shortcut keys={["C"]}>Change colors</Shortcut>
-              <Shortcut keys={["B"]}>Toggle background</Shortcut>
-              <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
-              <Shortcut keys={["P"]}>Change padding</Shortcut>
-              <Shortcut keys={["L"]}>Select language</Shortcut>
-              <Shortcut keys={["R"]}>Pick random theme</Shortcut>
-              <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
-              <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
-              <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>
-              <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
-              <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
-            </div>
-          </div>
-        </CSSTransition>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <button className={styles.anchor}>
+              <KeyboardIcon />
+              keyboard Shortcuts
+            </button>
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className={styles.overlay} />
+            <Dialog.Content className={styles.popover}>
+              <Dialog.Title className={styles.dialogTitle}>
+                Keyboard Shortcuts
+              </Dialog.Title>
+              <div className={styles.shortcuts}>
+                <Shortcut keys={["F"]}>Focus text editor</Shortcut>
+                <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
+                <Shortcut keys={["C"]}>Change colors</Shortcut>
+                <Shortcut keys={["B"]}>Toggle background</Shortcut>
+                <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
+                <Shortcut keys={["P"]}>Change padding</Shortcut>
+                <Shortcut keys={["L"]}>Select language</Shortcut>
+                <Shortcut keys={["R"]}>Pick random theme</Shortcut>
+                <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
+                <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>
+                <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
+                <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
+              </div>
+
+              <Dialog.Close asChild>
+                <button className={styles.closeButton} aria-label="Close">
+                  <MultiplyIcon />
+                </button>
+              </Dialog.Close>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
-      <CSSTransition
-        in={popoverOpen}
-        nodeRef={overlayRef}
-        timeout={300}
-        classNames={styles}
-        unmountOnExit
-      >
-        <div
-          className={styles.overlay}
-          ref={overlayRef}
-          onClick={() => setPopoverOpen(false)}
-        />
-      </CSSTransition>
     </>
   );
 };
