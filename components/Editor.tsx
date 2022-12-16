@@ -5,7 +5,6 @@ import React, {
   ChangeEventHandler,
   FormEventHandler,
   FocusEventHandler,
-  useState,
 } from "react";
 import styles from "styles/Editor.module.css";
 import { useAtom } from "jotai";
