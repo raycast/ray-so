@@ -22,7 +22,7 @@
   background: transparent;
   border: none;
   -webkit-text-fill-color: transparent;
-  caret-color: var(--syntax-text);
+  caret-color: var(--color-text);
   z-index: 2;
 
   &:focus {
@@ -32,11 +32,9 @@
 }
 
 .formatted > div {
-  margin: 0;
-  white-space: pre-wrap;
   color: var(--color-text);
-}
 
-.formatted > div > code {
-  font-family: "JetBrains Mono", monospace;
+  code {
+    font-family: "JetBrains Mono", monospace;
+  }
 }
