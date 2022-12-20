@@ -31,11 +31,12 @@
   }
 }
 
-.formatted > pre {
+.formatted > div {
   margin: 0;
   white-space: pre-wrap;
+  color: var(--color-text);
 }
 
-.formatted > pre > code {
+.formatted > div > code {
   font-family: "JetBrains Mono", monospace;
 }

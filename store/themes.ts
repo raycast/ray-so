@@ -26,22 +26,41 @@ function convertToHljsTheme(syntaxObject: SyntaxObject): CSSProperties {
   }
 
   return {
-    "--syntax-text": syntaxObject.text,
-    "--syntax-background": syntaxObject.background,
-    "--syntax-string": syntaxObject.string,
-    "--syntax-comment": syntaxObject.comment,
-    "--syntax-variable": syntaxObject.variable,
-    "--syntax-variable-2": syntaxObject.variable2 || syntaxObject.variable,
-    "--syntax-variable-3": syntaxObject.variable3 || syntaxObject.variable,
-    "--syntax-number": syntaxObject.number,
-    "--syntax-atom": syntaxObject.number,
-    "--syntax-keyword": syntaxObject.keyword,
-    "--syntax-property": syntaxObject.property,
-    "--syntax-definition": syntaxObject.definition,
-    "--syntax-meta": syntaxObject.meta,
-    "--syntax-operator": syntaxObject.operator,
-    "--syntax-attribute": syntaxObject.attribute,
-    "--syntax-tag": syntaxObject.tag,
+    "--color-text": syntaxObject.text,
+    "--color-prettylights-syntax-comment": syntaxObject.comment,
+    "--color-prettylights-syntax-constant":
+      syntaxObject.variable3 || syntaxObject.variable,
+    "--color-prettylights-syntax-entity": syntaxObject.definition,
+    "--color-prettylights-syntax-storage-modifier-import": syntaxObject.text,
+    "--color-prettylights-syntax-entity-tag": syntaxObject.tag,
+    "--color-prettylights-syntax-keyword": syntaxObject.keyword,
+    "--color-prettylights-syntax-string": syntaxObject.string,
+    "--color-prettylights-syntax-variable": syntaxObject.variable,
+    "--color-prettylights-syntax-brackethighlighter-unmatched":
+      syntaxObject.text,
+    "--color-prettylights-syntax-invalid-illegal-text": syntaxObject.text,
+    "--color-prettylights-syntax-invalid-illegal-bg": syntaxObject.text,
+    "--color-prettylights-syntax-carriage-return-text": syntaxObject.text,
+    "--color-prettylights-syntax-carriage-return-bg": syntaxObject.text,
+    "--color-prettylights-syntax-string-regexp": syntaxObject.tag,
+    "--color-prettylights-syntax-markup-list": syntaxObject.text,
+    "--color-prettylights-syntax-markup-heading": syntaxObject.text,
+    "--color-prettylights-syntax-markup-italic": syntaxObject.text,
+    "--color-prettylights-syntax-markup-bold": syntaxObject.text,
+    "--color-prettylights-syntax-markup-deleted-text": syntaxObject.text,
+    "--color-prettylights-syntax-markup-deleted-bg": syntaxObject.text,
+    "--color-prettylights-syntax-markup-inserted-text": syntaxObject.text,
+    "--color-prettylights-syntax-markup-inserted-bg": syntaxObject.text,
+    "--color-prettylights-syntax-markup-changed-text": syntaxObject.text,
+    "--color-prettylights-syntax-markup-changed-bg": syntaxObject.text,
+    "--color-prettylights-syntax-markup-ignored-text": syntaxObject.text,
+    "--color-prettylights-syntax-markup-ignored-bg": syntaxObject.text,
+    "--color-prettylights-syntax-meta-diff-range": syntaxObject.tag,
+    "--color-prettylights-syntax-brackethighlighter-angle":
+      syntaxObject.comment,
+    "--color-prettylights-syntax-sublimelinter-gutter-mark": syntaxObject.text,
+    "--color-prettylights-syntax-constant-other-reference-link":
+      syntaxObject.string,
   } as CSSProperties;
 }
 
