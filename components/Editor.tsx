@@ -1,5 +1,4 @@
 import React, {
-  useMemo,
   useCallback,
   KeyboardEventHandler,
   useRef,
@@ -8,7 +7,6 @@ import React, {
   FocusEventHandler,
 } from "react";
 import styles from "styles/Editor.module.css";
-import { highlight } from "highlightjs";
 import { useAtom } from "jotai";
 import {
   codeAtom,
@@ -16,8 +14,8 @@ import {
   selectedLanguageAtom,
 } from "../store/code";
 import { themeCSSAtom } from "../store/themes";
-import classNames from "classnames";
 import useHotkeys from "../util/useHotkeys";
+import HighlightedCode from "./HighlightedCode";
 
 function indentText(text: string) {
   return text
@@ -141,26 +139,6 @@ function Editor() {
     }
   });
 
-  const html = useMemo(() => {
-    if (selectedLanguage) {
-      return highlight(selectedLanguage.className, code).value;
-    } else {
-      return code;
-    }
-  }, [code, selectedLanguage]);
-
-  const preView = useMemo(
-    () => (
-      <div
-        className={classNames(styles.formatted, "hljs")}
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      />
-    ),
-    [html]
-  );
-
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
     (event) => {
       const textarea = textareaRef.current!;
@@ -220,7 +198,7 @@ function Editor() {
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
       />
-      {preView}
+      {<HighlightedCode code={code} selectedLanguage={selectedLanguage} />}
     </div>
   );
 }
