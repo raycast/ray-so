@@ -10,6 +10,7 @@ const imageFilter = (node: HTMLElement) =>
 const htmlToImageOptions = {
   filter: imageFilter,
   pixelRatio: 2,
+  skipAutoScale: true,
 };
 
 export const toPng = async (node: HTMLElement) => {
