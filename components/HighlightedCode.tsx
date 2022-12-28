@@ -18,7 +18,10 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
 
   useEffect(() => {
     starryNightPromise.then((starryNight) => {
-      if (!selectedLanguage || !code) return;
+      if (!selectedLanguage || !code) {
+        setTree(undefined);
+        return;
+      }
 
       const tree = starryNight.highlight(code, selectedLanguage.scopeName);
 
@@ -27,10 +30,10 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   }, [code, selectedLanguage]);
 
   const preView = useMemo(() => {
-    if (!tree) return;
+    if (!tree) return <>{code}</>;
 
     return toH(React.createElement, tree);
-  }, [tree]);
+  }, [tree, code]);
 
   return <div className={styles.formatted}>{preView}</div>;
 };
