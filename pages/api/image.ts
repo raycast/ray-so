@@ -11,7 +11,7 @@ const image = async (req: NextApiRequest, res: NextApiResponse) => {
   if (isDev) {
     url = `http://localhost:3000/image#${q}`;
   } else {
-    url = `https://ray.so/image#${q}`;
+    url = `https://beta.ray.so/image#${q}`;
   }
 
   console.time("getting screenshot");
