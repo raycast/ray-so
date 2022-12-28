@@ -13,6 +13,7 @@ export async function getScreenshot(
 
   const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
+  console.info(url);
   const response = await page.goto(url, { waitUntil: "domcontentloaded" });
 
   console.info("here we go");
