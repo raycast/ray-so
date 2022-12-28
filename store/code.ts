@@ -40,7 +40,7 @@ struct CircleImage: View {
 }`,
   },
   {
-    language: LANGUAGES.tsx,
+    language: LANGUAGES.typescript,
     code: `import { Detail } from "@raycast/api";
 
 export default function Command() {
