@@ -12,6 +12,11 @@ import { toPng, toSvg, toBlob } from "../lib/image";
 import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 
+const copyPngSupported =
+  window.navigator &&
+  window.navigator.clipboard &&
+  typeof ClipboardItem === "function";
+
 const ExportButton: React.FC = () => {
   const frameContext = useContext(FrameContext);
 
@@ -24,18 +29,22 @@ const ExportButton: React.FC = () => {
     download(dataUrl, "ray-so-export.png");
   };
 
-  const copyPng = async () => {
-    if (!frameContext?.current) {
-      throw new Error("Couldn't find a frame to export");
-    }
-
-    const blob = await toBlob(frameContext.current);
-
-    if (!blob) throw new Error("toBlob did not return a blob");
-
+  const copyPng = () => {
     navigator.clipboard.write([
       new ClipboardItem({
-        [blob.type]: blob,
+        "image/png": new Promise((resolve) => {
+          if (!frameContext?.current) {
+            throw new Error("Couldn't find a frame to export");
+          }
+
+          toBlob(frameContext.current).then((blob) => {
+            if (!blob) {
+              throw new Error("expected toBlob to return a blob");
+            }
+
+            resolve(blob);
+          });
+        }),
       }),
     ]);
   };
@@ -63,8 +72,10 @@ const ExportButton: React.FC = () => {
     savePng();
   });
   useHotkeys("ctrl+c,cmd+c", (event) => {
-    event.preventDefault();
-    copyPng();
+    if (copyPngSupported) {
+      event.preventDefault();
+      copyPng();
+    }
   });
   useHotkeys("ctrl+shift+c,cmd+shift+c", (event) => {
     event.preventDefault();
@@ -97,17 +108,19 @@ const ExportButton: React.FC = () => {
             <ImageIcon />
             Save SVG
           </a>
-          <a
-            href="#"
-            className={styles.option}
-            onClick={(event) => {
-              event.preventDefault();
-              copyPng();
-            }}
-          >
-            <ClipboardIcon />
-            Copy Image
-          </a>
+          {copyPngSupported && (
+            <a
+              href="#"
+              className={styles.option}
+              onClick={(event) => {
+                event.preventDefault();
+                copyPng();
+              }}
+            >
+              <ClipboardIcon />
+              Copy Image
+            </a>
+          )}
           <a
             href="#"
             className={styles.option}

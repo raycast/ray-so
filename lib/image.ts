@@ -8,10 +8,10 @@ import { changeDpiDataUrl } from "changedpi";
 const imageFilter = (node: HTMLElement) =>
   node.tagName !== "TEXTAREA" && !node.dataset?.ignoreInExport;
 
-export const toPng = async (node: HTMLElement) => {
-  const scale = 2;
-  const dpi = 72;
+const scale = 2;
+const dpi = 72;
 
+export const toPng = async (node: HTMLElement) => {
   const dataUrl = await htmlToPng(node, {
     height: node.offsetHeight * scale,
     width: node.offsetWidth * scale,
@@ -28,9 +28,6 @@ export const toPng = async (node: HTMLElement) => {
 };
 
 export const toBlob = async (node: HTMLElement) => {
-  const scale = 2;
-  const dpi = 72;
-
   return htmlToBlob(node, {
     height: node.offsetHeight * scale,
     width: node.offsetWidth * scale,
