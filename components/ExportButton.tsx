@@ -69,7 +69,7 @@ const ExportButton: React.FC = () => {
     savePng();
   });
   useHotkeys("ctrl+c,cmd+c", (event) => {
-    if (copyPngSupported) {
+    if (pngClipboardSupported) {
       event.preventDefault();
       copyPng();
     }
