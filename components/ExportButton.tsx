@@ -11,13 +11,10 @@ import { toPng, toSvg, toBlob } from "../lib/image";
 
 import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
-
-const copyPngSupported =
-  window.navigator &&
-  window.navigator.clipboard &&
-  typeof ClipboardItem === "function";
+import usePngClipboardSupported from "../util/usePngClipboardSupported";
 
 const ExportButton: React.FC = () => {
+  const pngClipboardSupported = usePngClipboardSupported();
   const frameContext = useContext(FrameContext);
 
   const savePng = async () => {
@@ -108,7 +105,7 @@ const ExportButton: React.FC = () => {
             <ImageIcon />
             Save SVG
           </a>
-          {copyPngSupported && (
+          {pngClipboardSupported && (
             <a
               href="#"
               className={styles.option}
