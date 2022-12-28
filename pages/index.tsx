@@ -17,8 +17,6 @@ import Head from "next/head";
 const coverPhotoUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
 const Home: NextPage = () => {
-  const [darkMode] = useAtom(darkModeAtom);
-
   return (
     <>
       <Head>
@@ -58,7 +56,7 @@ const Home: NextPage = () => {
           content="generate, create, convert, source, code, snippet, image, picture, share, export"
         />
       </Head>
-      <div className={styles.app} data-theme={darkMode ? "dark" : "light"}>
+      <div className={styles.app}>
         <KeyboardShortcutsPanel />
 
         <FrameContextStore>

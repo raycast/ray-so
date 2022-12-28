@@ -1,6 +1,11 @@
+import { useAtom } from "jotai";
 import { Html, Head, Main, NextScript } from "next/document";
 
+import { darkModeAtom } from "../store/themes";
+
 export default function Document() {
+  const [darkMode] = useAtom(darkModeAtom);
+
   return (
     <Html>
       <Head>
@@ -20,7 +25,7 @@ export default function Document() {
           crossOrigin="anonymous"
         />
       </Head>
-      <body>
+      <body data-theme={darkMode ? "dark" : "light"}>
         <Main />
         <NextScript />
       </body>
