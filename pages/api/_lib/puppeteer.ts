@@ -9,13 +9,21 @@ export async function getScreenshot(
 ) {
   const options = await getOptions(isDev);
 
+  console.info(options);
+
   const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
   const response = await page.goto(url, { waitUntil: "domcontentloaded" });
 
+  console.info("here we go");
+
+  console.time("fonts");
   await page.evaluate(async () => {
     await document.fonts.ready;
   });
+  console.timeEnd("fonts");
+
+  console.info("fonts ready");
 
   if (response?.status() === 404) {
     throw new NotFoundError();
@@ -23,8 +31,11 @@ export async function getScreenshot(
     throw new InternalServerError();
   }
 
+  console.time("frame ready");
   await page.waitForSelector("#frame");
+  console.timeEnd("frame ready");
 
+  console.time("bounds");
   const bounds = (await page.evaluate(() => {
     return document.querySelector("#frame")?.getBoundingClientRect().toJSON();
   })) as ScreenshotOptions["clip"];
@@ -32,6 +43,7 @@ export async function getScreenshot(
   if (!bounds) {
     throw new InternalServerError();
   }
+  console.timeEnd("bounds");
 
   await page.setViewport({
     width: bounds.width,
@@ -39,6 +51,7 @@ export async function getScreenshot(
     deviceScaleFactor: 2,
   });
 
+  console.info("getting screenshot");
   const screenshot = await page.screenshot({ type: fileType, clip: bounds });
 
   await browser.close();
