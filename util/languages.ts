@@ -20,10 +20,6 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Clojure",
     className: "clojure",
   },
-  coffeescript: {
-    name: "CoffeeScript",
-    className: "coffeescript",
-  },
   crystal: {
     name: "Crystal",
     className: "crystal",
@@ -31,14 +27,6 @@ export const LANGUAGES: { [index: string]: Language } = {
   css: {
     name: "CSS",
     className: "css",
-  },
-  d: {
-    name: "D",
-    className: "d",
-  },
-  dart: {
-    name: "Dart",
-    className: "dart",
   },
   diff: {
     name: "Diff",
@@ -56,37 +44,13 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Erlang",
     className: "erlang",
   },
-  fortran: {
-    name: "Fortran",
-    className: "fortran",
-  },
-  fsharp: {
-    name: "F#",
-    className: "fsharp",
-  },
-  gherkin: {
-    name: "Gherkin",
-    className: "gherkin",
-  },
   go: {
     name: "Go",
     className: "go",
   },
-  groovy: {
-    name: "Groovy",
-    className: "groovy",
-  },
   haskell: {
     name: "Haskell",
     className: "haskell",
-  },
-  http: {
-    name: "HTTP",
-    className: "http",
-  },
-  xml: {
-    name: "HTML",
-    className: "xml",
   },
   java: {
     name: "Java",
@@ -104,17 +68,9 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "JSX",
     className: "javascript",
   },
-  julia: {
-    name: "Julia",
-    className: "julia",
-  },
   kotlin: {
     name: "Kotlin",
     className: "kotlin",
-  },
-  latex: {
-    name: "LaTeX",
-    className: "latex",
   },
   lisp: {
     name: "Lisp",
@@ -128,17 +84,9 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Markdown",
     className: "markdown",
   },
-  mathematica: {
-    name: "Mathematica",
-    className: "mathematica",
-  },
   matlab: {
     name: "MATLAB/Octave",
     className: "matlab",
-  },
-  nginx: {
-    name: "NGINX",
-    className: "nginx",
   },
   plaintext: {
     name: "Plaintext",
@@ -148,29 +96,13 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Objective C",
     className: "objectivec",
   },
-  ocaml: {
-    name: "OCaml",
-    className: "ocaml",
-  },
-  perl: {
-    name: "Perl",
-    className: "perl",
-  },
   php: {
     name: "PHP",
     className: "php",
   },
-  powershell: {
-    name: "PowerShell",
-    className: "powershell",
-  },
   python: {
     name: "Python",
     className: "python",
-  },
-  r: {
-    name: "R",
-    className: "r",
   },
   ruby: {
     name: "Ruby",
@@ -187,10 +119,6 @@ export const LANGUAGES: { [index: string]: Language } = {
   scss: {
     name: "SCSS",
     className: "scss",
-  },
-  smalltalk: {
-    name: "Smalltalk",
-    className: "smalltalk",
   },
   sql: {
     name: "SQL",
@@ -211,26 +139,6 @@ export const LANGUAGES: { [index: string]: Language } = {
   tsx: {
     name: "TSX",
     className: "typescript",
-  },
-  twig: {
-    name: "Twig",
-    className: "twig",
-  },
-  vb: {
-    name: "VB.NET",
-    className: "vbnet",
-  },
-  verilog: {
-    name: "Verilog",
-    className: "verilog",
-  },
-  vhdl: {
-    name: "VHDL",
-    className: "vhdl",
-  },
-  xquery: {
-    name: "XQuery",
-    className: "xquery",
   },
   yaml: {
     name: "YAML",
