@@ -1,6 +1,4 @@
-import React, { MouseEventHandler, useCallback, useContext } from "react";
-
-import { toBlob, toPng, toSvg } from "html-to-image";
+import React, { MouseEventHandler, useContext } from "react";
 
 import DownloadIcon from "assets/icons/download-16.svg";
 import ImageIcon from "assets/icons/image-16.svg";
@@ -9,58 +7,56 @@ import ClipboardIcon from "assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
 import download from "../util/download";
+import { toPng, toSvg, toBlob } from "../lib/image";
 
 import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 
-const imageFilter = (node: HTMLElement) =>
-  node.tagName !== "TEXTAREA" && !node.dataset?.ignoreInExport;
-
 const ExportButton: React.FC = () => {
   const frameContext = useContext(FrameContext);
 
-  const savePng = useCallback(() => {
-    if (frameContext && frameContext.current) {
-      toPng(frameContext.current, { filter: imageFilter }).then((dataURL) => {
-        download(dataURL, "ray-so-export.png");
-      });
+  const savePng = async () => {
+    if (!frameContext?.current) {
+      throw new Error("Couldn't find a frame to export");
     }
-  }, [frameContext]);
 
-  const copyPng = useCallback(() => {
-    if (frameContext && frameContext.current) {
-      toBlob(frameContext.current, { filter: imageFilter }).then((blob) => {
-        if (!blob) return;
+    const dataUrl = await toPng(frameContext.current);
+    download(dataUrl, "ray-so-export.png");
+  };
 
-        navigator.clipboard.write([
-          new ClipboardItem({
-            [blob.type]: blob,
-          }),
-        ]);
-      });
+  const copyPng = async () => {
+    if (!frameContext?.current) {
+      throw new Error("Couldn't find a frame to export");
     }
-  }, [frameContext]);
 
-  const saveSvg = useCallback(() => {
-    if (frameContext && frameContext.current) {
-      toSvg(frameContext.current, { filter: imageFilter }).then((dataURL) => {
-        download(dataURL, "ray-so-export.svg");
-      });
+    const blob = await toBlob(frameContext.current);
+
+    if (!blob) throw new Error("toBlob did not return a blob");
+
+    navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+  };
+
+  const saveSvg = async () => {
+    if (!frameContext?.current) {
+      throw new Error("Couldn't find a frame to export");
     }
-  }, [frameContext]);
 
-  const handleExportClick = useCallback<MouseEventHandler>(
-    (event) => {
-      event.preventDefault();
+    const dataUrl = await toSvg(frameContext.current);
+    download(dataUrl, "ray-so-export.svg");
+  };
 
-      savePng();
-    },
-    [savePng]
-  );
+  const handleExportClick: MouseEventHandler = (event) => {
+    event.preventDefault();
 
-  const copyUrl = useCallback(() => {
+    savePng();
+  };
+
+  const copyUrl = () =>
     navigator.clipboard.writeText(window.location.toString());
-  }, []);
 
   useHotkeys("ctrl+s,cmd+s", (event) => {
     event.preventDefault();
