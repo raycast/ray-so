@@ -13,6 +13,7 @@ import CoverPhoto from "assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
+import NoSSR from "../components/NoSSR";
 
 const coverPhotoUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
@@ -59,10 +60,12 @@ const Home: NextPage = () => {
       <div className={styles.app}>
         <KeyboardShortcutsPanel />
 
-        <FrameContextStore>
-          <Frame />
-          <Controls />
-        </FrameContextStore>
+        <NoSSR>
+          <FrameContextStore>
+            <Frame />
+            <Controls />
+          </FrameContextStore>
+        </NoSSR>
 
         <div className={styles.footer}>
           <a

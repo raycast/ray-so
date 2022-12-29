@@ -110,17 +110,45 @@ export const selectedLanguageAtom = atom<Language | null, Language | null>(
   }
 );
 
-export const codeExampleAtom = atom<CodeSample | null>(null);
-codeExampleAtom.onMount = (setAtom) => {
-  setAtom(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
-};
+export const codeExampleAtom = atom<CodeSample | null>(
+  CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]
+);
 
 export const isCodeExampleAtom = atom<boolean>(
   (get) =>
     !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom))
 );
 
-export const userInputtedCodeAtom = atom<string | null>(null);
+const isSSR = () => typeof window === "undefined";
+
+function getUserInputtedCodeFromHash() {
+  const searchParams = new URLSearchParams(location.hash.slice(1));
+  const searchParamsCode = searchParams.get("code");
+
+  if (typeof searchParamsCode === "string") {
+    try {
+      const code = Base64.decode(searchParamsCode);
+      return code;
+    } catch (e) {
+      console.error("decoding code query parameter failed");
+      console.error(e);
+    }
+  }
+
+  return null;
+}
+
+function getInitialUserInputtedCode() {
+  if (isSSR()) {
+    return null;
+  } else {
+    return getUserInputtedCodeFromHash();
+  }
+}
+
+export const userInputtedCodeAtom = atom<string | null>(
+  getInitialUserInputtedCode()
+);
 
 export const codeAtom = atom<string, string>(
   (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
@@ -140,16 +168,7 @@ export const codeAtom = atom<string, string>(
 );
 
 codeAtom.onMount = (setValue) => {
-  const searchParams = new URLSearchParams(location.hash.slice(1));
-  const searchParamsCode = searchParams.get("code");
+  const code = getUserInputtedCodeFromHash();
 
-  if (typeof searchParamsCode === "string") {
-    try {
-      const code = Base64.decode(searchParamsCode);
-      setValue(code);
-    } catch (e) {
-      console.error("decoding code query parameter failed");
-      console.error(e);
-    }
-  }
+  if (code) setValue(code);
 };
