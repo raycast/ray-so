@@ -51,7 +51,13 @@ export default function Command() {
 
 const detectLanguage: (input: string) => Promise<string> = async (input) => {
   return new Promise((resolve) => {
-    resolve(hljs.highlightAuto(input, Object.keys(LANGUAGES)).value);
+    const highlightResult = hljs.highlightAuto(input, Object.keys(LANGUAGES));
+
+    if (highlightResult.language) {
+      resolve(highlightResult.language);
+    } else {
+      resolve(LANGUAGES.plaintext.className);
+    }
   });
 };
 
