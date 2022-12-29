@@ -51,15 +51,18 @@
 }
 
 .hljs-string,
-.hljs-type,
 .hljs-built_in,
 .hljs-selector-id,
 .hljs-selector-attr,
 .hljs-selector-pseudo,
-.hljs-addition,
+.hljs-addition {
+  color: var(--syntax-string);
+}
+
+.hljs-type,
 .hljs-variable,
 .hljs-template-variable {
-  color: var(--syntax-string);
+  color: var(--syntax-variable);
 }
 
 .hljs-comment,
