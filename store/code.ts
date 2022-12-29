@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { Base64 } from "js-base64";
-import { highlightAuto } from "highlightjs";
+import hljs from "highlight.js";
 import { LANGUAGES, Language } from "../util/languages";
 import { atomWithHash } from "jotai/utils";
 
@@ -51,7 +51,7 @@ export default function Command() {
 
 const detectLanguage: (input: string) => Promise<string> = async (input) => {
   return new Promise((resolve) => {
-    resolve(highlightAuto(input, Object.keys(LANGUAGES)).language);
+    resolve(hljs.highlightAuto(input, Object.keys(LANGUAGES)).value);
   });
 };
 

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { highlight } from "highlightjs";
+import hljs from "highlight.js";
 import React, { useMemo } from "react";
 import { Language } from "../util/languages";
 
@@ -13,7 +13,7 @@ type PropTypes = {
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const html = useMemo(() => {
     if (selectedLanguage) {
-      return highlight(selectedLanguage.className, code).value;
+      return hljs.highlight(selectedLanguage.className, code).value;
     } else {
       return code;
     }

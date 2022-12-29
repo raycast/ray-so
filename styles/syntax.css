@@ -19,7 +19,8 @@
 .hljs-code,
 .hljs-title,
 .hljs-section,
-.hljs-selector-class {
+.hljs-selector-class,
+.hljs-attr {
   color: var(--syntax-definition);
 }
 
@@ -33,13 +34,13 @@
 
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-name,
-.hljs-attr {
+.hljs-name {
   color: var(--syntax-keyword);
 }
 
 .hljs-symbol,
-.hljs-attribute {
+.hljs-attribute,
+.hljs-property {
   color: var(--syntax-property);
 }
 

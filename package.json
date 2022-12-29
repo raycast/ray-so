@@ -19,7 +19,7 @@
     "changedpi": "^1.0.4",
     "chrome-aws-lambda": "^10.1.0",
     "classnames": "^2.3.2",
-    "highlightjs": "^9.16.2",
+    "highlight.js": "^11.7.0",
     "hotkeys-js": "^3.10.0",
     "html-to-image": "^1.11.3",
     "jotai": "^1.8.4",
@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.4.0",
-    "@types/highlightjs": "^9.12.2",
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
