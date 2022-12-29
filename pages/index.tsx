@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import { useAtom } from "jotai";
 
 import Frame from "../components/Frame";
 import Controls from "../components/Controls";
 import FrameContextStore from "../store/FrameContextStore";
-import { darkModeAtom } from "../store/themes";
 import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
 
 import FullLogoSVG from "assets/full-logo.svg";

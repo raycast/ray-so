@@ -7,6 +7,7 @@ import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
 import { themeBackgroundAtom } from "../store/themes";
+import useIsSafari from "../util/useIsSafari";
 import Editor from "./Editor";
 
 import ResizableFrame from "./ResizableFrame";
@@ -17,6 +18,7 @@ const Frame: React.FC = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
+  const isSafari = useIsSafari();
 
   return (
     <div className={styles.frameContainer}>
@@ -31,7 +33,11 @@ const Frame: React.FC = () => {
             backgroundImage: showBackground ? themeBackground : ``,
           }}
         >
-          <div className={styles.window}>
+          <div
+            className={classNames(styles.window, {
+              [styles.withShadow]: !isSafari,
+            })}
+          >
             <div className={styles.header}>
               <div className={styles.controls}>
                 <div className={styles.control}></div>
