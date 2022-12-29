@@ -15,7 +15,9 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     if (selectedLanguage) {
       return hljs.highlight(selectedLanguage.className, code).value;
     } else {
-      return code;
+      return code.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
+        return `&#${i.charCodeAt(0)};`;
+      });
     }
   }, [code, selectedLanguage]);
 
