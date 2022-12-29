@@ -31,21 +31,19 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        {Object.values(THEMES).map((theme, index) => {
-          return (
-            <SelectItem key={index} value={theme.name}>
-              <SelectPrimitive.SelectItemText>
-                <span
-                  className={styles.themePreview}
-                  style={{
-                    backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                  }}
-                />
-              </SelectPrimitive.SelectItemText>
-              {theme.name}
-            </SelectItem>
-          );
-        })}
+        {Object.values(THEMES).map((theme, index) => (
+          <SelectItem key={index} value={theme.name}>
+            <SelectPrimitive.SelectItemText>
+              <span
+                className={styles.themePreview}
+                style={{
+                  backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                }}
+              />
+            </SelectPrimitive.SelectItemText>
+            {theme.name}
+          </SelectItem>
+        ))}
       </Select>
     </ControlContainer>
   );
