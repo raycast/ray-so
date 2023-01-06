@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import React from "react";
 import { showBackgroundAtom, fileNameAtom, windowWidthAtom } from "../store";
 import { paddingAtom } from "../store/padding";
-import { themeBackgroundAtom } from "../store/themes";
+import { darkModeAtom, themeBackgroundAtom } from "../store/themes";
 
 import styles from "styles/Frame.module.css";
 import classNames from "classnames";
@@ -14,9 +14,11 @@ const Image: React.FC = () => {
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [windowWidth] = useAtom(windowWidthAtom);
+  const [darkMode] = useAtom(darkModeAtom);
 
   return (
     <div
+      data-theme={darkMode ? "dark" : "light"}
       className={classNames(styles.frame, {
         [styles.noBackground]: !showBackground,
       })}

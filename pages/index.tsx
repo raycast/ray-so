@@ -1,4 +1,7 @@
 import type { NextPage } from "next";
+import Head from "next/head";
+import { useAtom } from "jotai";
+import { darkModeAtom } from "../store/themes";
 
 import Frame from "../components/Frame";
 import Controls from "../components/Controls";
@@ -10,12 +13,13 @@ import ArrowNeIcon from "assets/icons/arrow-ne-16.svg";
 import CoverPhoto from "assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
-import Head from "next/head";
 import NoSSR from "../components/NoSSR";
 
 const coverPhotoUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
 const Home: NextPage = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+
   return (
     <>
       <Head>
@@ -55,7 +59,7 @@ const Home: NextPage = () => {
           content="generate, create, convert, source, code, snippet, image, picture, share, export"
         />
       </Head>
-      <div className={styles.app}>
+      <div data-theme={darkMode ? "dark" : "light"} className={styles.app}>
         <KeyboardShortcutsPanel />
 
         <NoSSR>
