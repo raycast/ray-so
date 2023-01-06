@@ -146,7 +146,6 @@ function Editor() {
           handleBracketClose(textarea);
           break;
         case "Escape":
-          console.info("hi");
           event.preventDefault();
           textarea.blur();
           break;
