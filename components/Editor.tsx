@@ -133,12 +133,6 @@ function Editor() {
     textareaRef.current?.focus();
   });
 
-  useHotkeys("esc", (event) => {
-    if (textareaRef.current === event.target) {
-      textareaRef.current?.blur();
-    }
-  });
-
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
     (event) => {
       const textarea = textareaRef.current!;
@@ -150,6 +144,11 @@ function Editor() {
         case "}":
           event?.preventDefault();
           handleBracketClose(textarea);
+          break;
+        case "Escape":
+          console.info("hi");
+          event.preventDefault();
+          textarea.blur();
           break;
         case "Enter":
           event.preventDefault();
