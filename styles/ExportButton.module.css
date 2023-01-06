@@ -62,9 +62,14 @@
   border: 1px solid var(--panel-dropdown-border);
   border-radius: 6px;
   list-style: none;
-  padding: 12px;
+  padding: 6px;
   margin: 0;
   margin-bottom: 8px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
+  }
 }
 
 .option {
@@ -76,9 +81,16 @@
   text-decoration: none;
   color: var(--panel-text-color);
   transition: color 0.3s ease;
+  border-radius: 4px;
+  padding: 0 6px;
 
   svg {
     margin-right: 6px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
   }
 
   &:hover {

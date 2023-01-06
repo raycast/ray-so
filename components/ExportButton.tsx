@@ -104,7 +104,11 @@ const ExportButton: React.FC = () => {
           </button>
         </Popover.Trigger>
         <Popover.Portal>
-          <Popover.Content className={styles.popover} sideOffset={5}>
+          <Popover.Content
+            className={styles.popover}
+            sideOffset={5}
+            side={"top"}
+          >
             <a href="#" onClick={handleExportClick} className={styles.option}>
               <ImageIcon />
               Save PNG
