@@ -50,6 +50,7 @@ const Frame: React.FC = () => {
                   value={fileName}
                   onChange={(event) => setFileName(event.target.value)}
                   spellCheck={false}
+                  tabIndex={-1}
                 />
                 {fileName.length === 0 ? (
                   <span data-ignore-in-export>Untitled-1</span>
