@@ -1,46 +1,57 @@
-.hoverContainer {
+.container {
   position: relative;
+  display: flex;
+  gap: 8px;
 }
 
-.exportButton {
+.button {
   display: flex;
   align-items: center;
   gap: 8px;
 
-  height: 45px;
+  height: 40px;
 
   padding: 0 16px;
 
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.1px;
   color: #ff6363;
 
   --button-color: rgba(255, 99, 99, 0.15);
   background: var(--button-color);
   border-radius: 6px;
+  border: none;
 
-  transition: background-color 200ms;
+  transition: background-color 300ms ease, transform 100ms ease;
 
   cursor: default;
+
+  &.small {
+    padding: 0 6px;
+
+    > svg {
+      font-size: 14px;
+    }
+  }
+
+  > svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--button-color);
   }
 
-  .hoverContainer:hover & {
+  &:hover,
+  &[aria-expanded="true"] {
     background: rgba(255, 99, 99, 0.25);
-  }
-}
-
-.popoverContainer {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  position: absolute;
-  bottom: 100%;
-
-  .hoverContainer:hover & {
-    opacity: 1;
-    pointer-events: auto;
   }
 }
 
@@ -51,9 +62,14 @@
   border: 1px solid var(--panel-dropdown-border);
   border-radius: 6px;
   list-style: none;
-  padding: 12px;
+  padding: 6px;
   margin: 0;
   margin-bottom: 8px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
+  }
 }
 
 .option {
@@ -65,9 +81,16 @@
   text-decoration: none;
   color: var(--panel-text-color);
   transition: color 0.3s ease;
+  border-radius: 4px;
+  padding: 0 6px;
 
   svg {
     margin-right: 6px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
   }
 
   &:hover {
