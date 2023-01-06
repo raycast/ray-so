@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useRef, useState } from "react";
+import React, { PropsWithChildren, useCallback, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import styles from "styles/KeyboardShortcutsPanel.module.css";
@@ -25,8 +25,6 @@ const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({
 
 const KeyboardShortcutsPanel: React.FC = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const togglePopover = useCallback(
     () => setPopoverOpen((old) => !old),
     [setPopoverOpen]
@@ -37,11 +35,11 @@ const KeyboardShortcutsPanel: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <Dialog.Root>
+        <Dialog.Root open={popoverOpen} onOpenChange={setPopoverOpen}>
           <Dialog.Trigger asChild>
             <button className={styles.anchor}>
               <KeyboardIcon />
-              keyboard Shortcuts
+              Keyboard Shortcuts
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
