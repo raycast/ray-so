@@ -185,7 +185,6 @@ function Editor() {
       style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
     >
       <textarea
-        tabIndex={-1}
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
