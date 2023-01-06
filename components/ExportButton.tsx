@@ -1,10 +1,8 @@
 import React, { MouseEventHandler, useContext } from "react";
 import * as Popover from "@radix-ui/react-popover";
 
-import DownloadIcon from "assets/icons/download-16.svg";
 import ImageIcon from "assets/icons/image-16.svg";
 import LinkIcon from "assets/icons/link-16.svg";
-import ChevronDownIcon from "assets/icons/chevron-down-16.svg";
 import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
 import ClipboardIcon from "assets/icons/clipboard-16.svg";
 
