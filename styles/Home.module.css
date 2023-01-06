@@ -21,7 +21,7 @@
   justify-content: center;
   background-image: url("~/assets/footer-background.jpg");
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center -5px;
   background-size: 700px 245px;
   grid-area: footer;
   height: 200px;
