@@ -24,15 +24,16 @@ const Frame: React.FC = () => {
     <div className={styles.frameContainer}>
       <ResizableFrame>
         <div
-          className={classNames(styles.frame, {
-            [styles.noBackground]: !showBackground,
-          })}
+          className={styles.frame}
           ref={frameContext}
           style={{
             padding,
             backgroundImage: showBackground ? themeBackground : ``,
           }}
         >
+          {!showBackground && (
+            <div data-ignore-in-export className={styles.noBackground}></div>
+          )}
           <div
             className={classNames(styles.window, {
               [styles.withShadow]: !isSafari,
