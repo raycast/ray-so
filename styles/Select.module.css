@@ -17,7 +17,7 @@
   height: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 
