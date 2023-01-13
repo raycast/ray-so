@@ -5,18 +5,18 @@
 }
 
 .controlTitle {
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.1px;
-  white-space: nowrap;
-  cursor: default;
 
   color: rgba(255, 255, 255, 0.4);
+  cursor: default;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 14px;
+  white-space: nowrap;
 }
 
 .control {
-  height: 24px;
   display: flex;
+  height: 24px;
   align-items: center;
 }

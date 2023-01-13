@@ -8,32 +8,32 @@
   justify-content: center;
 
   padding: 4px 6px;
-
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: 0.1px;
-
-  --focus-ring-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.4);
+  border: none;
   border-radius: 5px;
   background: transparent;
-  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 16px;
 
   transition: color 200ms, background-color 200ms;
+
+  --focus-ring-color: rgba(255, 255, 255, 0.1);
 
   &:hover {
     color: white;
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 2px var(--panel-background),
       0 0 0 4px var(--focus-ring-color);
+    outline: none;
   }
 
   &[aria-checked="true"] {
-    color: white;
     background: var(--focus-ring-color);
+    color: white;
   }
 }

@@ -6,34 +6,34 @@
 
 .frame {
   position: relative;
-  max-width: 920px;
   min-width: 520px;
+  max-width: 920px;
 
   transition: padding 200ms;
 
   .noBackground {
     position: absolute;
-    inset: 0;
     z-index: -1;
     background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
       linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
       linear-gradient(45deg, transparent 75%, #1d1d1d 0),
       linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
-    background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+    background-size: 20px 20px;
+    inset: 0;
   }
 }
 
 .window {
-  background: var(--frame-background);
-  transition: all ease 0.3s;
-  border-radius: 10px;
-  min-height: 120px;
   display: flex;
+  min-height: 120px;
   flex-direction: column;
   align-items: stretch;
   padding: 16px 0;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: var(--frame-background);
+  transition: all ease 0.3s;
 
   &.withShadow {
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -46,10 +46,10 @@
 .header {
   display: grid;
   height: 24px;
-  padding: 0 16px;
-  grid-template-columns: 45px 1fr 45px;
-  grid-gap: 12px;
   align-items: center;
+  padding: 0 16px;
+  grid-gap: 12px;
+  grid-template-columns: 45px 1fr 45px;
 }
 
 .controls {
@@ -69,9 +69,9 @@
   height: 16px;
   color: var(--frame-title-placeholder-color);
   font-size: 12px;
-  line-height: 12px;
   font-weight: 500;
   letter-spacing: 0.32px;
+  line-height: 12px;
   text-align: center;
 
   > input:focus + span {
@@ -79,17 +79,17 @@
   }
 
   > input {
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 500;
-    letter-spacing: 0.32px;
+    position: absolute;
 
     border: none;
-    position: absolute;
-    inset: 0;
-    text-align: center;
     background-color: transparent;
     color: var(--frame-title-color);
+    font-size: 12px;
+    font-weight: 500;
+    inset: 0;
+    letter-spacing: 0.32px;
+    line-height: 12px;
+    text-align: center;
 
     &:focus {
       outline: none;

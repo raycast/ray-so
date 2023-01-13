@@ -1,7 +1,7 @@
 .container {
   position: absolute;
-  left: 40px;
   top: 40px;
+  left: 40px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -9,21 +9,21 @@
 
 .anchor {
   display: flex;
-  align-self: flex-start;
   align-items: center;
-  gap: 10px;
+  align-self: flex-start;
   padding: 9px 16px;
-  background: #fff1;
-  border-radius: 6px;
   border: none;
-
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: 0.1px;
+  border-radius: 6px;
+  background: #fff1;
 
   color: #ffffff;
   cursor: default;
+  font-size: 13px;
+
+  font-weight: 500;
+  gap: 10px;
+  letter-spacing: 0.1px;
+  line-height: 16px;
 
   transition: background-color 300ms ease;
   user-select: none;
@@ -33,62 +33,62 @@
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 2px var(--background), 0 0 0 4px #fff1;
+    outline: none;
   }
 }
 .overlay {
   position: fixed;
-  inset: 0;
-  background: #0006;
   z-index: 7;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0006;
+  inset: 0;
 }
 
 .popover {
   position: fixed;
+
+  z-index: 10;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 
   padding: 32px;
-
-  background: var(--panel-background);
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
-
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 
-  z-index: 10;
+  background: var(--panel-background);
+
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -50%);
 }
 
 .dialogTitle {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: -0.05px;
   margin: 0 0 24px 0;
 
   color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.05px;
+  line-height: 21px;
 }
 
 .closeButton {
-  font-family: inherit;
-  border-radius: 100%;
-  background: transparent;
-  display: flex;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  color: white;
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px;
+  border: none;
+  border-radius: 100%;
+  background: transparent;
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
   transition: background-color 300ms ease;
   --button-color: rgba(255, 255, 255, 0.4);
 
@@ -97,8 +97,8 @@
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--button-color);
+    outline: none;
   }
 
   > svg {
@@ -109,15 +109,15 @@
 
 .shortcuts {
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 24px 20px;
-
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: 0.1px;
 
   color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+
+  font-weight: 500;
+  grid-gap: 24px 20px;
+  grid-template-columns: auto 1fr;
+  letter-spacing: 0.1px;
+  line-height: 16px;
 
   > div {
     display: flex;
@@ -133,19 +133,19 @@
 
 .key {
   display: inline-flex;
+  height: 24px;
   align-items: center;
   justify-content: center;
   padding: 0 8px;
-  background: #333333;
   border-radius: 5px;
-  height: 24px;
-
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.1px;
+  background: #333333;
 
   color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 14px;
 }
 
 @keyframes overlayShow {

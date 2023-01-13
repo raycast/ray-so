@@ -1,30 +1,32 @@
 .editor {
-  width: 100%;
   display: grid;
+  width: 100%;
   grid-template: 1fr / 1fr;
 }
 
 .textarea,
 .formatted {
-  font-size: 15px;
-  font-weight: 500;
-  font-family: "JetBrains Mono", monospace;
-  letter-spacing: 0.1px;
-  white-space: pre-wrap;
-  line-height: 22.5px;
-  grid-column: 1 / 1;
-  grid-row: 1 / 1;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   padding: var(--editor-padding);
   margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 500;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  letter-spacing: 0.1px;
+  line-height: 22.5px;
+  white-space: pre-wrap;
 }
 
 .textarea {
-  resize: none;
-  background: transparent;
-  border: none;
-  -webkit-text-fill-color: transparent;
-  caret-color: var(--syntax-text);
   z-index: 2;
+  border: none;
+  background: transparent;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  caret-color: var(--syntax-text);
+  resize: none;
+  -webkit-text-fill-color: transparent;
 
   &:focus {
     border: none;

@@ -1,23 +1,23 @@
 .trigger {
   display: flex;
+  overflow: hidden;
+  height: 24px;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  box-shadow: none;
-  outline: none;
-  cursor: default;
   padding: 4px 8px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  overflow: hidden;
-
-  letter-spacing: 0.1px;
-  background: transparent;
-  height: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
   color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+  font-size: 13px;
+  font-weight: 500;
+  gap: 12px;
+
+  letter-spacing: 0.1px;
+  line-height: 16px;
+  outline: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 
@@ -41,15 +41,15 @@
 
 .content {
   padding: 4px;
-  background: #17191a;
   border: 1px solid #333333;
-  box-shadow: 0px 8px 24px -8px #000000;
   border-radius: 6px;
+  background: #17191a;
+  box-shadow: 0px 8px 24px -8px #000000;
 }
 
 .viewport {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
@@ -57,15 +57,15 @@
 
 .item {
   display: flex;
-  align-items: center;
   width: 100%;
+  align-items: center;
   padding: 6px 16px;
-  gap: 12px;
-  background: transparent;
   border-radius: 4px;
-  font-size: 14px;
-  line-height: 17px;
+  background: transparent;
   color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  gap: 12px;
+  line-height: 17px;
   outline: none;
   user-select: none;
 
