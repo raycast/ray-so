@@ -31,9 +31,7 @@ const Frame: React.FC = () => {
             backgroundImage: showBackground ? themeBackground : ``,
           }}
         >
-          {!showBackground && (
-            <div data-ignore-in-export className={styles.noBackground}></div>
-          )}
+          {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
           <div
             className={classNames(styles.window, {
               [styles.withShadow]: !isSafari,
@@ -53,9 +51,7 @@ const Frame: React.FC = () => {
                   spellCheck={false}
                   tabIndex={-1}
                 />
-                {fileName.length === 0 ? (
-                  <span data-ignore-in-export>Untitled-1</span>
-                ) : null}
+                {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
               </div>
             </div>
             <Editor />

@@ -10,11 +10,7 @@ type PropTypes = {
 };
 const Toggle: React.FC<PropTypes> = ({ checked, onCheckedChange }) => {
   return (
-    <Switch.Root
-      className={styles.switchRoot}
-      checked={checked}
-      onCheckedChange={onCheckedChange}
-    >
+    <Switch.Root className={styles.switchRoot} checked={checked} onCheckedChange={onCheckedChange}>
       <Switch.Thumb className={styles.switchThumb} />
     </Switch.Root>
   );

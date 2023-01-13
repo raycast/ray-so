@@ -8,11 +8,7 @@ import React, {
 } from "react";
 import styles from "styles/Editor.module.css";
 import { useAtom } from "jotai";
-import {
-  codeAtom,
-  isCodeExampleAtom,
-  selectedLanguageAtom,
-} from "../store/code";
+import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { themeCSSAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
@@ -37,13 +33,7 @@ function getCurrentlySelectedLine(textarea: HTMLTextAreaElement) {
   const selectionStart = textarea.selectionStart;
   const beforeStart = original.slice(0, selectionStart);
 
-  return original
-    .slice(
-      beforeStart.lastIndexOf("\n") != -1
-        ? beforeStart.lastIndexOf("\n") + 1
-        : 0
-    )
-    .split("\n")[0];
+  return original.slice(beforeStart.lastIndexOf("\n") != -1 ? beforeStart.lastIndexOf("\n") + 1 : 0).split("\n")[0];
 }
 
 function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
@@ -62,11 +52,7 @@ function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
       // dedent
       const newStart = beforeStart.lastIndexOf("\n") + 1;
       textarea.setSelectionRange(newStart, end);
-      document.execCommand(
-        "insertText",
-        false,
-        dedentText(original.slice(newStart, end))
-      );
+      document.execCommand("insertText", false, dedentText(original.slice(newStart, end)));
     } else {
       // indent
       document.execCommand("insertText", false, "  ");
@@ -99,9 +85,7 @@ function handleEnter(textarea: HTMLTextAreaElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
 
   const currentIndentationMatch = currentLine.match(/^(\s+)/);
-  let wantedIndentation = currentIndentationMatch
-    ? currentIndentationMatch[0]
-    : "";
+  let wantedIndentation = currentIndentationMatch ? currentIndentationMatch[0] : "";
 
   if (currentLine.match(/([{\[:>])$/)) {
     wantedIndentation += "  ";
@@ -133,30 +117,27 @@ function Editor() {
     textareaRef.current?.focus();
   });
 
-  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
-    (event) => {
-      const textarea = textareaRef.current!;
-      switch (event.key) {
-        case "Tab":
-          event.preventDefault();
-          handleTab(textarea, event.shiftKey);
-          break;
-        case "}":
-          event?.preventDefault();
-          handleBracketClose(textarea);
-          break;
-        case "Escape":
-          event.preventDefault();
-          textarea.blur();
-          break;
-        case "Enter":
-          event.preventDefault();
-          handleEnter(textarea);
-          break;
-      }
-    },
-    []
-  );
+  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((event) => {
+    const textarea = textareaRef.current!;
+    switch (event.key) {
+      case "Tab":
+        event.preventDefault();
+        handleTab(textarea, event.shiftKey);
+        break;
+      case "}":
+        event?.preventDefault();
+        handleBracketClose(textarea);
+        break;
+      case "Escape":
+        event.preventDefault();
+        textarea.blur();
+        break;
+      case "Enter":
+        event.preventDefault();
+        handleEnter(textarea);
+        break;
+    }
+  }, []);
 
   const handleInput = useCallback<FormEventHandler<HTMLTextAreaElement>>(() => {
     const textarea = textareaRef.current!;
@@ -178,10 +159,7 @@ function Editor() {
   }, [isCodeExample]);
 
   return (
-    <div
-      className={styles.editor}
-      style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
-    >
+    <div className={styles.editor} style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}>
       <textarea
         tabIndex={-1}
         autoComplete="off"

@@ -8,10 +8,7 @@ import Toggle from "./Toggle";
 const BackgroundControl: React.FC = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
-  const toggleDarkMode = useCallback(
-    () => setDarkMode((old) => !old),
-    [setDarkMode]
-  );
+  const toggleDarkMode = useCallback(() => setDarkMode((old) => !old), [setDarkMode]);
 
   useHotkeys("d", toggleDarkMode);
 

@@ -6,10 +6,7 @@ type PropTypes = {
   title: string;
 };
 
-const ControlContainer: React.FC<PropsWithChildren<PropTypes>> = ({
-  title,
-  children,
-}) => {
+const ControlContainer: React.FC<PropsWithChildren<PropTypes>> = ({ title, children }) => {
   return (
     <div className={styles.container}>
       <strong className={styles.controlTitle}>{title}</strong>

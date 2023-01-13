@@ -66,31 +66,25 @@ export const autoDetectLanguageAtom = atom<boolean>((get) => {
 });
 
 const detectedLanguageAtom = atom<Language | null>(null);
-const userInputtedLanguageAtom = atomWithHash<Language | null>(
-  "language",
-  null,
-  {
-    delayInit: true,
-    serialize(language) {
-      const key = Object.keys(LANGUAGES).find(
-        (key) => LANGUAGES[key] === language
-      );
+const userInputtedLanguageAtom = atomWithHash<Language | null>("language", null, {
+  delayInit: true,
+  serialize(language) {
+    const key = Object.keys(LANGUAGES).find((key) => LANGUAGES[key] === language);
 
-      if (key) {
-        return key;
-      } else {
-        return "";
-      }
-    },
-    deserialize(key) {
-      if (key) {
-        return LANGUAGES[key];
-      } else {
-        return null;
-      }
-    },
-  }
-);
+    if (key) {
+      return key;
+    } else {
+      return "";
+    }
+  },
+  deserialize(key) {
+    if (key) {
+      return LANGUAGES[key];
+    } else {
+      return null;
+    }
+  },
+});
 
 export const selectedLanguageAtom = atom<Language | null, Language | null>(
   (get) => {
@@ -110,13 +104,10 @@ export const selectedLanguageAtom = atom<Language | null, Language | null>(
   }
 );
 
-export const codeExampleAtom = atom<CodeSample | null>(
-  CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]
-);
+export const codeExampleAtom = atom<CodeSample | null>(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
 
 export const isCodeExampleAtom = atom<boolean>(
-  (get) =>
-    !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom))
+  (get) => !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom))
 );
 
 const isSSR = () => typeof window === "undefined";
@@ -146,9 +137,7 @@ function getInitialUserInputtedCode() {
   }
 }
 
-export const userInputtedCodeAtom = atom<string | null>(
-  getInitialUserInputtedCode()
-);
+export const userInputtedCodeAtom = atom<string | null>(getInitialUserInputtedCode());
 
 export const codeAtom = atom<string, string>(
   (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",

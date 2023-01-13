@@ -14,8 +14,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px var(--panel-background),
-      0 0 0 4px var(--focus-ring-color);
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--focus-ring-color);
     outline: none;
   }
 }

@@ -2,11 +2,7 @@ import getOptions from "./options";
 import puppeteer, { ScreenshotOptions } from "puppeteer";
 import { InternalServerError, NotFoundError } from "./errors";
 
-export async function getScreenshot(
-  url: string,
-  fileType: ScreenshotOptions["type"] = "png",
-  isDev: boolean
-) {
+export async function getScreenshot(url: string, fileType: ScreenshotOptions["type"] = "png", isDev: boolean) {
   const options = await getOptions(isDev);
 
   console.info(options);

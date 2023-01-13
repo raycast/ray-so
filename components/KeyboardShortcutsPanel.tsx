@@ -7,10 +7,7 @@ import KeyboardIcon from "assets/icons/keyboard-16.svg";
 import useHotkeys from "../util/useHotkeys";
 import MultiplyIcon from "assets/icons/multiply-16.svg";
 
-const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({
-  children,
-  keys,
-}) => (
+const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({ children, keys }) => (
   <>
     <div>{children}</div>
     <div className={styles.keys}>
@@ -25,10 +22,7 @@ const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({
 
 const KeyboardShortcutsPanel: React.FC = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const togglePopover = useCallback(
-    () => setPopoverOpen((old) => !old),
-    [setPopoverOpen]
-  );
+  const togglePopover = useCallback(() => setPopoverOpen((old) => !old), [setPopoverOpen]);
 
   useHotkeys("shift+/", togglePopover);
 
@@ -45,9 +39,7 @@ const KeyboardShortcutsPanel: React.FC = () => {
           <Dialog.Portal>
             <Dialog.Overlay className={styles.overlay} />
             <Dialog.Content className={styles.popover}>
-              <Dialog.Title className={styles.dialogTitle}>
-                Keyboard Shortcuts
-              </Dialog.Title>
+              <Dialog.Title className={styles.dialogTitle}>Keyboard Shortcuts</Dialog.Title>
               <div className={styles.shortcuts}>
                 <Shortcut keys={["F"]}>Focus text editor</Shortcut>
                 <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>

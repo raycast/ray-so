@@ -1,10 +1,4 @@
-import React, {
-  MouseEventHandler,
-  PropsWithChildren,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, { MouseEventHandler, PropsWithChildren, useCallback, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { windowWidthAtom } from "../store";
 import classnames from "classnames";
@@ -34,11 +28,9 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
       let newWidth;
 
       if (currentHandleRef.current === "left") {
-        newWidth =
-          startWidthRef.current! - (event.clientX - startXRef.current!) * 2;
+        newWidth = startWidthRef.current! - (event.clientX - startXRef.current!) * 2;
       } else {
-        newWidth =
-          startWidthRef.current! + (event.clientX - startXRef.current!) * 2;
+        newWidth = startWidthRef.current! + (event.clientX - startXRef.current!) * 2;
       }
 
       if (newWidth > maxWidth) {

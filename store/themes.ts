@@ -422,9 +422,7 @@ const darkModeAtom = atomWithHash<boolean>("darkMode", true, {
   delayInit: true,
 });
 
-const themeCSSAtom = atom<CSSProperties>(
-  (get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]
-);
+const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
 
 const themeBackgroundAtom = atom<string>((get) => {
   const { from, to } = get(themeAtom).background;

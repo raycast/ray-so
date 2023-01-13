@@ -5,12 +5,7 @@ import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 import ControlContainer from "./ControlContainer";
 import styles from "styles/PaddingControl.module.css";
-import {
-  isPadding,
-  Padding,
-  paddingAtom,
-  PADDING_OPTIONS,
-} from "../store/padding";
+import { isPadding, Padding, paddingAtom, PADDING_OPTIONS } from "../store/padding";
 import useHotkeys from "../util/useHotkeys";
 
 const PaddingControl: React.FC = () => {

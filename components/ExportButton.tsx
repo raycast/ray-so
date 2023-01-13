@@ -63,8 +63,7 @@ const ExportButton: React.FC = () => {
     savePng();
   };
 
-  const copyUrl = () =>
-    navigator.clipboard.writeText(window.location.toString());
+  const copyUrl = () => navigator.clipboard.writeText(window.location.toString());
 
   useHotkeys("ctrl+s,cmd+s", (event) => {
     event.preventDefault();
@@ -87,28 +86,17 @@ const ExportButton: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={handleExportClick}
-        className={styles.button}
-        aria-label="Export as PNG"
-      >
+      <button onClick={handleExportClick} className={styles.button} aria-label="Export as PNG">
         Export
       </button>
       <Popover.Root>
         <Popover.Trigger asChild>
-          <button
-            className={classNames(styles.button, styles.small)}
-            aria-label="See other export options"
-          >
+          <button className={classNames(styles.button, styles.small)} aria-label="See other export options">
             <ChevronUpIcon />
           </button>
         </Popover.Trigger>
         <Popover.Portal>
-          <Popover.Content
-            className={styles.popover}
-            sideOffset={5}
-            side={"top"}
-          >
+          <Popover.Content className={styles.popover} sideOffset={5} side={"top"}>
             <a href="#" onClick={handleExportClick} className={styles.option}>
               <ImageIcon />
               Save PNG

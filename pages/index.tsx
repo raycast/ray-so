@@ -33,10 +33,7 @@ const Home: NextPage = () => {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ray.so/" />
-        <meta
-          property="og:title"
-          content="Ray.so - Create beautiful images of your code"
-        />
+        <meta property="og:title" content="Ray.so - Create beautiful images of your code" />
         <meta
           property="og:description"
           content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
@@ -45,10 +42,7 @@ const Home: NextPage = () => {
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://ray.so/" />
-        <meta
-          property="twitter:title"
-          content="Ray.so - Create beautiful images of your code"
-        />
+        <meta property="twitter:title" content="Ray.so - Create beautiful images of your code" />
         <meta
           property="twitter:description"
           content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
@@ -70,21 +64,13 @@ const Home: NextPage = () => {
         </NoSSR>
 
         <div className={styles.footer}>
-          <a
-            href="mailto:feedback+rayso@raycast.com"
-            className={styles.footerLink}
-          >
+          <a href="mailto:feedback+rayso@raycast.com" className={styles.footerLink}>
             Send Feedback
             <ArrowNeIcon />
           </a>
           <span className={styles.madeBy}>
             Made by{" "}
-            <a
-              href="https://www.raycast.com"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.logoLink}
-            >
+            <a href="https://www.raycast.com" target="_blank" rel="noreferrer" className={styles.logoLink}>
               <FullLogoSVG />
             </a>
           </span>

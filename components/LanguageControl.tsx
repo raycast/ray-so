@@ -32,9 +32,7 @@ const LanguageControl: React.FC = () => {
           if (value === "auto-detect") {
             setSelectedLanguage(null);
           } else {
-            setSelectedLanguage(
-              Object.values(LANGUAGES).find((l) => l.name === value) as Language
-            );
+            setSelectedLanguage(Object.values(LANGUAGES).find((l) => l.name === value) as Language);
           }
         }}
       >
@@ -66,11 +64,7 @@ const LanguageControl: React.FC = () => {
                 <Select.SelectItemText>Auto-Detect</Select.SelectItemText>
               </Select.Item>
               {Object.values(LANGUAGES).map((language, index) => (
-                <Select.Item
-                  key={index}
-                  value={language.name}
-                  className={styles.item}
-                >
+                <Select.Item key={index} value={language.name} className={styles.item}>
                   <Select.SelectItemText>{language.name}</Select.SelectItemText>
                 </Select.Item>
               ))}

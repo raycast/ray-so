@@ -13,8 +13,7 @@ type PropTypes = {
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const html = useMemo(() => {
     if (selectedLanguage) {
-      return hljs.highlight(code, { language: selectedLanguage.className })
-        .value;
+      return hljs.highlight(code, { language: selectedLanguage.className }).value;
     } else {
       return code.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
         return `&#${i.charCodeAt(0)};`;

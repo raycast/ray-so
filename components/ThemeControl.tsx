@@ -25,9 +25,7 @@ const ThemeControl: React.FC = () => {
       <Select
         value={`${currentTheme.name}`}
         onValueChange={(value) => {
-          const theme = Object.values(THEMES).find(
-            ({ name }) => name === value
-          ) as Theme;
+          const theme = Object.values(THEMES).find(({ name }) => name === value) as Theme;
           setTheme(theme);
         }}
       >
