@@ -56,44 +56,31 @@
 }
 
 .popover {
+  padding: 4px;
+  background: #17191a;
+  border: 1px solid #333333;
+  box-shadow: 0px 8px 24px -8px #000000;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  background: var(--panel-background);
-  border: 1px solid var(--panel-dropdown-border);
-  border-radius: 6px;
-  list-style: none;
-  padding: 6px;
-  margin: 0;
-  margin-bottom: 8px;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
-  }
+  gap: 2px;
 }
 
 .option {
-  white-space: nowrap;
-  font-size: 11px;
   display: flex;
   align-items: center;
-  height: 25px;
-  text-decoration: none;
-  color: var(--panel-text-color);
-  transition: color 0.3s ease;
+  width: 100%;
+  padding: 6px 16px;
+  gap: 12px;
+  background: transparent;
   border-radius: 4px;
-  padding: 0 6px;
-
-  svg {
-    margin-right: 6px;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px #fff1;
-  }
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 0.4);
+  outline: none;
+  user-select: none;
 
   &:hover {
-    color: var(--panel-padding-selected);
+    background: rgba(255, 255, 255, 0.05);
   }
 }
