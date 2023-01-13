@@ -40,6 +40,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Elm",
     className: "elm",
   },
+  elixir: {
+    name: "Elixir",
+    className: "elixir",
+  },
   erlang: {
     name: "Erlang",
     className: "erlang",
