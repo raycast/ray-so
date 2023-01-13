@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "engines": {
     "node": "^14"
@@ -41,6 +42,8 @@
     "autoprefixer": "^10.4.12",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "postcss-nested": "^6.0.0",
     "prettier": "2.8.2",
     "stylelint": "^14.11.0",
