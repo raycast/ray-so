@@ -7,7 +7,7 @@ import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
 import ClipboardIcon from "assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
-import { derivedFlashMessageAtom } from "../store/flash";
+import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
@@ -22,6 +22,7 @@ const ExportButton: React.FC = () => {
   const pngClipboardSupported = usePngClipboardSupported();
   const frameContext = useContext(FrameContext);
   const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
+  const [, setFlashShown] = useAtom(flashShownAtom);
 
   const savePng = async () => {
     if (!frameContext?.current) {
@@ -33,7 +34,7 @@ const ExportButton: React.FC = () => {
     const dataUrl = await toPng(frameContext.current);
     download(dataUrl, "ray-so-export.png");
 
-    setFlashMessage(null);
+    setFlashShown(false);
   };
 
   const copyPng = () => {
@@ -70,7 +71,7 @@ const ExportButton: React.FC = () => {
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, "ray-so-export.svg");
 
-    setFlashMessage(null);
+    setFlashShown(false);
   };
 
   const popoverHandler: (handler: () => void) => MouseEventHandler = (handler) => {

@@ -7,20 +7,27 @@ export type FlashMessage = {
 };
 
 const timeoutAtom = atom<number>(0);
-const flashMessageAtom = atom<FlashMessage | null>(null);
+const iconAtom = atom<any>(null);
+const messageAtom = atom<string>("");
+export const flashShownAtom = atom(false);
 
-export const derivedFlashMessageAtom = atom<FlashMessage | null, FlashMessage | null>(
-  (get) => get(flashMessageAtom),
+export const derivedFlashMessageAtom = atom<FlashMessage | null, FlashMessage>(
+  (get) => ({
+    icon: get(iconAtom),
+    message: get(messageAtom),
+  }),
   (get, set, flashMessage) => {
     window.clearTimeout(get(timeoutAtom));
 
-    set(flashMessageAtom, flashMessage);
+    set(messageAtom, flashMessage.message);
+    set(iconAtom, flashMessage.icon);
+    set(flashShownAtom, true);
 
     if (flashMessage?.timeout) {
       set(
         timeoutAtom,
         window.setTimeout(() => {
-          set(flashMessageAtom, null);
+          set(flashShownAtom, false);
         }, flashMessage.timeout)
       );
     }
