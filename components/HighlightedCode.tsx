@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import hljs from "highlight.js";
 import React, { useMemo } from "react";
-import { Language } from "../util/languages";
+import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "styles/Editor.module.css";
 
@@ -12,7 +12,7 @@ type PropTypes = {
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const html = useMemo(() => {
-    if (selectedLanguage) {
+    if (selectedLanguage && selectedLanguage !== LANGUAGES.plaintext) {
       return hljs.highlight(code, { language: selectedLanguage.className }).value;
     } else {
       return code.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
