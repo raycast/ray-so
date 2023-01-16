@@ -1,0 +1,39 @@
+.container {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 13, 13.9);
+  inset: 0;
+}
+
+.flash {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 100px;
+  backdrop-filter: blur(24px);
+  background: #2b2b2b;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity 300ms;
+}

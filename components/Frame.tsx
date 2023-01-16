@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useAtom } from "jotai";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 
 import styles from "styles/Frame.module.css";
 import { fileNameAtom, showBackgroundAtom } from "../store";
@@ -9,6 +9,7 @@ import { paddingAtom } from "../store/padding";
 import { themeBackgroundAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 import Editor from "./Editor";
+import FlashMessage from "./FlashMessage";
 
 import ResizableFrame from "./ResizableFrame";
 
@@ -31,6 +32,7 @@ const Frame: React.FC = () => {
             backgroundImage: showBackground ? themeBackground : ``,
           }}
         >
+          <FlashMessage />
           {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
           <div
             className={classNames(styles.window, {

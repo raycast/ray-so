@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext } from "react";
+import React, { MouseEventHandler, useContext, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 
 import ImageIcon from "assets/icons/image-16.svg";
@@ -7,6 +7,7 @@ import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
 import ClipboardIcon from "assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
+import { derivedFlashMessageAtom } from "../store/flash";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
@@ -14,21 +15,30 @@ import styles from "styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import classNames from "classnames";
+import { useAtom } from "jotai";
 
 const ExportButton: React.FC = () => {
+  const [popoverOpen, setPopoverOpen] = useState(false);
   const pngClipboardSupported = usePngClipboardSupported();
   const frameContext = useContext(FrameContext);
+  const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
 
   const savePng = async () => {
     if (!frameContext?.current) {
       throw new Error("Couldn't find a frame to export");
     }
 
+    setFlashMessage({ icon: <ImageIcon />, message: "Exporting PNG" });
+
     const dataUrl = await toPng(frameContext.current);
     download(dataUrl, "ray-so-export.png");
+
+    setFlashMessage(null);
   };
 
   const copyPng = () => {
+    setFlashMessage({ icon: <ClipboardIcon />, message: "Copying PNG" });
+
     navigator.clipboard.write([
       new ClipboardItem({
         "image/png": new Promise((resolve) => {
@@ -42,6 +52,8 @@ const ExportButton: React.FC = () => {
             }
 
             resolve(blob);
+
+            setFlashMessage({ icon: <ClipboardIcon />, message: "PNG Copied to clipboard!", timeout: 2000 });
           });
         }),
       }),
@@ -53,8 +65,18 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
+    setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
+
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, "ray-so-export.svg");
+  };
+
+  const popoverHandler: (handler: () => void) => MouseEventHandler = (handler) => {
+    return (event) => {
+      event.preventDefault();
+      handler();
+      setPopoverOpen(false);
+    };
   };
 
   const handleExportClick: MouseEventHandler = (event) => {
@@ -89,7 +111,7 @@ const ExportButton: React.FC = () => {
       <button onClick={handleExportClick} className={styles.button} aria-label="Export as PNG">
         Export
       </button>
-      <Popover.Root>
+      <Popover.Root open={popoverOpen} onOpenChange={setPopoverOpen}>
         <Popover.Trigger asChild>
           <button className={classNames(styles.button, styles.small)} aria-label="See other export options">
             <ChevronUpIcon />
@@ -97,42 +119,21 @@ const ExportButton: React.FC = () => {
         </Popover.Trigger>
         <Popover.Portal>
           <Popover.Content className={styles.popover} sideOffset={5} side={"top"}>
-            <a href="#" onClick={handleExportClick} className={styles.option}>
+            <a href="#" onClick={popoverHandler(savePng)} className={styles.option}>
               <ImageIcon />
               Save PNG
             </a>
-            <a
-              href="#"
-              className={styles.option}
-              onClick={(event) => {
-                event.preventDefault();
-                saveSvg();
-              }}
-            >
+            <a href="#" className={styles.option} onClick={popoverHandler(saveSvg)}>
               <ImageIcon />
               Save SVG
             </a>
             {pngClipboardSupported && (
-              <a
-                href="#"
-                className={styles.option}
-                onClick={(event) => {
-                  event.preventDefault();
-                  copyPng();
-                }}
-              >
+              <a href="#" className={styles.option} onClick={popoverHandler(copyPng)}>
                 <ClipboardIcon />
                 Copy Image
               </a>
             )}
-            <a
-              href="#"
-              className={styles.option}
-              onClick={(event) => {
-                event.preventDefault();
-                copyUrl();
-              }}
-            >
+            <a href="#" className={styles.option} onClick={popoverHandler(copyUrl)}>
               <LinkIcon />
               Copy URL
             </a>
