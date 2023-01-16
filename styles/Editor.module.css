@@ -11,6 +11,7 @@
   margin: 0;
   font-family: "JetBrains Mono", monospace;
   font-size: 15px;
+  font-variant-ligatures: none;
   font-weight: 500;
   grid-column: 1 / 1;
   grid-row: 1 / 1;
