@@ -11,7 +11,8 @@ import useHotkeys from "../util/useHotkeys";
 const PaddingControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
 
-  useHotkeys("p", () => {
+  useHotkeys("p", (e) => {
+    console.info(e.target);
     const currentIndex = PADDING_OPTIONS.indexOf(padding);
     if (PADDING_OPTIONS[currentIndex + 1]) {
       setPadding(PADDING_OPTIONS[currentIndex + 1]);
