@@ -56,6 +56,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Haskell",
     className: "haskell",
   },
+  html: {
+    name: "HTML",
+    className: "xml",
+  },
   java: {
     name: "Java",
     className: "java",
@@ -143,6 +147,10 @@ export const LANGUAGES: { [index: string]: Language } = {
   tsx: {
     name: "TSX",
     className: "typescript",
+  },
+  xml: {
+    name: "XML",
+    className: "xml",
   },
   yaml: {
     name: "YAML",
