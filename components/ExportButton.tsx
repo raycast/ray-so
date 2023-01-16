@@ -69,6 +69,8 @@ const ExportButton: React.FC = () => {
 
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, "ray-so-export.svg");
+
+    setFlashMessage(null);
   };
 
   const popoverHandler: (handler: () => void) => MouseEventHandler = (handler) => {
