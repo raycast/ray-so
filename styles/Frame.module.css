@@ -66,6 +66,7 @@
   position: relative;
   height: 16px;
   color: var(--frame-title-placeholder-color);
+  font-family: Inter, sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.32px;
@@ -82,6 +83,7 @@
     border: none;
     background-color: transparent;
     color: var(--frame-title-color);
+    font-family: Inter, sans-serif;
     font-size: 12px;
     font-weight: 500;
     inset: 0;
