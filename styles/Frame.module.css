@@ -28,7 +28,7 @@
   min-height: 120px;
   flex-direction: column;
   align-items: stretch;
-  padding: 16px 0;
+  padding-top: 10px;
   border: 1px solid hsl(0 0% 100% / 0.3);
   border-radius: 10px;
   background: var(--frame-background);

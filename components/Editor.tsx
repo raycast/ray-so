@@ -159,7 +159,10 @@ function Editor() {
   }, [isCodeExample]);
 
   return (
-    <div className={styles.editor} style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}>
+    <div
+      className={styles.editor}
+      style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+    >
       <textarea
         tabIndex={-1}
         autoComplete="off"
