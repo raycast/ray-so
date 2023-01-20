@@ -40,6 +40,8 @@ a {
   --frame-control-color: rgba(0, 0, 0, 0.2);
   --frame-title-placeholder-color: rgba(0, 0, 0, 0.3);
   --frame-title-color: rgba(0, 0, 0, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.1);
+  --frame-highlight-border: rgba(255, 255, 255, 0.75);
 }
 
 [data-theme="dark"] {
@@ -47,4 +49,6 @@ a {
   --frame-control-color: rgba(255, 255, 255, 0.2);
   --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
   --frame-title-color: rgba(255, 255, 255, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.8);
+  --frame-highlight-border: rgba(255, 255, 255, 0.3);
 }
