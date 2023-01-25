@@ -48,6 +48,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Erlang",
     className: "erlang",
   },
+  graphql: {
+    name: "GraphQL",
+    className: "graphql",
+  },
   go: {
     name: "Go",
     className: "go",
