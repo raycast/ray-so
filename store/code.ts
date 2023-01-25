@@ -78,7 +78,7 @@ const userInputtedLanguageAtom = atomWithHash<Language | null>("language", null,
     }
   },
   deserialize(key) {
-    if (key) {
+    if (key && LANGUAGES[key]) {
       return LANGUAGES[key];
     } else {
       return null;
