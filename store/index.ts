@@ -10,4 +10,7 @@ export const showBackgroundAtom = atomWithHash<boolean>("background", true, {
 
 export const fileNameAtom = atomWithHash<string>("title", "", {
   delayInit: true,
+  deserialize(str) {
+    return `${str}`;
+  },
 });
