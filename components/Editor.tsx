@@ -5,6 +5,7 @@ import React, {
   ChangeEventHandler,
   FormEventHandler,
   FocusEventHandler,
+  useEffect,
 } from "react";
 import styles from "styles/Editor.module.css";
 import { useAtom } from "jotai";
@@ -157,6 +158,18 @@ function Editor() {
       textareaRef.current.select();
     }
   }, [isCodeExample]);
+
+  // Make sure the textarea auto resizes to its content
+  useEffect(() => {
+    const textarea = textareaRef.current;
+
+    if (!textarea) {
+      return;
+    }
+
+    textarea.style.height = "0px";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [code]);
 
   return (
     <div
