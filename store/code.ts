@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { Base64 } from "js-base64";
 import hljs from "highlight.js";
 import { LANGUAGES, Language } from "../util/languages";
-import { atomWithHash } from "jotai/utils";
+import { atomWithHash } from "jotai-location";
 
 type CodeSample = {
   language: Language;

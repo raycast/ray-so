@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { atomWithHash } from "jotai/utils";
+import { atomWithHash } from "jotai-location";
 import { CSSProperties } from "react";
 
 type SyntaxObject = {

@@ -1,4 +1,4 @@
-import { atomWithHash } from "jotai/utils";
+import { atomWithHash } from "jotai-location";
 
 export const PADDING_OPTIONS = [16, 32, 64, 128] as const;
 
