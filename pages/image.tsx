@@ -5,6 +5,7 @@ import { paddingAtom } from "../store/padding";
 import { darkModeAtom, themeBackgroundAtom } from "../store/themes";
 
 import styles from "styles/Frame.module.css";
+import resizableFrameStyles from "styles/ResizableFrame.module.css";
 import classNames from "classnames";
 import Editor from "../components/Editor";
 
@@ -17,35 +18,37 @@ const Image: React.FC = () => {
   const [darkMode] = useAtom(darkModeAtom);
 
   return (
-    <div
-      data-theme={darkMode ? "dark" : "light"}
-      className={classNames(styles.frame, {
-        [styles.noBackground]: !showBackground,
-      })}
-      id="frame"
-      style={{
-        padding,
-        width: windowWidth || "auto",
-        backgroundImage: showBackground ? themeBackground : ``,
-      }}
-    >
-      <div className={styles.window}>
-        <div className={styles.header}>
-          <div className={styles.controls}>
-            <div className={styles.control}></div>
-            <div className={styles.control}></div>
-            <div className={styles.control}></div>
+    <div className={resizableFrameStyles.resizableFrame}>
+      <div
+        data-theme={darkMode ? "dark" : "light"}
+        className={classNames(styles.frame, {
+          [styles.noBackground]: !showBackground,
+        })}
+        id="frame"
+        style={{
+          padding,
+          width: windowWidth || "auto",
+          backgroundImage: showBackground ? themeBackground : ``,
+        }}
+      >
+        <div className={styles.window}>
+          <div className={styles.header}>
+            <div className={styles.controls}>
+              <div className={styles.control}></div>
+              <div className={styles.control}></div>
+              <div className={styles.control}></div>
+            </div>
+            <div className={styles.fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+              />
+            </div>
           </div>
-          <div className={styles.fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-            />
-          </div>
+          <Editor />
         </div>
-        <Editor />
       </div>
     </div>
   );
