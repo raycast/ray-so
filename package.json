@@ -28,7 +28,7 @@
     "jotai-location": "^0.3.3",
     "js-base64": "^3.7.3",
     "next": "12.3.0",
-    "puppeteer": "^13.1.1",
+    "puppeteer": "^19.6.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-transition-group": "^4.4.5",
