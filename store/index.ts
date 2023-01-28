@@ -14,6 +14,6 @@ export const fileNameAtom = atomWithHash<string>("title", "", {
     return val;
   },
   deserialize(str) {
-    return `${str}`;
+    return str || "";
   },
 });
