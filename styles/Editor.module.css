@@ -28,6 +28,7 @@
   caret-color: var(--syntax-text);
   resize: none;
   -webkit-text-fill-color: transparent;
+  text-size-adjust: none;
 
   &:focus {
     border: none;
