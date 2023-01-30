@@ -23,7 +23,7 @@
     "classnames": "^2.3.2",
     "highlight.js": "^11.7.0",
     "hotkeys-js": "^3.10.0",
-    "html-to-image": "^1.11.3",
+    "html-to-image": "^1.11.7",
     "jotai": "^1.8.4",
     "jotai-location": "^0.3.3",
     "js-base64": "^3.7.3",
