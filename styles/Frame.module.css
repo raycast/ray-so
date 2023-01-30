@@ -82,6 +82,7 @@
     position: absolute;
 
     border: none;
+    margin: 0;
     background-color: transparent;
     color: var(--frame-title-color);
     font-family: Inter, sans-serif;
