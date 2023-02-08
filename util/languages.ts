@@ -104,6 +104,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Plaintext",
     className: "",
   },
+  powershell: {
+    name: "Powershell",
+    className: "powershell",
+  },
   objectivec: {
     name: "Objective C",
     className: "objectivec",
