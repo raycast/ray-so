@@ -24,7 +24,7 @@
     "highlight.js": "^11.7.0",
     "hotkeys-js": "^3.10.0",
     "html-to-image": "^1.11.3",
-    "jotai": "^1.8.4",
+    "jotai": "^2.0.1",
     "jotai-location": "^0.3.3",
     "js-base64": "^3.7.3",
     "next": "12.3.0",
