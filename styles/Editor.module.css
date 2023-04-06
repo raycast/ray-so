@@ -17,6 +17,7 @@
   grid-row: 1 / 1;
   letter-spacing: 0.1px;
   line-height: 22.5px;
+  tab-size: 2;
   white-space: pre-wrap;
 }
 
