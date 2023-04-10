@@ -41,7 +41,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/react-transition-group": "^4.4.5",
     "autoprefixer": "^10.4.12",
-    "eslint": "^8.32.0",
+    "eslint": "^8.38.0",
     "eslint-config-next": "^13.1.6",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
