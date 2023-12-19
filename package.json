@@ -10,7 +10,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "^20"
+    "node": "^18"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.2",
