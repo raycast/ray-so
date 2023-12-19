@@ -27,6 +27,7 @@ function convertToHljsTheme(syntaxObject: SyntaxObject): CSSProperties {
 
   return {
     "--syntax-text": syntaxObject.text,
+    // doesn't seem that this is used
     "--syntax-background": syntaxObject.background,
     "--syntax-string": syntaxObject.string,
     "--syntax-comment": syntaxObject.comment,
@@ -58,6 +59,49 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  mono: {
+    name: "Mono",
+    background: {
+      from: "#333",
+      to: "#181818",
+    },
+    syntax: {
+      light: convertToHljsTheme({
+        background: "rgba 0,0,100,0.75",
+        text: "#111111",
+        variable: "#111111",
+        variable2: "#111111",
+        variable3: "#111111",
+        attribute: "#666666",
+        definition: "#111111",
+        keyword: "#666666",
+        operator: "#666666",
+        property: "#666666",
+        number: "#111111",
+        string: "#666666",
+        comment: "#999999",
+        meta: "#666666",
+        tag: "#666666",
+      }),
+      dark: convertToHljsTheme({
+        background: "rgba 0,0,0,0.75",
+        text: "#ffffff",
+        variable: "#ffffff",
+        variable2: "#ffffff",
+        variable3: "#ffffff",
+        attribute: "#a7a7a7",
+        definition: "#ffffff",
+        keyword: "#a7a7a7",
+        operator: "#a7a7a7",
+        property: "#a7a7a7",
+        number: "#ffffff",
+        string: "#a7a7a7",
+        comment: "#666666",
+        meta: "#a7a7a7",
+        tag: "#a7a7a7",
+      }),
+    },
+  },
   breeze: {
     name: "Breeze",
     background: {
