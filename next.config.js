@@ -12,12 +12,11 @@ const nextConfig = {
 
     return config;
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/:path*",
         destination: "https://go.ray.so/:path*",
-        permanent: true,
       },
     ];
   },
