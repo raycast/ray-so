@@ -17,7 +17,6 @@ const nextConfig = {
       {
         source: "/:path*",
         destination: "https://go.ray.so/:path*",
-        permanent: true,
       },
     ];
   },
