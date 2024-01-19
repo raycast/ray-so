@@ -12,7 +12,7 @@ const nextConfig = {
 
     return config;
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/:path*",
