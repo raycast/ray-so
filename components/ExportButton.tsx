@@ -114,6 +114,11 @@ const ExportButton: React.FC = () => {
       <button onClick={handleExportClick} className={styles.button} aria-label="Export as PNG">
         Export
       </button>
+
+      {/*
+      TODO: This should be a DropdownMenu and not a Popover
+      https://www.radix-ui.com/primitives/docs/components/dropdown-menu
+      */}
       <Popover.Root open={popoverOpen} onOpenChange={setPopoverOpen}>
         <Popover.Trigger asChild>
           <button className={classNames(styles.button, styles.small)} aria-label="See other export options">
