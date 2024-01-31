@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { url: urlQuery } = req.query;
 
   const url = new URL(urlQuery as string);
-  console.log(url);
+
   if (!url) {
     res.status(400).json({ error: "Missing URL" });
     return;
