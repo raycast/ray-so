@@ -7,16 +7,18 @@ const dub = new Dub({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { url } = req.query;
-  console.log("url server", url);
+  const { url: urlQuery } = req.query;
+
+  const url = new URL(urlQuery as string);
+  console.log(url);
   if (!url) {
     res.status(400).json({ error: "Missing URL" });
     return;
   }
 
-  if (url.includes("ray.so") || url.includes("ray-so-v2") || url.includes("localhost")) {
+  if (url.hostname === "ray.so" || url.hostname.includes("raycastapp.vercel.app") || url.hostname === "localhost") {
     const link = await dub.links.create({
-      url: url as string,
+      url: url.href,
       domain: "go.ray.so",
     });
     res.status(200).json({ link: `https://ray.so/${link.key}` });

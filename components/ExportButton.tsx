@@ -92,7 +92,9 @@ const ExportButton: React.FC = () => {
   const copyUrl = async () => {
     setFlashMessage({ icon: <ClipboardIcon />, message: "Copying URL" });
 
-    const response = await fetch(`/api/shorten-url?url=${window.location.toString()}`).then((res) => res.json());
+    const url = window.location.toString();
+    const encodedUrl = encodeURIComponent(url);
+    const response = await fetch(`/api/shorten-url?url=${encodedUrl}`).then((res) => res.json());
 
     if (response.error) {
       setFlashMessage({ icon: <ClipboardIcon />, message: "Error copying URL", timeout: 2000 });
