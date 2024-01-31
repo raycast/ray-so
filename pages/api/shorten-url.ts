@@ -8,7 +8,7 @@ const dub = new Dub({
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { url } = req.query;
-
+  console.log("url server", url);
   if (!url) {
     res.status(400).json({ error: "Missing URL" });
     return;
