@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  if (url.includes("ray.so") || url.includes("localhost")) {
+  if (url.includes("ray.so") || url.includes("ray-so-v2") || url.includes("localhost")) {
     const link = await dub.links.create({
       url: url as string,
       domain: "go.ray.so",
