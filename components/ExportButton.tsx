@@ -1,4 +1,5 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
+
 import * as Popover from "@radix-ui/react-popover";
 
 import ImageIcon from "assets/icons/image-16.svg";
@@ -88,7 +89,19 @@ const ExportButton: React.FC = () => {
     savePng();
   };
 
-  const copyUrl = () => navigator.clipboard.writeText(window.location.toString());
+  const copyUrl = async () => {
+    setFlashMessage({ icon: <ClipboardIcon />, message: "Copying URL" });
+
+    const response = await fetch(`/api/shorten-url?url=${window.location.toString()}`).then((res) => res.json());
+
+    if (response.error) {
+      setFlashMessage({ icon: <ClipboardIcon />, message: "Error copying URL", timeout: 2000 });
+      return;
+    }
+
+    navigator.clipboard.writeText(response.link);
+    setFlashMessage({ icon: <ClipboardIcon />, message: "URL Copied to clipboard!", timeout: 2000 });
+  };
 
   useHotkeys("ctrl+s,cmd+s", (event) => {
     event.preventDefault();
