@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useAtom } from "jotai";
 import React, { useContext } from "react";
 
-import styles from "styles/Frame.module.css";
+import styles from "../styles/Frame.module.css";
 import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";

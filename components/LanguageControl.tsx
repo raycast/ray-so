@@ -5,9 +5,9 @@ import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
 import ControlContainer from "./ControlContainer";
 import { Language, LANGUAGES } from "../util/languages";
 
-import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
+import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
-import styles from "styles/Select.module.css";
+import styles from "../styles/Select.module.css";
 import useHotkeys from "../util/useHotkeys";
 
 const LanguageControl: React.FC = () => {

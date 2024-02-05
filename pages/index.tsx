@@ -8,9 +8,9 @@ import Controls from "../components/Controls";
 import FrameContextStore from "../store/FrameContextStore";
 import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
 
-import FullLogoSVG from "assets/full-logo.svg";
-import ArrowNeIcon from "assets/icons/arrow-ne-16.svg";
-import CoverPhoto from "assets/cover-photo.png";
+import FullLogoSVG from "../assets/full-logo.svg";
+import ArrowNeIcon from "../assets/icons/arrow-ne-16.svg";
+import CoverPhoto from "../assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";

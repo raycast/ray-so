@@ -3,7 +3,7 @@ import hljs from "highlight.js";
 import React, { useMemo } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
-import styles from "styles/Editor.module.css";
+import styles from "../styles/Editor.module.css";
 
 type PropTypes = {
   selectedLanguage: Language | null;

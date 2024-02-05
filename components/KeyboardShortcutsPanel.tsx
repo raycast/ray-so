@@ -1,11 +1,11 @@
 import React, { PropsWithChildren, useCallback, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-import styles from "styles/KeyboardShortcutsPanel.module.css";
+import styles from "../styles/KeyboardShortcutsPanel.module.css";
 
-import KeyboardIcon from "assets/icons/keyboard-16.svg";
+import KeyboardIcon from "../assets/icons/keyboard-16.svg";
 import useHotkeys from "../util/useHotkeys";
-import MultiplyIcon from "assets/icons/multiply-16.svg";
+import MultiplyIcon from "../assets/icons/multiply-16.svg";
 
 const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({ children, keys }) => (
   <>
