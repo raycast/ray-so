@@ -1,9 +1,9 @@
 import React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 
-import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
+import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
-import styles from "styles/Select.module.css";
+import styles from "../styles/Select.module.css";
 
 type SelectPrimitiveRootProps = React.ComponentProps<typeof SelectPrimitive.Root>;
 

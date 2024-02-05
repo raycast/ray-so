@@ -7,7 +7,7 @@ import React, {
   FocusEventHandler,
   useEffect,
 } from "react";
-import styles from "styles/Editor.module.css";
+import styles from "../styles/Editor.module.css";
 import { useAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { themeCSSAtom } from "../store/themes";

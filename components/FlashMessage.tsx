@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { CSSTransition } from "react-transition-group";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 
-import styles from "styles/FlashMessage.module.css";
+import styles from "../styles/FlashMessage.module.css";
 
 const FlashMessage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

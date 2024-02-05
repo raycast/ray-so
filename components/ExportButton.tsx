@@ -2,17 +2,17 @@ import React, { MouseEventHandler, useContext, useState } from "react";
 
 import * as Popover from "@radix-ui/react-popover";
 
-import ImageIcon from "assets/icons/image-16.svg";
-import LinkIcon from "assets/icons/link-16.svg";
-import ChevronUpIcon from "assets/icons/chevron-up-16.svg";
-import ClipboardIcon from "assets/icons/clipboard-16.svg";
+import ImageIcon from "../assets/icons/image-16.svg";
+import LinkIcon from "../assets/icons/link-16.svg";
+import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
+import ClipboardIcon from "../assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
-import styles from "styles/ExportButton.module.css";
+import styles from "../styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import classNames from "classnames";

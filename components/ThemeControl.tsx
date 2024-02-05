@@ -5,7 +5,7 @@ import { themeAtom, THEMES, Theme } from "../store/themes";
 import ControlContainer from "./ControlContainer";
 import { Select, SelectItem } from "./Select";
 
-import styles from "styles/ThemeControl.module.css";
+import styles from "../styles/ThemeControl.module.css";
 import useHotkeys from "../util/useHotkeys";
 
 const ThemeControl: React.FC = () => {

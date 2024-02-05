@@ -4,8 +4,8 @@ import { showBackgroundAtom, fileNameAtom, windowWidthAtom } from "../store";
 import { paddingAtom } from "../store/padding";
 import { darkModeAtom, themeBackgroundAtom } from "../store/themes";
 
-import styles from "styles/Frame.module.css";
-import resizableFrameStyles from "styles/ResizableFrame.module.css";
+import styles from "../styles/Frame.module.css";
+import resizableFrameStyles from "../styles/ResizableFrame.module.css";
 import classNames from "classnames";
 import Editor from "../components/Editor";
 

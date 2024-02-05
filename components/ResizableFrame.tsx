@@ -4,9 +4,9 @@ import { windowWidthAtom } from "../store";
 import classnames from "classnames";
 import { CSSTransition } from "react-transition-group";
 
-import styles from "styles/ResizableFrame.module.css";
+import styles from "../styles/ResizableFrame.module.css";
 
-import XMarkIcon from "assets/icons/x-mark-circle-filled-16.svg";
+import XMarkIcon from "../assets/icons/x-mark-circle-filled-16.svg";
 
 type Handle = "right" | "left";
 
