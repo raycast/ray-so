@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
   }
 
   if (
-    url.hostname.includes("ray.so") ||
+    url.hostname.endsWith("ray.so") ||
     url.hostname.includes("raycastapp.vercel.app") ||
     url.hostname === "localhost"
   ) {
