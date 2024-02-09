@@ -18,7 +18,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Missing URL" });
   }
 
-  if (url.hostname === "ray.so" || url.hostname.includes("raycastapp.vercel.app") || url.hostname === "localhost") {
+  if (
+    url.hostname.includes("ray.so") ||
+    url.hostname.includes("raycastapp.vercel.app") ||
+    url.hostname === "localhost"
+  ) {
     const link = await dub.links.create({
       url: url.href,
       domain: "go.ray.so",
