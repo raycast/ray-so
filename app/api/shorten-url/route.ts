@@ -11,6 +11,7 @@ const dub = new Dub({
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const urlQuery = searchParams.get("url");
+  const tagId = searchParams.get("id");
 
   const url = new URL(urlQuery as string);
 
@@ -26,6 +27,7 @@ export async function GET(req: NextRequest) {
     const link = await dub.links.create({
       url: url.href,
       domain: "go.ray.so",
+      tagId,
     });
     return NextResponse.json({ link: `https://ray.so/${link.key}` });
   }
