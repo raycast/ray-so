@@ -6,6 +6,7 @@ import styles from "../styles/KeyboardShortcutsPanel.module.css";
 import KeyboardIcon from "../assets/icons/keyboard-16.svg";
 import useHotkeys from "../util/useHotkeys";
 import MultiplyIcon from "../assets/icons/multiply-16.svg";
+import usePngClipboardSupported from "../util/usePngClipboardSupported";
 
 const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({ children, keys }) => (
   <>
@@ -23,6 +24,7 @@ const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({ children, k
 const KeyboardShortcutsPanel: React.FC = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const togglePopover = useCallback(() => setPopoverOpen((old) => !old), [setPopoverOpen]);
+  const pngClipboardSupported = usePngClipboardSupported();
 
   useHotkeys("shift+/", togglePopover);
 
@@ -50,7 +52,7 @@ const KeyboardShortcutsPanel: React.FC = () => {
                 <Shortcut keys={["L"]}>Select language</Shortcut>
                 <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
                 <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
-                <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>
+                {pngClipboardSupported && <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>}
                 <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
                 <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
               </div>
