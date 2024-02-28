@@ -80,7 +80,7 @@
 
   > input {
     position: absolute;
-
+    width: 100%;
     border: none;
     margin: 0;
     background-color: transparent;
