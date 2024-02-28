@@ -23,7 +23,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
 
   const preView = useMemo(
     () => (
-      <div
+      <pre
         className={classNames(styles.formatted, "hljs")}
         dangerouslySetInnerHTML={{
           __html: html,
