@@ -34,6 +34,11 @@
   background: var(--frame-background);
   transition: all ease 0.3s;
 
+  &.withBorder {
+    border: none;
+    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border);
+  }
+
   &.withShadow {
     border: none;
     box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
