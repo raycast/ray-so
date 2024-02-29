@@ -36,7 +36,8 @@ const Frame: React.FC = () => {
           {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
           <div
             className={classNames(styles.window, {
-              [styles.withShadow]: !isSafari,
+              [styles.withBorder]: !isSafari,
+              [styles.withShadow]: !isSafari && showBackground,
             })}
           >
             <div className={styles.header}>
