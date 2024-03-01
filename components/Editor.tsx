@@ -189,6 +189,7 @@ function Editor() {
         onInput={handleInput}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
+        data-enable-grammarly="false"
       />
       {<HighlightedCode code={code} selectedLanguage={selectedLanguage} />}
     </div>
