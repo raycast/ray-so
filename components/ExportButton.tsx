@@ -9,6 +9,7 @@ import ClipboardIcon from "../assets/icons/clipboard-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
+import { fileNameAtom } from "../store";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
@@ -16,7 +17,7 @@ import styles from "../styles/ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import classNames from "classnames";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 const ExportButton: React.FC = () => {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -24,6 +25,8 @@ const ExportButton: React.FC = () => {
   const frameContext = useContext(FrameContext);
   const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
   const [, setFlashShown] = useAtom(flashShownAtom);
+  const customFileName = useAtomValue(fileNameAtom);
+  const fileName = customFileName.replaceAll(" ", "-") || "ray-so-export";
 
   const savePng = async () => {
     if (!frameContext?.current) {
@@ -33,7 +36,7 @@ const ExportButton: React.FC = () => {
     setFlashMessage({ icon: <ImageIcon />, message: "Exporting PNG" });
 
     const dataUrl = await toPng(frameContext.current);
-    download(dataUrl, "ray-so-export.png");
+    download(dataUrl, `${fileName}.png`);
 
     setFlashShown(false);
   };
@@ -70,7 +73,7 @@ const ExportButton: React.FC = () => {
     setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
 
     const dataUrl = await toSvg(frameContext.current);
-    download(dataUrl, "ray-so-export.svg");
+    download(dataUrl, `${fileName}.svg`);
 
     setFlashShown(false);
   };
