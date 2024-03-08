@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
 
-import * as Popover from "@radix-ui/react-popover";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 import ImageIcon from "../assets/icons/image-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
@@ -20,7 +20,7 @@ import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
 
 const ExportButton: React.FC = () => {
-  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const pngClipboardSupported = usePngClipboardSupported();
   const frameContext = useContext(FrameContext);
   const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
@@ -78,11 +78,11 @@ const ExportButton: React.FC = () => {
     setFlashShown(false);
   };
 
-  const popoverHandler: (handler: () => void) => MouseEventHandler = (handler) => {
+  const dropdownHandler: (handler: () => void) => (event: Event) => void = (handler) => {
     return (event) => {
       event.preventDefault();
       handler();
-      setPopoverOpen(false);
+      setDropdownOpen(false);
     };
   };
 
@@ -133,39 +133,35 @@ const ExportButton: React.FC = () => {
         Export
       </button>
 
-      {/*
-      TODO: This should be a DropdownMenu and not a Popover
-      https://www.radix-ui.com/primitives/docs/components/dropdown-menu
-      */}
-      <Popover.Root open={popoverOpen} onOpenChange={setPopoverOpen}>
-        <Popover.Trigger asChild>
+      <DropdownMenu.Root open={dropdownOpen} onOpenChange={setDropdownOpen}>
+        <DropdownMenu.Trigger asChild>
           <button className={classNames(styles.button, styles.small)} aria-label="See other export options">
             <ChevronUpIcon />
           </button>
-        </Popover.Trigger>
-        <Popover.Portal>
-          <Popover.Content className={styles.popover} sideOffset={5} side={"top"}>
-            <a href="#" onClick={popoverHandler(savePng)} className={styles.option}>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content className={styles.dropdown} sideOffset={5} side={"top"}>
+            <DropdownMenu.Item onSelect={dropdownHandler(savePng)} className={styles.option}>
               <ImageIcon />
               Save PNG
-            </a>
-            <a href="#" className={styles.option} onClick={popoverHandler(saveSvg)}>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item onSelect={dropdownHandler(saveSvg)} className={styles.option}>
               <ImageIcon />
               Save SVG
-            </a>
+            </DropdownMenu.Item>
             {pngClipboardSupported && (
-              <a href="#" className={styles.option} onClick={popoverHandler(copyPng)}>
+              <DropdownMenu.Item onSelect={dropdownHandler(copyPng)} className={styles.option}>
                 <ClipboardIcon />
                 Copy Image
-              </a>
+              </DropdownMenu.Item>
             )}
-            <a href="#" className={styles.option} onClick={popoverHandler(copyUrl)}>
+            <DropdownMenu.Item onSelect={dropdownHandler(copyUrl)} className={styles.option}>
               <LinkIcon />
               Copy URL
-            </a>
-          </Popover.Content>
-        </Popover.Portal>
-      </Popover.Root>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
     </div>
   );
 };
