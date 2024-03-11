@@ -57,7 +57,7 @@
   }
 }
 
-.popover {
+.dropdown {
   display: flex;
   flex-direction: column;
   padding: 4px;
@@ -84,7 +84,7 @@
   outline: none;
   user-select: none;
 
-  &:hover {
+  &[data-highlighted] {
     background: rgba(255, 255, 255, 0.05);
   }
 }
