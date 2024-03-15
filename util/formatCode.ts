@@ -29,10 +29,17 @@ const formatCode = async (code: string, language: Language | null) => {
     throw new Error(`No parser found for language: ${language.name}`);
   }
   const parserModule = await parser.import();
+  const plugins = [parserModule.default];
+
+  // Add estree plugin for TypeScript, TSX, and JavaScript
+  if (["TSX", "TypeScript", "JavaScript"].includes(language.name)) {
+    const estree = await import("prettier/plugins/estree");
+    plugins.push(estree.default as typeof parserModule.default);
+  }
 
   const formatted = await prettier.format(code, {
     parser: parser.name,
-    plugins: [parserModule],
+    plugins,
     ...prettierConfig,
   });
 
