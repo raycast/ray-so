@@ -50,6 +50,7 @@ const KeyboardShortcutsPanel: React.FC = () => {
                 <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
                 <Shortcut keys={["P"]}>Change padding</Shortcut>
                 <Shortcut keys={["L"]}>Select language</Shortcut>
+                <Shortcut keys={["⌥", "shift", "F"]}>Format code</Shortcut>
                 <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
                 <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
                 {pngClipboardSupported && <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>}

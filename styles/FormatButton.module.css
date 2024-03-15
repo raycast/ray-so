@@ -1,0 +1,80 @@
+.button {
+  --focus-ring-color: rgba(255, 255, 255, 0.1);
+
+  all: unset;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-top: -2px;
+  margin-right: -2px;
+  font-size: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+  &:focus,
+  &:active {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  &.isAnimating {
+    animation: wave 0.7s ease-in-out forwards;
+    transform-origin: bottom left;
+  }
+
+  &.hasError {
+    animation: shake 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(8deg);
+  }
+  40% {
+    transform: rotate(-8deg);
+  }
+  60% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

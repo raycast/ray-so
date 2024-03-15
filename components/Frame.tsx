@@ -12,6 +12,7 @@ import Editor from "./Editor";
 import FlashMessage from "./FlashMessage";
 
 import ResizableFrame from "./ResizableFrame";
+import FormatButton from "./FormatButton";
 
 const Frame: React.FC = () => {
   const frameContext = useContext(FrameContext);
@@ -55,6 +56,9 @@ const Frame: React.FC = () => {
                   tabIndex={-1}
                 />
                 {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+              </div>
+              <div className={styles.actions}>
+                <FormatButton />
               </div>
             </div>
             <Editor />
