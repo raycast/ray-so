@@ -9,6 +9,7 @@ const parsers = {
   CSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   SCSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   YAML: { import: () => import("prettier/plugins/yaml"), name: "yaml" },
+  GraphQL: { import: () => import("prettier/plugins/graphql"), name: "graphql" },
 };
 
 export const formatterSupportedLanguages: Language["name"][] = Object.keys(parsers);
