@@ -15,7 +15,7 @@ import CoverPhoto from "../assets/cover-photo.png";
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
 
-const coverPhotoUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
+const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
 const Home: NextPage = () => {
   const [darkMode] = useAtom(darkModeAtom);
