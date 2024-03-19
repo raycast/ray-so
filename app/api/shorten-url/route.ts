@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
     const link = await dub.links.create({
       url: url.href,
       domain: "go.ray.so",
-      tagId,
+      tagIds: [tagId],
     });
     return NextResponse.json({ link: `https://ray.so/${link.key}` });
   }

@@ -96,15 +96,17 @@ const ExportButton: React.FC = () => {
     setFlashMessage({ icon: <ClipboardIcon />, message: "Copying URL" });
 
     const url = window.location.toString();
+    let urlToCopy = url;
+
     const encodedUrl = encodeURIComponent(url);
     const response = await fetch(`/api/shorten-url?url=${encodedUrl}&ref=codeImage`).then((res) => res.json());
 
-    if (response.error) {
-      setFlashMessage({ icon: <ClipboardIcon />, message: "Error copying URL", timeout: 2000 });
-      return;
+    if (response.link) {
+      urlToCopy = response.link;
     }
 
-    navigator.clipboard.writeText(response.link);
+    navigator.clipboard.writeText(urlToCopy);
+
     setFlashMessage({ icon: <ClipboardIcon />, message: "URL Copied to clipboard!", timeout: 2000 });
   };
 
