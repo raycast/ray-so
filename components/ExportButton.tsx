@@ -1,4 +1,5 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
+import { track } from "@vercel/analytics";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
@@ -89,6 +90,14 @@ const ExportButton: React.FC = () => {
   const handleExportClick: MouseEventHandler = (event) => {
     event.preventDefault();
 
+    const params = new URLSearchParams(window.location.hash);
+    track("Export", {
+      theme: params.get("theme") || "candy",
+      background: params.get("background") || "true",
+      padding: params.get("padding") || "64",
+      language: params.get("language") || "auto",
+      title: params.get("title") || "untitled",
+    });
     savePng();
   };
 
