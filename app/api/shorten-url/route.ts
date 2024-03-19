@@ -13,6 +13,7 @@ const tagIdsByRef = {
   snippets: "clsokhqzy0003kz0gxdhcycue",
   prompts: "clsokhzja0006kz0g64z47gfr",
   themes: "clsoki8190008kz0gzajzalh7",
+  icons: "cltyfpaho0001lwxwdcd93mkc",
 };
 
 type refProps = keyof typeof tagIdsByRef;
