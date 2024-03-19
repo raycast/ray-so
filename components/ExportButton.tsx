@@ -98,6 +98,7 @@ const ExportButton: React.FC = () => {
       padding: params.get("padding") || "64",
       language: params.get("language") || "auto",
       title: params.get("title") || "untitled",
+      width: params.get("width") || "auto",
     });
     savePng();
   };
