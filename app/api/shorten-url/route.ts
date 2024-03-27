@@ -14,6 +14,7 @@ const tagIdsByRef = {
   prompts: "clsokhzja0006kz0g64z47gfr",
   themes: "clsoki8190008kz0gzajzalh7",
   icons: "cltyfpaho0001lwxwdcd93mkc",
+  presets: "clu9ko3n300068tq0zhk7bc7f",
 };
 
 type refProps = keyof typeof tagIdsByRef;
