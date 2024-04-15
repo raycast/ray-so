@@ -2,6 +2,8 @@ import classNames from "classnames";
 import React, { useEffect, useMemo, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
+import vercel from "../assets/vercel.json";
+
 import styles from "../styles/Editor.module.css";
 import { Highlighter, getHighlighter, bundledLanguages, bundledThemes } from "shiki";
 
@@ -30,7 +32,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, theme })
 
   useEffect(() => {
     getHighlighter({
-      themes: THEMES,
+      themes: [...THEMES, vercel] as any,
       langs: Object.keys(bundledLanguages),
     }).then((highlighter) => {
       setHighlighter(highlighter);

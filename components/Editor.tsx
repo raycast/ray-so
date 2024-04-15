@@ -173,12 +173,12 @@ function Editor() {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [code]);
 
-  const [theme, setTheme] = useState("monokai");
+  const [theme, setTheme] = useState("vercel");
 
   return (
     <div>
       <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-        {THEMES.map((theme) => (
+        {[...THEMES, "vercel"].map((theme) => (
           <option key={theme} value={theme}>
             {theme}
           </option>
