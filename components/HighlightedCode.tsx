@@ -11,12 +11,26 @@ type PropTypes = {
   theme: string;
 };
 
+export const THEMES = [
+  "dark-plus",
+  "light-plus",
+  "github-dark",
+  "github-light",
+  "monokai",
+  "nord",
+  "solarized-dark",
+  "solarized-light",
+  "dracula",
+  "material-theme",
+  "night-owl",
+];
+
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, theme }) => {
   const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
 
   useEffect(() => {
     getHighlighter({
-      themes: Object.keys(bundledThemes),
+      themes: THEMES,
       langs: Object.keys(bundledLanguages),
     }).then((highlighter) => {
       setHighlighter(highlighter);

@@ -13,7 +13,7 @@ import { useAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { themeCSSAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
-import HighlightedCode from "./HighlightedCode";
+import HighlightedCode, { THEMES } from "./HighlightedCode";
 import { bundledThemes } from "shiki/themes";
 
 function indentText(text: string) {
@@ -178,7 +178,7 @@ function Editor() {
   return (
     <div>
       <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-        {Object.keys(bundledThemes).map((theme) => (
+        {THEMES.map((theme) => (
           <option key={theme} value={theme}>
             {theme}
           </option>
