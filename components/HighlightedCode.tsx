@@ -5,17 +5,14 @@ import { Language, LANGUAGES } from "../util/languages";
 import styles from "../styles/Editor.module.css";
 import { Highlighter, getHighlighter, bundledLanguages, bundledThemes } from "shiki";
 
-import { useAtom } from "jotai";
-import { themeAtom } from "../store/themes";
-
 type PropTypes = {
   selectedLanguage: Language | null;
   code: string;
+  theme: string;
 };
 
-const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
+const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, theme }) => {
   const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
-  const [theme, setTheme] = useState("monokai");
 
   useEffect(() => {
     getHighlighter({
@@ -52,18 +49,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     [html]
   );
 
-  return (
-    <div>
-      <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-        {Object.keys(bundledThemes).map((theme) => (
-          <option key={theme} value={theme}>
-            {theme}
-          </option>
-        ))}
-      </select>
-      {preView}
-    </div>
-  );
+  return preView;
 };
 
 export default HighlightedCode;

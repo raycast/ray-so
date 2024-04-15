@@ -6,6 +6,7 @@ import React, {
   FormEventHandler,
   FocusEventHandler,
   useEffect,
+  useState,
 } from "react";
 import styles from "../styles/Editor.module.css";
 import { useAtom } from "jotai";
@@ -13,6 +14,7 @@ import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code
 import { themeCSSAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
+import { bundledThemes } from "shiki/themes";
 
 function indentText(text: string) {
   return text
@@ -171,27 +173,38 @@ function Editor() {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [code]);
 
+  const [theme, setTheme] = useState("monokai");
+
   return (
-    <div
-      className={styles.editor}
-      style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
-    >
-      <textarea
-        tabIndex={-1}
-        autoComplete="off"
-        autoCorrect="off"
-        spellCheck="false"
-        autoCapitalize="off"
-        ref={textareaRef}
-        className={styles.textarea}
-        value={code}
-        onChange={handleChange}
-        onInput={handleInput}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        data-enable-grammarly="false"
-      />
-      {<HighlightedCode code={code} selectedLanguage={selectedLanguage} />}
+    <div>
+      <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+        {Object.keys(bundledThemes).map((theme) => (
+          <option key={theme} value={theme}>
+            {theme}
+          </option>
+        ))}
+      </select>
+      <div
+        className={styles.editor}
+        style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+      >
+        <textarea
+          tabIndex={-1}
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck="false"
+          autoCapitalize="off"
+          ref={textareaRef}
+          className={styles.textarea}
+          value={code}
+          onChange={handleChange}
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          data-enable-grammarly="false"
+        />
+        {<HighlightedCode code={code} selectedLanguage={selectedLanguage} theme={theme} />}
+      </div>
     </div>
   );
 }
