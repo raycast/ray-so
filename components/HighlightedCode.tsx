@@ -3,7 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "../styles/Editor.module.css";
-import { Highlighter, getHighlighter } from "shiki";
+import { Highlighter, getHighlighter, bundledLanguages, bundledThemes } from "shiki";
+
 import { useAtom } from "jotai";
 import { themeAtom } from "../store/themes";
 
@@ -14,12 +15,12 @@ type PropTypes = {
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
-  const [theme] = useAtom(themeAtom);
+  const [theme, setTheme] = useState("monokai");
 
   useEffect(() => {
     getHighlighter({
-      themes: ["nord", "monokai", "github-dark", "github-light", "solarized-dark", "solarized-light"],
-      langs: ["javascript", "typescript", "swift", "html", "r", "rust", "python", "go", "java"],
+      themes: Object.keys(bundledThemes),
+      langs: Object.keys(bundledLanguages),
     }).then((highlighter) => {
       setHighlighter(highlighter);
     });
@@ -28,8 +29,8 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const html = useMemo(() => {
     if (selectedLanguage && selectedLanguage !== LANGUAGES.plaintext) {
       const result = highlighter?.codeToHtml(code, {
-        lang: "javascript",
-        theme: "nord",
+        lang: selectedLanguage.name.toLowerCase(),
+        theme: theme,
       });
       return result || "";
     } else {
@@ -37,7 +38,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         return `&#${i.charCodeAt(0)};`;
       });
     }
-  }, [code, selectedLanguage, highlighter]);
+  }, [code, selectedLanguage, highlighter, theme]);
 
   const preView = useMemo(
     () => (
@@ -51,7 +52,18 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     [html]
   );
 
-  return preView;
+  return (
+    <div>
+      <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+        {Object.keys(bundledThemes).map((theme) => (
+          <option key={theme} value={theme}>
+            {theme}
+          </option>
+        ))}
+      </select>
+      {preView}
+    </div>
+  );
 };
 
 export default HighlightedCode;
