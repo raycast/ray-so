@@ -31,7 +31,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         lang: "javascript",
         theme: "nord",
       });
-      return result;
+      return result || "";
     } else {
       return code.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
         return `&#${i.charCodeAt(0)};`;
