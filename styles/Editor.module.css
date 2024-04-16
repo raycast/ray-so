@@ -26,7 +26,7 @@
   border: none;
   background: transparent;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  caret-color: var(--syntax-text);
+  caret-color: var(--ray-foreground);
   resize: none;
   -webkit-text-fill-color: transparent;
   text-size-adjust: none;

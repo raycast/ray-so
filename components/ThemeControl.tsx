@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import React from "react";
+import React, { useEffect } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { themeAtom, THEMES, Theme } from "../store/themes";
 import ControlContainer from "./ControlContainer";
@@ -7,9 +7,17 @@ import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from ".
 
 import styles from "../styles/ThemeControl.module.css";
 import useHotkeys from "../util/useHotkeys";
+import { paddingAtom } from "../store/padding";
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, setTheme] = useAtom(themeAtom);
+  const [padding, setPadding] = useAtom(paddingAtom);
+
+  useEffect(() => {
+    if (currentTheme.name === "Vercel") {
+      setPadding(64);
+    }
+  }, [currentTheme, setPadding]);
 
   useHotkeys("c", () => {
     const currentIndex = Object.values(THEMES).indexOf(currentTheme);
