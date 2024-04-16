@@ -211,3 +211,21 @@
     background: #515356;
   }
 }
+
+.vercelLightMode {
+  .vercelGridlinesHorizontal,
+  .vercelGridlinesVertical {
+    &:before,
+    &:after {
+      background: #ebebeb;
+    }
+  }
+
+  .vercelBracketLeft,
+  .vercelBracketRight {
+    &:before,
+    &:after {
+      background: #a8a8a8;
+    }
+  }
+}

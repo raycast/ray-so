@@ -6,7 +6,7 @@ import styles from "../styles/Frame.module.css";
 import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
-import { themeAtom, themeBackgroundAtom } from "../store/themes";
+import { darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 import Editor from "./Editor";
 import FlashMessage from "./FlashMessage";
@@ -22,6 +22,8 @@ const Frame = ({ highlighter }: { highlighter: Highlighter | null }) => {
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const isSafari = useIsSafari();
   const [theme] = useAtom(themeAtom);
+  const [darkMode] = useAtom(darkModeAtom);
+  const isVercelLightMode = theme.name === "Vercel" && !darkMode;
 
   return (
     <div className={styles.frameContainer}>
@@ -31,13 +33,14 @@ const Frame = ({ highlighter }: { highlighter: Highlighter | null }) => {
           ref={frameContext}
           style={{
             padding,
-            backgroundImage: showBackground ? themeBackground : ``,
+            backgroundImage: showBackground && !isVercelLightMode ? themeBackground : ``,
+            backgroundColor: isVercelLightMode ? "#fff" : undefined,
           }}
         >
           <FlashMessage />
           {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
           {theme.name === "Vercel" ? (
-            <div className={styles.vercelWindow}>
+            <div className={classNames(styles.vercelWindow, isVercelLightMode && styles.vercelLightMode)}>
               <span className={styles.vercelGridlinesHorizontal}></span>
               <span className={styles.vercelGridlinesVertical}></span>
               <span className={styles.vercelBracketLeft}></span>
