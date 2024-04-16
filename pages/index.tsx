@@ -19,7 +19,7 @@ import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighter 
 
 const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
-const theme = createCssVariablesTheme({
+export const theme = createCssVariablesTheme({
   name: "css-variables",
   variablePrefix: "--ray-",
   variableDefaults: {},
