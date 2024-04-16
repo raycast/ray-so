@@ -6,15 +6,19 @@ import React, {
   FormEventHandler,
   FocusEventHandler,
   useEffect,
-  useState,
 } from "react";
 import styles from "../styles/Editor.module.css";
 import { useAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { themeCSSAtom } from "../store/themes";
+import { themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
-import HighlightedCode, { THEMES } from "./HighlightedCode";
-import { bundledThemes } from "shiki/themes";
+import HighlightedCode from "./HighlightedCode";
+import { GeistMono } from "geist/font/mono";
+import { JetBrains_Mono } from "next/font/google";
+import classNames from "classnames";
+import { Highlighter } from "shiki";
+
+const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
 function indentText(text: string) {
   return text
@@ -108,12 +112,13 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
   document.execCommand("insertText", false, "}");
 }
 
-function Editor() {
+function Editor({ highlighter }: { highlighter: Highlighter | null }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
+  const [themeFont] = useAtom(themeFontAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -173,38 +178,27 @@ function Editor() {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [code]);
 
-  const [theme, setTheme] = useState("vercel");
-
   return (
-    <div>
-      <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-        {[...THEMES, "vercel"].map((theme) => (
-          <option key={theme} value={theme}>
-            {theme}
-          </option>
-        ))}
-      </select>
-      <div
-        className={styles.editor}
-        style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
-      >
-        <textarea
-          tabIndex={-1}
-          autoComplete="off"
-          autoCorrect="off"
-          spellCheck="false"
-          autoCapitalize="off"
-          ref={textareaRef}
-          className={styles.textarea}
-          value={code}
-          onChange={handleChange}
-          onInput={handleInput}
-          onKeyDown={handleKeyDown}
-          onFocus={handleFocus}
-          data-enable-grammarly="false"
-        />
-        {<HighlightedCode code={code} selectedLanguage={selectedLanguage} theme={theme} />}
-      </div>
+    <div
+      className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : jetBrainsMono.className)}
+      style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+    >
+      <textarea
+        tabIndex={-1}
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
+        autoCapitalize="off"
+        ref={textareaRef}
+        className={styles.textarea}
+        value={code}
+        onChange={handleChange}
+        onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        data-enable-grammarly="false"
+      />
+      {<HighlightedCode code={code} selectedLanguage={selectedLanguage} highlighter={highlighter} />}
     </div>
   );
 }

@@ -9,7 +9,7 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   padding: var(--editor-padding);
   margin: 0;
-  font-family: "JetBrains Mono", monospace;
+  font-family: inherit;
   font-size: 15px;
   font-variant-ligatures: none;
   font-weight: 500;
@@ -43,5 +43,9 @@
 }
 
 .formatted > pre > code {
-  font-family: "JetBrains Mono", monospace;
+  font-family: inherit;
+}
+
+.formatted :global(.shiki) {
+  font-family: inherit;
 }

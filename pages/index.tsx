@@ -14,11 +14,31 @@ import CoverPhoto from "../assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
+import { useEffect, useState } from "react";
+import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighter } from "shiki";
 
 const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
+const theme = createCssVariablesTheme({
+  name: "css-variables",
+  variablePrefix: "--ray-",
+  variableDefaults: {},
+  fontStyle: true,
+});
+
 const Home: NextPage = () => {
   const [darkMode] = useAtom(darkModeAtom);
+
+  const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
+
+  useEffect(() => {
+    getHighlighter({
+      themes: [theme] as any,
+      langs: Object.keys(bundledLanguages),
+    }).then((highlighter) => {
+      setHighlighter(highlighter);
+    });
+  }, []);
 
   return (
     <>
@@ -58,7 +78,7 @@ const Home: NextPage = () => {
 
         <NoSSR>
           <FrameContextStore>
-            <Frame />
+            {highlighter && <Frame highlighter={highlighter} />}
             <Controls />
           </FrameContextStore>
         </NoSSR>

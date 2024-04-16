@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { CSSProperties } from "react";
+import { Font } from "./font";
 
 type SyntaxObject = {
   background: string;
@@ -46,12 +47,49 @@ function convertToHljsTheme(syntaxObject: SyntaxObject): CSSProperties {
   } as CSSProperties;
 }
 
+type ShikiSyntaxObject = {
+  foreground: string;
+  background: string;
+  constant: string;
+  string: string;
+  comment: string;
+  keyword: string;
+  parameter: string;
+  function: string;
+  stringExpression: string;
+  punctuation: string;
+  link: string;
+};
+
+function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
+  if (!syntaxObject) {
+    return {};
+  }
+
+  return {
+    "--ray-foreground": syntaxObject.foreground,
+    // doesn't seem that this is used
+    // "--ray-background": syntaxObject.background,
+    "--ray-token-constant": syntaxObject.constant,
+    "--ray-token-string": syntaxObject.string,
+    "--ray-token-comment": syntaxObject.comment,
+    "--ray-token-keyword": syntaxObject.keyword,
+    "--ray-token-parameter": syntaxObject.parameter,
+    "--ray-token-function": syntaxObject.function,
+    "--ray-token-string-expression": syntaxObject.stringExpression,
+    "--ray-token-punctuation": syntaxObject.punctuation,
+    "--ray-token-link": syntaxObject.link,
+  } as CSSProperties;
+}
+
 export type Theme = {
   name: string;
   background: {
     from: string;
     to: string;
   };
+  font?: Font;
+  partner?: boolean;
   syntax: {
     light: CSSProperties;
     dark: CSSProperties;
@@ -59,6 +97,43 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  vercel: {
+    name: "Vercel",
+    background: {
+      from: "#000000",
+      to: "#000000",
+    },
+    font: "geist-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        background: "#fff",
+        foreground: "hsla(0, 0%, 9%,1)",
+        constant: "oklch(53.18% 0.2399 256.9900584162342)",
+        string: "oklch(51.75% 0.1453 147.65)",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "oklch(53.5% 0.2058 2.84)",
+        parameter: "oklch(52.79% 0.1496 54.65)",
+        function: "oklch(47.18% 0.2579 304)",
+        stringExpression: "oklch(51.75% 0.1453 147.65)",
+        punctuation: "hsla(0, 0%, 9%,1)",
+        link: "oklch(51.75% 0.1453 147.65)",
+      }),
+      dark: convertToShikiTheme({
+        background: "#000",
+        foreground: "hsla(0, 0%, 93%,1)",
+        constant: "oklch(71.7% 0.1648 250.79360374054167)",
+        string: "oklch(73.1% 0.2158 148.29)",
+        comment: "hsla(0, 0%, 63%,1)",
+        keyword: "oklch(69.36% 0.2223 3.91)",
+        parameter: "oklch(77.21% 0.1991 64.28)",
+        function: "oklch(69.87% 0.2037 309.51)",
+        stringExpression: "oklch(73.1% 0.2158 148.29)",
+        punctuation: "hsla(0, 0%, 93%,1)",
+        link: "oklch(73.1% 0.2158 148.29)",
+      }),
+    },
+  },
   mono: {
     name: "Mono",
     background: {
@@ -66,39 +141,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#181818",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
         background: "rgba 0,0,100,0.75",
-        text: "#111111",
-        variable: "#111111",
-        variable2: "#111111",
-        variable3: "#111111",
-        attribute: "#666666",
-        definition: "#111111",
+        foreground: "#111111",
+        constant: "#111111",
+        parameter: "#666666",
+        stringExpression: "#111111",
         keyword: "#666666",
-        operator: "#666666",
-        property: "#666666",
-        number: "#111111",
+        function: "#111111",
+        punctuation: "#666666",
         string: "#666666",
         comment: "#999999",
-        meta: "#666666",
-        tag: "#666666",
+        link: "#666666",
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
         background: "rgba 0,0,0,0.75",
-        text: "#ffffff",
-        variable: "#ffffff",
-        variable2: "#ffffff",
-        variable3: "#ffffff",
-        attribute: "#a7a7a7",
-        definition: "#ffffff",
+        foreground: "#ffffff",
+        constant: "#ffffff",
+        parameter: "#a7a7a7",
+        stringExpression: "#ffffff",
         keyword: "#a7a7a7",
-        operator: "#a7a7a7",
-        property: "#a7a7a7",
-        number: "#ffffff",
+        function: "#ffffff",
+        punctuation: "#a7a7a7",
         string: "#a7a7a7",
         comment: "#666666",
-        meta: "#a7a7a7",
-        tag: "#a7a7a7",
+        link: "#a7a7a7",
       }),
     },
   },
@@ -109,39 +176,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(106,61,236,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
         background: "rgba 0,0,100,0.75",
-        text: "#434447",
-        variable: "#F8518D",
-        variable2: "#BF3F6D",
-        variable3: "#238600",
-        attribute: "#C44170",
-        definition: "#C44170",
+        foreground: "#434447",
+        constant: "#F8518D",
+        parameter: "#C44170",
+        function: "#C44170",
         keyword: "#496EB8",
-        operator: "#496EB8",
-        property: "#0B7880",
-        number: "#24805E",
+        stringExpression: "#24805E",
+        punctuation: "#C44170",
         string: "#886594",
         comment: "#8C828B",
-        meta: "#625B6B",
-        tag: "#4B71BD",
+        link: "#625B6B",
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#F8518D",
-        variable2: "#FFFFFF",
-        variable3: "#9AEC7D",
-        attribute: "#F8518D",
-        definition: "#F8518D",
+        foreground: "#FFFFFF",
+        constant: "#F8518D",
+        parameter: "#F8518D",
+        function: "#F8518D",
         keyword: "#6599FF",
-        operator: "#6599FF",
-        property: "#49E8F2",
-        number: "#55E7B2",
+        stringExpression: "#55E7B2",
+        punctuation: "#F8518D",
         string: "#E9AEFE",
         comment: "#8A757D",
-        meta: "#ECFEEF",
-        tag: "#6599FF",
+        link: "#ECFEEF",
       }),
     },
   },
@@ -152,39 +211,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(233,191,248,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#434447", // Assuming 'text' maps to 'foreground'
         background: "rgba 0,0,100,0.75",
-        text: "#434447",
-        variable: "#009033",
-        variable2: "#63676A",
-        variable3: "#D35A35",
-        attribute: "#009033",
-        definition: "#009033",
-        keyword: "#DC155E",
-        operator: "#d15a8b",
-        property: "#2286A6",
-        number: "#676DFF",
+        constant: "#676DFF", // Assuming 'number' maps to 'constant'
         string: "#B2762E",
         comment: "#8D949B",
-        meta: "#6A6367",
-        tag: "#d15a8b",
+        keyword: "#DC155E",
+        parameter: "#009033", // Assuming 'variable' maps to 'parameter'
+        function: "#2286A6", // Assuming 'property' maps to 'function'
+        stringExpression: "#D35A35", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#d15a8b", // Assuming 'operator' maps to 'punctuation'
+        link: "#d15a8b", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#73DFA5",
-        variable2: "#FFFFFF",
-        variable3: "#E08569",
-        attribute: "#73DFA5",
-        definition: "#73DFA5",
-        keyword: "#FF659C",
-        operator: "#FF659C",
-        property: "#1AC8FF",
-        number: "#7A7FFD",
+        constant: "#7A7FFD", // Assuming 'number' maps to 'constant'
         string: "#DFD473",
         comment: "#807796",
-        meta: "#F1ECFE",
-        tag: "#FF659C",
+        keyword: "#FF659C",
+        parameter: "#73DFA5", // Assuming 'variable' maps to 'parameter'
+        function: "#1AC8FF", // Assuming 'property' maps to 'function'
+        stringExpression: "#E08569", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#FF659C", // Assuming 'operator' maps to 'punctuation'
+        link: "#FF659C", // Assuming 'tag' maps to 'link'
       }),
     },
   },
@@ -195,39 +246,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(115,52,52,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#685B5B",
         background: "rgba 0,0,100,0.75",
-        text: "#685B5B",
-        variable: "#9E7070",
-        variable2: "#B22D2D",
-        variable3: "#D46184",
-        attribute: "#9E7070",
-        definition: "#9E7070",
-        keyword: "#BE3B3B",
-        operator: "#BE3B3B",
-        property: "#D15510",
-        number: "#C94F0A",
+        constant: "#C94F0A",
         string: "#836250",
         comment: "#978A8A",
-        meta: "#8B5F5C",
-        tag: "#BE3B3B",
+        keyword: "#BE3B3B",
+        parameter: "#9E7070", // Assuming 'variable' maps to 'parameter'
+        function: "#D15510", // Assuming 'property' maps to 'function'
+        stringExpression: "#D46184", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#BE3B3B", // Assuming 'operator' maps to 'punctuation'
+        link: "#BE3B3B", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FEFDFD",
         background: "rgba 0,0,0,0.75",
-        text: "#FEFDFD",
-        variable: "#C88E8E",
-        variable2: "#FFE4E4",
-        variable3: "#E97598",
-        attribute: "#C88E8E",
-        definition: "#C88E8E",
-        keyword: "#EB6F6F",
-        operator: "#EB6F6F",
-        property: "#D15510",
-        number: "#FDA97A",
+        constant: "#FDA97A",
         string: "#EBB99D",
         comment: "#895E60",
-        meta: "#FFE4E4",
-        tag: "#EB6F6F",
+        keyword: "#EB6F6F",
+        parameter: "#C88E8E",
+        function: "#D15510",
+        stringExpression: "#E97598",
+        punctuation: "#EB6F6F",
+        link: "#EB6F6F",
       }),
     },
   },
@@ -238,39 +281,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(54,54,84,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#464C65",
         background: "rgba 0,0,100,0.75",
-        text: "#464C65",
-        variable: "#6A7C9F",
-        variable2: "#354BA7",
-        variable3: "#46615D",
-        attribute: "#6A7C9F",
-        definition: "#6A7C9F",
-        keyword: "#5C827D",
-        operator: "#5C827D",
-        property: "#839AA7",
-        number: "#AE6A65",
+        constant: "#AE6A65",
         string: "#506483",
         comment: "#9DA4AD",
-        meta: "#425295",
-        tag: "#5C827D",
+        keyword: "#5C827D",
+        parameter: "#6A7C9F",
+        function: "#839AA7",
+        stringExpression: "#46615D",
+        punctuation: "#5C827D",
+        link: "#5C827D",
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#6D88BB",
-        variable2: "#E4F2FF",
-        variable3: "#789083",
-        attribute: "#6D88BB",
-        definition: "#6D88BB",
-        keyword: "#9AB6B2",
-        operator: "#9AB6B2",
-        property: "#799DB1",
-        number: "#BD9C9C",
+        constant: "#BD9C9C",
         string: "#6A8697",
         comment: "#6D7E88",
-        meta: "#E4F2FF",
-        tag: "#9AB6B2",
+        keyword: "#9AB6B2",
+        parameter: "#6D88BB",
+        function: "#799DB1",
+        stringExpression: "#789083",
+        punctuation: "#9AB6B2",
+        link: "#9AB6B2",
       }),
     },
   },
@@ -281,39 +316,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(160,135,45,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#54594D",
         background: "rgba 0,0,100,0.75",
-        text: "#54594D",
-        variable: "#798B52",
-        variable2: "#6E967E",
-        variable3: "#99A607",
-        attribute: "#798B52",
-        definition: "#798B52",
-        keyword: "#049649",
-        operator: "#049649",
-        property: "#B6781B",
-        number: "#2C8801",
+        constant: "#2C8801",
         string: "#837E50",
         comment: "#72806E",
-        meta: "#5C8B6F",
-        tag: "#049649",
+        keyword: "#049649",
+        parameter: "#798B52", // Assuming 'variable' maps to 'parameter'
+        function: "#B6781B", // Assuming 'property' maps to 'function'
+        stringExpression: "#99A607", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#049649", // Assuming 'operator' maps to 'punctuation'
+        link: "#049649", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#B3D767",
-        variable2: "#E5FFE4",
-        variable3: "#2EFFB4",
-        attribute: "#B3D767",
-        definition: "#B3D767",
-        keyword: "#6DD79F",
-        operator: "#6DD79F",
-        property: "#E4B165",
-        number: "#46B114",
+        constant: "#46B114",
         string: "#E9EB9D",
         comment: "#708B6C",
-        meta: "#E5FFE4",
-        tag: "#6DD79F",
+        keyword: "#6DD79F",
+        parameter: "#B3D767",
+        function: "#E4B165",
+        stringExpression: "#2EFFB4",
+        punctuation: "#6DD79F",
+        link: "#6DD79F",
       }),
     },
   },
@@ -324,39 +351,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(32,32,51,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#434447",
         background: "rgba 0,0,100,0.75",
-        text: "#434447",
-        variable: "#2F788F",
-        variable2: "#63676A",
-        variable3: "#5D70B5",
-        attribute: "#2F788F",
-        definition: "#2F788F",
-        keyword: "#587678",
-        operator: "#587678",
-        property: "#766599",
-        number: "#2D8264",
+        constant: "#2D8264",
         string: "#5F758F",
         comment: "#78808C",
-        meta: "#5B636B",
-        tag: "#5A797A",
+        keyword: "#587678",
+        parameter: "#2F788F", // Assuming 'variable' maps to 'parameter'
+        function: "#766599", // Assuming 'property' maps to 'function'
+        stringExpression: "#5D70B5", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#587678", // Assuming 'operator' maps to 'punctuation'
+        link: "#5A797A", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#51D0F8",
-        variable2: "#FFFFFF",
-        variable3: "#626B8B",
-        attribute: "#51D0F8",
-        definition: "#51D0F8",
-        keyword: "#7DA9AB",
-        operator: "#7DA9AB",
-        property: "#9681C2",
-        number: "#75D2B1",
+        constant: "#75D2B1",
         string: "#6D86A4",
         comment: "#4A4C56",
-        meta: "#F2F7F7",
-        tag: "#7DA9AB",
+        keyword: "#7DA9AB",
+        parameter: "#51D0F8",
+        function: "#9681C2",
+        stringExpression: "#626B8B",
+        punctuation: "#7DA9AB",
+        link: "#7DA9AB",
       }),
     },
   },
@@ -367,39 +386,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(28,85,170,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#687077",
         background: "rgba 0,0,100,0.75",
-        text: "#687077",
-        variable: "#4F9488",
-        variable2: "#687077",
-        variable3: "#2E81FF",
-        attribute: "#4F9488",
-        definition: "#4F9488",
-        keyword: "#008DAC",
-        operator: "#008DAC",
-        property: "#007BA1",
-        number: "#7459E1",
+        constant: "#7459E1",
         string: "#507683",
         comment: "#6E7780",
-        meta: "#5C838B",
-        tag: "#008DAC",
+        keyword: "#008DAC",
+        parameter: "#4F9488", // Assuming 'variable' maps to 'parameter'
+        function: "#007BA1", // Assuming 'property' maps to 'function'
+        stringExpression: "#2E81FF", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#008DAC", // Assuming 'operator' maps to 'punctuation'
+        link: "#008DAC", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#E4F2FF",
         background: "rgba 0,0,0,0.75",
-        text: "#E4F2FF",
-        variable: "#1AD6B5",
-        variable2: "#E4F2FF",
-        variable3: "#2E81FF",
-        attribute: "#1AD6B5",
-        definition: "#1AD6B5",
-        keyword: "#2ED9FF",
-        operator: "#2ED9FF",
-        property: "#008BB7",
-        number: "#9984EE",
+        constant: "#9984EE",
         string: "#9DD8EB",
         comment: "#6C808B",
-        meta: "#ECFBFE",
-        tag: "#2ED9FF",
+        keyword: "#2ED9FF",
+        parameter: "#1AD6B5",
+        function: "#008BB7",
+        stringExpression: "#2E81FF", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#2ED9FF", // Assuming 'operator' maps to 'punctuation'
+        link: "#2ED9FF", // Assuming 'tag' maps to 'link'
       }),
     },
   },
@@ -410,39 +421,31 @@ export const THEMES: { [index: string]: Theme } = {
       to: "rgba(255,122,47,1)",
     },
     syntax: {
-      light: convertToHljsTheme({
+      light: convertToShikiTheme({
+        foreground: "#737568",
         background: "rgba 0,0,100,0.75",
-        text: "#737568",
-        variable: "#807410",
-        variable2: "#717365",
-        variable3: "#8C6A29",
-        attribute: "#807410",
-        definition: "#807410",
-        keyword: "#A1642C",
-        operator: "#A1642C",
-        property: "#AD5A78",
-        number: "#856F00",
+        constant: "#856F00",
         string: "#8C703C",
         comment: "#7A7055",
-        meta: "#6B625B",
-        tag: "#A1642C",
+        keyword: "#A1642C",
+        parameter: "#807410", // Assuming 'variable' maps to 'parameter'
+        function: "#AD5A78", // Assuming 'property' maps to 'function'
+        stringExpression: "#8C6A29", // Assuming 'variable3' maps to 'stringExpression'
+        punctuation: "#A1642C", // Assuming 'operator' maps to 'punctuation'
+        link: "#A1642C", // Assuming 'tag' maps to 'link'
       }),
-      dark: convertToHljsTheme({
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
         background: "rgba 0,0,0,0.75",
-        text: "#FFFFFF",
-        variable: "#E2D66B",
-        variable2: "#FFFFFF",
-        variable3: "#E7B555",
-        attribute: "#E2D66B",
-        definition: "#E2D66B",
-        keyword: "#FFAF65",
-        operator: "#FFAF65",
-        property: "#E978A1",
-        number: "#E7CF55",
+        constant: "#E7CF55",
         string: "#F9D38C",
         comment: "#878572",
-        meta: "#FFFDED",
-        tag: "#FFAF65",
+        keyword: "#FFAF65",
+        parameter: "#E2D66B",
+        function: "#E978A1",
+        stringExpression: "#E7B555",
+        punctuation: "#FFAF65",
+        link: "#FFAF65",
       }),
     },
   },
@@ -473,4 +476,6 @@ const themeBackgroundAtom = atom<string>((get) => {
   return `linear-gradient(140deg, ${from}, ${to})`;
 });
 
-export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom };
+const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
+
+export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom };

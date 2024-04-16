@@ -60,14 +60,16 @@ const LanguageControl: React.FC = () => {
         <Select.Portal>
           <Select.Content className={styles.content}>
             <Select.Viewport className={styles.viewport}>
-              <Select.Item value="auto-detect" className={styles.item}>
-                <Select.SelectItemText>Auto-Detect</Select.SelectItemText>
-              </Select.Item>
-              {Object.values(LANGUAGES).map((language, index) => (
-                <Select.Item key={index} value={language.name} className={styles.item}>
-                  <Select.SelectItemText>{language.name}</Select.SelectItemText>
+              <Select.Group className={styles.group}>
+                <Select.Item value="auto-detect" className={styles.item}>
+                  <Select.SelectItemText>Auto-Detect</Select.SelectItemText>
                 </Select.Item>
-              ))}
+                {Object.values(LANGUAGES).map((language, index) => (
+                  <Select.Item key={index} value={language.name} className={styles.item}>
+                    <Select.SelectItemText>{language.name}</Select.SelectItemText>
+                  </Select.Item>
+                ))}
+              </Select.Group>
             </Select.Viewport>
           </Select.Content>
         </Select.Portal>

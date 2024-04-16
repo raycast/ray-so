@@ -6,6 +6,7 @@
 
 .frame {
   position: relative;
+  overflow: hidden;
   min-width: 520px;
   max-width: 920px;
 
@@ -101,5 +102,112 @@
     &:focus {
       outline: none;
     }
+  }
+}
+
+.vercelWindow {
+  position: relative;
+  background: var(--frame-background);
+}
+
+.vercelGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100px;
+    width: 1200px;
+    height: 1px;
+    background: #1a1a1a;
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.vercelGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -100px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: 1200px;
+    background: #1a1a1a;
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.vercelBracketRight {
+  position: absolute;
+  top: 0.5px;
+  left: 0.5px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  &:before {
+    width: 100%;
+    height: 1px;
+    background: #515356;
+  }
+
+  &:after {
+    width: 1px;
+    height: 100%;
+    background: #515356;
+  }
+}
+
+.vercelBracketLeft {
+  position: absolute;
+  right: -23.5px;
+  bottom: -23.5px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  &:before {
+    width: 100%;
+    height: 1px;
+    background: #515356;
+  }
+
+  &:after {
+    width: 1px;
+    height: 100%;
+    background: #515356;
   }
 }

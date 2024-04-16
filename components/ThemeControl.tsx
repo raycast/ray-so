@@ -3,7 +3,7 @@ import React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { themeAtom, THEMES, Theme } from "../store/themes";
 import ControlContainer from "./ControlContainer";
-import { Select, SelectItem } from "./Select";
+import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from "./Select";
 
 import styles from "../styles/ThemeControl.module.css";
 import useHotkeys from "../util/useHotkeys";
@@ -20,6 +20,19 @@ const ThemeControl: React.FC = () => {
     }
   });
 
+  const { partnerThemes, themes } = Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
+    (acc, [key, value]) => {
+      const themeWithKey = { ...value, key };
+      if (value.partner) {
+        acc.partnerThemes.push(themeWithKey);
+      } else {
+        acc.themes.push(themeWithKey);
+      }
+      return acc;
+    },
+    { partnerThemes: [], themes: [] }
+  );
+
   return (
     <ControlContainer title="Theme">
       <Select
@@ -29,19 +42,38 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        {Object.values(THEMES).map((theme, index) => (
-          <SelectItem key={index} value={theme.name}>
-            <SelectPrimitive.SelectItemText>
-              <span
-                className={styles.themePreview}
-                style={{
-                  backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                }}
-              />
-            </SelectPrimitive.SelectItemText>
-            {theme.name}
-          </SelectItem>
-        ))}
+        <SelectGroup>
+          <SelectLabel>Partners</SelectLabel>
+          {partnerThemes.map((theme, index) => (
+            <SelectItem key={index} value={theme.name}>
+              <SelectPrimitive.SelectItemText>
+                <span
+                  className={styles.themePreview}
+                  style={{
+                    backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                  }}
+                />
+              </SelectPrimitive.SelectItemText>
+              {theme.name}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          {themes.map((theme, index) => (
+            <SelectItem key={index} value={theme.name}>
+              <SelectPrimitive.SelectItemText>
+                <span
+                  className={styles.themePreview}
+                  style={{
+                    backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                  }}
+                />
+              </SelectPrimitive.SelectItemText>
+              {theme.name}
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </Select>
     </ControlContainer>
   );

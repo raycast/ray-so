@@ -120,6 +120,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Python",
     className: "python",
   },
+  r: {
+    name: "R",
+    className: "r",
+  },
   ruby: {
     name: "Ruby",
     className: "ruby",
