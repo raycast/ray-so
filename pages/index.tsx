@@ -15,7 +15,8 @@ import CoverPhoto from "../assets/cover-photo.png";
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
 import { useEffect, useState } from "react";
-import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighter } from "shiki";
+import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighterCore } from "shiki";
+import getWasm from "shiki/wasm";
 
 const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
@@ -32,11 +33,12 @@ const Home: NextPage = () => {
   const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
 
   useEffect(() => {
-    getHighlighter({
+    getHighlighterCore({
       themes: [theme] as any,
-      langs: Object.keys(bundledLanguages),
+      langs: [import("shiki/langs/javascript.mjs")],
+      loadWasm: getWasm,
     }).then((highlighter) => {
-      setHighlighter(highlighter);
+      setHighlighter(highlighter as Highlighter);
     });
   }, []);
 
