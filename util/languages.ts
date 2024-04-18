@@ -1,7 +1,7 @@
 export type Language = {
   className: string;
   name: string;
-  src?: () => Promise<any>;
+  src: () => Promise<any>;
 };
 
 export const LANGUAGES: { [index: string]: Language } = {
@@ -138,6 +138,7 @@ export const LANGUAGES: { [index: string]: Language } = {
   plaintext: {
     name: "Plaintext",
     className: "",
+    src: () => import("shiki/langs/javascript.mjs"),
   },
   powershell: {
     name: "Powershell",
