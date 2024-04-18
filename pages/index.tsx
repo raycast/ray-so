@@ -20,6 +20,7 @@ import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
 
 import { Highlighter, getHighlighterCore } from "shiki";
+import { LANGUAGES } from "../util/languages";
 
 const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
@@ -30,12 +31,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     getHighlighterCore({
       themes: [shikiTheme],
-      langs: [
-        import("shiki/langs/javascript.mjs"),
-        import("shiki/langs/tsx.mjs"),
-        import("shiki/langs/swift.mjs"),
-        import("shiki/langs/python.mjs"),
-      ],
+      langs: [LANGUAGES.javascript.src(), LANGUAGES.tsx.src(), LANGUAGES.swift.src(), LANGUAGES.python.src()],
       loadWasm: getWasm,
     }).then((highlighter) => {
       setHighlighter(highlighter as Highlighter);

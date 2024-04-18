@@ -8,7 +8,7 @@ import React, {
   useEffect,
 } from "react";
 import styles from "../styles/Editor.module.css";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
@@ -16,7 +16,6 @@ import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import { JetBrains_Mono } from "next/font/google";
 import classNames from "classnames";
-import { derivedFlashMessageAtom } from "../store/flash";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -119,7 +118,7 @@ function Editor() {
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
-  const setTheme = useSetAtom(themeAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -180,7 +179,7 @@ function Editor() {
 
     textarea.style.height = "0px";
     textarea.style.height = `${textarea.scrollHeight}px`;
-  }, [code]);
+  }, [code, theme]);
 
   return (
     <div

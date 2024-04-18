@@ -39,13 +39,10 @@
 
 .formatted > pre {
   margin: 0;
+  font-family: inherit;
   white-space: pre-wrap;
 }
 
 .formatted > pre > code {
-  font-family: inherit;
-}
-
-.formatted :global(.shiki) {
   font-family: inherit;
 }

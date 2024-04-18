@@ -59,7 +59,7 @@ const Image: React.FC = () => {
               />
             </div>
           </div>
-          <Editor highlighter={highlighter} />
+          <Editor />
         </div>
       </div>
     </div>
