@@ -2,14 +2,13 @@ import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import { showBackgroundAtom, fileNameAtom, windowWidthAtom } from "../store";
 import { paddingAtom } from "../store/padding";
-import { darkModeAtom, themeBackgroundAtom } from "../store/themes";
+import { darkModeAtom, shikiTheme, themeBackgroundAtom } from "../store/themes";
 
 import styles from "../styles/Frame.module.css";
 import resizableFrameStyles from "../styles/ResizableFrame.module.css";
 import classNames from "classnames";
 import Editor from "../components/Editor";
-import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighter } from "shiki";
-import { theme } from "./index";
+import { Highlighter, bundledLanguages, getHighlighter } from "shiki";
 
 const Image: React.FC = () => {
   const [padding] = useAtom(paddingAtom);
@@ -23,7 +22,7 @@ const Image: React.FC = () => {
 
   useEffect(() => {
     getHighlighter({
-      themes: [theme] as any,
+      themes: [shikiTheme],
       langs: Object.keys(bundledLanguages),
     }).then((highlighter) => {
       setHighlighter(highlighter);

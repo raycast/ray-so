@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useAtom } from "jotai";
-import { darkModeAtom } from "../store/themes";
+import { useAtom, useSetAtom } from "jotai";
+import { useEffect } from "react";
+import getWasm from "shiki/wasm";
+import { highlighterAtom } from "../store";
+
+import { darkModeAtom, shikiTheme } from "../store/themes";
 
 import Frame from "../components/Frame";
 import Controls from "../components/Controls";
@@ -14,33 +18,29 @@ import CoverPhoto from "../assets/cover-photo.png";
 
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
-import { useEffect, useState } from "react";
-import { Highlighter, bundledLanguages, createCssVariablesTheme, getHighlighterCore } from "shiki";
-import getWasm from "shiki/wasm";
+
+import { Highlighter, getHighlighterCore } from "shiki";
 
 const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
 
-export const theme = createCssVariablesTheme({
-  name: "css-variables",
-  variablePrefix: "--ray-",
-  variableDefaults: {},
-  fontStyle: true,
-});
-
 const Home: NextPage = () => {
   const [darkMode] = useAtom(darkModeAtom);
-
-  const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
+  const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
   useEffect(() => {
     getHighlighterCore({
-      themes: [theme] as any,
-      langs: [import("shiki/langs/javascript.mjs"), import("shiki/langs/tsx.mjs"), import("shiki/langs/swift.mjs")],
+      themes: [shikiTheme],
+      langs: [
+        import("shiki/langs/javascript.mjs"),
+        import("shiki/langs/tsx.mjs"),
+        import("shiki/langs/swift.mjs"),
+        import("shiki/langs/python.mjs"),
+      ],
       loadWasm: getWasm,
     }).then((highlighter) => {
       setHighlighter(highlighter as Highlighter);
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -80,7 +80,7 @@ const Home: NextPage = () => {
 
         <NoSSR>
           <FrameContextStore>
-            {highlighter && <Frame highlighter={highlighter} />}
+            {highlighter && <Frame />}
             <Controls />
           </FrameContextStore>
         </NoSSR>

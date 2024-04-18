@@ -1,6 +1,18 @@
 .themePreview {
-  display: block;
+  display: flex;
   width: 16px;
   height: 16px;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+}
+
+.vercelLogo {
+  width: 14px;
+  height: auto;
+}
+
+.rabbitLogo {
+  width: 14px;
+  height: auto;
 }

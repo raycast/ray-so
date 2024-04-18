@@ -4,24 +4,26 @@
   grid-area: content;
 }
 
-.frame {
+.outerFrame {
   position: relative;
   overflow: hidden;
   min-width: 520px;
   max-width: 920px;
+}
 
+.frame {
   transition: padding 200ms;
+}
 
-  .noBackground {
-    position: absolute;
-    z-index: -1;
-    background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
-      linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
-      linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
-    background-size: 20px 20px;
-    inset: 0;
-  }
+.noBackground {
+  position: absolute;
+  z-index: -1;
+  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
+    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-size: 20px 20px;
+  inset: 0;
 }
 
 .window {
@@ -105,9 +107,42 @@
   }
 }
 
+/* Vercel Theme Frame */
+
+.vercelFrame {
+  background: black;
+}
+
+.vercelFrameLightMode {
+  background: white;
+
+  .vercelGridlinesHorizontal,
+  .vercelGridlinesVertical {
+    &:before,
+    &:after {
+      background: #ebebeb;
+    }
+  }
+
+  .vercelBracketLeft,
+  .vercelBracketRight {
+    &:before,
+    &:after {
+      background: #a8a8a8;
+    }
+  }
+}
+
+.vercelNoBackground {
+  background: none;
+
+  [data-grid="true"] {
+    display: none;
+  }
+}
+
 .vercelWindow {
   position: relative;
-  background: var(--frame-background);
 }
 
 .vercelGridlinesHorizontal {
@@ -209,23 +244,5 @@
     width: 1px;
     height: 100%;
     background: #515356;
-  }
-}
-
-.vercelLightMode {
-  .vercelGridlinesHorizontal,
-  .vercelGridlinesVertical {
-    &:before,
-    &:after {
-      background: #ebebeb;
-    }
-  }
-
-  .vercelBracketLeft,
-  .vercelBracketRight {
-    &:before,
-    &:after {
-      background: #a8a8a8;
-    }
   }
 }

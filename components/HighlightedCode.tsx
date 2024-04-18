@@ -3,9 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "../styles/Editor.module.css";
-import { Highlighter } from "shiki";
-import { loadingLanguageAtom } from "../store";
-import { useAtom } from "jotai";
+import { highlighterAtom, loadingLanguageAtom } from "../store";
+import { useAtom, useSetAtom } from "jotai";
 
 const languageMap: { [key: string]: () => Promise<any> } = {
   python: () => import("shiki/langs/python.mjs"),
@@ -51,13 +50,12 @@ const languageMap: { [key: string]: () => Promise<any> } = {
 type PropTypes = {
   selectedLanguage: Language | null;
   code: string;
-  highlighter: Highlighter | null;
 };
 
-const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, highlighter }) => {
-  console.log("code", code);
+const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
+  const [highlighter] = useAtom(highlighterAtom);
   const [highlightedHtml, setHighlightedHtml] = useState("");
-  const [isLoadingLanguage, setIsLoadingLanguage] = useAtom(loadingLanguageAtom);
+  const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
 
   useEffect(() => {
     const generateHighlightedHtml = async () => {
@@ -85,7 +83,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, highligh
         setHighlightedHtml(newHtml);
       }
     });
-  }, [code, selectedLanguage, highlighter]);
+  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml]);
 
   return (
     <pre

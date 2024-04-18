@@ -8,7 +8,7 @@ import React, {
   useEffect,
 } from "react";
 import styles from "../styles/Editor.module.css";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
@@ -16,7 +16,7 @@ import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import { JetBrains_Mono } from "next/font/google";
 import classNames from "classnames";
-import { Highlighter } from "shiki";
+import { derivedFlashMessageAtom } from "../store/flash";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -112,14 +112,14 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
   document.execCommand("insertText", false, "}");
 }
 
-function Editor({ highlighter }: { highlighter: Highlighter | null }) {
+function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
-  const [setTheme] = useAtom(themeAtom);
+  const setTheme = useSetAtom(themeAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -202,7 +202,7 @@ function Editor({ highlighter }: { highlighter: Highlighter | null }) {
         onFocus={handleFocus}
         data-enable-grammarly="false"
       />
-      {<HighlightedCode code={code} selectedLanguage={selectedLanguage} highlighter={highlighter} />}
+      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
     </div>
   );
 }

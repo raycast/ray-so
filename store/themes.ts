@@ -2,54 +2,17 @@ import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import { createCssVariablesTheme } from "shiki/theme-css-variables";
 
-type SyntaxObject = {
-  background: string;
-  text: string;
-  variable: string;
-  variable2: string;
-  variable3: string;
-  attribute: string;
-  definition: string;
-  keyword: string;
-  operator: string;
-  property: string;
-  number: string;
-  string: string;
-  comment: string;
-  meta: string;
-  tag: string;
-};
-
-function convertToHljsTheme(syntaxObject: SyntaxObject): CSSProperties {
-  if (!syntaxObject) {
-    return {};
-  }
-
-  return {
-    "--syntax-text": syntaxObject.text,
-    // doesn't seem that this is used
-    "--syntax-background": syntaxObject.background,
-    "--syntax-string": syntaxObject.string,
-    "--syntax-comment": syntaxObject.comment,
-    "--syntax-variable": syntaxObject.variable,
-    "--syntax-variable-2": syntaxObject.variable2 || syntaxObject.variable,
-    "--syntax-variable-3": syntaxObject.variable3 || syntaxObject.variable,
-    "--syntax-number": syntaxObject.number,
-    "--syntax-atom": syntaxObject.number,
-    "--syntax-keyword": syntaxObject.keyword,
-    "--syntax-property": syntaxObject.property,
-    "--syntax-definition": syntaxObject.definition,
-    "--syntax-meta": syntaxObject.meta,
-    "--syntax-operator": syntaxObject.operator,
-    "--syntax-attribute": syntaxObject.attribute,
-    "--syntax-tag": syntaxObject.tag,
-  } as CSSProperties;
-}
+export const shikiTheme = createCssVariablesTheme({
+  name: "css-variables",
+  variablePrefix: "--ray-",
+  variableDefaults: {},
+  fontStyle: true,
+});
 
 type ShikiSyntaxObject = {
   foreground: string;
-  background: string;
   constant: string;
   string: string;
   comment: string;
@@ -68,8 +31,6 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
 
   return {
     "--ray-foreground": syntaxObject.foreground,
-    // doesn't seem that this is used
-    // "--ray-background": syntaxObject.background,
     "--ray-token-constant": syntaxObject.constant,
     "--ray-token-string": syntaxObject.string,
     "--ray-token-comment": syntaxObject.comment,
@@ -90,6 +51,7 @@ export type Theme = {
   };
   font?: Font;
   partner?: boolean;
+  hidden?: boolean;
   syntax: {
     light: CSSProperties;
     dark: CSSProperties;
@@ -100,14 +62,13 @@ export const THEMES: { [index: string]: Theme } = {
   vercel: {
     name: "Vercel",
     background: {
-      from: "#000000",
-      to: "#000000",
+      from: "#232323",
+      to: "#1F1F1F",
     },
     font: "geist-mono",
     partner: true,
     syntax: {
       light: convertToShikiTheme({
-        background: "#fff",
         foreground: "hsla(0, 0%, 9%,1)",
         constant: "oklch(53.18% 0.2399 256.9900584162342)",
         string: "oklch(51.75% 0.1453 147.65)",
@@ -120,7 +81,6 @@ export const THEMES: { [index: string]: Theme } = {
         link: "oklch(51.75% 0.1453 147.65)",
       }),
       dark: convertToShikiTheme({
-        background: "#000",
         foreground: "hsla(0, 0%, 93%,1)",
         constant: "oklch(71.7% 0.1648 250.79360374054167)",
         string: "oklch(73.1% 0.2158 148.29)",
@@ -134,52 +94,17 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
-  // rabbit: {
-  //   name: "Rabbit",
-  //   background: {
-  //     from: "#000000",
-  //     to: "#000000",
-  //   },
-  //   font: "geist-mono",
-  //   partner: true,
-  //   syntax: {
-  //     light: convertToShikiTheme({
-  //       background: "rgba 0,0,100,0.75",
-  //       foreground: "#111111",
-  //       constant: "#111111",
-  //       parameter: "#666666",
-  //       stringExpression: "#111111",
-  //       keyword: "#666666",
-  //       function: "#111111",
-  //       punctuation: "#666666",
-  //       string: "#666666",
-  //       comment: "#999999",
-  //       link: "#666666",
-  //     }),
-  //     dark: convertToShikiTheme({
-  //       background: "rgba 0,0,0,0.75",
-  //       foreground: "#ffffff",
-  //       constant: "#ffffff",
-  //       parameter: "#a7a7a7",
-  //       stringExpression: "#ffffff",
-  //       keyword: "#a7a7a7",
-  //       function: "#ffffff",
-  //       punctuation: "#a7a7a7"
-  //       string: "#a7a7a7",
-  //       comment: "#666666",
-  //       link: "#a7a7a7",
-  //     }),
-  //   },
-  // },
-  mono: {
-    name: "Mono",
+  rabbit: {
+    name: "Evil Rabbit",
     background: {
-      from: "#333",
-      to: "#181818",
+      from: "#000000",
+      to: "#000000",
     },
+    font: "geist-mono",
+    partner: true,
+    hidden: true,
     syntax: {
       light: convertToShikiTheme({
-        background: "rgba 0,0,100,0.75",
         foreground: "#111111",
         constant: "#111111",
         parameter: "#666666",
@@ -192,7 +117,39 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#666666",
       }),
       dark: convertToShikiTheme({
-        background: "rgba 0,0,0,0.75",
+        foreground: "#ffffff",
+        constant: "#ffffff",
+        parameter: "#a7a7a7",
+        stringExpression: "#ffffff",
+        keyword: "#a7a7a7",
+        function: "#ffffff",
+        punctuation: "#a7a7a7",
+        string: "#a7a7a7",
+        comment: "#666666",
+        link: "#a7a7a7",
+      }),
+    },
+  },
+  mono: {
+    name: "Mono",
+    background: {
+      from: "#333",
+      to: "#181818",
+    },
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#111111",
+        constant: "#111111",
+        parameter: "#666666",
+        stringExpression: "#111111",
+        keyword: "#666666",
+        function: "#111111",
+        punctuation: "#666666",
+        string: "#666666",
+        comment: "#999999",
+        link: "#666666",
+      }),
+      dark: convertToShikiTheme({
         foreground: "#ffffff",
         constant: "#ffffff",
         parameter: "#a7a7a7",
@@ -214,7 +171,6 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
-        background: "rgba 0,0,100,0.75",
         foreground: "#434447",
         constant: "#F8518D",
         parameter: "#C44170",
@@ -227,7 +183,6 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#625B6B",
       }),
       dark: convertToShikiTheme({
-        background: "rgba 0,0,0,0.75",
         foreground: "#FFFFFF",
         constant: "#F8518D",
         parameter: "#F8518D",
@@ -249,30 +204,28 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
-        foreground: "#434447", // Assuming 'text' maps to 'foreground'
-        background: "rgba 0,0,100,0.75",
-        constant: "#676DFF", // Assuming 'number' maps to 'constant'
+        foreground: "#434447",
+        constant: "#676DFF",
         string: "#B2762E",
         comment: "#8D949B",
         keyword: "#DC155E",
-        parameter: "#009033", // Assuming 'variable' maps to 'parameter'
-        function: "#2286A6", // Assuming 'property' maps to 'function'
-        stringExpression: "#D35A35", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#d15a8b", // Assuming 'operator' maps to 'punctuation'
-        link: "#d15a8b", // Assuming 'tag' maps to 'link'
+        parameter: "#009033",
+        function: "#2286A6",
+        stringExpression: "#D35A35",
+        punctuation: "#d15a8b",
+        link: "#d15a8b",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        background: "rgba 0,0,0,0.75",
-        constant: "#7A7FFD", // Assuming 'number' maps to 'constant'
+        constant: "#7A7FFD",
         string: "#DFD473",
         comment: "#807796",
         keyword: "#FF659C",
-        parameter: "#73DFA5", // Assuming 'variable' maps to 'parameter'
-        function: "#1AC8FF", // Assuming 'property' maps to 'function'
-        stringExpression: "#E08569", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#FF659C", // Assuming 'operator' maps to 'punctuation'
-        link: "#FF659C", // Assuming 'tag' maps to 'link'
+        parameter: "#73DFA5",
+        function: "#1AC8FF",
+        stringExpression: "#E08569",
+        punctuation: "#FF659C",
+        link: "#FF659C",
       }),
     },
   },
@@ -285,20 +238,18 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#685B5B",
-        background: "rgba 0,0,100,0.75",
         constant: "#C94F0A",
         string: "#836250",
         comment: "#978A8A",
         keyword: "#BE3B3B",
-        parameter: "#9E7070", // Assuming 'variable' maps to 'parameter'
-        function: "#D15510", // Assuming 'property' maps to 'function'
-        stringExpression: "#D46184", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#BE3B3B", // Assuming 'operator' maps to 'punctuation'
-        link: "#BE3B3B", // Assuming 'tag' maps to 'link'
+        parameter: "#9E7070",
+        function: "#D15510",
+        stringExpression: "#D46184",
+        punctuation: "#BE3B3B",
+        link: "#BE3B3B",
       }),
       dark: convertToShikiTheme({
         foreground: "#FEFDFD",
-        background: "rgba 0,0,0,0.75",
         constant: "#FDA97A",
         string: "#EBB99D",
         comment: "#895E60",
@@ -320,7 +271,6 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#464C65",
-        background: "rgba 0,0,100,0.75",
         constant: "#AE6A65",
         string: "#506483",
         comment: "#9DA4AD",
@@ -333,7 +283,6 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        background: "rgba 0,0,0,0.75",
         constant: "#BD9C9C",
         string: "#6A8697",
         comment: "#6D7E88",
@@ -355,20 +304,18 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#54594D",
-        background: "rgba 0,0,100,0.75",
         constant: "#2C8801",
         string: "#837E50",
         comment: "#72806E",
         keyword: "#049649",
-        parameter: "#798B52", // Assuming 'variable' maps to 'parameter'
-        function: "#B6781B", // Assuming 'property' maps to 'function'
-        stringExpression: "#99A607", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#049649", // Assuming 'operator' maps to 'punctuation'
-        link: "#049649", // Assuming 'tag' maps to 'link'
+        parameter: "#798B52",
+        function: "#B6781B",
+        stringExpression: "#99A607",
+        punctuation: "#049649",
+        link: "#049649",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        background: "rgba 0,0,0,0.75",
         constant: "#46B114",
         string: "#E9EB9D",
         comment: "#708B6C",
@@ -390,20 +337,18 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#434447",
-        background: "rgba 0,0,100,0.75",
         constant: "#2D8264",
         string: "#5F758F",
         comment: "#78808C",
         keyword: "#587678",
-        parameter: "#2F788F", // Assuming 'variable' maps to 'parameter'
-        function: "#766599", // Assuming 'property' maps to 'function'
-        stringExpression: "#5D70B5", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#587678", // Assuming 'operator' maps to 'punctuation'
-        link: "#5A797A", // Assuming 'tag' maps to 'link'
+        parameter: "#2F788F",
+        function: "#766599",
+        stringExpression: "#5D70B5",
+        punctuation: "#587678",
+        link: "#5A797A",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        background: "rgba 0,0,0,0.75",
         constant: "#75D2B1",
         string: "#6D86A4",
         comment: "#4A4C56",
@@ -425,29 +370,27 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#687077",
-        background: "rgba 0,0,100,0.75",
         constant: "#7459E1",
         string: "#507683",
         comment: "#6E7780",
         keyword: "#008DAC",
-        parameter: "#4F9488", // Assuming 'variable' maps to 'parameter'
-        function: "#007BA1", // Assuming 'property' maps to 'function'
-        stringExpression: "#2E81FF", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#008DAC", // Assuming 'operator' maps to 'punctuation'
-        link: "#008DAC", // Assuming 'tag' maps to 'link'
+        parameter: "#4F9488",
+        function: "#007BA1",
+        stringExpression: "#2E81FF",
+        punctuation: "#008DAC",
+        link: "#008DAC",
       }),
       dark: convertToShikiTheme({
         foreground: "#E4F2FF",
-        background: "rgba 0,0,0,0.75",
         constant: "#9984EE",
         string: "#9DD8EB",
         comment: "#6C808B",
         keyword: "#2ED9FF",
         parameter: "#1AD6B5",
         function: "#008BB7",
-        stringExpression: "#2E81FF", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#2ED9FF", // Assuming 'operator' maps to 'punctuation'
-        link: "#2ED9FF", // Assuming 'tag' maps to 'link'
+        stringExpression: "#2E81FF",
+        punctuation: "#2ED9FF",
+        link: "#2ED9FF",
       }),
     },
   },
@@ -460,20 +403,18 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#737568",
-        background: "rgba 0,0,100,0.75",
         constant: "#856F00",
         string: "#8C703C",
         comment: "#7A7055",
         keyword: "#A1642C",
-        parameter: "#807410", // Assuming 'variable' maps to 'parameter'
-        function: "#AD5A78", // Assuming 'property' maps to 'function'
-        stringExpression: "#8C6A29", // Assuming 'variable3' maps to 'stringExpression'
-        punctuation: "#A1642C", // Assuming 'operator' maps to 'punctuation'
-        link: "#A1642C", // Assuming 'tag' maps to 'link'
+        parameter: "#807410",
+        function: "#AD5A78",
+        stringExpression: "#8C6A29",
+        punctuation: "#A1642C",
+        link: "#A1642C",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        background: "rgba 0,0,0,0.75",
         constant: "#E7CF55",
         string: "#F9D38C",
         comment: "#878572",
@@ -491,7 +432,7 @@ export const THEMES: { [index: string]: Theme } = {
 const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
   delayInit: true,
   serialize(value) {
-    return value.name.toLowerCase();
+    return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
   },
   deserialize(key) {
     if (key) {
