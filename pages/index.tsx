@@ -35,7 +35,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     getHighlighterCore({
       themes: [theme] as any,
-      langs: [import("shiki/langs/javascript.mjs")],
+      langs: [import("shiki/langs/javascript.mjs"), import("shiki/langs/tsx.mjs"), import("shiki/langs/swift.mjs")],
       loadWasm: getWasm,
     }).then((highlighter) => {
       setHighlighter(highlighter as Highlighter);

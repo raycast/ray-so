@@ -1,3 +1,4 @@
+import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 
 export const windowWidthAtom = atomWithHash<number | null>("width", null, {
@@ -17,3 +18,5 @@ export const fileNameAtom = atomWithHash<string>("title", "", {
     return str || "";
   },
 });
+
+export const loadingLanguageAtom = atom<boolean>(false);

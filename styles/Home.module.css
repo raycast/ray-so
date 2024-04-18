@@ -31,6 +31,7 @@
   grid-area: footer;
   letter-spacing: 0.1px;
   line-height: 14px;
+  opacity: 0;
 
   > * {
     display: flex;

@@ -134,6 +134,43 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
+  // rabbit: {
+  //   name: "Rabbit",
+  //   background: {
+  //     from: "#000000",
+  //     to: "#000000",
+  //   },
+  //   font: "geist-mono",
+  //   partner: true,
+  //   syntax: {
+  //     light: convertToShikiTheme({
+  //       background: "rgba 0,0,100,0.75",
+  //       foreground: "#111111",
+  //       constant: "#111111",
+  //       parameter: "#666666",
+  //       stringExpression: "#111111",
+  //       keyword: "#666666",
+  //       function: "#111111",
+  //       punctuation: "#666666",
+  //       string: "#666666",
+  //       comment: "#999999",
+  //       link: "#666666",
+  //     }),
+  //     dark: convertToShikiTheme({
+  //       background: "rgba 0,0,0,0.75",
+  //       foreground: "#ffffff",
+  //       constant: "#ffffff",
+  //       parameter: "#a7a7a7",
+  //       stringExpression: "#ffffff",
+  //       keyword: "#a7a7a7",
+  //       function: "#ffffff",
+  //       punctuation: "#a7a7a7"
+  //       string: "#a7a7a7",
+  //       comment: "#666666",
+  //       link: "#a7a7a7",
+  //     }),
+  //   },
+  // },
   mono: {
     name: "Mono",
     background: {

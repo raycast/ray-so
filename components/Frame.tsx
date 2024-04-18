@@ -39,7 +39,7 @@ const Frame = ({ highlighter }: { highlighter: Highlighter | null }) => {
         >
           <FlashMessage />
           {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
-          {theme.name === "Vercel" ? (
+          {theme.name === "Vercel" || theme.name === "Rabbit" ? (
             <div className={classNames(styles.vercelWindow, isVercelLightMode && styles.vercelLightMode)}>
               <span className={styles.vercelGridlinesHorizontal}></span>
               <span className={styles.vercelGridlinesVertical}></span>

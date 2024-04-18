@@ -7,13 +7,17 @@ import { Language, LANGUAGES } from "../util/languages";
 
 import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
-import styles from "../styles/Select.module.css";
+import selectStyles from "../styles/Select.module.css";
+import styles from "../styles/LanguageControl.module.css";
 import useHotkeys from "../util/useHotkeys";
+import { loadingLanguageAtom } from "../store";
+import classNames from "classnames";
 
 const LanguageControl: React.FC = () => {
   const [isOpen, setOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   const [autoDetectLanguage] = useAtom(autoDetectLanguageAtom);
+  const [isLoadingLanguage] = useAtom(loadingLanguageAtom);
 
   useHotkeys("l", (event) => {
     event.preventDefault();
@@ -36,7 +40,7 @@ const LanguageControl: React.FC = () => {
           }
         }}
       >
-        <Select.Trigger className={styles.trigger}>
+        <Select.Trigger className={classNames(selectStyles.trigger, isLoadingLanguage && styles.loadingShimmer)}>
           <Select.Value>
             <span
               style={{
@@ -52,20 +56,20 @@ const LanguageControl: React.FC = () => {
               {autoDetectLanguage ? " (auto)" : ""}
             </span>
           </Select.Value>
-          <Select.Icon className={styles.icon}>
+          <Select.Icon className={selectStyles.icon}>
             <ChevronUpIcon />
           </Select.Icon>
         </Select.Trigger>
 
         <Select.Portal>
-          <Select.Content className={styles.content}>
-            <Select.Viewport className={styles.viewport}>
-              <Select.Group className={styles.group}>
-                <Select.Item value="auto-detect" className={styles.item}>
+          <Select.Content className={selectStyles.content}>
+            <Select.Viewport className={selectStyles.viewport}>
+              <Select.Group className={selectStyles.group}>
+                <Select.Item value="auto-detect" className={selectStyles.item}>
                   <Select.SelectItemText>Auto-Detect</Select.SelectItemText>
                 </Select.Item>
                 {Object.values(LANGUAGES).map((language, index) => (
-                  <Select.Item key={index} value={language.name} className={styles.item}>
+                  <Select.Item key={index} value={language.name} className={selectStyles.item}>
                     <Select.SelectItemText>{language.name}</Select.SelectItemText>
                   </Select.Item>
                 ))}

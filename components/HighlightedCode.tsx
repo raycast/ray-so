@@ -1,15 +1,14 @@
 import classNames from "classnames";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "../styles/Editor.module.css";
-import { Highlighter, bundledLanguages } from "shiki";
+import { Highlighter } from "shiki";
+import { loadingLanguageAtom } from "../store";
+import { useAtom } from "jotai";
 
 const languageMap: { [key: string]: () => Promise<any> } = {
-  javascript: () => import("shiki/langs/javascript.mjs"),
   python: () => import("shiki/langs/python.mjs"),
-  swift: () => import("shiki/langs/swift.mjs"),
-  tsx: () => import("shiki/langs/tsx.mjs"),
   bash: () => import("shiki/langs/bash.mjs"),
   cpp: () => import("shiki/langs/cpp.mjs"),
   csharp: () => import("shiki/langs/csharp.mjs"),
@@ -56,50 +55,46 @@ type PropTypes = {
 };
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, highlighter }) => {
-  const [loadedLanguages, setLoadedLanguages] = React.useState<string[]>(highlighter?.getLoadedLanguages() || []);
+  console.log("code", code);
+  const [highlightedHtml, setHighlightedHtml] = useState("");
+  const [isLoadingLanguage, setIsLoadingLanguage] = useAtom(loadingLanguageAtom);
 
-  console.log("bundledLanguages", Object.keys(bundledLanguages).length);
-
-  const html = useMemo(() => {
-    if (selectedLanguage && selectedLanguage !== LANGUAGES.plaintext) {
-      const hasLoadedLanguage = highlighter?.getLoadedLanguages().includes(selectedLanguage.name.toLowerCase());
-      let result;
-      if (hasLoadedLanguage) {
-        result = highlighter?.codeToHtml(code, {
-          lang: selectedLanguage.name.toLowerCase(),
-          theme: "css-variables",
-        });
-      } else {
-        highlighter?.loadLanguage(languageMap[selectedLanguage.name.toLowerCase()]).then((lang) => {
-          setLoadedLanguages(highlighter?.getLoadedLanguages());
-          result = highlighter?.codeToHtml(code, {
-            lang: selectedLanguage.name.toLowerCase(),
-            theme: "css-variables",
-          });
-        });
+  useEffect(() => {
+    const generateHighlightedHtml = async () => {
+      if (!highlighter || !selectedLanguage || selectedLanguage === LANGUAGES.plaintext) {
+        return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
       }
 
-      return result || "";
-    } else {
-      return code.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-        return `&#${i.charCodeAt(0)};`;
+      const loadedLanguages = highlighter.getLoadedLanguages() || [];
+      const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
+
+      if (!hasLoadedLanguage) {
+        setIsLoadingLanguage(true);
+        await highlighter.loadLanguage(languageMap[selectedLanguage.name.toLowerCase()]);
+        setIsLoadingLanguage(false);
+      }
+
+      return highlighter.codeToHtml(code, {
+        lang: selectedLanguage.name.toLowerCase(),
+        theme: "css-variables",
       });
-    }
-  }, [code, selectedLanguage, highlighter, loadedLanguages]);
+    };
 
-  const preView = useMemo(
-    () => (
-      <pre
-        className={classNames(styles.formatted, "hljs")}
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      />
-    ),
-    [html]
+    generateHighlightedHtml().then((newHtml) => {
+      if (newHtml) {
+        setHighlightedHtml(newHtml);
+      }
+    });
+  }, [code, selectedLanguage, highlighter]);
+
+  return (
+    <pre
+      className={classNames(styles.formatted, "hljs")}
+      dangerouslySetInnerHTML={{
+        __html: highlightedHtml,
+      }}
+    />
   );
-
-  return preView;
 };
 
 export default HighlightedCode;

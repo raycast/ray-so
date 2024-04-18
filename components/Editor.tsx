@@ -10,7 +10,7 @@ import React, {
 import styles from "../styles/Editor.module.css";
 import { useAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { themeCSSAtom, themeFontAtom } from "../store/themes";
+import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
@@ -119,6 +119,7 @@ function Editor({ highlighter }: { highlighter: Highlighter | null }) {
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
+  const [setTheme] = useAtom(themeAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -155,9 +156,12 @@ function Editor({ highlighter }: { highlighter: Highlighter | null }) {
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
+      if (event.target.value.includes("🐰")) {
+        setTheme(THEMES.rabbit);
+      }
       setCode(event.target.value);
     },
-    [setCode]
+    [setCode, setTheme]
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
