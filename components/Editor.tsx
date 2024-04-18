@@ -1,14 +1,6 @@
-import React, {
-  useCallback,
-  KeyboardEventHandler,
-  useRef,
-  ChangeEventHandler,
-  FormEventHandler,
-  FocusEventHandler,
-  useEffect,
-} from "react";
+import React, { useCallback, KeyboardEventHandler, useRef, ChangeEventHandler, FocusEventHandler } from "react";
 import styles from "../styles/Editor.module.css";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
@@ -118,7 +110,7 @@ function Editor() {
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
-  const [theme, setTheme] = useAtom(themeAtom);
+  const setTheme = useSetAtom(themeAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -147,12 +139,6 @@ function Editor() {
     }
   }, []);
 
-  const handleInput = useCallback<FormEventHandler<HTMLTextAreaElement>>(() => {
-    const textarea = textareaRef.current!;
-    textarea.style.height = "0px";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }, []);
-
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
       if (event.target.value.includes("🐰")) {
@@ -169,22 +155,11 @@ function Editor() {
     }
   }, [isCodeExample]);
 
-  // Make sure the textarea auto resizes to its content
-  useEffect(() => {
-    const textarea = textareaRef.current;
-
-    if (!textarea) {
-      return;
-    }
-
-    textarea.style.height = "0px";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }, [code, theme]);
-
   return (
     <div
       className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : jetBrainsMono.className)}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+      data-value={code}
     >
       <textarea
         tabIndex={-1}
@@ -196,7 +171,6 @@ function Editor() {
         className={styles.textarea}
         value={code}
         onChange={handleChange}
-        onInput={handleInput}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         data-enable-grammarly="false"
