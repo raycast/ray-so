@@ -14,7 +14,7 @@ const ThemeControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
 
   useEffect(() => {
-    if (currentTheme.name === "Vercel") {
+    if (currentTheme.name === THEMES.vercel.name) {
       setPadding(64);
     }
   }, [currentTheme, setPadding]);
@@ -59,13 +59,13 @@ const ThemeControl: React.FC = () => {
               return (
                 <SelectItem key={index} value={theme.name}>
                   <SelectPrimitive.SelectItemText>
-                    {theme.name === "Vercel" ? (
+                    {theme.name === THEMES.vercel.name ? (
                       <span className={styles.themePreview}>
                         <svg className={styles.vercelLogo} height="64" role="img" viewBox="0 0 74 64">
                           <path d="M37.5896 0.25L74.5396 64.25H0.639648L37.5896 0.25Z" fill="white"></path>
                         </svg>
                       </span>
-                    ) : theme.name === "Evil Rabbit" ? (
+                    ) : theme.name === THEMES.rabbit.name ? (
                       <span className={styles.themePreview}>
                         <svg width="251" height="264" viewBox="0 0 251 264" className={styles.rabbitLogo}>
                           <path

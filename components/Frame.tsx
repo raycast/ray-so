@@ -90,7 +90,7 @@ const Frame = () => {
       <ResizableFrame>
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext}>
-          {theme.name === "Vercel" || theme.name === "Evil Rabbit" ? <VercelFrame /> : <DefaultFrame />}
+          {theme.name === THEMES.vercel.name || theme.name === THEMES.rabbit.name ? <VercelFrame /> : <DefaultFrame />}
         </div>
       </ResizableFrame>
     </div>

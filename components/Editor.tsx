@@ -8,6 +8,7 @@ import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import { JetBrains_Mono } from "next/font/google";
 import classNames from "classnames";
+import { derivedFlashMessageAtom } from "../store/flash";
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -110,7 +111,8 @@ function Editor() {
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
-  const setTheme = useSetAtom(themeAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
+  const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -142,11 +144,14 @@ function Editor() {
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
       if (event.target.value.includes("🐰")) {
-        setTheme(THEMES.rabbit);
+        if (theme.name !== THEMES.rabbit.name) {
+          setTheme(THEMES.rabbit);
+          setFlashMessage({ message: "Evil Rabbit Theme Unlocked", variant: "unlock", timeout: 2000 });
+        }
       }
       setCode(event.target.value);
     },
-    [setCode, setTheme]
+    [setCode, setTheme, setFlashMessage, theme.name]
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
