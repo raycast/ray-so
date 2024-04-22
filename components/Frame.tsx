@@ -15,17 +15,16 @@ import ResizableFrame from "./ResizableFrame";
 import styles from "../styles/Frame.module.css";
 
 const VercelFrame = () => {
-  const [theme] = useAtom(themeAtom);
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const isLightMode = theme.name === "Vercel" && !darkMode;
+
   return (
     <div
       className={classNames(
         styles.frame,
         showBackground && styles.vercelFrame,
-        showBackground && isLightMode && styles.vercelFrameLightMode,
+        showBackground && !darkMode && styles.vercelFrameLightMode,
         !showBackground && styles.vercelNoBackground
       )}
       style={{ padding }}
