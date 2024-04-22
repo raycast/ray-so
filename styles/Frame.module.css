@@ -197,22 +197,20 @@
   &:before,
   &:after {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    background: #515356;
     content: "";
-    transform: translate(-50%, -50%);
   }
 
   &:before {
+    top: 12px;
     width: 100%;
     height: 1px;
-    background: #515356;
   }
 
   &:after {
+    left: 12px;
     width: 1px;
     height: 100%;
-    background: #515356;
   }
 }
 
