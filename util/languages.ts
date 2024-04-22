@@ -215,11 +215,6 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "typescript",
     src: () => import("shiki/langs/tsx.mjs"),
   },
-  vb: {
-    name: "Visual Basic",
-    className: "vb",
-    src: () => import("shiki/langs/vb.mjs"),
-  },
   xml: {
     name: "XML",
     className: "xml",
