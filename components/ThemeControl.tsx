@@ -14,7 +14,7 @@ const ThemeControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
 
   useEffect(() => {
-    if (currentTheme.name === THEMES.vercel.name) {
+    if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
       setPadding(64);
     }
   }, [currentTheme, setPadding]);
@@ -29,17 +29,21 @@ const ThemeControl: React.FC = () => {
     }
   });
 
-  const { partnerThemes, themes } = Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
-    (acc, [key, value]) => {
-      const themeWithKey = { ...value, key };
-      if (value.partner) {
-        acc.partnerThemes.push(themeWithKey);
-      } else {
-        acc.themes.push(themeWithKey);
-      }
-      return acc;
-    },
-    { partnerThemes: [], themes: [] }
+  const { partnerThemes, themes } = React.useMemo(
+    () =>
+      Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
+        (acc, [key, value]) => {
+          const themeWithKey = { ...value, key };
+          if (value.partner) {
+            acc.partnerThemes.push(themeWithKey);
+          } else {
+            acc.themes.push(themeWithKey);
+          }
+          return acc;
+        },
+        { partnerThemes: [], themes: [] }
+      ),
+    []
   );
 
   return (

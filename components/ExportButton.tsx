@@ -92,7 +92,7 @@ const ExportButton: React.FC = () => {
 
     const params = new URLSearchParams(window.location.hash);
     track("Export", {
-      theme: params.get("theme") || "vercel",
+      theme: params.get("theme") || "candy",
       background: params.get("background") || "true",
       darkMode: params.get("darkMode") || "true",
       padding: params.get("padding") || "64",

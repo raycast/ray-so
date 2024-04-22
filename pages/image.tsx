@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
-import React, { useEffect, useState } from "react";
-import { showBackgroundAtom, fileNameAtom, windowWidthAtom } from "../store";
+import React, { useEffect } from "react";
+import { showBackgroundAtom, fileNameAtom, windowWidthAtom, highlighterAtom } from "../store";
 import { paddingAtom } from "../store/padding";
 import { darkModeAtom, shikiTheme, themeBackgroundAtom } from "../store/themes";
 
@@ -17,8 +17,7 @@ const Image: React.FC = () => {
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [windowWidth] = useAtom(windowWidthAtom);
   const [darkMode] = useAtom(darkModeAtom);
-
-  const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
+  const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
   useEffect(() => {
     getHighlighter({
@@ -27,7 +26,7 @@ const Image: React.FC = () => {
     }).then((highlighter) => {
       setHighlighter(highlighter);
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className={resizableFrameStyles.resizableFrame}>

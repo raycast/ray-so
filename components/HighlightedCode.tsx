@@ -22,13 +22,6 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
       }
 
-      if (selectedLanguage === LANGUAGES.ansi) {
-        return highlighter.codeToHtml(code, {
-          lang: "ansi",
-          theme: "css-variables",
-        });
-      }
-
       const loadedLanguages = highlighter.getLoadedLanguages() || [];
       const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
 
