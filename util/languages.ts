@@ -10,6 +10,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "bash",
     src: () => import("shiki/langs/bash.mjs"),
   },
+  astro: {
+    name: "Astro",
+    className: "astro",
+    src: () => import("shiki/langs/astro.mjs"),
+  },
   cpp: {
     name: "C++",
     className: "cpp",
@@ -200,6 +205,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "swift",
     src: () => import("shiki/langs/swift.mjs"),
   },
+  svelte: {
+    name: "Svelte",
+    className: "svelte",
+    src: () => import("shiki/langs/svelte.mjs"),
+  },
   toml: {
     name: "TOML",
     className: "toml",
@@ -214,6 +224,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "TSX",
     className: "typescript",
     src: () => import("shiki/langs/tsx.mjs"),
+  },
+  vue: {
+    name: "Vue",
+    className: "vue",
+    src: () => import("shiki/langs/vue.mjs"),
   },
   xml: {
     name: "XML",
