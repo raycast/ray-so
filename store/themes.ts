@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { CSSProperties } from "react";
 import { Font } from "./font";
-import { createCssVariablesTheme } from "shiki/theme-css-variables";
+import { createCssVariablesTheme } from "../util/theme-css-variables";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -22,6 +22,8 @@ type ShikiSyntaxObject = {
   stringExpression: string;
   punctuation: string;
   link: string;
+  number: string;
+  property: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -40,6 +42,8 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-token-string-expression": syntaxObject.stringExpression,
     "--ray-token-punctuation": syntaxObject.punctuation,
     "--ray-token-link": syntaxObject.link,
+    "--ray-token-number": syntaxObject.number,
+    "--ray-token-property": syntaxObject.property,
   } as CSSProperties;
 }
 
@@ -79,6 +83,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "oklch(51.75% 0.1453 147.65)",
         punctuation: "hsla(0, 0%, 9%,1)",
         link: "oklch(51.75% 0.1453 147.65)",
+        number: "#111111",
+        property: "oklch(53.18% 0.2399 256.9900584162342)",
       }),
       dark: convertToShikiTheme({
         foreground: "hsla(0, 0%, 93%,1)",
@@ -91,6 +97,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "oklch(73.1% 0.2158 148.29)",
         punctuation: "hsla(0, 0%, 93%,1)",
         link: "oklch(73.1% 0.2158 148.29)",
+        number: "#ffffff",
+        property: "oklch(71.7% 0.1648 250.79360374054167)",
       }),
     },
   },
@@ -115,6 +123,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#666666",
         comment: "#999999",
         link: "#666666",
+        number: "#111111",
+        property: "#666666",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -127,6 +137,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#a7a7a7",
         comment: "#666666",
         link: "#a7a7a7",
+        number: "#ffffff",
+        property: "#a7a7a7",
       }),
     },
   },
@@ -148,6 +160,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#666666",
         comment: "#999999",
         link: "#666666",
+        number: "#111111",
+        property: "#666666",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -160,6 +174,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#a7a7a7",
         comment: "#666666",
         link: "#a7a7a7",
+        number: "#ffffff",
+        property: "#a7a7a7",
       }),
     },
   },
@@ -181,6 +197,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#886594",
         comment: "#8C828B",
         link: "#625B6B",
+        number: "#24805E",
+        property: "#0B7880",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -193,6 +211,8 @@ export const THEMES: { [index: string]: Theme } = {
         string: "#E9AEFE",
         comment: "#8A757D",
         link: "#ECFEEF",
+        number: "#55E7B2",
+        property: "#49E8F2",
       }),
     },
   },
@@ -214,6 +234,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#B2762E",
         punctuation: "#d15a8b",
         link: "#d15a8b",
+        number: "#676DFF",
+        property: "#2286A6",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -226,6 +248,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#DFD473",
         punctuation: "#FF659C",
         link: "#FF659C",
+        number: "#7A7FFD",
+        property: "#1AC8FF",
       }),
     },
   },
@@ -247,6 +271,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#836250",
         punctuation: "#BE3B3B",
         link: "#BE3B3B",
+        number: "#C94F0A",
+        property: "#D15510",
       }),
       dark: convertToShikiTheme({
         foreground: "#FEFDFD",
@@ -259,6 +285,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#EBB99D",
         punctuation: "#EB6F6F",
         link: "#EB6F6F",
+        number: "#FDA97A",
+        property: "#D15510",
       }),
     },
   },
@@ -280,6 +308,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#46615D",
         punctuation: "#5C827D",
         link: "#5C827D",
+        number: "#AE6A65",
+        property: "#839AA7",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -292,6 +322,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#789083",
         punctuation: "#9AB6B2",
         link: "#9AB6B2",
+        number: "#BD9C9C",
+        property: "#799DB1",
       }),
     },
   },
@@ -313,6 +345,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#837E50",
         punctuation: "#049649",
         link: "#049649",
+        number: "#2C8801",
+        property: "#B6781B",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -325,6 +359,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#E9EB9D",
         punctuation: "#6DD79F",
         link: "#6DD79F",
+        number: "#46B114",
+        property: "#E4B165",
       }),
     },
   },
@@ -346,6 +382,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#5F758F",
         punctuation: "#587678",
         link: "#5A797A",
+        number: "#2D8264",
+        property: "#766599",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -358,6 +396,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#6D86A4",
         punctuation: "#7DA9AB",
         link: "#7DA9AB",
+        number: "#75D2B1",
+        property: "#9681C2",
       }),
     },
   },
@@ -379,6 +419,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#507683",
         punctuation: "#008DAC",
         link: "#008DAC",
+        number: "#7459E1",
+        property: "#007BA1",
       }),
       dark: convertToShikiTheme({
         foreground: "#E4F2FF",
@@ -391,6 +433,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#9DD8EB",
         punctuation: "#2ED9FF",
         link: "#2ED9FF",
+        number: "#9984EE",
+        property: "#008BB7",
       }),
     },
   },
@@ -412,6 +456,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#8C703C",
         punctuation: "#A1642C",
         link: "#A1642C",
+        number: "#856F00",
+        property: "#AD5A78",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -424,6 +470,8 @@ export const THEMES: { [index: string]: Theme } = {
         stringExpression: "#F9D38C",
         punctuation: "#FFAF65",
         link: "#FFAF65",
+        number: "#E7CF55",
+        property: "#E978A1",
       }),
     },
   },
