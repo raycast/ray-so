@@ -172,7 +172,7 @@
     bottom: 0;
     left: 0;
     width: 1px;
-    height: 1200px;
+    height: calc(100% + 300px);
     background: #1a1a1a;
     content: "";
   }
