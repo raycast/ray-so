@@ -6,11 +6,8 @@ import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes"
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
-import { JetBrains_Mono } from "next/font/google";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
-
-const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
 function indentText(text: string) {
   return text
@@ -162,7 +159,7 @@ function Editor() {
 
   return (
     <div
-      className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : jetBrainsMono.className)}
+      className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono)}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}
     >
