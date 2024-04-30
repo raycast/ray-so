@@ -31,8 +31,13 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         setIsLoadingLanguage(false);
       }
 
+      let lang = selectedLanguage.name.toLowerCase();
+      if (lang === "typescript") {
+        lang = "tsx";
+      }
+
       return highlighter.codeToHtml(code, {
-        lang: selectedLanguage.name.toLowerCase(),
+        lang: lang,
         theme: "css-variables",
       });
     };
