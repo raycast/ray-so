@@ -39,7 +39,6 @@
 }
 
 .content {
-  padding: 4px;
   border: 1px solid #333333;
   border-radius: 6px;
   background: #17191a;
@@ -58,10 +57,11 @@
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 6px 16px;
+  padding: 6px 12px;
   border-radius: 4px;
   background: transparent;
   color: rgba(255, 255, 255, 0.4);
+  cursor: default;
   font-size: 14px;
   gap: 12px;
   line-height: 17px;
@@ -76,4 +76,20 @@
     background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
   }
+}
+
+.separator {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.group {
+  width: 100%;
+  padding: 4px;
+}
+
+.label {
+  padding: 6px 0 4px 12px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 12px;
 }

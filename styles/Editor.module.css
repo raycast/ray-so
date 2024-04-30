@@ -2,19 +2,24 @@
   display: grid;
   width: 100%;
   grid-template: 1fr / 1fr;
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
 }
 
 .textarea,
-.formatted {
+.formatted,
+.editor:after {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   padding: var(--editor-padding);
   margin: 0;
-  font-family: "JetBrains Mono", monospace;
+  font-family: inherit;
   font-size: 15px;
   font-variant-ligatures: none;
   font-weight: 500;
-  grid-column: 1 / 1;
-  grid-row: 1 / 1;
+  grid-area: 1 / 1 / 2 / 2;
   letter-spacing: 0.1px;
   line-height: 22.5px;
   tab-size: 2;
@@ -23,10 +28,11 @@
 
 .textarea {
   z-index: 2;
+  overflow: hidden;
   border: none;
   background: transparent;
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  caret-color: var(--syntax-text);
+  caret-color: var(--ray-foreground);
   resize: none;
   -webkit-text-fill-color: transparent;
   text-size-adjust: none;
@@ -39,9 +45,15 @@
 
 .formatted > pre {
   margin: 0;
+  font-family: inherit;
   white-space: pre-wrap;
 }
 
 .formatted > pre > code {
+  font-family: inherit;
+}
+
+.jetBrainsMono {
   font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
 }

@@ -1,18 +1,13 @@
-import React, {
-  useCallback,
-  KeyboardEventHandler,
-  useRef,
-  ChangeEventHandler,
-  FormEventHandler,
-  FocusEventHandler,
-  useEffect,
-} from "react";
+import React, { useCallback, KeyboardEventHandler, useRef, ChangeEventHandler, FocusEventHandler } from "react";
 import styles from "../styles/Editor.module.css";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { themeCSSAtom } from "../store/themes";
+import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
+import { GeistMono } from "geist/font/mono";
+import classNames from "classnames";
+import { derivedFlashMessageAtom } from "../store/flash";
 
 function indentText(text: string) {
   return text
@@ -112,6 +107,9 @@ function Editor() {
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
+  const [themeFont] = useAtom(themeFontAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
+  const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -140,17 +138,17 @@ function Editor() {
     }
   }, []);
 
-  const handleInput = useCallback<FormEventHandler<HTMLTextAreaElement>>(() => {
-    const textarea = textareaRef.current!;
-    textarea.style.height = "0px";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }, []);
-
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
+      if (event.target.value.includes("🐰")) {
+        if (theme.name !== THEMES.rabbit.name) {
+          setTheme(THEMES.rabbit);
+          setFlashMessage({ message: "Evil Rabbit Theme Unlocked", variant: "unlock", timeout: 2000 });
+        }
+      }
       setCode(event.target.value);
     },
-    [setCode]
+    [setCode, setTheme, setFlashMessage, theme.name]
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
@@ -159,22 +157,11 @@ function Editor() {
     }
   }, [isCodeExample]);
 
-  // Make sure the textarea auto resizes to its content
-  useEffect(() => {
-    const textarea = textareaRef.current;
-
-    if (!textarea) {
-      return;
-    }
-
-    textarea.style.height = "0px";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }, [code]);
-
   return (
     <div
-      className={styles.editor}
+      className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono)}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+      data-value={code}
     >
       <textarea
         tabIndex={-1}
@@ -186,12 +173,11 @@ function Editor() {
         className={styles.textarea}
         value={code}
         onChange={handleChange}
-        onInput={handleInput}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         data-enable-grammarly="false"
       />
-      {<HighlightedCode code={code} selectedLanguage={selectedLanguage} />}
+      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
     </div>
   );
 }

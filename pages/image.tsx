@@ -1,13 +1,14 @@
 import { useAtom } from "jotai";
-import React from "react";
-import { showBackgroundAtom, fileNameAtom, windowWidthAtom } from "../store";
+import React, { useEffect } from "react";
+import { showBackgroundAtom, fileNameAtom, windowWidthAtom, highlighterAtom } from "../store";
 import { paddingAtom } from "../store/padding";
-import { darkModeAtom, themeBackgroundAtom } from "../store/themes";
+import { darkModeAtom, shikiTheme, themeBackgroundAtom } from "../store/themes";
 
 import styles from "../styles/Frame.module.css";
 import resizableFrameStyles from "../styles/ResizableFrame.module.css";
 import classNames from "classnames";
 import Editor from "../components/Editor";
+import { Highlighter, bundledLanguages, getHighlighter } from "shiki";
 
 const Image: React.FC = () => {
   const [padding] = useAtom(paddingAtom);
@@ -16,6 +17,16 @@ const Image: React.FC = () => {
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [windowWidth] = useAtom(windowWidthAtom);
   const [darkMode] = useAtom(darkModeAtom);
+  const [highlighter, setHighlighter] = useAtom(highlighterAtom);
+
+  useEffect(() => {
+    getHighlighter({
+      themes: [shikiTheme],
+      langs: Object.keys(bundledLanguages),
+    }).then((highlighter) => {
+      setHighlighter(highlighter);
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className={resizableFrameStyles.resizableFrame}>

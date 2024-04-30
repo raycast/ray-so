@@ -7,7 +7,7 @@
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        "importFrom": ["styles/globals.css", "styles/syntax.css"]
+        "importFrom": ["styles/globals.css"]
       }
     ]
   }
