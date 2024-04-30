@@ -10,11 +10,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "bash",
     src: () => import("shiki/langs/bash.mjs"),
   },
-  astro: {
-    name: "Astro",
-    className: "astro",
-    src: () => import("shiki/langs/astro.mjs"),
-  },
+  // astro: {
+  //   name: "Astro",
+  //   className: "astro",
+  //   src: () => import("shiki/langs/astro.mjs"),
+  // },
   cpp: {
     name: "C++",
     className: "cpp",
@@ -95,11 +95,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "javascript",
     src: () => import("shiki/langs/javascript.mjs"),
   },
-  julia: {
-    name: "Julia",
-    className: "julia",
-    src: () => import("shiki/langs/julia.mjs"),
-  },
+  // julia: {
+  //   name: "Julia",
+  //   className: "julia",
+  //   src: () => import("shiki/langs/julia.mjs"),
+  // },
   json: {
     name: "JSON",
     className: "json",
@@ -115,11 +115,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "kotlin",
     src: () => import("shiki/langs/kotlin.mjs"),
   },
-  latex: {
-    name: "LaTeX",
-    className: "latex",
-    src: () => import("shiki/langs/latex.mjs"),
-  },
+  // latex: {
+  //   name: "LaTeX",
+  //   className: "latex",
+  //   src: () => import("shiki/langs/latex.mjs"),
+  // },
   lisp: {
     name: "Lisp",
     className: "lisp",
@@ -155,11 +155,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "objectivec",
     src: () => import("shiki/langs/objc.mjs"),
   },
-  ocaml: {
-    name: "OCaml",
-    className: "ocaml",
-    src: () => import("shiki/langs/ocaml.mjs"),
-  },
+  // ocaml: {
+  //   name: "OCaml",
+  //   className: "ocaml",
+  //   src: () => import("shiki/langs/ocaml.mjs"),
+  // },
   php: {
     name: "PHP",
     className: "php",
@@ -170,11 +170,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "python",
     src: () => import("shiki/langs/python.mjs"),
   },
-  r: {
-    name: "R",
-    className: "r",
-    src: () => import("shiki/langs/r.mjs"),
-  },
+  // r: {
+  //   name: "R",
+  //   className: "r",
+  //   src: () => import("shiki/langs/r.mjs"),
+  // },
   ruby: {
     name: "Ruby",
     className: "ruby",
@@ -205,11 +205,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "swift",
     src: () => import("shiki/langs/swift.mjs"),
   },
-  svelte: {
-    name: "Svelte",
-    className: "svelte",
-    src: () => import("shiki/langs/svelte.mjs"),
-  },
+  // svelte: {
+  //   name: "Svelte",
+  //   className: "svelte",
+  //   src: () => import("shiki/langs/svelte.mjs"),
+  // },
   toml: {
     name: "TOML",
     className: "toml",
@@ -225,11 +225,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "typescript",
     src: () => import("shiki/langs/tsx.mjs"),
   },
-  vue: {
-    name: "Vue",
-    className: "vue",
-    src: () => import("shiki/langs/vue.mjs"),
-  },
+  // vue: {
+  //   name: "Vue",
+  //   className: "vue",
+  //   src: () => import("shiki/langs/vue.mjs"),
+  // },
   xml: {
     name: "XML",
     className: "xml",
