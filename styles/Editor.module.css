@@ -29,16 +29,14 @@
   }
 
   :global(.highlighted-line) {
-    background-color: var(--highlight-color);
+    background-color: var(--highlight-color) !important;
   }
 }
 
 .isHighlightingLines {
-  &:hover {
-    cursor: default;
-  }
   :global(.line):hover {
-    background-color: var(--highlight-color);
+    background-color: var(--highlight-hover-color);
+    cursor: default;
   }
   .textarea {
     z-index: -1;
