@@ -230,7 +230,7 @@ function Editor() {
         spellCheck="false"
         autoCapitalize="off"
         ref={textareaRef}
-        className={classNames(styles.textarea, isHighlightingLines && styles.isHighlightingLines)}
+        className={styles.textarea}
         value={code}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

@@ -40,6 +40,9 @@
   :global(.line):hover {
     background-color: var(--highlight-color);
   }
+  .textarea {
+    z-index: -1;
+  }
 }
 
 .textarea,
@@ -75,10 +78,6 @@
   &:focus {
     border: none;
     outline: none;
-  }
-
-  &.isHighlightingLines {
-    z-index: -1;
   }
 }
 
