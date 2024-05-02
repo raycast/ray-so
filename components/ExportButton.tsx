@@ -6,7 +6,9 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ImageIcon from "../assets/icons/image-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
 import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
+import ChevronRightIcon from "../assets/icons/chevron-right-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
+import ArrowsExpandingIcon from "../assets/icons/arrows-expanding-16.svg";
 
 import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
@@ -19,6 +21,7 @@ import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
+import { EXPORT_SIZE_OPTIONS, SIZE_LABELS, exportSizeAtom } from "../store/image";
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -28,6 +31,7 @@ const ExportButton: React.FC = () => {
   const [, setFlashShown] = useAtom(flashShownAtom);
   const customFileName = useAtomValue(fileNameAtom);
   const fileName = customFileName.replaceAll(" ", "-") || "ray-so-export";
+  const [exportSize, setExportSize] = useAtom(exportSizeAtom);
 
   const savePng = async () => {
     if (!frameContext?.current) {
@@ -36,7 +40,9 @@ const ExportButton: React.FC = () => {
 
     setFlashMessage({ icon: <ImageIcon />, message: "Exporting PNG" });
 
-    const dataUrl = await toPng(frameContext.current);
+    const dataUrl = await toPng(frameContext.current, {
+      pixelRatio: exportSize,
+    });
     download(dataUrl, `${fileName}.png`);
 
     setFlashShown(false);
@@ -52,7 +58,9 @@ const ExportButton: React.FC = () => {
             throw new Error("Couldn't find a frame to export");
           }
 
-          toBlob(frameContext.current).then((blob) => {
+          toBlob(frameContext.current, {
+            pixelRatio: exportSize,
+          }).then((blob) => {
             if (!blob) {
               throw new Error("expected toBlob to return a blob");
             }
@@ -154,6 +162,32 @@ const ExportButton: React.FC = () => {
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
           <DropdownMenu.Content className={styles.dropdown} sideOffset={5} side={"top"}>
+            <DropdownMenu.Sub>
+              <DropdownMenu.SubTrigger className={classNames(styles.option, styles.subTrigger)}>
+                <ArrowsExpandingIcon /> Size
+                <div className={styles.rightSlot}>
+                  {SIZE_LABELS[exportSize]} <ChevronRightIcon />
+                </div>
+              </DropdownMenu.SubTrigger>
+              <DropdownMenu.Portal>
+                <DropdownMenu.SubContent className={styles.dropdown} sideOffset={8} alignOffset={-5}>
+                  <DropdownMenu.RadioGroup value={exportSize.toString()} className={styles.radioGroup}>
+                    {EXPORT_SIZE_OPTIONS.map((size) => (
+                      <DropdownMenu.RadioItem
+                        key={size}
+                        value={size.toString()}
+                        className={styles.option}
+                        onSelect={() => setExportSize(size)}
+                      >
+                        <DropdownMenu.ItemIndicator className={styles.indicator} />
+                        {SIZE_LABELS[size]}
+                      </DropdownMenu.RadioItem>
+                    ))}
+                  </DropdownMenu.RadioGroup>
+                </DropdownMenu.SubContent>
+              </DropdownMenu.Portal>
+            </DropdownMenu.Sub>
+            <DropdownMenu.Separator className={styles.separator} />
             <DropdownMenu.Item onSelect={dropdownHandler(savePng)} className={styles.option}>
               <ImageIcon />
               Save PNG
