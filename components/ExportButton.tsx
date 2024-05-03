@@ -90,7 +90,7 @@ const ExportButton: React.FC = () => {
   const handleExportClick: MouseEventHandler = (event) => {
     event.preventDefault();
 
-    const params = new URLSearchParams(window.location.hash);
+    const params = new URLSearchParams(window.location.hash.replace("#", "?"));
     track("Export", {
       theme: params.get("theme") || "candy",
       background: params.get("background") || "true",
