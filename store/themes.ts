@@ -71,7 +71,6 @@ export const THEMES: { [index: string]: Theme } = {
     },
     font: "geist-mono",
     partner: true,
-    hidden: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "hsla(0, 0%, 9%,1)",
