@@ -188,7 +188,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#434447",
-        constant: "#496EB8",
+        constant: "#0B7880",
         parameter: "#C44170",
         function: "#C44170",
         keyword: "#496EB8",
@@ -202,7 +202,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#6599FF",
+        constant: "#49E8F2",
         parameter: "#F8518D",
         function: "#F8518D",
         keyword: "#6599FF",
@@ -225,7 +225,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#434447",
-        constant: "#DC155E",
+        constant: "#2286A6",
         string: "#B2762E",
         comment: "#8D949B",
         keyword: "#DC155E",
@@ -239,7 +239,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#FF659C",
+        constant: "#1AC8FF",
         string: "#DFD473",
         comment: "#807796",
         keyword: "#FF659C",
@@ -276,7 +276,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FEFDFD",
-        constant: "#EB6F6F",
+        constant: "#D15510",
         string: "#EBB99D",
         comment: "#895E60",
         keyword: "#EB6F6F",
@@ -299,7 +299,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#464C65",
-        constant: "#5C827D",
+        constant: "#839AA7",
         string: "#506483",
         comment: "#9DA4AD",
         keyword: "#5C827D",
@@ -313,7 +313,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#9AB6B2",
+        constant: "#799DB1",
         string: "#6A8697",
         comment: "#6D7E88",
         keyword: "#9AB6B2",
@@ -336,7 +336,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#54594D",
-        constant: "#049649",
+        constant: "#B6781B",
         string: "#837E50",
         comment: "#72806E",
         keyword: "#049649",
@@ -350,7 +350,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#6DD79F",
+        constant: "#E4B165",
         string: "#E9EB9D",
         comment: "#708B6C",
         keyword: "#6DD79F",
@@ -373,7 +373,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#434447",
-        constant: "#587678",
+        constant: "#766599",
         string: "#5F758F",
         comment: "#78808C",
         keyword: "#587678",
@@ -387,7 +387,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#7DA9AB",
+        constant: "#9681C2",
         string: "#6D86A4",
         comment: "#4A4C56",
         keyword: "#7DA9AB",
@@ -410,7 +410,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#687077",
-        constant: "#008DAC",
+        constant: "#007BA1",
         string: "#507683",
         comment: "#6E7780",
         keyword: "#008DAC",
@@ -424,7 +424,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#E4F2FF",
-        constant: "#2ED9FF",
+        constant: "#008BB7",
         string: "#9DD8EB",
         comment: "#6C808B",
         keyword: "#2ED9FF",
@@ -447,7 +447,7 @@ export const THEMES: { [index: string]: Theme } = {
     syntax: {
       light: convertToShikiTheme({
         foreground: "#737568",
-        constant: "#A1642C",
+        constant: "#AD5A78",
         string: "#8C703C",
         comment: "#7A7055",
         keyword: "#A1642C",
@@ -461,7 +461,7 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
-        constant: "#FFAF65",
+        constant: "#E978A1",
         string: "#F9D38C",
         comment: "#878572",
         keyword: "#FFAF65",
