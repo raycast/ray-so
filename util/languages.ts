@@ -195,6 +195,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "scss",
     src: () => import("shiki/langs/scss.mjs"),
   },
+  solidity: {
+    name: "Solidity",
+    className: "solidity",
+    src: () => import("shiki/langs/solidity.mjs"),
+  },
   sql: {
     name: "SQL",
     className: "sql",
