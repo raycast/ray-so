@@ -14,7 +14,7 @@ import KeyboardShortcutsPanel from "../components/KeyboardShortcutsPanel";
 
 import FullLogoSVG from "../assets/full-logo.svg";
 import ArrowNeIcon from "../assets/icons/arrow-ne-16.svg";
-import CoverPhoto from "../assets/cover-photo.png";
+import OgPhoto from "../assets/og.png";
 
 import styles from "../styles/Home.module.css";
 import NoSSR from "../components/NoSSR";
@@ -22,7 +22,7 @@ import NoSSR from "../components/NoSSR";
 import { Highlighter, getHighlighterCore } from "shiki";
 import { LANGUAGES } from "../util/languages";
 
-const coverPhotoUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${CoverPhoto.src}`;
+const ogUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${OgPhoto.src}`;
 
 const Home: NextPage = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           property="og:description"
           content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
         />
-        <meta property="og:image" content={coverPhotoUrl} />
+        <meta property="og:image" content={ogUrl} />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://ray.so/" />
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
           property="twitter:description"
           content="Turn your code into beautiful images. Choose from a range of syntax colors, hide or show the background, and toggle between a dark and light window."
         />
-        <meta property="twitter:image" content={coverPhotoUrl} />
+        <meta property="twitter:image" content={ogUrl} />
         <meta
           name="keywords"
           content="generate, create, convert, source, code, snippet, image, picture, share, export"
