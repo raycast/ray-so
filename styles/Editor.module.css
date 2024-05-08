@@ -7,6 +7,40 @@
     content: attr(data-value) " ";
     visibility: hidden;
   }
+
+  :global(.line) {
+    display: inline-block;
+    width: calc(100% + 32px);
+    padding: 0 16px;
+    margin: 0 -16px;
+
+    &:before {
+      display: inline-block;
+      width: 1rem;
+      margin-right: 1.5rem;
+      margin-left: -2.5rem;
+      /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+      color: var(--ray-token-comment);
+      content: counter(step);
+      counter-increment: step;
+      opacity: 0;
+      text-align: right;
+    }
+  }
+
+  :global(.highlighted-line) {
+    background-color: var(--highlight-color) !important;
+  }
+}
+
+.isHighlightingLines {
+  :global(.line):hover {
+    background-color: var(--highlight-hover-color);
+    cursor: default;
+  }
+  .textarea {
+    z-index: -1;
+  }
 }
 
 .textarea,
@@ -15,6 +49,8 @@
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   padding: var(--editor-padding);
   margin: 0;
+  counter-increment: step 0;
+  counter-reset: step;
   font-family: inherit;
   font-size: 15px;
   font-variant-ligatures: none;

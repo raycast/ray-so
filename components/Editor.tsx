@@ -1,4 +1,12 @@
-import React, { useCallback, KeyboardEventHandler, useRef, ChangeEventHandler, FocusEventHandler } from "react";
+import React, {
+  useCallback,
+  KeyboardEventHandler,
+  useRef,
+  ChangeEventHandler,
+  FocusEventHandler,
+  useState,
+  useEffect,
+} from "react";
 import styles from "../styles/Editor.module.css";
 import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
@@ -8,6 +16,7 @@ import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
+import { highlightedLinesAtom } from "../store";
 
 function indentText(text: string) {
   return text
@@ -110,6 +119,8 @@ function Editor() {
   const [themeFont] = useAtom(themeFontAtom);
   const [theme, setTheme] = useAtom(themeAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
+  const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
+  const [isHighlightingLines, setIsHighlightingLines] = useState(false);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -157,9 +168,58 @@ function Editor() {
     }
   }, [isCodeExample]);
 
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const lineNumber = (target.closest("[data-line]") as HTMLElement)?.dataset?.line;
+      if (lineNumber && isHighlightingLines) {
+        setHighlightedLines((prev) => {
+          const line = Number(lineNumber);
+          if (prev.includes(line)) {
+            return prev.filter((l) => l !== line);
+          } else {
+            return [...prev, line];
+          }
+        });
+      }
+    };
+
+    document.addEventListener("click", listener);
+
+    return () => {
+      document.removeEventListener("click", listener);
+    };
+  }, [setHighlightedLines, isHighlightingLines]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Alt") {
+        setIsHighlightingLines(true);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.key === "Alt") {
+        setIsHighlightingLines(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
   return (
     <div
-      className={classNames(styles.editor, themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono)}
+      className={classNames(
+        styles.editor,
+        themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono,
+        isHighlightingLines && styles.isHighlightingLines
+      )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}
     >

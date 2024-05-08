@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "../styles/Editor.module.css";
-import { highlighterAtom, loadingLanguageAtom } from "../store";
+import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useSetAtom } from "jotai";
 
 type PropTypes = {
@@ -15,6 +15,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const [highlighter] = useAtom(highlighterAtom);
   const [highlightedHtml, setHighlightedHtml] = useState("");
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
+  const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
 
   useEffect(() => {
     const generateHighlightedHtml = async () => {
@@ -39,6 +40,14 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
       return highlighter.codeToHtml(code, {
         lang: lang,
         theme: "css-variables",
+        transformers: [
+          {
+            line(node, line) {
+              node.properties["data-line"] = line;
+              if (highlightedLines.includes(line)) this.addClassToHast(node, "highlighted-line");
+            },
+          },
+        ],
       });
     };
 
@@ -47,7 +56,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         setHighlightedHtml(newHtml);
       }
     });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml]);
+  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines]);
 
   return (
     <div
