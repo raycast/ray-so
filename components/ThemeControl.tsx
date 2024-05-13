@@ -1,7 +1,7 @@
 import { useAtom, useSetAtom } from "jotai";
 import React, { useEffect } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { themeAtom, THEMES, Theme } from "../store/themes";
+import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
 import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from "./Select";
 
@@ -12,6 +12,7 @@ import { paddingAtom } from "../store/padding";
 const ThemeControl: React.FC = () => {
   const [currentTheme, setTheme] = useAtom(themeAtom);
   const [padding, setPadding] = useAtom(paddingAtom);
+  const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
 
   useEffect(() => {
     if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
@@ -20,12 +21,12 @@ const ThemeControl: React.FC = () => {
   }, [currentTheme, setPadding]);
 
   useHotkeys("c", () => {
-    const publicThemes = Object.values(THEMES).filter((theme) => !theme.hidden);
-    const currentIndex = publicThemes.indexOf(currentTheme);
-    if (Object.values(publicThemes)[currentIndex + 1]) {
-      setTheme(Object.values(publicThemes)[currentIndex + 1]);
+    const availableThemes = Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden);
+    const currentIndex = availableThemes.indexOf(currentTheme);
+    if (Object.values(availableThemes)[currentIndex + 1]) {
+      setTheme(Object.values(availableThemes)[currentIndex + 1]);
     } else {
-      setTheme(Object.values(publicThemes)[0]);
+      setTheme(Object.values(availableThemes)[0]);
     }
   });
 
@@ -58,7 +59,7 @@ const ThemeControl: React.FC = () => {
         <SelectGroup>
           <SelectLabel>Partners</SelectLabel>
           {partnerThemes
-            .filter((theme) => !theme.hidden || theme.name === currentTheme.name)
+            .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
             .map((theme, index) => {
               return (
                 <SelectItem key={index} value={theme.name}>

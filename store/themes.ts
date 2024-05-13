@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
+import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
@@ -48,6 +49,7 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
 }
 
 export type Theme = {
+  id: string;
   name: string;
   background: {
     from: string;
@@ -64,6 +66,7 @@ export type Theme = {
 
 export const THEMES: { [index: string]: Theme } = {
   vercel: {
+    id: "vercel",
     name: "Vercel",
     background: {
       from: "#232323",
@@ -103,6 +106,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   rabbit: {
+    id: "rabbit",
     name: "Evil Rabbit",
     background: {
       from: "#000000",
@@ -143,6 +147,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   mono: {
+    id: "mono",
     name: "Mono",
     background: {
       from: "#333",
@@ -180,6 +185,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   breeze: {
+    id: "breeze",
     name: "Breeze",
     background: {
       from: "rgba(207,47,152,1)",
@@ -217,6 +223,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   candy: {
+    id: "candy",
     name: "Candy",
     background: {
       from: "rgba(165,142,251,1)",
@@ -254,6 +261,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   crimson: {
+    id: "crimson",
     name: "Crimson",
     background: {
       from: "rgba(255,99,99,1)",
@@ -291,6 +299,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   falcon: {
+    id: "falcon",
     name: "Falcon",
     background: {
       from: "rgba(189,227,236,1)",
@@ -328,6 +337,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   meadow: {
+    id: "meadow",
     name: "Meadow",
     background: {
       from: "rgba(89,212,153,1)",
@@ -365,6 +375,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   midnight: {
+    id: "midnight",
     name: "Midnight",
     background: {
       from: "rgba(76,200,200,1)",
@@ -402,6 +413,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   raindrop: {
+    id: "raindrop",
     name: "Raindrop",
     background: {
       from: "rgba(142,199,251,1)",
@@ -439,6 +451,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
   },
   sunset: {
+    id: "sunset",
     name: "Sunset",
     background: {
       from: "rgba(255,207,115,1)",
@@ -504,4 +517,6 @@ const themeBackgroundAtom = atom<string>((get) => {
 
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
-export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom };
+const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
+
+export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom, unlockedThemesAtom };

@@ -10,7 +10,7 @@ import React, {
 import styles from "../styles/Editor.module.css";
 import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { THEMES, themeAtom, themeCSSAtom, themeFontAtom } from "../store/themes";
+import { THEMES, themeAtom, themeCSSAtom, themeFontAtom, unlockedThemesAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
@@ -118,6 +118,7 @@ function Editor() {
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
   const [theme, setTheme] = useAtom(themeAtom);
+  const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
   const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
@@ -151,15 +152,16 @@ function Editor() {
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
-      if (event.target.value.includes("🐰")) {
-        if (theme.name !== THEMES.rabbit.name) {
-          setTheme(THEMES.rabbit);
-          setFlashMessage({ message: "Evil Rabbit Theme Unlocked", variant: "unlock", timeout: 2000 });
+      if (event.target.value.includes("🐰") && theme.id !== THEMES.rabbit.id) {
+        if (!unlockedThemes.includes(THEMES.rabbit.id)) {
+          setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
+        setTheme(THEMES.rabbit);
+        setFlashMessage({ message: "Evil Rabbit Theme Unlocked", variant: "unlock", timeout: 2000 });
       }
       setCode(event.target.value);
     },
-    [setCode, setTheme, setFlashMessage, theme.name]
+    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id]
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
