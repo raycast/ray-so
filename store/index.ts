@@ -24,7 +24,7 @@ export const highlighterAtom = atom<Highlighter | null>(null);
 
 export const loadingLanguageAtom = atom<boolean>(false);
 
-export const highlightedLinesAtom = atomWithHash<number[]>("highlightedLines", [1, 2, 3], {
+export const highlightedLinesAtom = atomWithHash<number[]>("highlightedLines", [], {
   delayInit: true,
   serialize(val) {
     return val.join(",");
