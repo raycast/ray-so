@@ -25,6 +25,9 @@ type ShikiSyntaxObject = {
   link: string;
   number: string;
   property: string;
+  highlight?: string;
+  highlightBorder?: string;
+  highlightHover?: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -45,6 +48,9 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-token-link": syntaxObject.link,
     "--ray-token-number": syntaxObject.number,
     "--ray-token-property": syntaxObject.property,
+    "--ray-highlight": syntaxObject.highlight,
+    "--ray-highlight-border": syntaxObject.highlightBorder,
+    "--ray-highlight-hover": syntaxObject.highlightHover,
   } as CSSProperties;
 }
 

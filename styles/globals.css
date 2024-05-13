@@ -41,8 +41,9 @@ a {
   --frame-title-color: rgba(0, 0, 0, 0.6);
   --frame-shadow-border: rgba(0, 0, 0, 0.1);
   --frame-highlight-border: rgba(255, 255, 255, 0.75);
-  --highlight-hover-color: rgba(0, 0, 0, 0.05);
-  --highlight-color: rgba(0, 0, 0, 0.1);
+  --ray-highlight-hover: rgba(0, 0, 0, 0.05);
+  --ray-highlight: rgba(0, 0, 0, 0.1);
+  --ray-highlight-border: transparent;
 }
 
 [data-theme="dark"] {
@@ -52,6 +53,6 @@ a {
   --frame-title-color: rgba(255, 255, 255, 0.6);
   --frame-shadow-border: rgba(0, 0, 0, 0.8);
   --frame-highlight-border: rgba(255, 255, 255, 0.3);
-  --highlight-hover-color: rgba(255, 255, 255, 0.05);
-  --highlight-color: rgba(255, 255, 255, 0.1);
+  --ray-highlight-hover: rgba(255, 255, 255, 0.05);
+  --ray-highlight: rgba(255, 255, 255, 0.1);
 }
