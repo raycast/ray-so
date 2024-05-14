@@ -7,9 +7,11 @@ import { createCssVariablesTheme } from "../util/theme-css-variables";
 import VercelLogo from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg?url";
 
-const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : "http://localhost:3000";
+const BASE_URL = {
+  development: "http://localhost:3000",
+  preview: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
+  production: "https://www.ray.so",
+}[process.env.NEXT_PUBLIC_VERCEL_ENV || "development"];
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
