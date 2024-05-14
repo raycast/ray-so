@@ -4,8 +4,10 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
-import VercelLogo from "../assets/vercel.svg?url";
-import RabbitLogo from "../assets/rabbit.svg?url";
+import VercelLogo from "../assets/vercel.svg";
+import VercelLogoUrl from "../assets/vercel.svg?url";
+import RabbitLogo from "../assets/rabbit.svg";
+import RabbitLogoUrl from "../assets/rabbit.svg?url";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -70,6 +72,7 @@ export type Theme = {
     to: string;
   };
   icon?: string;
+  iconUrl?: string;
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
@@ -87,7 +90,8 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#232323",
       to: "#1F1F1F",
     },
-    icon: `${BASE_URL}${VercelLogo.src}`,
+    icon: VercelLogo,
+    iconUrl: `${BASE_URL}${VercelLogoUrl.src}`,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -128,7 +132,8 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#000000",
       to: "#000000",
     },
-    icon: `${BASE_URL}${RabbitLogo.src}`,
+    icon: RabbitLogo,
+    iconUrl: `${BASE_URL}${RabbitLogoUrl.src}`,
     font: "geist-mono",
     partner: true,
     hidden: true,

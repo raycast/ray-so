@@ -66,8 +66,7 @@ const ThemeControl: React.FC = () => {
                   <SelectPrimitive.SelectItemText>
                     {theme.icon ? (
                       <span className={styles.themePreview}>
-                        {/* eslint-disable-next-line */}
-                        <img src={theme.icon} alt={theme.name} className={styles.logo} />
+                        {React.createElement(theme.icon, { className: styles.logo })}
                       </span>
                     ) : (
                       <span
