@@ -4,6 +4,12 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
+import VercelLogo from "../assets/vercel.svg?url";
+import RabbitLogo from "../assets/rabbit.svg?url";
+
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : "http://localhost:3000";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -61,6 +67,7 @@ export type Theme = {
     from: string;
     to: string;
   };
+  icon?: string;
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
@@ -78,6 +85,7 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#232323",
       to: "#1F1F1F",
     },
+    icon: `${BASE_URL}${VercelLogo.src}`,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -118,6 +126,7 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#000000",
       to: "#000000",
     },
+    icon: `${BASE_URL}${RabbitLogo.src}`,
     font: "geist-mono",
     partner: true,
     hidden: true,
