@@ -192,8 +192,8 @@ export const THEMES: { [index: string]: Theme } = {
         function: "#16B674",
         stringExpression: "#DC7B18",
         punctuation: "#171717",
-        link: "#EDEDED",
-        number: "#EDEDED",
+        link: "#171717",
+        number: "#16B674",
         property: "#15593B",
       }),
       dark: convertToShikiTheme({
