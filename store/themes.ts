@@ -10,6 +10,8 @@ import RabbitLogo from "../assets/rabbit.svg";
 import RabbitLogoUrl from "../assets/rabbit.svg?url";
 import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
+import TailwindLogo from "../assets/tailwind.svg";
+import TailwindLogoUrl from "../assets/tailwind.svg?url";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -78,6 +80,7 @@ export type Theme = {
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
+  lineNumbers?: boolean;
   syntax: {
     light: CSSProperties;
     dark: CSSProperties;
@@ -209,6 +212,49 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#FFFFFF",
         number: "#FFFFFF",
         property: "#3ECF8E",
+      }),
+    },
+  },
+  tailwind: {
+    id: "tailwind",
+    name: "Tailwind",
+    background: {
+      from: "#36B6F0",
+      to: "#36B6F0",
+    },
+    icon: TailwindLogo,
+    iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
+    partner: true,
+    hidden: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#16B674",
+        string: "#EDEDED",
+        comment: "#707070",
+        keyword: "#6B35DC",
+        parameter: "#EDEDED",
+        function: "#16B674",
+        stringExpression: "#DC7B18",
+        punctuation: "#171717",
+        link: "#171717",
+        number: "#16B674",
+        property: "#15593B",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#f8fafc",
+        constant: "#f472b6",
+        string: "#7dd3fc",
+        comment: "#94a3b8",
+        keyword: "#7dd3fc",
+        parameter: "#FFFFFF",
+        function: "#7dd3fc",
+        stringExpression: "#f472b6",
+        punctuation: "#FFFFFF",
+        link: "#FFFFFF",
+        number: "#7dd3fc",
+        property: "#7dd3fc",
       }),
     },
   },

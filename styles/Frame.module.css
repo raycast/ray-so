@@ -15,7 +15,7 @@
   transition: padding 200ms;
 }
 
-.noBackground {
+.transparentPattern {
   position: absolute;
   z-index: -1;
   background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
@@ -133,7 +133,7 @@
   }
 }
 
-.vercelNoBackground {
+.noBackground {
   background: none;
 
   [data-grid="true"] {
@@ -330,6 +330,21 @@
   }
 }
 
-.supabaseNoBackground {
-  background: none;
+/* Tailwind Frame */
+.tailwindFrame {
+  background: #0e172a;
+}
+
+.tailwindWindow {
+  border-radius: 8px;
+  background: #1e293b;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tailwindFrameLightMode {
+  background: #f9fafb;
+
+  .tailwindWindow {
+    background: #ffffff;
+  }
 }

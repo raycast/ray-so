@@ -176,6 +176,18 @@ function Editor() {
           icon: THEMES.supabase.icon,
         });
       }
+      if (event.target.value.includes("💨") && theme.id !== THEMES.tailwind.id) {
+        if (!unlockedThemes.includes(THEMES.tailwind.id)) {
+          setUnlockedThemes([...unlockedThemes, THEMES.tailwind.id]);
+        }
+        setTheme(THEMES.tailwind);
+        setFlashMessage({
+          message: "Tailwind Theme Unlocked",
+          variant: "unlock",
+          timeout: 2000,
+          icon: THEMES.tailwind.icon,
+        });
+      }
       setCode(event.target.value);
     },
     [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id]

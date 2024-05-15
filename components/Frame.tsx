@@ -26,11 +26,11 @@ const VercelFrame = () => {
         styles.frame,
         showBackground && styles.vercelFrame,
         showBackground && !darkMode && styles.vercelFrameLightMode,
-        !showBackground && styles.vercelNoBackground
+        !showBackground && styles.noBackground
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.vercelWindow}>
         <span className={styles.vercelGridlinesHorizontal} data-grid></span>
         <span className={styles.vercelGridlinesVertical} data-grid></span>
@@ -55,11 +55,11 @@ const SupabaseFrame = () => {
         styles.frame,
         showBackground && styles.supabaseFrame,
         !darkMode && styles.supabaseFrameLightMode,
-        !showBackground && styles.supabaseNoBackground
+        !showBackground && styles.noBackground
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.supabaseWindow}>
         <div className={styles.supabaseHeader}>
           <div className={classNames(styles.fileName, styles.supabaseFileName)} data-value={fileName}>
@@ -81,6 +81,30 @@ const SupabaseFrame = () => {
   );
 };
 
+const TailwindFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const isSafari = useIsSafari();
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.tailwindFrame,
+        !darkMode && styles.tailwindFrameLightMode,
+        !showBackground && styles.noBackground
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.tailwindWindow}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -90,7 +114,7 @@ const DefaultFrame = () => {
 
   return (
     <div className={styles.frame} style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}>
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div
         className={classNames(styles.window, {
           [styles.withBorder]: !isSafari,
@@ -133,6 +157,8 @@ const Frame = () => {
             <VercelFrame />
           ) : THEMES.supabase.id === theme.id ? (
             <SupabaseFrame />
+          ) : THEMES.tailwind.id === theme.id ? (
+            <TailwindFrame />
           ) : (
             <DefaultFrame />
           )}
