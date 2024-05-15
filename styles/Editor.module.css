@@ -29,13 +29,24 @@
   }
 
   :global(.highlighted-line) {
-    background-color: var(--highlight-color) !important;
+    position: relative;
+    background-color: var(--ray-highlight) !important;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 2px;
+      background-color: var(--ray-highlight-border);
+      content: "";
+    }
   }
 }
 
 .isHighlightingLines {
   :global(.line):hover {
-    background-color: var(--highlight-hover-color);
+    background-color: var(--ray-highlight-hover);
     cursor: default;
   }
   .textarea {

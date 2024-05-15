@@ -4,6 +4,16 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
+import VercelLogo from "../assets/vercel.svg";
+import VercelLogoUrl from "../assets/vercel.svg?url";
+import RabbitLogo from "../assets/rabbit.svg";
+import RabbitLogoUrl from "../assets/rabbit.svg?url";
+
+const BASE_URL = {
+  development: "http://localhost:3000",
+  preview: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
+  production: "https://www.ray.so",
+}[process.env.NEXT_PUBLIC_VERCEL_ENV || "development"];
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -25,6 +35,9 @@ type ShikiSyntaxObject = {
   link: string;
   number: string;
   property: string;
+  highlight?: string;
+  highlightBorder?: string;
+  highlightHover?: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -45,6 +58,9 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-token-link": syntaxObject.link,
     "--ray-token-number": syntaxObject.number,
     "--ray-token-property": syntaxObject.property,
+    "--ray-highlight": syntaxObject.highlight,
+    "--ray-highlight-border": syntaxObject.highlightBorder,
+    "--ray-highlight-hover": syntaxObject.highlightHover,
   } as CSSProperties;
 }
 
@@ -55,6 +71,8 @@ export type Theme = {
     from: string;
     to: string;
   };
+  icon?: string;
+  iconUrl?: string;
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
@@ -72,6 +90,8 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#232323",
       to: "#1F1F1F",
     },
+    icon: VercelLogo,
+    iconUrl: `${BASE_URL}${VercelLogoUrl.src}`,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -112,6 +132,8 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#000000",
       to: "#000000",
     },
+    icon: RabbitLogo,
+    iconUrl: `${BASE_URL}${RabbitLogoUrl.src}`,
     font: "geist-mono",
     partner: true,
     hidden: true,
