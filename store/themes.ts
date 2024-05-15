@@ -191,7 +191,7 @@ export const THEMES: { [index: string]: Theme } = {
         parameter: "#EDEDED",
         function: "#16B674",
         stringExpression: "#DC7B18",
-        punctuation: "#EDEDED",
+        punctuation: "#171717",
         link: "#EDEDED",
         number: "#EDEDED",
         property: "#15593B",
