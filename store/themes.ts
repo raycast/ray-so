@@ -8,6 +8,8 @@ import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
 import RabbitLogoUrl from "../assets/rabbit.svg?url";
+import SupabaseLogo from "../assets/supabase.svg";
+import SupabaseLogoUrl from "../assets/supabase.svg?url";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -165,6 +167,48 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#a7a7a7",
         number: "#ffffff",
         property: "#a7a7a7",
+      }),
+    },
+  },
+  supabase: {
+    id: "supabase",
+    name: "Supabase",
+    background: {
+      from: "#121212",
+      to: "#121212",
+    },
+    icon: SupabaseLogo,
+    iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
+    partner: true,
+    hidden: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#16B674",
+        string: "#EDEDED",
+        comment: "#707070",
+        keyword: "#6B35DC",
+        parameter: "#EDEDED",
+        function: "#16B674",
+        stringExpression: "#DC7B18",
+        punctuation: "#171717",
+        link: "#EDEDED",
+        number: "#EDEDED",
+        property: "#15593B",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#3ECF8E",
+        string: "#FFFFFF",
+        comment: "#7E7E7E",
+        keyword: "#BDA4FF",
+        parameter: "#FFFFFF",
+        function: "#3ECF8E",
+        stringExpression: "#FFCDA1",
+        punctuation: "#FFFFFF",
+        link: "#FFFFFF",
+        number: "#FFFFFF",
+        property: "#3ECF8E",
       }),
     },
   },

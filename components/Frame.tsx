@@ -13,6 +13,7 @@ import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
 
 import styles from "../styles/Frame.module.css";
+import { selectedLanguageAtom } from "../store/code";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -35,6 +36,45 @@ const VercelFrame = () => {
         <span className={styles.vercelGridlinesVertical} data-grid></span>
         <span className={styles.vercelBracketLeft} data-grid></span>
         <span className={styles.vercelBracketRight} data-grid></span>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
+const SupabaseFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.supabaseFrame,
+        !darkMode && styles.supabaseFrameLightMode,
+        !showBackground && styles.supabaseNoBackground
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      <div className={styles.supabaseWindow}>
+        <div className={styles.supabaseHeader}>
+          <div className={classNames(styles.fileName, styles.supabaseFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+          <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
+        </div>
         <Editor />
       </div>
     </div>
@@ -89,7 +129,13 @@ const Frame = () => {
       <ResizableFrame>
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext}>
-          {theme.id === THEMES.vercel.id || theme.id === THEMES.rabbit.id ? <VercelFrame /> : <DefaultFrame />}
+          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
+            <VercelFrame />
+          ) : THEMES.supabase.id === theme.id ? (
+            <SupabaseFrame />
+          ) : (
+            <DefaultFrame />
+          )}
         </div>
       </ResizableFrame>
     </div>
