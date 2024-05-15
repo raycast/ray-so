@@ -8,6 +8,8 @@ import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
 import RabbitLogoUrl from "../assets/rabbit.svg?url";
+import SupabaseLogo from "../assets/supabase.svg";
+import SupabaseLogoUrl from "../assets/supabase.svg?url";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -175,6 +177,8 @@ export const THEMES: { [index: string]: Theme } = {
       from: "#121212",
       to: "#121212",
     },
+    icon: SupabaseLogo,
+    iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
     partner: true,
     syntax: {
       light: convertToShikiTheme({
