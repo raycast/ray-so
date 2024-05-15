@@ -157,7 +157,24 @@ function Editor() {
           setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
         setTheme(THEMES.rabbit);
-        setFlashMessage({ message: "Evil Rabbit Theme Unlocked", variant: "unlock", timeout: 2000 });
+        setFlashMessage({
+          message: "Evil Rabbit Theme Unlocked",
+          variant: "unlock",
+          timeout: 2000,
+          icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
+        });
+      }
+      if (event.target.value.includes("🦸") && theme.id !== THEMES.supabase.id) {
+        if (!unlockedThemes.includes(THEMES.supabase.id)) {
+          setUnlockedThemes([...unlockedThemes, THEMES.supabase.id]);
+        }
+        setTheme(THEMES.supabase);
+        setFlashMessage({
+          message: "Supabase Theme Unlocked",
+          variant: "unlock",
+          timeout: 2000,
+          icon: THEMES.supabase.icon,
+        });
       }
       setCode(event.target.value);
     },
