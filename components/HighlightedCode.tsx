@@ -5,6 +5,7 @@ import { Language, LANGUAGES } from "../util/languages";
 import styles from "../styles/Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useSetAtom } from "jotai";
+import { customThemesAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -16,6 +17,11 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const [highlightedHtml, setHighlightedHtml] = useState("");
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
+  const [customThemes] = useAtom(customThemesAtom);
+  const isCustomTheme = !!customThemes.find((t) => t.id === theme.id);
+
+  console.log("isCUstomTHeme", isCustomTheme);
 
   useEffect(() => {
     const generateHighlightedHtml = async () => {
@@ -37,9 +43,24 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         lang = "tsx";
       }
 
+      const loadedThemes = highlighter.getLoadedThemes() || [];
+      const hasLoadedTheme = loadedThemes.includes(theme.id);
+      console.log("loadedTHemes", loadedThemes, hasLoadedTheme, theme.id);
+
+      if (!hasLoadedTheme && isCustomTheme) {
+        // setIsLoadingLanguage(true);
+        console.log("theme loading", theme);
+        const customThemeConfig = {
+          name: theme.name,
+          settings: theme.theme.tokenColors,
+        };
+        await highlighter.loadTheme(customThemeConfig);
+        // setIsLoadingLanguage(false);
+      }
+
       return highlighter.codeToHtml(code, {
         lang: lang,
-        theme: "css-variables",
+        theme: isCustomTheme ? theme.id : "css-variables",
         transformers: [
           {
             line(node, line) {
@@ -56,7 +77,16 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         setHighlightedHtml(newHtml);
       }
     });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines]);
+  }, [
+    code,
+    selectedLanguage,
+    highlighter,
+    setIsLoadingLanguage,
+    setHighlightedHtml,
+    highlightedLines,
+    isCustomTheme,
+    theme,
+  ]);
 
   return (
     <div

@@ -12,3 +12,100 @@
   height: auto;
   color: white;
 }
+
+.importButton {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: default;
+  font-size: 14px;
+  gap: 12px;
+  line-height: 17px;
+  outline: none;
+  user-select: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &[data-state="checked"] {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    line-height: 1;
+
+    em {
+      position: relative;
+      top: -1px;
+      font-style: normal;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  z-index: 7;
+  background: #0006;
+  inset: 0;
+}
+
+.dialog {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  flex-direction: column;
+  padding: 25px;
+  border-radius: 6px;
+  background-color: #191919;
+  box-shadow: hsl(206 22% 7% / 90%) 0px 10px 38px -10px, hsl(206 22% 7% / 80%) 0px 10px 20px -15px;
+  color: white;
+  gap: 12px;
+  transform: translate(-50%, -50%);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input {
+    height: 32px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: #3b2425;
+    color: #ff6362;
+  }
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}

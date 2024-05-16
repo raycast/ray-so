@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import { useAtom } from "jotai";
-import React, { useContext } from "react";
+import React, { CSSProperties, useContext } from "react";
 
 import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
-import { THEMES, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
+import { THEMES, customThemesAtom, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 
 import Editor from "./Editor";
@@ -87,9 +87,21 @@ const DefaultFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
+  const [customThemes] = useAtom(customThemesAtom);
+  const isCustomTheme = !!customThemes.find((t) => t.id === theme.id);
 
   return (
-    <div className={styles.frame} style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}>
+    <div
+      className={styles.frame}
+      style={
+        {
+          padding,
+          backgroundImage: showBackground ? themeBackground : ``,
+          "--frame-background": isCustomTheme ? theme.background.from : undefined,
+        } as CSSProperties
+      }
+    >
       {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
       <div
         className={classNames(styles.window, {
@@ -129,9 +141,9 @@ const Frame = () => {
       <ResizableFrame>
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext}>
-          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
+          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme?.id) ? (
             <VercelFrame />
-          ) : THEMES.supabase.id === theme.id ? (
+          ) : THEMES.supabase.id === theme?.id ? (
             <SupabaseFrame />
           ) : (
             <DefaultFrame />

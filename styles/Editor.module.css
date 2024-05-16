@@ -92,6 +92,7 @@
 
 .formatted > pre {
   margin: 0;
+  background: transparent !important;
   font-family: inherit;
   white-space: pre-wrap;
 }

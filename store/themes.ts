@@ -556,33 +556,87 @@ export const THEMES: { [index: string]: Theme } = {
   },
 };
 
-const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
+type TextMateTheme = {
+  colors: any;
+  name: string;
+  semanticHighlighting: boolean;
+  tokenColors: any[];
+};
+
+export type CustomTheme = {
+  id: string;
+  name: string;
+  background: {
+    from: string;
+    to: string;
+  };
+  theme: TextMateTheme;
+};
+
+const themeAtom = atomWithHash<Theme | CustomTheme>("theme", THEMES.candy, {
   delayInit: true,
   serialize(value) {
-    return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
+    console.log("serialize value:", value);
+    if (typeof window !== "undefined" && value) {
+      const customThemes = JSON.parse(localStorage.getItem("customThemes") || "[]");
+      const themeId =
+        Object.keys(THEMES).find((key) => THEMES[key]?.name.toLowerCase() === value?.name?.toLowerCase()) ||
+        customThemes.find((theme) => theme.name.toLowerCase() === value?.name?.toLowerCase())?.id ||
+        THEMES.candy.id;
+      console.log("resolved themeId:", themeId);
+      return themeId;
+    }
+    return THEMES.candy.id;
   },
   deserialize(key) {
-    if (key) {
+    console.log("deserialize key:", key);
+    if (key && THEMES[key]) {
       return THEMES[key];
     } else {
-      return THEMES.candy;
+      const customThemes = JSON.parse(localStorage.getItem("customThemes") || "[]");
+      const resolvedTheme = customThemes.find((theme) => theme.id === key) || THEMES.candy;
+      console.log("resolved theme:", resolvedTheme);
+      return resolvedTheme;
     }
   },
 });
+
+const customThemesAtom = atomWithStorage<CustomTheme[]>("customThemes", []);
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true, {
   delayInit: true,
 });
 
-const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
+const themeCSSAtom = atom<CSSProperties>((get) => {
+  const theme = get(themeAtom);
+  if (get(themeAtom) === undefined) return {};
+  if ("syntax" in theme) {
+    return theme.syntax[get(darkModeAtom) ? "dark" : "light"];
+  }
+  return {};
+});
 
 const themeBackgroundAtom = atom<string>((get) => {
+  if (get(themeAtom) === undefined) return "linear-gradient(140deg, #232323, #1F1F1F)";
+  console.log("get(themeAtom)", get(themeAtom));
   const { from, to } = get(themeAtom).background;
   return `linear-gradient(140deg, ${from}, ${to})`;
 });
 
-const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
+const themeFontAtom = atom<Font | null>((get) => {
+  const theme = get(themeAtom);
+  if (get(themeAtom) === undefined) return "jetbrains-mono";
+  return "font" in theme ? theme.font ?? "jetbrains-mono" : "jetbrains-mono";
+});
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
-export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom, unlockedThemesAtom };
+export {
+  themeAtom,
+  darkModeAtom,
+  themeCSSAtom,
+  themeBackgroundAtom,
+  themeFontAtom,
+  unlockedThemesAtom,
+  customThemesAtom,
+};
