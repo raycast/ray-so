@@ -27,15 +27,15 @@ const ThemeControl: React.FC = () => {
     }
   }, [currentTheme, setPadding]);
 
-  useHotkeys("c", () => {
-    const availableThemes = Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden);
-    const currentIndex = availableThemes.indexOf(currentTheme);
-    if (Object.values(availableThemes)[currentIndex + 1]) {
-      setTheme(Object.values(availableThemes)[currentIndex + 1]);
-    } else {
-      setTheme(Object.values(availableThemes)[0]);
-    }
-  });
+  // useHotkeys("c", () => {
+  //   const availableThemes = Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden);
+  //   const currentIndex = availableThemes.indexOf(currentTheme);
+  //   if (Object.values(availableThemes)[currentIndex + 1]) {
+  //     setTheme(Object.values(availableThemes)[currentIndex + 1]);
+  //   } else {
+  //     setTheme(Object.values(availableThemes)[0]);
+  //   }
+  // });
 
   const handleAddCustom = async (url: string) => {
     setIsImporting(true);
@@ -191,11 +191,11 @@ async function fetchFromMarketplace(url: string) {
   console.log("downloadingurl", downloadUrl);
 
   return await Promise.all(
-    packagejson.contributes.themes.map(async ({ label, path }) => {
+    packagejson.contributes.themes.map(async ({ label, path }: { label: string; path: string }) => {
       const fullPath = "extension/" + (path.startsWith("./") ? path.slice(2) : path);
       const themeFile = entries[fullPath];
       const rawTheme = await themeFile.text();
-      const errors = [];
+      const errors = [] as any[];
       const theme = parse(rawTheme, errors, {
         allowTrailingComma: true,
       });

@@ -581,7 +581,7 @@ const themeAtom = atomWithHash<Theme | CustomTheme>("theme", THEMES.candy, {
       const customThemes = JSON.parse(localStorage.getItem("customThemes") || "[]");
       const themeId =
         Object.keys(THEMES).find((key) => THEMES[key]?.name.toLowerCase() === value?.name?.toLowerCase()) ||
-        customThemes.find((theme) => theme.name.toLowerCase() === value?.name?.toLowerCase())?.id ||
+        customThemes.find((theme: CustomTheme) => theme.name.toLowerCase() === value?.name?.toLowerCase())?.id ||
         THEMES.candy.id;
       console.log("resolved themeId:", themeId);
       return themeId;
@@ -593,8 +593,8 @@ const themeAtom = atomWithHash<Theme | CustomTheme>("theme", THEMES.candy, {
     if (key && THEMES[key]) {
       return THEMES[key];
     } else {
-      const customThemes = JSON.parse(localStorage.getItem("customThemes") || "[]");
-      const resolvedTheme = customThemes.find((theme) => theme.id === key) || THEMES.candy;
+      const customThemes = JSON.parse(localStorage.getItem("customThemes") || "");
+      const resolvedTheme = customThemes.find((theme: CustomTheme) => theme.id === key) || THEMES.candy;
       console.log("resolved theme:", resolvedTheme);
       return resolvedTheme;
     }

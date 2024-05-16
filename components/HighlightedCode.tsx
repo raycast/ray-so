@@ -5,7 +5,7 @@ import { Language, LANGUAGES } from "../util/languages";
 import styles from "../styles/Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useSetAtom } from "jotai";
-import { customThemesAtom, themeAtom } from "../store/themes";
+import { CustomTheme, customThemesAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -20,8 +20,6 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const [theme, setTheme] = useAtom(themeAtom);
   const [customThemes] = useAtom(customThemesAtom);
   const isCustomTheme = !!customThemes.find((t) => t.id === theme.id);
-
-  console.log("isCUstomTHeme", isCustomTheme);
 
   useEffect(() => {
     const generateHighlightedHtml = async () => {
@@ -48,14 +46,11 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
       console.log("loadedTHemes", loadedThemes, hasLoadedTheme, theme.id);
 
       if (!hasLoadedTheme && isCustomTheme) {
-        // setIsLoadingLanguage(true);
-        console.log("theme loading", theme);
         const customThemeConfig = {
           name: theme.name,
-          settings: theme.theme.tokenColors,
+          settings: (theme as CustomTheme).theme.tokenColors,
         };
         await highlighter.loadTheme(customThemeConfig);
-        // setIsLoadingLanguage(false);
       }
 
       return highlighter.codeToHtml(code, {
