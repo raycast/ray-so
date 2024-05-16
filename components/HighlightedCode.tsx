@@ -43,7 +43,6 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
 
       const loadedThemes = highlighter.getLoadedThemes() || [];
       const hasLoadedTheme = loadedThemes.includes(theme.id);
-      console.log("loadedTHemes", loadedThemes, hasLoadedTheme, theme.id);
 
       if (!hasLoadedTheme && isCustomTheme) {
         const customThemeConfig = {
