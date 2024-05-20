@@ -22,6 +22,8 @@ import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
 import { EXPORT_SIZE_OPTIONS, SIZE_LABELS, exportSizeAtom } from "../store/image";
+import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
+import { LANGUAGES } from "../util/languages";
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -32,6 +34,8 @@ const ExportButton: React.FC = () => {
   const customFileName = useAtomValue(fileNameAtom);
   const fileName = customFileName.replaceAll(" ", "-") || "ray-so-export";
   const [exportSize, setExportSize] = useAtom(exportSizeAtom);
+  const selectedLanguage = useAtomValue(selectedLanguageAtom);
+  const autoDetectLanguage = useAtomValue(autoDetectLanguageAtom);
 
   const savePng = async () => {
     if (!frameContext?.current) {
@@ -104,9 +108,11 @@ const ExportButton: React.FC = () => {
       background: params.get("background") || "true",
       darkMode: params.get("darkMode") || "true",
       padding: params.get("padding") || "64",
-      language: params.get("language") || "auto",
+      language: Object.keys(LANGUAGES).find((key) => LANGUAGES[key].name === selectedLanguage?.name) || "auto",
+      autoDetectLanguage: autoDetectLanguage.toString(),
       title: params.get("title") || "untitled",
       width: params.get("width") || "auto",
+      size: SIZE_LABELS[exportSize],
     });
     savePng();
   };
