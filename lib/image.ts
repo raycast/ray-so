@@ -8,14 +8,26 @@ const htmlToImageOptions = {
   skipAutoScale: true,
 };
 
-export const toPng = async (node: HTMLElement) => {
-  return htmlToPng(node, htmlToImageOptions);
+type PngOptions = Parameters<typeof htmlToPng>[1];
+export const toPng = async (node: HTMLElement, options?: PngOptions) => {
+  return htmlToPng(node, {
+    ...htmlToImageOptions,
+    ...options,
+  });
 };
 
-export const toBlob = async (node: HTMLElement) => {
-  return htmlToBlob(node, htmlToImageOptions);
+type BlobOptions = Parameters<typeof htmlToBlob>[1];
+export const toBlob = async (node: HTMLElement, options?: BlobOptions) => {
+  return htmlToBlob(node, {
+    ...htmlToImageOptions,
+    ...options,
+  });
 };
 
-export const toSvg = async (node: HTMLElement) => {
-  return htmlToSvg(node, htmlToImageOptions);
+type SvgOptions = Parameters<typeof htmlToSvg>[1];
+export const toSvg = async (node: HTMLElement, options?: SvgOptions) => {
+  return htmlToSvg(node, {
+    ...htmlToImageOptions,
+    ...options,
+  });
 };
