@@ -14,6 +14,6 @@ export function isExportSize(value: ExportSize | unknown): value is ExportSize {
   return EXPORT_SIZE_OPTIONS.indexOf(value as ExportSize) !== -1;
 }
 
-const exportSizeAtom = atomWithStorage<ExportSize>("size", EXPORT_SIZE_OPTIONS[0]);
+const exportSizeAtom = atomWithStorage<ExportSize>("size", EXPORT_SIZE_OPTIONS[1]);
 
 export { exportSizeAtom };
