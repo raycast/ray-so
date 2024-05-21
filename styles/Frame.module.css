@@ -252,7 +252,7 @@
   height: 40px;
   align-items: center;
   color: #fafafa;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   line-height: 40px;
   vertical-align: top;
@@ -303,7 +303,7 @@
 .supabaseLanguage {
   height: 40px;
   color: #898989;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   line-height: 40px;
 }

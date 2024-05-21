@@ -36,7 +36,7 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 0;
+      left: -1px;
       width: 2px;
       background-color: var(--ray-highlight-border);
       content: "";
@@ -102,5 +102,10 @@
 
 .jetBrainsMono {
   font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+}
+
+.ibmPlexMono {
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 500;
 }

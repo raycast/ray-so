@@ -59,6 +59,7 @@
 
 .dropdown {
   display: flex;
+  min-width: 100px;
   flex-direction: column;
   padding: 4px;
   border: 1px solid #333333;
@@ -77,7 +78,6 @@
   border-radius: 4px;
   background: transparent;
   color: rgba(255, 255, 255, 0.4);
-  cursor: default; /* TODO: remove this once DropdownMenu is implemented */
   font-size: 14px;
   gap: 12px;
   line-height: 17px;
@@ -87,4 +87,50 @@
   &[data-highlighted] {
     background: rgba(255, 255, 255, 0.05);
   }
+
+  &[data-state="checked"] {
+    color: #ffffff;
+  }
+}
+
+.separator {
+  height: 1px;
+  margin: 2px -4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.label {
+  padding: 6px 0 4px 16px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+}
+
+.indicator {
+  position: absolute;
+  left: 16px;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 12px;
+  background: white;
+  content: "";
+  font-size: 12px;
+}
+
+.rightSlot {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 4px;
+  opacity: 0.7;
+}
+
+.radioGroup {
+  .option {
+    padding-left: 24px;
+  }
+}
+
+.subTrigger {
+  padding-right: 4px;
 }
