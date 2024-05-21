@@ -336,8 +336,8 @@
 
 .manifesto {
   background-color: black;
-  background-image: url("~/assets/og-theme.png") !important;
-  background-position: center -100px;
+  background-image: url("~/assets/manifesto.png") !important;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: 100%;
 
