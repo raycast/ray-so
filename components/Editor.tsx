@@ -164,18 +164,6 @@ function Editor() {
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
         });
       }
-      if (event.target.value.includes("🦸") && theme.id !== THEMES.supabase.id) {
-        if (!unlockedThemes.includes(THEMES.supabase.id)) {
-          setUnlockedThemes([...unlockedThemes, THEMES.supabase.id]);
-        }
-        setTheme(THEMES.supabase);
-        setFlashMessage({
-          message: "Supabase Theme Unlocked",
-          variant: "unlock",
-          timeout: 2000,
-          icon: THEMES.supabase.icon,
-        });
-      }
       setCode(event.target.value);
     },
     [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id]

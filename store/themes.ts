@@ -180,7 +180,6 @@ export const THEMES: { [index: string]: Theme } = {
     icon: SupabaseLogo,
     iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
     partner: true,
-    hidden: true,
     font: "ibm-plex-mono",
     syntax: {
       light: convertToShikiTheme({
