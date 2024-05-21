@@ -236,7 +236,11 @@ function Editor() {
     <div
       className={classNames(
         styles.editor,
-        themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono,
+        themeFont === "geist-mono"
+          ? GeistMono.className
+          : themeFont === "ibm-plex-mono"
+          ? styles.ibmPlexMono
+          : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}

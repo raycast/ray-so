@@ -181,6 +181,7 @@ export const THEMES: { [index: string]: Theme } = {
     iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
     partner: true,
     hidden: true,
+    font: "ibm-plex-mono",
     syntax: {
       light: convertToShikiTheme({
         foreground: "#171717",
