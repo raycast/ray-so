@@ -88,10 +88,16 @@ const DefaultFrame = () => {
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [theme] = useAtom(themeAtom);
+  const [darkMode] = useAtom(darkModeAtom);
 
   return (
     <div
-      className={classNames(styles.frame, styles[theme.id])}
+      className={classNames(
+        styles.frame,
+        styles[theme.id],
+        darkMode && styles.darkMode,
+        showBackground && styles.withBackground
+      )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}

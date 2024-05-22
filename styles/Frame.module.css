@@ -335,19 +335,24 @@
 }
 
 .manifesto {
-  background-color: black;
-  background-image: url("~/assets/manifesto.png") !important;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  --frame-background: rgba(255, 255, 255, 0.97);
 
-  --frame-background: rgba(0, 0, 0, 0.88);
+  &.withBackground {
+    background-color: black;
+    background-image: url("~/assets/manifesto.png") !important;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  &.darkMode {
+    --frame-background: rgba(0, 0, 0, 0.88);
+  }
 }
 
 .distortion-mono {
   background-image: url("~/assets/distortion-mono.jpg") !important;
-  background-position: top;
-  background-size: 700px;
+  background-size: cover;
 
   --frame-background: rgba(0, 0, 0, 0.88);
 }
