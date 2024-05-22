@@ -263,11 +263,11 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
-  "distortion-mono": {
-    id: "distortion-mono",
-    name: "Distortion Mono",
+  distortion: {
+    id: "distortion",
+    name: "Distortion",
     background: {
-      from: "#333",
+      from: "#B1B1B1",
       to: "#181818",
     },
     syntax: {

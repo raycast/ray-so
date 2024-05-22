@@ -350,8 +350,9 @@
   }
 }
 
-.distortion-mono {
-  background-image: url("~/assets/distortion-mono.jpg") !important;
+.distortion {
+  background-image: url("~/assets/distortion.png") !important;
+  background-position: center;
   background-size: cover;
 
   --frame-background: rgba(0, 0, 0, 0.88);
