@@ -334,8 +334,8 @@
   background: none;
 }
 
-.manifesto {
-  --frame-background: rgba(255, 255, 255, 0.97);
+.bitmap {
+  --frame-background: rgba(255, 255, 255, 0.95);
 
   &.withBackground {
     background-color: black;
@@ -351,9 +351,40 @@
 }
 
 .distortion {
-  background-image: url("~/assets/distortion.png") !important;
-  background-position: center;
-  background-size: cover;
+  --frame-background: rgba(255, 255, 255, 0.95);
 
-  --frame-background: rgba(0, 0, 0, 0.88);
+  &.withBackground {
+    background-image: url("~/assets/distortion.png") !important;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &.darkMode {
+    --frame-background: rgba(0, 0, 0, 0.88);
+  }
+}
+
+.ice {
+  --background: #f6f6f6;
+  --dot-color: rgba(0, 0, 0, 0.12);
+
+  &.withBackground {
+    background-color: var(--background) !important;
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 0) !important;
+    background-position: -8.5px -8.5px;
+    background-repeat: repeat;
+    background-size: 17px 17px;
+    inset: 0;
+  }
+
+  .withShadow {
+    border: none;
+    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
+      0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  &.darkMode {
+    --background: #0e0e0e;
+    --dot-color: rgba(255, 255, 255, 0.09);
+  }
 }
