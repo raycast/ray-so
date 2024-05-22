@@ -344,7 +344,7 @@ export const THEMES: { [index: string]: Theme } = {
     name: "Ice",
     background: {
       from: "#fff",
-      to: "rgba(28,85,170,1)",
+      to: "#80deea",
     },
     syntax: {
       light: convertToShikiTheme({
