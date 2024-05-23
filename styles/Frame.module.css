@@ -350,7 +350,7 @@
   }
 }
 
-.distortion {
+.noir {
   --frame-background: rgba(255, 255, 255, 0.95);
 
   &.withBackground {

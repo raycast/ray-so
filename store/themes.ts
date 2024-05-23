@@ -263,9 +263,9 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
-  distortion: {
-    id: "distortion",
-    name: "Distortion",
+  noir: {
+    id: "noir",
+    name: "Noir",
     background: {
       from: "#B1B1B1",
       to: "#181818",
