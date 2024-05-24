@@ -4,12 +4,24 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
-import VercelLogo from "../assets/vercel.svg";
-import VercelLogoUrl from "../assets/vercel.svg?url";
-import RabbitLogo from "../assets/rabbit.svg";
-import RabbitLogoUrl from "../assets/rabbit.svg?url";
-import SupabaseLogo from "../assets/supabase.svg";
-import SupabaseLogoUrl from "../assets/supabase.svg?url";
+// import VercelLogo from "../assets/vercel.svg";
+// import VercelLogoUrl from "../assets/vercel.svg?url";
+// import RabbitLogo from "../assets/rabbit.svg";
+// import RabbitLogoUrl from "../assets/rabbit.svg?url";
+// import SupabaseLogo from "../assets/supabase.svg";
+// import SupabaseLogoUrl from "../assets/supabase.svg?url";
+const VercelLogo = "";
+const VercelLogoUrl = {
+  src: "",
+};
+const RabbitLogo = "";
+const RabbitLogoUrl = {
+  src: "",
+};
+const SupabaseLogo = "";
+const SupabaseLogoUrl = {
+  src: "",
+};
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -25,6 +37,7 @@ export const shikiTheme = createCssVariablesTheme({
 });
 
 type ShikiSyntaxObject = {
+  background: string;
   foreground: string;
   constant: string;
   string: string;
@@ -48,6 +61,7 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
   }
 
   return {
+    "--ray-background": syntaxObject.background,
     "--ray-foreground": syntaxObject.foreground,
     "--ray-token-constant": syntaxObject.constant,
     "--ray-token-string": syntaxObject.string,
@@ -98,6 +112,7 @@ export const THEMES: { [index: string]: Theme } = {
     partner: true,
     syntax: {
       light: convertToShikiTheme({
+        background: "#000",
         foreground: "hsla(0, 0%, 9%,1)",
         constant: "oklch(53.18% 0.2399 256.9900584162342)",
         string: "oklch(51.75% 0.1453 147.65)",
@@ -112,6 +127,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "oklch(53.18% 0.2399 256.9900584162342)",
       }),
       dark: convertToShikiTheme({
+        background: "#fff",
         foreground: "hsla(0, 0%, 93%,1)",
         constant: "oklch(71.7% 0.1648 250.79360374054167)",
         string: "oklch(73.1% 0.2158 148.29)",
@@ -141,6 +157,7 @@ export const THEMES: { [index: string]: Theme } = {
     hidden: true,
     syntax: {
       light: convertToShikiTheme({
+        background: "#000",
         foreground: "#111111",
         constant: "#666666",
         parameter: "#666666",
@@ -155,6 +172,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#666666",
       }),
       dark: convertToShikiTheme({
+        background: "#fff",
         foreground: "#ffffff",
         constant: "#a7a7a7",
         parameter: "#a7a7a7",
@@ -183,6 +201,7 @@ export const THEMES: { [index: string]: Theme } = {
     font: "ibm-plex-mono",
     syntax: {
       light: convertToShikiTheme({
+        background: "#FFF",
         foreground: "#171717",
         constant: "#009a55",
         string: "#ededed",
@@ -200,6 +219,7 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#009a55",
       }),
       dark: convertToShikiTheme({
+        background: "#171717",
         foreground: "#ededed",
         constant: "#3ecf8e",
         string: "#ededed",
@@ -227,6 +247,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F2F2F2",
         foreground: "#685B5B",
         constant: "#C90028",
         string: "#836250",
@@ -244,6 +265,7 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "hsla(348, 100%, 39%, 0.05)",
       }),
       dark: convertToShikiTheme({
+        background: "#170304",
         foreground: "#FEFDFD",
         constant: "#E42B37",
         string: "#E42B37",
@@ -271,6 +293,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F3F3F3",
         foreground: "#111111",
         constant: "#666666",
         parameter: "#666666",
@@ -285,6 +308,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#666666",
       }),
       dark: convertToShikiTheme({
+        background: "#0D0D0D",
         foreground: "#ffffff",
         constant: "#a7a7a7",
         parameter: "#a7a7a7",
@@ -309,6 +333,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#FDFDFD",
         foreground: "#1C1B29",
         constant: "#00B0E9",
         string: "#6ABAD8",
@@ -326,6 +351,7 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(0,167,219,0.05)",
       }),
       dark: convertToShikiTheme({
+        background: "#111213",
         foreground: "#FFFFFF",
         constant: "#92DEF6",
         string: "#92DEF6",
@@ -353,6 +379,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F1E9DE",
         foreground: "#262217",
         constant: "#A28C4E",
         string: "#A28C4E",
@@ -370,6 +397,7 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(218,135,68,0.05)",
       }),
       dark: convertToShikiTheme({
+        background: "#342D23",
         foreground: "#FFFFFF",
         constant: "#C2B181",
         string: "#C2B181",
@@ -397,6 +425,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F4F5F4",
         foreground: "#262217",
         constant: "#55725A",
         string: "#828069",
@@ -414,6 +443,7 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(75,148,66,0.07)",
       }),
       dark: convertToShikiTheme({
+        background: "#141A15",
         foreground: "#FFFFFF",
         constant: "#6B8F71",
         string: "#C9C8BC",
@@ -441,6 +471,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#C9C9C9",
         foreground: "#111111",
         constant: "#666666",
         parameter: "#666666",
@@ -455,6 +486,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#666666",
       }),
       dark: convertToShikiTheme({
+        background: "#1C1C1C",
         foreground: "#ffffff",
         constant: "#a7a7a7",
         parameter: "#a7a7a7",
@@ -479,6 +511,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#EACEEE",
         foreground: "#434447",
         constant: "#0B7880",
         parameter: "#C44170",
@@ -493,6 +526,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#0B7880",
       }),
       dark: convertToShikiTheme({
+        background: "#290E30",
         foreground: "#FFFFFF",
         constant: "#49E8F2",
         parameter: "#F8518D",
@@ -517,6 +551,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#EFE8FE",
         foreground: "#434447",
         constant: "#2286A6",
         string: "#B2762E",
@@ -531,6 +566,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#2286A6",
       }),
       dark: convertToShikiTheme({
+        background: "#30293F",
         foreground: "#FFFFFF",
         constant: "#1AC8FF",
         string: "#DFD473",
@@ -555,6 +591,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F2D4D3",
         foreground: "#685B5B",
         constant: "#C94F0A",
         string: "#836250",
@@ -569,6 +606,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#D15510",
       }),
       dark: convertToShikiTheme({
+        background: "#240F0F",
         foreground: "#FEFDFD",
         constant: "#D15510",
         string: "#EBB99D",
@@ -593,6 +631,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#F3F5F7",
         foreground: "#464C65",
         constant: "#839AA7",
         string: "#506483",
@@ -607,6 +646,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#839AA7",
       }),
       dark: convertToShikiTheme({
+        background: "#22272B",
         foreground: "#FFFFFF",
         constant: "#799DB1",
         string: "#6A8697",
@@ -631,6 +671,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#DEECDC",
         foreground: "#54594D",
         constant: "#B6781B",
         string: "#837E50",
@@ -645,6 +686,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#B6781B",
       }),
       dark: convertToShikiTheme({
+        background: "#1F2D1C",
         foreground: "#FFFFFF",
         constant: "#E4B165",
         string: "#E9EB9D",
@@ -669,6 +711,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#D0DFE1",
         foreground: "#434447",
         constant: "#766599",
         string: "#5F758F",
@@ -683,6 +726,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#766599",
       }),
       dark: convertToShikiTheme({
+        background: "#102123",
         foreground: "#FFFFFF",
         constant: "#9681C2",
         string: "#6D86A4",
@@ -707,6 +751,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#D7E5F6",
         foreground: "#687077",
         constant: "#007BA1",
         string: "#507683",
@@ -721,6 +766,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#007BA1",
       }),
       dark: convertToShikiTheme({
+        background: "#182636",
         foreground: "#E4F2FF",
         constant: "#008BB7",
         string: "#9DD8EB",
@@ -745,6 +791,7 @@ export const THEMES: { [index: string]: Theme } = {
     },
     syntax: {
       light: convertToShikiTheme({
+        background: "#FFEAD7",
         foreground: "#737568",
         constant: "#AD5A78",
         string: "#8C703C",
@@ -759,6 +806,7 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#AD5A78",
       }),
       dark: convertToShikiTheme({
+        background: "#40301A",
         foreground: "#FFFFFF",
         constant: "#E978A1",
         string: "#F9D38C",
