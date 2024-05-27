@@ -22,6 +22,9 @@ import NoSSR from "../components/NoSSR";
 import { Highlighter, getHighlighterCore } from "shiki";
 import { LANGUAGES } from "../util/languages";
 
+import tailwindLight from "../assets/tailwind/light.json";
+import tailwindDark from "../assets/tailwind/dark.json";
+
 const ogUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${OgPhoto.src}`;
 
 const Home: NextPage = () => {
@@ -30,7 +33,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     getHighlighterCore({
-      themes: [shikiTheme],
+      themes: [shikiTheme, tailwindLight, tailwindDark],
       langs: [LANGUAGES.javascript.src(), LANGUAGES.tsx.src(), LANGUAGES.swift.src(), LANGUAGES.python.src()],
       loadWasm: getWasm,
     }).then((highlighter) => {

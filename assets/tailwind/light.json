@@ -1,0 +1,405 @@
+{
+  "name": "tailwind-light",
+  "colors": {
+    "foreground": "#1e293b",
+    "editor.background": "#ffffff",
+    "editor.foreground": "#1e293b",
+    "editorGutter.addedBackground": "#34d399",
+    "editorGutter.deletedBackground": "#fb7185",
+    "editorGutter.modifiedBackground": "#60a5fa",
+    "diffEditor.insertedLineBackground": "#a7f3d04d",
+    "diffEditor.insertedTextBackground": "#a7f3d04d",
+    "diffEditor.removedTextBackground": "#fecdd34d",
+    "diffEditor.removedLineBackground": "#fecdd34d",
+    "diffEditorOverview.insertedForeground": "#34d399",
+    "diffEditorOverview.removedForeground": "#fb7185",
+    "terminal.background": "#ffffff",
+    "terminal.foreground": "#0f172a",
+    "terminal.ansiBlack": "#000000",
+    "terminal.ansiBrightBlack": "#64748b",
+    "terminal.ansiWhite": "#94a3b8",
+    "terminal.ansiBrightWhite": "#000000",
+    "terminal.ansiBlue": "#1d4ed8",
+    "terminal.ansiBrightBlue": "#2563eb",
+    "terminal.ansiCyan": "#0891b2",
+    "terminal.ansiBrightCyan": "#06b6d4",
+    "terminal.ansiGreen": "#059669",
+    "terminal.ansiBrightGreen": "#10b981",
+    "terminal.ansiMagenta": "#7e22ce",
+    "terminal.ansiBrightMagenta": "#9333ea",
+    "terminal.ansiRed": "#be123c",
+    "terminal.ansiBrightRed": "#e11d48",
+    "terminal.ansiYellow": "#d97706",
+    "terminal.ansiBrightYellow": "#f59e0b"
+  },
+  "tokenColors": [
+    {
+      "name": "Comment",
+      "scope": ["comment"],
+      "settings": {
+        "fontStyle": "italic",
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "Punctuation",
+      "scope": ["punctuation"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "Constant - eg. Number, Boolean, Colors",
+      "scope": ["constant"],
+      "settings": {
+        "foreground": "#d97706"
+      }
+    },
+    {
+      "name": "Entity - eg. Function, Type, Tag, Attribute Name",
+      "scope": ["entity"],
+      "settings": {
+        "foreground": "#0ea5e9"
+      }
+    },
+    {
+      "name": "Entity Name - eg. Function, Type, Tag, Attribute Name",
+      "scope": ["entity.name"],
+      "settings": {
+        "foreground": "#0284c7"
+      }
+    },
+    {
+      "name": "Entity Name Function - eg. Function, Type, Tag, Attribute Name",
+      "scope": ["entity.name.function"],
+      "settings": {
+        "foreground": "#0d9488"
+      }
+    },
+    {
+      "name": "Keyword - eg. Control (while, for), Operator (or)",
+      "scope": ["keyword"],
+      "settings": {
+        "foreground": "#7c3aed"
+      }
+    },
+    {
+      "name": "Keyword Assignment - eg. =",
+      "scope": ["keyword.operator.assignment"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "Storage - eg. Type (class, function, var)",
+      "scope": ["storage"],
+      "settings": {
+        "foreground": "#334155"
+      }
+    },
+    {
+      "name": "String - eg. Quoted Value, Interpolated Values, Regex",
+      "scope": ["string", "punctuation.definition.string"],
+      "settings": {
+        "foreground": "#4f46e5"
+      }
+    },
+    {
+      "name": "Support - eg. Key in JSON",
+      "scope": ["support"],
+      "settings": {
+        "foreground": "#0284c7"
+      }
+    },
+    {
+      "name": "Variable - eg. Named Import, Variable",
+      "scope": ["variable"],
+      "settings": {
+        "foreground": "#1d4ed8"
+      }
+    },
+    {
+      "name": "Variable Object - eg. Named Import, Variable",
+      "scope": ["variable.other.constant.object"],
+      "settings": {
+        "foreground": "#1d4ed8"
+      }
+    },
+    {
+      "name": "[HTML] - Entity",
+      "scope": ["text.html entity"],
+      "settings": {
+        "foreground": "#0284c7"
+      }
+    },
+    {
+      "name": "[HTML] - Attribute Names",
+      "scope": ["text.html entity.other.attribute-name"],
+      "settings": {
+        "foreground": "#0ea5e9"
+      }
+    },
+    {
+      "name": "[HTML] - Attribute Values",
+      "scope": ["text.html string.quoted", "text.html punctuation.definition.string"],
+      "settings": {
+        "foreground": "#4f46e5"
+      }
+    },
+    {
+      "name": "[HTML] - Punctation",
+      "scope": ["text.html punctuation", "text.html keyword.operator", "text.html meta.tag"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "[HTML] - Doctype",
+      "scope": ["text.html meta.tag.sgml", "text.html meta.tag.sgml punctuation"],
+      "settings": {
+        "foreground": "#94a3b8"
+      }
+    },
+    {
+      "name": "[HTML] - Function",
+      "scope": ["text.html entity.name.function"],
+      "settings": {
+        "foreground": "#0d9488"
+      }
+    },
+    {
+      "name": "[CSS] - Entity - eg. .class, #id, body, :root",
+      "scope": [
+        "source.css entity",
+        "source.css entity.other.attribute-name.class",
+        "source.css entity.other.attribute-name.id",
+        "source.css entity.other.attribute-name.pseudo-class",
+        "source.css punctuation.definition.entity"
+      ],
+      "settings": {
+        "foreground": "#0284c7"
+      }
+    },
+    {
+      "name": "[CSS] - Meta Attribute - eg. [data-attribute]",
+      "scope": [
+        "source.css meta.attribute-selector",
+        "source.css meta.attribute-selector punctuation.definition.string",
+        "source.css entity.other.attribute-name"
+      ],
+      "settings": {
+        "foreground": "#4f46e5"
+      }
+    },
+    {
+      "name": "[CSS] - @ - eg. @media",
+      "scope": ["source.css keyword.control.at-rule", "source.css punctuation.definition.keyword"],
+      "settings": {
+        "foreground": "#0369a1"
+      }
+    },
+    {
+      "name": "[CSS] - Meta Value - eg. value",
+      "scope": [
+        "source.css meta.property-value",
+        "source.css meta.property-value.css punctuation.definition.constant",
+        "source.css meta.property-list meta.at-rule",
+        "source.css variable.parameter"
+      ],
+      "settings": {
+        "foreground": "#1e293b"
+      }
+    },
+    {
+      "name": "[CSS] - Constant - eg. 2.55, ease-out",
+      "scope": ["source.css constant", "source.css support.constant"],
+      "settings": {
+        "foreground": "#1e293b"
+      }
+    },
+    {
+      "name": "[CSS] - Meta Name - eg. font-family, 'name'",
+      "scope": ["source.css meta.property-name", "source.css support.type.property-name", "source.css string"],
+      "settings": {
+        "foreground": "#4f46e5"
+      }
+    },
+    {
+      "name": "[CSS] - Function - eg. var(), rgba()",
+      "scope": ["source.css support.function"],
+      "settings": {
+        "foreground": "#3b82f6"
+      }
+    },
+    {
+      "name": "[CSS] - Keyword - eg. =, and",
+      "scope": ["source.css keyword.control", "source.css keyword.operator"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "[CSS] - Unit - eg. px, %",
+      "scope": ["source.css keyword.other.unit"],
+      "settings": {
+        "foreground": "#0d9488"
+      }
+    },
+    {
+      "name": "[CSS] - Variable - eg. --var",
+      "scope": [
+        "source.css variable",
+        "source.css entity.other.attribute-name.placeholder",
+        "source.css entity.other.attribute-name.placeholder punctuation.definition.entity"
+      ],
+      "settings": {
+        "foreground": "#0d9488"
+      }
+    },
+    {
+      "name": "[CSS] - Punctuation - eg. <> , . () []",
+      "scope": [
+        "source.css punctuation.section",
+        "source.css punctuation.separator",
+        "source.css punctuation.terminator",
+        "source.css punctuation.definition.constant",
+        "source.css meta.attribute-selector punctuation.definition",
+        "source.css punctuation.definition.parameters",
+        "source.css punctuation.access",
+        "source.css meta.property-list"
+      ],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Entity",
+      "scope": [
+        "source.js meta.block entity.name.tag",
+        "source.ts meta.block entity.name.tag",
+        "source.tsx meta.block entity.name.tag"
+      ],
+      "settings": {
+        "foreground": "#0284c7"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Attribute Names",
+      "scope": [
+        "source.js meta.block entity.other.attribute-name",
+        "source.ts meta.block entity.other.attribute-name",
+        "source.tsx meta.block entity.other.attribute-name"
+      ],
+      "settings": {
+        "foreground": "#0ea5e9"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Attribute Values",
+      "scope": [
+        "source.js meta.block string.quoted",
+        "source.ts meta.block string.quoted",
+        "source.tsx meta.block string.quoted",
+        "source.js meta.block punctuation.definition.string",
+        "source.ts meta.block punctuation.definition.string",
+        "source.tsx meta.block punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#4f46e5"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Constant",
+      "scope": [
+        "source.js meta.block meta.jsx.children",
+        "source.ts meta.block meta.jsx.children",
+        "source.tsx meta.block meta.jsx.children"
+      ],
+      "settings": {
+        "foreground": "#1e293b"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Expression",
+      "scope": [
+        "source.js meta.block meta.embedded.expression variable.other",
+        "source.ts meta.block meta.embedded.expression variable.other",
+        "source.tsx meta.block meta.embedded.expression variable.other",
+        "source.js meta.block meta.embedded.expression variable.other.readwrite",
+        "source.ts meta.block meta.embedded.expression variable.other.readwrite",
+        "source.tsx meta.block meta.embedded.expression variable.other.readwrite"
+      ],
+      "settings": {
+        "foreground": "#9333ea"
+      }
+    },
+    {
+      "name": "[HTML in JS] - Expression Ternary",
+      "scope": [
+        "source.js meta.block keyword.operator.ternary",
+        "source.ts meta.block keyword.operator.ternary",
+        "source.tsx meta.block keyword.operator.ternary"
+      ],
+      "settings": {
+        "foreground": "#8b5cf6"
+      }
+    },
+    {
+      "name": "[JSON] - Support",
+      "scope": ["source.json support"],
+      "settings": {
+        "foreground": "#1e293b"
+      }
+    },
+    {
+      "name": "[JSON] - Constant",
+      "scope": ["source.json constant"],
+      "settings": {
+        "foreground": "#e11d48"
+      }
+    },
+    {
+      "name": "[JSON] - Constant (Escaped) - eg. '",
+      "scope": ["constant.character.escape"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "[JS] - Variable",
+      "scope": ["variable.other.property.js"],
+      "settings": {
+        "foreground": "#1e293b"
+      }
+    },
+    {
+      "name": "[JS] - Import",
+      "scope": ["meta.import keyword.control.import"],
+      "settings": {
+        "foreground": "#0369a1"
+      }
+    },
+    {
+      "name": "[JS] - Import From",
+      "scope": ["meta.import keyword.control.from", "meta.import punctuation"],
+      "settings": {
+        "foreground": "#64748b"
+      }
+    },
+    {
+      "name": "[JS] - Import String - eg. '../location/file",
+      "scope": ["meta.import string", "meta.import string punctuation.definition.string"],
+      "settings": {
+        "foreground": "#334155"
+      }
+    },
+    {
+      "name": "[JS] - Import Variable - eg. React, Moment",
+      "scope": ["meta.import variable.other.readwrite"],
+      "settings": {
+        "foreground": "#0369a1"
+      }
+    }
+  ],
+  "semanticHighlighting": true
+}

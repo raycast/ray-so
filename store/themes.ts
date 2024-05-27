@@ -10,6 +10,9 @@ import RabbitLogo from "../assets/rabbit.svg";
 import RabbitLogoUrl from "../assets/rabbit.svg?url";
 import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
+import TailwindLogo from "../assets/tailwind.svg";
+import TailwindLogoUrl from "../assets/tailwind.svg?url";
+import { showLineNumbersAtom } from ".";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -25,18 +28,20 @@ export const shikiTheme = createCssVariablesTheme({
 });
 
 type ShikiSyntaxObject = {
+  /* foreground is also used as caret color */
   foreground: string;
-  constant: string;
-  string: string;
-  comment: string;
-  keyword: string;
-  parameter: string;
-  function: string;
-  stringExpression: string;
-  punctuation: string;
-  link: string;
-  number: string;
-  property: string;
+  /* rest is optional as syntax might come from a textmate source */
+  constant?: string;
+  string?: string;
+  comment?: string;
+  keyword?: string;
+  parameter?: string;
+  function?: string;
+  stringExpression?: string;
+  punctuation?: string;
+  link?: string;
+  number?: string;
+  property?: string;
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
@@ -78,6 +83,7 @@ export type Theme = {
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
+  lineNumbers?: boolean;
   syntax: {
     light: CSSProperties;
     dark: CSSProperties;
@@ -215,6 +221,33 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#232323",
         highlightHover: "#1D1D1D",
         highlightBorder: "#383838",
+      }),
+    },
+  },
+  tailwind: {
+    id: "tailwind",
+    name: "Tailwind",
+    background: {
+      from: "#36B6F0",
+      to: "#36B6F0",
+    },
+    icon: TailwindLogo,
+    iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    hidden: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#000",
+        highlightBorder: "#0484C7",
+        highlight: "rgba(25,147,211,0.10)",
+        highlightHover: "rgba(25,147,211,0.06)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        highlightBorder: "#C1B2F9",
+        highlight: "rgba(193,178,249,0.12)",
+        highlightHover: "rgba(193,178,249,0.07)",
       }),
     },
   },
@@ -589,6 +622,18 @@ const themeBackgroundAtom = atom<string>((get) => {
 
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
+const themeLineNumbersAtom = atom<boolean>((get) => {
+  return get(showLineNumbersAtom) ?? (get(themeAtom).lineNumbers || false);
+});
+
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
-export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom, unlockedThemesAtom };
+export {
+  themeAtom,
+  darkModeAtom,
+  themeCSSAtom,
+  themeBackgroundAtom,
+  themeFontAtom,
+  unlockedThemesAtom,
+  themeLineNumbersAtom,
+};
