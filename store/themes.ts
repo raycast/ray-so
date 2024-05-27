@@ -28,7 +28,9 @@ export const shikiTheme = createCssVariablesTheme({
 });
 
 type ShikiSyntaxObject = {
+  /* foreground is also used as caret color */
   foreground: string;
+  /* rest is optional as syntax might come from a textmate source */
   constant?: string;
   string?: string;
   comment?: string;
