@@ -73,7 +73,10 @@
 
 .fileName {
   position: relative;
+  display: flex;
   height: 16px;
+  align-items: center;
+  justify-content: center;
   color: var(--frame-title-placeholder-color);
   font-family: Inter, sans-serif;
   font-size: 12px;
@@ -332,19 +335,55 @@
 
 /* Tailwind Frame */
 .tailwindFrame {
-  background: #0e172a;
+  position: relative;
+  background-color: #f9fafb;
 }
 
 .tailwindWindow {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
   border-radius: 8px;
-  background: #1e293b;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  background: rgb(30 41 59 / 95%);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(17 24 39 / 0.05);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+}
+
+.tailwindGrid {
+  --grid-color: rgba(0, 0, 0, 0.04);
+  position: absolute;
+  background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-position: center;
+  background-size: 34px 34px;
+  inset: -1px;
+  -webkit-mask-image: linear-gradient(180deg, white, rgb(255 255 255 / 0%));
+  mask-image: linear-gradient(180deg, white, rgb(255 255 255 / 0%));
+}
+
+.tailwindBeams {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tailwindHeader {
+  composes: header;
+  height: auto;
+  padding-top: 12px;
 }
 
 .tailwindFrameLightMode {
-  background: #f9fafb;
-
   .tailwindWindow {
-    background: #ffffff;
+    background: rgb(255 255 255 / 75%);
   }
 }

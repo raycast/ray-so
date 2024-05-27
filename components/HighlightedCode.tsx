@@ -4,7 +4,8 @@ import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "../styles/Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { darkModeAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -12,10 +13,13 @@ type PropTypes = {
 };
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
-  const [highlighter] = useAtom(highlighterAtom);
   const [highlightedHtml, setHighlightedHtml] = useState("");
+  const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
-  const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
+  const highlightedLines = useAtomValue(highlightedLinesAtom);
+  const darkMode = useAtomValue(darkModeAtom);
+  const theme = useAtomValue(themeAtom);
+  const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
 
   useEffect(() => {
     const generateHighlightedHtml = async () => {
@@ -39,7 +43,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
 
       return highlighter.codeToHtml(code, {
         lang: lang,
-        theme: "css-variables",
+        theme: themeName,
         transformers: [
           {
             line(node, line) {
@@ -56,7 +60,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         setHighlightedHtml(newHtml);
       }
     });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines]);
+  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
 
   return (
     <div

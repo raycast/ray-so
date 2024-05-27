@@ -2,7 +2,12 @@
   "extends": "stylelint-config-idiomatic-order",
   "plugins": ["stylelint-value-no-unknown-custom-properties"],
   "rules": {
-    "property-no-unknown": true,
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes"]
+      }
+    ],
     "declaration-block-no-duplicate-properties": true,
     "csstools/value-no-unknown-custom-properties": [
       true,

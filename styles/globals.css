@@ -44,6 +44,7 @@ a {
   --ray-highlight-hover: rgba(0, 0, 0, 0.05);
   --ray-highlight: rgba(0, 0, 0, 0.1);
   --ray-highlight-border: transparent;
+  --line-number: rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] {
@@ -55,4 +56,5 @@ a {
   --frame-highlight-border: rgba(255, 255, 255, 0.3);
   --ray-highlight-hover: rgba(255, 255, 255, 0.05);
   --ray-highlight: rgba(255, 255, 255, 0.1);
+  --line-number: rgba(255, 255, 255, 0.2);
 }

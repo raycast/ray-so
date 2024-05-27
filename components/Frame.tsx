@@ -14,6 +14,9 @@ import ResizableFrame from "./ResizableFrame";
 
 import styles from "../styles/Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
+import Image from "next/image";
+
+import beams from "../assets/beams.jpg";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -85,7 +88,7 @@ const TailwindFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const isSafari = useIsSafari();
+  const [fileName, setFileName] = useAtom(fileNameAtom);
 
   return (
     <div
@@ -98,7 +101,26 @@ const TailwindFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src={beams.src} alt="beams" className={styles.tailwindBeams} />}
+      {showBackground && <div className={styles.tailwindGrid} />}
       <div className={styles.tailwindWindow}>
+        <div className={styles.tailwindHeader}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+        </div>
         <Editor />
       </div>
     </div>

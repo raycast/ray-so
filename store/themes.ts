@@ -12,6 +12,7 @@ import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
+import { showLineNumbersAtom } from ".";
 
 const BASE_URL = {
   development: "http://localhost:3000",
@@ -27,18 +28,18 @@ export const shikiTheme = createCssVariablesTheme({
 });
 
 type ShikiSyntaxObject = {
-  foreground: string;
-  constant: string;
-  string: string;
-  comment: string;
-  keyword: string;
-  parameter: string;
-  function: string;
-  stringExpression: string;
-  punctuation: string;
-  link: string;
-  number: string;
-  property: string;
+  foreground?: string;
+  constant?: string;
+  string?: string;
+  comment?: string;
+  keyword?: string;
+  parameter?: string;
+  function?: string;
+  stringExpression?: string;
+  punctuation?: string;
+  link?: string;
+  number?: string;
+  property?: string;
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
@@ -225,36 +226,18 @@ export const THEMES: { [index: string]: Theme } = {
     icon: TailwindLogo,
     iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
     partner: true,
-    hidden: true,
     lineNumbers: true,
+    hidden: true,
     syntax: {
       light: convertToShikiTheme({
-        foreground: "#171717",
-        constant: "#16B674",
-        string: "#EDEDED",
-        comment: "#707070",
-        keyword: "#6B35DC",
-        parameter: "#EDEDED",
-        function: "#16B674",
-        stringExpression: "#DC7B18",
-        punctuation: "#171717",
-        link: "#171717",
-        number: "#16B674",
-        property: "#15593B",
+        highlightBorder: "#0484C7",
+        highlight: "rgba(25,147,211,0.10)",
+        highlightHover: "rgba(25,147,211,0.06)",
       }),
       dark: convertToShikiTheme({
-        foreground: "#f8fafc",
-        constant: "#f472b6",
-        string: "#7dd3fc",
-        comment: "#94a3b8",
-        keyword: "#7dd3fc",
-        parameter: "#FFFFFF",
-        function: "#7dd3fc",
-        stringExpression: "#f472b6",
-        punctuation: "#FFFFFF",
-        link: "#FFFFFF",
-        number: "#7dd3fc",
-        property: "#7dd3fc",
+        highlightBorder: "#C1B2F9",
+        highlight: "rgba(193,178,249,0.12)",
+        highlightHover: "rgba(193,178,249,0.07)",
       }),
     },
   },
@@ -629,6 +612,18 @@ const themeBackgroundAtom = atom<string>((get) => {
 
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
+const themeLineNumbersAtom = atom<boolean>((get) => {
+  return get(showLineNumbersAtom) ?? (get(themeAtom).lineNumbers || false);
+});
+
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
-export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom, unlockedThemesAtom };
+export {
+  themeAtom,
+  darkModeAtom,
+  themeCSSAtom,
+  themeBackgroundAtom,
+  themeFontAtom,
+  unlockedThemesAtom,
+  themeLineNumbersAtom,
+};
