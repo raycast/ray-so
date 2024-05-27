@@ -172,18 +172,6 @@ function Editor() {
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
         });
       }
-      if (event.target.value.includes("🦸") && theme.id !== THEMES.supabase.id) {
-        if (!unlockedThemes.includes(THEMES.supabase.id)) {
-          setUnlockedThemes([...unlockedThemes, THEMES.supabase.id]);
-        }
-        setTheme(THEMES.supabase);
-        setFlashMessage({
-          message: "Supabase Theme Unlocked",
-          variant: "unlock",
-          timeout: 2000,
-          icon: THEMES.supabase.icon,
-        });
-      }
       if (event.target.value.includes("💨") && theme.id !== THEMES.tailwind.id) {
         if (!unlockedThemes.includes(THEMES.tailwind.id)) {
           setUnlockedThemes([...unlockedThemes, THEMES.tailwind.id]);
@@ -256,7 +244,11 @@ function Editor() {
     <div
       className={classNames(
         styles.editor,
-        themeFont === "geist-mono" ? GeistMono.className : styles.jetBrainsMono,
+        themeFont === "geist-mono"
+          ? GeistMono.className
+          : themeFont === "ibm-plex-mono"
+          ? styles.ibmPlexMono
+          : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers && styles.showLineNumbers
       )}

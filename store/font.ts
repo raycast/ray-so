@@ -1,6 +1,6 @@
 import { atomWithHash } from "jotai-location";
 
-export const FONTS = ["jetbrains-mono", "geist-mono"] as const;
+export const FONTS = ["jetbrains-mono", "geist-mono", "ibm-plex-mono"] as const;
 
 export type Font = (typeof FONTS)[number];
 
