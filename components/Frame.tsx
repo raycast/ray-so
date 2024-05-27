@@ -14,6 +14,9 @@ import ResizableFrame from "./ResizableFrame";
 
 import styles from "../styles/Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
+import Image from "next/image";
+
+import beams from "../assets/beams.jpg";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -26,11 +29,11 @@ const VercelFrame = () => {
         styles.frame,
         showBackground && styles.vercelFrame,
         showBackground && !darkMode && styles.vercelFrameLightMode,
-        !showBackground && styles.vercelNoBackground
+        !showBackground && styles.noBackground
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.vercelWindow}>
         <span className={styles.vercelGridlinesHorizontal} data-grid></span>
         <span className={styles.vercelGridlinesVertical} data-grid></span>
@@ -55,11 +58,11 @@ const SupabaseFrame = () => {
         styles.frame,
         showBackground && styles.supabaseFrame,
         !darkMode && styles.supabaseFrameLightMode,
-        !showBackground && styles.supabaseNoBackground
+        !showBackground && styles.noBackground
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.supabaseWindow}>
         <div className={styles.supabaseHeader}>
           <div className={classNames(styles.fileName, styles.supabaseFileName)} data-value={fileName}>
@@ -74,6 +77,49 @@ const SupabaseFrame = () => {
             {fileName.length === 0 ? <span>Untitled-1</span> : null}
           </div>
           <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
+const TailwindFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.tailwindFrame,
+        !darkMode && styles.tailwindFrameLightMode,
+        !showBackground && styles.noBackground
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src={beams.src} alt="beams" className={styles.tailwindBeams} />}
+      {showBackground && <div className={styles.tailwindGrid} />}
+      <div className={styles.tailwindWindow}>
+        <div className={styles.tailwindHeader}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
         </div>
         <Editor />
       </div>
@@ -100,7 +146,7 @@ const DefaultFrame = () => {
       )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.noBackground}></div>}
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div
         className={classNames(styles.window, {
           [styles.withBorder]: !isSafari,
@@ -143,6 +189,8 @@ const Frame = () => {
             <VercelFrame />
           ) : THEMES.supabase.id === theme.id ? (
             <SupabaseFrame />
+          ) : THEMES.tailwind.id === theme.id ? (
+            <TailwindFrame />
           ) : (
             <DefaultFrame />
           )}

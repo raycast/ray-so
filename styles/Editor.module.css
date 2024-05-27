@@ -13,18 +13,20 @@
     width: calc(100% + 32px);
     padding: 0 16px;
     margin: 0 -16px;
+    transition: width 0.2s, padding 0.2s, margin 0.2s;
 
     &:before {
+      position: relative;
+      left: 6px;
       display: inline-block;
       width: 1rem;
       margin-right: 1.5rem;
       margin-left: -2.5rem;
-      /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-      color: var(--ray-token-comment);
-      content: counter(step);
-      counter-increment: step;
+      color: var(--line-number);
+      content: attr(data-line);
       opacity: 0;
       text-align: right;
+      transition: opacity 0.2s;
     }
   }
 
@@ -70,7 +72,26 @@
   letter-spacing: 0.1px;
   line-height: 22.5px;
   tab-size: 2;
+  transition: padding 0.2s;
   white-space: pre-wrap;
+}
+
+.showLineNumbers {
+  .textarea,
+  .formatted,
+  .editor:after {
+    padding-left: 3rem;
+  }
+
+  :global(.line) {
+    width: calc(100% + 16px + 3rem);
+    padding: 0 16px 0 3rem;
+    margin: 0 -16px 0 -3rem;
+
+    &:before {
+      opacity: 1;
+    }
+  }
 }
 
 .textarea {
@@ -92,6 +113,7 @@
 
 .formatted > pre {
   margin: 0;
+  background-color: initial !important;
   font-family: inherit;
   white-space: pre-wrap;
 }

@@ -10,13 +10,20 @@ import React, {
 import styles from "../styles/Editor.module.css";
 import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { THEMES, themeAtom, themeCSSAtom, themeFontAtom, unlockedThemesAtom } from "../store/themes";
+import {
+  THEMES,
+  themeAtom,
+  themeCSSAtom,
+  themeFontAtom,
+  themeLineNumbersAtom,
+  unlockedThemesAtom,
+} from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
-import { highlightedLinesAtom } from "../store";
+import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 
 function indentText(text: string) {
   return text
@@ -120,8 +127,9 @@ function Editor() {
   const [theme, setTheme] = useAtom(themeAtom);
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
-  const [highlightedLines, setHighlightedLines] = useAtom(highlightedLinesAtom);
+  const setHighlightedLines = useSetAtom(highlightedLinesAtom);
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
+  const [showLineNumbers] = useAtom(themeLineNumbersAtom);
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -162,6 +170,18 @@ function Editor() {
           variant: "unlock",
           timeout: 2000,
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
+        });
+      }
+      if (event.target.value.includes("💨") && theme.id !== THEMES.tailwind.id) {
+        if (!unlockedThemes.includes(THEMES.tailwind.id)) {
+          setUnlockedThemes([...unlockedThemes, THEMES.tailwind.id]);
+        }
+        setTheme(THEMES.tailwind);
+        setFlashMessage({
+          message: "Tailwind Theme Unlocked",
+          variant: "unlock",
+          timeout: 2000,
+          icon: THEMES.tailwind.icon,
         });
       }
       setCode(event.target.value);
@@ -229,7 +249,8 @@ function Editor() {
           : themeFont === "ibm-plex-mono"
           ? styles.ibmPlexMono
           : styles.jetBrainsMono,
-        isHighlightingLines && styles.isHighlightingLines
+        isHighlightingLines && styles.isHighlightingLines,
+        showLineNumbers && styles.showLineNumbers
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}

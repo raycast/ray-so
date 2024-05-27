@@ -10,6 +10,10 @@ export const showBackgroundAtom = atomWithHash<boolean>("background", true, {
   delayInit: true,
 });
 
+export const showLineNumbersAtom = atomWithHash<boolean | undefined>("lineNumbers", undefined, {
+  delayInit: true,
+});
+
 export const fileNameAtom = atomWithHash<string>("title", "", {
   delayInit: true,
   serialize(val) {
