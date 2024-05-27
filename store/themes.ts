@@ -28,7 +28,7 @@ export const shikiTheme = createCssVariablesTheme({
 });
 
 type ShikiSyntaxObject = {
-  foreground?: string;
+  foreground: string;
   constant?: string;
   string?: string;
   comment?: string;
@@ -230,11 +230,13 @@ export const THEMES: { [index: string]: Theme } = {
     hidden: true,
     syntax: {
       light: convertToShikiTheme({
+        foreground: "#000",
         highlightBorder: "#0484C7",
         highlight: "rgba(25,147,211,0.10)",
         highlightHover: "rgba(25,147,211,0.06)",
       }),
       dark: convertToShikiTheme({
+        foreground: "#fff",
         highlightBorder: "#C1B2F9",
         highlight: "rgba(193,178,249,0.12)",
         highlightHover: "rgba(193,178,249,0.07)",
