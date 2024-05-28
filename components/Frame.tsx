@@ -102,8 +102,19 @@ const TailwindFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && <img src={beams.src} alt="beams" className={styles.tailwindBeams} />}
-      {showBackground && <div className={styles.tailwindGrid} />}
       <div className={styles.tailwindWindow}>
+        {showBackground && (
+          <>
+            <span className={styles.tailwindGridlinesHorizontal} data-grid></span>
+            <span className={styles.tailwindGridlinesVertical} data-grid></span>
+            <div className={styles.tailwindGradient}>
+              <div>
+                <div className={styles.tailwindGradient1}></div>
+                <div className={styles.tailwindGradient2}></div>
+              </div>
+            </div>
+          </>
+        )}
         <div className={styles.tailwindHeader}>
           <div className={styles.controls}>
             <div className={styles.control}></div>

@@ -342,7 +342,6 @@
 .tailwindWindow {
   position: relative;
   z-index: 1;
-  overflow: hidden;
   border-radius: 8px;
   background: rgb(30 41 59 / 95%);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -371,19 +370,105 @@
 
 .tailwindBeams {
   position: absolute;
-  top: 50%;
+  z-index: 0;
+  top: -140px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: 120%;
+  transform: translateX(calc(-50% - 50px));
 }
 
 .tailwindHeader {
   composes: header;
   height: auto;
-  padding-top: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.tailwindGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 2;
+    top: -20px;
+    bottom: 0;
+    left: -4rem;
+    width: calc(100% + 8rem);
+    height: 1px;
+    background: rgb(0 0 0 / 7%);
+    content: "";
+    -webkit-mask-image: linear-gradient(to left, transparent, white 4rem, white calc(100% - 4rem), transparent);
+    mask-image: linear-gradient(to left, transparent, white 4rem, white calc(100% - 4rem), transparent);
+  }
+
+  &:after {
+    top: auto;
+    bottom: -20px;
+  }
+}
+
+.tailwindGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 2;
+    top: -4rem;
+    bottom: 0;
+    left: -20px;
+    width: 1px;
+    height: calc(100% + 8rem);
+    background: rgb(0 0 0 / 7%);
+    content: "";
+    -webkit-mask-image: linear-gradient(to top, transparent, white 4rem, white calc(100% - 4rem), transparent);
+    mask-image: linear-gradient(to top, transparent, white 4rem, white calc(100% - 4rem), transparent);
+  }
+
+  &:after {
+    right: -20px;
+    left: auto;
+  }
+}
+
+.tailwindGradient {
+  position: absolute;
+  z-index: -1;
+  top: calc(100% + 20px);
+  left: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: 20px;
+  margin-top: -1px;
+
+  > div {
+    display: flex;
+    width: clamp(14rem, 70%, 40rem);
+    height: 2px;
+  }
+}
+
+.tailwindGradient1 {
+  width: 100%;
+  flex: none;
+  background-image: linear-gradient(
+    90deg,
+    rgba(56, 189, 248, 0) 0%,
+    #0ea5e9 32.29%,
+    rgba(236, 72, 153, 0.3) 67.19%,
+    rgba(236, 72, 153, 0) 100%
+  );
+  filter: blur(1px);
+}
+
+.tailwindGradient2 {
+  composes: tailwindGradient1;
+  margin-left: -100%;
 }
 
 .tailwindFrameLightMode {
   .tailwindWindow {
     background: rgb(255 255 255 / 75%);
+  }
+  .tailwindHeader {
+    border-color: rgb(0 0 0 / 10%);
   }
 }

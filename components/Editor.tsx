@@ -248,6 +248,8 @@ function Editor() {
           ? GeistMono.className
           : themeFont === "ibm-plex-mono"
           ? styles.ibmPlexMono
+          : themeFont === "fira-code"
+          ? styles.firaCode
           : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers && styles.showLineNumbers

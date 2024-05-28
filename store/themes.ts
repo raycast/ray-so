@@ -235,6 +235,7 @@ export const THEMES: { [index: string]: Theme } = {
     iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
     partner: true,
     lineNumbers: true,
+    font: "fira-code",
     hidden: true,
     syntax: {
       light: convertToShikiTheme({

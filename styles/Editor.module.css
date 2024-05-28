@@ -67,7 +67,7 @@
   font-family: inherit;
   font-size: 15px;
   font-variant-ligatures: none;
-  font-weight: 500;
+  font-weight: inherit;
   grid-area: 1 / 1 / 2 / 2;
   letter-spacing: 0.1px;
   line-height: 22.5px;
@@ -130,4 +130,9 @@
 .ibmPlexMono {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 500;
+}
+
+.firaCode {
+  font-family: "Fira Code", monospace;
+  font-weight: 400;
 }
