@@ -60,6 +60,7 @@ export function createVsCodeTheme(options: VsCodeThemeOptions): ThemeRegistratio
       "dropdown.listBackground": Color(variable("--ray-background")).darken(0.2).hex(),
       "progressBar.background": Color(variable("--ray-token-constant")).darken(0.2).hex(),
       "minimap.background": Color(variable("--ray-background")).darken(0.1).hex(),
+      "titleBar.activeBackground": Color(variable("--ray-background")).darken(0.2).hex(),
     },
     tokenColors: [
       {
