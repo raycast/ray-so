@@ -16,7 +16,9 @@ import styles from "../styles/Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
 import Image from "next/image";
 
-import beams from "../assets/beams.jpg";
+import beams from "../assets/tailwind/beams.png";
+import beamsLight from "../assets/tailwind/beams-light.jpg";
+import beamsDark from "../assets/tailwind/beams-dark.jpg";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -102,6 +104,7 @@ const TailwindFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && <img src={beams.src} alt="beams" className={styles.tailwindBeams} />}
+      <div className={styles.beams} />
       <div className={styles.tailwindWindow}>
         {showBackground && (
           <>
@@ -120,16 +123,6 @@ const TailwindFrame = () => {
             <div className={styles.control}></div>
             <div className={styles.control}></div>
             <div className={styles.control}></div>
-          </div>
-          <div className={styles.fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-            />
-            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
           </div>
         </div>
         <Editor />
