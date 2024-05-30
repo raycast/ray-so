@@ -414,7 +414,7 @@
   }
 
   &.darkMode {
-    --frame-background: rgba(0, 0, 0, 0.88);
+    --frame-background: rgba(0, 0, 0, 0.9);
   }
 }
 
