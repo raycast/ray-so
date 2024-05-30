@@ -137,9 +137,19 @@ const DefaultFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
+  const [theme] = useAtom(themeAtom);
+  const [darkMode] = useAtom(darkModeAtom);
 
   return (
-    <div className={styles.frame} style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}>
+    <div
+      className={classNames(
+        styles.frame,
+        styles[theme.id],
+        darkMode && styles.darkMode,
+        showBackground && styles.withBackground
+      )}
+      style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
+    >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div
         className={classNames(styles.window, {
