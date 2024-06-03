@@ -4,17 +4,7 @@ export default function useIsSafari() {
   const [isSafari, setSafari] = useState(false);
 
   useEffect(() => {
-    const isSafari =
-      // @ts-ignore
-      /constructor/i.test(window.HTMLElement) ||
-      (function (p) {
-        return p.toString() === "[object SafariRemoteNotification]";
-      })(
-        // @ts-ignore
-        !window["safari"] ||
-          // @ts-ignore
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
-      );
+    const isSafari = navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf("Chrome") <= -1;
     setSafari(isSafari);
   }, []);
 
