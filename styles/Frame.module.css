@@ -136,14 +136,6 @@
   }
 }
 
-.noBackground {
-  background: none;
-
-  [data-grid="true"] {
-    display: none;
-  }
-}
-
 .vercelWindow {
   position: relative;
 }
@@ -455,6 +447,12 @@
 .tailwindFrameLightMode {
   background: color(display-p3 1 1 1);
 
+  &.noBackground {
+    .tailwindWindow {
+      background: rgb(255 255 255 / 100%);
+    }
+  }
+
   .tailwindWindow {
     border: none;
     background: rgb(255 255 255 / 75%);
@@ -531,5 +529,13 @@
   &.darkMode {
     --background: #0e0e0e;
     --dot-color: rgba(255, 255, 255, 0.09);
+  }
+}
+
+.noBackground {
+  background: none;
+
+  [data-grid="true"] {
+    display: none;
   }
 }
