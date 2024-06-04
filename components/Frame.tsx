@@ -91,6 +91,7 @@ const TailwindFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const isSafari = useIsSafari();
 
   return (
     <div
@@ -98,7 +99,8 @@ const TailwindFrame = () => {
         styles.frame,
         showBackground && styles.tailwindFrame,
         !darkMode && styles.tailwindFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
+        isSafari && styles.isSafari
       )}
       style={{ padding }}
     >
