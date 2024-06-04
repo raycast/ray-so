@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
-import styles from "../styles/Editor.module.css";
+import styles from "./Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { darkModeAtom, themeAtom } from "../store/themes";

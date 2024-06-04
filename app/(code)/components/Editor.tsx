@@ -7,7 +7,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import styles from "../styles/Editor.module.css";
+import styles from "./Editor.module.css";
 import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import {

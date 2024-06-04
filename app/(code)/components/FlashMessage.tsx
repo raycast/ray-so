@@ -5,7 +5,7 @@ import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import classNames from "classnames";
 import useAudio from "../util/useAudio";
 
-import styles from "../styles/FlashMessage.module.css";
+import styles from "./FlashMessage.module.css";
 
 const FlashMessage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

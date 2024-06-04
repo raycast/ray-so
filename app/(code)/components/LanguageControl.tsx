@@ -7,8 +7,8 @@ import { Language, LANGUAGES } from "../util/languages";
 
 import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
-import selectStyles from "../styles/Select.module.css";
-import styles from "../styles/LanguageControl.module.css";
+import selectStyles from "./Select.module.css";
+import styles from "./LanguageControl.module.css";
 import useHotkeys from "../util/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import classNames from "classnames";

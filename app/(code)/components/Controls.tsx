@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../styles/Controls.module.css";
+import styles from "./Controls.module.css";
 import BackgroundControl from "./BackgroundControl";
 import DarkModeControl from "./DarkModeControl";
 import ExportButton from "./ExportButton";

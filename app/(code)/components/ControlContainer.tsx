@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import styles from "../styles/ControlContainer.module.css";
+import styles from "./ControlContainer.module.css";
 
 type PropTypes = {
   title: string;

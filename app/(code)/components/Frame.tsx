@@ -12,7 +12,7 @@ import Editor from "./Editor";
 import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
 
-import styles from "../styles/Frame.module.css";
+import styles from "./Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
 import Image from "next/image";
 

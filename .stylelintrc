@@ -12,7 +12,7 @@
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        "importFrom": ["styles/globals.css"]
+        "importFrom": ["app/globals.css"]
       }
     ]
   }

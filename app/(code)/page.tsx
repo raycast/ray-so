@@ -1,8 +1,7 @@
-import Link from "next/link";
-
 import type { Metadata } from "next";
 
-import OgPhoto from "../../assets/og.png";
+import OgPhoto from "./assets/og.png";
+import { Code } from "./code";
 
 const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
@@ -46,13 +45,6 @@ export const metadata: Metadata = {
   keywords: "generate, create, convert, source, code, snippet, image, picture, share, export",
 };
 
-export default function Code() {
-  return (
-    <div className="h-20 bg-gray-200">
-      hej{" "}
-      <Link href="/themes" className="text-red-500">
-        themes
-      </Link>
-    </div>
-  );
+export default function Page() {
+  return <Code />;
 }

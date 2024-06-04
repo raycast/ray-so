@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
-import styles from "../styles/Select.module.css";
+import styles from "./Select.module.css";
 
 type SelectPrimitiveRootProps = React.ComponentProps<typeof SelectPrimitive.Root>;
 

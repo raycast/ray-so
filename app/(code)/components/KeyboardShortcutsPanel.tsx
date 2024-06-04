@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useCallback, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-import styles from "../styles/KeyboardShortcutsPanel.module.css";
+import styles from "./KeyboardShortcutsPanel.module.css";
 
 import KeyboardIcon from "../assets/icons/keyboard-16.svg";
 import useHotkeys from "../util/useHotkeys";

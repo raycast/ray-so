@@ -19,7 +19,7 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 40px;
-  background-image: url("~/assets/footer-background.jpg");
+  background-image: url("./assets/footer-background.jpg");
   background-position: center -5px;
   background-repeat: no-repeat;
   background-size: 700px 245px;

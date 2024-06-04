@@ -5,7 +5,7 @@ import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
 import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from "./Select";
 
-import styles from "../styles/ThemeControl.module.css";
+import styles from "./ThemeControl.module.css";
 import useHotkeys from "../util/useHotkeys";
 import { paddingAtom } from "../store/padding";
 

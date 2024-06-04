@@ -3,7 +3,6 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
-import { createCssVariablesTheme } from "../util/theme-css-variables";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -13,6 +12,7 @@ import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import { showLineNumbersAtom } from ".";
+import { createCssVariablesTheme } from "../util/theme-css-variables";
 
 const BASE_URL = {
   development: "http://localhost:3000",

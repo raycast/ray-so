@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import React, { FormEventHandler } from "react";
 import * as Switch from "@radix-ui/react-switch";
 
-import styles from "../styles/Toggle.module.css";
+import styles from "./Toggle.module.css";
 
 type PropTypes = {
   checked: boolean;

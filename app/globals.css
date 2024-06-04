@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--background);
+  color: white;
+
+  > :first-child {
+    height: 100%;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --background: #0d0d0d;
+  --panel-background: #191919;
+  --panel-border: 1px solid rgba(255, 255, 255, 0.2);
+  --panel-text-color: rgba(255, 255, 255, 0.4);
+  --panel-dropdown-border: rgba(255, 255, 255, 0.1);
+  --panel-padding-selected: #fff;
+
+  --frame-background: rgba(255, 255, 255, 0.75);
+  --frame-control-color: rgba(0, 0, 0, 0.2);
+  --frame-title-placeholder-color: rgba(0, 0, 0, 0.3);
+  --frame-title-color: rgba(0, 0, 0, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.1);
+  --frame-highlight-border: rgba(255, 255, 255, 0.75);
+  --ray-highlight-hover: rgba(0, 0, 0, 0.05);
+  --ray-highlight: rgba(0, 0, 0, 0.1);
+  --ray-highlight-border: transparent;
+  --line-number: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] {
+  --frame-background: rgba(0, 0, 0, 0.75);
+  --frame-control-color: rgba(255, 255, 255, 0.2);
+  --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
+  --frame-title-color: rgba(255, 255, 255, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.8);
+  --frame-highlight-border: rgba(255, 255, 255, 0.3);
+  --ray-highlight-hover: rgba(255, 255, 255, 0.05);
+  --ray-highlight: rgba(255, 255, 255, 0.1);
+  --line-number: rgba(255, 255, 255, 0.2);
+}

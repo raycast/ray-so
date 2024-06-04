@@ -482,7 +482,7 @@
 
   &.withBackground {
     background-color: black;
-    background-image: url("~/assets/manifesto.png") !important;
+    background-image: url("../assets/manifesto.png") !important;
     background-position: center top;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -497,7 +497,7 @@
   --frame-background: rgba(255, 255, 255, 0.95);
 
   &.withBackground {
-    background-image: url("~/assets/distortion.png") !important;
+    background-image: url("../assets/distortion.png") !important;
     background-position: center;
     background-size: cover;
   }
