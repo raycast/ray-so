@@ -1,10 +1,21 @@
 import { Fira_Code, IBM_Plex_Mono, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import cn from "classnames";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
-// const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: "500", display: "swap" });
-// const ibmPlexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: "500", display: "swap" });
-// const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap" });
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: "500",
+  display: "swap",
+  variable: "--font-jetbrainsmono",
+});
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: "500",
+  display: "swap",
+  variable: "--font-ibmplexmono",
+});
+const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-firacode" });
 
 const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
@@ -17,7 +28,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className, jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable)}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -123,16 +123,19 @@
 }
 
 .jetBrainsMono {
-  font-family: "JetBrains Mono", monospace;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-family: var(--font-jetbrainsmono), monospace;
   font-weight: 500;
 }
 
 .ibmPlexMono {
-  font-family: "IBM Plex Mono", monospace;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-family: var(--font-ibmplexmono), monospace;
   font-weight: 500;
 }
 
 .firaCode {
-  font-family: "Fira Code", monospace;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  font-family: var(--font-firacode), monospace;
   font-weight: 400;
 }
