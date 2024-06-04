@@ -236,7 +236,6 @@ export const THEMES: { [index: string]: Theme } = {
     partner: true,
     lineNumbers: true,
     font: "fira-code",
-    hidden: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#000",
