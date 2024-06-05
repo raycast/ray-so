@@ -346,6 +346,7 @@
   left: 50%;
 
   width: 1293px;
+  max-width: none;
   height: auto;
   transform: translateX(calc(-50% - 200px));
 }
