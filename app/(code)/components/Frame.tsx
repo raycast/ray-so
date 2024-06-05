@@ -182,15 +182,33 @@ const DefaultFrame = () => {
   );
 };
 
-const Frame = () => {
+const Frame = ({ resize = true }: { resize?: boolean }) => {
   const frameContext = useContext(FrameContext);
   const [theme] = useAtom(themeAtom);
+
+  if (!resize) {
+    return (
+      <div className={styles.frameContainer}>
+        <div className={styles.outerFrame} ref={frameContext} id="frame">
+          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
+            <VercelFrame />
+          ) : THEMES.supabase.id === theme.id ? (
+            <SupabaseFrame />
+          ) : THEMES.tailwind.id === theme.id ? (
+            <TailwindFrame />
+          ) : (
+            <DefaultFrame />
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.frameContainer}>
       <ResizableFrame>
         <FlashMessage />
-        <div className={styles.outerFrame} ref={frameContext}>
+        <div className={styles.outerFrame} ref={frameContext} id="frame">
           {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
             <VercelFrame />
           ) : THEMES.supabase.id === theme.id ? (
