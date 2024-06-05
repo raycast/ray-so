@@ -7,7 +7,7 @@ import { InternalServerError, NotFoundError } from "./errors";
 export const dynamic = "force-dynamic";
 
 async function getBrowser() {
-  if (process.env.VERCEL_ENV !== "production") {
+  if (process.env.VERCEL_ENV === "development") {
     const browser = await puppeteer.launch();
     return browser;
   } else {
@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
 
   const fileType = "png";
   let url;
-  if (process.env.VERCEL_ENV !== "production") {
+  if (process.env.VERCEL_ENV === "development") {
     url = `http://localhost:3000/image#${q}`;
   } else {
     url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/image#${q}`;
