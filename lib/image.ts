@@ -10,6 +10,11 @@ const htmlToImageOptions = {
 
 type PngOptions = Parameters<typeof htmlToPng>[1];
 export const toPng = async (node: HTMLElement, options?: PngOptions) => {
+  // sometimes the first render doesn't work fully so we do the rendering twice https://github.com/bubkoo/html-to-image/issues/361
+  await htmlToPng(node, {
+    ...htmlToImageOptions,
+    ...options,
+  });
   return htmlToPng(node, {
     ...htmlToImageOptions,
     ...options,
