@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/image": {
+      "memory": 3009
+    }
+  }
+}
