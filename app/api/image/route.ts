@@ -5,6 +5,7 @@ import puppeteer, { ScreenshotOptions } from "puppeteer";
 import { InternalServerError, NotFoundError } from "./errors";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 300;
 
 async function getBrowser() {
   if (process.env.VERCEL_ENV === "development") {
