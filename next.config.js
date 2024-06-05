@@ -6,6 +6,7 @@ const nextConfig = {
   transpilePackages: ["geist", "highlight.js"],
   experimental: {
     optimizePackageImports: ["shiki"],
+    serverComponentsExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports

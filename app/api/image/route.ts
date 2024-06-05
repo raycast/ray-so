@@ -1,11 +1,29 @@
 import { NextRequest } from "next/server";
+import chromium from "@sparticuz/chromium";
+import puppeteerCore from "puppeteer-core";
 import puppeteer, { ScreenshotOptions } from "puppeteer";
-import getOptions from "./options";
 import { InternalServerError, NotFoundError } from "./errors";
 
 const isDev = !process.env.AWS_REGION;
 
 export const dynamic = "force-dynamic";
+
+async function getBrowser() {
+  if (process.env.VERCEL_ENV === "production") {
+    const executablePath = await chromium.executablePath();
+
+    const browser = await puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+    return browser;
+  } else {
+    const browser = await puppeteer.launch();
+    return browser;
+  }
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -16,14 +34,13 @@ export async function GET(req: NextRequest) {
   if (isDev) {
     url = `http://localhost:3000/image#${q}`;
   } else {
-    url = `https://ray.so/image#${q}`;
+    url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/image#${q}`;
   }
 
   try {
     console.time("taking screenshot");
-    const options = await getOptions(isDev);
-    const browser = await puppeteer.launch(options);
-    const page = await browser.newPage();
+    const browser = await getBrowser();
+    const page = (await browser.newPage()) as any;
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 4 });
     const response = await page.goto(url);
 
