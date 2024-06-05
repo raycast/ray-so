@@ -47,6 +47,7 @@ const ExportButton: React.FC = () => {
     const dataUrl = await toPng(frameContext.current, {
       pixelRatio: exportSize,
     });
+    await new Promise((resolve) => setTimeout(resolve, 500));
     download(dataUrl, `${fileName}.png`);
 
     setFlashShown(false);
