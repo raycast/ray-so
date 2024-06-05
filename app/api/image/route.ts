@@ -4,12 +4,13 @@ import puppeteerCore from "puppeteer-core";
 import puppeteer, { ScreenshotOptions } from "puppeteer";
 import { InternalServerError, NotFoundError } from "./errors";
 
-const isDev = !process.env.AWS_REGION;
-
 export const dynamic = "force-dynamic";
 
 async function getBrowser() {
-  if (process.env.VERCEL_ENV === "production") {
+  if (process.env.VERCEL_ENV !== "production") {
+    const browser = await puppeteer.launch();
+    return browser;
+  } else {
     const executablePath = await chromium.executablePath();
 
     const browser = await puppeteerCore.launch({
@@ -18,9 +19,6 @@ async function getBrowser() {
       executablePath,
       headless: chromium.headless,
     });
-    return browser;
-  } else {
-    const browser = await puppeteer.launch();
     return browser;
   }
 }
@@ -31,7 +29,7 @@ export async function GET(req: NextRequest) {
 
   const fileType = "png";
   let url;
-  if (isDev) {
+  if (process.env.VERCEL_ENV !== "production") {
     url = `http://localhost:3000/image#${q}`;
   } else {
     url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/image#${q}`;
