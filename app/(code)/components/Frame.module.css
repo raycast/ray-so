@@ -454,10 +454,17 @@
   }
 
   .tailwindWindow {
-    border: none;
     background: rgb(255 255 255 / 75%);
     box-shadow: 0 0 0 1px color(display-p3 0.0572 0.0889 0.1628 / 0.1), 0px 2px 4px 0px color(display-p3 0 0 0 / 0.06);
   }
+
+  &.isSafari {
+    .tailwindWindow {
+      border: 1px solid color(display-p3 0.0078 0.0235 0.0902 / 0.1);
+      box-shadow: none;
+    }
+  }
+
   .tailwindHeader {
     border-color: rgb(0 0 0 / 10%);
   }
