@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ["geist"],
+  transpilePackages: ["geist", "highlight.js"],
   experimental: {
     optimizePackageImports: ["shiki"],
   },
