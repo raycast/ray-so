@@ -56,9 +56,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     };
 
     generateHighlightedHtml().then((newHtml) => {
-      if (newHtml) {
-        setHighlightedHtml(newHtml);
-      }
+      setHighlightedHtml(newHtml);
     });
   }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
 
