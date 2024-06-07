@@ -14,10 +14,6 @@ body {
 body {
   background: var(--background);
   color: white;
-
-  > :first-child {
-    height: 100%;
-  }
 }
 
 a {

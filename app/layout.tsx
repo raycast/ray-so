@@ -1,6 +1,7 @@
 import { Fira_Code, IBM_Plex_Mono, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import cn from "classnames";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 const jetBrainsMono = JetBrains_Mono({
@@ -19,6 +20,33 @@ const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap",
 
 const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
+const links = [
+  {
+    href: "/",
+    text: "Code Images",
+  },
+  {
+    href: "/icon",
+    text: "Icon Maker",
+  },
+  {
+    href: "/prompts",
+    text: "Prompts",
+  },
+  {
+    href: "/presets",
+    text: "Presets",
+  },
+  {
+    href: "/snippets",
+    text: "Snippets",
+  },
+  {
+    href: "/themes",
+    text: "Themes",
+  },
+];
+
 export const metadata = {
   metadataBase: new URL(url),
   title: "Next.js",
@@ -29,6 +57,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={cn(inter.className, jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable)}>
+        <nav className="flex gap-2">
+          {links.map((link) => (
+            <Link href={link.href} key={link.href}>
+              {link.text}
+            </Link>
+          ))}
+        </nav>
         {children}
       </body>
     </html>
