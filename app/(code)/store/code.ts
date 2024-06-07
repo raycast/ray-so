@@ -67,7 +67,6 @@ export const autoDetectLanguageAtom = atom<boolean>((get) => {
 
 const detectedLanguageAtom = atom<Language | null>(null);
 const userInputtedLanguageAtom = atomWithHash<Language | null>("language", null, {
-  delayInit: true,
   serialize(language) {
     const key = Object.keys(LANGUAGES).find((key) => LANGUAGES[key] === language);
 
@@ -86,7 +85,7 @@ const userInputtedLanguageAtom = atomWithHash<Language | null>("language", null,
   },
 });
 
-export const selectedLanguageAtom = atom<Language | null, Language | null>(
+export const selectedLanguageAtom = atom(
   (get) => {
     if (get(userInputtedLanguageAtom) === null) {
       const codeSampleValue = get(codeExampleAtom);
@@ -99,7 +98,7 @@ export const selectedLanguageAtom = atom<Language | null, Language | null>(
       return get(userInputtedLanguageAtom);
     }
   },
-  (get, set, newLanguage) => {
+  (get, set, newLanguage: Language | null) => {
     set(userInputtedLanguageAtom, newLanguage);
   }
 );
@@ -139,9 +138,9 @@ function getInitialUserInputtedCode() {
 
 export const userInputtedCodeAtom = atom<string | null>(getInitialUserInputtedCode());
 
-export const codeAtom = atom<string, string>(
+export const codeAtom = atom(
   (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
-  (get, set, newCode) => {
+  (get, set, newCode: string) => {
     const searchParams = new URLSearchParams(location.hash.slice(1));
     set(userInputtedCodeAtom, newCode);
 

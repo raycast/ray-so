@@ -44,11 +44,23 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
     [setWindowWidth]
   );
 
+  const clearSelection = useCallback(() => {
+    var sel = document.getSelection();
+    if (sel) {
+      if (sel.removeAllRanges) {
+        sel.removeAllRanges();
+      } else if (sel.empty) {
+        sel.empty();
+      }
+    }
+  }, []);
+
   const mouseUpHandler = useCallback(() => {
     document.removeEventListener("mousemove", mouseMoveHandler);
     document.removeEventListener("mouseup", mouseUpHandler);
     setResizing(false);
-  }, [mouseMoveHandler]);
+    clearSelection();
+  }, [mouseMoveHandler, clearSelection]);
 
   const handleResizeFrameX = useCallback(
     (handle: Handle): MouseEventHandler<HTMLDivElement> =>
@@ -65,7 +77,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
   );
 
   return (
-    <div className={styles.resizableFrame}>
+    <div className={classnames(styles.resizableFrame, isResizing && styles.isResizing)}>
       <div
         className={classnames(styles.windowSizeDragPoint, styles.left)}
         onMouseDown={handleResizeFrameX("left")}
