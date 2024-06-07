@@ -74,7 +74,7 @@ const Home: NextPage = () => {
           content="generate, create, convert, source, code, snippet, image, picture, share, export"
         />
       </Head>
-      <div data-theme={darkMode ? "dark" : "light"} className={styles.app}>
+      <div className={styles.app}>
         <KeyboardShortcutsPanel />
 
         <NoSSR>
