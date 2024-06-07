@@ -38,7 +38,7 @@ export function Code() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div data-theme={darkMode ? "dark" : "light"} className={styles.app}>
+    <div className={styles.app}>
       <KeyboardShortcutsPanel />
 
       <NoSSR>
