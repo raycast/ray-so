@@ -1,6 +1,10 @@
 .resizableFrame {
   position: relative;
   display: inline-block;
+
+  &.isResizing {
+    user-select: none;
+  }
 }
 
 .windowSizeDragPoint {
