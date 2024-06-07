@@ -4,8 +4,6 @@ export const FONTS = ["jetbrains-mono", "geist-mono", "ibm-plex-mono", "fira-cod
 
 export type Font = (typeof FONTS)[number];
 
-const fontAtom = atomWithHash<Font>("font", FONTS[0], {
-  delayInit: true,
-});
+const fontAtom = atomWithHash<Font>("font", FONTS[0]);
 
 export { fontAtom };

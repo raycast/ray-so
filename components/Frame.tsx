@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import React, { useContext } from "react";
 
 import { fileNameAtom, showBackgroundAtom } from "../store";
@@ -140,7 +140,7 @@ const DefaultFrame = () => {
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [theme] = useAtom(themeAtom);
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(darkModeAtom);
 
   return (
     <div
@@ -185,9 +185,10 @@ const DefaultFrame = () => {
 const Frame = () => {
   const frameContext = useContext(FrameContext);
   const [theme] = useAtom(themeAtom);
+  const darkMode = useAtomValue(darkModeAtom);
 
   return (
-    <div className={styles.frameContainer}>
+    <div className={styles.frameContainer} data-theme={darkMode ? "dark" : "light"}>
       <ResizableFrame>
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext}>

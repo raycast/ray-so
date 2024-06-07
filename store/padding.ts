@@ -8,8 +8,6 @@ export function isPadding(value: Padding | unknown): value is Padding {
   return PADDING_OPTIONS.indexOf(value as Padding) !== -1;
 }
 
-const paddingAtom = atomWithHash<Padding>("padding", PADDING_OPTIONS[2], {
-  delayInit: true,
-});
+const paddingAtom = atomWithHash<Padding>("padding", PADDING_OPTIONS[2]);
 
 export { paddingAtom };

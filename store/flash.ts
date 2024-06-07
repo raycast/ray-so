@@ -13,13 +13,13 @@ const messageAtom = atom<string>("");
 const variantAtom = atom<"info" | "unlock">("info");
 export const flashShownAtom = atom(false);
 
-export const derivedFlashMessageAtom = atom<FlashMessage | null, FlashMessage>(
+export const derivedFlashMessageAtom = atom(
   (get) => ({
     icon: get(iconAtom),
     message: get(messageAtom),
     variant: get(variantAtom),
   }),
-  (get, set, flashMessage) => {
+  (get, set, flashMessage: FlashMessage) => {
     window.clearTimeout(get(timeoutAtom));
 
     set(messageAtom, flashMessage.message);

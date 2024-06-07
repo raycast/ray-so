@@ -810,7 +810,6 @@ export const THEMES: { [index: string]: Theme } = {
 };
 
 const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
-  delayInit: true,
   serialize(value) {
     return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
   },
@@ -823,9 +822,7 @@ const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
   },
 });
 
-const darkModeAtom = atomWithHash<boolean>("darkMode", true, {
-  delayInit: true,
-});
+const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 
 const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
 
