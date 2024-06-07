@@ -191,7 +191,11 @@ function Editor() {
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
     if (isCodeExample && textareaRef.current) {
-      textareaRef.current.select();
+      // Safari needs a timeout otherwise the selection flickers
+      const textarea = textareaRef.current;
+      setTimeout(() => {
+        textarea.select();
+      }, 1);
     }
   }, [isCodeExample]);
 
