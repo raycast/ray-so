@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { presets } from "./[slug]/page";
 import Link from "next/link";
+import { presets } from "./data";
 
 export const metadata: Metadata = {
   title: "Presets",
