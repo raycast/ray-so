@@ -183,21 +183,6 @@ const ExportButton: React.FC = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="bottom" align="end">
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
-                <ArrowsExpandingIcon /> Size
-              </DropdownMenuSubTrigger>
-              <DropdownMenuSubContent sideOffset={8}>
-                <DropdownMenuRadioGroup value={exportSize.toString()}>
-                  {EXPORT_SIZE_OPTIONS.map((size) => (
-                    <DropdownMenuRadioItem key={size} value={size.toString()} onSelect={() => setExportSize(size)}>
-                      {SIZE_LABELS[size]}
-                    </DropdownMenuRadioItem>
-                  ))}
-                </DropdownMenuRadioGroup>
-              </DropdownMenuSubContent>
-            </DropdownMenuSub>
-            <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
               <ImageIcon /> Save PNG
             </DropdownMenuItem>
@@ -212,6 +197,21 @@ const ExportButton: React.FC = () => {
             <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
               <LinkIcon /> Copy URL
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
+                <ArrowsExpandingIcon /> Size
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent sideOffset={8}>
+                <DropdownMenuRadioGroup value={exportSize.toString()}>
+                  {EXPORT_SIZE_OPTIONS.map((size) => (
+                    <DropdownMenuRadioItem key={size} value={size.toString()} onSelect={() => setExportSize(size)}>
+                      {SIZE_LABELS[size]}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
           </DropdownMenuContent>
         </DropdownMenu>
       </ButtonGroup>
