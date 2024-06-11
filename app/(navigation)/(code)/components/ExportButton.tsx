@@ -1,11 +1,9 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
 import { track } from "@vercel/analytics";
 
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 import ImageIcon from "../assets/icons/image-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
-import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
+import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ChevronRightIcon from "../assets/icons/chevron-right-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
 import ArrowsExpandingIcon from "../assets/icons/arrows-expanding-16.svg";
@@ -14,7 +12,7 @@ import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import { fileNameAtom } from "../store";
 import download from "../util/download";
-import { toPng, toSvg, toBlob } from "../../../lib/image";
+import { toPng, toSvg, toBlob } from "../../../../lib/image";
 
 import styles from "./ExportButton.module.css";
 import useHotkeys from "../util/useHotkeys";
@@ -24,6 +22,22 @@ import { useAtom, useAtomValue } from "jotai";
 import { EXPORT_SIZE_OPTIONS, SIZE_LABELS, exportSizeAtom } from "../store/image";
 import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
 import { LANGUAGES } from "../util/languages";
+import { ButtonGroup } from "@/components/button-group";
+import { Button } from "@/components/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/dropdown-menu";
+import { DropdownMenuItemIndicator } from "@radix-ui/react-dropdown-menu";
+import { DownloadIcon } from "@raycast/icons";
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -156,7 +170,52 @@ const ExportButton: React.FC = () => {
   });
 
   return (
-    <div className={styles.container}>
+    <>
+      <ButtonGroup>
+        <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
+          <DownloadIcon className="w-4 h-4" />
+          Export Image
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="primary" aria-label="See other export options">
+              <ChevronDownIcon className="w-4 h-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="bottom" align="end">
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
+                <ArrowsExpandingIcon /> Size
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent sideOffset={8}>
+                <DropdownMenuRadioGroup value={exportSize.toString()}>
+                  {EXPORT_SIZE_OPTIONS.map((size) => (
+                    <DropdownMenuRadioItem key={size} value={size.toString()} onSelect={() => setExportSize(size)}>
+                      {SIZE_LABELS[size]}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
+              <ImageIcon /> Save PNG
+            </DropdownMenuItem>
+            <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
+              <ImageIcon /> Save SVG
+            </DropdownMenuItem>
+            {pngClipboardSupported && (
+              <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
+                <ClipboardIcon /> Copy Image
+              </DropdownMenuItem>
+            )}
+            <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
+              <LinkIcon /> Copy URL
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </ButtonGroup>
+      {/* <div className={styles.container}>
       <button onClick={handleExportClick} className={styles.button} aria-label="Export as PNG">
         Export
       </button>
@@ -164,11 +223,11 @@ const ExportButton: React.FC = () => {
       <DropdownMenu.Root open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenu.Trigger asChild>
           <button className={classNames(styles.button, styles.small)} aria-label="See other export options">
-            <ChevronUpIcon />
+            <ChevronDownIcon />
           </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
-          <DropdownMenu.Content className={styles.dropdown} sideOffset={5} side={"top"}>
+          <DropdownMenu.Content className={styles.dropdown} sideOffset={12} side={"bottom"} align="end">
             <DropdownMenu.Sub>
               <DropdownMenu.SubTrigger className={classNames(styles.option, styles.subTrigger)}>
                 <ArrowsExpandingIcon /> Size
@@ -216,7 +275,8 @@ const ExportButton: React.FC = () => {
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
-    </div>
+    </div> */}
+    </>
   );
 };
 

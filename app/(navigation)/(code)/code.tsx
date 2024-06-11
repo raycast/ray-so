@@ -22,6 +22,9 @@ import { LANGUAGES } from "./util/languages";
 
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
+import ExportButton from "./components/ExportButton";
+import { SpeechBubbleIcon } from "@raycast/icons";
+import { Button } from "@/components/button";
 
 export function Code() {
   const [darkMode] = useAtom(darkModeAtom);
@@ -38,32 +41,25 @@ export function Code() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className={styles.app}>
-      <KeyboardShortcutsPanel />
+    <>
+      <FrameContextStore>
+        <div className="h-[50px] flex items-center justify-end fixed top-0 right-4 gap-2">
+          <Button variant="transparent" asChild>
+            <a href="mailto:feedback+rayso@raycast.com">
+              <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+            </a>
+          </Button>
+          <ExportButton />
+        </div>
+        <div className={styles.app}>
+          {/* <KeyboardShortcutsPanel /> */}
 
-      <NoSSR>
-        <FrameContextStore>
-          {highlighter && <Frame />}
-          <Controls />
-        </FrameContextStore>
-      </NoSSR>
-
-      <div className={styles.footer}>
-        <a href="mailto:feedback+rayso@raycast.com" className={styles.footerLink}>
-          Send Feedback
-          <ArrowNeIcon />
-        </a>
-        <span className={styles.madeBy}>
-          Made by{" "}
-          <a href="https://www.raycast.com" target="_blank" rel="noreferrer" className={styles.logoLink}>
-            <FullLogoSVG />
-          </a>
-        </span>
-        <a href="https://www.raycast.com/garrett/ray-so" target="_blank" className={styles.footerLink} rel="noreferrer">
-          Get Raycast Extension
-          <ArrowNeIcon />
-        </a>
-      </div>
-    </div>
+          <NoSSR>
+            {highlighter && <Frame />}
+            <Controls />
+          </NoSSR>
+        </div>
+      </FrameContextStore>
+    </>
   );
 }

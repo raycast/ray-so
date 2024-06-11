@@ -2,18 +2,18 @@
 
 import { useAtom } from "jotai";
 import React, { useEffect } from "react";
-import { showBackgroundAtom, fileNameAtom, windowWidthAtom, highlighterAtom } from "../store";
-import { paddingAtom } from "../store/padding";
-import { darkModeAtom, shikiTheme, themeBackgroundAtom } from "../store/themes";
+import { showBackgroundAtom, fileNameAtom, windowWidthAtom, highlighterAtom } from "@code/store";
+import { darkModeAtom, shikiTheme, themeBackgroundAtom } from "@code/store/themes";
 
 import styles from "../components/Frame.module.css";
 import resizableFrameStyles from "../components/ResizableFrame.module.css";
 import classNames from "classnames";
-import Editor from "../components/Editor";
+import Editor from "@code/components/Editor";
 import { bundledLanguages, getHighlighter } from "shiki";
-import Frame from "../components/Frame";
-import tailwindLight from "../assets/tailwind/light.json";
-import tailwindDark from "../assets/tailwind/dark.json";
+import { paddingAtom } from "@code/store/padding";
+import Frame from "@code/components/Frame";
+import tailwindLight from "@code/assets/tailwind/light.json";
+import tailwindDark from "@code/assets/tailwind/dark.json";
 
 const Image = () => {
   const [padding] = useAtom(paddingAtom);

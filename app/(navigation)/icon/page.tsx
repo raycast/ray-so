@@ -5,5 +5,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <div className="text-green-600">icon maker</div>;
+  return (
+    <div>
+      <div className="h-[50px] absolute"></div>
+      <div>icon maker</div>
+    </div>
+  );
 }

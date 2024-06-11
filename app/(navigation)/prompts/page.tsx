@@ -5,5 +5,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <div className="text-green-600">prompt explorer</div>;
+  return (
+    <div>
+      <div className="h-[50px] absolute"></div>
+      <div>prompt explorer</div>
+    </div>
+  );
 }

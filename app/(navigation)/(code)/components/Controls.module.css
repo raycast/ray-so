@@ -2,7 +2,7 @@
   position: fixed;
 
   z-index: 20;
-  bottom: 100px;
+  bottom: 0;
   left: 50%;
 
   display: flex;
@@ -11,9 +11,10 @@
   padding: 24px;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-
   background: var(--panel-background);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
   gap: 32px;
   transform: translateX(-50%);

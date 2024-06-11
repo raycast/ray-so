@@ -24,7 +24,21 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: ["@svgr/webpack"],
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
       }
     );
 
@@ -34,12 +48,14 @@ const nextConfig = {
     return config;
   },
   async rewrites() {
-    return [
-      {
-        source: "/:path*",
-        destination: "https://go.ray.so/:path*",
-      },
-    ];
+    return {
+      fallback: [
+        {
+          source: "/:path*",
+          destination: "https://go.ray.so/:path*",
+        },
+      ],
+    };
   },
   async headers() {
     return [

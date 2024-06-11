@@ -16,7 +16,6 @@ const Controls: React.FC = () => {
       <DarkModeControl />
       <PaddingControl />
       <LanguageControl />
-      <ExportButton />
     </div>
   );
 };
