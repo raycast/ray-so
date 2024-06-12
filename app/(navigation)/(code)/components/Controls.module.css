@@ -2,7 +2,7 @@
   position: fixed;
 
   z-index: 20;
-  bottom: 0;
+  bottom: -1px;
   left: 50%;
 
   display: flex;
