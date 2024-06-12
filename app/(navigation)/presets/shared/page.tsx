@@ -9,7 +9,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export function parseURLPreset(presetQueryString?: string) {
+function parseURLPreset(presetQueryString?: string) {
   if (!presetQueryString) {
     return null;
   }
