@@ -1,13 +1,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import cn from "classnames";
+import { BASE_URL } from "@/utils/common";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
-const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-
 export const metadata = {
-  metadataBase: new URL(url),
+  metadataBase: new URL(BASE_URL),
   title: "Ray.so",
   description: "Ray.so",
 };

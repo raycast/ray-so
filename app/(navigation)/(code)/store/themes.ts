@@ -13,12 +13,7 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
-
-const BASE_URL = {
-  development: "http://localhost:3000",
-  preview: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
-  production: "https://www.ray.so",
-}[process.env.NEXT_PUBLIC_VERCEL_ENV || "development"];
+import { BASE_URL } from "@/utils/common";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",

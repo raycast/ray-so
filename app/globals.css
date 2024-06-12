@@ -90,6 +90,52 @@ main {
   }
 }
 
+svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes flicker {
+  0%,
+  24% {
+    opacity: 1;
+  }
+  25%,
+  29% {
+    opacity: 0.5;
+  }
+  30%,
+  69% {
+    opacity: 1;
+  }
+  70%,
+  74% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 2000ms linear infinite;
+}
+
+kbd {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  color: hsla(0, 0%, 100%, 0.6);
+  font-weight: 400;
+}
+
 /* code images legacy */
 
 :root {

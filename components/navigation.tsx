@@ -57,11 +57,11 @@ export function Navigation() {
   const router = useRouter();
   const segments = useSelectedLayoutSegments();
   const segment = segments[0] || "(code)";
-  const showBackButton = segments.length > 1;
+  const showBackButton = segments.find((s) => s === "shared") ? segments.length > 1 : segments.length > 2;
   const activeLink = links.find((link) => (segment === "(code)" ? links[0] : link.href.includes(segment))) || links[0];
 
   return (
-    <nav className="flex items-center gap-3 h-[50px] pl-4 pr-5 bg-gray-2 text-white w-full fixed">
+    <nav className="flex items-center gap-3 h-[50px] pl-4 pr-5 bg-gray-2 text-white w-full fixed z-10">
       <div
         className={cn(
           "flex items-center gap-3 transition-transform ease-in-out",

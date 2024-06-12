@@ -1,0 +1,453 @@
+.main {
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding-left: 320px;
+
+    & .container {
+      padding-left: 0;
+    }
+  }
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  input[type="checkbox"] {
+    position: relative;
+    display: flex;
+    width: 28px;
+    height: 16px;
+    border-radius: 10px;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+
+    &::before {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      content: "";
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+
+    &:checked {
+      background: #a485ff;
+      &::before {
+        transform: translateX(12px);
+      }
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 320px;
+  padding: 24px;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.sidebarInner {
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  & [data-radix-scroll-area-viewport] > div {
+    height: 100%;
+  }
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+}
+
+.sidebarTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sidebarNavDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebarNavItem {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  gap: 8px;
+  transition: all 300ms ease;
+
+  &[data-active="true"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    outline: none;
+    transition: box-shadow 100ms;
+  }
+
+  &.disabled {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.label {
+  display: flex;
+  gap: 4px;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  margin-left: auto;
+  background-color: #2c1d4b;
+  color: #9261f9;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  user-select: none;
+}
+
+.container {
+  position: relative;
+  padding: 32px 16px;
+}
+
+.nav {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  height: 50px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background-color: rgb(17, 17, 17);
+  gap: 12px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transform: translateX(-32px);
+  transition: transform 200ms ease-in-out;
+
+  &.isOffset {
+    transform: translateX(0);
+  }
+}
+
+.backButton {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: background-color 100ms ease-in-out, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: default;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    outline: none;
+    transition: box-shadow 100ms;
+  }
+
+  &.isVisible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.navControls {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  gap: 8px;
+}
+
+.presets {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
+  gap: 16px;
+
+  @media (min-width: 640px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+.placeholder {
+  color: #ffffff60;
+}
+
+.trigger {
+  display: inline-flex;
+  height: 30px;
+  align-items: center;
+  padding: 0 4px 0 8px;
+  border: none;
+  border-radius: 6px;
+  appearance: none;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  gap: 8px;
+  letter-spacing: 0.1px;
+  outline: none;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &[data-variant="primary"] {
+    background: rgba(255, 99, 99, 0.15);
+    color: #ff6363;
+    &:not(:disabled):hover {
+      background: rgba(255, 99, 99, 0.3);
+    }
+    &:not(:disabled):focus {
+      box-shadow: 0 0 0 2px #191919, 0 0 0 4px rgba(255, 99, 99, 0.2);
+    }
+  }
+
+  &[data-variant="secondary"] {
+    color: hsla(0, 0%, 100%, 0.6);
+
+    &:not(:disabled):hover,
+    &[aria-expanded="true"] {
+      background-color: hsla(0, 0%, 100%, 0.1);
+    }
+    &:not(:disabled):focus {
+      box-shadow: 0 0 0 2px #191919, 0 0 0 4px hsla(0, 0%, 100%, 0.1);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.dialogTitle {
+  margin-bottom: 24px;
+  color: hsla(0, 0%, 100%, 0.5);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dialogDescription {
+  margin-bottom: 24px;
+  color: hsla(0, 0%, 100%, 0.6);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dialogButtons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hotkeys {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 4px;
+}
+
+.logo {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px 4px 4px;
+  margin-left: -4px;
+  gap: 12px;
+
+  h1 {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  &:hover {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &:focus-visible {
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    outline: none;
+    transition: box-shadow 100ms;
+  }
+}
+
+.logoIcon {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-image: linear-gradient(135deg, #ff6363, #d72a2a);
+  transition: transform 200ms ease-in-out;
+}
+
+.logoSeparator {
+  height: 30px;
+  border-right: 1px solid #282b35;
+}
+
+.logoOffset {
+  transform: translateX(36px);
+}
+
+.about {
+  & a {
+    color: white;
+    transition: color 150ms ease;
+
+    &:hover {
+      color: #ff6363;
+    }
+  }
+}
+
+.aboutTopContent {
+  display: grid;
+  gap: 24px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.aboutGlow {
+  position: absolute;
+  z-index: -1;
+  right: 20%;
+  bottom: 0;
+  left: 20%;
+  height: 100px;
+  border-radius: 80%;
+  animation: showGlow 1000ms ease-out forwards;
+  background: conic-gradient(
+    from 147.14deg at 50% 50%,
+    #0294fe -55.68deg,
+    #ff2136 113.23deg,
+    #9b4dff 195deg,
+    #0294fe 304.32deg,
+    #ff2136 473.23deg
+  );
+  filter: blur(60px);
+  opacity: 0.3;
+  transform: translateY(100%) scale(0.5);
+}
+
+@keyframes showGlow {
+  to {
+    opacity: 0.5;
+    transform: translateY(50%) scale(1);
+  }
+}
+
+.shortcuts {
+  margin-bottom: 32px;
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    gap: 8px;
+    letter-spacing: 0.1px;
+  }
+}
