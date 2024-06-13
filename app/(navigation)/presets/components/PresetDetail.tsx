@@ -171,7 +171,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
 
   return (
     <>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-4 gap-2 z-10">
+      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
         <ButtonGroup>
           <Button variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon /> Add to Raycast

@@ -45,9 +45,6 @@ export default function Presets({ models }: Props) {
     setEnableViewObserver(true);
   }, []);
 
-  const pageTitle = "Preset Explorer by Raycast";
-  const pageDescription = "Easily browse, share, and add presets to Raycast.";
-
   return (
     <>
       <div className={styles.main}>

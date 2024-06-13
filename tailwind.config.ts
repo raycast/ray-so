@@ -32,6 +32,9 @@ const config: Config = {
           12: "var(--gray-12)",
         },
       },
+      spacing: {
+        "scrollbar-offset": "calc(16px + var(--removed-body-scroll-bar-size, 0px))",
+      },
       keyframes: {
         slideDownAndFade: {
           from: { opacity: "0", transform: "translateY(-2px)" },

@@ -191,7 +191,7 @@ export function Prompts({ models }: Props) {
 
   return (
     <div>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-4 gap-2 z-10">
+      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
         {!isTouch ? (
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
@@ -431,7 +431,12 @@ function NavItem({ category }: { category: Category }) {
   const activeSection = useSectionInView();
 
   return (
-    <Link href={category.slug} shallow className={styles.sidebarNavItem} data-active={activeSection === category.slug}>
+    <Link
+      href={`/prompts/${category.slug}`}
+      shallow
+      className={styles.sidebarNavItem}
+      data-active={activeSection === category.slug}
+    >
       {category.icon ? <category.iconComponent /> : <StarsIcon />}
 
       {category.name}

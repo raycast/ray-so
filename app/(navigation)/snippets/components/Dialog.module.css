@@ -1,0 +1,86 @@
+.overlay {
+  position: fixed;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(0, 0, 0, 0.8);
+  inset: 0;
+}
+
+.content {
+  position: fixed;
+  z-index: 100;
+  top: 50px;
+  left: 20px;
+  width: 640px;
+  max-width: calc(100vw - 20px);
+  max-height: 80vh;
+  border-radius: 10px;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(31, 31, 31, 1);
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-centered="true"] {
+    top: 50%;
+    left: 50%;
+    width: 90vw;
+    max-width: 500px;
+    max-height: 85vh;
+    animation: contentShowCentered 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.inner {
+  padding: 25px;
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes contentShowCentered {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.close {
+  all: unset;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  color: hsla(0, 0%, 100%, 0.4);
+  transition: color 150ms ease;
+
+  &:hover {
+    color: hsla(0, 0%, 100%, 1);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}

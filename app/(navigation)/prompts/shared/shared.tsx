@@ -37,11 +37,6 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { Metadata } from "next";
 
 export function Shared({ prompts }: { prompts: Prompt[] }) {
-  const searchParams = useSearchParams();
-  if (!prompts) {
-    notFound();
-  }
-
   const router = useRouter();
 
   const [copied, setCopied] = React.useState(false);
@@ -176,7 +171,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
 
   return (
     <div>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-4 gap-2 z-10">
+      <div className="h-[50px] flex items-center justify-end fixed right-scrollbar-offset gap-2 z-10">
         <ButtonGroup>
           <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon /> Add to Raycast

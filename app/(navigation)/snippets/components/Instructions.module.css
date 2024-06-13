@@ -1,0 +1,138 @@
+.root {
+  padding: 24px 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  animation: showInstructions 500ms 200ms ease-out forwards;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 8px 24px -12px #000000;
+  line-height: 17px;
+  opacity: 0;
+  text-align: center;
+  transform: translateY(50%);
+
+  & button {
+    width: calc(100% - 24px - 24px);
+    justify-content: center;
+  }
+}
+
+@keyframes showInstructions {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.description {
+  padding: 0 16px;
+  margin-bottom: 24px;
+
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 18px;
+
+  & strong {
+    color: #ff6363;
+    font-weight: 500;
+  }
+}
+
+.skeletons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  gap: 4px;
+}
+
+.skeleton {
+  display: flex;
+  width: 40px;
+  height: 48px;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  gap: 5px;
+
+  &[data-selected="true"] {
+    animation: fadeBgToRed 100ms 2850ms ease-out forwards, fadeBorderToRed 100ms 2850ms ease-out forwards;
+  }
+}
+
+.skeletonPrimary {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.05);
+
+  [data-selected="true"] > & {
+    animation: fadeBgToRed 100ms 2850ms ease-out forwards;
+  }
+}
+
+.skeletonSecondary {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.05);
+
+  [data-selected="true"] > & {
+    animation: fadeBgToRed 100ms 2850ms ease-out forwards;
+  }
+}
+
+.skeletonCursor {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  animation: moveCursor 2000ms 1000ms ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeBgToRed {
+  to {
+    background: rgba(255, 99, 99, 0.1);
+  }
+}
+
+@keyframes fadeBorderToRed {
+  to {
+    border: 1px solid rgba(255, 99, 99, 0.3);
+  }
+}
+
+@keyframes moveCursor {
+  25% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(85px);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(85px) scale(0.8);
+  }
+  95% {
+    opacity: 1;
+    transform: translateX(85px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(85px) scale(1);
+  }
+}
