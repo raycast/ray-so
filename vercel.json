@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "app/api/image/route.ts": {
-      "memory": 3009
-    }
-  }
-}

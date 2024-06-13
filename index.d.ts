@@ -1,6 +1,5 @@
 declare module "yoga-wasm-web";
 declare module "satori/wasm";
-declare module "changedpi";
 
 declare module "*.svg" {
   import { FC, SVGProps } from "react";
