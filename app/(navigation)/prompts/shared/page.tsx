@@ -83,5 +83,6 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  return <Shared />;
+  const prompts = parseURLPrompt(searchParams.prompts as string);
+  return <Shared prompts={prompts} />;
 }

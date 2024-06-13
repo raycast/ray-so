@@ -36,15 +36,9 @@ import {
 import { Toast, ToastTitle } from "../components/Toast";
 import { Metadata } from "next";
 
-export function Shared() {
+export function Shared({ prompts }: { prompts: Prompt[] }) {
   const searchParams = useSearchParams();
-  const prompts = searchParams.getAll("prompts");
   if (!prompts) {
-    notFound();
-  }
-
-  const sharedPromptsInURL = parseURLPrompt(prompts);
-  if (!sharedPromptsInURL) {
     notFound();
   }
 
@@ -53,15 +47,21 @@ export function Shared() {
   const [copied, setCopied] = React.useState(false);
   const [actionsOpen, setActionsOpen] = React.useState(false);
 
-  const [selectedPrompts, setSelectedPrompts] = React.useState([...sharedPromptsInURL]);
+  const [selectedPrompts, setSelectedPrompts] = React.useState([...prompts]);
   const isTouch = React.useMemo(() => (typeof window !== "undefined" ? isTouchDevice() : false), []);
+
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const categories = [
     {
-      name: `${sharedPromptsInURL.length} ${sharedPromptsInURL.length > 1 ? "prompts" : "prompt"} shared with you`,
+      name: `${prompts.length} ${prompts.length > 1 ? "prompts" : "prompt"} shared with you`,
       isTemplate: true,
       isShared: true,
-      prompts: sharedPromptsInURL,
+      prompts: prompts,
       slug: "/shared",
       icon: StarsIcon,
     },
@@ -152,13 +152,13 @@ export function Shared() {
 
       if (key === "a" && metaKey) {
         event.preventDefault();
-        setSelectedPrompts([...sharedPromptsInURL]);
+        setSelectedPrompts([...prompts]);
       }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [sharedPromptsInURL, setActionsOpen, selectedPrompts, handleCopyData, handleDownload, handleAddToRaycast]);
+  }, [prompts, setActionsOpen, selectedPrompts, handleCopyData, handleDownload, handleAddToRaycast]);
 
   React.useEffect(() => {
     if (copied) {
@@ -168,9 +168,11 @@ export function Shared() {
     }
   }, [copied]);
 
-  if (sharedPromptsInURL.length === 0) {
+  if (prompts.length === 0) {
     return;
   }
+
+  console.log("selectedPrompts", selectedPrompts);
 
   return (
     <div>
@@ -246,7 +248,7 @@ export function Shared() {
                             <div
                               className={`${styles.item} selectable`}
                               key={prompt.id}
-                              data-selected={selectedPrompts.some((selectedPrompt) => selectedPrompt?.id === prompt.id)}
+                              data-selected={isSelected}
                               data-key={`${promptGroup.slug}-${index}`}
                             >
                               <div className={styles.promptTemplate}>
@@ -307,21 +309,4 @@ export function Shared() {
       </div>
     </div>
   );
-}
-
-function parseURLPrompt(promptQueryString?: string | string[]): Prompt[] {
-  if (!promptQueryString) {
-    return [];
-  }
-  let prompts;
-  if (Array.isArray(promptQueryString)) {
-    prompts = promptQueryString;
-  } else {
-    prompts = [promptQueryString];
-  }
-  return prompts.map((prompt) => ({
-    ...JSON.parse(prompt),
-    id: nanoid(),
-    isShared: true,
-  }));
 }
