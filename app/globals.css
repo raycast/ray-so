@@ -95,6 +95,12 @@ svg {
   height: 16px;
 }
 
+.selection-area {
+  border: 1px solid #56c2ff;
+  border-radius: 2px;
+  background: rgba(86, 194, 255, 0.15);
+}
+
 @keyframes flicker {
   0%,
   24% {

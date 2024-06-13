@@ -310,7 +310,6 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
           <CopyClipboardIcon /> {toastMessage}
         </ToastTitle>
       </Toast>
-      <ToastViewport />
     </>
   );
 }

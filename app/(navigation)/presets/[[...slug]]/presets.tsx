@@ -12,7 +12,6 @@ import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
 import { AiModel } from "../api";
 import Link from "next/link";
-import { ToastViewport } from "../components/Toast";
 
 type Props = {
   models: AiModel[];
@@ -118,7 +117,6 @@ export default function Presets({ models }: Props) {
           })}
         </div>
       </div>
-      <ToastViewport />
     </>
   );
 }

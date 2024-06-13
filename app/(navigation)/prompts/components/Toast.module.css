@@ -1,0 +1,68 @@
+.viewport {
+  position: fixed;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  list-style: none;
+  outline: none;
+  transition: background-color 200ms;
+
+  &:empty {
+    background-color: transparent;
+  }
+}
+
+.root {
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 20px;
+  background-color: #3b383b;
+
+  &[data-state="open"] {
+    animation: show 150ms ease-in;
+  }
+  &[data-state="closed"] {
+    animation: hide 150ms ease-in;
+  }
+  &[data-swipe="move"] {
+    transform: translateY(var(--radix-toast-swipe-move-y));
+  }
+  &[data-swipe="cancel"] {
+    transform: translateY(0);
+    transition: transform 200ms ease-out;
+  }
+  &[data-swipe="end"] {
+    animation: swipeOut 100ms ease-out;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes swipeOut {
+  from {
+    transform: translateY(var(--radix-toast-swipe-end-y));
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
