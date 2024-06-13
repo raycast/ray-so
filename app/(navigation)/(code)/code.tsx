@@ -43,7 +43,7 @@ export function Code() {
   return (
     <>
       <FrameContextStore>
-        <div className="h-[50px] flex items-center justify-end fixed right-scrollbar-offset gap-2 z-10">
+        <div className="h-[50px] flex items-center justify-end fixed right-scrollbar-offset top-0 gap-2 z-10">
           <Button variant="transparent" asChild>
             <a href="mailto:feedback+rayso@raycast.com">
               <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
