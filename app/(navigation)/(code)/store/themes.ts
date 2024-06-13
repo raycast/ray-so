@@ -502,8 +502,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "breeze",
     name: "Breeze",
     background: {
-      from: "rgba(207,47,152,1)",
-      to: "rgba(106,61,236,1)",
+      from: "#CF2F98",
+      to: "#6A3DEC",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -540,8 +540,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "candy",
     name: "Candy",
     background: {
-      from: "rgba(165,142,251,1)",
-      to: "rgba(233,191,248,1)",
+      from: "#A58EFB",
+      to: "#E9BFF8",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -578,8 +578,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "crimson",
     name: "Crimson",
     background: {
-      from: "rgba(255,99,99,1)",
-      to: "rgba(115,52,52,1)",
+      from: "#FF6363",
+      to: "#733434",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -616,8 +616,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "falcon",
     name: "Falcon",
     background: {
-      from: "rgba(189,227,236,1)",
-      to: "rgba(54,54,84,1)",
+      from: "#BDE3EC",
+      to: "#363654",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -654,8 +654,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "meadow",
     name: "Meadow",
     background: {
-      from: "rgba(89,212,153,1)",
-      to: "rgba(160,135,45,1)",
+      from: "#59D499",
+      to: "#A0872D",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -692,8 +692,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "midnight",
     name: "Midnight",
     background: {
-      from: "rgba(76,200,200,1)",
-      to: "rgba(32,32,51,1)",
+      from: "#4CC8C8",
+      to: "#202033",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -730,8 +730,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "raindrop",
     name: "Raindrop",
     background: {
-      from: "rgba(142,199,251,1)",
-      to: "rgba(28,85,170,1)",
+      from: "#8EC7FB",
+      to: "#1C55AA",
     },
     syntax: {
       light: convertToShikiTheme({
@@ -768,8 +768,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "sunset",
     name: "Sunset",
     background: {
-      from: "rgba(255,207,115,1)",
-      to: "rgba(255,122,47,1)",
+      from: "#FFCF73",
+      to: "#FF7A2F",
     },
     syntax: {
       light: convertToShikiTheme({
