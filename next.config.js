@@ -45,6 +45,21 @@ const nextConfig = {
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
+    // find the built-in loader
+    const imageLoaderRule = config.module.rules.find((rule) => rule.loader === "next-image-loader");
+    // make the loader ignore *.inline files
+    imageLoaderRule.exclude = /\.inline\.(png|jpg|svg)$/i;
+
+    // add a new URL loader for *.inline files
+    config.module.rules.push({
+      test: /\.inline\.(png|jpg|gif)$/i,
+      use: [
+        {
+          loader: "url-loader",
+        },
+      ],
+    });
+
     return config;
   },
   async rewrites() {

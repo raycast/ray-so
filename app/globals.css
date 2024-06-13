@@ -74,6 +74,16 @@ main {
   }
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+select {
+  appearance: none;
+}
+
 .buttonGroup {
   display: flex;
   align-items: center;
@@ -173,4 +183,64 @@ kbd {
   --ray-highlight-hover: rgba(255, 255, 255, 0.05);
   --ray-highlight: rgba(255, 255, 255, 0.1);
   --line-number: rgba(255, 255, 255, 0.2);
+}
+
+/* icon maker */
+.sketch-picker {
+  border: 1px solid #333333 !important;
+  border-radius: 12px !important;
+  background: #17191a !important;
+  box-shadow: 0px 8px 24px -8px #000000 !important;
+
+  color: rgba(255, 255, 255, 0.6) !important;
+  label {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  .flexbox-fix {
+    border-top: none !important;
+
+    & > div:has(input) {
+      padding: 0 !important;
+      input {
+        width: 100% !important;
+      }
+      &:nth-child(2) {
+        padding-left: 4px !important;
+      }
+      &:nth-child(3) {
+        padding-left: 2px !important;
+      }
+      &:nth-child(4) {
+        padding-left: 2px !important;
+      }
+    }
+
+    input {
+      font-size: 13px !important;
+      text-align: center;
+    }
+
+    &:last-child::before {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      content: "Recents";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+
+  &::before {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    content: "Pick color";
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
 }

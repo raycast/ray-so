@@ -1,0 +1,80 @@
+.newTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3.5px 8px;
+  border-radius: 6px;
+  background: rgba(255, 146, 23, 0.15);
+  color: #ff9217;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 3;
+  top: 0%;
+  left: calc(100% + 10px);
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 16px 8px 8px;
+  border-radius: 12px;
+  background: #2e3031;
+  box-shadow: 0px 8px 24px -12px #000000;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 12px;
+  line-height: 17px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+
+  /* 
+  The new tag was originally in the main page. But now that the component is extracted
+  to its own file, the code below wouldn't work again as CSS modules are scoped by default.
+  If used again in the future, there would be two ways to solve this:
+  1. Inline the new tag again where it's used
+  2. Use something like HoverCard or Popover from Radix UI to benefit from the Portal feature
+  */
+
+  /* .iconsAction:hover & {
+    display: flex;
+  } */
+}
+
+.pulsation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  animation: pulsate 2s ease-in-out infinite;
+  background: #ff9217;
+  /* box-shadow: 0px 0px 0px 10px rgba(255, 146, 23, 0.1), 0px 0px 0px 4px rgba(255, 146, 23, 0.2); */
+  cursor: pointer;
+  transform: translate(50%, -50%);
+
+  .iconsAction:hover & {
+    animation-play-state: paused;
+  }
+
+  @keyframes pulsate {
+    0% {
+      box-shadow: 0px 0px 0px 0px rgba(255, 146, 23, 0.25), 0px 0px 0px 0px rgba(255, 146, 23, 0.5);
+      transform: translate(50%, -50%) scale(0.95);
+    }
+
+    70% {
+      box-shadow: 0px 0px 0px 10px rgba(255, 146, 23, 0), 0px 0px 0px 4px rgba(255, 146, 23, 0);
+      transform: translate(50%, -50%) scale(1);
+    }
+
+    100% {
+      box-shadow: 0px 0px 0px 0px rgba(255, 146, 23, 0), 0px 0px 0px 0px rgba(255, 146, 23, 0);
+      transform: translate(50%, -50%) scale(0.95);
+    }
+  }
+}
