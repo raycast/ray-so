@@ -1,0 +1,21 @@
+{
+  "author": "Jahir",
+  "authorUsername": "jahir",
+  "version": "1",
+  "name": "Jahir Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#EBF0FB",
+    "backgroundSecondary": "#D7E1F7",
+    "text": "#0B152B",
+    "selection": "#3867D6",
+    "loader": "#3867D6",
+    "red": "#EB3B5A",
+    "orange": "#FA8231",
+    "yellow": "#E29C09",
+    "green": "#20BF6B",
+    "blue": "#2D98DA",
+    "purple": "#6C5CE7",
+    "magenta": "#F368E0"
+  }
+}

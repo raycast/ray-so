@@ -1,0 +1,21 @@
+{
+  "author": "Daniel Hollick",
+  "authorUsername": "danhollick",
+  "version": "1",
+  "name": "Solarised",
+  "appearance": "light",
+  "colors": {
+    "background": "#F0ECCF",
+    "backgroundSecondary": "#F0F0F0",
+    "text": "#000000",
+    "selection": "#5B5000",
+    "loader": "#F1F400",
+    "red": "#DA404C",
+    "orange": "#D98F26",
+    "yellow": "#E4C900",
+    "green": "#6CD04D",
+    "blue": "#0059C8",
+    "purple": "#8B25FF",
+    "magenta": "#B624C8"
+  }
+}

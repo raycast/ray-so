@@ -1,0 +1,21 @@
+{
+  "author": "Per Tikær",
+  "authorUsername": "per_tikaer",
+  "version": "1",
+  "name": "Terminal",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#000000",
+    "text": "#4AF626",
+    "selection": "#4AF626",
+    "loader": "#4AF626",
+    "red": "#4AF626",
+    "orange": "#4AF626",
+    "yellow": "#4AF626",
+    "green": "#4AF626",
+    "blue": "#4AF626",
+    "purple": "#4AF626",
+    "magenta": "#4AF626"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Per Tikær",
+  "authorUsername": "per_tikaer",
+  "version": "1",
+  "name": "Gruvbox",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282828",
+    "backgroundSecondary": "#282828",
+    "text": "#EBDBB2",
+    "selection": "#A89984",
+    "loader": "#EBDBB2",
+    "red": "#CC241D",
+    "orange": "#D65D0E",
+    "yellow": "#D79921",
+    "green": "#98971A",
+    "blue": "#458588",
+    "purple": "#D3869B",
+    "magenta": "#B16286"
+  }
+}

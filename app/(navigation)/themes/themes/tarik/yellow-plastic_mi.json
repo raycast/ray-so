@@ -1,0 +1,21 @@
+{
+  "author": "Tarik",
+  "authorUsername": "tarik",
+  "version": "1",
+  "name": "Yellow Plastic MI",
+  "appearance": "light",
+  "colors": {
+    "background": "#DCE0B8",
+    "backgroundSecondary": "#DCE0B8",
+    "text": "#0D0D0D",
+    "selection": "#777A64",
+    "loader": "#A862CD",
+    "red": "#F50A0A",
+    "orange": "#F5600A",
+    "yellow": "#E0A200",
+    "green": "#07BA65",
+    "blue": "#0A7FF5",
+    "purple": "#470AF5",
+    "magenta": "#F50AA3"
+  }
+}

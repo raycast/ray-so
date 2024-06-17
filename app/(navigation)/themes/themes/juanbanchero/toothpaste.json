@@ -1,0 +1,21 @@
+{
+  "author": "Juan Banchero",
+  "authorUsername": "JuanBanchero",
+  "version": "1",
+  "name": "Toothpaste",
+  "appearance": "dark",
+  "colors": {
+    "background": "#222E33",
+    "backgroundSecondary": "#222E33",
+    "text": "#DAE3E8",
+    "selection": "#739AAB",
+    "loader": "#FFFFFF",
+    "red": "#CC6666",
+    "orange": "#C88E4B",
+    "yellow": "#DBCD7F",
+    "green": "#9DC777",
+    "blue": "#769EB3",
+    "purple": "#9B82C9",
+    "magenta": "#C5487A"
+  }
+}

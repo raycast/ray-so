@@ -1,0 +1,21 @@
+{
+  "author": "Igor Bedesqui",
+  "authorUsername": "bdsqqq",
+  "version": "1",
+  "name": "Vesper dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#101010",
+    "backgroundSecondary": "#101010",
+    "text": "#F2F2F2",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#F84E4E",
+    "orange": "#FFC799",
+    "yellow": "#FFCC47",
+    "green": "#99FFE4",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

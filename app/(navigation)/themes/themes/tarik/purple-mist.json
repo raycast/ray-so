@@ -1,0 +1,21 @@
+{
+  "author": "Tarik",
+  "authorUsername": "tarik",
+  "version": "1",
+  "name": "Purple Mist",
+  "appearance": "dark",
+  "colors": {
+    "background": "#553B90",
+    "backgroundSecondary": "#25193E",
+    "text": "#FAF6DC",
+    "selection": "#FFBC9F",
+    "loader": "#ECFB23",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

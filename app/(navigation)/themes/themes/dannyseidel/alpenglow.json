@@ -1,0 +1,21 @@
+{
+  "author": "Danny Seidel",
+  "authorUsername": "DannySeidel",
+  "version": "1",
+  "name": "Alpenglow",
+  "appearance": "dark",
+  "colors": {
+    "background": "#003F71",
+    "backgroundSecondary": "#9E0000",
+    "text": "#EEEEEE",
+    "selection": "#FF7C43",
+    "loader": "#5751A1",
+    "red": "#FF1111",
+    "orange": "#F86D1C",
+    "yellow": "#FFC839",
+    "green": "#23F893",
+    "blue": "#1686F6",
+    "purple": "#7546F8",
+    "magenta": "#F847BA"
+  }
+}

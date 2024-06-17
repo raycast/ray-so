@@ -1,0 +1,21 @@
+{
+  "author": "Kevin Ridgway",
+  "authorUsername": "kevin_ridgway",
+  "version": "1",
+  "name": "SynthGreen '86 Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#F6F6F6",
+    "backgroundSecondary": "#F6F6F6",
+    "text": "#646464",
+    "selection": "#00FF61",
+    "loader": "#42E622",
+    "red": "#FF9C72",
+    "orange": "#FF8B39",
+    "yellow": "#D2CF38",
+    "green": "#85B954",
+    "blue": "#7597B4",
+    "purple": "#7C65BD",
+    "magenta": "#C770C6"
+  }
+}

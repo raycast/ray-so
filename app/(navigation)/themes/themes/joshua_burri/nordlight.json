@@ -1,0 +1,21 @@
+{
+  "author": "Joshua Burri",
+  "authorUsername": "joshua_burri",
+  "version": "1",
+  "name": "Nord Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#ECEFF4",
+    "backgroundSecondary": "#D8DEE9",
+    "text": "#2E3440",
+    "selection": "#2E3440",
+    "loader": "#2E3440",
+    "red": "#BF616A",
+    "orange": "#D08D70",
+    "yellow": "#EBCB8B",
+    "green": "#A3BE8C",
+    "blue": "#5E81AC",
+    "purple": "#CD97C3",
+    "magenta": "#C766A5"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Catppuccin",
+  "authorUsername": "catppuccin-org",
+  "version": "1",
+  "name": "Catppuccin Macchiato",
+  "appearance": "dark",
+  "colors": {
+    "background": "#24273A",
+    "backgroundSecondary": "#24273A",
+    "text": "#CAD3F5",
+    "selection": "#6E738D",
+    "loader": "#8087A2",
+    "red": "#ED8796",
+    "orange": "#F5A97F",
+    "yellow": "#EED49F",
+    "green": "#A6DA95",
+    "blue": "#8AADF4",
+    "purple": "#B7BDF8",
+    "magenta": "#C6A0F6"
+  }
+}

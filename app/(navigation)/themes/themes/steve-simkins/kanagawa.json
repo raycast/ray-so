@@ -1,0 +1,21 @@
+{
+  "author": "Steve Simkins",
+  "authorUsername": "steve_simkins",
+  "version": "1",
+  "name": "Kanagawa",
+  "appearance": "dark",
+  "colors": {
+    "background": "#1F1F27",
+    "backgroundSecondary": "#1F1F27",
+    "text": "#F2F2F2",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#C34043",
+    "orange": "#FFA066",
+    "yellow": "#DCA561",
+    "green": "#76946A",
+    "blue": "#7FB4CA",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

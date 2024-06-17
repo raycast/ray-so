@@ -1,0 +1,21 @@
+{
+  "author": "Sean Rose",
+  "authorUsername": "sean_rose",
+  "version": "1",
+  "name": "Tokyo Neon",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#340087",
+    "text": "#FFFFFF",
+    "selection": "#FF4081",
+    "loader": "#00E5FF",
+    "red": "#FF1744",
+    "orange": "#FF9100",
+    "yellow": "#FFEA00",
+    "green": "#69F0AE",
+    "blue": "#00B0FF",
+    "purple": "#5C6BC0",
+    "magenta": "#F50057"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Joshua Burri",
+  "authorUsername": "joshua_burri",
+  "version": "1",
+  "name": "Nord Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#2E3440",
+    "backgroundSecondary": "#3B4252",
+    "text": "#ECEFF4",
+    "selection": "#ECEFF4",
+    "loader": "#ECEFF4",
+    "red": "#BF616A",
+    "orange": "#D08D70",
+    "yellow": "#EBCB8B",
+    "green": "#A3BE8C",
+    "blue": "#5E81AC",
+    "purple": "#CD97C3",
+    "magenta": "#C766A5"
+  }
+}

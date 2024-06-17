@@ -1,0 +1,21 @@
+{
+  "author": "Wes Bos",
+  "authorUsername": "wesbos",
+  "version": "1",
+  "name": "Cobalt 2",
+  "appearance": "dark",
+  "colors": {
+    "background": "#065085",
+    "backgroundSecondary": "#065085",
+    "text": "#FFFEFA",
+    "selection": "#FFFFFF",
+    "loader": "#FFC600",
+    "red": "#FF5757",
+    "orange": "#FF9D00",
+    "yellow": "#FFC600",
+    "green": "#ACF4A5",
+    "blue": "#83C7FB",
+    "purple": "#A496FF",
+    "magenta": "#FF5AB2"
+  }
+}

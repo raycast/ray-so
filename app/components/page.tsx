@@ -15,6 +15,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
+import ThemeSwitch from "@/components/theme-switch";
 import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
 
 export default function Components() {
@@ -62,14 +63,14 @@ export default function Components() {
       <div className="flex flex-col gap-4 items-start">
         <h2 className="font-medium">Button</h2>
         <div className="flex gap-2 items-center flex-wrap">
-          <Button size="medium">medium secondary button</Button>
-          <Button size="large">large secondary button</Button>
           <Button size="medium" variant="primary">
             medium primary button
           </Button>
           <Button size="large" variant="primary">
             large primary button
           </Button>
+          <Button size="medium">medium secondary button</Button>
+          <Button size="large">large secondary button</Button>
           <Button size="medium" variant="transparent">
             medium transparent button
           </Button>

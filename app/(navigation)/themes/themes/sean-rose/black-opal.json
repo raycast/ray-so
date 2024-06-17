@@ -1,0 +1,21 @@
+{
+  "author": "Sean Rose",
+  "authorUsername": "sean_rose",
+  "version": "1",
+  "name": "Black Opal",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000015",
+    "backgroundSecondary": "#003399",
+    "text": "#FFFFFF",
+    "selection": "#AE0DFF",
+    "loader": "#00FAFF",
+    "red": "#FF0000",
+    "orange": "#FF7F00",
+    "yellow": "#FFFF00",
+    "green": "#00FF00",
+    "blue": "#0064FF",
+    "purple": "#9932CD",
+    "magenta": "#EE82EE"
+  }
+}

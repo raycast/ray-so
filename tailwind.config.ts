@@ -14,8 +14,8 @@ const config: Config = {
     extend: {
       colors: {
         background: "hsl(var(--background) / <alpha-value>)",
-        black: "hsl(var(--black) / <alpha-value>)",
-        white: "hsl(var(--white) / <alpha-value>)",
+        // black: "hsl(var(--black) / <alpha-value>)",
+        // white: "hsl(var(--white) / <alpha-value>)",
         brand: "hsl(var(--brand) / <alpha-value>)",
         gray: {
           1: "var(--gray-1)",
@@ -32,8 +32,19 @@ const config: Config = {
           12: "var(--gray-12)",
         },
       },
+      screens: {
+        tall: { raw: "(min-height: 840px)" },
+        tallx2: { raw: "(min-height: 1000px)" },
+        desktop: { raw: "(min-height: 840px) and (min-width: 960px)" },
+      },
       spacing: {
         "scrollbar-offset": "calc(16px + var(--removed-body-scroll-bar-size, 0px))",
+      },
+      borderRadius: {
+        inherit: "inherit",
+      },
+      fontSize: {
+        xxs: "11px",
       },
       keyframes: {
         slideDownAndFade: {

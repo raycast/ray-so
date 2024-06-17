@@ -1,0 +1,21 @@
+{
+  "author": "Thiago Holanda",
+  "authorUsername": "tholanda",
+  "version": "1",
+  "name": "Yankees Blue",
+  "appearance": "dark",
+  "colors": {
+    "background": "#4462AF",
+    "backgroundSecondary": "#223344",
+    "text": "#D7F0F4",
+    "selection": "#6688FF",
+    "loader": "#47FFFF",
+    "red": "#ED5959",
+    "orange": "#ED8659",
+    "yellow": "#EDD559",
+    "green": "#47FF91",
+    "blue": "#1A9FFF",
+    "purple": "#7759ED",
+    "magenta": "#ED59B2"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Daniel",
+  "authorUsername": "daniel",
+  "version": "1",
+  "name": "Purple Puke",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#2B1F36",
+    "text": "#E4C6FF",
+    "selection": "#E0ABFF",
+    "loader": "#9430FF",
+    "red": "#F50A0A",
+    "orange": "#F5600A",
+    "yellow": "#E0A200",
+    "green": "#07BA65",
+    "blue": "#0A7FF5",
+    "purple": "#B00AFF",
+    "magenta": "#F50AA3"
+  }
+}

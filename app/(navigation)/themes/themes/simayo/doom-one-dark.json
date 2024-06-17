@@ -1,0 +1,21 @@
+{
+  "author": "Simon",
+  "authorUsername": "simayo",
+  "version": "1",
+  "name": "Doom One Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282C34",
+    "backgroundSecondary": "#282C34",
+    "text": "#BBC2CF",
+    "selection": "#BBC2CF",
+    "loader": "#BBC2CF",
+    "red": "#FF5458",
+    "orange": "#F88D4E",
+    "yellow": "#ECBE7B",
+    "green": "#98BE65",
+    "blue": "#51AFEF",
+    "purple": "#C678DD",
+    "magenta": "#C678DD"
+  }
+}

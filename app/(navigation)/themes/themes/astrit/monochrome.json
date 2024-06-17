@@ -1,0 +1,21 @@
+{
+  "author": "Astrit",
+  "authorUsername": "astrit",
+  "version": "1",
+  "name": "Monochrome",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#000000",
+    "text": "#F2F2F2",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#FFFFFF",
+    "orange": "#FFFFFF",
+    "yellow": "#FFFFFF",
+    "green": "#FFFFFF",
+    "blue": "#FFFFFF",
+    "purple": "#FFFFFF",
+    "magenta": "#FFFFFF"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Macko++",
+  "authorUsername": "MackoMaxo",
+  "version": "1",
+  "name": "Atom One Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282C34",
+    "backgroundSecondary": "#282C34",
+    "text": "#C0C7D6",
+    "selection": "#528BFF",
+    "loader": "#528BFF",
+    "red": "#BE6A46",
+    "orange": "#D19A66",
+    "yellow": "#E5C07B",
+    "green": "#98C379",
+    "blue": "#61AFEF",
+    "purple": "#C678DD",
+    "magenta": "#56B6C2"
+  }
+}

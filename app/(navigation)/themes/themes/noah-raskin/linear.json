@@ -1,0 +1,21 @@
+{
+  "author": "Noah Raskin",
+  "authorUsername": "noahraskin",
+  "version": "1",
+  "name": "Linear Theme",
+  "appearance": "dark",
+  "colors": {
+    "background": "#080A1D",
+    "backgroundSecondary": "#080A1D",
+    "text": "#F2F2F2",
+    "selection": "#767AF2",
+    "loader": "#575BC7",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Daniel Hollick",
+  "authorUsername": "danhollick",
+  "version": "1",
+  "name": "Atom One Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#FAFAFA",
+    "backgroundSecondary": "#E4E4E4",
+    "text": "#3E4047",
+    "selection": "#457CEF",
+    "loader": "#457CEF",
+    "red": "#E24343",
+    "orange": "#E2612A",
+    "yellow": "#CAC235",
+    "green": "#56A156",
+    "blue": "#1485BA",
+    "purple": "#642EA4",
+    "magenta": "#A42EA2"
+  }
+}

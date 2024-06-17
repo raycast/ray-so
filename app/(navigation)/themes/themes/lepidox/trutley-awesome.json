@@ -1,0 +1,21 @@
+{
+  "author": "Lepidox",
+  "authorUsername": "lepidox",
+  "version": "1",
+  "name": "Turtley Awesome",
+  "appearance": "dark",
+  "colors": {
+    "background": "#003C5D",
+    "backgroundSecondary": "#006755",
+    "text": "#E0EAF5",
+    "selection": "#E0EAF5",
+    "loader": "#00E1BA",
+    "red": "#ED5959",
+    "orange": "#ED8659",
+    "yellow": "#EDD559",
+    "green": "#47FF91",
+    "blue": "#1A9FFF",
+    "purple": "#7759ED",
+    "magenta": "#ED59B2"
+  }
+}

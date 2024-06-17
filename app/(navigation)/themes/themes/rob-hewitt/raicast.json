@@ -1,0 +1,21 @@
+{
+  "author": "Rob Hewitt",
+  "authorUsername": "rob_hewitt",
+  "version": "1",
+  "name": "RAIcast",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#7D3030",
+    "text": "#F2F2F2",
+    "selection": "#FFAEAE",
+    "loader": "#FF6363",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

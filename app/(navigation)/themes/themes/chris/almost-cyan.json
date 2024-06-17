@@ -1,0 +1,21 @@
+{
+  "author": "Chris",
+  "authorUsername": "chris",
+  "version": "1",
+  "name": "Almost Cyan",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000A42",
+    "backgroundSecondary": "#004282",
+    "text": "#FFFFFF",
+    "selection": "#A8C1FF",
+    "loader": "#00E2FF",
+    "red": "#F84141",
+    "orange": "#FF6B17",
+    "yellow": "#FEFF7F",
+    "green": "#63BA89",
+    "blue": "#6AB7FB",
+    "purple": "#C58AFA",
+    "magenta": "#FF5DB3"
+  }
+}

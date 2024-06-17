@@ -1,0 +1,21 @@
+{
+  "author": "Iliyan Kupenov",
+  "authorUsername": "ikupenov",
+  "version": "1",
+  "name": "Sonoma Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#272727",
+    "backgroundSecondary": "#272727",
+    "text": "#FFFFFF",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#EB7745",
+    "orange": "#F2A33C",
+    "yellow": "#F9D84A",
+    "green": "#6BD45F",
+    "blue": "#3B82F7",
+    "purple": "#B260EA",
+    "magenta": "#EB4B63"
+  }
+}

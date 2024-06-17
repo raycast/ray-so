@@ -1,0 +1,21 @@
+{
+  "author": "Jag_k",
+  "authorUsername": "jag_k",
+  "version": "1",
+  "name": "Raycast Total Grey",
+  "appearance": "dark",
+  "colors": {
+    "background": "#030303",
+    "backgroundSecondary": "#030303",
+    "text": "#FFFFFF",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#868686",
+    "orange": "#9B9B9B",
+    "yellow": "#B0B0B0",
+    "green": "#A4A4A4",
+    "blue": "#8C8C8C",
+    "purple": "#959595",
+    "magenta": "#ABABAB"
+  }
+}

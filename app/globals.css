@@ -22,12 +22,14 @@
     --gray-11: hsla(0, 0%, 70.588%);
     --gray-12: hsla(0, 0%, 93.333%);
   }
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsla(0, 0%, 100%, 0.2) 0, hsla(0, 0%, 100%, 0) 100%);
+  }
 }
 
 .light {
   --background: 0 0 94;
-  --white: 0 0 0;
-  --black: 0 0 100;
   --brand: 0 100 69;
 
   --gray-1: hsla(0, 0%, 92.549%);
@@ -42,6 +44,11 @@
   --gray-10: hsla(0, 0%, 42.745%);
   --gray-11: hsla(0, 0%, 31.373%);
   --gray-12: hsla(0, 0%, 12.549%);
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, rgba(0, 0, 0, 0.2) 0, transparent 100%);
+    /* color: black; */
+  }
 }
 
 html,
@@ -54,7 +61,7 @@ body {
 }
 
 body {
-  @apply bg-background text-white;
+  @apply bg-background text-gray-12;
 }
 
 a {
@@ -243,4 +250,120 @@ kbd {
     font-weight: 400;
     line-height: 16px;
   }
+}
+
+/* theme explorer */
+
+@keyframes nightRider {
+  0%,
+  100% {
+    left: -2%;
+    transform: translateX(0%);
+  }
+  50% {
+    left: 102%;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  24% {
+    opacity: 1;
+  }
+  25%,
+  29% {
+    opacity: 0.5;
+  }
+  30%,
+  69% {
+    opacity: 1;
+  }
+  70%,
+  74% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: scaleX(0);
+  }
+  30% {
+    transform: scaleX(0.3);
+  }
+  50% {
+    transform: scaleX(0.3);
+  }
+  70% {
+    transform: scaleX(0.7);
+  }
+  75% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+[data-loader] {
+  position: fixed;
+  z-index: 1000;
+  top: 50px;
+  width: 100vw;
+  height: calc(100dvh - 50px);
+  inset: 0;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 500ms 250ms ease-in-out;
+  will-change: opacity;
+
+  .dark &,
+  .light & {
+    opacity: 0;
+  }
+}
+
+[data-loader-progress] {
+  animation: load 500ms linear forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+[data-loader] svg {
+  animation: flicker 1000ms linear;
+}
+
+.dark [data-hide-on-theme="dark"],
+.light [data-hide-on-theme="light"] {
+  display: none;
+}
+
+.dark [data-theme-toggle="dark"] {
+  @apply bg-white/10;
+}
+
+.light [data-theme-toggle="light"] {
+  @apply bg-black/10;
+}
+
+[data-wallpaper] {
+  transition: opacity 200ms ease-in-out;
+}
+
+.light [data-wallpaper="dark"] {
+  opacity: 0 !important;
+}
+.dark [data-wallpaper="light"] {
+  opacity: 0 !important;
+}
+
+[data-raycast] {
+  transition: all 200ms ease-in-out;
 }

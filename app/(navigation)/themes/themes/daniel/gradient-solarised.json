@@ -1,0 +1,21 @@
+{
+  "author": "Daniel",
+  "authorUsername": "daniel",
+  "version": "1",
+  "name": "Gradient Solarised",
+  "appearance": "light",
+  "colors": {
+    "background": "#FDFF73",
+    "backgroundSecondary": "#E99C40",
+    "text": "#000000",
+    "selection": "#000000",
+    "loader": "#000000",
+    "red": "#FD3131",
+    "orange": "#F2894C",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

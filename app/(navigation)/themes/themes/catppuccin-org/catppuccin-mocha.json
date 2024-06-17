@@ -1,0 +1,21 @@
+{
+  "author": "Catppuccin",
+  "authorUsername": "catppuccin-org",
+  "version": "1",
+  "name": "Catppuccin Mocha",
+  "appearance": "dark",
+  "colors": {
+    "background": "#1E1E2E",
+    "backgroundSecondary": "#1E1E2E",
+    "text": "#CDD6F4",
+    "selection": "#6C7086",
+    "loader": "#7F849C",
+    "red": "#F38BA8",
+    "orange": "#FAB387",
+    "yellow": "#F9E2AF",
+    "green": "#A6E3A1",
+    "blue": "#89B4FA",
+    "purple": "#B4BEFE",
+    "magenta": "#CBA6F7"
+  }
+}

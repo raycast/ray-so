@@ -1,0 +1,21 @@
+{
+  "author": "Daniel Hollick",
+  "authorUsername": "danhollick",
+  "version": "1",
+  "name": "Submarine",
+  "appearance": "dark",
+  "colors": {
+    "background": "#001068",
+    "backgroundSecondary": "#00685E",
+    "text": "#EAFBFF",
+    "selection": "#00FFEA",
+    "loader": "#D6AEFF",
+    "red": "#F87E7E",
+    "orange": "#FFB765",
+    "yellow": "#FEFF7F",
+    "green": "#7EECAE",
+    "blue": "#72BAFB",
+    "purple": "#CE9DFA",
+    "magenta": "#FFA2D4"
+  }
+}

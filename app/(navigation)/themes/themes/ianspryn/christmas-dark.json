@@ -1,0 +1,21 @@
+{
+  "author": "Ian Spryn",
+  "authorUsername": "ianspryn",
+  "version": "1",
+  "name": "Christmas Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#287E54",
+    "backgroundSecondary": "#007E40",
+    "text": "#D5FFEA",
+    "selection": "#F84E4E",
+    "loader": "#F84E4E",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

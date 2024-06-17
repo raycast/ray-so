@@ -1,0 +1,21 @@
+{
+  "author": "Dmytro Ulianov",
+  "authorUsername": "ulianov",
+  "version": "1",
+  "name": "Vesper",
+  "appearance": "dark",
+  "colors": {
+    "background": "#101010",
+    "backgroundSecondary": "#101010",
+    "text": "#FFFFFF",
+    "selection": "#FFC799",
+    "loader": "#FFC799",
+    "red": "#FF8282",
+    "orange": "#FFC799",
+    "yellow": "#FFF499",
+    "green": "#99FFE4",
+    "blue": "#99BDFF",
+    "purple": "#E899FF",
+    "magenta": "#FF83CE"
+  }
+}

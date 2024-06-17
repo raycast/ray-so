@@ -71,7 +71,7 @@ export function Navigation() {
         <Button
           asChild
           className={cn(
-            "rounded-full shadow-none w-6 h-6 bg-gray-4 hover:bg-gray-5 text-white",
+            "rounded-full shadow-none w-6 h-6 bg-gray-4 hover:bg-gray-5 text-gray-12",
             showBackButton ? "opacity-100 scale-100" : "opacity-0 scale-75"
           )}
         >
@@ -87,7 +87,7 @@ export function Navigation() {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="transparent" className="text-white py-1 pl-1 pr-2 gap-2 data-[state=open]:bg-gray-4">
+            <Button variant="transparent" className="py-1 pl-1 pr-2 gap-2 data-[state=open]:bg-gray-4 text-gray-12">
               {activeLink.icon && <activeLink.icon className="w-6 h-6" />}
               <span className="text-[15px] font-medium">{activeLink.label}</span>
               <ChevronDownIcon className="w-4 h-4" />
@@ -100,7 +100,7 @@ export function Navigation() {
                   {link.icon && <link.icon className="w-8 h-8" />}
                   <div className="flex flex-col leading-none gap-1">
                     <span className="text-[15px] font-medium">{link.label}</span>
-                    <span className="text-[13px] text-white/40">{link.description}</span>
+                    <span className="text-[13px] text-gray-9">{link.description}</span>
                   </div>
                 </div>
               </DropdownMenuItem>

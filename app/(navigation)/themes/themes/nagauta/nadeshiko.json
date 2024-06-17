@@ -1,0 +1,21 @@
+{
+  "appearance": "light",
+  "name": "Nadeshiko",
+  "version": "1",
+  "author": "M.Y.",
+  "authorUsername": "nagauta",
+  "colors": {
+    "background": "#DC9FB4",
+    "backgroundSecondary": "#DC9FB4",
+    "text": "#000000",
+    "selection": "#DC2F6A",
+    "loader": "#000000",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}
