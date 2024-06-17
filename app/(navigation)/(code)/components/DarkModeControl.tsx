@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { darkModeAtom } from "../store/themes";
 import useHotkeys from "../util/useHotkeys";
 import ControlContainer from "./ControlContainer";
-import Toggle from "./Toggle";
+import { Switch } from "@/components/switch";
 
 const BackgroundControl: React.FC = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
@@ -14,7 +14,7 @@ const BackgroundControl: React.FC = () => {
 
   return (
     <ControlContainer title="Dark mode">
-      <Toggle checked={darkMode} onCheckedChange={setDarkMode} />
+      <Switch checked={darkMode} onCheckedChange={setDarkMode} />
     </ControlContainer>
   );
 };

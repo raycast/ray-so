@@ -53,6 +53,7 @@ import { BASE_URL } from "@/utils/common";
 import { ButtonGroup } from "@/components/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
+import { Switch } from "@/components/switch";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -1276,17 +1277,30 @@ export const IconGenerator = () => {
                   <div>
                     <label className={cn(styles.formItem)}>
                       <span>Radial glare</span>
-                      <input
+                      <Switch
                         name="backgroundRadialGlare"
-                        type="checkbox"
-                        min={0}
                         checked={settings.backgroundRadialGlare}
+                        onCheckedChange={(checked) =>
+                          pushNewSettings({
+                            backgroundRadialGlare: checked,
+                          })
+                        }
+                        className="focus-visible:ring-offset-gray-3"
                       />
                     </label>
 
                     <label className={cn(styles.formItem)}>
                       <span>Noise texture</span>
-                      <input name="backgroundNoiseTexture" type="checkbox" checked={settings.backgroundNoiseTexture} />
+                      <Switch
+                        name="backgroundNoiseTexture"
+                        checked={settings.backgroundNoiseTexture}
+                        onCheckedChange={(checked) =>
+                          pushNewSettings({
+                            backgroundNoiseTexture: checked,
+                          })
+                        }
+                        className="focus-visible:ring-offset-gray-3"
+                      />
                     </label>
                     <label className={cn(styles.formItem, !settings.backgroundNoiseTexture && styles.disabled)}>
                       <span>Noise opacity</span>

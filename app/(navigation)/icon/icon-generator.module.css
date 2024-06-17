@@ -42,36 +42,6 @@
     padding: 0px 16px !important; /*TODO: fix padding change after production build?*/
   }
 
-  input[type="checkbox"] {
-    position: relative;
-    display: flex;
-    width: 32px;
-    height: 18px;
-    border-radius: 10px;
-    appearance: none;
-    background: rgba(255, 255, 255, 0.2);
-    transition: background-color 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    &::before {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #fff;
-      content: "";
-      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    &:checked {
-      background: #56c2ff;
-      &::before {
-        transform: translateX(14px);
-      }
-    }
-  }
-
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     margin: 0;

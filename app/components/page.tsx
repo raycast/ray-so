@@ -15,7 +15,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
-import ThemeSwitch from "@/components/theme-switch";
+import { Switch } from "@/components/switch";
 import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
 
 export default function Components() {
@@ -104,6 +104,10 @@ export default function Components() {
             </DropdownMenuContent>
           </DropdownMenu>
         </ButtonGroup>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Switch</h2>
+        <Switch defaultChecked />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import { showBackgroundAtom } from "../store";
 import useHotkeys from "../util/useHotkeys";
 import ControlContainer from "./ControlContainer";
-import Toggle from "./Toggle";
+import { Switch } from "@/components/switch";
 
 const BackgroundControl: React.FC = () => {
   const [showBackground, setShowBackground] = useAtom(showBackgroundAtom);
@@ -14,7 +14,7 @@ const BackgroundControl: React.FC = () => {
 
   return (
     <ControlContainer title="Background">
-      <Toggle checked={showBackground} onCheckedChange={setShowBackground} />
+      <Switch checked={showBackground} onCheckedChange={setShowBackground} />
     </ControlContainer>
   );
 };
