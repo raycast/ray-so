@@ -28,35 +28,35 @@ const inter500 = fetch(new URL(`../assets/Inter-Medium.woff`, import.meta.url)).
 const inter600 = fetch(new URL(`../assets/Inter-SemiBold.woff`, import.meta.url)).then((res) => res.arrayBuffer());
 const inter700 = fetch(new URL(`../assets/Inter-Bold.woff`, import.meta.url)).then((res) => res.arrayBuffer());
 
-const lightGridImage1 = fetch(new URL(`./assets/grid-item-1-light.jpg`, import.meta.url)).then((res) =>
+const lightGridImage1 = fetch(new URL(`../assets/grid-item-1-light.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const lightGridImage2 = fetch(new URL(`./assets/grid-item-2-light.jpg`, import.meta.url)).then((res) =>
+const lightGridImage2 = fetch(new URL(`../assets/grid-item-2-light.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const lightGridImage3 = fetch(new URL(`./assets/grid-item-3-light.jpg`, import.meta.url)).then((res) =>
+const lightGridImage3 = fetch(new URL(`../assets/grid-item-3-light.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const lightGridImage4 = fetch(new URL(`./assets/grid-item-4-light.jpg`, import.meta.url)).then((res) =>
+const lightGridImage4 = fetch(new URL(`../assets/grid-item-4-light.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const lightGridImage5 = fetch(new URL(`./assets/grid-item-5-light.jpg`, import.meta.url)).then((res) =>
+const lightGridImage5 = fetch(new URL(`../assets/grid-item-5-light.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
 
-const darkGridImage1 = fetch(new URL(`./assets/grid-item-1-dark.jpg`, import.meta.url)).then((res) =>
+const darkGridImage1 = fetch(new URL(`../assets/grid-item-1-dark.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const darkGridImage2 = fetch(new URL(`./assets/grid-item-2-dark.jpg`, import.meta.url)).then((res) =>
+const darkGridImage2 = fetch(new URL(`../assets/grid-item-2-dark.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const darkGridImage3 = fetch(new URL(`./assets/grid-item-3-dark.jpg`, import.meta.url)).then((res) =>
+const darkGridImage3 = fetch(new URL(`../assets/grid-item-3-dark.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const darkGridImage4 = fetch(new URL(`./assets/grid-item-4-dark.jpg`, import.meta.url)).then((res) =>
+const darkGridImage4 = fetch(new URL(`../assets/grid-item-4-dark.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
-const darkGridImage5 = fetch(new URL(`./assets/grid-item-5-dark.jpg`, import.meta.url)).then((res) =>
+const darkGridImage5 = fetch(new URL(`../assets/grid-item-5-dark.jpg`, import.meta.url)).then((res) =>
   res.arrayBuffer()
 );
 
