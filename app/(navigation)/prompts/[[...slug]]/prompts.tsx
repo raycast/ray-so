@@ -37,6 +37,7 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import CreativityIcon from "../components/CreativityIcon";
 import Link from "next/link";
+import { NavigationActions } from "@/components/navigation";
 
 type Props = {
   models: AiModel[];
@@ -191,7 +192,7 @@ export function Prompts({ models }: Props) {
 
   return (
     <div>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
+      <NavigationActions>
         {!isTouch ? (
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
@@ -236,7 +237,7 @@ export function Prompts({ models }: Props) {
             <LinkIcon /> Copy URL to Share
           </Button>
         )}
-      </div>
+      </NavigationActions>
 
       <Toast open={showToast} onOpenChange={setShowToast}>
         <ToastTitle className={styles.toastTitle}>

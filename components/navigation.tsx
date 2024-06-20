@@ -111,3 +111,11 @@ export function Navigation() {
     </nav>
   );
 }
+
+export function NavigationActions({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44">
+      {children}
+    </div>
+  );
+}

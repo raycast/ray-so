@@ -33,6 +33,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 import { useRouter } from "next/navigation";
 import { Toast, ToastTitle, ToastViewport } from "./Toast";
+import { NavigationActions } from "@/components/navigation";
 
 type PresetPageProps = {
   preset: Preset;
@@ -171,7 +172,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
 
   return (
     <>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
+      <NavigationActions>
         <ButtonGroup>
           <Button variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon /> Add to Raycast
@@ -210,7 +211,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
             </DropdownMenuContent>
           </DropdownMenu>
         </ButtonGroup>
-      </div>
+      </NavigationActions>
       <div className={styles.container}>
         <header className={styles.header}>
           <div className={styles.icon}>

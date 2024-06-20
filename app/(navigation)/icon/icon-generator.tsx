@@ -54,6 +54,7 @@ import { ButtonGroup } from "@/components/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
 import { Switch } from "@/components/switch";
+import { NavigationActions } from "@/components/navigation";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -927,7 +928,7 @@ export const IconGenerator = () => {
           </div>
         </div>
       </CSSTransition>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44">
+      <NavigationActions>
         <div className={styles.separator} />
         <div className={cn(styles.actions, styles.actionsLeft)}>
           <Button
@@ -995,7 +996,7 @@ export const IconGenerator = () => {
             </DropdownMenu>
           </ButtonGroup>
         </div>
-      </div>
+      </NavigationActions>
       <main className={styles.content} ref={mainRef}>
         <CSSTransition
           in={panelsVisible}

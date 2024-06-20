@@ -35,6 +35,7 @@ import {
 } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
 import { Metadata } from "next";
+import { NavigationActions } from "@/components/navigation";
 
 export function Shared({ prompts }: { prompts: Prompt[] }) {
   const router = useRouter();
@@ -167,11 +168,9 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
     return;
   }
 
-  console.log("selectedPrompts", selectedPrompts);
-
   return (
     <div>
-      <div className="h-[50px] flex items-center justify-end fixed right-scrollbar-offset gap-2 z-10">
+      <NavigationActions>
         <ButtonGroup>
           <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon /> Add to Raycast
@@ -202,7 +201,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
             </DropdownMenuContent>
           </DropdownMenu>
         </ButtonGroup>
-      </div>
+      </NavigationActions>
       <Toast open={copied} onOpenChange={setCopied}>
         <ToastTitle className={styles.toastTitle}>
           <CopyClipboardIcon /> Copied to clipboard

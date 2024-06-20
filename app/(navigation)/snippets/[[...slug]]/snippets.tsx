@@ -39,6 +39,7 @@ import { IconComponent } from "../components/IconComponent";
 import { Category, Snippet, snippetGroups } from "../snippets";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import { BASE_URL } from "@/utils/common";
+import { NavigationActions } from "@/components/navigation";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",
@@ -284,7 +285,7 @@ export default function Snippets() {
 
   return (
     <div>
-      <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
+      <NavigationActions>
         <div className={styles.navControls}>
           {!isTouch && (
             <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
@@ -370,7 +371,7 @@ export default function Snippets() {
             </Button>
           )}
         </div>
-      </div>
+      </NavigationActions>
 
       <Toast open={showToast} onOpenChange={setShowToast}>
         <ToastTitle className={styles.toastTitle}>
