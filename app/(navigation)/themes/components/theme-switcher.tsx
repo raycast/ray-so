@@ -8,7 +8,7 @@ export function ThemeSwitcher({ themes }: { themes: Theme[] }) {
   const { activeTheme } = useRaycastTheme();
 
   return (
-    <div className="flex items-center shrink-0 py-5 gap-5 box-content overflow-x-auto snap-x snap-mandatory h-[200px] w-full">
+    <div className="flex items-center shrink-0 py-8 gap-8 box-content overflow-x-auto snap-x snap-mandatory h-[200px] w-full">
       <div aria-hidden className="shrink-0" />
       {!activeTheme?.slug && <ThemeCard theme={activeTheme} />}
       {themes
