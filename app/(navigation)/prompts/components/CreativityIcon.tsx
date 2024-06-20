@@ -1,5 +1,3 @@
-import * as Tooltip from "@radix-ui/react-tooltip";
-
 import {
   CircleDisabledIcon,
   StackedBars1Icon,
@@ -10,6 +8,7 @@ import {
 import { Prompt } from "../prompts";
 
 import styles from "./CreativityIcon.module.css";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 
 export default function CreativityIcon({ creativity }: { creativity: Prompt["creativity"] }) {
   let component = null;
@@ -42,17 +41,13 @@ export default function CreativityIcon({ creativity }: { creativity: Prompt["cre
   };
 
   return (
-    <Tooltip.Provider>
-      <Tooltip.Root delayDuration={0}>
-        <Tooltip.Trigger asChild>
-          <button className={styles.button}>{component}</button>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content className={styles.tooltip} sideOffset={5}>
-            {creativityText[creativity]}
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <Tooltip delayDuration={0}>
+      <TooltipTrigger asChild>
+        <button className={styles.button}>{component}</button>
+      </TooltipTrigger>
+      <TooltipContent className={styles.tooltip} sideOffset={5}>
+        {creativityText[creativity]}
+      </TooltipContent>
+    </Tooltip>
   );
 }

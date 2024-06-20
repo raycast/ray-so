@@ -22,8 +22,7 @@ import CreativityIcon from "./CreativityIcon";
 import ModelIcon from "./ModelIcon";
 
 import styles from "./PresetDetail.module.css";
-import Head from "next/head";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { Preset } from "../presets";
 import { AiModel } from "../api";

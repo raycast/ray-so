@@ -17,7 +17,7 @@ import copy from "copy-to-clipboard";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { Toast, ToastTitle, ToastViewport } from "./Toast";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { AiModel } from "../api";
 import { Preset } from "../presets";

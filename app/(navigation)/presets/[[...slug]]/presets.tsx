@@ -6,7 +6,7 @@ import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionIn
 
 import styles from "./presets.module.css";
 import { ScrollArea } from "../components/ScrollArea";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../components/Tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { Info01Icon, StarsIcon } from "@raycast/icons";
 import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";

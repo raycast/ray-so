@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
 import { Switch } from "@/components/switch";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
 import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
 
 export default function Components() {
@@ -108,6 +109,15 @@ export default function Components() {
       <div className="flex flex-col gap-4 items-start">
         <h2 className="font-medium">Switch</h2>
         <Switch defaultChecked />
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Tooltip</h2>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button>Hover me</Button>
+          </TooltipTrigger>
+          <TooltipContent>Tooltip content</TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );
