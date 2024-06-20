@@ -123,19 +123,16 @@
 }
 
 .jetBrainsMono {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-family: var(--font-jetbrainsmono), monospace;
+  font-family: var(--font-jetbrainsmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 500;
 }
 
 .ibmPlexMono {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-family: var(--font-ibmplexmono), monospace;
+  font-family: var(--font-ibmplexmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 500;
 }
 
 .firaCode {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  font-family: var(--font-firacode), monospace;
+  font-family: var(--font-firacode), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
