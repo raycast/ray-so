@@ -123,16 +123,16 @@
 }
 
 .jetBrainsMono {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "JetBrains Mono", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 500;
 }
 
 .ibmPlexMono {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "IBM Plex Mono", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 500;
 }
 
 .firaCode {
-  font-family: "Fira Code", monospace;
+  font-family: "Fira Code", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
