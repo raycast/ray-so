@@ -91,7 +91,12 @@ const Home: NextPage = () => {
           </a>
           <span className={styles.madeBy}>
             Made by{" "}
-            <a href="https://www.raycast.com" target="_blank" rel="noreferrer" className={styles.logoLink}>
+            <a
+              href="https://www.raycast.com/?ref=codeimages"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.logoLink}
+            >
               <FullLogoSVG />
             </a>
           </span>
