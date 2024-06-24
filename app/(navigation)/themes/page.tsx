@@ -3,8 +3,9 @@ import { PageWithThemeMode } from "@themes/components/page-with-theme-mode";
 import { Raycast } from "@themes/components/raycast";
 import { RedirectToRaycast } from "@themes/components/redirect-to-raycast";
 import { Theme, getAllThemes, makeThemeObjectFromParams } from "@themes/lib/theme";
-import { BASE_URL, BuildTypes } from "@themes/lib/url";
-import { Loader } from "./components/loader";
+import { BuildTypes } from "@themes/lib/url";
+import { BASE_URL } from "@/utils/common";
+import defaultOgImage from "@themes/assets/default-og-image.png";
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string } }) {
   const themeInUrl = makeThemeObjectFromParams(searchParams);
@@ -14,7 +15,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
       openGraph: {
         images: [
           {
-            url: `${BASE_URL}/default-og-image.png`,
+            url: defaultOgImage.src,
           },
         ],
       },
@@ -22,7 +23,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
         card: "summary_large_image",
         images: [
           {
-            url: `${BASE_URL}/default-og-image.png`,
+            url: defaultOgImage.src,
           },
         ],
       },
@@ -36,7 +37,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
   Object.entries(colors).forEach(([key, value]) => queryParams.set(key, value));
 
   const title = theme.author ? `${theme.name} by ${theme.author}` : theme.name;
-  const image = `${BASE_URL}/og?${queryParams}`;
+  const image = `${BASE_URL}/themes/og?${queryParams}`;
 
   return {
     title,

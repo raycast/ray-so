@@ -5,7 +5,7 @@ const promisify = require("util").promisify;
 const readFileAsync = promisify(fs.readFile);
 const download = require("image-downloader");
 
-const themesDir = join(process.cwd(), "app", "(navigation)", "themes", "themes");
+const themesDir = path.join(process.cwd(), "app", "(navigation)", "themes", "themes");
 
 async function getAllThemes() {
   const allThemePaths = await glob(`${themesDir}/**/*.json`);
@@ -36,7 +36,7 @@ function doesFileExist(filename, directory) {
   return fs.existsSync(filePath);
 }
 
-const outputDir = join(process.cwd(), "app", "(navigation)", "themes", "assets", "ogs");
+const outputDir = path.join(process.cwd(), "app", "(navigation)", "themes", "assets", "ogs");
 
 async function main() {
   const option = process.argv[2];

@@ -1,11 +1,11 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { Raycast } from "@themes/components/raycast";
-import { BASE_URL } from "@themes/lib/url";
 import { getAllThemes } from "@themes/lib/theme";
 import { Desktop } from "@themes/components/desktop";
 import { PageWithThemeMode } from "@themes/components/page-with-theme-mode";
 import { Metadata } from "next";
+import { BASE_URL } from "@/utils/common";
 
 export async function generateMetadata({
   params,
@@ -29,14 +29,13 @@ export async function generateMetadata({
   Object.entries(colors).forEach(([key, value]) => queryParams.set(key, value));
 
   const title = `${restTheme.name} by ${restTheme.author}`;
-  const image = `${BASE_URL}/og?${queryParams}`;
+  const image = `${BASE_URL}/themes/og?${queryParams}`;
 
   return {
     title,
     openGraph: {
       title,
       url: `/themes/${author}/${themeName}`,
-      siteName: "Ray.so",
       images: [
         {
           url: image,
@@ -44,8 +43,6 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: "summary_large_image",
-      creator: "@raycastapp",
       title,
       images: [
         {
