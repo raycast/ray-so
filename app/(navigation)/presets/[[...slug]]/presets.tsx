@@ -12,6 +12,7 @@ import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
 import { AiModel } from "../api";
 import Link from "next/link";
+import { Switch } from "@/components/switch";
 
 type Props = {
   models: AiModel[];
@@ -76,12 +77,11 @@ export default function Presets({ models }: Props) {
                       </Tooltip>
                     </span>
 
-                    <input
+                    <Switch
                       id="advancedModels"
-                      type="checkbox"
-                      min={0}
                       checked={showAdvancedModels}
-                      onChange={(e) => setShowAdvancedModels(e.target.checked)}
+                      onCheckedChange={(checked) => setShowAdvancedModels(checked)}
+                      color="purple"
                     />
                   </div>
                 </div>

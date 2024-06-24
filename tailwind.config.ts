@@ -14,9 +14,9 @@ const config: Config = {
     extend: {
       colors: {
         background: "hsl(var(--background) / <alpha-value>)",
-        // black: "hsl(var(--black) / <alpha-value>)",
-        // white: "hsl(var(--white) / <alpha-value>)",
         brand: "hsl(var(--brand) / <alpha-value>)",
+        purple: "hsl(var(--purple) / <alpha-value>)",
+        blue: "hsl(var(--blue) / <alpha-value>)",
         gray: {
           1: "var(--gray-1)",
           2: "var(--gray-2)",

@@ -144,7 +144,10 @@ export default function Components() {
       </div>
       <div className="flex flex-col gap-4 items-start">
         <h2 className="font-medium">Switch</h2>
-        <Switch defaultChecked />
+        <div className="flex gap-2 items-center flex-wrap">
+          <Switch defaultChecked />
+          <Switch defaultChecked color="purple" />
+        </div>
       </div>
       <div className="flex flex-col gap-4 items-start">
         <h2 className="font-medium">Tooltip</h2>
