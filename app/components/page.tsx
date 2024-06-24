@@ -18,12 +18,48 @@ import {
 import { Switch } from "@/components/switch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
 import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
+import OgImage from "./og-image.png";
+import { Metadata } from "next";
+
+const title = "Ray.so Components";
+const description = "Component playground for the ray.so ecosystem.";
+const ogUrl = OgImage.src;
+
+export const metadata: Metadata = {
+  title: title,
+  description: description,
+  openGraph: {
+    url: "/components",
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogUrl,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    title: title,
+    description: description,
+    images: [
+      {
+        url: ogUrl,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+};
 
 export default function Components() {
   return (
     <div className="flex flex-col gap-12 items-start p-8">
-      <h1 className="text-lg font-medium flex text-nowrap items-center gap-2">
-        <RaycastLogoNegIcon className="shrink-0 w-6 h-6" /> Ray.so components
+      <h1 className="text-lg font-bold flex text-nowrap items-center gap-2">
+        <RaycastLogoNegIcon className="shrink-0 w-6 h-6" /> Ray.so Component Playground
       </h1>
       <div className="flex flex-col gap-4 items-start">
         <h2 className="font-medium">Dropdown Menu</h2>
