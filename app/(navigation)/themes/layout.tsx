@@ -2,7 +2,6 @@ import { Providers } from "@themes/components/providers";
 import { ThemeSwitcher } from "@themes/components/theme-switcher";
 import { getAllThemes } from "@themes/lib/theme";
 import { ThemeControls } from "@themes/components/theme-controls";
-import { Loader } from "@themes/components/loader";
 
 export const metadata = {
   title: "Theme Explorer by Raycast",

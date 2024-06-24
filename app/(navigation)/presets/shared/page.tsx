@@ -22,18 +22,33 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     notFound();
   }
   const pageTitle = `${preset.name} - Raycast AI Preset`;
+  const ogImage = `https://presets.ray.so/api/og?title=${encodeURIComponent(
+    preset.name
+  )}&description=${encodeURIComponent(preset.description || "")}&icon=${preset.icon}`;
 
   return {
     title: pageTitle,
     description: preset.description,
     openGraph: {
+      type: "website",
+      url: "/presets/shared",
+      title: pageTitle,
+      description: preset.description,
+      siteName: "Ray.so",
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: "@raycastapp",
       title: pageTitle,
       description: preset.description,
       images: [
         {
-          url: `https://presets.ray.so/api/og?title=${encodeURIComponent(preset.name)}&description=${encodeURIComponent(
-            preset.description || ""
-          )}&icon=${preset.icon}`,
+          url: ogImage,
         },
       ],
     },

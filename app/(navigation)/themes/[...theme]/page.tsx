@@ -5,8 +5,13 @@ import { BASE_URL } from "@themes/lib/url";
 import { getAllThemes } from "@themes/lib/theme";
 import { Desktop } from "@themes/components/desktop";
 import { PageWithThemeMode } from "@themes/components/page-with-theme-mode";
+import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { theme: [author: string, theme: string] } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { theme: [author: string, theme: string] };
+}): Promise<Metadata> {
   const [author, themeName] = params.theme;
 
   const slug = `${author}/${themeName}`;
@@ -30,6 +35,8 @@ export async function generateMetadata({ params }: { params: { theme: [author: s
     title,
     openGraph: {
       title,
+      url: `/themes/${author}/${themeName}`,
+      siteName: "Ray.so",
       images: [
         {
           url: image,
@@ -38,6 +45,8 @@ export async function generateMetadata({ params }: { params: { theme: [author: s
     },
     twitter: {
       card: "summary_large_image",
+      creator: "@raycastapp",
+      title,
       images: [
         {
           url: image,

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import OgPhoto from "./assets/og.png";
 import { Code } from "./code";
-
-const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+import { BASE_URL } from "@/utils/common";
 
 const title = "Create beautiful images of your code";
 const description =
@@ -11,12 +10,10 @@ const description =
 const ogUrl = OgPhoto.src;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
   title: title,
   description: description,
   openGraph: {
-    type: "website",
-    url: url,
+    url: BASE_URL,
     title: title,
     description: description,
     images: [
@@ -29,8 +26,6 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    creator: "@raycastapp",
     title: title,
     description: description,
     images: [

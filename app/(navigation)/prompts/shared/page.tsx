@@ -37,16 +37,31 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const prompt = prompts[0];
     const pageTitle = `${prompt.title} - Raycast AI Prompt`;
     const pageDescription = "Raycast AI Prompt";
+    const ogImage = `/prompts/og?title=${encodeURIComponent(prompt.title)}&icon=${prompt.icon}`;
 
     return {
       title: pageTitle,
       description: pageDescription,
       openGraph: {
+        type: "website",
+        url: "/prompts/shared",
+        title: pageTitle,
+        description: pageDescription,
+        siteName: "Ray.so",
+        images: [
+          {
+            url: ogImage,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        creator: "@raycastapp",
         title: pageTitle,
         description: pageDescription,
         images: [
           {
-            url: `/prompts/og?title=${encodeURIComponent(prompt.title)}&icon=${prompt.icon}`,
+            url: ogImage,
           },
         ],
       },
@@ -63,18 +78,33 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const ogImageDescription = `"${prompts[0].title}" and ${prompts.length - 1} more ${
       prompts.length === 2 ? "prompt" : "prompts"
     }`;
+    const ogImage = `/prompts/og?title=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
+      ogImageDescription
+    )}`;
 
     return {
       title: pageTitle,
       description: pageDescription,
       openGraph: {
+        type: "website",
+        url: "/prompts/shared",
+        title: pageTitle,
+        description: pageDescription,
+        siteName: "Ray.so",
+        images: [
+          {
+            url: ogImage,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        creator: "@raycastapp",
         title: pageTitle,
         description: pageDescription,
         images: [
           {
-            url: `/prompts/og?title=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
-              ogImageDescription
-            )}`,
+            url: ogImage,
           },
         ],
       },

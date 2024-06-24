@@ -279,8 +279,8 @@ Here are the rules you must follow:
     date: "2024-03-26",
   },
   {
-    id: "pronounciation-assistant",
-    name: "Pronounciation Assistant",
+    id: "pronunciation-assistant",
+    name: "Pronunciation Assistant",
     instructions: `You are a pronunciation expert.
 
 Example: I need to go to the bathroom
