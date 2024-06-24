@@ -26,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <TooltipProvider>
         <body className={cn("isolate", inter.className)}>{children}</body>
       </TooltipProvider>

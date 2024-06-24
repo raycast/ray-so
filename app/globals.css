@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --background: 0 0 5;
+    --panel: 0 0 13.333;
     --white: 0 0 100;
     --black: 0 0 0;
     --brand: 0 100 69;
@@ -32,6 +33,7 @@
 
 .light {
   --background: 0 0 94;
+  --panel: 0 0 95;
   --brand: 0 100 69;
 
   --gray-1: hsla(0, 0%, 92.549%);

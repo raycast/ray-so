@@ -11,7 +11,9 @@ export function PageWithThemeMode({ children, theme }: { children: React.ReactNo
     setActiveTheme(theme);
     return () => {
       // Remove light theme when navigating away
-      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.remove("light");
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
