@@ -65,9 +65,7 @@ Here's how you can contribute:
 #### 3. Generate the theme OG image
 
 - Make sure your local server running (`npm run dev`)
-- Open a new terminal session and run `npm run generate-themes-og-images`
-  - To regenerate a specific slug, run `npm run generate-themes-og-images -- --slug=peduarte/red`
-  - To regenerate all, run `npm run generate-themes-og-images -- --force`
+- Open a new terminal session and run `npm run generate-themes-og-images -- --slug=username/themename` (replace `username/themename` with your theme's folder and file name)
 
 #### 4. Commit and push your changes
 
