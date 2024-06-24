@@ -533,7 +533,7 @@ export async function GET(request: NextRequest) {
               position: "absolute",
               bottom: 0,
               left: 0,
-              zIndex: "1",
+              zIndex: 1,
               width: "100%",
               backgroundImage: `linear-gradient(to bottom, ${isDarkTheme ? "rgba(0,0,0,0)" : "rgba(255,255,255,0)"}, ${
                 isDarkTheme ? "black" : "white"
@@ -550,7 +550,7 @@ export async function GET(request: NextRequest) {
               position: "absolute",
               bottom: 0,
               left: 0,
-              zIndex: "2",
+              zIndex: 2,
               width: "100%",
               backgroundImage: `linear-gradient(to bottom, ${isDarkTheme ? "rgba(0,0,0,0)" : "rgba(255,255,255,0)"}, ${
                 tokens.backgroundSecondary400
