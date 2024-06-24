@@ -28,10 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <TooltipProvider>
-        <body className={cn("isolate", inter.className)}>
-          {BASE_URL}
-          {children}
-        </body>
+        <body className={cn("isolate", inter.className)}>{children}</body>
       </TooltipProvider>
       <Analytics />
     </html>
