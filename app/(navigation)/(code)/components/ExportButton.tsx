@@ -11,7 +11,7 @@ import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import { fileNameAtom } from "../store";
 import download from "../util/download";
-import { toPng, toSvg, toBlob } from "../../../../lib/image";
+import { toPng, toSvg, toBlob } from "../lib/image";
 
 import useHotkeys from "../util/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
