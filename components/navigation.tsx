@@ -2,7 +2,15 @@
 
 import { useRouter, useSelectedLayoutSegments } from "next/navigation";
 
-import { ChevronDownIcon, ChevronLeftIcon, RaycastLogoNegIcon } from "@raycast/icons";
+import {
+  BrandGithubIcon,
+  BrandSlackIcon,
+  BrandXIcon,
+  BrandYoutubeIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  RaycastLogoNegIcon,
+} from "@raycast/icons";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
@@ -53,6 +61,29 @@ const links = [
   },
 ];
 
+const socialLinks = [
+  {
+    href: "https://github.com/raycast/ray-so",
+    label: "GitHub",
+    icon: BrandGithubIcon,
+  },
+  {
+    href: "https://x.com/raycastapp",
+    label: "X",
+    icon: BrandXIcon,
+  },
+  {
+    href: "https://raycast.com/community",
+    label: "Slack Community",
+    icon: BrandSlackIcon,
+  },
+  {
+    href: "https://www.youtube.com/@raycastapp",
+    label: "YouTube",
+    icon: BrandYoutubeIcon,
+  },
+];
+
 export function Navigation() {
   const router = useRouter();
   const segments = useSelectedLayoutSegments();
@@ -95,16 +126,44 @@ export function Navigation() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="p-2 gap-1.5 flex flex-col">
             {links.map((link) => (
-              <DropdownMenuItem key={link.href} onSelect={() => router.push(link.href)} className="pl-[10px] pr-6 py-2">
+              <DropdownMenuItem
+                key={link.href}
+                onSelect={() => router.push(link.href)}
+                className="pl-[10px] pr-6 py-2 group"
+              >
                 <div className="flex gap-3 items-center">
                   {link.icon && <link.icon className="w-8 h-8" />}
                   <div className="flex flex-col leading-none gap-1">
                     <span className="text-[15px] font-medium">{link.label}</span>
-                    <span className="text-[13px] text-gray-9">{link.description}</span>
+                    <span className="text-[13px] text-gray-9 group-hover:text-gray-10">{link.description}</span>
                   </div>
                 </div>
               </DropdownMenuItem>
             ))}
+            <footer className="border-t border-gray-5 -mx-4 px-4 mt-1">
+              <div className="flex items-center gap-2 mt-2 px-3 py-1  justify-between">
+                <a
+                  href="https://raycast.com/#ref=ray-so"
+                  className="flex items-center gap-1.5 text-gray-9 hover:text-gray-11 transition-colors"
+                >
+                  <RaycastLogoNegIcon className="w-4 h-4" />
+                  <span className="text-[13px] font-medium">Made by Raycast</span>
+                </a>
+                <div className="flex gap-3">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-9 hover:text-gray-11 transition-colors"
+                    >
+                      <link.icon className="w-4 h-4" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </footer>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
