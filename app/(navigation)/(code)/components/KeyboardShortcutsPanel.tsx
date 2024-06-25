@@ -7,6 +7,7 @@ import KeyboardIcon from "../assets/icons/keyboard-16.svg";
 import useHotkeys from "../util/useHotkeys";
 import MultiplyIcon from "../assets/icons/multiply-16.svg";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
+import { Button } from "@/components/button";
 
 const Shortcut: React.FC<PropsWithChildren<{ keys: string[] }>> = ({ children, keys }) => (
   <>
@@ -33,10 +34,10 @@ const KeyboardShortcutsPanel: React.FC = () => {
       <div className={styles.container}>
         <Dialog.Root open={popoverOpen} onOpenChange={setPopoverOpen}>
           <Dialog.Trigger asChild>
-            <button className={styles.anchor}>
+            <Button variant="transparent">
               <KeyboardIcon />
               Keyboard Shortcuts
-            </button>
+            </Button>
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className={styles.overlay} />
@@ -51,6 +52,7 @@ const KeyboardShortcutsPanel: React.FC = () => {
                 <Shortcut keys={["P"]}>Change padding</Shortcut>
                 <Shortcut keys={["L"]}>Select language</Shortcut>
                 <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
+                <Shortcut keys={["⌘", "K"]}>Toggle Export Menu</Shortcut>
                 <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
                 <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
                 {pngClipboardSupported && <Shortcut keys={["⌘", "C"]}>Copy image</Shortcut>}

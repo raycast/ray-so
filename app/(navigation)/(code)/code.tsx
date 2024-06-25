@@ -4,15 +4,12 @@ import getWasm from "shiki/wasm";
 import { highlighterAtom } from "./store";
 import { useAtom } from "jotai";
 
-import { darkModeAtom, shikiTheme } from "./store/themes";
+import { shikiTheme } from "./store/themes";
 
 import Frame from "./components/Frame";
 import Controls from "./components/Controls";
 import FrameContextStore from "./store/FrameContextStore";
 import KeyboardShortcutsPanel from "./components/KeyboardShortcutsPanel";
-
-import FullLogoSVG from "./assets/full-logo.svg";
-import ArrowNeIcon from "./assets/icons/arrow-ne-16.svg";
 
 import styles from "./code.module.css";
 import NoSSR from "./components/NoSSR";
@@ -28,7 +25,6 @@ import { Button } from "@/components/button";
 import { NavigationActions } from "@/components/navigation";
 
 export function Code() {
-  const [darkMode] = useAtom(darkModeAtom);
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
   useEffect(() => {
@@ -50,11 +46,10 @@ export function Code() {
               <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
             </a>
           </Button>
+          <KeyboardShortcutsPanel />
           <ExportButton />
         </NavigationActions>
         <div className={styles.app}>
-          {/* <KeyboardShortcutsPanel /> */}
-
           <NoSSR>
             {highlighter && <Frame />}
             <Controls />

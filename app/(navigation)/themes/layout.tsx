@@ -2,6 +2,11 @@ import { Providers } from "@themes/components/providers";
 import { ThemeSwitcher } from "@themes/components/theme-switcher";
 import { getAllThemes } from "@themes/lib/theme";
 import { ThemeControls } from "@themes/components/theme-controls";
+import { NavigationActions } from "@/components/navigation";
+import { Button } from "@/components/button";
+import { SpeechBubbleIcon } from "@raycast/icons";
+import KeyboardShortcutsPanel from "@/app/(navigation)/(code)/components/KeyboardShortcutsPanel";
+import ExportButton from "@/app/(navigation)/(code)/components/ExportButton";
 
 export const metadata = {
   title: "Theme Explorer by Raycast",
@@ -19,6 +24,13 @@ export default async function Layout({ children, params }: { children: React.Rea
         </div>
         <ThemeControls themes={themes} />
         <ThemeSwitcher themes={themes} />
+        <NavigationActions>
+          <Button variant="transparent" asChild>
+            <a href="mailto:feedback+rayso@raycast.com?subject=Themes">
+              <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+            </a>
+          </Button>
+        </NavigationActions>
       </div>
     </Providers>
   );
