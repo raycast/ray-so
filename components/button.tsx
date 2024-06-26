@@ -13,8 +13,9 @@ const buttonVariants = cva(
         primary:
           "bg-brand/15 text-brand hover:bg-brand/30 shadow-[inset_0_0_0_1px_#4d2a2a] hover:shadow-[inset_0_0_0_1px_#6d2d2d] focus-visible:ring-[#6d2d2d] focus-visible:shadow-[inset_0_0_0_1px_#6d2d2d]",
         secondary:
-          "bg-gray-3 text-gray-11 hover:bg-gray-4 hover:text-gray-12 shadow-[inset_0_0_0_1px_var(--gray-5)] focus-visible:ring-gray-7 focus-visible:shadow-[inset_0_0_0_1px_var(--gray-7)]",
-        transparent: "text-gray-11 hover:bg-gray-4 hover:text-gray-12 focus-visible:ring-gray-7 focus-visible:ring-2",
+          "bg-gray-a3 text-gray-a11 hover:bg-gray-a4 hover:text-gray-12 shadow-[inset_0_0_0_1px_var(--gray-a2)] focus-visible:ring-gray-a7 focus-visible:shadow-[inset_0_0_0_1px_var(--gray-a7)]",
+        transparent:
+          "text-gray-a11 hover:bg-gray-a4 hover:text-gray-12 focus-visible:ring-gray-a7 focus-visible:ring-2",
       },
       size: {
         medium: "h-[30px] rounded-md px-3 text-sm gap-1.5",

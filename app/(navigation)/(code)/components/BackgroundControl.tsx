@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import React from "react";
 import { showBackgroundAtom } from "../store";
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import ControlContainer from "./ControlContainer";
 import { Switch } from "@/components/switch";
 

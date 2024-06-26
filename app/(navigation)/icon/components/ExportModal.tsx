@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import cn from "classnames";
 
-import { PlusIcon, TrashIcon, XMarkCircleFilledIcon } from "@raycast/icons";
+import { PlusIcon, TrashIcon } from "@raycast/icons";
 
 import { saveSvgAsPng } from "save-svg-as-png";
 
 import styles from "./ExportModal.module.css";
 import { Select, SelectItem } from "./Select";
-import Button from "./Button";
+import { Button } from "@/components/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/dialog";
 
 type ExportFormat = "PNG" | "SVG";
 
@@ -20,13 +21,6 @@ type ExportOption = {
 };
 
 type SvgRefType = React.RefObject<HTMLElement & SVGSVGElement>;
-
-type PropTypes = {
-  onClose: () => void;
-  onStartExport: () => void;
-  fileName: string;
-  svgRef: SvgRefType;
-};
 
 const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) => {
   if (!svgRef.current) {
@@ -54,7 +48,15 @@ const Exporters = {
   SVG: exportToSvg,
 };
 
-const ExportModal = React.forwardRef<HTMLDivElement, PropTypes>(({ onClose, onStartExport, fileName, svgRef }, ref) => {
+type ExportModalProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onStartExport: () => void;
+  fileName: string;
+  svgRef: SvgRefType;
+};
+
+function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: ExportModalProps) {
   const [exportOptions, setExportOptions] = useState<ExportOption[]>([
     {
       fileName,
@@ -64,7 +66,7 @@ const ExportModal = React.forwardRef<HTMLDivElement, PropTypes>(({ onClose, onSt
   ]);
 
   const onExport = async () => {
-    onClose();
+    onOpenChange(false);
     onStartExport();
     // Fixes @2x png export instead of the same size as png
     const realPixelRatio = window.devicePixelRatio;
@@ -117,12 +119,9 @@ const ExportModal = React.forwardRef<HTMLDivElement, PropTypes>(({ onClose, onSt
   };
 
   return (
-    <div className={styles.shadow} ref={ref}>
-      <div className={styles.modal}>
-        <h3 className={styles.modalTitle}>Export icons</h3>
-        <button className={styles.close} onClick={onClose}>
-          <XMarkCircleFilledIcon />
-        </button>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent size="medium">
+        <DialogTitle>Export Icons</DialogTitle>
         {exportOptions.map((option, index) => (
           <div className={styles.exportOption} key={index}>
             <div className={styles.exportOptionFileName}>
@@ -163,16 +162,16 @@ const ExportModal = React.forwardRef<HTMLDivElement, PropTypes>(({ onClose, onSt
             </button>
           </div>
         ))}
-        <Button className={styles.modalButton} onClick={onAddExportOption}>
+        <Button onClick={onAddExportOption}>
           <PlusIcon /> Add new export
         </Button>
-        <Button variant="primary" className={styles.modalButton} onClick={onExport}>
+        <Button variant="primary" onClick={onExport}>
           Export Icon
         </Button>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
-});
+}
 
 ExportModal.displayName = "ExportModal";
 

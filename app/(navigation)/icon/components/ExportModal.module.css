@@ -1,60 +1,3 @@
-.shadow {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.75);
-}
-
-.modal {
-  position: absolute;
-  z-index: 30;
-  top: 280px;
-  left: 50%;
-  display: flex;
-  width: 480px;
-  box-sizing: border-box;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-
-  background: #1f2023;
-  box-shadow: 0px 8px 24px -12px #000000;
-  gap: 16px;
-  transform: translateX(-50%);
-}
-
-.modalTitle {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 16px;
-}
-
-.close {
-  position: absolute;
-  top: 17px;
-  right: 17px;
-  border: none;
-  color: rgba(255, 255, 255, 0.4);
-  outline: none;
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-.modalButton {
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-
 .exportOption {
   display: flex;
   width: 100%;
@@ -62,6 +5,34 @@
   align-items: center;
   color: #ffffff;
   gap: 16px;
+
+  input[type="number"],
+  select {
+    width: 120px;
+    height: 36px;
+
+    padding: 0px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 14px;
+
+    font-weight: 400;
+    justify-self: flex-end;
+    outline: none;
+
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 720px) {
+      font-size: 16px;
+    }
+  }
 }
 
 .exportOptionFileName {

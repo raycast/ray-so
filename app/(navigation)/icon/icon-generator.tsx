@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { use, useCallback, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -55,6 +55,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
+import KeyboardShortcuts from "@icon/components/KeyboardShortcuts";
+import useHotkeys from "@/utils/useHotkeys";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -270,84 +272,6 @@ const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: C
   );
 };
 
-const About = React.forwardRef<HTMLDivElement, { onClose: () => void }>(({ onClose }, ref) => (
-  <div className={styles.aboutShadow} onClick={onClose} ref={ref}>
-    <div className={cn(styles.about)}>
-      <h4>Shortcuts</h4>
-      <div className={styles.shortcut}>
-        <label>Undo action</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>Z</div>
-      </div>
-      <div className={styles.shortcut}>
-        <label>Redo action</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>⇧</div>
-        <div className={styles.kbd}>Z</div>
-      </div>
-      <div className={styles.shortcut}>
-        <label>Search Icons</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>K</div>
-      </div>
-      <div className={styles.shortcut}>
-        <label>Export</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>⇧</div>
-        <div className={styles.kbd}>E</div>
-      </div>
-      <div className={styles.shortcut}>
-        <label>Toggle this view</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>/</div>
-      </div>
-      <div className={styles.shortcut}>
-        <label>Toggle view options</label>
-        <div className={styles.kbd}>⌘</div>
-        <div className={styles.kbd}>\</div>
-      </div>
-      <div className={styles.aboutIconGenerator}>
-        <h4>About</h4>
-        <p>Icon by Raycast is a tool to easily create and export icons for your extensions.</p>
-        <p>
-          Use the Raycast icon library to search for an icon, change the color of the icon, and customize the background
-          to create a beautifully simple icon.
-        </p>
-        <p>
-          Edit the file name, and when you’re ready, click export in the top-right corner to export the icon in the
-          correct size and format to submit to the Raycast Store.
-        </p>
-
-        <Button
-          className={styles.aboutButton}
-          onClick={() => {
-            location.href = "https://www.raycast.com";
-          }}
-        >
-          <ArrowNeIcon />
-          Visit Raycast
-        </Button>
-
-        <Button
-          className={styles.aboutButton}
-          onClick={() => {
-            location.href = "https://developers.raycast.com/";
-          }}
-        >
-          <CodeIcon />
-          View Documentation
-        </Button>
-      </div>
-      <div className={styles.copyright}>
-        <div>© 2022, Raycast Technologies Ltd.</div>
-        <RaycastLogoNegIcon width={21} height={21} />
-      </div>
-    </div>
-  </div>
-));
-
-About.displayName = "About";
-
 let infoMessageTimeout: NodeJS.Timeout | undefined;
 
 export const IconGenerator = () => {
@@ -359,7 +283,6 @@ export const IconGenerator = () => {
   const [history, setHistory] = useState<SettingsType[]>([]);
   const [redoHistory, setRedoHistory] = useState<SettingsType[]>([]);
   const [recentColors, setRecentColors] = useState<string[]>([]);
-  const [showAbout, setShowAbout] = useState<boolean>(false);
   const [showExportModal, setShowExportModal] = useState<boolean>(false);
   const [panelsVisible, setPanelsVisible] = useState<boolean>(false);
   const [headerVisible, setHeaderVisible] = useState<boolean>(true);
@@ -368,6 +291,7 @@ export const IconGenerator = () => {
   const [showInfoMessageUndoButton, setShowInfoMessageUndoButton] = useState<boolean>(true);
   const [iconsPanelOpened, setIconsPanelOpened] = useState<boolean>(false);
   const [optionsPanelOpened, setOptionsPanelOpened] = useState<boolean>(false);
+  const [exportDropdownOpen, setExportDropdownOpen] = useState<boolean>(false);
 
   const [draggingFile, setDraggingFile] = useState<boolean>(false);
   const [settings, setSettings] = useState<SettingsType>({
@@ -397,13 +321,11 @@ export const IconGenerator = () => {
 
   const searchRef = useRef<HTMLInputElement>(null);
   const mainRef = useRef<HTMLElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
   const iconsWrapperRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<HTMLElement & SVGSVGElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const infoMessageRef = useRef<HTMLDivElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
-  const exportModalRef = useRef<HTMLDivElement>(null);
 
   const pushNewSettings = useCallback(
     (newSettings: Partial<SettingsType>) => {
@@ -611,54 +533,20 @@ export const IconGenerator = () => {
     };
   }, [pushNewSettings]);
 
-  useEffect(() => {
-    function handleDocumentKeydown(event: KeyboardEvent) {
-      if (!event.metaKey && !event.ctrlKey) {
-        return;
-      }
-
-      if (event.key === "0") {
-        setScale(1);
-      }
-
-      if (event.key === "\\") {
-        setPanelsVisible((panelsVisible) => !panelsVisible);
-        setHeaderVisible((headerVisible) => !headerVisible);
-      }
-
-      if (event.key === "/") {
-        setShowAbout((showAbout) => !showAbout);
-      }
-
-      if (event.key === "z") {
-        if (event.shiftKey) {
-          redo();
-        } else {
-          undo();
-        }
-      }
-
-      if (event.key === "e" && event.shiftKey && (event.ctrlKey || event.metaKey)) {
-        setShowExportModal(true);
-      }
-
-      if (event.key === "c") {
-        onCopyImageToClipboard();
-      }
-
-      if (event.key === "k") {
-        if (searchRef && searchRef.current) {
-          searchRef.current.focus();
-        }
-      }
+  useHotkeys("ctrl+0,cmd+0", () => setScale(1));
+  useHotkeys("ctrl+.,cmd+.", () => setPanelsVisible((panelsVisible) => !panelsVisible));
+  useHotkeys("ctrl+z,cmd+z", () => undo());
+  useHotkeys("ctrl+shift+z,cmd+shift+z", () => redo());
+  useHotkeys("ctrl+shift+e,cmd+shift+e", () => setShowExportModal(true));
+  useHotkeys("ctrl+shift+c,cmd+shift+c", () => onCopyShareUrl() as any);
+  useHotkeys("ctrl+c,cmd+c", () => onCopyImageToClipboard() as any);
+  useHotkeys("ctrl+f,cmd+f", (e) => {
+    if (searchRef && searchRef.current) {
+      e.preventDefault();
+      searchRef.current.focus();
     }
-
-    document.addEventListener("keydown", handleDocumentKeydown);
-
-    return () => {
-      document.removeEventListener("keydown", handleDocumentKeydown);
-    };
-  }, [redo, undo, onCopyImageToClipboard]);
+  });
+  useHotkeys("ctrl+k,cmd+k", () => setExportDropdownOpen((opened) => !opened));
 
   useEffect(() => {
     const mainRefCurent = mainRef?.current;
@@ -871,41 +759,13 @@ export const IconGenerator = () => {
 
   return (
     <div className={styles.container}>
-      <CSSTransition
-        in={showExportModal}
-        nodeRef={exportModalRef}
-        timeout={300}
-        classNames={{
-          enter: styles.transitionEnter,
-          enterActive: styles.transitionEnterActive,
-          exit: styles.transitionExit,
-          exitActive: styles.transitionExitActive,
-        }}
-        unmountOnExit
-      >
-        <ExportModal
-          ref={exportModalRef}
-          onClose={() => setShowExportModal(false)}
-          onStartExport={() => showInfoMessage("Download started", false)}
-          fileName={settings.fileName}
-          svgRef={svgRef}
-        />
-      </CSSTransition>
-
-      <CSSTransition
-        in={showAbout}
-        nodeRef={aboutRef}
-        timeout={300}
-        classNames={{
-          enter: styles.transitionEnter,
-          enterActive: styles.transitionEnterActive,
-          exit: styles.transitionExit,
-          exitActive: styles.transitionExitActive,
-        }}
-        unmountOnExit
-      >
-        <About onClose={() => setShowAbout(false)} ref={aboutRef} />
-      </CSSTransition>
+      <ExportModal
+        open={showExportModal}
+        onOpenChange={setShowExportModal}
+        onStartExport={() => showInfoMessage("Download started", false)}
+        fileName={settings.fileName}
+        svgRef={svgRef}
+      />
       <CSSTransition
         in={draggingFile}
         nodeRef={dropZoneRef}
@@ -963,6 +823,8 @@ export const IconGenerator = () => {
             </a>
           </Button>
 
+          <KeyboardShortcuts />
+
           <div className={styles.mobileShareWrapper}>
             <Button variant="primary" className={styles.exportButton} onClick={onShare}>
               <DownloadIcon /> Share Icon
@@ -974,7 +836,7 @@ export const IconGenerator = () => {
               <DownloadIcon />
               Export icon
             </Button>
-            <DropdownMenu>
+            <DropdownMenu open={exportDropdownOpen} onOpenChange={setExportDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button variant="primary" aria-label="See other export options">
                   <ChevronDownIcon className="w-4 h-4" />

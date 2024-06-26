@@ -9,7 +9,7 @@ import ChevronUpIcon from "../assets/icons/chevron-up-16.svg";
 
 import selectStyles from "./Select.module.css";
 import styles from "./LanguageControl.module.css";
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import classNames from "classnames";
 

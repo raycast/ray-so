@@ -20,6 +20,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
 import OgImage from "./og-image.png";
 import { Metadata } from "next";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
+import { Shortcut } from "@/components/kbd";
 
 const title = "Ray.so Components";
 const description = "Component playground for the ray.so ecosystem.";
@@ -157,6 +159,80 @@ export default function Components() {
           </TooltipTrigger>
           <TooltipContent>Tooltip content</TooltipContent>
         </Tooltip>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Dialog</h2>
+        <div className="flex gap-2 items-center flex-wrap">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Open Small Dialog</Button>
+            </DialogTrigger>
+            <DialogContent size="small">
+              <DialogTitle>Keyboard Shortcuts</DialogTitle>
+              <div className="flex flex-col gap-3">
+                <Shortcut keys={["F"]}>Focus text editor</Shortcut>
+                <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
+                <Shortcut keys={["C"]}>Change colors</Shortcut>
+                <Shortcut keys={["B"]}>Toggle background</Shortcut>
+                <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
+                <Shortcut keys={["P"]}>Change padding</Shortcut>
+                <Shortcut keys={["L"]}>Select language</Shortcut>
+                <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
+                <Shortcut keys={["⌘", "K"]}>Toggle Export Menu</Shortcut>
+                <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
+                <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
+              </div>
+            </DialogContent>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Open Medium Dialog</Button>
+            </DialogTrigger>
+            <DialogContent size="medium">
+              <DialogTitle>Keyboard Shortcuts</DialogTitle>
+              <div className="flex flex-col gap-3">
+                <Shortcut keys={["F"]}>Focus text editor</Shortcut>
+                <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
+                <Shortcut keys={["C"]}>Change colors</Shortcut>
+                <Shortcut keys={["B"]}>Toggle background</Shortcut>
+                <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
+                <Shortcut keys={["P"]}>Change padding</Shortcut>
+                <Shortcut keys={["L"]}>Select language</Shortcut>
+                <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
+                <Shortcut keys={["⌘", "K"]}>Toggle Export Menu</Shortcut>
+                <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
+                <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
+              </div>
+            </DialogContent>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Open Large Dialog</Button>
+            </DialogTrigger>
+            <DialogContent size="large">
+              <DialogTitle>Keyboard Shortcuts</DialogTitle>
+              <div className="flex flex-col gap-3">
+                <Shortcut keys={["F"]}>Focus text editor</Shortcut>
+                <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
+                <Shortcut keys={["C"]}>Change colors</Shortcut>
+                <Shortcut keys={["B"]}>Toggle background</Shortcut>
+                <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
+                <Shortcut keys={["P"]}>Change padding</Shortcut>
+                <Shortcut keys={["L"]}>Select language</Shortcut>
+                <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
+                <Shortcut keys={["⌘", "K"]}>Toggle Export Menu</Shortcut>
+                <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "S"]}>Save SVG</Shortcut>
+                <Shortcut keys={["⌘", "shift", "C"]}>Copy URL</Shortcut>
+                <Shortcut keys={["?"]}>Open shortcuts</Shortcut>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </div>
   );

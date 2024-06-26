@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import React, { useCallback } from "react";
 import { darkModeAtom } from "../store/themes";
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import ControlContainer from "./ControlContainer";
 import { Switch } from "@/components/switch";
 

@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
 import { Select, SelectItem } from "../components/Select";
 import { SnippetsIcon } from "../components/Icons";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../components/Dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +17,6 @@ import {
 import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "../components/ScrollArea";
 import { Button } from "@/components/button";
-import { ButtonGroup } from "../components/ButtonGroup";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { isTouchDevice } from "../utils/isTouchDevice";
 
@@ -40,6 +38,9 @@ import { Category, Snippet, snippetGroups } from "../snippets";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import { BASE_URL } from "@/utils/common";
 import { NavigationActions } from "@/components/navigation";
+import KeyboardShortcuts from "../components/KeyboardShortcuts";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/dialog";
+import { ButtonGroup } from "@/components/button-group";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",
@@ -286,6 +287,7 @@ export default function Snippets() {
   return (
     <div>
       <NavigationActions>
+        <KeyboardShortcuts />
         <div className={styles.navControls}>
           {!isTouch && (
             <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
@@ -294,9 +296,9 @@ export default function Snippets() {
                   <CogIcon /> Configure Modifiers
                 </Button>
               </DialogTrigger>
-              <DialogContent showCloseButton centered>
-                <DialogTitle className={styles.dialogTitle}>Configure Modifiers</DialogTitle>
-                <DialogDescription className={styles.dialogDescription}>
+              <DialogContent size="medium">
+                <DialogTitle>Configure Modifiers</DialogTitle>
+                <DialogDescription>
                   Modifiers are used as prefixes and suffixes for your snippets' keyword. If you wish to customize them,
                   you can do so below.
                 </DialogDescription>

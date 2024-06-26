@@ -69,14 +69,14 @@
 }
 
 .shortcuts {
-  display: grid;
+  display: flex;
+  flex-direction: column;
 
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
 
   font-weight: 500;
-  grid-gap: 24px 20px;
-  grid-template-columns: auto 1fr;
+  gap: 16px;
   letter-spacing: 0.1px;
   line-height: 16px;
 

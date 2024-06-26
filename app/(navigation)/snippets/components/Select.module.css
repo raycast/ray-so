@@ -38,6 +38,7 @@
 }
 
 .content {
+  z-index: 100;
   width: 100px;
   padding: 4px;
   border: 1px solid #333333;

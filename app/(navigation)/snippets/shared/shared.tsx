@@ -17,13 +17,13 @@ import {
 import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "../components/ScrollArea";
 import { Button } from "@/components/button";
-import { ButtonGroup } from "../components/ButtonGroup";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import styles from "../[[...slug]]/snippets.module.css";
 import buttonStyles from "../components/Button.module.css";
 import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
 import { Snippet } from "../snippets";
+import { ButtonGroup } from "@/components/button-group";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",

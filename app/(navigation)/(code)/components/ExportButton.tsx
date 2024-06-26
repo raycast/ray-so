@@ -13,7 +13,7 @@ import { fileNameAtom } from "../store";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import { useAtom, useAtomValue } from "jotai";
 import { EXPORT_SIZE_OPTIONS, SIZE_LABELS, exportSizeAtom } from "../store/image";

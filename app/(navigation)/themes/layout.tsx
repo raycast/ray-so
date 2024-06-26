@@ -7,6 +7,7 @@ import { Button } from "@/components/button";
 import { SpeechBubbleIcon } from "@raycast/icons";
 import KeyboardShortcutsPanel from "@/app/(navigation)/(code)/components/KeyboardShortcutsPanel";
 import ExportButton from "@/app/(navigation)/(code)/components/ExportButton";
+import KeyboardShortcuts from "./components/keyboard-shortcuts";
 
 export const metadata = {
   title: "Theme Explorer by Raycast",
@@ -30,6 +31,7 @@ export default async function Layout({ children, params }: { children: React.Rea
               <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
             </a>
           </Button>
+          <KeyboardShortcuts />
         </NavigationActions>
       </div>
     </Providers>

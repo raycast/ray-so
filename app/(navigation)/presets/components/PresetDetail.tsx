@@ -33,6 +33,7 @@ import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions"
 import { useRouter } from "next/navigation";
 import { Toast, ToastTitle, ToastViewport } from "./Toast";
 import { NavigationActions } from "@/components/navigation";
+import KeyboardShortcuts from "./KeyboardShortcuts";
 
 type PresetPageProps = {
   preset: Preset;
@@ -172,6 +173,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
   return (
     <>
       <NavigationActions>
+        <KeyboardShortcuts />
         <ButtonGroup>
           <Button variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon /> Add to Raycast

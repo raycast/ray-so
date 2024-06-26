@@ -6,7 +6,7 @@ import ControlContainer from "./ControlContainer";
 import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from "./Select";
 
 import styles from "./ThemeControl.module.css";
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import { paddingAtom } from "../store/padding";
 
 const ThemeControl: React.FC = () => {

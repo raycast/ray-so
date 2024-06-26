@@ -7,12 +7,16 @@ import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionIn
 import styles from "./presets.module.css";
 import { ScrollArea } from "../components/ScrollArea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
-import { Info01Icon, StarsIcon } from "@raycast/icons";
+import { ChevronDownIcon, Info01Icon, PlusCircleIcon, StarsIcon } from "@raycast/icons";
 import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
 import { AiModel } from "../api";
 import Link from "next/link";
 import { Switch } from "@/components/switch";
+import { NavigationActions } from "@/components/navigation";
+import KeyboardShortcuts from "../components/KeyboardShortcuts";
+import { ButtonGroup } from "@/components/button-group";
+import { Button } from "@/components/button";
 
 type Props = {
   models: AiModel[];
@@ -48,6 +52,18 @@ export default function Presets({ models }: Props) {
 
   return (
     <>
+      <NavigationActions>
+        <KeyboardShortcuts />
+        <ButtonGroup>
+          <Button variant="primary" disabled>
+            <PlusCircleIcon /> Add to Raycast
+          </Button>
+
+          <Button variant="primary" disabled aria-label="Export options">
+            <ChevronDownIcon />
+          </Button>
+        </ButtonGroup>
+      </NavigationActions>
       <div className={styles.main}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarInner}>

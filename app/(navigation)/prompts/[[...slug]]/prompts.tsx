@@ -38,6 +38,8 @@ import * as ContextMenu from "@radix-ui/react-context-menu";
 import CreativityIcon from "../components/CreativityIcon";
 import Link from "next/link";
 import { NavigationActions } from "@/components/navigation";
+import KeyboardShortcuts from "@prompts/components/KeyboardShortcuts";
+import { Kbd } from "@/components/kbd";
 
 type Props = {
   models: AiModel[];
@@ -193,6 +195,7 @@ export function Prompts({ models }: Props) {
   return (
     <div>
       <NavigationActions>
+        <KeyboardShortcuts />
         {!isTouch ? (
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
@@ -209,24 +212,24 @@ export function Prompts({ models }: Props) {
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
                   <DownloadIcon /> Download JSON
                   <span className={styles.hotkeys}>
-                    <kbd>⌘</kbd>
-                    <kbd>D</kbd>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>D</Kbd>
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyData()}>
                   <CopyClipboardIcon /> Copy JSON{" "}
                   <span className={styles.hotkeys}>
-                    <kbd>⌘</kbd>
-                    <kbd>⌥</kbd>
-                    <kbd>C</kbd>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⌥</Kbd>
+                    <Kbd>C</Kbd>
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyUrl()}>
                   <LinkIcon /> Copy URL to Share{" "}
                   <span className={styles.hotkeys}>
-                    <kbd>⌘</kbd>
-                    <kbd>⇧</kbd>
-                    <kbd>C</kbd>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>C</Kbd>
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

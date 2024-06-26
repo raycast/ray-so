@@ -18,7 +18,7 @@ import {
   themeLineNumbersAtom,
   unlockedThemesAtom,
 } from "../store/themes";
-import useHotkeys from "../util/useHotkeys";
+import useHotkeys from "../../../../utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import { GeistMono } from "geist/font/mono";
 import classNames from "classnames";
