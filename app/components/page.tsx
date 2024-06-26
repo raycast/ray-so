@@ -124,6 +124,12 @@ export default function Components() {
           <Button size="large" variant="primary">
             <PlusCircleIcon className="shrink-0 w-5 h-5" /> large with icon
           </Button>
+          <Button iconOnly size="medium" variant="primary">
+            <PlusCircleIcon className="shrink-0 w-4 h-4" />
+          </Button>
+          <Button iconOnly size="large" variant="primary">
+            <PlusCircleIcon className="shrink-0 w-5 h-5" />
+          </Button>
         </div>
       </div>
       <div className="flex flex-col gap-4 items-start">

@@ -31,9 +31,6 @@ import {
   BrushIcon,
   SpeechBubbleIcon,
   MagnifyingGlassIcon,
-  RaycastLogoNegIcon,
-  ArrowNeIcon,
-  CodeIcon,
 } from "@raycast/icons";
 
 import ResultIcon from "./components/ResultIcon";
@@ -898,17 +895,17 @@ export const IconGenerator = () => {
                   ref={searchRef}
                 />
               </label>
-              <Button className={styles.iconsAction} onClick={onRandomIconClick} title="Random icon">
-                <ShuffleIcon />
+              <Button iconOnly size="large" onClick={onRandomIconClick} title="Random icon">
+                <ShuffleIcon className="!w-4 !h-4" />
               </Button>
-              <Button className={styles.iconsAction} title="Upload your own SVG">
+              <Button iconOnly size="large" title="Upload your own SVG" className="relative">
                 <input
                   type="file"
                   className={styles.uploadCustomIconFileInput}
                   onChange={onSelectCustomIcon}
                   accept=".svg, .png"
                 />
-                <FolderIcon />
+                <FolderIcon className="!w-4 !h-4" />
               </Button>
             </div>
             {filteredIcons.length === 0 ? (
