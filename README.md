@@ -40,7 +40,7 @@ npm run dev
 
 ## Contributing
 
-Here's how you can contribute:
+We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. If you're interested in contributing, follow the steps below:
 
 ### Presets, Prompts & Snippets
 
