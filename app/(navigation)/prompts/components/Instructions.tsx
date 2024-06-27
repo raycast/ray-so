@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+import { Button } from "@/components/button";
 import styles from "./Instructions.module.css";
 
 export function Instructions() {
@@ -18,7 +18,7 @@ export function Instructions() {
         <strong>Add to Raycast</strong> to import them directly.
       </p>
 
-      <Button variant="red" disabled>
+      <Button variant="primary" disabled>
         Add to Raycast
       </Button>
     </div>
