@@ -5,6 +5,7 @@ import cn from "classnames";
 import { BASE_URL } from "@/utils/common";
 import { TooltipProvider } from "@/components/tooltip";
 import { Viewport } from "next";
+import { Log } from "./log";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <TooltipProvider>
-        <body className={cn("isolate", inter.className)}>{children}</body>
+        <body className={cn("isolate", inter.className)}>
+          <Log />
+          {children}
+        </body>
       </TooltipProvider>
       <Analytics />
     </html>
