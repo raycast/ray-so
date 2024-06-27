@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/select";
 import { SelectItemText } from "@radix-ui/react-select";
+import { ChevronUpIcon } from "@raycast/icons";
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, setTheme] = useAtom(themeAtom);
@@ -65,7 +66,7 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        <SelectTrigger size="small" className="w-[60px]">
+        <SelectTrigger size="small" className="w-[60px]" icon={ChevronUpIcon}>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

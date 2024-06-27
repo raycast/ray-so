@@ -10,6 +10,7 @@ import useHotkeys from "../../../../utils/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
 import { cn } from "@/utils/cn";
+import { ChevronUpIcon } from "@raycast/icons";
 
 const LanguageControl: React.FC = () => {
   const [isOpen, setOpen] = useState(false);
@@ -38,7 +39,11 @@ const LanguageControl: React.FC = () => {
           }
         }}
       >
-        <SelectTrigger size="small" className={cn("w-[146px]", isLoadingLanguage && styles.loadingShimmer)}>
+        <SelectTrigger
+          size="small"
+          className={cn("w-[146px]", isLoadingLanguage && styles.loadingShimmer)}
+          icon={ChevronUpIcon}
+        >
           <SelectValue />
           {autoDetectLanguage ? "(auto)" : ""}
         </SelectTrigger>

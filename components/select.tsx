@@ -16,7 +16,9 @@ const SelectItemText = SelectPrimitive.ItemText;
 
 export interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
-    VariantProps<typeof triggerVariants> {}
+    VariantProps<typeof triggerVariants> {
+  icon?: React.ElementType;
+}
 
 const triggerVariants = cva(
   `gap-1 flex w-full items-center whitespace-nowrap rounded-md text-sm font-normal transition-colors duration-100 overflow-hidden
@@ -43,14 +45,17 @@ const triggerVariants = cva(
 );
 
 const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Trigger>, SelectTriggerProps>(
-  ({ className, variant, size = "medium", children, ...props }, ref) => (
-    <SelectPrimitive.Trigger ref={ref} className={cn(triggerVariants({ variant, size, className }))} {...props}>
-      {children}
-      <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="h-4 w-4 opacity-50 ml-auto" />
-      </SelectPrimitive.Icon>
-    </SelectPrimitive.Trigger>
-  )
+  ({ className, variant, size = "medium", children, icon, ...props }, ref) => {
+    const IconComponent = icon ?? ChevronDownIcon;
+    return (
+      <SelectPrimitive.Trigger ref={ref} className={cn(triggerVariants({ variant, size, className }))} {...props}>
+        {children}
+        <SelectPrimitive.Icon asChild>
+          <IconComponent className="h-4 w-4 opacity-50 ml-auto" />
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+    );
+  }
 );
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
