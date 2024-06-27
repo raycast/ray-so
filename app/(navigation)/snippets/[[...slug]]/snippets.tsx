@@ -5,7 +5,7 @@ import NextLink from "next/link";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
-import { Select, SelectItem } from "../components/Select";
+import { Select, SelectItem, SelectContent, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
 import { SnippetsIcon } from "../components/Icons";
 import {
   DropdownMenu,
@@ -306,21 +306,31 @@ export default function Snippets() {
                   <span className={styles.modifierInput}>
                     Start Modifier
                     <Select value={startMod} onValueChange={(newValue: Modifiers) => setStartMod(newValue)}>
-                      {modifiers.map((mod) => (
-                        <SelectItem key={mod} value={mod}>
-                          {mod}
-                        </SelectItem>
-                      ))}
+                      <SelectTrigger className="w-24">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {modifiers.map((mod) => (
+                          <SelectItem key={mod} value={mod}>
+                            <SelectItemText>{mod}</SelectItemText>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
                     </Select>
                   </span>
                   <span className={styles.modifierInput}>
                     End Modifier
                     <Select value={endMod} onValueChange={(newValue: Modifiers) => setEndMod(newValue)}>
-                      {modifiers.map((mod) => (
-                        <SelectItem key={mod} value={mod}>
-                          {mod}
-                        </SelectItem>
-                      ))}
+                      <SelectTrigger className="w-24">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {modifiers.map((mod) => (
+                          <SelectItem key={mod} value={mod}>
+                            <SelectItemText>{mod}</SelectItemText>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
                     </Select>
                   </span>
                 </div>
