@@ -5,34 +5,6 @@
   align-items: center;
   color: #ffffff;
   gap: 16px;
-
-  input[type="number"],
-  select {
-    width: 120px;
-    height: 36px;
-
-    padding: 0px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-size: 14px;
-
-    font-weight: 400;
-    justify-self: flex-end;
-    outline: none;
-
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-
-    &:hover,
-    &:focus {
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    @media (max-width: 720px) {
-      font-size: 16px;
-    }
-  }
 }
 
 .exportOptionFileName {
@@ -45,10 +17,6 @@
   flex-direction: row;
   align-items: center;
   gap: 4px;
-  input,
-  button {
-    width: 100px;
-  }
 }
 
 .exportOptionRemove {
@@ -73,18 +41,4 @@
     opacity: 0.4;
     pointer-events: none;
   }
-}
-
-.inputWithUnit {
-  input {
-    padding-right: 35px;
-  }
-}
-
-.unit {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-50%);
 }

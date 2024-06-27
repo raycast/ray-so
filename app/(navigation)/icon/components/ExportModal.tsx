@@ -8,9 +8,10 @@ import { PlusIcon, TrashIcon } from "@raycast/icons";
 import { saveSvgAsPng } from "save-svg-as-png";
 
 import styles from "./ExportModal.module.css";
-import { Select, SelectItem } from "./Select";
+import { Select, SelectItem, SelectContent, SelectItemText, SelectValue, SelectTrigger } from "@/components/select";
 import { Button } from "@/components/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/dialog";
+import { Input, InputSlot } from "@/components/input";
 
 type ExportFormat = "PNG" | "SVG";
 
@@ -132,24 +133,32 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
                 <div
                   className={cn(styles.inputWrapper, styles.inputWithUnit, option.format === "SVG" && styles.disabled)}
                 >
-                  <input
+                  <Input
                     type={option.format === "SVG" ? "text" : "number"}
                     min={0}
                     value={option.format === "SVG" ? "-" : option.size}
                     onChange={(e) => updateExportOptions(index, "size", parseInt(e.target.value))}
                     disabled={option.format === "SVG"}
-                  />
-                  <span className={styles.unit}>px</span>
+                    size="large"
+                    className="w-[100px]"
+                  >
+                    <InputSlot>px</InputSlot>
+                  </Input>
                 </div>
               </div>
               <div className={styles.exportOptionFormat}>
-                <Select
-                  variant="primary"
-                  value={option.format}
-                  onValueChange={(value) => updateExportOptions(index, "format", value)}
-                >
-                  <SelectItem value="PNG">PNG</SelectItem>
-                  <SelectItem value="SVG">SVG</SelectItem>
+                <Select value={option.format} onValueChange={(value) => updateExportOptions(index, "format", value)}>
+                  <SelectTrigger size="large" className="w-[100px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="PNG">
+                      <SelectItemText>PNG</SelectItemText>
+                    </SelectItem>
+                    <SelectItem value="SVG">
+                      <SelectItemText>SVG</SelectItemText>
+                    </SelectItem>
+                  </SelectContent>
                 </Select>
               </div>
             </div>
