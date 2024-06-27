@@ -279,6 +279,16 @@ kbd {
 
 /* theme explorer */
 
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @keyframes nightRider {
   0%,
   100% {
