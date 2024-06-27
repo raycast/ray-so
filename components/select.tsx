@@ -50,8 +50,8 @@ const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.T
     return (
       <SelectPrimitive.Trigger ref={ref} className={cn(triggerVariants({ variant, size, className }))} {...props}>
         {children}
-        <SelectPrimitive.Icon asChild>
-          <IconComponent className="h-4 w-4 opacity-50 ml-auto" />
+        <SelectPrimitive.Icon className="ml-auto">
+          <IconComponent className="h-4 w-4 opacity-50 " />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
     );
