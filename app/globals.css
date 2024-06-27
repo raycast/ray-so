@@ -341,18 +341,15 @@ kbd {
   position: fixed;
   z-index: 1000;
   top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100vw;
   height: calc(100dvh - 50px);
-  inset: 0;
   opacity: 1;
   pointer-events: none;
   transition: opacity 500ms 250ms ease-in-out;
   will-change: opacity;
-
-  .dark &,
-  .light & {
-    opacity: 0;
-  }
 }
 
 [data-loader-progress] {
