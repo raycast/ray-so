@@ -134,7 +134,7 @@ export function Navigation() {
                 <div className="flex gap-3 items-center">
                   {link.icon && <link.icon className="w-8 h-8" />}
                   <div className="flex flex-col leading-none gap-1">
-                    <span className="text-[15px] font-medium">{link.label}</span>
+                    <span className="text-[15px] font-medium text-gray-12">{link.label}</span>
                     <span className="text-[13px] text-gray-9 group-hover:text-gray-10">{link.description}</span>
                   </div>
                 </div>

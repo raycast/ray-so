@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 5%;
-    --panel: 0 0% 13.333%;
+    --panel: 0 0% 9.4118%; /* gray-2 */
     --white: 0 0% 100%;
     --black: 0 0% 0%;
     --brand: 0 100% 69%;

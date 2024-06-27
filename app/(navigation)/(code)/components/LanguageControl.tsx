@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import React, { useState } from "react";
-import * as Select from "@radix-ui/react-select";
+import * as RadixSelect from "@radix-ui/react-select";
 import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
 import ControlContainer from "./ControlContainer";
 import { Language, LANGUAGES } from "../util/languages";
@@ -12,6 +12,7 @@ import styles from "./LanguageControl.module.css";
 import useHotkeys from "../../../../utils/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import classNames from "classnames";
+import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
 
 const LanguageControl: React.FC = () => {
   const [isOpen, setOpen] = useState(false);
@@ -28,7 +29,7 @@ const LanguageControl: React.FC = () => {
 
   return (
     <ControlContainer title="Language">
-      <Select.Root
+      <Select
         open={isOpen}
         onOpenChange={(open) => setOpen(open)}
         value={selectedLanguage?.name || "auto-detect"}
@@ -40,8 +41,35 @@ const LanguageControl: React.FC = () => {
           }
         }}
       >
-        <Select.Trigger className={classNames(selectStyles.trigger, isLoadingLanguage && styles.loadingShimmer)}>
-          <Select.Value>
+        <SelectTrigger size="small" className="w-[146px]">
+          <SelectValue />
+          {autoDetectLanguage ? "(auto)" : ""}
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="auto-detect" className={selectStyles.item}>
+            <SelectItemText>Auto-Detect</SelectItemText>
+          </SelectItem>
+          {Object.values(LANGUAGES).map((language, index) => (
+            <SelectItem key={index} value={language.name} className={selectStyles.item}>
+              <SelectItemText>{language.name}</SelectItemText>
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      {/* <RadixSelect.Root
+        open={isOpen}
+        onOpenChange={(open) => setOpen(open)}
+        value={selectedLanguage?.name || "auto-detect"}
+        onValueChange={(value) => {
+          if (value === "auto-detect") {
+            setSelectedLanguage(null);
+          } else {
+            setSelectedLanguage(Object.values(LANGUAGES).find((l) => l.name === value) as Language);
+          }
+        }}
+      >
+        <RadixSelect.Trigger className={classNames(selectStyles.trigger, isLoadingLanguage && styles.loadingShimmer)}>
+          <RadixSelect.Value>
             <span
               style={{
                 display: "block",
@@ -55,29 +83,29 @@ const LanguageControl: React.FC = () => {
               {selectedLanguage?.name || "auto-detect"}
               {autoDetectLanguage ? " (auto)" : ""}
             </span>
-          </Select.Value>
-          <Select.Icon className={selectStyles.icon}>
+          </RadixSelect.Value>
+          <RadixSelect.Icon className={selectStyles.icon}>
             <ChevronUpIcon />
-          </Select.Icon>
-        </Select.Trigger>
+          </RadixSelect.Icon>
+        </RadixSelect.Trigger>
 
-        <Select.Portal>
-          <Select.Content className={selectStyles.content}>
-            <Select.Viewport className={selectStyles.viewport}>
-              <Select.Group className={selectStyles.group}>
-                <Select.Item value="auto-detect" className={selectStyles.item}>
-                  <Select.SelectItemText>Auto-Detect</Select.SelectItemText>
-                </Select.Item>
+        <RadixSelect.Portal>
+          <RadixSelect.Content className={selectStyles.content}>
+            <RadixSelect.Viewport className={selectStyles.viewport}>
+              <RadixSelect.Group className={selectStyles.group}>
+                <RadixSelect.Item value="auto-detect" className={selectStyles.item}>
+                  <RadixSelect.SelectItemText>Auto-Detect</RadixSelect.SelectItemText>
+                </RadixSelect.Item>
                 {Object.values(LANGUAGES).map((language, index) => (
-                  <Select.Item key={index} value={language.name} className={selectStyles.item}>
-                    <Select.SelectItemText>{language.name}</Select.SelectItemText>
-                  </Select.Item>
+                  <RadixSelect.Item key={index} value={language.name} className={selectStyles.item}>
+                    <RadixSelect.SelectItemText>{language.name}</RadixSelect.SelectItemText>
+                  </RadixSelect.Item>
                 ))}
-              </Select.Group>
-            </Select.Viewport>
-          </Select.Content>
-        </Select.Portal>
-      </Select.Root>
+              </RadixSelect.Group>
+            </RadixSelect.Viewport>
+          </RadixSelect.Content>
+        </RadixSelect.Portal>
+      </RadixSelect.Root> */}
     </ControlContainer>
   );
 };

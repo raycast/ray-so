@@ -17,11 +17,33 @@ import {
 } from "@/components/dropdown-menu";
 import { Switch } from "@/components/switch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
-import { ChevronDownIcon, PlusCircleIcon, RaycastLogoNegIcon } from "@raycast/icons";
+import {
+  BrandCplusplusIcon,
+  BrandJavascriptIcon,
+  BrandPythonIcon,
+  BrandTypescriptIcon,
+  ChevronDownIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
+  PlusCircleIcon,
+  RaycastLogoNegIcon,
+} from "@raycast/icons";
 import OgImage from "./og-image.png";
 import { Metadata } from "next";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
 import { Shortcut } from "@/components/kbd";
+import { Input, InputSlot } from "@/components/input";
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+  SelectItemText,
+  SelectGroup,
+  SelectLabel,
+  SelectSeparator,
+} from "@/components/select";
 
 const title = "Ray.so Components";
 const description = "Component playground for the ray.so ecosystem.";
@@ -238,6 +260,170 @@ export default function Components() {
               </div>
             </DialogContent>
           </Dialog>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Input</h2>
+        <div className="flex flex-col gap-4 items-start">
+          <div className="flex gap-2 items-center flex-wrap">
+            <Input placeholder="Search…" size="medium" className="w-[200px]" />
+            <Input placeholder="Search…" size="large" className="w-[200px]" />
+          </div>
+          <div className="flex gap-2 items-center flex-wrap">
+            <Input placeholder="Search…" size="medium" className="w-[200px]">
+              <InputSlot side="left">
+                <MagnifyingGlassIcon className="w-3.5 h-3.5" />
+              </InputSlot>
+              <InputSlot>
+                <HeartIcon className="w-3.5 h-3.5" />
+              </InputSlot>
+            </Input>
+            <Input placeholder="Search…" size="large" className="w-[200px]">
+              <InputSlot side="left">
+                <MagnifyingGlassIcon />
+              </InputSlot>
+              <InputSlot>
+                <HeartIcon />
+              </InputSlot>
+            </Input>
+          </div>
+          <div className="flex gap-2 items-center flex-wrap bg-panel p-4">
+            <Input placeholder="Search…" size="medium" className="w-[200px]" variant="soft" />
+            <Input placeholder="Search…" size="large" className="w-[200px]" variant="soft" />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Select</h2>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4 items-center">
+            <Select>
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Popular</SelectLabel>
+                  <SelectItem value="typescript">
+                    <SelectItemText>TypeScript</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="javascript">
+                    <SelectItemText>JavaScript</SelectItemText>
+                  </SelectItem>
+                </SelectGroup>
+                <SelectSeparator />
+                <SelectGroup>
+                  <SelectItem value="python">
+                    <SelectItemText>Python</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="cpp">
+                    <SelectItemText>C++</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="rust">
+                    <SelectItemText>Rust</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="go">
+                    <SelectItemText>Go</SelectItemText>
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="cpp">
+              <SelectTrigger className="w-[200px]" size="large">
+                <SelectValue placeholder="Select Language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Popular</SelectLabel>
+                  <SelectItem value="typescript">
+                    <SelectItemText>TypeScript</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="javascript">
+                    <SelectItemText>JavaScript</SelectItemText>
+                  </SelectItem>
+                </SelectGroup>
+                <SelectSeparator />
+                <SelectGroup>
+                  <SelectItem value="python">
+                    <SelectItemText>Python</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="cpp">
+                    <SelectItemText>C++</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="rust">
+                    <SelectItemText>Rust</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="go">
+                    <SelectItemText>Go</SelectItemText>
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <div className="flex gap-4 items-center">
+          <Select defaultValue="cpp">
+            <SelectTrigger className="w-[60px]">
+              <SelectValue placeholder="Select language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="typescript">
+                <SelectItemText>
+                  <BrandTypescriptIcon />
+                </SelectItemText>
+                TypeScript
+              </SelectItem>
+              <SelectItem value="javascript">
+                <SelectItemText>
+                  <BrandJavascriptIcon />
+                </SelectItemText>
+                JavaScript
+              </SelectItem>
+              <SelectItem value="python">
+                <SelectItemText>
+                  <BrandPythonIcon />
+                </SelectItemText>
+                Python
+              </SelectItem>
+              <SelectItem value="cpp">
+                <SelectItemText>
+                  <BrandCplusplusIcon />
+                </SelectItemText>
+                C++
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          <Select defaultValue="cpp">
+            <SelectTrigger className="w-[70px]" size="large">
+              <SelectValue placeholder="Select Language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="typescript">
+                <SelectItemText>
+                  <BrandTypescriptIcon />
+                </SelectItemText>
+                TypeScript
+              </SelectItem>
+              <SelectItem value="javascript">
+                <SelectItemText>
+                  <BrandJavascriptIcon />
+                </SelectItemText>
+                JavaScript
+              </SelectItem>
+              <SelectItem value="python">
+                <SelectItemText>
+                  <BrandPythonIcon />
+                </SelectItemText>
+                Python
+              </SelectItem>
+              <SelectItem value="cpp">
+                <SelectItemText>
+                  <BrandCplusplusIcon />
+                </SelectItemText>
+                C++
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

@@ -39,7 +39,7 @@ import CustomSvgIcon from "./components/CustomSvgIcon";
 
 import { randomElement, debounce, uniq, randomNumberBetween, getPastedSvgFile } from "./lib/utils";
 
-import { Select, SelectItem } from "./components/Select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
 
 import ExportModal from "./components/ExportModal";
 
@@ -54,6 +54,8 @@ import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
 import KeyboardShortcuts from "@icon/components/KeyboardShortcuts";
 import useHotkeys from "@/utils/useHotkeys";
+import { Input, InputSlot } from "@/components/input";
+import { SelectItemText } from "@radix-ui/react-select";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -251,10 +253,13 @@ type ColorInputPropTypes = {
 const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: ColorInputPropTypes) => {
   return (
     <Popover.Root>
-      <div className={cn(styles.inputWrapper, styles.colorInputWrapper)}>
-        <div className={styles.colorExample} style={{ backgroundColor: value }} />
+      <div className={cn(styles.inputWrapper)}>
         <Popover.Trigger className={styles.popoverTrigger}>
-          <input name={name} type="text" value={value} disabled={disabled} className={styles.colorInputTrigger} />
+          <Input name={name} type="text" value={value} disabled={disabled} className="w-[120px]" size="large">
+            <InputSlot side="left">
+              <div className={styles.colorExample} style={{ backgroundColor: value }} />
+            </InputSlot>
+          </Input>
         </Popover.Trigger>
 
         <Popover.Portal>
@@ -624,7 +629,7 @@ export const IconGenerator = () => {
     });
   };
 
-  const onChangeSearchTerm: React.FormEventHandler<HTMLLabelElement> = (event) => {
+  const onChangeSearchTerm: React.FormEventHandler<HTMLInputElement> = (event) => {
     const newSeachTerm = (event.target as HTMLInputElement).value;
     router.replace(`?q=${newSeachTerm}`);
   };
@@ -885,16 +890,19 @@ export const IconGenerator = () => {
               <AppImageSidebarLeftIcon />
             </button>
             <div className={styles.searchWrapper}>
-              <label className={styles.searchInputWrapper} onChange={onChangeSearchTerm}>
-                <MagnifyingGlassIcon />
-                <input
-                  type="text"
-                  defaultValue={searchTerm}
-                  className={styles.searchInput}
-                  placeholder="Search Icons…"
-                  ref={searchRef}
-                />
-              </label>
+              <Input
+                type="text"
+                placeholder="Search icons…"
+                defaultValue={searchTerm}
+                ref={searchRef}
+                size="large"
+                variant="soft"
+                onChange={onChangeSearchTerm}
+              >
+                <InputSlot side="left">
+                  <MagnifyingGlassIcon className="!w-4 !h-4" />
+                </InputSlot>
+              </Input>
               <Button iconOnly size="large" onClick={onRandomIconClick} title="Random icon">
                 <ShuffleIcon className="!w-4 !h-4" />
               </Button>
@@ -1045,16 +1053,20 @@ export const IconGenerator = () => {
                     <label className={styles.formItem}>
                       <span>Fill Type</span>
                       <Select
-                        variant="primary"
                         name="backgroundFillType"
                         value={settings.backgroundFillType}
                         onValueChange={onChangeFillType}
                       >
-                        {fillTypeOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
+                        <SelectTrigger className="w-[120px]" size="large">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {fillTypeOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              <SelectItemText>{option.label}</SelectItemText>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
                       </Select>
                     </label>
                     <label className={styles.formItem}>
@@ -1084,46 +1096,52 @@ export const IconGenerator = () => {
                         <label className={styles.formItem}>
                           <span>Position</span>
                           <Select
-                            variant="primary"
                             name="backgroundPosition"
                             value={settings.backgroundPosition}
                             onValueChange={onChangeBackgroundPosition}
                           >
-                            {backgroundPositionOptions.map((option) => (
-                              <SelectItem key={option.value} value={option.value}>
-                                {option.label}
-                              </SelectItem>
-                            ))}
+                            <SelectTrigger className="w-[120px]" size="large">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {backgroundPositionOptions.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  <SelectItemText>{option.label}</SelectItemText>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
                           </Select>
                         </label>
                         <label className={styles.formItem}>
                           <span>Spread</span>
-                          <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                            <input
-                              name="backgroundSpread"
-                              type="number"
-                              min={0}
-                              max={100}
-                              value={settings.backgroundSpread}
-                            />
-                            <span className={styles.unit}>%</span>
-                          </div>
+                          <Input
+                            name="backgroundSpread"
+                            type="number"
+                            defaultValue={settings.backgroundSpread}
+                            min={0}
+                            max={100}
+                            className="w-[120px]"
+                            size="large"
+                          >
+                            <InputSlot>%</InputSlot>
+                          </Input>
                         </label>
                       </>
                     ) : settings.backgroundFillType === "Linear" ? (
                       <label className={styles.formItem}>
                         <span>Angle</span>
-                        <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                          <input
-                            name="backgroundAngle"
-                            onChange={onChangeAngle}
-                            type="number"
-                            min={0}
-                            max={360}
-                            value={settings.backgroundAngle}
-                          />
-                          <span className={styles.unit}>º</span>
-                        </div>
+                        <Input
+                          name="backgroundAngle"
+                          type="number"
+                          onChange={onChangeAngle}
+                          defaultValue={settings.backgroundAngle}
+                          min={0}
+                          max={360}
+                          className="w-[120px]"
+                          size="large"
+                        >
+                          <InputSlot>º</InputSlot>
+                        </Input>
                       </label>
                     ) : null}
                   </div>
@@ -1164,42 +1182,43 @@ export const IconGenerator = () => {
                     </label>
                     <label className={cn(styles.formItem, !settings.backgroundNoiseTexture && styles.disabled)}>
                       <span>Noise opacity</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input
-                          name="backgroundNoiseTextureOpacity"
-                          type="number"
-                          min={0}
-                          max={100}
-                          value={settings.backgroundNoiseTextureOpacity}
-                        />
-                        <span className={styles.unit}>%</span>
-                      </div>
+                      <Input
+                        name="backgroundNoiseTextureOpacity"
+                        type="number"
+                        min={0}
+                        max={100}
+                        defaultValue={settings.backgroundNoiseTextureOpacity}
+                        className="w-[120px]"
+                        size="large"
+                      >
+                        <InputSlot>%</InputSlot>
+                      </Input>
                     </label>
                     <label className={cn(styles.formItem)}>
                       <span>Radius</span>
-
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input
-                          name="backgroundRadius"
-                          type="number"
-                          min={0}
-                          max={256}
-                          value={settings.backgroundRadius}
-                        />
-                        <span className={styles.unit}>px</span>
-                      </div>
+                      <Input
+                        name="backgroundRadius"
+                        type="number"
+                        min={0}
+                        max={256}
+                        defaultValue={settings.backgroundRadius}
+                        className="w-[120px]"
+                        size="large"
+                      >
+                        <InputSlot>px</InputSlot>
+                      </Input>
                     </label>
                     <label className={styles.formItem}>
                       <span>Stroke size</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input
-                          name="backgroundStrokeSize"
-                          type="number"
-                          min={0}
-                          value={settings.backgroundStrokeSize}
-                        />
-                        <span className={styles.unit}>px</span>
-                      </div>
+                      <Input
+                        name="backgroundStrokeSize"
+                        type="number"
+                        min={0}
+                        defaultValue={settings.backgroundStrokeSize}
+                        className="w-[120px]"
+                      >
+                        <InputSlot>px</InputSlot>
+                      </Input>
                     </label>
                     <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
                       <span>Stroke color</span>
@@ -1212,16 +1231,15 @@ export const IconGenerator = () => {
                     </label>
                     <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
                       <span>Stroke opacity</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input
-                          name="backgroundStrokeOpacity"
-                          type="number"
-                          min={0}
-                          max={100}
-                          value={settings.backgroundStrokeOpacity}
-                        />
-                        <span className={styles.unit}>%</span>
-                      </div>
+                      <Input
+                        name="backgroundStrokeOpacity"
+                        type="number"
+                        defaultValue={settings.backgroundStrokeOpacity}
+                        className="w-[120px]"
+                        size="large"
+                      >
+                        <InputSlot>%</InputSlot>
+                      </Input>
                     </label>
                   </div>
                 </details>
@@ -1247,22 +1265,44 @@ export const IconGenerator = () => {
                     <label className={styles.formItem}>
                       <span>Size</span>
                       <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input name="iconSize" type="number" min={0} defaultValue={settings.iconSize} />
-                        <span className={styles.unit}>px</span>
+                        <Input
+                          name="iconSize"
+                          type="number"
+                          defaultValue={settings.iconSize}
+                          min={0}
+                          className="w-[120px]"
+                          size="large"
+                        >
+                          <InputSlot>px</InputSlot>
+                        </Input>
                       </div>
                     </label>
                     <label className={styles.formItem}>
                       <span>X Offset</span>
                       <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input name="iconOffsetX" type="number" defaultValue={settings.iconOffsetX} />
-                        <span className={styles.unit}>px</span>
+                        <Input
+                          name="iconOffsetX"
+                          type="number"
+                          defaultValue={settings.iconOffsetX}
+                          className="w-[120px]"
+                          size="large"
+                        >
+                          <InputSlot>px</InputSlot>
+                        </Input>
                       </div>
                     </label>
                     <label className={styles.formItem}>
                       <span>Y Offset</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <input name="iconOffsetY" type="number" defaultValue={settings.iconOffsetY} />
-                        <span className={styles.unit}>px</span>
+                      <div className="flex flex-col">
+                        <Input
+                          name="iconOffsetY"
+                          type="number"
+                          defaultValue={settings.iconOffsetY}
+                          className="w-[120px]"
+                          size="large"
+                        >
+                          <InputSlot>px</InputSlot>
+                        </Input>
                       </div>
                     </label>
                   </div>
@@ -1273,12 +1313,17 @@ export const IconGenerator = () => {
         </CSSTransition>
       </main>
       <div className={styles.scale}>
-        <Select variant="secondary" defaultValue={`${scale}`} value={`${scale}`} onValueChange={onChangeScale}>
-          {scaleOptions.map((option) => (
-            <SelectItem key={option.value} value={`${option.value}`}>
-              {option.label}
-            </SelectItem>
-          ))}
+        <Select defaultValue={`${scale}`} value={`${scale}`} onValueChange={onChangeScale}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {scaleOptions.map((option) => (
+              <SelectItem key={option.value} value={`${option.value}`}>
+                <SelectItemText>{option.label}</SelectItemText>
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
       </div>
 

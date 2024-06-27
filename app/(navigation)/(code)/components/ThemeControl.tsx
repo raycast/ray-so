@@ -1,13 +1,22 @@
 import { useAtom, useSetAtom } from "jotai";
 import React, { useEffect } from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
 import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
-import { Select, SelectGroup, SelectItem, SelectLabel, SelectSeparator } from "./Select";
 
 import styles from "./ThemeControl.module.css";
 import useHotkeys from "../../../../utils/useHotkeys";
 import { paddingAtom } from "../store/padding";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectValue,
+} from "@/components/select";
+import { SelectItemText } from "@radix-ui/react-select";
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, setTheme] = useAtom(themeAtom);
@@ -56,48 +65,53 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        <SelectGroup>
-          <SelectLabel>Partners</SelectLabel>
-          {partnerThemes
-            .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
-            .map((theme, index) => {
-              return (
-                <SelectItem key={index} value={theme.name}>
-                  <SelectPrimitive.SelectItemText>
-                    {theme.icon ? (
-                      <span className={styles.themePreview}>
-                        {React.createElement(theme.icon, { className: styles.logo })}
-                      </span>
-                    ) : (
-                      <span
-                        className={styles.themePreview}
-                        style={{
-                          backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                        }}
-                      />
-                    )}
-                  </SelectPrimitive.SelectItemText>
-                  {theme.name}
-                </SelectItem>
-              );
-            })}
-        </SelectGroup>
-        <SelectSeparator />
-        <SelectGroup>
-          {themes.map((theme, index) => (
-            <SelectItem key={index} value={theme.name}>
-              <SelectPrimitive.SelectItemText>
-                <span
-                  className={styles.themePreview}
-                  style={{
-                    backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                  }}
-                />
-              </SelectPrimitive.SelectItemText>
-              {theme.name}
-            </SelectItem>
-          ))}
-        </SelectGroup>
+        <SelectTrigger size="small" className="w-[60px]">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Partners</SelectLabel>
+            {partnerThemes
+              .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
+              .map((theme, index) => {
+                return (
+                  <SelectItem key={index} value={theme.name} textValue={theme.name}>
+                    <SelectItemText>
+                      {theme.icon ? (
+                        <span className={styles.themePreview}>
+                          {React.createElement(theme.icon, { className: styles.logo })}
+                        </span>
+                      ) : (
+                        <span
+                          className={styles.themePreview}
+                          style={{
+                            backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                          }}
+                        />
+                      )}
+                    </SelectItemText>
+                    {theme.name}
+                  </SelectItem>
+                );
+              })}
+          </SelectGroup>
+          <SelectSeparator />
+          <SelectGroup>
+            {themes.map((theme, index) => (
+              <SelectItem key={index} value={theme.name}>
+                <SelectItemText>
+                  <span
+                    className={styles.themePreview}
+                    style={{
+                      backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                    }}
+                  />
+                </SelectItemText>
+                {theme.name}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
       </Select>
     </ControlContainer>
   );

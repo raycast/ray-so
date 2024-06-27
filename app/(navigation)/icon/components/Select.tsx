@@ -23,7 +23,7 @@ export const Select = React.forwardRef<React.ElementRef<typeof SelectPrimitive.T
         <SelectPrimitive.Trigger ref={forwardedRef} className={styles.trigger} data-variant={variants[props.variant]}>
           <SelectPrimitive.Value />
           <SelectPrimitive.Icon className={styles.icon} data-variant={variants[props.variant]}>
-            <ChevronDownIcon />
+            <ChevronDownIcon className="w-4 h-4" />
           </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
 
