@@ -7,13 +7,11 @@ import * as React from "react";
 interface Config {
   headerHeight: number;
   enabled: boolean;
-  basePath: string;
 }
 
-export function useSectionInViewObserver({ headerHeight, enabled = false, basePath = "" }: Config) {
+export function useSectionInViewObserver({ headerHeight, enabled = false }: Config) {
   const defaultRootMargin = `-${headerHeight}px 0% -50% 0%`;
-  const p = usePathname();
-  const pathname = `/${p.split(`${basePath}/`)[1] || ""}`;
+  const pathname = usePathname();
   const historyKey = React.useRef("");
   const animationFrame = React.useRef(0);
   const isPageReload = React.useRef(false);
@@ -65,7 +63,7 @@ export function useSectionInViewObserver({ headerHeight, enabled = false, basePa
 
       // Avoid setting route if it hasn't changed
       if (newSlug && pathname !== newSlug) {
-        const newUrl = basePath + newSlug;
+        const newUrl = newSlug;
 
         updateHistory(newUrl);
         dispatchEvent(new CustomEvent("sectionInViewChange", { detail: newUrl }));
@@ -274,7 +272,7 @@ export function useSectionInView() {
     };
   }, [router, pathname]);
 
-  return `/${sectionInView?.split("/")[2]}`;
+  return sectionInView;
 }
 
 interface ScrollHistoryEntry {

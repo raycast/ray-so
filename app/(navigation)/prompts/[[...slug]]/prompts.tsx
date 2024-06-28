@@ -46,7 +46,7 @@ type Props = {
 
 export function Prompts({ models }: Props) {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
-  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver, basePath: "/prompts" });
+  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
   const router = useRouter();
 
@@ -328,7 +328,7 @@ export function Prompts({ models }: Props) {
                 return (
                   <div
                     key={category.name}
-                    data-section-slug={category.slug}
+                    data-section-slug={`/prompts${category.slug}`}
                     style={{
                       outline: "none",
                     }}
@@ -440,7 +440,7 @@ function NavItem({ category }: { category: Category }) {
         window.history.pushState(null, "", `/prompts${category.slug}`);
       }}
       className={styles.sidebarNavItem}
-      data-active={activeSection === category.slug}
+      data-active={activeSection === `/prompts${category.slug}`}
     >
       {category.icon ? <category.iconComponent /> : <StarsIcon />}
 

@@ -23,7 +23,7 @@ type Props = {
 
 export default function Presets({ models }: Props) {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
-  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver, basePath: "/presets" });
+  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
   const [showAdvancedModels, setShowAdvancedModels] = React.useState(true);
 
@@ -110,7 +110,7 @@ export default function Presets({ models }: Props) {
             return (
               <div
                 key={category.name}
-                data-section-slug={category.slug}
+                data-section-slug={`/presets${category.slug}`}
                 style={{
                   outline: "none",
                 }}
@@ -143,7 +143,7 @@ function NavItem({ category, disabled }: { category: Category; disabled: boolean
         window.history.pushState(null, "", `/presets${category.slug}`);
       }}
       className={cn(styles.sidebarNavItem, disabled && styles.disabled)}
-      data-active={activeSection === category.slug}
+      data-active={activeSection === `/presets${category.slug}`}
       aria-disabled={disabled}
       tabIndex={disabled ? -1 : 0}
     >

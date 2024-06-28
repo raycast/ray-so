@@ -76,7 +76,7 @@ export async function getStaticProps() {
 
 export default function Snippets() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
-  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver, basePath: "/snippets" });
+  useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
   const router = useRouter();
 
@@ -471,7 +471,7 @@ export default function Snippets() {
                 return (
                   <div
                     key={snippetGroup.name}
-                    data-section-slug={snippetGroup.slug}
+                    data-section-slug={`/snippets${snippetGroup.slug}`}
                     style={{
                       outline: "none",
                     }}
@@ -539,7 +539,7 @@ function NavItem({ snippetGroup }: { snippetGroup: Category }) {
         window.history.pushState(null, "", `/snippets${snippetGroup.slug}`);
       }}
       className={styles.sidebarNavItem}
-      data-active={activeSection === snippetGroup.slug}
+      data-active={activeSection === `/snippets${snippetGroup.slug}`}
     >
       {snippetGroup.icon ? <IconComponent icon={snippetGroup.icon} /> : <SnippetsIcon />}
 
