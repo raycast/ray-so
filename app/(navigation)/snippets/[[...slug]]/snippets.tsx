@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import NextLink from "next/link";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
@@ -534,9 +533,11 @@ function NavItem({ snippetGroup }: { snippetGroup: Category }) {
   const activeSection = useSectionInView();
 
   return (
-    <NextLink
-      href={`/snippets/${snippetGroup.slug}`}
-      shallow
+    <a
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState(null, "", `/snippets${snippetGroup.slug}`);
+      }}
       className={styles.sidebarNavItem}
       data-active={activeSection === snippetGroup.slug}
     >
@@ -544,7 +545,7 @@ function NavItem({ snippetGroup }: { snippetGroup: Category }) {
 
       {snippetGroup.name}
       <span className={styles.badge}>{snippetGroup.snippets.length}</span>
-    </NextLink>
+    </a>
   );
 }
 

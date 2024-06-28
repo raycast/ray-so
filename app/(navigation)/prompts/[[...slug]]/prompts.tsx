@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { AiModel } from "../api";
 import React from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
@@ -36,7 +36,6 @@ import { Instructions } from "../components/Instructions";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import CreativityIcon from "../components/CreativityIcon";
-import Link from "next/link";
 import { NavigationActions } from "@/components/navigation";
 import KeyboardShortcuts from "@prompts/components/KeyboardShortcuts";
 import { Kbd } from "@/components/kbd";

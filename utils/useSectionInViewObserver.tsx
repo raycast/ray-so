@@ -12,8 +12,8 @@ interface Config {
 
 export function useSectionInViewObserver({ headerHeight, enabled = false, basePath = "" }: Config) {
   const defaultRootMargin = `-${headerHeight}px 0% -50% 0%`;
-  const router = useRouter();
-  const pathname = usePathname();
+  const p = usePathname();
+  const pathname = `/${p.split(`${basePath}/`)[1] || ""}`;
   const historyKey = React.useRef("");
   const animationFrame = React.useRef(0);
   const isPageReload = React.useRef(false);
@@ -63,14 +63,12 @@ export function useSectionInViewObserver({ headerHeight, enabled = false, basePa
 
       const newSlug = newEntryInView ? (newEntryInView.target as HTMLElement).dataset.sectionSlug : undefined;
 
-      // Wait for router to be ready and avoid setting route if it hasn't changed
+      // Avoid setting route if it hasn't changed
       if (newSlug && pathname !== newSlug) {
         const newUrl = basePath + newSlug;
 
-        // router.asPath = newSlug;
-
         updateHistory(newUrl);
-        dispatchEvent(new CustomEvent("sectionInViewChange", { detail: newSlug }));
+        dispatchEvent(new CustomEvent("sectionInViewChange", { detail: newUrl }));
       }
     };
 
@@ -230,19 +228,17 @@ export function useSectionInViewObserver({ headerHeight, enabled = false, basePa
 
       // Decide whether we should try to restore the original scroll position or refresh the scroll
       // to the current section coordinates (e.g. when clicking a link that goes to the current URL).
-      const wasRecursive = animationFrame.current !== 0;
-      const shallow = window.history.state.key === historyKey.current;
-      const shouldRestore = wasRecursive || !shallow;
+      // const wasRecursive = animationFrame.current !== 0;
+      // const shallow = window.history.state.key === historyKey.current;
+      // const shouldRestore = wasRecursive || !shallow;
 
-      adjustScroll({ shouldRestore });
+      adjustScroll({ shouldRestore: false });
       sections = document.querySelectorAll("[data-section-slug]");
       sections?.forEach((section) => observer.current.observe(section));
 
       animationFrame.current = 0;
       isPageReload.current = false;
 
-      // router.events.on("routeChangeComplete", handleRouteChangeComplete);
-      // router.events.on("beforeHistoryChange", handleBeforeHistoryChange);
       window.addEventListener("beforeunload", handleBeforeUnload);
       window.addEventListener("scroll", handleScrollOrResize);
       window.addEventListener("resize", handleScrollOrResize);
@@ -252,8 +248,6 @@ export function useSectionInViewObserver({ headerHeight, enabled = false, basePa
       sectionsInView.length = 0;
       observer.current.disconnect();
       cancelAnimationFrame(animationFrame.current);
-      // router.events.off("routeChangeComplete", handleRouteChangeComplete);
-      // router.events.off("beforeHistoryChange", handleBeforeHistoryChange);
       window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener("scroll", handleScrollOrResize);
       window.removeEventListener("resize", handleScrollOrResize);
@@ -280,7 +274,7 @@ export function useSectionInView() {
     };
   }, [router, pathname]);
 
-  return sectionInView;
+  return `/${sectionInView?.split("/")[2]}`;
 }
 
 interface ScrollHistoryEntry {

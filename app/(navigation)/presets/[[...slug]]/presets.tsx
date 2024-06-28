@@ -11,7 +11,6 @@ import { ChevronDownIcon, Info01Icon, PlusCircleIcon, StarsIcon } from "@raycast
 import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
 import { AiModel } from "../api";
-import Link from "next/link";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
 import KeyboardShortcuts from "../components/KeyboardShortcuts";
@@ -138,9 +137,11 @@ function NavItem({ category, disabled }: { category: Category; disabled: boolean
   const activeSection = useSectionInView();
 
   return (
-    <Link
-      href={`/presets${category.slug}`}
-      shallow
+    <a
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState(null, "", `/presets${category.slug}`);
+      }}
       className={cn(styles.sidebarNavItem, disabled && styles.disabled)}
       data-active={activeSection === category.slug}
       aria-disabled={disabled}
@@ -150,6 +151,6 @@ function NavItem({ category, disabled }: { category: Category; disabled: boolean
 
       {category.name}
       <span className={styles.badge}>{category.presets.length}</span>
-    </Link>
+    </a>
   );
 }
