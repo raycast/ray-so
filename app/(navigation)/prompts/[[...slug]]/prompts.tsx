@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AiModel } from "../api";
 import React from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
@@ -435,9 +435,11 @@ function NavItem({ category }: { category: Category }) {
   const activeSection = useSectionInView();
 
   return (
-    <Link
-      href={`/prompts/${category.slug}`}
-      shallow
+    <a
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState(null, "", `/prompts${category.slug}`);
+      }}
       className={styles.sidebarNavItem}
       data-active={activeSection === category.slug}
     >
@@ -445,6 +447,6 @@ function NavItem({ category }: { category: Category }) {
 
       {category.name}
       <span className={styles.badge}>{category.prompts.length}</span>
-    </Link>
+    </a>
   );
 }
