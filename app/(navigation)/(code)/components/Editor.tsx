@@ -12,6 +12,7 @@ import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import {
   THEMES,
+  Theme,
   themeAtom,
   themeCSSAtom,
   themeFontAtom,
@@ -117,14 +118,15 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
   document.execCommand("insertText", false, "}");
 }
 
-function Editor() {
+function Editor({ theme: forcedTheme }: { theme?: Theme }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
-  const [theme, setTheme] = useAtom(themeAtom);
+  const [selectedTheme, setTheme] = useAtom(themeAtom);
+  const theme = forcedTheme || selectedTheme;
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
   const setHighlightedLines = useSetAtom(highlightedLinesAtom);
@@ -263,7 +265,7 @@ function Editor() {
         onFocus={handleFocus}
         data-enable-grammarly="false"
       />
-      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
+      <HighlightedCode code={code} selectedLanguage={selectedLanguage} theme={theme} />
     </div>
   );
 }

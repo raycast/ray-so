@@ -29,3 +29,6 @@ export const highlightedLinesAtom = atomWithHash<number[]>("highlightedLines", [
     return str ? str.split(",").map(Number) : [];
   },
 });
+
+type Control = "theme" | "background" | "padding" | "language" | "font" | "mode";
+export const activeControlAtom = atom<Control | null>(null);

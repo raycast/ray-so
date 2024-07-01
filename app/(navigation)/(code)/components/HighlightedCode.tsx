@@ -5,20 +5,22 @@ import { Language, LANGUAGES } from "../util/languages";
 import styles from "./Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { darkModeAtom, themeAtom } from "../store/themes";
+import { Theme, darkModeAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
   code: string;
+  theme?: Theme;
 };
 
-const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
+const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code, theme: forcedTheme }) => {
   const [highlightedHtml, setHighlightedHtml] = useState("");
   const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const highlightedLines = useAtomValue(highlightedLinesAtom);
   const darkMode = useAtomValue(darkModeAtom);
-  const theme = useAtomValue(themeAtom);
+  const selectedTheme = useAtomValue(themeAtom);
+  const theme = forcedTheme || selectedTheme;
   const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
 
   useEffect(() => {

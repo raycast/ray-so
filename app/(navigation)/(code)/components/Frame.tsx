@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { fileNameAtom, showBackgroundAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
-import { THEMES, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
+import { THEMES, Theme, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 
 import Editor from "./Editor";
@@ -20,7 +20,7 @@ import beams from "../assets/tailwind/beams.png";
 import beamsLight from "../assets/tailwind/beams-light.jpg";
 import beamsDark from "../assets/tailwind/beams-dark.jpg";
 
-const VercelFrame = () => {
+const VercelFrame = ({ theme }: { theme?: Theme }) => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
@@ -41,7 +41,7 @@ const VercelFrame = () => {
         <span className={styles.vercelGridlinesVertical} data-grid></span>
         <span className={styles.vercelBracketLeft} data-grid></span>
         <span className={styles.vercelBracketRight} data-grid></span>
-        <Editor />
+        <Editor theme={theme} />
       </div>
     </div>
   );
@@ -80,7 +80,7 @@ const SupabaseFrame = () => {
           </div>
           <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
         </div>
-        <Editor />
+        <Editor theme={THEMES["supabase"]} />
       </div>
     </div>
   );
@@ -127,19 +127,20 @@ const TailwindFrame = () => {
             <div className={styles.control}></div>
           </div>
         </div>
-        <Editor />
+        <Editor theme={THEMES["tailwind"]} />
       </div>
     </div>
   );
 };
 
-const DefaultFrame = () => {
+const DefaultFrame = ({ theme: forcedTheme }: { theme?: Theme }) => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
-  const [themeBackground] = useAtom(themeBackgroundAtom);
-  const [theme] = useAtom(themeAtom);
+  const [selectedTheme] = useAtom(themeAtom);
+  const theme = forcedTheme || selectedTheme;
+  const themeBackground = `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`;
   const darkMode = useAtomValue(darkModeAtom);
 
   return (
@@ -176,15 +177,16 @@ const DefaultFrame = () => {
             {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
           </div>
         </div>
-        <Editor />
+        <Editor theme={theme} />
       </div>
     </div>
   );
 };
 
-const Frame = ({ resize = true }: { resize?: boolean }) => {
+const Frame = ({ resize = true, theme: forcedTheme }: { resize?: boolean; theme?: Theme }) => {
   const frameContext = useContext(FrameContext);
-  const [theme] = useAtom(themeAtom);
+  const [selectedTheme] = useAtom(themeAtom);
+  const theme = forcedTheme || selectedTheme;
   const darkMode = useAtomValue(darkModeAtom);
 
   if (!resize) {
@@ -192,13 +194,13 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
       <div className={styles.frameContainer}>
         <div className={styles.outerFrame} ref={frameContext} id="frame">
           {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
-            <VercelFrame />
+            <VercelFrame theme={theme} />
           ) : THEMES.supabase.id === theme.id ? (
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
           ) : (
-            <DefaultFrame />
+            <DefaultFrame theme={theme} />
           )}
         </div>
       </div>
@@ -211,13 +213,13 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext} id="frame">
           {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
-            <VercelFrame />
+            <VercelFrame theme={theme} />
           ) : THEMES.supabase.id === theme.id ? (
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
           ) : (
-            <DefaultFrame />
+            <DefaultFrame theme={theme} />
           )}
         </div>
       </ResizableFrame>

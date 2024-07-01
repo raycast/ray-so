@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
-import { Font } from "./font";
+import { Font, fontAtom } from "./font";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -826,7 +826,7 @@ const themeBackgroundAtom = atom<string>((get) => {
   return `linear-gradient(140deg, ${from}, ${to})`;
 });
 
-const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
+const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || get(fontAtom) || "jetbrains-mono");
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
   return get(showLineNumbersAtom) ?? (get(themeAtom).lineNumbers || false);

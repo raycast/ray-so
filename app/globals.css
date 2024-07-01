@@ -217,6 +217,42 @@ kbd {
   --line-number: rgba(255, 255, 255, 0.2);
 }
 
+.scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.transparentPattern {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 0),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 0),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.2) 0),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.2) 0);
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0;
+  background-size: 4px 4px;
+}
+
+.jetBrainsMono {
+  font-family: var(--font-jetbrainsmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 500;
+}
+
+.ibmPlexMono {
+  font-family: var(--font-ibmplexmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 500;
+}
+
+.firaCode {
+  font-family: var(--font-firacode), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
+
+.geistMono {
+  font-family: var(--font-geist-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
+
 /* icon maker */
 .sketch-picker {
   border: 1px solid #333333 !important;

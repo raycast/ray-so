@@ -1,4 +1,5 @@
 import { Fira_Code, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
 import cn from "classnames";
 import { Navigation } from "@/components/navigation";
 
@@ -18,7 +19,7 @@ const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap",
 
 export default function NavigationLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable)}>
+    <div className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable, GeistMono.variable)}>
       <Navigation />
       <main className="flex flex-col min-h-full pt-[50px]">{children}</main>
     </div>
