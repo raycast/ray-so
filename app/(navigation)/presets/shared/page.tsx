@@ -22,9 +22,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     notFound();
   }
   const pageTitle = `${preset.name} - Raycast AI Preset`;
-  const ogImage = `https://presets.ray.so/api/og?title=${encodeURIComponent(
-    preset.name
-  )}&description=${encodeURIComponent(preset.description || "")}&icon=${preset.icon}`;
+  const ogImage = `/presets/og?title=${encodeURIComponent(preset.name)}&description=${encodeURIComponent(
+    preset.description || ""
+  )}&icon=${preset.icon}`;
 
   return {
     title: pageTitle,
