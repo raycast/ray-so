@@ -89,7 +89,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        source: "/((?!_next|api)):path(.*)",
         has: [
           {
             type: "host",
@@ -101,7 +101,6 @@ const nextConfig = {
       },
       {
         source: "/((?!_next|api)):path(.*)",
-        // source: "/:path((?!_next|api$).*)",
         has: [
           {
             type: "host",
@@ -112,7 +111,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        source: "/((?!_next|api)):path(.*)",
         has: [
           {
             type: "host",
@@ -123,7 +122,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/:path*",
+        source: "/((?!_next|api)):path(.*)",
         has: [
           {
             type: "host",
