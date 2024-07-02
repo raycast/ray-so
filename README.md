@@ -14,6 +14,15 @@
   Create code snippets, browse AI prompts, create extension icons and more.
 </p>
 
+<p align="center">
+  <a aria-label="Follow Raycast on X" href="https://x.com/raycastapp">
+    <img alt="" src="https://img.shields.io/badge/Follow%20@raycastapp-black.svg?style=for-the-badge&logo=X">
+  </a>
+  <a aria-label="Join the community on Slack" href="https://raycast.com/community">
+    <img alt="" src="https://img.shields.io/badge/Join%20the%20community-black.svg?style=for-the-badge&logo=Slack">
+  </a>
+</p>
+
 <!-- TEXT_SECTION:header:END -->
 
 ## About
