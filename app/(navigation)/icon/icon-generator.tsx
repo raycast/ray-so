@@ -30,6 +30,7 @@ import {
   LinkIcon,
   BrushIcon,
   SpeechBubbleIcon,
+  BrandGithubIcon,
   MagnifyingGlassIcon,
 } from "@raycast/icons";
 
@@ -825,10 +826,15 @@ export const IconGenerator = () => {
             </Button>
           </div>
           <div className="sm:flex gap-2 hidden">
-            <div className="xl:flex gap-2 hidden">
+            <div className="2xl:flex gap-2 hidden">
               <Button variant="transparent" asChild>
                 <a href={`mailto:${FEEDBACK_EMAIL}?subject=Icon`}>
                   <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+                </a>
+              </Button>
+              <Button variant="transparent" asChild>
+                <a href="https://github.com/raycast/ray-so" target="_blank">
+                  <BrandGithubIcon className="w-4 h-4" /> Source Code
                 </a>
               </Button>
 

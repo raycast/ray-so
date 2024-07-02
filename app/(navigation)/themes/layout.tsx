@@ -4,7 +4,7 @@ import { getAllThemes } from "@themes/lib/theme";
 import { ThemeControls } from "@themes/components/theme-controls";
 import { NavigationActions } from "@/components/navigation";
 import { Button } from "@/components/button";
-import { SpeechBubbleIcon } from "@raycast/icons";
+import { SpeechBubbleIcon, BrandGithubIcon } from "@raycast/icons";
 import KeyboardShortcutsPanel from "@/app/(navigation)/(code)/components/KeyboardShortcutsPanel";
 import ExportButton from "@/app/(navigation)/(code)/components/ExportButton";
 import KeyboardShortcuts from "./components/keyboard-shortcuts";
@@ -29,6 +29,11 @@ export default async function Layout({ children, params }: { children: React.Rea
           <Button variant="transparent" asChild>
             <a href="mailto:feedback+rayso@raycast.com?subject=Themes">
               <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+            </a>
+          </Button>
+          <Button variant="transparent" asChild>
+            <a href="https://github.com/raycast/ray-so" target="_blank">
+              <BrandGithubIcon className="w-4 h-4" /> Source Code
             </a>
           </Button>
           <KeyboardShortcuts />

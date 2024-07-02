@@ -20,7 +20,7 @@ import { LANGUAGES } from "./util/languages";
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
-import { SpeechBubbleIcon } from "@raycast/icons";
+import { SpeechBubbleIcon, BrandGithubIcon } from "@raycast/icons";
 import { Button } from "@/components/button";
 import { NavigationActions } from "@/components/navigation";
 
@@ -45,6 +45,11 @@ export function Code() {
             <Button variant="transparent" asChild>
               <a href="mailto:feedback+rayso@raycast.com">
                 <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+              </a>
+            </Button>
+            <Button variant="transparent" asChild>
+              <a href="https://github.com/raycast/ray-so" target="_blank">
+                <BrandGithubIcon className="w-4 h-4" /> Source Code
               </a>
             </Button>
             <KeyboardShortcutsPanel />
