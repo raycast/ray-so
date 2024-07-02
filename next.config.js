@@ -85,7 +85,7 @@ const nextConfig = {
             value: "icon.ray.so",
           },
         ],
-        destination: "/icon/:path*",
+        destination: "https://ray.so/icon/:path*",
         permanent: true,
       },
       {
@@ -96,7 +96,7 @@ const nextConfig = {
             value: "prompts.ray.so",
           },
         ],
-        destination: "/prompts/:path*",
+        destination: "https://ray.so/prompts/:path*",
         permanent: true,
       },
       {
@@ -118,7 +118,7 @@ const nextConfig = {
             value: "snippets.ray.so",
           },
         ],
-        destination: "/snippets/:path*",
+        destination: "https://ray.so/snippets/:path*",
         permanent: true,
       },
       {
@@ -129,7 +129,7 @@ const nextConfig = {
             value: "themes.ray.so",
           },
         ],
-        destination: "/themes/:path*",
+        destination: "https://ray.so/themes/:path*",
         permanent: true,
       },
     ];
