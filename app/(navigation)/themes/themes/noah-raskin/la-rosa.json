@@ -1,0 +1,21 @@
+{
+  "author": "Noah Raskin",
+  "authorUsername": "noahraskin",
+  "version": "1",
+  "name": "La Rosa (Light)",
+  "appearance": "light",
+  "colors": {
+    "background": "#E7F3FE",
+    "backgroundSecondary": "#FFEBF5",
+    "text": "#1F2331",
+    "selection": "#D14890",
+    "loader": "#FFFFFF",
+    "red": "#E77575",
+    "orange": "#E8864D",
+    "yellow": "#D7B20E",
+    "green": "#63C093",
+    "blue": "#6581CA",
+    "purple": "#7E64C8",
+    "magenta": "#F881CF"
+  }
+}

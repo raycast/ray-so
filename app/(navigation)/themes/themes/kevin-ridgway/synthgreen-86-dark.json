@@ -1,0 +1,21 @@
+{
+  "author": "Kevin Ridgway",
+  "authorUsername": "kevin_ridgway",
+  "version": "1",
+  "name": "SynthGreen '86",
+  "appearance": "dark",
+  "colors": {
+    "background": "#262335",
+    "backgroundSecondary": "#262335",
+    "text": "#BBBBBB",
+    "selection": "#00FF61",
+    "loader": "#D6FCB9",
+    "red": "#FF9C72",
+    "orange": "#FF8B39",
+    "yellow": "#FEFDC2",
+    "green": "#B4FA72",
+    "blue": "#A5D5FE",
+    "purple": "#A788FF",
+    "magenta": "#FF8FFD"
+  }
+}

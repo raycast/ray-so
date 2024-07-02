@@ -1,0 +1,21 @@
+{
+  "author": "Marlon",
+  "authorUsername": "marlon",
+  "version": "1",
+  "name": "GitHub Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0C1116",
+    "backgroundSecondary": "#0C1116",
+    "text": "#E6EDF4",
+    "selection": "#A5ADB8",
+    "loader": "#4E91FC",
+    "red": "#E54F57",
+    "orange": "#EC875C",
+    "yellow": "#DAAA3F",
+    "green": "#58AB5A",
+    "blue": "#539BF5",
+    "purple": "#786EF8",
+    "magenta": "#F85FD7"
+  }
+}

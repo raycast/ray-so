@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- TEXT_SECTION:header:START -->
+<p align="center">
+  <a href="https://ray.so" target="_blank" rel="noopener noreferrer">
+    <img width="1024" src="app/assets/og-image.png" alt="ray.so">
+  </a>
+</p>
+<h1 align="center">
+  ray.so
+</h1>
+<h3 align="center">
+  Built by <a href="https://raycast.com/#ref=ray.so" target="_blank" rel="noopener noreferrer">Raycast</a>
+</h3>
+<p align="center">
+  Create code snippets, browse AI prompts, create extension icons and more.
+</p>
 
-## Getting Started
+<!-- TEXT_SECTION:header:END -->
 
-First, run the development server:
+## About
+
+This repository contains the source code for [ray.so](https://ray.so), a collection of tools built by [Raycast](https://raycast.com/#ref=ray.so). It includes:
+
+- [**Code Images**](</app/(navigation)/(code)>): Create beautiful images of your code.
+- [**Icon Maker**](</app/(navigation)/icon/>): Create beautiful icons for Raycast Extensions.
+- [**Prompt Explorer**](</app/(navigation)/prompts/>): Explore AI Prompts for Raycast.
+- [**Preset Explorer**](</app/(navigation)/presets/>): Explore AI Presets for Raycast.
+- [**Snippet Explorer**](</app/(navigation)/snippets/>): Browse and import Raycast Snippets.
+- [**Theme Explorer**](</app/(navigation)/themes/>): Browse and import Raycast Themes.
+
+## Setup
+
+This is a [Next.js](https://nextjs.org/) project. If you're unfamiliar with it, check out the [Next.js Documentation](https://nextjs.org/docs).
+
+To get started, download the repo, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. If you're interested in contributing, follow the steps below:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Presets, Prompts & Snippets
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Open [prompts.ts](</app/(navigation)/prompts/prompts.ts>) or [presets.ts](</app/(navigation)/presets/presets.ts>) or [snippets.ts](</app/(navigation)/snippets/snippets.ts>)
+- Add your data to the relevant category
+  - Ensure it includes all fields, and that they're unique within their category
+- Create a pull request 🚀
 
-## Learn More
+### Themes
 
-To learn more about Next.js, take a look at the following resources:
+#### 1. Copy the Theme JSON from Raycast
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Open Theme Studio in Raycast
+- Right click on your Theme and select "Copy as JSON"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### 2. Add the theme to repo
 
-## Deploy on Vercel
+- In [themes](</app/(navigation)/themes/themes>), create a folder with your Raycast username, ie: `peduarte`
+- In that folder, create a file with the theme name, ie: `red.json`
+- In that file, paste the theme JSON you copied from Raycast's Theme Studio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 3. Generate the theme OG image
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Make sure your local server running (`npm run dev`)
+- Open a new terminal session and run `npm run generate-themes-og-images -- --slug=username/themename` (replace `username/themename` with your theme's folder and file name)
+
+#### 4. Commit and push your changes
+
+- Create a Pull Request 🚀

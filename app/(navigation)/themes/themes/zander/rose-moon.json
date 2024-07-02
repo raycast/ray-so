@@ -1,0 +1,21 @@
+{
+  "author": "Zander",
+  "authorUsername": "zander",
+  "version": "1",
+  "name": "Rosé Pine Moon",
+  "appearance": "dark",
+  "colors": {
+    "background": "#232136",
+    "backgroundSecondary": "#232136",
+    "text": "#E0DEF4",
+    "selection": "#908CAA",
+    "loader": "#6E6A86",
+    "red": "#EB6F7F",
+    "orange": "#F88D4E",
+    "yellow": "#F6C177",
+    "green": "#9CCFD8",
+    "blue": "#3E8FB0",
+    "purple": "#B286E7",
+    "magenta": "#EB6FB9"
+  }
+}

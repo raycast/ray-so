@@ -1,0 +1,21 @@
+{
+  "author": "Luis Filipe",
+  "authorUsername": "luisFilipePT",
+  "version": "1",
+  "name": "Polar Night",
+  "appearance": "dark",
+  "colors": {
+    "background": "#4C566A",
+    "backgroundSecondary": "#4C566A",
+    "text": "#EDEFF4",
+    "selection": "#92BBCB",
+    "loader": "#D8DEE9",
+    "red": "#BF616A",
+    "orange": "#D08D70",
+    "yellow": "#EBCB8B",
+    "green": "#A3BE8C",
+    "blue": "#228CF6",
+    "purple": "#B48EAD",
+    "magenta": "#F8AFDF"
+  }
+}

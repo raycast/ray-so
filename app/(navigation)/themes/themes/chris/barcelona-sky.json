@@ -1,0 +1,21 @@
+{
+  "author": "Chris",
+  "authorUsername": "chris",
+  "version": "1",
+  "name": "Barcelona Sky",
+  "appearance": "light",
+  "colors": {
+    "background": "#C8D8FF",
+    "backgroundSecondary": "#82A6FF",
+    "text": "#001958",
+    "selection": "#2151C8",
+    "loader": "#900DE2",
+    "red": "#EE3232",
+    "orange": "#FA7E37",
+    "yellow": "#EBA200",
+    "green": "#30B475",
+    "blue": "#0E3DD8",
+    "purple": "#960EEB",
+    "magenta": "#DD0F95"
+  }
+}

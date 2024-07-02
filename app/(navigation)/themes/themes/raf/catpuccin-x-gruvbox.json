@@ -1,0 +1,21 @@
+{
+  "author": "Raf",
+  "authorUsername": "raf",
+  "version": "1",
+  "name": "Catppuccin x Gruvbox",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000B12",
+    "backgroundSecondary": "#000B12",
+    "text": "#D4BE98",
+    "selection": "#BDAE8B",
+    "loader": "#E84141",
+    "red": "#EA6262",
+    "orange": "#BD6F3E",
+    "yellow": "#D8A657",
+    "green": "#A9B665",
+    "blue": "#7DAEA3",
+    "purple": "#7B4EF8",
+    "magenta": "#D3869B"
+  }
+}

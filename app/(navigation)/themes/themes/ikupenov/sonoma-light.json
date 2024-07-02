@@ -1,0 +1,21 @@
+{
+  "author": "Iliyan Kupenov",
+  "authorUsername": "ikupenov",
+  "version": "1",
+  "name": "Sonoma Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#E6E6E6",
+    "backgroundSecondary": "#E6E6E6",
+    "text": "#333333",
+    "selection": "#333333",
+    "loader": "#333333",
+    "red": "#EB713D",
+    "orange": "#F19A37",
+    "yellow": "#F7CE46",
+    "green": "#63CA56",
+    "blue": "#3478F6",
+    "purple": "#A357D7",
+    "magenta": "#EB4B63"
+  }
+}

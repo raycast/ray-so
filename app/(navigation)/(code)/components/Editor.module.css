@@ -1,0 +1,138 @@
+.editor {
+  display: grid;
+  width: 100%;
+  grid-template: 1fr / 1fr;
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+
+  :global(.line) {
+    display: inline-block;
+    width: calc(100% + 32px);
+    padding: 0 16px;
+    margin: 0 -16px;
+    transition: width 0.2s, padding 0.2s, margin 0.2s;
+
+    &:before {
+      position: relative;
+      left: 6px;
+      display: inline-block;
+      width: 1rem;
+      margin-right: 1.5rem;
+      margin-left: -2.5rem;
+      color: var(--line-number);
+      content: attr(data-line);
+      opacity: 0;
+      text-align: right;
+      transition: opacity 0.2s;
+    }
+  }
+
+  :global(.highlighted-line) {
+    position: relative;
+    background-color: var(--ray-highlight) !important;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -1px;
+      width: 2px;
+      background-color: var(--ray-highlight-border);
+      content: "";
+    }
+  }
+}
+
+.isHighlightingLines {
+  :global(.line):hover {
+    background-color: var(--ray-highlight-hover);
+    cursor: default;
+  }
+  .textarea {
+    z-index: -1;
+  }
+}
+
+.textarea,
+.formatted,
+.editor:after {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  padding: var(--editor-padding);
+  margin: 0;
+  counter-increment: step 0;
+  counter-reset: step;
+  font-family: inherit;
+  font-size: 15px;
+  font-variant-ligatures: none;
+  font-weight: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+  letter-spacing: 0.1px;
+  line-height: 22.5px;
+  tab-size: 2;
+  transition: padding 0.2s;
+  white-space: pre-wrap;
+}
+
+.showLineNumbers {
+  .textarea,
+  .formatted,
+  .editor:after {
+    padding-left: 3rem;
+  }
+
+  :global(.line) {
+    width: calc(100% + 16px + 3rem);
+    padding: 0 16px 0 3rem;
+    margin: 0 -16px 0 -3rem;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.textarea {
+  z-index: 2;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  caret-color: var(--ray-foreground);
+  resize: none;
+  -webkit-text-fill-color: transparent;
+  text-size-adjust: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.formatted > pre {
+  margin: 0;
+  background-color: initial !important;
+  font-family: inherit;
+  white-space: pre-wrap;
+}
+
+.formatted > pre > code {
+  font-family: inherit;
+}
+
+.jetBrainsMono {
+  font-family: var(--font-jetbrainsmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 500;
+}
+
+.ibmPlexMono {
+  font-family: var(--font-ibmplexmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 500;
+}
+
+.firaCode {
+  font-family: var(--font-firacode), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}

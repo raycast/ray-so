@@ -1,0 +1,21 @@
+{
+  "author": "Per Tikær",
+  "authorUsername": "per_tikaer",
+  "version": "1",
+  "name": "Fresh Ocean",
+  "appearance": "light",
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#3CA3B4",
+    "text": "#002547",
+    "selection": "#123237",
+    "loader": "#3CA3B4",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Ian Spryn",
+  "authorUsername": "ianspryn",
+  "version": "1",
+  "name": "Christmas Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#3CBC7D",
+    "backgroundSecondary": "#007E40",
+    "text": "#004321",
+    "selection": "#FF5F5F",
+    "loader": "#F84E4E",
+    "red": "#F50A0A",
+    "orange": "#F5600A",
+    "yellow": "#E0A200",
+    "green": "#07BA65",
+    "blue": "#007FFF",
+    "purple": "#3107A8",
+    "magenta": "#F50AA3"
+  }
+}

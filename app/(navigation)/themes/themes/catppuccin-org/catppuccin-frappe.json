@@ -1,0 +1,21 @@
+{
+  "author": "Catppuccin",
+  "authorUsername": "catppuccin-org",
+  "version": "1",
+  "name": "Catppuccin Frappe",
+  "appearance": "dark",
+  "colors": {
+    "background": "#303446",
+    "backgroundSecondary": "#303446",
+    "text": "#C6D0F5",
+    "selection": "#737994",
+    "loader": "#838BA7",
+    "red": "#E78284",
+    "orange": "#EF9F76",
+    "yellow": "#E5C890",
+    "green": "#A6D189",
+    "blue": "#8CAAEE",
+    "purple": "#BABBF1",
+    "magenta": "#CA9EE6"
+  }
+}

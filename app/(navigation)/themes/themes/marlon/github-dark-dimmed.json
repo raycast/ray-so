@@ -1,0 +1,21 @@
+{
+  "author": "Marlon",
+  "authorUsername": "marlon",
+  "version": "1",
+  "name": "GitHub Dark Dimmed",
+  "appearance": "dark",
+  "colors": {
+    "background": "#22272E",
+    "backgroundSecondary": "#22272E",
+    "text": "#AEBAC7",
+    "selection": "#B7BEC7",
+    "loader": "#4E91FC",
+    "red": "#E54F57",
+    "orange": "#EC875C",
+    "yellow": "#DAAA3F",
+    "green": "#58AB5A",
+    "blue": "#539BF5",
+    "purple": "#786EF8",
+    "magenta": "#F85FD7"
+  }
+}

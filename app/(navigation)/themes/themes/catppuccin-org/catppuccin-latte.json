@@ -1,0 +1,21 @@
+{
+  "author": "Catppuccin",
+  "authorUsername": "catppuccin-org",
+  "version": "1",
+  "name": "Catppuccin Latte",
+  "appearance": "light",
+  "colors": {
+    "background": "#EFF1F5",
+    "backgroundSecondary": "#EFF1F5",
+    "text": "#4C4F69",
+    "selection": "#9CA0B0",
+    "loader": "#8C8FA1",
+    "red": "#D20F39",
+    "orange": "#FE640B",
+    "yellow": "#DF8E1D",
+    "green": "#40A02B",
+    "blue": "#1E66F5",
+    "purple": "#7287FD",
+    "magenta": "#8839EF"
+  }
+}

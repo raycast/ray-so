@@ -1,0 +1,21 @@
+{
+  "author": "Michael Schultz",
+  "authorUsername": "michael_schultz",
+  "version": "1",
+  "name": "Forest",
+  "appearance": "dark",
+  "colors": {
+    "background": "#00241E",
+    "backgroundSecondary": "#00241E",
+    "text": "#C8F2DB",
+    "selection": "#C8F2DB",
+    "loader": "#83B198",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

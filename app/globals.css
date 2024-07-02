@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --panel: 0 0% 9.4118%; /* gray-2 */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+    --brand: 0 100% 69%;
+    --purple: 255.6 99.2% 75.9%;
+    --blue: 201.4 99.4% 66.8%;
+    --gray-1: 0 0% 5.098%;
+    --gray-2: 0 0% 9.4118%;
+    --gray-3: 0 0% 13.333%;
+    --gray-4: 0 0% 16.078%;
+    --gray-5: 0 0% 19.216%;
+    --gray-6: 0 0% 22.745%;
+    --gray-7: 0 0% 28.235%;
+    --gray-8: 0 0% 37.647%;
+    --gray-9: 0 0% 43.137%;
+    --gray-10: 0 0% 48.235%;
+    --gray-11: 0 0% 70.588%;
+    --gray-12: 0 0% 93.333%;
+    --gray-a1: hsla(0, 0%, 0%, 0);
+    --gray-a2: hsla(0, 0%, 100%, 0.0353);
+    --gray-a3: hsla(0, 0%, 100%, 0.0706);
+    --gray-a4: hsla(0, 0%, 100%, 0.1059);
+    --gray-a5: hsla(0, 0%, 100%, 0.1333);
+    --gray-a6: hsla(0, 0%, 100%, 0.1725);
+    --gray-a7: hsla(0, 0%, 100%, 0.2314);
+    --gray-a8: hsla(0, 0%, 100%, 0.3333);
+    --gray-a9: hsla(0, 0%, 100%, 0.3922);
+    --gray-a10: hsla(0, 0%, 100%, 0.4471);
+    --gray-a11: hsla(0, 0%, 100%, 0.6863);
+    --gray-a12: hsla(0, 0%, 100%, 0.9294);
+  }
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0 0% 100% / 0.2) 0, hsl(0 0% 100% / 0) 100%);
+  }
+}
+
+.light {
+  --background: 0 0% 94%;
+  --panel: 0 0% 95%;
+  --brand: 0 100% 69%;
+  --gray-1: 0 0% 92.549%;
+  --gray-2: 0 0% 90.588%;
+  --gray-3: 0 0% 86.667%;
+  --gray-4: 0 0% 83.137%;
+  --gray-5: 0 0% 80%;
+  --gray-6: 0 0% 76.471%;
+  --gray-7: 0 0% 72.157%;
+  --gray-8: 0 0% 64.314%;
+  --gray-9: 0 0% 46.667%;
+  --gray-10: 0 0% 42.745%;
+  --gray-11: 0 0% 31.373%;
+  --gray-12: 0 0% 12.549%;
+  --gray-a1: hsla(0, 0%, 0%, 0.0118);
+  --gray-a2: hsla(0, 0%, 0%, 0.0235);
+  --gray-a3: hsla(0, 0%, 0%, 0.0588);
+  --gray-a4: hsla(0, 0%, 0%, 0.0902);
+  --gray-a5: hsla(0, 0%, 0%, 0.1216);
+  --gray-a6: hsla(0, 0%, 0%, 0.149);
+  --gray-a7: hsla(0, 0%, 0%, 0.1922);
+  --gray-a8: hsla(0, 0%, 0%, 0.2667);
+  --gray-a9: hsla(0, 0%, 0%, 0.4471);
+  --gray-a10: hsla(0, 0%, 0%, 0.4863);
+  --gray-a11: hsla(0, 0%, 0%, 0.6078);
+  --gray-a12: hsla(0, 0%, 0%, 0.8745);
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0, 0, 0, 0.2) 0, transparent 100%);
+  }
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  @apply bg-background text-gray-12;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  @apply cursor-default;
+}
+
+main {
+  min-height: calc(100% - 50px);
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+select {
+  appearance: none;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  & > * ~ * {
+    margin-left: -1px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+svg {
+  width: 16px;
+  height: 16px;
+}
+
+.selection-area {
+  border: 1px solid #56c2ff;
+  border-radius: 2px;
+  background: rgba(86, 194, 255, 0.15);
+}
+
+@keyframes flicker {
+  0%,
+  24% {
+    opacity: 1;
+  }
+  25%,
+  29% {
+    opacity: 0.5;
+  }
+  30%,
+  69% {
+    opacity: 1;
+  }
+  70%,
+  74% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 2000ms linear infinite;
+}
+
+kbd {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  color: hsla(0, 0%, 100%, 0.6);
+  font-weight: 400;
+}
+
+/* code images legacy */
+
+:root {
+  --panel-background: #191919;
+  --panel-border: 1px solid rgba(255, 255, 255, 0.2);
+  --panel-text-color: rgba(255, 255, 255, 0.4);
+  --panel-dropdown-border: rgba(255, 255, 255, 0.1);
+  --panel-padding-selected: #fff;
+
+  --frame-background: rgba(255, 255, 255, 0.75);
+  --frame-control-color: rgba(0, 0, 0, 0.2);
+  --frame-title-placeholder-color: rgba(0, 0, 0, 0.3);
+  --frame-title-color: rgba(0, 0, 0, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.1);
+  --frame-highlight-border: rgba(255, 255, 255, 0.75);
+  --ray-highlight-hover: rgba(0, 0, 0, 0.05);
+  --ray-highlight: rgba(0, 0, 0, 0.1);
+  --ray-highlight-border: transparent;
+  --line-number: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] {
+  --frame-background: rgba(0, 0, 0, 0.75);
+  --frame-control-color: rgba(255, 255, 255, 0.2);
+  --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
+  --frame-title-color: rgba(255, 255, 255, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.8);
+  --frame-highlight-border: rgba(255, 255, 255, 0.3);
+  --ray-highlight-hover: rgba(255, 255, 255, 0.05);
+  --ray-highlight: rgba(255, 255, 255, 0.1);
+  --line-number: rgba(255, 255, 255, 0.2);
+}
+
+/* icon maker */
+.sketch-picker {
+  border: 1px solid #333333 !important;
+  border-radius: 12px !important;
+  background: #17191a !important;
+  box-shadow: 0px 8px 24px -8px #000000 !important;
+
+  color: rgba(255, 255, 255, 0.6) !important;
+  label {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  .flexbox-fix {
+    border-top: none !important;
+
+    & > div:has(input) {
+      padding: 0 !important;
+      input {
+        width: 100% !important;
+      }
+      &:nth-child(2) {
+        padding-left: 4px !important;
+      }
+      &:nth-child(3) {
+        padding-left: 2px !important;
+      }
+      &:nth-child(4) {
+        padding-left: 2px !important;
+      }
+    }
+
+    input {
+      font-size: 13px !important;
+      text-align: center;
+    }
+
+    &:last-child::before {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      content: "Recents";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+
+  &::before {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    content: "Pick color";
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}
+
+/* theme explorer */
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nightRider {
+  0%,
+  100% {
+    left: -2%;
+    transform: translateX(0%);
+  }
+  50% {
+    left: 102%;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  24% {
+    opacity: 1;
+  }
+  25%,
+  29% {
+    opacity: 0.5;
+  }
+  30%,
+  69% {
+    opacity: 1;
+  }
+  70%,
+  74% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: scaleX(0);
+  }
+  30% {
+    transform: scaleX(0.3);
+  }
+  50% {
+    transform: scaleX(0.3);
+  }
+  70% {
+    transform: scaleX(0.7);
+  }
+  75% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+[data-loader] {
+  position: fixed;
+  z-index: 1000;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100dvh - 50px);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 500ms 250ms ease-in-out;
+  will-change: opacity;
+}
+
+[data-loader-progress] {
+  animation: load 500ms linear forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+[data-loader] svg {
+  animation: flicker 1000ms linear;
+}
+
+.dark [data-hide-on-theme="dark"],
+.light [data-hide-on-theme="light"] {
+  display: none;
+}
+
+.dark [data-theme-toggle="dark"] {
+  @apply bg-white/10;
+}
+
+.light [data-theme-toggle="light"] {
+  @apply bg-black/10;
+}
+
+[data-wallpaper] {
+  transition: opacity 200ms ease-in-out;
+}
+
+.light [data-wallpaper="dark"] {
+  opacity: 0 !important;
+}
+.dark [data-wallpaper="light"] {
+  opacity: 0 !important;
+}
+
+[data-raycast] {
+  transition: all 200ms ease-in-out;
+}

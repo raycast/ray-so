@@ -1,0 +1,21 @@
+{
+  "author": "Igor Bedesqui",
+  "authorUsername": "bdsqqq",
+  "version": "1",
+  "name": "Vesper dark orange only",
+  "appearance": "dark",
+  "colors": {
+    "background": "#101010",
+    "backgroundSecondary": "#101010",
+    "text": "#F2F2F2",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#FFC799",
+    "orange": "#FFC799",
+    "yellow": "#FFC799",
+    "green": "#FFC799",
+    "blue": "#FFC799",
+    "purple": "#FFC799",
+    "magenta": "#FFC799"
+  }
+}

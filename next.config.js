@@ -1,9 +1,16 @@
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ["geist"],
+  transpilePackages: ["geist", "highlight.js"],
+  experimental: {
+    optimizePackageImports: ["shiki"],
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
@@ -20,22 +27,53 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: ["@svgr/webpack"],
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
       }
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
+    // find the built-in loader
+    const imageLoaderRule = config.module.rules.find((rule) => rule.loader === "next-image-loader");
+    // make the loader ignore *.inline files
+    imageLoaderRule.exclude = /\.inline\.(png|jpg|svg)$/i;
+
+    // add a new URL loader for *.inline files
+    config.module.rules.push({
+      test: /\.inline\.(png|jpg|gif)$/i,
+      use: [
+        {
+          loader: "url-loader",
+        },
+      ],
+    });
+
     return config;
   },
   async rewrites() {
-    return [
-      {
-        source: "/:path*",
-        destination: "https://go.ray.so/:path*",
-      },
-    ];
+    return {
+      fallback: [
+        {
+          source: "/:path*",
+          destination: "https://go.ray.so/:path*",
+        },
+      ],
+    };
   },
   async headers() {
     return [
@@ -57,4 +95,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

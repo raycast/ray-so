@@ -1,0 +1,21 @@
+{
+  "author": "Thomas Lombart",
+  "authorUsername": "thomas_lombart",
+  "version": "1",
+  "name": "Oceanic Bliss",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0C519B",
+    "backgroundSecondary": "#000F20",
+    "text": "#E0EFFF",
+    "selection": "#60A7E6",
+    "loader": "#60A7E6",
+    "red": "#FF6B6B",
+    "orange": "#FFE66D",
+    "yellow": "#96E6B3",
+    "green": "#7FD1B9",
+    "blue": "#80A1C1",
+    "purple": "#A89AC1",
+    "magenta": "#FFA3D1"
+  }
+}

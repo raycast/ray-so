@@ -1,0 +1,21 @@
+{
+  "authorUsername": "peduarte",
+  "version": 1,
+  "author": "Pedro Duarte",
+  "appearance": "light",
+  "name": "Blue Boy",
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#FFFFFF",
+    "text": "#0000FF",
+    "red": "#E14848",
+    "selection": "#004DFF",
+    "loader": "#0000FF",
+    "purple": "#9454FF",
+    "magenta": "#D756BF",
+    "orange": "#E5753C",
+    "yellow": "#B7B400",
+    "blue": "#4F80FF",
+    "green": "#00AC5D"
+  }
+}

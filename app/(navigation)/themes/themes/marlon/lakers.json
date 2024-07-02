@@ -1,0 +1,21 @@
+{
+  "author": "Marlon",
+  "authorUsername": "marlon",
+  "version": "1",
+  "name": "Lakers",
+  "appearance": "dark",
+  "colors": {
+    "background": "#150128",
+    "backgroundSecondary": "#474323",
+    "text": "#C4B7D0",
+    "selection": "#BFA2DD",
+    "loader": "#FFC995",
+    "red": "#E53C71",
+    "orange": "#F8A26F",
+    "yellow": "#FFD25B",
+    "green": "#68CF9E",
+    "blue": "#438ED6",
+    "purple": "#926DF8",
+    "magenta": "#FF70CD"
+  }
+}

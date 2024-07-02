@@ -1,0 +1,21 @@
+{
+  "author": "Robert",
+  "authorUsername": "robert",
+  "version": "1",
+  "name": "GitHub Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#F6F8FA",
+    "backgroundSecondary": "#F6F8FA",
+    "text": "#1F2328",
+    "selection": "#0969DA",
+    "loader": "#D0D7DE",
+    "red": "#CF222E",
+    "orange": "#BC4C00",
+    "yellow": "#D4A72C",
+    "green": "#1A7F37",
+    "blue": "#0969DA",
+    "purple": "#8250DF",
+    "magenta": "#BF3989"
+  }
+}

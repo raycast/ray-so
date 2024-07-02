@@ -1,0 +1,21 @@
+{
+  "author": "Kevin Batdorf",
+  "authorUsername": "kevin_batdorf",
+  "version": "1",
+  "name": "Synthwave '84 Neon",
+  "appearance": "dark",
+  "colors": {
+    "background": "#262335",
+    "backgroundSecondary": "#262335",
+    "text": "#BBBBBB",
+    "selection": "#F92AAD",
+    "loader": "#F92AAD",
+    "red": "#FC1F2C",
+    "orange": "#FF8B39",
+    "yellow": "#F39F05",
+    "green": "#72F1B8",
+    "blue": "#03EDF9",
+    "purple": "#7447F5",
+    "magenta": "#F92AAD"
+  }
+}

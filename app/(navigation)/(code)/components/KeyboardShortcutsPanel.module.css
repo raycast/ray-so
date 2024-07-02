@@ -1,0 +1,130 @@
+.overlay {
+  position: fixed;
+  z-index: 7;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: #0006;
+  inset: 0;
+}
+
+.popover {
+  position: fixed;
+
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+
+  padding: 32px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  background: var(--panel-background);
+
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -50%);
+}
+
+.dialogTitle {
+  margin: 0 0 24px 0;
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.05px;
+  line-height: 21px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border: none;
+  border-radius: 100%;
+  background: transparent;
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
+  transition: background-color 300ms ease;
+  --button-color: rgba(255, 255, 255, 0.4);
+
+  &:hover {
+    background: var(--button-color);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--button-color);
+    outline: none;
+  }
+
+  > svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+
+  font-weight: 500;
+  gap: 16px;
+  letter-spacing: 0.1px;
+  line-height: 16px;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.keys {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.key {
+  display: inline-flex;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: #333333;
+
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  line-height: 14px;
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

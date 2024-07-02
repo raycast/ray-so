@@ -1,0 +1,21 @@
+{
+  "author": "Joana Santos",
+  "authorUsername": "joanamcs",
+  "version": "1",
+  "name": "xgeeks Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#43CBFF",
+    "backgroundSecondary": "#5151E5",
+    "text": "#000000",
+    "selection": "#9191A5",
+    "loader": "#5151E5",
+    "red": "#E14848",
+    "purple": "#9454FF",
+    "magenta": "#D756BF",
+    "orange": "#E5753C",
+    "yellow": "#FFCC47",
+    "blue": "#4F80FF",
+    "green": "#00AC5D"
+  }
+}

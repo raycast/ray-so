@@ -1,0 +1,21 @@
+{
+  "author": "Lex",
+  "authorUsername": "lex-unix",
+  "version": "1",
+  "name": "Guava",
+  "appearance": "dark",
+  "colors": {
+    "background": "#825C84",
+    "backgroundSecondary": "#6996A6",
+    "text": "#B7D7C5",
+    "selection": "#B7D7C5",
+    "loader": "#FFFFFF",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

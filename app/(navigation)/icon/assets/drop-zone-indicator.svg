@@ -1,0 +1,6 @@
+<svg width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 49H11C5.47715 49 1 44.5228 1 39V11C1 5.47715 5.47715 1 11 1H39C44.5228 1 49 5.47715 49 11V15" stroke="white" stroke-opacity="0.2" stroke-linecap="round" stroke-dasharray="4 4"/>
+<rect x="21" y="21" width="48" height="48" rx="10" fill="white" fill-opacity="0.2"/>
+<path d="M38.75 49.25L41.0564 46.4901C41.4815 45.9815 42.2527 45.9949 42.6607 46.518V46.518C43.3328 47.3796 44.6244 47.413 45.3401 46.5872L47.4882 44.1086C47.8482 43.6933 48.4584 43.6303 48.8918 43.9637L51.25 45.7777M40.75 51.25H49.25C50.3546 51.25 51.25 50.3546 51.25 49.25V40.75C51.25 39.6454 50.3546 38.75 49.25 38.75H40.75C39.6454 38.75 38.75 39.6454 38.75 40.75V49.25C38.75 50.3546 39.6454 51.25 40.75 51.25Z" stroke="white" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.5 42C42.5 42.2761 42.2761 42.5 42 42.5C41.7239 42.5 41.5 42.2761 41.5 42C41.5 41.7239 41.7239 41.5 42 41.5C42.2761 41.5 42.5 41.7239 42.5 42Z" stroke="white" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

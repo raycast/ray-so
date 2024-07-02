@@ -4,7 +4,7 @@ import Dub from "dub";
 export const runtime = "edge";
 
 const dub = new Dub({
-  token: "0e7uX8DwmzNxmRalhRculkIh",
+  token: process.env.DUB_TOKEN,
   projectSlug: "ray-so",
 });
 

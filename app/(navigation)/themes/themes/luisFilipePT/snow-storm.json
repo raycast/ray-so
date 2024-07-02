@@ -1,0 +1,21 @@
+{
+  "author": "Luis Filipe",
+  "authorUsername": "luisFilipePT",
+  "version": "1",
+  "name": "Snow Storm",
+  "appearance": "light",
+  "colors": {
+    "background": "#ECEFF4",
+    "backgroundSecondary": "#ECEFF4",
+    "text": "#4E5568",
+    "selection": "#6680A9",
+    "loader": "#4C566A",
+    "red": "#BF616A",
+    "orange": "#D08D70",
+    "yellow": "#EBCB8B",
+    "green": "#A3BE8C",
+    "blue": "#228CF6",
+    "purple": "#B48EAD",
+    "magenta": "#F8AFDF"
+  }
+}

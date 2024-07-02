@@ -1,0 +1,44 @@
+.exportOption {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  color: #ffffff;
+  gap: 16px;
+}
+
+.exportOptionFileName {
+  flex-grow: 2;
+  font-size: 13px;
+}
+
+.exportOptionSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.exportOptionRemove {
+  border: none;
+  outline: none;
+  svg {
+    width: 16px;
+    height: 16px;
+    color: #ff6363;
+    transition: color 0.3s ease-in-out;
+  }
+
+  &:disabled svg {
+    color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  display: inline-flex;
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}

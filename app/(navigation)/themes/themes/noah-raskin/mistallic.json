@@ -1,0 +1,21 @@
+{
+  "author": "Noah Raskin",
+  "authorUsername": "HeyNoah",
+  "version": "1",
+  "name": "Mistallic",
+  "appearance": "dark",
+  "colors": {
+    "background": "#1E1E1E",
+    "backgroundSecondary": "#4C4C4C",
+    "text": "#F2F2F2",
+    "selection": "#D5D5D5",
+    "loader": "#CDD0E2",
+    "red": "#FF6868",
+    "orange": "#CDD0E2",
+    "yellow": "#CDD0E2",
+    "green": "#CDD0E2",
+    "blue": "#CDD0E2",
+    "purple": "#CDD0E2",
+    "magenta": "#D1D7F8"
+  }
+}

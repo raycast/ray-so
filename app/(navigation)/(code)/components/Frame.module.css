@@ -1,0 +1,554 @@
+.frameContainer {
+  display: flex;
+  justify-content: center;
+  grid-area: content;
+  transform: scale(0.6);
+
+  @media (min-width: 768px) {
+    transform: scale(1);
+  }
+}
+
+.outerFrame {
+  position: relative;
+  overflow: hidden;
+  min-width: 520px;
+  max-width: 920px;
+}
+
+.frame {
+  transition: padding 200ms;
+}
+
+.transparentPattern {
+  position: absolute;
+  z-index: -1;
+  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
+    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-size: 20px 20px;
+  inset: 0;
+}
+
+.window {
+  display: flex;
+  min-height: 120px;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 10px;
+  border: 1px solid hsl(0 0% 100% / 0.3);
+  border-radius: 10px;
+  background: var(--frame-background);
+  transition: all ease 0.3s;
+
+  &.withBorder {
+    border: none;
+    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border);
+  }
+
+  &.withShadow {
+    border: none;
+    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.header {
+  display: grid;
+  height: 24px;
+  align-items: center;
+  padding: 0 16px;
+  grid-gap: 12px;
+  grid-template-columns: 48px 1fr 48px;
+}
+
+.controls {
+  display: flex;
+  gap: 6px;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: var(--frame-control-color);
+}
+
+.fileName {
+  position: relative;
+  display: flex;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  color: var(--frame-title-placeholder-color);
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32px;
+  line-height: 12px;
+  text-align: center;
+
+  > input:focus + span {
+    display: none;
+  }
+
+  > input {
+    position: absolute;
+    width: 100%;
+    border: none;
+    margin: 0;
+    background-color: transparent;
+    color: var(--frame-title-color);
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    inset: 0;
+    letter-spacing: 0.32px;
+    line-height: 12px;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/* Vercel Theme Frame */
+
+.vercelFrame {
+  background: black;
+}
+
+.vercelFrameLightMode {
+  background: white;
+
+  .vercelGridlinesHorizontal,
+  .vercelGridlinesVertical {
+    &:before,
+    &:after {
+      background: #ebebeb;
+    }
+  }
+
+  .vercelBracketLeft,
+  .vercelBracketRight {
+    &:before,
+    &:after {
+      background: #a8a8a8;
+    }
+  }
+}
+
+.vercelWindow {
+  position: relative;
+}
+
+.vercelGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: #1a1a1a;
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.vercelGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: #1a1a1a;
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.vercelBracketLeft,
+.vercelBracketRight {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+
+  &:before,
+  &:after {
+    position: absolute;
+    background: #515356;
+    content: "";
+  }
+
+  &:before {
+    top: 12px;
+    width: 100%;
+    height: 1px;
+  }
+
+  &:after {
+    left: 12px;
+    width: 1px;
+    height: 100%;
+  }
+}
+
+.vercelBracketRight {
+  top: auto;
+  right: -12px;
+  bottom: -12px;
+  left: auto;
+}
+
+/* Supabase theme frame */
+
+.supabaseFrame {
+  background: #121212;
+}
+
+.supabaseWindow {
+  border: 1px solid #292929;
+  border-radius: 6px;
+  background: #171717;
+}
+
+.supabaseHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #292929;
+  background: #1f1f1f;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  gap: 12px;
+}
+
+.supabaseFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #fafafa;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+
+  &:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+}
+
+.supabaseLanguage {
+  height: 40px;
+  color: #898989;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.supabaseFrameLightMode {
+  background: #fcfcfc;
+
+  .supabaseWindow {
+    border-color: #dfdfdf;
+    background: #ffffff;
+  }
+
+  .supabaseHeader {
+    border-color: #dfdfdf;
+    background: #fcfcfc;
+  }
+
+  .supabaseFileName {
+    color: #171717;
+  }
+
+  .supabaseLanguage {
+    color: #707070;
+  }
+}
+
+/* Tailwind Frame */
+.tailwindFrame {
+  position: relative;
+  background: #0f172a;
+}
+
+.tailwindWindow {
+  position: relative;
+  z-index: 1;
+  border: 1px solid color(display-p3 0.8235 0.9451 1 / 0.25);
+  border-radius: 8px;
+  background: color(display-p3 0.1176 0.1608 0.2314);
+}
+
+.tailwindBeams {
+  position: absolute;
+  z-index: 0;
+  top: -200px;
+  left: 50%;
+
+  width: 1293px;
+  max-width: none;
+  height: auto;
+  transform: translateX(calc(-50% - 200px));
+}
+
+.tailwindHeader {
+  composes: header;
+  height: 34px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+
+  .control {
+    width: 10px;
+    height: 10px;
+    background-color: color(display-p3 0.2781 0.3345 0.4136);
+  }
+}
+
+.tailwindGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 2;
+    top: -1.5rem;
+    bottom: 0;
+    left: -4rem;
+    width: calc(100% + 8rem);
+    height: 1px;
+    background: color(display-p3 1 1 1 / 0.1);
+    content: "";
+    -webkit-mask-image: linear-gradient(to left, transparent, white 4rem, white calc(100% - 4rem), transparent);
+    mask-image: linear-gradient(to left, transparent, white 4rem, white calc(100% - 4rem), transparent);
+  }
+
+  &:after {
+    top: auto;
+    bottom: -1.5rem;
+  }
+}
+
+.tailwindGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 2;
+    top: -4rem;
+    bottom: 0;
+    left: -1.5rem;
+    width: 1px;
+    height: calc(100% + 8rem);
+    background: color(display-p3 1 1 1 / 0.1);
+    content: "";
+    -webkit-mask-image: linear-gradient(to top, transparent, white 4rem, white calc(100% - 4rem), transparent);
+    mask-image: linear-gradient(to top, transparent, white 4rem, white calc(100% - 4rem), transparent);
+  }
+
+  &:after {
+    right: -1.5rem;
+    left: auto;
+  }
+}
+
+.tailwindGradient {
+  position: absolute;
+  z-index: -1;
+  top: calc(100% + 1.5rem);
+  left: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: 32px;
+  margin-top: -1px;
+
+  > div {
+    display: flex;
+    width: clamp(14rem, 80%, 40rem);
+    height: 2px;
+    margin-top: -1px;
+  }
+}
+
+.tailwindGradient1 {
+  width: 100%;
+  flex: none;
+  background: linear-gradient(
+    90deg,
+    color(display-p3 0.2196 0.7412 0.9725 / 0) 0%,
+    color(display-p3 0.0549 0.6471 0.9137) 32.29%,
+    color(display-p3 0.9255 0.2824 0.6 / 0.3) 67.19%,
+    color(display-p3 0.9255 0.2824 0.6 / 0) 100%
+  );
+  filter: blur(4px);
+}
+
+.tailwindGradient2 {
+  composes: tailwindGradient1;
+  margin-left: -100%;
+  filter: blur(1px);
+}
+
+.tailwindFrameLightMode {
+  background: color(display-p3 1 1 1);
+
+  &.noBackground {
+    .tailwindWindow {
+      background: rgb(255 255 255 / 100%);
+    }
+  }
+
+  .tailwindWindow {
+    background: rgb(255 255 255 / 75%);
+    box-shadow: 0 0 0 1px color(display-p3 0.0572 0.0889 0.1628 / 0.1), 0px 2px 4px 0px color(display-p3 0 0 0 / 0.06);
+  }
+
+  &.isSafari {
+    .tailwindWindow {
+      border: 1px solid color(display-p3 0.0078 0.0235 0.0902 / 0.1);
+      box-shadow: none;
+    }
+  }
+
+  .tailwindHeader {
+    border-color: rgb(0 0 0 / 10%);
+  }
+  .control {
+    background-color: color(display-p3 0.8863 0.9098 0.9412);
+  }
+  .tailwindGridlinesHorizontal,
+  .tailwindGridlinesVertical {
+    &:before,
+    &:after {
+      background: color(display-p3 0.0078 0.0235 0.0902 / 0.1);
+    }
+  }
+  .tailwindBeams {
+    top: 0;
+    transform: translateX(-50%);
+  }
+}
+
+.bitmap {
+  --frame-background: rgba(255, 255, 255, 0.95);
+
+  &.withBackground {
+    background-color: black;
+    background-image: url("../assets/manifesto.png") !important;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  &.darkMode {
+    --frame-background: rgba(0, 0, 0, 0.88);
+  }
+}
+
+.noir {
+  --frame-background: rgba(255, 255, 255, 0.95);
+
+  &.withBackground {
+    background-image: url("../assets/distortion.png") !important;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &.darkMode {
+    --frame-background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.ice {
+  --background: #f6f6f6;
+  --dot-color: rgba(0, 0, 0, 0.12);
+
+  &.withBackground {
+    background-color: var(--background) !important;
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 0) !important;
+    background-position: -8.5px -8.5px;
+    background-repeat: repeat;
+    background-size: 17px 17px;
+    inset: 0;
+  }
+
+  .withShadow {
+    border: none;
+    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
+      0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  &.darkMode {
+    --background: #0e0e0e;
+    --dot-color: rgba(255, 255, 255, 0.09);
+  }
+}
+
+.noBackground {
+  background: none;
+
+  [data-grid="true"] {
+    display: none;
+  }
+}

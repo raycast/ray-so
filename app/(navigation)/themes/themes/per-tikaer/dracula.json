@@ -1,0 +1,21 @@
+{
+  "author": "Per Tikær",
+  "authorUsername": "per_tikaer",
+  "version": "1",
+  "name": "Dracula",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282A36",
+    "backgroundSecondary": "#282A36",
+    "text": "#F8F8F2",
+    "selection": "#BD93F9",
+    "loader": "#BD93F9",
+    "red": "#FF5555",
+    "orange": "#FFB86C",
+    "yellow": "#F1FA8C",
+    "green": "#50FA7B",
+    "blue": "#8BE9FD",
+    "purple": "#BD93F9",
+    "magenta": "#FF79C6"
+  }
+}

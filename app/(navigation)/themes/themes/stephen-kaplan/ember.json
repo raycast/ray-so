@@ -1,0 +1,21 @@
+{
+  "author": "Stephen Kaplan",
+  "authorUsername": "stephen_kaplan",
+  "version": "1",
+  "name": "Ember",
+  "appearance": "dark",
+  "colors": {
+    "background": "#D23F00",
+    "backgroundSecondary": "#A80000",
+    "text": "#F2F2F2",
+    "selection": "#F84E4E",
+    "loader": "#FFFFFF",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}

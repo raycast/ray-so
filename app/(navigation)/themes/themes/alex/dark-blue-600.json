@@ -1,0 +1,21 @@
+{
+  "author": "Alex",
+  "authorUsername": "alex",
+  "version": "1",
+  "name": "Alex's Dark Blue 600",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0086C9",
+    "backgroundSecondary": "#0B4A6F",
+    "text": "#E3E8EF",
+    "selection": "#F8FAFC",
+    "loader": "#F8FAFC",
+    "red": "#F99266",
+    "orange": "#E05316",
+    "yellow": "#CA8504",
+    "green": "#039855",
+    "blue": "#0BA5EC",
+    "purple": "#6938EF",
+    "magenta": "#DD2590"
+  }
+}

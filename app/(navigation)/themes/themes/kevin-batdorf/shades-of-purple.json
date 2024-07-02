@@ -1,0 +1,21 @@
+{
+  "author": "Kevin Batdorf",
+  "authorUsername": "kevin_batdorf",
+  "version": "1",
+  "name": "Shades of Purple",
+  "appearance": "dark",
+  "colors": {
+    "background": "#2D2B56",
+    "backgroundSecondary": "#2D2B56",
+    "text": "#E1EFFF",
+    "selection": "#FB94FF",
+    "loader": "#FB94FF",
+    "red": "#FF628C",
+    "orange": "#FF9D00",
+    "yellow": "#FAD000",
+    "green": "#A5FF90",
+    "blue": "#9EFFFF",
+    "purple": "#FB94FF",
+    "magenta": "#FF628C"
+  }
+}

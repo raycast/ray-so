@@ -1,0 +1,21 @@
+{
+  "author": "Daniel Hollick",
+  "authorUsername": "danhollick",
+  "version": "1",
+  "name": "Dusk",
+  "appearance": "light",
+  "colors": {
+    "background": "#FFF6E4",
+    "backgroundSecondary": "#FFD7FB",
+    "text": "#000966",
+    "selection": "#DA69FF",
+    "loader": "#9F00FF",
+    "red": "#F87B7B",
+    "orange": "#FFAC7E",
+    "yellow": "#FFF7A2",
+    "green": "#65BD96",
+    "blue": "#768DFF",
+    "purple": "#B385EC",
+    "magenta": "#FF82C5"
+  }
+}

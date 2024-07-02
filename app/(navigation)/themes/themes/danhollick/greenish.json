@@ -1,0 +1,21 @@
+{
+  "author": "Daniel Hollick",
+  "authorUsername": "danhollick",
+  "version": "1",
+  "name": "Greenish",
+  "appearance": "light",
+  "colors": {
+    "background": "#B9FCEC",
+    "backgroundSecondary": "#77FFCB",
+    "text": "#034E7C",
+    "selection": "#00A4D3",
+    "loader": "#030303",
+    "red": "#EC3A3A",
+    "orange": "#FF833C",
+    "yellow": "#FFB000",
+    "green": "#16B544",
+    "blue": "#4668D8",
+    "purple": "#B56CE3",
+    "magenta": "#F50AA3"
+  }
+}

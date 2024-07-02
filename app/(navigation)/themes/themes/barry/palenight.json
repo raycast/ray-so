@@ -1,0 +1,21 @@
+{
+  "author": "Barry",
+  "authorUsername": "barry",
+  "version": "1",
+  "name": "Palenight",
+  "appearance": "dark",
+  "colors": {
+    "background": "#2A2D3D",
+    "backgroundSecondary": "#2A2D3D",
+    "text": "#C0C7D4",
+    "selection": "#856ACF",
+    "loader": "#89DDFF",
+    "red": "#F07178",
+    "orange": "#DD9373",
+    "yellow": "#FFCB6B",
+    "green": "#C3E88D",
+    "blue": "#82AAFF",
+    "purple": "#856ACF",
+    "magenta": "#C792EA"
+  }
+}
