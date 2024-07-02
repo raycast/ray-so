@@ -9,7 +9,7 @@ export function Desktop({ children }: { children?: React.ReactNode }) {
       data-desktop
       className="flex flex-1 h-full w-full rounded-inherit bg-white dark:bg-black border-t border-b 2xl:border border-black/20 dark:border-white/20 relative overflow-hidden"
     >
-      <div className="flex flex-col h-full items-center tall:justify-center desktop:justify-center flex-1 p-5 rounded-inherit overflow-y-auto">
+      <div className="flex flex-col h-full md:items-center tall:justify-center desktop:justify-center flex-1 p-5 rounded-inherit overflow-y-auto">
         <div className="relative" style={{ zIndex: 1 }}>
           {children}
         </div>
