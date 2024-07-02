@@ -98,6 +98,7 @@ const nextConfig = {
           },
         ],
         destination: "https://ray.so/api/:path*",
+        permanent: true,
       },
       {
         source: "/:path*",
