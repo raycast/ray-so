@@ -24,6 +24,7 @@
 
   &:hover {
     color: white;
+    cursor: pointer;
   }
 
   &:focus {

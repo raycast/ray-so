@@ -12,7 +12,7 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, 
   ({ className, color, ...props }, ref) => (
     <SwitchPrimitives.Root
       className={cn(
-        "inline-flex h-4 w-7 px-[3px] shrink-0 cursor-default items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-7 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[#56c2ff] data-[state=unchecked]:bg-gray-7 duration-250",
+        "inline-flex h-4 w-7 px-[3px] shrink-0 cursor-pointer items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-7 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[#56c2ff] data-[state=unchecked]:bg-gray-7 duration-250",
         color === "purple" ? "data-[state=checked]:bg-purple" : "data-[state=checked]:bg-blue",
         className
       )}

@@ -66,7 +66,7 @@ const ThemeControl: React.FC = () => {
           setTheme(theme);
         }}
       >
-        <SelectTrigger size="small" className="w-[60px]" icon={ChevronUpIcon}>
+        <SelectTrigger size="small" className="w-[60px] hover:cursor-pointer" icon={ChevronUpIcon}>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -76,7 +76,7 @@ const ThemeControl: React.FC = () => {
               .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
               .map((theme, index) => {
                 return (
-                  <SelectItem key={index} value={theme.name} textValue={theme.name}>
+                  <SelectItem key={index} value={theme.name} textValue={theme.name} className="hover:cursor-pointer">
                     <SelectItemText>
                       {theme.icon ? (
                         <span className={styles.themePreview}>
@@ -99,7 +99,7 @@ const ThemeControl: React.FC = () => {
           <SelectSeparator />
           <SelectGroup>
             {themes.map((theme, index) => (
-              <SelectItem key={index} value={theme.name}>
+              <SelectItem key={index} value={theme.name} className="hover:cursor-pointer">
                 <SelectItemText>
                   <span
                     className={styles.themePreview}

@@ -21,7 +21,7 @@ export interface SelectTriggerProps
 }
 
 const triggerVariants = cva(
-  `gap-1 flex w-full items-center whitespace-nowrap rounded-md text-sm font-normal transition-colors duration-100 overflow-hidden
+  `gap-1 flex w-full items-center whitespace-nowrap rounded-md text-sm font-normal transition-colors duration-100 overflow-hidden hover:cursor-pointer
   focus-visible:outline-none focus-visible:ring-1
   disabled:pointer-events-none disabled:opacity-50`,
   {
@@ -134,7 +134,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      `h-[29px] gap-2 relative flex w-full cursor-default select-none items-center rounded py-1.5 pl-2 pr-8 text-sm outline-none transition-colors 
+      `h-[29px] gap-2 relative flex w-full cursor-pointer select-none items-center rounded py-1.5 pl-2 pr-8 text-sm outline-none transition-colors
       focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50
       text-gray-10 data-[state=checked]:bg-gray-a3 focus:data-[state=checked]:bg-gray-a3 data-[state=checked]:text-gray-12`,
       className
