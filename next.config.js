@@ -100,7 +100,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/:path((?!_next|api$).*)",
+        source: "/((?!_next|api)):path(.*)",
+        // source: "/:path((?!_next|api$).*)",
         has: [
           {
             type: "host",
