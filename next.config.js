@@ -73,6 +73,58 @@ const nextConfig = {
           destination: "https://go.ray.so/:path*",
         },
       ],
+      beforeFiles: [
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "icon.ray.so",
+            },
+          ],
+          destination: "/icon/:path*",
+        },
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "prompts.ray.so",
+            },
+          ],
+          destination: "/prompts/:path*",
+        },
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "presets.ray.so",
+            },
+          ],
+          destination: "/presets/:path*",
+        },
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "snippets.ray.so",
+            },
+          ],
+          destination: "/snippets/:path*",
+        },
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "themes.ray.so",
+            },
+          ],
+          destination: "/themes/:path*",
+        },
+      ],
     };
   },
   async headers() {
