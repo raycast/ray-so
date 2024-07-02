@@ -86,6 +86,7 @@ const nextConfig = {
           },
         ],
         destination: "/icon/:path*",
+        permanent: true,
       },
       {
         source: "/:path*",
@@ -96,6 +97,7 @@ const nextConfig = {
           },
         ],
         destination: "/prompts/:path*",
+        permanent: true,
       },
       {
         source: "/:path*",
@@ -106,6 +108,7 @@ const nextConfig = {
           },
         ],
         destination: "/presets/:path*",
+        permanent: true,
       },
       {
         source: "/:path*",
@@ -116,6 +119,7 @@ const nextConfig = {
           },
         ],
         destination: "/snippets/:path*",
+        permanent: true,
       },
       {
         source: "/:path*",
@@ -126,6 +130,7 @@ const nextConfig = {
           },
         ],
         destination: "/themes/:path*",
+        permanent: true,
       },
     ];
   },
