@@ -23,13 +23,7 @@ import {
   StarsIcon,
   TrashIcon,
 } from "@raycast/icons";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "../components/ScrollArea";
 import { Instructions } from "../components/Instructions";
@@ -194,8 +188,13 @@ export function Prompts({ models }: Props) {
   return (
     <div>
       <NavigationActions>
-        <KeyboardShortcuts />
-        {!isTouch ? (
+        <div className="flex gap-2 sm:hidden">
+          <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleCopyUrl()}>
+            <LinkIcon /> Copy URL to Share
+          </Button>
+        </div>
+        <div className="sm:flex gap-2 hidden">
+          <KeyboardShortcuts />
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
               <PlusCircleIcon /> Add to Raycast
@@ -234,11 +233,7 @@ export function Prompts({ models }: Props) {
               </DropdownMenuContent>
             </DropdownMenu>
           </ButtonGroup>
-        ) : (
-          <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleCopyUrl()}>
-            <LinkIcon /> Copy URL to Share
-          </Button>
-        )}
+        </div>
       </NavigationActions>
 
       <Toast open={showToast} onOpenChange={setShowToast}>

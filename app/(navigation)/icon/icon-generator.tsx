@@ -819,46 +819,49 @@ export const IconGenerator = () => {
           {settings.fileName}
         </div>
         <div className={cn(styles.actions, styles.actionsRight)}>
-          <Button variant="transparent" asChild>
-            <a href={`mailto:${FEEDBACK_EMAIL}?subject=Icon`}>
-              <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-            </a>
-          </Button>
-
-          <KeyboardShortcuts />
-
-          <div className={styles.mobileShareWrapper}>
+          <div className="flex gap-2 sm:hidden">
             <Button variant="primary" className={styles.exportButton} onClick={onShare}>
               <DownloadIcon /> Share Icon
             </Button>
           </div>
+          <div className="sm:flex gap-2 hidden">
+            <div className="xl:flex gap-2 hidden">
+              <Button variant="transparent" asChild>
+                <a href={`mailto:${FEEDBACK_EMAIL}?subject=Icon`}>
+                  <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+                </a>
+              </Button>
 
-          <ButtonGroup>
-            <Button variant="primary" className={styles.exportButton} onClick={() => setShowExportModal(true)}>
-              <DownloadIcon />
-              Export icon
-            </Button>
-            <DropdownMenu open={exportDropdownOpen} onOpenChange={setExportDropdownOpen}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="primary" aria-label="See other export options">
-                  <ChevronDownIcon className="w-4 h-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="bottom" align="end">
-                <DropdownMenuItem onSelect={() => setShowExportModal(true)}>
-                  <ImageIcon /> Download
-                </DropdownMenuItem>
-                {pngClipboardSupported && (
-                  <DropdownMenuItem onSelect={onCopyImageToClipboard}>
-                    <CopyClipboardIcon /> Copy Image
+              <KeyboardShortcuts />
+            </div>
+
+            <ButtonGroup>
+              <Button variant="primary" className={styles.exportButton} onClick={() => setShowExportModal(true)}>
+                <DownloadIcon />
+                Export icon
+              </Button>
+              <DropdownMenu open={exportDropdownOpen} onOpenChange={setExportDropdownOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="primary" aria-label="See other export options">
+                    <ChevronDownIcon className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="bottom" align="end">
+                  <DropdownMenuItem onSelect={() => setShowExportModal(true)}>
+                    <ImageIcon /> Download
                   </DropdownMenuItem>
-                )}
-                <DropdownMenuItem onSelect={onCopyShareUrl}>
-                  <LinkIcon /> Copy URL
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </ButtonGroup>
+                  {pngClipboardSupported && (
+                    <DropdownMenuItem onSelect={onCopyImageToClipboard}>
+                      <CopyClipboardIcon /> Copy Image
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onSelect={onCopyShareUrl}>
+                    <LinkIcon /> Copy URL
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </ButtonGroup>
+          </div>
         </div>
       </NavigationActions>
       <main className={styles.content} ref={mainRef}>

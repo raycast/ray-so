@@ -41,12 +41,14 @@ export function Code() {
     <>
       <FrameContextStore>
         <NavigationActions>
-          <Button variant="transparent" asChild>
-            <a href="mailto:feedback+rayso@raycast.com">
-              <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-            </a>
-          </Button>
-          <KeyboardShortcutsPanel />
+          <div className="hidden md:flex gap-2">
+            <Button variant="transparent" asChild>
+              <a href="mailto:feedback+rayso@raycast.com">
+                <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
+              </a>
+            </Button>
+            <KeyboardShortcutsPanel />
+          </div>
           <ExportButton />
         </NavigationActions>
         <div className={styles.app}>

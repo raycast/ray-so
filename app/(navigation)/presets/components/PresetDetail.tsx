@@ -173,45 +173,52 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
   return (
     <>
       <NavigationActions>
-        <KeyboardShortcuts />
-        <ButtonGroup>
-          <Button variant="primary" onClick={() => handleAddToRaycast()}>
-            <PlusCircleIcon /> Add to Raycast
+        <div className="flex gap-2 sm:hidden">
+          <Button variant="primary" onClick={() => handleCopyUrl()}>
+            <LinkIcon /> Copy URL to Share
           </Button>
+        </div>
+        <div className="sm:flex gap-2 hidden ">
+          <KeyboardShortcuts />
+          <ButtonGroup>
+            <Button variant="primary" onClick={() => handleAddToRaycast()}>
+              <PlusCircleIcon /> Add to Raycast
+            </Button>
 
-          <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
-            <DropdownMenuTrigger asChild>
-              <Button variant="primary" aria-label="Export options">
-                <ChevronDownIcon />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onSelect={() => handleDownload()}>
-                <DownloadIcon /> Download JSON
-                <span className="inline-flex gap-1 items-center ml-auto">
-                  <kbd>⌘</kbd>
-                  <kbd>D</kbd>
-                </span>
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => handleCopyData()}>
-                <CopyClipboardIcon /> Copy JSON{" "}
-                <span className="inline-flex gap-1 items-center ml-auto">
-                  <kbd>⌘</kbd>
-                  <kbd>⌥</kbd>
-                  <kbd>C</kbd>
-                </span>
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => handleCopyUrl()}>
-                <LinkIcon /> Copy URL to Share{" "}
-                <span className="inline-flex gap-1 items-center ml-auto">
-                  <kbd>⌘</kbd>
-                  <kbd>⇧</kbd>
-                  <kbd>C</kbd>
-                </span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </ButtonGroup>
+            <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
+              <DropdownMenuTrigger asChild>
+                <Button variant="primary" aria-label="Export options">
+                  <ChevronDownIcon />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onSelect={() => handleDownload()}>
+                  <DownloadIcon /> Download JSON
+                  <span className="inline-flex gap-1 items-center ml-auto">
+                    <kbd>⌘</kbd>
+                    <kbd>D</kbd>
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleCopyData()}>
+                  <CopyClipboardIcon /> Copy JSON{" "}
+                  <span className="inline-flex gap-1 items-center ml-auto">
+                    <kbd>⌘</kbd>
+                    <kbd>⌥</kbd>
+                    <kbd>C</kbd>
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleCopyUrl()}>
+                  <LinkIcon /> Copy URL to Share{" "}
+                  <span className="inline-flex gap-1 items-center ml-auto">
+                    <kbd>⌘</kbd>
+                    <kbd>⇧</kbd>
+                    <kbd>C</kbd>
+                  </span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </ButtonGroup>
+        </div>
       </NavigationActions>
       <div className={styles.container}>
         <header className={styles.header}>

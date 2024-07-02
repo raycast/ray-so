@@ -160,7 +160,12 @@
     align-items: center;
     gap: 16px;
     &.actionsLeft {
-      left: 16px;
+      display: none;
+
+      @media (min-width: 1024px) {
+        left: 16px;
+        display: flex;
+      }
     }
   }
 

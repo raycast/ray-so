@@ -25,7 +25,7 @@ export default async function Layout({ children, params }: { children: React.Rea
         </div>
         <ThemeControls themes={themes} />
         <ThemeSwitcher themes={themes} />
-        <NavigationActions>
+        <NavigationActions className="hidden sm:flex">
           <Button variant="transparent" asChild>
             <a href="mailto:feedback+rayso@raycast.com?subject=Themes">
               <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback

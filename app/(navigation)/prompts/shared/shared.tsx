@@ -14,12 +14,13 @@ import {
   CopyClipboardIcon,
   DownloadIcon,
   Icons,
+  LinkIcon,
   MinusCircleIcon,
   PlusCircleIcon,
   StarsIcon,
 } from "@raycast/icons";
 import { extractPrompts } from "../utils/extractPrompts";
-import { addToRaycast, copyData, downloadData } from "../utils/actions";
+import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 
 import styles from "../[[...slug]]/prompts.module.css";
 import { ScrollArea } from "../components/ScrollArea";
@@ -108,6 +109,22 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
     setCopied(true);
   }, [selectedPrompts]);
 
+  const handleCopyUrl = React.useCallback(async () => {
+    const url = makeUrl(selectedPrompts);
+    let urlToCopy = url;
+    const encodedUrl = encodeURIComponent(urlToCopy);
+    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
+      res.json()
+    );
+
+    if (response.link) {
+      urlToCopy = response.link;
+    }
+
+    copy(urlToCopy);
+    setCopied(true);
+  }, [selectedPrompts]);
+
   const handleAddToRaycast = React.useCallback(() => addToRaycast(router, selectedPrompts), [router, selectedPrompts]);
 
   const handleCopyText = React.useCallback((prompt: Prompt) => {
@@ -171,36 +188,43 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
   return (
     <div>
       <NavigationActions>
-        <ButtonGroup>
-          <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
-            <PlusCircleIcon /> Add to Raycast
+        <div className="flex gap-2 sm:hidden">
+          <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleCopyUrl()}>
+            <LinkIcon /> Copy URL to Share
           </Button>
+        </div>
+        <div className="sm:flex gap-2 hidden">
+          <ButtonGroup>
+            <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
+              <PlusCircleIcon /> Add to Raycast
+            </Button>
 
-          <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
-            <DropdownMenuTrigger asChild>
-              <Button variant="primary" disabled={selectedPrompts.length === 0} aria-label="Export options">
-                <ChevronDownIcon />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
-                <DownloadIcon /> Download JSON
-                <span className={styles.hotkeys}>
-                  <kbd>⌘</kbd>
-                  <kbd>D</kbd>
-                </span>
-              </DropdownMenuItem>
-              <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyData()}>
-                <CopyClipboardIcon /> Copy JSON{" "}
-                <span className={styles.hotkeys}>
-                  <kbd>⌘</kbd>
-                  <kbd>⌥</kbd>
-                  <kbd>C</kbd>
-                </span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </ButtonGroup>
+            <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
+              <DropdownMenuTrigger asChild>
+                <Button variant="primary" disabled={selectedPrompts.length === 0} aria-label="Export options">
+                  <ChevronDownIcon />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
+                  <DownloadIcon /> Download JSON
+                  <span className={styles.hotkeys}>
+                    <kbd>⌘</kbd>
+                    <kbd>D</kbd>
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyData()}>
+                  <CopyClipboardIcon /> Copy JSON{" "}
+                  <span className={styles.hotkeys}>
+                    <kbd>⌘</kbd>
+                    <kbd>⌥</kbd>
+                    <kbd>C</kbd>
+                  </span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </ButtonGroup>
+        </div>
       </NavigationActions>
       <Toast open={copied} onOpenChange={setCopied}>
         <ToastTitle className={styles.toastTitle}>

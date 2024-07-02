@@ -7,7 +7,7 @@ import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionIn
 import styles from "./presets.module.css";
 import { ScrollArea } from "../components/ScrollArea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
-import { ChevronDownIcon, Info01Icon, PlusCircleIcon, StarsIcon } from "@raycast/icons";
+import { ChevronDownIcon, Info01Icon, LinkIcon, PlusCircleIcon, StarsIcon } from "@raycast/icons";
 import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
 import { AiModel } from "../api";
@@ -52,16 +52,24 @@ export default function Presets({ models }: Props) {
   return (
     <>
       <NavigationActions>
-        <KeyboardShortcuts />
-        <ButtonGroup>
+        <div className="flex gap-2 sm:hidden">
           <Button variant="primary" disabled>
-            <PlusCircleIcon /> Add to Raycast
+            <LinkIcon /> Copy URL to Share
           </Button>
+        </div>
 
-          <Button variant="primary" disabled aria-label="Export options">
-            <ChevronDownIcon />
-          </Button>
-        </ButtonGroup>
+        <div className="sm:flex gap-2 hidden ">
+          <KeyboardShortcuts />
+          <ButtonGroup>
+            <Button variant="primary" disabled>
+              <PlusCircleIcon /> Add to Raycast
+            </Button>
+
+            <Button variant="primary" disabled aria-label="Export options">
+              <ChevronDownIcon />
+            </Button>
+          </ButtonGroup>
+        </div>
       </NavigationActions>
       <div className={styles.main}>
         <div className={styles.sidebar}>

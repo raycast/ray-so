@@ -171,9 +171,14 @@ export function Navigation() {
   );
 }
 
-export function NavigationActions({ children }: { children: React.ReactNode }) {
+export function NavigationActions({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44">
+    <div
+      className={cn(
+        "h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44",
+        className
+      )}
+    >
       {children}
     </div>
   );
