@@ -107,7 +107,7 @@ const nextConfig = {
             value: "presets.ray.so",
           },
         ],
-        destination: "/presets/:path*",
+        destination: "https://ray.so/presets/:path*",
         permanent: true,
       },
       {
