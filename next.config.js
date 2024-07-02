@@ -78,6 +78,28 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/api/:path*",
+        has: [
+          {
+            type: "host",
+            value: "prompts.ray.so",
+          },
+          {
+            type: "host",
+            value: "presets.ray.so",
+          },
+          {
+            type: "host",
+            value: "snippets.ray.so",
+          },
+          {
+            type: "host",
+            value: "themes.ray.so",
+          },
+        ],
+        destination: "https://ray.so/api/:path*",
+      },
+      {
         source: "/:path*",
         has: [
           {
