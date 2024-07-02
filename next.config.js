@@ -132,6 +132,29 @@ const nextConfig = {
         destination: "https://ray.so/themes/:path*",
         permanent: true,
       },
+      {
+        source: "/api/:path*",
+        has: [
+          {
+            type: "host",
+            value: "prompts.ray.so",
+          },
+          {
+            type: "host",
+            value: "presets.ray.so",
+          },
+          {
+            type: "host",
+            value: "snippets.ray.so",
+          },
+          {
+            type: "host",
+            value: "themes.ray.so",
+          },
+        ],
+        destination: "https://ray.so/api/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {
