@@ -2,6 +2,7 @@ import { readFile } from "fs";
 import { basename, join } from "path";
 import { glob } from "glob";
 import { promisify } from "util";
+import { BASE_URL } from "@/utils/common";
 
 export type Theme = {
   author: string;
@@ -47,7 +48,7 @@ export async function getAllThemes(): Promise<Theme[]> {
       const parentDirName = basename(filePath.replace(fileName, ""));
       const slug = `${parentDirName}/${fileName.replace(".json", "")}`.toLowerCase();
 
-      return { ...themeData, slug };
+      return { ...themeData, slug, og_image: `${BASE_URL}/themes-og/${slug.replace("/", "_")}.png` };
     })
   );
 

@@ -36,7 +36,7 @@ function doesFileExist(filename, directory) {
   return fs.existsSync(filePath);
 }
 
-const outputDir = path.join(process.cwd(), "app", "(navigation)", "themes", "assets", "ogs");
+const outputDir = path.join(process.cwd(), "public", "themes-og");
 
 async function main() {
   const option = process.argv[2];
