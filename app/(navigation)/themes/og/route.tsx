@@ -587,7 +587,7 @@ export async function GET(request: NextRequest) {
                   fontSize: 16,
                 }}
               >
-                themes.ray.so{theme.slug ? `/${theme.slug}` : ""}
+                ray.so/themes{theme.slug ? `/${theme.slug}` : ""}
               </span>
             </div>
 
