@@ -51,7 +51,7 @@ We welcome contributions primarily in the form of new presets, prompts, snippets
 
 ### Themes
 
-#### 1. Copy the theme JSON from Raycast
+#### 1. Copy the Theme JSON from Raycast
 
 - Open Theme Studio in Raycast
 - Right click on your Theme and select "Copy as JSON"
