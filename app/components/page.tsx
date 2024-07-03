@@ -31,7 +31,7 @@ import {
 import OgImage from "./og-image.png";
 import { Metadata } from "next";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
-import { Shortcut } from "@/components/kbd";
+import { Kbd, Kbds, Shortcut } from "@/components/kbd";
 import { Input, InputSlot } from "@/components/input";
 import {
   Select,
@@ -424,6 +424,19 @@ export default function Components() {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">KBD</h2>
+        <div className="flex gap-4 items-center">
+          <Kbds>
+            <Kbd size="small">⌘</Kbd>
+            <Kbd size="small">F</Kbd>
+          </Kbds>
+          <Kbds>
+            <Kbd size="medium">⌘</Kbd>
+            <Kbd size="medium">F</Kbd>
+          </Kbds>
         </div>
       </div>
     </div>
