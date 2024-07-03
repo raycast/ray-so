@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import Dub from "dub";
+import { Dub } from "dub";
 
 export const runtime = "edge";
 
 const dub = new Dub({
   token: process.env.DUB_TOKEN,
-  projectSlug: "ray-so",
 });
 
 const tagIdsByRef = {
