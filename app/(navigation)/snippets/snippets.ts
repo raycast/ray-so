@@ -588,6 +588,16 @@ I'm thrilled about the opportunity. Unfortunately, I'm currently not available t
 
 const coding: Snippet[] = [
   {
+    name: "Use",
+    id: nanoid(),
+    keyword: "use",
+    type: "template",
+    text: `
+    "use using";
+    
+    using use = useUsing("use");`
+  },
+  {
     name: "Console Log",
     id: nanoid(),
     text: `console.log({cursor})`,
