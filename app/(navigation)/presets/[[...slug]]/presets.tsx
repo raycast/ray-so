@@ -13,7 +13,6 @@ import { Category, categories } from "../presets";
 import { AiModel } from "../api";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "../components/KeyboardShortcuts";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import { InfoDialog } from "../components/InfoDialog";

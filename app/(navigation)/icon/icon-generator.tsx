@@ -53,7 +53,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "@icon/components/KeyboardShortcuts";
 import useHotkeys from "@/utils/useHotkeys";
 import { Input, InputSlot } from "@/components/input";
 import { SelectItemText } from "@radix-ui/react-select";
