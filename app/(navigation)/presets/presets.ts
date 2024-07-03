@@ -1,20 +1,6 @@
+import { Model } from "@/types/ai";
 import { IconName, Icons } from "@raycast/icons";
 import { SVGProps } from "react";
-
-export type Model =
-  | "openai-gpt-3.5-turbo"
-  | "openai-gpt-4"
-  | "openai-gpt-4o"
-  | "openai-gpt-4o"
-  | "anthropic-claude-haiku"
-  | "anthropic-claude-opus"
-  | "anthropic-claude-sonnet"
-  | "perplexity-sonar-medium-online"
-  | "perplexity-sonar-small-online"
-  | "perplexity-codellama-70b-instruct"
-  | "groq-llama2-70b-4096"
-  | "groq-llama3-70b-8192"
-  | "groq-mixtral-8x7b-32768";
 
 export type Preset = {
   id: string;

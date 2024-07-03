@@ -1,4 +1,16 @@
-import { Model } from "./prompts";
+export type Model =
+  | "openai-gpt-3.5-turbo-instruct"
+  | "openai-gpt-3.5-turbo"
+  | "openai-gpt-4"
+  | "openai-gpt-4-turbo"
+  | "anthropic-claude-haiku"
+  | "anthropic-claude-opus"
+  | "anthropic-claude-sonnet"
+  | "perplexity-sonar-medium-online"
+  | "perplexity-sonar-small-online"
+  | "llama2-70b"
+  | "mixtral-8x7b"
+  | "codellama-70b-instruct";
 
 export type AiModel = {
   id: Model;

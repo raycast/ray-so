@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Presets from "./presets";
-import { getAvailableAiModels } from "../api";
+import { getAvailableAiModels } from "@/api/ai";
 import OgImage from "../assets/og-image.png";
 
 const pageTitle = "Preset Explorer by Raycast";

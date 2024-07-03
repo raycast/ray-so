@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { allPresets } from "../../presets";
-import { getAvailableAiModels } from "../../api";
+import { getAvailableAiModels } from "@/api/ai";
 import { PresetDetail } from "../../components/PresetDetail";
 import { Metadata, ResolvingMetadata } from "next";
 

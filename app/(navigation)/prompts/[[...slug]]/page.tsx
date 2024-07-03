@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAvailableAiModels } from "../api";
+import { getAvailableAiModels } from "@/api/ai";
 import { Prompts } from "./prompts";
 import OgImage from "../assets/og-image.png";
 
