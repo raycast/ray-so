@@ -16,6 +16,7 @@ import { NavigationActions } from "@/components/navigation";
 import KeyboardShortcuts from "../components/KeyboardShortcuts";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
+import { InfoDialog } from "../components/InfoDialog";
 
 type Props = {
   models: AiModel[];
@@ -59,7 +60,7 @@ export default function Presets({ models }: Props) {
         </div>
 
         <div className="sm:flex gap-2 hidden ">
-          <KeyboardShortcuts />
+          <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" disabled>
               <PlusCircleIcon /> Add to Raycast

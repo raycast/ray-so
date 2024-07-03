@@ -9,7 +9,6 @@ import { shikiTheme } from "./store/themes";
 import Frame from "./components/Frame";
 import Controls from "./components/Controls";
 import FrameContextStore from "./store/FrameContextStore";
-import KeyboardShortcutsPanel from "./components/KeyboardShortcutsPanel";
 
 import styles from "./code.module.css";
 import NoSSR from "./components/NoSSR";
@@ -20,9 +19,8 @@ import { LANGUAGES } from "./util/languages";
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
-import { SpeechBubbleIcon, BrandGithubIcon } from "@raycast/icons";
-import { Button } from "@/components/button";
 import { NavigationActions } from "@/components/navigation";
+import { InfoDialog } from "./components/InfoDialog";
 
 export function Code() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
@@ -41,19 +39,7 @@ export function Code() {
     <>
       <FrameContextStore>
         <NavigationActions>
-          <div className="hidden md:flex gap-2">
-            <Button variant="transparent" asChild>
-              <a href="mailto:feedback+rayso@raycast.com">
-                <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-              </a>
-            </Button>
-            <Button variant="transparent" asChild>
-              <a href="https://github.com/raycast/ray-so" target="_blank">
-                <BrandGithubIcon className="w-4 h-4" /> Source Code
-              </a>
-            </Button>
-            <KeyboardShortcutsPanel />
-          </div>
+          <InfoDialog />
           <ExportButton />
         </NavigationActions>
         <div className={styles.app}>

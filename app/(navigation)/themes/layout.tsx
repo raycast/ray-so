@@ -5,9 +5,9 @@ import { ThemeControls } from "@themes/components/theme-controls";
 import { NavigationActions } from "@/components/navigation";
 import { Button } from "@/components/button";
 import { SpeechBubbleIcon, BrandGithubIcon } from "@raycast/icons";
-import KeyboardShortcutsPanel from "@/app/(navigation)/(code)/components/KeyboardShortcutsPanel";
 import ExportButton from "@/app/(navigation)/(code)/components/ExportButton";
 import KeyboardShortcuts from "./components/keyboard-shortcuts";
+import { InfoDialog } from "./components/info-dialog";
 
 export const metadata = {
   title: "Theme Explorer by Raycast",
@@ -26,17 +26,7 @@ export default async function Layout({ children, params }: { children: React.Rea
         <ThemeControls themes={themes} />
         <ThemeSwitcher themes={themes} />
         <NavigationActions className="hidden sm:flex">
-          <Button variant="transparent" asChild>
-            <a href="mailto:feedback+rayso@raycast.com?subject=Themes">
-              <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-            </a>
-          </Button>
-          <Button variant="transparent" asChild>
-            <a href="https://github.com/raycast/ray-so" target="_blank">
-              <BrandGithubIcon className="w-4 h-4" /> Source Code
-            </a>
-          </Button>
-          <KeyboardShortcuts />
+          <InfoDialog />
         </NavigationActions>
       </div>
     </Providers>

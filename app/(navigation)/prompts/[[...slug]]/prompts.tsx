@@ -31,8 +31,8 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import CreativityIcon from "../components/CreativityIcon";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "@prompts/components/KeyboardShortcuts";
-import { Kbd } from "@/components/kbd";
+import { Kbd, Kbds } from "@/components/kbd";
+import { InfoDialog } from "../components/InfoDialog";
 
 type Props = {
   models: AiModel[];
@@ -194,7 +194,7 @@ export function Prompts({ models }: Props) {
           </Button>
         </div>
         <div className="sm:flex gap-2 hidden">
-          <KeyboardShortcuts />
+          <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
               <PlusCircleIcon /> Add to Raycast
@@ -206,29 +206,29 @@ export function Prompts({ models }: Props) {
                   <ChevronDownIcon />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent align="end">
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
                   <DownloadIcon /> Download JSON
-                  <span className={styles.hotkeys}>
+                  <Kbds>
                     <Kbd>⌘</Kbd>
                     <Kbd>D</Kbd>
-                  </span>
+                  </Kbds>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyData()}>
                   <CopyClipboardIcon /> Copy JSON{" "}
-                  <span className={styles.hotkeys}>
+                  <Kbds>
                     <Kbd>⌘</Kbd>
                     <Kbd>⌥</Kbd>
                     <Kbd>C</Kbd>
-                  </span>
+                  </Kbds>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyUrl()}>
                   <LinkIcon /> Copy URL to Share{" "}
-                  <span className={styles.hotkeys}>
+                  <Kbds>
                     <Kbd>⌘</Kbd>
                     <Kbd>⇧</Kbd>
                     <Kbd>C</Kbd>
-                  </span>
+                  </Kbds>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

@@ -24,6 +24,8 @@ import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from
 import { extractSnippets } from "../utils/extractSnippets";
 import { Snippet } from "../snippets";
 import { ButtonGroup } from "@/components/button-group";
+import { InfoDialog } from "../components/InfoDialog";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",
@@ -202,6 +204,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
       <div className="h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10">
         <div className={styles.navControls}>
           <div className={styles.hiddenOnMobile}>
+            <InfoDialog />
             <ButtonGroup>
               <Button variant="primary" disabled={selectedSnippets.length === 0} onClick={() => handleAddToRaycast()}>
                 <PlusCircleIcon /> Add to Raycast
@@ -216,18 +219,18 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
                 <DropdownMenuContent>
                   <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleDownload()}>
                     <DownloadIcon /> Download JSON
-                    <span className={styles.hotkeys}>
-                      <kbd>⌘</kbd>
-                      <kbd>D</kbd>
-                    </span>
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>D</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                   <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleCopyData()}>
                     <CopyClipboardIcon /> Copy JSON{" "}
-                    <span className={styles.hotkeys}>
-                      <kbd>⌘</kbd>
-                      <kbd>⌥</kbd>
-                      <kbd>C</kbd>
-                    </span>
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⌥</Kbd>
+                      <Kbd>C</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                 </DropdownMenuContent>
