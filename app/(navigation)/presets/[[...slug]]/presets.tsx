@@ -10,12 +10,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { ChevronDownIcon, Info01Icon, LinkIcon, PlusCircleIcon, StarsIcon } from "@raycast/icons";
 import { PresetComponent } from "../components/Preset";
 import { Category, categories } from "../presets";
-import { AiModel } from "../api";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import { InfoDialog } from "../components/InfoDialog";
+import { AiModel } from "@/api/ai";
 
 type Props = {
   models: AiModel[];

@@ -1,4 +1,4 @@
-import { Model } from "@/types/ai";
+import { Model } from "@/api/ai";
 import { IconName, Icons } from "@raycast/icons";
 import { SVGProps } from "react";
 

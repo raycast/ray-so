@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AiModel } from "../api";
 import React from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
@@ -33,6 +32,7 @@ import CreativityIcon from "../components/CreativityIcon";
 import { NavigationActions } from "@/components/navigation";
 import { Kbd, Kbds } from "@/components/kbd";
 import { InfoDialog } from "../components/InfoDialog";
+import { AiModel } from "@/api/ai";
 
 type Props = {
   models: AiModel[];

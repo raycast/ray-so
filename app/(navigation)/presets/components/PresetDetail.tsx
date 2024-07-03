@@ -25,7 +25,6 @@ import styles from "./PresetDetail.module.css";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { Preset } from "../presets";
-import { AiModel } from "../api";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
@@ -35,6 +34,7 @@ import { Toast, ToastTitle, ToastViewport } from "./Toast";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "./InfoDialog";
 import { Kbd } from "@/components/kbd";
+import { AiModel } from "@/api/ai";
 
 type PresetPageProps = {
   preset: Preset;

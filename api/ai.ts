@@ -3,14 +3,16 @@ export type Model =
   | "openai-gpt-3.5-turbo"
   | "openai-gpt-4"
   | "openai-gpt-4-turbo"
+  | "openai-gpt-4o"
   | "anthropic-claude-haiku"
   | "anthropic-claude-opus"
   | "anthropic-claude-sonnet"
   | "perplexity-sonar-medium-online"
   | "perplexity-sonar-small-online"
-  | "llama2-70b"
-  | "mixtral-8x7b"
-  | "codellama-70b-instruct";
+  | "perplexity-codellama-70b-instruct"
+  | "groq-llama2-70b-4096"
+  | "groq-llama3-70b-8192"
+  | "groq-mixtral-8x7b-32768";
 
 export type AiModel = {
   id: Model;
