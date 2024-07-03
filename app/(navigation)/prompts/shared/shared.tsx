@@ -37,6 +37,8 @@ import {
 import { Toast, ToastTitle } from "../components/Toast";
 import { Metadata } from "next";
 import { NavigationActions } from "@/components/navigation";
+import { InfoDialog } from "../components/InfoDialog";
+import { Kbd, Kbds } from "@/components/kbd";
 
 export function Shared({ prompts }: { prompts: Prompt[] }) {
   const router = useRouter();
@@ -194,6 +196,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
           </Button>
         </div>
         <div className="sm:flex gap-2 hidden">
+          <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
               <PlusCircleIcon /> Add to Raycast
@@ -205,21 +208,21 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                   <ChevronDownIcon />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent align="end">
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
                   <DownloadIcon /> Download JSON
-                  <span className={styles.hotkeys}>
-                    <kbd>⌘</kbd>
-                    <kbd>D</kbd>
-                  </span>
+                  <Kbds>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>D</Kbd>
+                  </Kbds>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleCopyData()}>
                   <CopyClipboardIcon /> Copy JSON{" "}
-                  <span className={styles.hotkeys}>
-                    <kbd>⌘</kbd>
-                    <kbd>⌥</kbd>
-                    <kbd>C</kbd>
-                  </span>
+                  <Kbds>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⌥</Kbd>
+                    <Kbd>C</Kbd>
+                  </Kbds>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

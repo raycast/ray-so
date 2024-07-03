@@ -53,10 +53,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "@icon/components/KeyboardShortcuts";
 import useHotkeys from "@/utils/useHotkeys";
 import { Input, InputSlot } from "@/components/input";
 import { SelectItemText } from "@radix-ui/react-select";
+import { InfoDialog } from "./components/InfoDialog";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -748,18 +749,6 @@ export const IconGenerator = () => {
     { value: "0%,50%", label: "Left" },
   ];
 
-  const onShare = async () => {
-    try {
-      const url = window.location.href.split("?")[0] + "?" + new URLSearchParams(settings as any).toString();
-      await navigator.share({
-        title: "Raycast Icon",
-        url,
-      });
-    } catch (err) {
-      console.error("sharing not available");
-    }
-  };
-
   return (
     <div className={styles.container}>
       <ExportModal
@@ -820,31 +809,12 @@ export const IconGenerator = () => {
           {settings.fileName}
         </div>
         <div className={cn(styles.actions, styles.actionsRight)}>
-          <div className="flex gap-2 sm:hidden">
-            <Button variant="primary" className={styles.exportButton} onClick={onShare}>
-              <DownloadIcon /> Share Icon
-            </Button>
-          </div>
-          <div className="sm:flex gap-2 hidden">
-            <div className="2xl:flex gap-2 hidden">
-              <Button variant="transparent" asChild>
-                <a href={`mailto:${FEEDBACK_EMAIL}?subject=Icon`}>
-                  <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-                </a>
-              </Button>
-              <Button variant="transparent" asChild>
-                <a href="https://github.com/raycast/ray-so" target="_blank">
-                  <BrandGithubIcon className="w-4 h-4" /> Source Code
-                </a>
-              </Button>
-
-              <KeyboardShortcuts />
-            </div>
-
+          <div className="flex gap-2">
+            <InfoDialog />
             <ButtonGroup>
               <Button variant="primary" className={styles.exportButton} onClick={() => setShowExportModal(true)}>
                 <DownloadIcon />
-                Export icon
+                Export Icon
               </Button>
               <DropdownMenu open={exportDropdownOpen} onOpenChange={setExportDropdownOpen}>
                 <DropdownMenuTrigger asChild>
@@ -852,17 +822,31 @@ export const IconGenerator = () => {
                     <ChevronDownIcon className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom" align="end">
+                <DropdownMenuContent side="bottom" align="end" className="w-[10.1rem] md:w-min">
                   <DropdownMenuItem onSelect={() => setShowExportModal(true)}>
                     <ImageIcon /> Download
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⇧</Kbd>
+                      <Kbd>E</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                   {pngClipboardSupported && (
                     <DropdownMenuItem onSelect={onCopyImageToClipboard}>
                       <CopyClipboardIcon /> Copy Image
+                      <Kbds>
+                        <Kbd>⌘</Kbd>
+                        <Kbd>C</Kbd>
+                      </Kbds>
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuItem onSelect={onCopyShareUrl}>
                     <LinkIcon /> Copy URL
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⇧</Kbd>
+                      <Kbd>C</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

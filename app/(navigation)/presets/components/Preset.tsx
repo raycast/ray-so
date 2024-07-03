@@ -19,8 +19,8 @@ import React from "react";
 import { Toast, ToastTitle, ToastViewport } from "./Toast";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
-import { AiModel } from "../api";
 import { Preset } from "../presets";
+import { AiModel } from "@/api/ai";
 
 export const creativity = {
   none: ["None", "No Creativity"],

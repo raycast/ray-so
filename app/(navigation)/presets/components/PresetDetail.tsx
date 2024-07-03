@@ -25,7 +25,6 @@ import styles from "./PresetDetail.module.css";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { Preset } from "../presets";
-import { AiModel } from "../api";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
@@ -33,7 +32,9 @@ import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions"
 import { useRouter } from "next/navigation";
 import { Toast, ToastTitle, ToastViewport } from "./Toast";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "./KeyboardShortcuts";
+import { InfoDialog } from "./InfoDialog";
+import { Kbd } from "@/components/kbd";
+import { AiModel } from "@/api/ai";
 
 type PresetPageProps = {
   preset: Preset;
@@ -179,7 +180,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
           </Button>
         </div>
         <div className="sm:flex gap-2 hidden ">
-          <KeyboardShortcuts />
+          <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" onClick={() => handleAddToRaycast()}>
               <PlusCircleIcon /> Add to Raycast
@@ -194,25 +195,25 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onSelect={() => handleDownload()}>
                   <DownloadIcon /> Download JSON
-                  <span className="inline-flex gap-1 items-center ml-auto">
-                    <kbd>⌘</kbd>
-                    <kbd>D</kbd>
+                  <span className="inline-flex gap-1 items-center ml-auto pl-2">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>D</Kbd>
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => handleCopyData()}>
                   <CopyClipboardIcon /> Copy JSON{" "}
-                  <span className="inline-flex gap-1 items-center ml-auto">
-                    <kbd>⌘</kbd>
-                    <kbd>⌥</kbd>
-                    <kbd>C</kbd>
+                  <span className="inline-flex gap-1 items-center ml-auto  pl-2">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⌥</Kbd>
+                    <Kbd>C</Kbd>
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => handleCopyUrl()}>
                   <LinkIcon /> Copy URL to Share{" "}
-                  <span className="inline-flex gap-1 items-center ml-auto">
-                    <kbd>⌘</kbd>
-                    <kbd>⇧</kbd>
-                    <kbd>C</kbd>
+                  <span className="inline-flex gap-1 items-center ml-auto pl-2">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>⇧</Kbd>
+                    <Kbd>C</Kbd>
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

@@ -1,7 +1,8 @@
 import copy from "copy-to-clipboard";
-import { Model, Prompt } from "../prompts";
+import { Prompt } from "../prompts";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
+import { Model } from "@/api/ai";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",

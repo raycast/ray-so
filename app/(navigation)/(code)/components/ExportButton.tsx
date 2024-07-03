@@ -35,6 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
 import { DownloadIcon } from "@raycast/icons";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -174,8 +175,10 @@ const ExportButton: React.FC = () => {
   return (
     <ButtonGroup>
       <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
-        <DownloadIcon className="w-4 h-4" />
-        Export <span className="hidden md:inline-block">Image</span>
+        <div className="flex flex-row items-center gap-x-2 mr-auto">
+          <DownloadIcon className="w-4 h-4" />
+          <span>Export Image</span>
+        </div>
       </Button>
       <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger asChild>
@@ -183,20 +186,38 @@ const ExportButton: React.FC = () => {
             <ChevronDownIcon className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end" className="min-w-[8rem] md:min-w-[11rem]">
+        <DropdownMenuContent side="bottom" align="end" className="w-[11rem] md:w-fit">
           <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
-            <ImageIcon /> Save PNG
+            <ImageIcon /> Save PNG{" "}
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>S</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
             <ImageSvgIcon /> Save SVG
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>S</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           {pngClipboardSupported && (
             <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
               <ClipboardIcon /> Copy Image
+              <Kbds>
+                <Kbd>⌘</Kbd>
+                <Kbd>C</Kbd>
+              </Kbds>
             </DropdownMenuItem>
           )}
           <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
             <LinkIcon /> Copy URL
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>C</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>

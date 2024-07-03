@@ -61,29 +61,6 @@ const links = [
   },
 ];
 
-const socialLinks = [
-  {
-    href: "https://github.com/raycast/ray-so",
-    label: "GitHub",
-    icon: BrandGithubIcon,
-  },
-  {
-    href: "https://x.com/raycastapp",
-    label: "X",
-    icon: BrandXIcon,
-  },
-  {
-    href: "https://raycast.com/community",
-    label: "Slack Community",
-    icon: BrandSlackIcon,
-  },
-  {
-    href: "https://www.youtube.com/@raycastapp",
-    label: "YouTube",
-    icon: BrandYoutubeIcon,
-  },
-];
-
 export function Navigation() {
   const router = useRouter();
   const segments = useSelectedLayoutSegments();
@@ -140,30 +117,6 @@ export function Navigation() {
                 </div>
               </DropdownMenuItem>
             ))}
-            <footer className="border-t border-gray-5 -mx-4 px-4 mt-1">
-              <div className="flex items-center gap-2 mt-2 px-3 py-1  justify-between">
-                <a
-                  href="https://raycast.com/#ref=ray-so"
-                  className="flex items-center gap-1.5 text-gray-9 hover:text-brand transition-colors"
-                >
-                  <RaycastLogoNegIcon className="w-4 h-4" />
-                  <span className="text-[13px] font-medium">Made by Raycast</span>
-                </a>
-                <div className="flex gap-3">
-                  {socialLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-9 hover:text-gray-11 transition-colors"
-                    >
-                      <link.icon className="w-4 h-4" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </footer>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
