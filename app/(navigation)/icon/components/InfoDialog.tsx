@@ -59,7 +59,7 @@ export function InfoDialog() {
               </a>
               .
             </p>
-            <SocialFooter />
+            <SocialFooter referral="icon" />
           </div>
 
           <div className="w-px h-full bg-gray-a3" />

@@ -23,7 +23,7 @@ const socialLinks = [
   },
 ];
 
-export function SocialFooter() {
+export function SocialFooter({ referral = "ray-so" }: { referral?: string }) {
   return (
     <div className="pt-2 mt-auto">
       <span className="relative opacity-30 -left-7 -bottom-4 pointer-events-none">
@@ -31,7 +31,10 @@ export function SocialFooter() {
         <span className="absolute left-20 block rounded-[50%] blur-3xl  w-[280px] h-[112px] bg-brand"></span>
       </span>
       <div className="flex items-center gap-2 mt-2 justify-between">
-        <a href="https://raycast.com/#ref=ray-so" className="flex items-center gap-1.5 text-gray-12 group">
+        <a
+          href={`https://raycast.com/#ref=ray-so-${referral}`}
+          className="flex items-center gap-1.5 text-gray-12 group"
+        >
           <RaycastLogoNegIcon className="w-4 h-4 text-brand" />
           <span className="text-[13px] font-medium group-hover:underline">Made by Raycast</span>
         </a>

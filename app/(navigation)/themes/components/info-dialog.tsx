@@ -39,7 +39,7 @@ export function InfoDialog() {
               .
             </p>
             <p>
-              To add your own theme, export it as JSON from Theme Studio and upload it to the
+              To add your own theme, export it as JSON from Theme Studio and upload it to the{" "}
               <a href="https://github.com/raycast/ray-so" className="text-gray-12 underline underline-offset-2">
                 GitHub repository
               </a>
@@ -58,7 +58,7 @@ export function InfoDialog() {
               </a>
               .
             </p>
-            <SocialFooter />
+            <SocialFooter referral="themes" />
           </div>
 
           <div className="w-px h-full bg-gray-a3" />

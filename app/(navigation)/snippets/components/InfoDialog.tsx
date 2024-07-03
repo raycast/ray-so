@@ -57,7 +57,7 @@ export function InfoDialog() {
               </a>
               .
             </p>
-            <SocialFooter />
+            <SocialFooter referral="snippets" />
           </div>
 
           <div className="w-px h-full bg-gray-a3" />
