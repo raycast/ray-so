@@ -185,7 +185,7 @@ const Control: React.FC = () => {
 
   function getOptions() {
     if (activeControl === "theme") {
-      return Object.values(THEMES);
+      return Object.values(THEMES).filter((theme) => !theme.hidden);
     }
     if (activeControl === "background") {
       return [
@@ -288,12 +288,14 @@ const Control: React.FC = () => {
                   hover:bg-gray-5
                   transition-colors
                   ring-1 ring-gray-a3 -ring-offset-1
-                  group-focus-visible:bg-gray-5 group-focus-visible:ring-1 fovus-visible:ring-gray-a4  ring-offset-[#191919]`,
+                  group-hover:ring-gray-a4
+                  group-focus-visible:bg-gray-5 group-focus-visible:ring-1 fovus-visible:ring-gray-a4  ring-offset-[#191919]
+                  `,
                     option.id === "jetbrains-mono" && "jetBrainsMono",
                     option.id === "ibm-plex-mono" && "ibmPlexMono",
                     option.id === "fira-code" && "firaCode",
                     option.id === "geist-mono" && "geistMono",
-                    isActive && "bg-gray-5  ring-2 ring-white ring-offset-0 shadow-lg shadow-gray-a3 text-white",
+                    isActive && "bg-gray-5  ring-2 !ring-white ring-offset-0 shadow-lg shadow-gray-a3 text-white",
                     (activeControl === "font" || activeControl === "padding") && "text-xl font-medium"
                   )}
                 >
@@ -307,7 +309,7 @@ const Control: React.FC = () => {
                 </span>
                 <p
                   className={cn(
-                    "text-xs text-gray-10 whitespace-nowrap overflow-hidden text-ellipsis font-medium",
+                    "text-xs text-gray-10 whitespace-nowrap overflow-hidden text-ellipsis font-medium group-hover:text-gray-12 transition-colors",
                     isActive && "text-gray-12"
                   )}
                 >

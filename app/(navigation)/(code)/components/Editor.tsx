@@ -13,6 +13,7 @@ import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code
 import {
   THEMES,
   Theme,
+  darkModeAtom,
   themeAtom,
   themeCSSAtom,
   themeFontAtom,
@@ -122,11 +123,12 @@ function Editor({ theme: forcedTheme }: { theme?: Theme }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
-  const [themeCSS] = useAtom(themeCSSAtom);
+  const [darkMode] = useAtom(darkModeAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
   const [selectedTheme, setTheme] = useAtom(themeAtom);
   const theme = forcedTheme || selectedTheme;
+  const themeCSS = theme.syntax[darkMode ? "dark" : "light"];
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
   const setHighlightedLines = useSetAtom(highlightedLinesAtom);
