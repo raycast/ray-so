@@ -111,6 +111,7 @@ export const THEMES: { [index: string]: Theme } = {
         link: "oklch(51.75% 0.1453 147.65)",
         number: "#111111",
         property: "oklch(53.18% 0.2399 256.9900584162342)",
+        highlight: "#DFEFFF",
       }),
       dark: convertToShikiTheme({
         foreground: "hsla(0, 0%, 93%,1)",
@@ -125,6 +126,7 @@ export const THEMES: { [index: string]: Theme } = {
         link: "oklch(73.1% 0.2158 148.29)",
         number: "#ffffff",
         property: "oklch(71.7% 0.1648 250.79360374054167)",
+        highlight: "#022F61",
       }),
     },
   },
