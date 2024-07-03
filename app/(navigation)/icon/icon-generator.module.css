@@ -423,7 +423,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0 15px 16px;
+    padding: 0 14px 16px;
     margin: 0 -16px 0;
     gap: 8px;
 
@@ -471,8 +471,8 @@
 
   .icon {
     display: flex;
-    width: 66px;
-    height: 66px;
+    width: 62px;
+    height: 62px;
     align-items: center;
     justify-content: center;
     padding: 10px;
