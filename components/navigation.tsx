@@ -144,7 +144,7 @@ export function Navigation() {
               <div className="flex items-center gap-2 mt-2 px-3 py-1  justify-between">
                 <a
                   href="https://raycast.com/#ref=ray-so"
-                  className="flex items-center gap-1.5 text-gray-9 hover:text-gray-11 transition-colors"
+                  className="flex items-center gap-1.5 text-gray-9 hover:text-brand transition-colors"
                 >
                   <RaycastLogoNegIcon className="w-4 h-4" />
                   <span className="text-[13px] font-medium">Made by Raycast</span>

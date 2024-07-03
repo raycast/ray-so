@@ -6,7 +6,7 @@ import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./LanguageControl.module.css";
 
-import useHotkeys from "../../../../utils/useHotkeys";
+import useHotkeys from "@/utils/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
 import { cn } from "@/utils/cn";
@@ -41,13 +41,13 @@ const LanguageControl: React.FC = () => {
       >
         <SelectTrigger
           size="small"
-          className={cn("w-[146px]", isLoadingLanguage && styles.loadingShimmer)}
+          className={cn("w-[150px]", isLoadingLanguage && styles.loadingShimmer)}
           icon={ChevronUpIcon}
         >
           <SelectValue />
           {autoDetectLanguage ? "(auto)" : ""}
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="absolute bottom-0 left-0 w-[150px] h-[550px] ml-1 mb-11">
           <SelectItem value="auto-detect">
             <SelectItemText>Auto-Detect</SelectItemText>
           </SelectItem>

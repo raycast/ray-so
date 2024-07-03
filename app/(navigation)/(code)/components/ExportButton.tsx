@@ -2,6 +2,7 @@ import React, { MouseEventHandler, useContext, useState } from "react";
 import { track } from "@vercel/analytics";
 
 import ImageIcon from "../assets/icons/image-16.svg";
+import ImageSvgIcon from "../assets/icons/image-svg-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
@@ -94,7 +95,7 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
+    setFlashMessage({ icon: <ImageSvgIcon />, message: "Exporting SVG" });
 
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, `${fileName}.svg`);
@@ -182,12 +183,12 @@ const ExportButton: React.FC = () => {
             <ChevronDownIcon className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end">
+        <DropdownMenuContent side="bottom" align="end" className="min-w-[8rem] md:min-w-[11rem]">
           <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
             <ImageIcon /> Save PNG
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
-            <ImageIcon /> Save SVG
+            <ImageSvgIcon /> Save SVG
           </DropdownMenuItem>
           {pngClipboardSupported && (
             <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
