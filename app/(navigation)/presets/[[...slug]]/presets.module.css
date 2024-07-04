@@ -333,13 +333,6 @@
   gap: 12px;
 }
 
-.hotkeys {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  gap: 4px;
-}
-
 .logo {
   all: unset;
   display: flex;

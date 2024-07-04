@@ -34,6 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
 import { DownloadIcon } from "@raycast/icons";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const ExportButton: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -184,18 +185,36 @@ const ExportButton: React.FC = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" align="end">
           <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
-            <ImageIcon /> Save PNG
+            <ImageIcon /> Save PNG{" "}
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>S</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
             <ImageIcon /> Save SVG
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>S</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           {pngClipboardSupported && (
             <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
               <ClipboardIcon /> Copy Image
+              <Kbds>
+                <Kbd>⌘</Kbd>
+                <Kbd>C</Kbd>
+              </Kbds>
             </DropdownMenuItem>
           )}
           <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
             <LinkIcon /> Copy URL
+            <Kbds>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>C</Kbd>
+            </Kbds>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>

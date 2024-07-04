@@ -172,18 +172,6 @@ svg {
   animation: flicker 2000ms linear infinite;
 }
 
-kbd {
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  background-color: hsla(0, 0%, 100%, 0.2);
-  color: hsla(0, 0%, 100%, 0.6);
-  font-weight: 400;
-}
-
 /* code images legacy */
 
 :root {

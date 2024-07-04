@@ -37,9 +37,10 @@ import { Category, Snippet, snippetGroups } from "../snippets";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import { BASE_URL } from "@/utils/common";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "../components/KeyboardShortcuts";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/dialog";
 import { ButtonGroup } from "@/components/button-group";
+import { InfoDialog } from "../components/InfoDialog";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const raycastProtocolForEnvironments = {
   development: "raycastinternal",
@@ -289,7 +290,7 @@ export default function Snippets() {
         <div className={styles.navControls}>
           {!isTouch ? (
             <>
-              <KeyboardShortcuts />
+              <InfoDialog />
               <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
                 <DialogTrigger asChild>
                   <Button>
@@ -350,26 +351,26 @@ export default function Snippets() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleDownload()}>
                       <DownloadIcon /> Download JSON
-                      <span className={styles.hotkeys}>
-                        <kbd>⌘</kbd>
-                        <kbd>D</kbd>
-                      </span>
+                      <Kbds>
+                        <Kbd>⌘</Kbd>
+                        <Kbd>D</Kbd>
+                      </Kbds>
                     </DropdownMenuItem>
                     <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleCopyData()}>
                       <CopyClipboardIcon /> Copy JSON{" "}
-                      <span className={styles.hotkeys}>
-                        <kbd>⌘</kbd>
-                        <kbd>⌥</kbd>
-                        <kbd>C</kbd>
-                      </span>
+                      <Kbds>
+                        <Kbd>⌘</Kbd>
+                        <Kbd>⌥</Kbd>
+                        <Kbd>C</Kbd>
+                      </Kbds>
                     </DropdownMenuItem>
                     <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleCopyUrl()}>
                       <LinkIcon /> Copy URL to Share{" "}
-                      <span className={styles.hotkeys}>
-                        <kbd>⌘</kbd>
-                        <kbd>⇧</kbd>
-                        <kbd>C</kbd>
-                      </span>
+                      <Kbds>
+                        <Kbd>⌘</Kbd>
+                        <Kbd>⇧</Kbd>
+                        <Kbd>C</Kbd>
+                      </Kbds>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

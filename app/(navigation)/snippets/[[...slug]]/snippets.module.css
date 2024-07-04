@@ -463,13 +463,6 @@
   gap: 12px;
 }
 
-.hotkeys {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  gap: 4px;
-}
-
 .toastTitle {
   display: flex;
   align-items: center;
@@ -544,6 +537,9 @@
 }
 
 .hiddenOnMobile {
+  display: flex;
+  gap: 16px;
+
   @media (max-width: 480px) {
     display: none;
   }

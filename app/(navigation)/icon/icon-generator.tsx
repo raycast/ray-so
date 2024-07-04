@@ -53,10 +53,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import usePngClipboardSupported from "../(code)/util/usePngClipboardSupported";
 import { Switch } from "@/components/switch";
 import { NavigationActions } from "@/components/navigation";
-import KeyboardShortcuts from "@icon/components/KeyboardShortcuts";
 import useHotkeys from "@/utils/useHotkeys";
 import { Input, InputSlot } from "@/components/input";
 import { SelectItemText } from "@radix-ui/react-select";
+import { InfoDialog } from "./components/InfoDialog";
+import { Kbd, Kbds } from "@/components/kbd";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -826,21 +827,7 @@ export const IconGenerator = () => {
             </Button>
           </div>
           <div className="sm:flex gap-2 hidden">
-            <div className="2xl:flex gap-2 hidden">
-              <Button variant="transparent" asChild>
-                <a href={`mailto:${FEEDBACK_EMAIL}?subject=Icon`}>
-                  <SpeechBubbleIcon className="w-4 h-4" /> Send Feedback
-                </a>
-              </Button>
-              <Button variant="transparent" asChild>
-                <a href="https://github.com/raycast/ray-so" target="_blank">
-                  <BrandGithubIcon className="w-4 h-4" /> Source Code
-                </a>
-              </Button>
-
-              <KeyboardShortcuts />
-            </div>
-
+            <InfoDialog />
             <ButtonGroup>
               <Button variant="primary" className={styles.exportButton} onClick={() => setShowExportModal(true)}>
                 <DownloadIcon />
@@ -855,14 +842,28 @@ export const IconGenerator = () => {
                 <DropdownMenuContent side="bottom" align="end">
                   <DropdownMenuItem onSelect={() => setShowExportModal(true)}>
                     <ImageIcon /> Download
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⇧</Kbd>
+                      <Kbd>E</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                   {pngClipboardSupported && (
                     <DropdownMenuItem onSelect={onCopyImageToClipboard}>
                       <CopyClipboardIcon /> Copy Image
+                      <Kbds>
+                        <Kbd>⌘</Kbd>
+                        <Kbd>C</Kbd>
+                      </Kbds>
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuItem onSelect={onCopyShareUrl}>
                     <LinkIcon /> Copy URL
+                    <Kbds>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>⇧</Kbd>
+                      <Kbd>C</Kbd>
+                    </Kbds>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
