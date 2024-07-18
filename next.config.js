@@ -89,6 +89,17 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "icons.ray.so",
+          },
+        ],
+        destination: "https://ray.so/icon/:path*",
+        permanent: true,
+      },
+      {
         source: "/((?!_next|api)):path(.*)",
         has: [
           {
