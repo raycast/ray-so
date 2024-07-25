@@ -20,7 +20,6 @@ import {
 } from "../store/themes";
 import useHotkeys from "../../../../utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
-import { GeistMono } from "geist/font/mono";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
@@ -237,7 +236,7 @@ function Editor() {
       className={classNames(
         styles.editor,
         themeFont === "geist-mono"
-          ? GeistMono.className
+          ? styles.geistMono
           : themeFont === "ibm-plex-mono"
           ? styles.ibmPlexMono
           : themeFont === "fira-code"

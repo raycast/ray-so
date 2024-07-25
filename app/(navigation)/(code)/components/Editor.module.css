@@ -136,3 +136,8 @@
   font-family: var(--font-firacode), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
+
+.geistMono {
+  font-family: var(--font-geist-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
