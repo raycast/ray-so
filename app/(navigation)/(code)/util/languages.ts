@@ -245,4 +245,9 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "yaml",
     src: () => import("shiki/langs/yaml.mjs"),
   },
+  zig: {
+    name: "Zig",
+    className: "zig",
+    src: () => import("shiki/langs/zig.mjs"),
+  },
 };
