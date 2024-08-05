@@ -122,6 +122,10 @@
   font-family: inherit;
 }
 
+.plainText {
+  color: var(--ray-foreground);
+}
+
 .jetBrainsMono {
   font-family: var(--font-jetbrainsmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 500;
