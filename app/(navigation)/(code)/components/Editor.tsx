@@ -23,6 +23,7 @@ import HighlightedCode from "./HighlightedCode";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
+import { LANGUAGES } from "../util/languages";
 
 function indentText(text: string) {
   return text
@@ -243,7 +244,7 @@ function Editor() {
           ? styles.firaCode
           : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
-        showLineNumbers && styles.showLineNumbers
+        showLineNumbers && selectedLanguage !== LANGUAGES.plaintext && styles.showLineNumbers
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}

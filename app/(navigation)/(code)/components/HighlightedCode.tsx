@@ -62,7 +62,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
 
   return (
     <div
-      className={classNames(styles.formatted)}
+      className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
       dangerouslySetInnerHTML={{
         __html: highlightedHtml,
       }}
