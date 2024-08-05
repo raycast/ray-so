@@ -1,0 +1,21 @@
+{
+  "author": "Vyacheslav Pukhanov",
+  "authorUsername": "vyacheslav",
+  "version": "1",
+  "name": "Light Owl",
+  "appearance": "light",
+  "colors": {
+    "background": "#FBFBFB",
+    "backgroundSecondary": "#FBFBFB",
+    "text": "#403F53",
+    "selection": "#4B4B4B",
+    "loader": "#4B4B4B",
+    "red": "#DE3B3B",
+    "orange": "#DA6C01",
+    "yellow": "#E1C502",
+    "green": "#08916A",
+    "blue": "#288ED7",
+    "purple": "#A143D6",
+    "magenta": "#D6438A"
+  }
+}

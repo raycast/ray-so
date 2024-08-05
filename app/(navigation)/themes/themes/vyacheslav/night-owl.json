@@ -1,0 +1,21 @@
+{
+  "author": "Vyacheslav Pukhanov",
+  "authorUsername": "vyacheslav",
+  "version": "1",
+  "name": "Night Owl",
+  "appearance": "dark",
+  "colors": {
+    "background": "#011627",
+    "backgroundSecondary": "#011627",
+    "text": "#D6DEEB",
+    "selection": "#99B7B7",
+    "loader": "#99B7B7",
+    "red": "#EF5050",
+    "orange": "#F77D49",
+    "yellow": "#FFE98A",
+    "green": "#6FDA9B",
+    "blue": "#50A2E4",
+    "purple": "#9A6AED",
+    "magenta": "#C07FEA"
+  }
+}
