@@ -2,6 +2,7 @@ import React, { MouseEventHandler, useContext, useState } from "react";
 import { track } from "@vercel/analytics";
 
 import ImageIcon from "../assets/icons/image-16.svg";
+import ImageSvgIcon from "../assets/icons/image-svg-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
@@ -95,7 +96,7 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
+    setFlashMessage({ icon: <ImageSvgIcon />, message: "Exporting SVG" });
 
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, `${fileName}.svg`);
@@ -174,8 +175,10 @@ const ExportButton: React.FC = () => {
   return (
     <ButtonGroup>
       <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
-        <DownloadIcon className="w-4 h-4" />
-        Export <span className="hidden md:inline-block">Image</span>
+        <div className="flex flex-row items-center gap-x-2 mr-auto">
+          <DownloadIcon className="w-4 h-4" />
+          <span>Export Image</span>
+        </div>
       </Button>
       <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger asChild>
@@ -183,7 +186,7 @@ const ExportButton: React.FC = () => {
             <ChevronDownIcon className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end">
+        <DropdownMenuContent side="bottom" align="end" className="w-[11rem] md:w-fit">
           <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
             <ImageIcon /> Save PNG{" "}
             <Kbds>
@@ -192,7 +195,7 @@ const ExportButton: React.FC = () => {
             </Kbds>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
-            <ImageIcon /> Save SVG
+            <ImageSvgIcon /> Save SVG
             <Kbds>
               <Kbd>⌘</Kbd>
               <Kbd>⇧</Kbd>

@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import React, { useEffect } from "react";
 import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
@@ -69,7 +69,7 @@ const ThemeControl: React.FC = () => {
         <SelectTrigger size="small" className="w-[60px]" icon={ChevronUpIcon}>
           <SelectValue />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="w-[160px] h-[550px] ml-1 mb-11">
           <SelectGroup>
             <SelectLabel>Partners</SelectLabel>
             {partnerThemes

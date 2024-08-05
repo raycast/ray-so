@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -749,18 +749,6 @@ export const IconGenerator = () => {
     { value: "0%,50%", label: "Left" },
   ];
 
-  const onShare = async () => {
-    try {
-      const url = window.location.href.split("?")[0] + "?" + new URLSearchParams(settings as any).toString();
-      await navigator.share({
-        title: "Raycast Icon",
-        url,
-      });
-    } catch (err) {
-      console.error("sharing not available");
-    }
-  };
-
   return (
     <div className={styles.container}>
       <ExportModal
@@ -821,17 +809,12 @@ export const IconGenerator = () => {
           {settings.fileName}
         </div>
         <div className={cn(styles.actions, styles.actionsRight)}>
-          <div className="flex gap-2 sm:hidden">
-            <Button variant="primary" className={styles.exportButton} onClick={onShare}>
-              <DownloadIcon /> Share Icon
-            </Button>
-          </div>
-          <div className="sm:flex gap-2 hidden">
+          <div className="flex gap-2">
             <InfoDialog />
             <ButtonGroup>
               <Button variant="primary" className={styles.exportButton} onClick={() => setShowExportModal(true)}>
                 <DownloadIcon />
-                Export icon
+                Export Icon
               </Button>
               <DropdownMenu open={exportDropdownOpen} onOpenChange={setExportDropdownOpen}>
                 <DropdownMenuTrigger asChild>
@@ -839,7 +822,7 @@ export const IconGenerator = () => {
                     <ChevronDownIcon className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom" align="end">
+                <DropdownMenuContent side="bottom" align="end" className="w-[10.1rem] md:w-min">
                   <DropdownMenuItem onSelect={() => setShowExportModal(true)}>
                     <ImageIcon /> Download
                     <Kbds>
