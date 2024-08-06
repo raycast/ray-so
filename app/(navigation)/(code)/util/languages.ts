@@ -70,6 +70,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "erlang",
     src: () => import("shiki/langs/erlang.mjs"),
   },
+  gleam: {
+    name: "Gleam",
+    className: "gleam",
+    src: () => import("shiki/langs/gleam.mjs"),
+  },
   graphql: {
     name: "GraphQL",
     className: "graphql",
