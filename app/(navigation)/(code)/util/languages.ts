@@ -40,6 +40,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "css",
     src: () => import("shiki/langs/css.mjs"),
   },
+  dart: {
+    name: "Dart",
+    className: "diff",
+    src: () => import("shiki/langs/dart.mjs"),
+  },
   diff: {
     name: "Diff",
     className: "diff",
