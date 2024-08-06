@@ -42,7 +42,7 @@ export const LANGUAGES: { [index: string]: Language } = {
   },
   dart: {
     name: "Dart",
-    className: "diff",
+    className: "dart",
     src: () => import("shiki/langs/dart.mjs"),
   },
   diff: {
