@@ -23,7 +23,7 @@ const TooltipContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        `px-3 py-2 bg-gray-4 text-gray-12 rounded-lg text-sm leading-none select-none will-change-transform
+        `px-3 py-2 bg-gray-4 text-gray-12 rounded-lg text-sm leading-none select-none will-change-transform z-10
         data-[side=bottom]:animate-slideDownAndFade 
         data-[side=left]:animate-slideLeftAndFade 
         data-[side=right]:animate-slideRightAndFade 
