@@ -453,7 +453,6 @@ export default function Snippets() {
         <div className={styles.container}>
           {isTouch !== null && (
             <SelectionArea
-              className="container"
               onStart={onStart}
               onMove={onMove}
               selectables=".selectable"

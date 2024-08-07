@@ -305,7 +305,7 @@ export function Prompts({ models }: Props) {
         <div className={styles.container}>
           {isTouch !== null && (
             <SelectionArea
-              className="container pt-8"
+              className="pt-8"
               onStart={onStart}
               onMove={onMove}
               selectables=".selectable"
