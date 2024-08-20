@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/button";
 import { ButtonGroup } from "@/components/button-group";
 import {
@@ -28,8 +30,6 @@ import {
   PlusCircleIcon,
   RaycastLogoNegIcon,
 } from "@raycast/icons";
-import OgImage from "./og-image.png";
-import { Metadata } from "next";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
 import { Kbd, Kbds, Shortcut } from "@/components/kbd";
 import { Input, InputSlot } from "@/components/input";
@@ -44,40 +44,7 @@ import {
   SelectLabel,
   SelectSeparator,
 } from "@/components/select";
-
-const title = "Ray.so Components";
-const description = "Component playground for the ray.so ecosystem.";
-const ogUrl = OgImage.src;
-
-export const metadata: Metadata = {
-  title: title,
-  description: description,
-  openGraph: {
-    url: "/components",
-    title: title,
-    description: description,
-    images: [
-      {
-        url: ogUrl,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
-  },
-  twitter: {
-    title: title,
-    description: description,
-    images: [
-      {
-        url: ogUrl,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
-  },
-};
+import { toast } from "@/components/toast";
 
 export default function Components() {
   return (
@@ -437,6 +404,21 @@ export default function Components() {
             <Kbd size="medium">⌘</Kbd>
             <Kbd size="medium">F</Kbd>
           </Kbds>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Toast</h2>
+        <div className="flex gap-2 items-center flex-wrap">
+          <Button onClick={() => toast("Copied to clipboard!")}>Copy code</Button>
+          <Button
+            onClick={() =>
+              toast.error("Something went wrong", {
+                description: "Please check your internet connection",
+              })
+            }
+          >
+            Show error
+          </Button>
         </div>
       </div>
     </div>

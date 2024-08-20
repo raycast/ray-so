@@ -6,6 +6,7 @@ import { BASE_URL } from "@/utils/common";
 import { TooltipProvider } from "@/components/tooltip";
 import { Viewport } from "next";
 import { Log } from "./log";
+import { Toaster } from "@/components/toast";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className={cn("isolate", inter.className)}>
           <Log />
           {children}
+          <Toaster position="top-center" offset={70} duration={2000} />
         </body>
       </TooltipProvider>
       <Analytics />

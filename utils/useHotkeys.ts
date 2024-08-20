@@ -7,6 +7,11 @@ hotkeys.filter = (event: KeyboardEvent) => {
   const { tagName } = target;
   let flag = true;
 
+  // allow formatting shortcut even if the focus is on the textarea
+  if (event.keyCode === 70 && event.shiftKey && event.altKey) {
+    return true;
+  }
+
   // ignore: isContentEditable === 'true', <input> and <textarea> when readOnly state is false, <select>
   if (
     target.isContentEditable ||

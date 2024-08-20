@@ -70,6 +70,7 @@ export function InfoDialog() {
               <Shortcut keys={["P"]}>Change padding</Shortcut>
               <Shortcut keys={["L"]}>Select language</Shortcut>
               <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
+              <Shortcut keys={["⌥", "shift", "F"]}>Format code</Shortcut>
               <Shortcut keys={["⌘", "K"]}>Toggle Export Menu</Shortcut>
               <Shortcut keys={["⌘", "S"]}>Save PNG</Shortcut>
               <Shortcut keys={["⌘", "⇧", "S"]}>Save SVG</Shortcut>

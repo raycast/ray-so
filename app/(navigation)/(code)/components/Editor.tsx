@@ -120,7 +120,7 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
 function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
-  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
@@ -174,7 +174,7 @@ function Editor() {
       }
       setCode(event.target.value);
     },
-    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id]
+    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
@@ -239,12 +239,12 @@ function Editor() {
         themeFont === "geist-mono"
           ? styles.geistMono
           : themeFont === "ibm-plex-mono"
-          ? styles.ibmPlexMono
-          : themeFont === "fira-code"
-          ? styles.firaCode
-          : styles.jetBrainsMono,
+            ? styles.ibmPlexMono
+            : themeFont === "fira-code"
+              ? styles.firaCode
+              : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
-        showLineNumbers && selectedLanguage !== LANGUAGES.plaintext && styles.showLineNumbers
+        showLineNumbers && selectedLanguage !== LANGUAGES.plaintext && styles.showLineNumbers,
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}
