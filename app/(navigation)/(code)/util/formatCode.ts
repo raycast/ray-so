@@ -15,7 +15,7 @@ export const formatterSupportedLanguages: Language["name"][] = Object.keys(parse
 
 const prettierConfig = {
   singleQuote: false,
-  printWidth: 120,
+  printWidth: 80,
 };
 
 const formatCode = async (code: string, language: Language | null) => {
