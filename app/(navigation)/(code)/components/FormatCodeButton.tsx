@@ -1,3 +1,5 @@
+"use client";
+
 import { WandIcon } from "@raycast/icons";
 import formatCode, { formatterSupportedLanguages } from "../util/formatCode";
 import { useAtom } from "jotai";
@@ -7,10 +9,16 @@ import { Button } from "@/components/button";
 import { toast } from "@/components/toast";
 import { cn } from "@/utils/cn";
 import HighlightedCode from "./HighlightedCode";
+import { useEffect, useState } from "react";
 
 const FormatButton: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   const [code, setCode] = useAtom(codeAtom);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleFormatCode = () => {
     const isSupportedLanguage = formatterSupportedLanguages.includes(selectedLanguage?.name || "");
@@ -49,6 +57,10 @@ const FormatButton: React.FC = () => {
     event.preventDefault();
     handleFormatCode();
   });
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <Button
