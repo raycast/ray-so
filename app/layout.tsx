@@ -38,8 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className={cn("isolate", inter.className)}>
           <Log />
           {children}
+          <Toaster position="top-center" offset={70} duration={2000} />
         </body>
-        <Toaster position="top-center" offset={70} duration={2000} />
       </TooltipProvider>
       <Analytics />
     </html>

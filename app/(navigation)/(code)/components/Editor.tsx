@@ -24,8 +24,6 @@ import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
-import formatCode, { formatterSupportedLanguages } from "../util/formatCode";
-import { toast } from "@/components/toast";
 
 function indentText(text: string) {
   return text
@@ -137,53 +135,6 @@ function Editor() {
     event.preventDefault();
     textareaRef.current?.focus();
   });
-
-  useHotkeys("shift+option+f", (event) => {
-    event.preventDefault();
-    handleFormatCode();
-  });
-
-  const handleFormatCode = () => {
-    const isSupportedLanguage = formatterSupportedLanguages.includes(selectedLanguage?.name || "");
-    if (!isSupportedLanguage) {
-      return toast.error("Formatting is not supported for this language");
-    }
-    if (!code || !selectedLanguage) {
-      return;
-    }
-    const language = selectedLanguage;
-    toast.promise(
-      formatCode(code, language)
-        .then((formatted) => {
-          setCode(formatted);
-          // Sometimes hljs thinks the formatted code is a different language
-          // than the original, so we enforce the original language here
-          setSelectedLanguage(language);
-        })
-        .catch((e) => {
-          if (e.message.includes("Unexpected token")) {
-            toast.error("Formatting failed: Syntax Error", {
-              description: e.message,
-              duration: 3000,
-              dismissible: true,
-            });
-          } else {
-            toast.error("Code formatting failed", {
-              description: e.message,
-              duration: 3000,
-            });
-          }
-          return console.log("Formatting failed:", e);
-        }),
-      {
-        loading: "Formatting code...",
-        success: (data) => {
-          return "Successfully formatted code";
-        },
-        error: "Code formatting failed",
-      },
-    );
-  };
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((event) => {
     const textarea = textareaRef.current!;
