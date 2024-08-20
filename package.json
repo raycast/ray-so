@@ -58,6 +58,7 @@
     "react-transition-group": "^4.4.5",
     "save-svg-as-png": "^1.4.17",
     "shiki": "^1.0.0",
+    "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
     "url-loader": "^4.1.1"
   },
