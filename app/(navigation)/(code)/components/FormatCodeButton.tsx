@@ -8,7 +8,6 @@ import useHotkeys from "@/utils/useHotkeys";
 import { Button } from "@/components/button";
 import { toast } from "@/components/toast";
 import { cn } from "@/utils/cn";
-import HighlightedCode from "./HighlightedCode";
 import { useEffect, useState } from "react";
 
 const FormatButton: React.FC = () => {
