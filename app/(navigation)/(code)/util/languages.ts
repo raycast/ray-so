@@ -175,6 +175,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "php",
     src: () => import("shiki/langs/php.mjs"),
   },
+  prisma: {
+    name: "Prisma",
+    className: "prisma",
+    src: () => import("shiki/langs/prisma.mjs"),
+  },
   python: {
     name: "Python",
     className: "python",
