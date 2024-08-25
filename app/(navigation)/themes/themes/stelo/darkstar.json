@@ -1,0 +1,21 @@
+{
+  "author": "stelo",
+  "authorUsername": "stelo",
+  "version": "1",
+  "name": "Darkstar",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#000527",
+    "text": "#FFE5E5",
+    "selection": "#FFCACA",
+    "loader": "#FFA2A2",
+    "red": "#E54F57",
+    "orange": "#EC875C",
+    "yellow": "#DAAA3F",
+    "green": "#58AB5A",
+    "blue": "#539BF5",
+    "purple": "#786EF8",
+    "magenta": "#F85FD7"
+  }
+}
