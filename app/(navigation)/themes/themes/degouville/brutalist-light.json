@@ -1,0 +1,21 @@
+{
+  "authorUsername": "degouville",
+  "version": 1,
+  "author": "Mathieu de Gouville",
+  "appearance": "light",
+  "name": "Brutalist Light",
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#FFFFFF",
+    "text": "#000000",
+    "selection": "#000000",
+    "loader": "#000000",
+    "red": "#FF0000",
+    "purple": "#800080",
+    "magenta": "#FF00FF",
+    "orange": "#FFA500",
+    "yellow": "#FFFF00",
+    "blue": "#0000FF",
+    "green": "#00FF00"
+  }
+}

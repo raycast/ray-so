@@ -1,0 +1,21 @@
+{
+  "name": "Martinique",
+  "version": "1",
+  "appearance": "dark",
+  "author": "Mathieu de Gouville",
+  "authorUsername": "degouville",
+  "colors": {
+    "background": "#00160A",
+    "backgroundSecondary": "#23201E",
+    "text": "#E7FFF2",
+    "selection": "#EF1923",
+    "loader": "#EF1923",
+    "red": "#EF1923",
+    "orange": "#F26522",
+    "yellow": "#FFC20E",
+    "green": "#00DB6A",
+    "blue": "#0072BC",
+    "purple": "#92278F",
+    "magenta": "#E6007E"
+  }
+}
