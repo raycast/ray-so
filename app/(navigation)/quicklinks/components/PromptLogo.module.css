@@ -1,0 +1,32 @@
+.logo {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-image: linear-gradient(135deg, #ff6363, #d72a2a);
+
+  svg {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-icon="raycast"] {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.8) rotate(-45deg);
+  }
+
+  &:hover {
+    [data-icon="stars"] {
+      opacity: 0;
+      transform: scale(0.8) rotate(45deg);
+    }
+
+    [data-icon="raycast"] {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+}
