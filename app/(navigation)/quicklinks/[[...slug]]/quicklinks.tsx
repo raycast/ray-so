@@ -380,7 +380,7 @@ export function Quicklinks() {
                                         />
                                       )}
                                     </div>
-                                    <p className="text-[15px] text-gray-12 mb-3 font-medium">{quicklink.name}</p>
+                                    <p className="text-[15px] text-gray-12 mb-1 font-medium">{quicklink.name}</p>
                                     <p className="text-[13px] text-gray-11">{quicklink.description}</p>
                                   </div>
                                   <Dialog>

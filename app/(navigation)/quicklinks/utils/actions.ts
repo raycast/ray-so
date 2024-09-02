@@ -8,7 +8,7 @@ const raycastProtocolForEnvironments = {
   production: "raycast",
   test: "raycastinternal",
 };
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+export const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
 
 function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
   return `[${quicklinks

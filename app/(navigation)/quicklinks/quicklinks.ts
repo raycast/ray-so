@@ -1,5 +1,6 @@
 import { IconName, Icons } from "@raycast/icons";
 import { SVGProps } from "react";
+import { raycastProtocol } from "./utils/actions";
 
 export type Quicklink = {
   id: string;
@@ -64,7 +65,7 @@ const folders: Quicklink[] = [
     id: "downloads-file-search",
     name: "Open Downloads in File Search",
     description: "Opens the Downloads folder in the File Search Command",
-    link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/Downloads/",
+    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Downloads/`,
     icon: {
       name: "folder",
     },
@@ -73,7 +74,7 @@ const folders: Quicklink[] = [
     id: "documents-file-search",
     name: "Open Documents in File Search",
     description: "Opens the Documents folder in the File Search Command",
-    link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/Documents/",
+    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Documents/`,
     icon: {
       name: "folder",
     },
@@ -82,7 +83,7 @@ const folders: Quicklink[] = [
     id: "desktop-file-search",
     name: "Open Desktop in File Search",
     description: "Opens the Desktop folder in the File Search Command",
-    link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/",
+    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/`,
     icon: {
       name: "folder",
     },
@@ -91,7 +92,7 @@ const folders: Quicklink[] = [
     id: "root-file-search",
     name: "Open Root in File Search",
     description: "Opens the Root folder in the File Search Command",
-    link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/",
+    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/`,
     icon: {
       name: "folder",
     },
@@ -99,15 +100,6 @@ const folders: Quicklink[] = [
 ];
 
 const documentation: Quicklink[] = [
-  {
-    id: "nextjs",
-    name: "Next.js Docs",
-    description: "Browse the Next.js Documentation",
-    link: "https://nextjs.org/docs",
-    icon: {
-      name: "brand-nextjs",
-    },
-  },
   {
     id: "raycastapi",
     name: "Search Raycast API Docs",
@@ -139,6 +131,15 @@ const documentation: Quicklink[] = [
     link: "https://radix-ui.com/primitives/docs",
     icon: {
       invert: true,
+    },
+  },
+  {
+    id: "nextjs",
+    name: "Next.js Docs",
+    description: "Browse the Next.js Documentation",
+    link: "https://nextjs.org/docs",
+    icon: {
+      name: "brand-nextjs",
     },
   },
   {
@@ -223,7 +224,7 @@ const extensions: Quicklink[] = [
     id: "selection-spotify",
     name: "Selection -> Spotify",
     description: "Grabs the current selection and searches Spotify Player",
-    link: "raycast://tonka3000/spotify/{selection}",
+    link: `${raycastProtocol}://tonka3000/spotify/{selection}`,
     icon: {
       link: "https://www.spotify.com",
     },
@@ -232,7 +233,7 @@ const extensions: Quicklink[] = [
     id: "selection-email",
     name: "Selection -> Email",
     description: "Grabs the current selection and sends an Email via Dash Off",
-    link: "raycast://peduarte/dashoff?{selection}",
+    link: `${raycastProtocol}://peduarte/dashoff?{selection}`,
     icon: {
       name: "envelope",
     },
@@ -241,7 +242,7 @@ const extensions: Quicklink[] = [
     id: "encycolorpedia-picker",
     name: "Encycolorpedia Picker",
     description: "Uses Color Picker to search Encycolorpedia",
-    link: "raycast://thomas/color-picker?{Query}",
+    link: `${raycastProtocol}://thomas/color-picker?{Query}`,
     icon: {
       name: "swatch",
     },
@@ -250,7 +251,7 @@ const extensions: Quicklink[] = [
     id: "selection-translate",
     name: "Selection -> Translate",
     description: "Grabs the current selection and translates it with Raycast Translator",
-    link: "raycast://extensions/raycast/translator/translate?fallbackText={selection | raw}",
+    link: `${raycastProtocol}://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
     icon: {
       name: "magnifying-glass",
     },
@@ -457,6 +458,10 @@ const search: Quicklink[] = [
     name: "View Google Chrome History",
     description: "View your Chrome History",
     link: "chrome://history/search/",
+    openWith: "Google Chrome",
+    icon: {
+      link: "https://chrome.google.com",
+    },
   },
   {
     id: "google-drive",
