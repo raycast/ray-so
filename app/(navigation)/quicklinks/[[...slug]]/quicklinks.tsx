@@ -7,7 +7,7 @@ import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionIn
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { Category, Quicklink, categories } from "../quicklinks";
 import { extractQuicklinks } from "../utils/extractQuicklinks";
-import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
+import { addQuicklinkToRaycast, addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 import copy from "copy-to-clipboard";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import styles from "./quicklinks.module.css";
@@ -128,6 +128,13 @@ export function Quicklinks() {
   const handleAddToRaycast = React.useCallback(
     () => addToRaycast(router, selectedQuicklinks),
     [router, selectedQuicklinks],
+  );
+
+  const handleAddQuicklinkToRaycast = React.useCallback(
+    (quicklink: Quicklink) => {
+      addQuicklinkToRaycast(router, quicklink);
+    },
+    [router],
   );
 
   React.useEffect(() => {
@@ -364,22 +371,22 @@ export function Quicklinks() {
                                         <IconComponent icon={quicklink.icon.name} />
                                       ) : (
                                         <img
-                                          src={`https://api.ray.so/favicon?url=%5C${domain}&size=32`}
+                                          src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
                                           width={16}
                                           className={cn(
-                                            `grayscale rounded-sm overflow-hidden contrast-150`,
+                                            `grayscale rounded overflow-hidden contrast-150 group-hover:grayscale-0`,
                                             quicklink?.icon?.invert && "invert",
                                           )}
                                         />
                                       )}
                                     </div>
-                                    <p className="text-[15px] text-gray-12 mb-0.5">{quicklink.name}</p>
+                                    <p className="text-[15px] text-gray-12 mb-3 font-medium">{quicklink.name}</p>
                                     <p className="text-[13px] text-gray-11">{quicklink.description}</p>
                                   </div>
                                   <Dialog>
                                     <DialogTrigger
                                       onClick={(event) => event.stopPropagation()}
-                                      className="border-t border-gray-4 group-hover:border-[#2A1E48] -mx-4 px-4 -mb-4 h-[28px] flex items-center mt-3 pb-[3px] overflow-hidden text-left w-[calc(100%+32px)] group/footer gap-1"
+                                      className="border-t border-gray-4 group-hover:border-[#2A1E48] -mx-4 px-4 -mb-4 h-[28px] flex items-center mt-3 pb-[3px] overflow-hidden text-left w-[calc(100%+32px)] group/footer gap-1 outline-purple rounded-b-xl"
                                     >
                                       <span className="text-xxs whitespace-nowrap overflow-hidden text-ellipsis w-full block group-hover/footer:text-white transition-colors duration-150">
                                         {quicklink.link}
@@ -390,14 +397,24 @@ export function Quicklinks() {
                                     </DialogTrigger>
                                     <DialogContent>
                                       <DialogTitle>Edit Quicklink</DialogTitle>
-                                      <div className="flex flex-col gap-4">
+                                      <form className="flex flex-col gap-4">
                                         <label>
                                           <span className="block text-sm text-gray-11 mb-2">Name</span>
-                                          <Input type="text" value={quicklink.name} size="large" className="w-full" />
+                                          <Input
+                                            type="text"
+                                            defaultValue={quicklink.name}
+                                            size="large"
+                                            className="w-full"
+                                          />
                                         </label>
                                         <label>
                                           <span className="block text-sm text-gray-11 mb-2">Link</span>
-                                          <Input type="text" value={quicklink.link} size="large" className="w-full" />
+                                          <Input
+                                            type="text"
+                                            defaultValue={quicklink.link}
+                                            size="large"
+                                            className="w-full"
+                                          />
                                         </label>
                                         <label>
                                           <span className="block text-sm text-gray-11 mb-2">Open with</span>
@@ -417,11 +434,13 @@ export function Quicklinks() {
                                               <Button variant="secondary">Cancel</Button>
                                             </DialogClose>
                                             <DialogClose asChild>
-                                              <Button variant="primary">Save</Button>
+                                              <Button type="submit" variant="primary">
+                                                Save
+                                              </Button>
                                             </DialogClose>
                                           </div>
                                         </div>
-                                      </div>
+                                      </form>
                                     </DialogContent>
                                   </Dialog>
                                 </div>
@@ -429,6 +448,12 @@ export function Quicklinks() {
                             </ContextMenu.Trigger>
                             <ContextMenu.Portal>
                               <ContextMenu.Content className={styles.contextMenuContent}>
+                                <ContextMenu.Item
+                                  className={styles.contextMenuItem}
+                                  onSelect={() => handleAddQuicklinkToRaycast(quicklink)}
+                                >
+                                  <PlusCircleIcon /> Add to Raycast
+                                </ContextMenu.Item>
                                 <ContextMenu.Item
                                   className={styles.contextMenuItem}
                                   onSelect={() => {

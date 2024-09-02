@@ -52,15 +52,6 @@ const folders: Quicklink[] = [
     },
   },
   {
-    id: "applications",
-    name: "Open Applications",
-    description: "Opens the Applications folder in Finder",
-    link: "~/Applications",
-    icon: {
-      name: "folder",
-    },
-  },
-  {
     id: "root",
     name: "Open Root",
     description: "Opens the Root folder of your drive in Finder",
@@ -92,15 +83,6 @@ const folders: Quicklink[] = [
     name: "Open Desktop in File Search",
     description: "Opens the Desktop folder in the File Search Command",
     link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/",
-    icon: {
-      name: "folder",
-    },
-  },
-  {
-    id: "applications-file-search",
-    name: "Open Applications in File Search",
-    description: "Opens the Applications folder in the File Search Command",
-    link: "raycast://extensions/raycast/file-search/search-files?fallbackText=~/Applications/",
     icon: {
       name: "folder",
     },
