@@ -30,7 +30,6 @@ import { ScrollArea } from "../components/ScrollArea";
 import { Instructions } from "../components/Instructions";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import * as ContextMenu from "@radix-ui/react-context-menu";
-import CreativityIcon from "../components/CreativityIcon";
 import { NavigationActions } from "@/components/navigation";
 import { Kbd, Kbds } from "@/components/kbd";
 import { InfoDialog } from "../components/InfoDialog";

@@ -4,8 +4,8 @@
 import { ImageResponse } from "@vercel/og";
 import { RaycastLogoNegIcon } from "@raycast/icons";
 import { CSSProperties } from "react";
-import { Prompt } from "../quicklinks";
 import { IconComponent } from "../../presets/components/Icons";
+import { Base64 } from "js-base64";
 
 export const runtime = "edge";
 
@@ -13,17 +13,19 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    const hasTitle = searchParams.has("title");
-    const title = hasTitle ? searchParams.get("title")?.slice(0, 100) : "";
-    const description = searchParams.get("description") || "Raycast AI Prompt";
+    const hasName = searchParams.has("name");
+    const name = hasName ? searchParams.get("name")?.slice(0, 100) : "";
+    const description = searchParams.get("description") || "Raycast Quicklink";
     const ellipsedDescription = description.length > 120 ? `${description.slice(0, 120)}...` : description;
-    const icon = (searchParams.get("icon") || "stars") as Prompt["icon"];
+    const hasIconName = searchParams.has("iconName");
+    const iconName = searchParams.get("iconName");
+    const hasIconUrl = searchParams.has("iconUrl");
+    const iconUrl = searchParams.get("iconUrl");
 
     const interRegular = await fetch(new URL(`./Inter-Regular.ttf`, import.meta.url)).then((res) => res.arrayBuffer());
     const interSemiBold = await fetch(new URL(`./Inter-SemiBold.ttf`, import.meta.url)).then((res) =>
       res.arrayBuffer(),
     );
-
     const bgImageData = await fetch(new URL(`./og-bg.png`, import.meta.url)).then((res) => res.arrayBuffer());
 
     return new ImageResponse(
@@ -60,13 +62,13 @@ export async function GET(request: Request) {
               flex: 1,
             }}
           >
-            {icon && (
+            {hasIconName ? (
               <div
                 style={{
                   color: "white",
                   display: "flex",
                   border: "1px solid rgba(255, 255, 255, 0.15)",
-                  borderRadius: "9999px",
+                  borderRadius: "12px",
                   backgroundImage: "radial-gradient(150.08% 117.14% at 31.25% 9.37%, #171717 0%, #000 100%)",
                   width: 110,
                   height: 110,
@@ -75,9 +77,26 @@ export async function GET(request: Request) {
                   marginBottom: 24,
                 }}
               >
-                <IconComponent icon={icon} width={48} height={48} />
+                <IconComponent icon={iconName as any} width={48} height={48} />
               </div>
-            )}
+            ) : hasIconUrl && iconUrl ? (
+              <div
+                style={{
+                  color: "white",
+                  display: "flex",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  borderRadius: "12px",
+                  backgroundImage: "radial-gradient(150.08% 117.14% at 31.25% 9.37%, #171717 0%, #000 100%)",
+                  width: 110,
+                  height: 110,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <img src={iconUrl} width={48} height={48} style={{ width: 48, height: 48 }} />
+              </div>
+            ) : null}
             <div
               style={{
                 fontSize: 68,
@@ -94,7 +113,7 @@ export async function GET(request: Request) {
                 maxWidth: "100%",
               }}
             >
-              {title}
+              {name}
             </div>
             {description && (
               <div

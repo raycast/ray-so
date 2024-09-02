@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { Shared } from "./shared";
 import { Quicklink } from "../quicklinks";
 import { nanoid } from "nanoid";
+import { Base64 } from "js-base64";
 
 type Props = {
   params: { slug: string };
@@ -37,7 +38,15 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const quicklink = quicklinks[0];
     const pageTitle = `${quicklink.name} - Raycast Quicklink`;
     const pageDescription = "Raycast Quicklink";
-    const ogImage = `/quicklinks/og?title=${encodeURIComponent(quicklink.name)}&icon=${quicklink?.icon?.name}`;
+    let iconUrl = "";
+    if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
+      const url = new URL(quicklink?.icon?.link || quicklink.link);
+      const domain = url.hostname.replace("www.", "");
+      iconUrl = `https://api.ray.so/favicon?url=%5C${domain}&size=64`;
+    }
+    const ogImage = `/quicklinks/og?name=${encodeURIComponent(quicklink.name)}${
+      quicklink.description ? `&description=${encodeURIComponent(quicklink.description)}` : ""
+    }${iconUrl ? `&iconUrl=${encodeURIComponent(iconUrl)}` : ""}${quicklink?.icon?.name ? `&iconName=${encodeURIComponent(quicklink?.icon?.name)}` : ""}`;
 
     return {
       title: pageTitle,
@@ -72,9 +81,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const ogImageDescription = `"${quicklinks[0].name}" and ${quicklinks.length - 1} more ${
       quicklinks.length === 2 ? "quicklink" : "quicklinks"
     }`;
-    const ogImage = `/quicklinks/og?title=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
+    const ogImage = `/quicklinks/og?name=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
       ogImageDescription,
-    )}`;
+    )}&iconName="stars"`;
 
     return {
       title: pageTitle,
