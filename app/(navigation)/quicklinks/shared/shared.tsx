@@ -2,9 +2,8 @@
 
 import { Quicklink } from "../quicklinks";
 import React from "react";
-import { nanoid } from "nanoid";
 import * as ContextMenu from "@radix-ui/react-context-menu";
-import { notFound, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import copy from "copy-to-clipboard";
 
@@ -15,8 +14,8 @@ import {
   DownloadIcon,
   LinkIcon,
   MinusCircleIcon,
+  PencilIcon,
   PlusCircleIcon,
-  StarsIcon,
 } from "@raycast/icons";
 import { extractQuicklinks } from "../utils/extractQuicklinks";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
@@ -29,6 +28,10 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
+import { Input } from "@/components/input";
+import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
+import { IconComponent } from "../components/IconComponent";
+import { cn } from "@/utils/cn";
 
 export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
   const router = useRouter();
@@ -52,7 +55,7 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
       isShared: true,
       quicklinks: quicklinks,
       slug: "/shared",
-      icon: StarsIcon,
+      icon: LinkIcon,
     },
   ];
 
@@ -255,18 +258,99 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
                       const isSelected = selectedQuicklinks.some(
                         (selectedQuicklink) => selectedQuicklink.id === quicklink.id,
                       );
+                      let domain = "";
+                      if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
+                        const url = new URL(quicklink?.icon?.link || quicklink.link);
+                        domain = url.hostname.replace("www.", "");
+                      }
 
                       return (
                         <ContextMenu.Root key={quicklink.id}>
                           <ContextMenu.Trigger>
                             <div
-                              className={`${styles.item} selectable`}
-                              key={quicklink.id}
+                              className={`${styles.item} selectable overflow-hidden group`}
                               data-selected={isSelected}
                               data-key={`${quicklinkGroup.slug}-${index}`}
                             >
-                              <div className={styles.prompt}>
-                                <span className={styles.name}>{quicklink.name}</span>
+                              <div className="w-full flex flex-col space-between h-full">
+                                <div className="flex-1">
+                                  <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
+                                    {quicklink?.icon?.name ? (
+                                      <IconComponent icon={quicklink.icon.name} />
+                                    ) : (
+                                      <img
+                                        src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
+                                        width={16}
+                                        className={cn(
+                                          `grayscale rounded overflow-hidden contrast-150 group-hover:grayscale-0`,
+                                          quicklink?.icon?.invert && "invert",
+                                        )}
+                                      />
+                                    )}
+                                  </div>
+                                  <p className="text-[15px] text-gray-12 mb-1 font-medium">{quicklink.name}</p>
+                                  <p className="text-[13px] text-gray-11">{quicklink.description}</p>
+                                </div>
+                                <Dialog>
+                                  <DialogTrigger
+                                    onClick={(event) => event.stopPropagation()}
+                                    className="border-t border-gray-4 group-hover:border-[#2A1E48] -mx-4 px-4 -mb-4 h-[28px] flex items-center mt-3 pb-[3px] overflow-hidden text-left w-[calc(100%+32px)] group/footer gap-1 outline-purple rounded-b-xl"
+                                  >
+                                    <span className="text-xxs whitespace-nowrap overflow-hidden text-ellipsis w-full block group-hover/footer:text-white transition-colors duration-150">
+                                      {quicklink.link}
+                                    </span>
+                                    <span className="opacity-0 group-hover:opacity-100 group-hover/footer:text-white rounded-sm w-4 h-4 flex items-center justify-center shrink-0 -mr-2 transition-colors duration-150">
+                                      <PencilIcon className="w-3" />
+                                    </span>
+                                  </DialogTrigger>
+                                  <DialogContent>
+                                    <DialogTitle>Edit Quicklink</DialogTitle>
+                                    <form className="flex flex-col gap-4">
+                                      <label>
+                                        <span className="block text-sm text-gray-11 mb-2">Name</span>
+                                        <Input
+                                          type="text"
+                                          defaultValue={quicklink.name}
+                                          size="large"
+                                          className="w-full"
+                                        />
+                                      </label>
+                                      <label>
+                                        <span className="block text-sm text-gray-11 mb-2">Link</span>
+                                        <Input
+                                          type="text"
+                                          defaultValue={quicklink.link}
+                                          size="large"
+                                          className="w-full"
+                                        />
+                                      </label>
+                                      <label>
+                                        <span className="block text-sm text-gray-11 mb-2">Open with</span>
+                                        <Input
+                                          type="text"
+                                          value={quicklink.openWith || "Default"}
+                                          size="large"
+                                          className="w-full"
+                                        />
+                                        <p className="text-xs text-gray-10 mt-2">
+                                          Type the application name exactly like it shows up in Finder
+                                        </p>
+                                      </label>
+                                      <div className="flex justify-end">
+                                        <div className="flex gap-2">
+                                          <DialogClose asChild>
+                                            <Button variant="secondary">Cancel</Button>
+                                          </DialogClose>
+                                          <DialogClose asChild>
+                                            <Button type="submit" variant="primary">
+                                              Save
+                                            </Button>
+                                          </DialogClose>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </DialogContent>
+                                </Dialog>
                               </div>
                             </div>
                           </ContextMenu.Trigger>

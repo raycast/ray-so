@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { IconName } from "@raycast/icons";
+import { IconName, RaycastLogoNegIcon } from "@raycast/icons";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { Category, Quicklink, categories } from "../quicklinks";
@@ -452,7 +452,7 @@ export function Quicklinks() {
                                   className={styles.contextMenuItem}
                                   onSelect={() => handleAddQuicklinkToRaycast(quicklink)}
                                 >
-                                  <PlusCircleIcon /> Add to Raycast
+                                  <RaycastLogoNegIcon /> Add to Raycast
                                 </ContextMenu.Item>
                                 <ContextMenu.Item
                                   className={styles.contextMenuItem}
