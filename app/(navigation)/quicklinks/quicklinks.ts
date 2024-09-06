@@ -121,11 +121,6 @@ const development: Quicklink[] = [
     link: "https://sentry.io/issues/?query={Query}&referrer=issue-list&statsPeriod=14d",
   },
   {
-    id: "svgl",
-    name: "Search SVGL",
-    link: "https://svgl.app/?search={query}",
-  },
-  {
     id: "npm",
     name: "Search NPM",
     link: "https://www.npmjs.com/search?q={Query}",
