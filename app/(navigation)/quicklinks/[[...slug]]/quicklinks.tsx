@@ -17,6 +17,7 @@ import {
   CopyClipboardIcon,
   DownloadIcon,
   LinkIcon,
+  MagnifyingGlassIcon,
   PlusCircleIcon,
   StarsIcon,
   TrashIcon,
@@ -32,10 +33,12 @@ import { InfoDialog } from "../components/InfoDialog";
 import { QuicklinkComponent } from "../components/quicklink";
 import { shortenUrl } from "@/utils/common";
 import { toast } from "@/components/toast";
+import { Input, InputSlot } from "@/components/input";
 
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
+  const [search, setSearch] = React.useState("");
 
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
@@ -55,6 +58,10 @@ export function Quicklinks() {
 
     setCategories(updatedCategories);
   };
+
+  const filteredQuicklinks = categories.flatMap((category) => {
+    return category.quicklinks.filter((quicklink) => quicklink.name.toLowerCase().includes(search.toLowerCase()));
+  });
 
   const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
 
@@ -174,11 +181,6 @@ export function Quicklinks() {
         handleCopyUrl();
         setActionsOpen(false);
       }
-
-      if (key === "a" && metaKey) {
-        event.preventDefault();
-        setSelectedQuicklinkIds(categories.flatMap((category) => category.quicklinks.map((quicklink) => quicklink.id)));
-      }
     };
 
     document.addEventListener("keydown", down);
@@ -242,6 +244,19 @@ export function Quicklinks() {
             <ScrollArea>
               <div className={styles.sidebarContent}>
                 <div className={styles.sidebarNav}>
+                  <Input
+                    type="search"
+                    placeholder="Search quicklinks…"
+                    variant="soft"
+                    className="mb-6 flex"
+                    size="large"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  >
+                    <InputSlot side="left">
+                      <MagnifyingGlassIcon className="w-3.5 h-3.5" />
+                    </InputSlot>
+                  </Input>
                   <p className={styles.sidebarTitle}>Categories</p>
 
                   {categories.map((category) => (
@@ -316,46 +331,65 @@ export function Quicklinks() {
                 },
               }}
             >
-              {categories.map((category) => {
-                return (
-                  <div
-                    key={category.name}
-                    data-section-slug={`/quicklinks${category.slug}`}
-                    style={{
-                      outline: "none",
-                    }}
-                    tabIndex={-1}
-                  >
-                    <h2 className={styles.subtitle}>
-                      <category.iconComponent /> {category.name}
-                    </h2>
-                    <div className={styles.prompts}>
-                      {category.quicklinks.map((quicklink, index) => {
-                        const isSelected = selectedQuicklinkIds.includes(quicklink.id);
-                        const setIsSelected = (value: boolean) => {
-                          if (isSelected) {
-                            return setSelectedQuicklinkIds((prevQuicklinkIds) =>
-                              prevQuicklinkIds.filter((prevQuicklinkId) => prevQuicklinkId !== quicklink.id),
+              {filteredQuicklinks.length === 0 && (
+                <div className="flex justify-center flex-col items-center py-[180px] gap-4">
+                  <LinkIcon className="w-6 h-6 text-gray-10" />
+                  <p className="text-gray-12 font-medium text-sm text-center ">No Quicklinks found</p>
+                  <Button variant="secondary" onClick={() => setSearch("")}>
+                    Clear search
+                  </Button>
+                </div>
+              )}
+              {categories
+                .filter((c) => {
+                  if (!search) return true;
+                  return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
+                })
+                .map((category) => {
+                  return (
+                    <div
+                      key={category.name}
+                      data-section-slug={`/quicklinks${category.slug}`}
+                      style={{
+                        outline: "none",
+                      }}
+                      tabIndex={-1}
+                    >
+                      <h2 className={styles.subtitle}>
+                        <category.iconComponent /> {category.name}
+                      </h2>
+                      <div className={styles.prompts}>
+                        {category.quicklinks
+                          .filter((q) => {
+                            if (!search) return true;
+                            return q.name.toLowerCase().includes(search.toLowerCase());
+                          })
+                          .map((quicklink, index) => {
+                            const isSelected = selectedQuicklinkIds.includes(quicklink.id);
+                            const setIsSelected = (value: boolean) => {
+                              if (isSelected) {
+                                return setSelectedQuicklinkIds((prevQuicklinkIds) =>
+                                  prevQuicklinkIds.filter((prevQuicklinkId) => prevQuicklinkId !== quicklink.id),
+                                );
+                              }
+                              setSelectedQuicklinkIds((prevQuicklinkIds) => [...prevQuicklinkIds, quicklink.id]);
+                            };
+                            return (
+                              <QuicklinkComponent
+                                key={quicklink.id}
+                                quicklink={quicklink}
+                                updateQuicklink={updateQuicklink}
+                                isSelected={isSelected}
+                                setIsSelected={setIsSelected}
+                                index={index}
+                                categorySlug={category.slug}
+                              />
                             );
-                          }
-                          setSelectedQuicklinkIds((prevQuicklinkIds) => [...prevQuicklinkIds, quicklink.id]);
-                        };
-                        return (
-                          <QuicklinkComponent
-                            key={quicklink.id}
-                            quicklink={quicklink}
-                            updateQuicklink={updateQuicklink}
-                            isSelected={isSelected}
-                            setIsSelected={setIsSelected}
-                            index={index}
-                            categorySlug={category.slug}
-                          />
-                        );
-                      })}
+                          })}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </SelectionArea>
           )}
         </div>
