@@ -48,14 +48,14 @@ export function useSectionInViewObserver({ headerHeight, enabled = false }: Conf
         newEntryInView = fullyInView.reduce((previousCandidate, currentCandidate) =>
           previousCandidate.target.getBoundingClientRect().top > currentCandidate.target.getBoundingClientRect().top
             ? currentCandidate
-            : previousCandidate
+            : previousCandidate,
         );
       } else {
         // get the section closest to the crossing border (top is closest to half-viewport mark)
         newEntryInView = sectionsInView.reduce((previousCandidate, currentCandidate) =>
           previousCandidate.target.getBoundingClientRect().top < currentCandidate.target.getBoundingClientRect().top
             ? currentCandidate
-            : previousCandidate
+            : previousCandidate,
         );
       }
 
@@ -81,7 +81,7 @@ export function useSectionInViewObserver({ headerHeight, enabled = false }: Conf
       {
         leading: true,
         trailing: true,
-      }
+      },
     );
 
     const observer = {
@@ -100,6 +100,7 @@ export function useSectionInViewObserver({ headerHeight, enabled = false }: Conf
       // Get latest state key if this was a page reload, or the current state key otherwise.
       const key = isPageReload.current ? undefined : window.history.state.key;
       const restoredScrollTop = getScrollHistory(key);
+      console.log("restoredScrollTop", restoredScrollTop);
 
       if (shouldRestore && restoredScrollTop) {
         window.scrollTo({ top: 0 });
@@ -250,7 +251,7 @@ export function useSectionInViewObserver({ headerHeight, enabled = false }: Conf
       window.removeEventListener("scroll", handleScrollOrResize);
       window.removeEventListener("resize", handleScrollOrResize);
     };
-  });
+  }, [pathname, enabled, headerHeight, defaultRootMargin]);
 }
 
 export function useSectionInView() {

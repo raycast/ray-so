@@ -31,7 +31,11 @@ export function InfoDialog() {
               Select the quicklinks by clicking on them. To select multiple, hold <Kbd>⌘</Kbd> or select them with your
               mouse.
             </p>
-            <p>You can edit a quicklink by clicking on the pencil icon.</p>
+            <p>
+              You can quickly edit a quicklink before importing by clicking on the link preview or pencil icon. Great
+              for editing dynamic parameters, numbers or addresses. Note that changes are temporarily saved for the
+              current session only.
+            </p>
             <p>
               Then, click the “Add to Raycast” button to import them. You can also download the quicklinks as a JSON
               file, or copy the URL to share with others.

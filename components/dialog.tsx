@@ -42,7 +42,7 @@ const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.C
           size === "small" && "max-w-xs p-8",
           size === "medium" && "max-w-lg p-6",
           size === "large" && "max-w-3xl p-6",
-          className
+          className,
         )}
         {...props}
       >
@@ -56,7 +56,7 @@ const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.C
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPortal>
-  )
+  ),
 );
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
@@ -86,7 +86,7 @@ const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description ref={ref} className={cn("text-sm text-gray-10", className)} {...props} />
+  <DialogPrimitive.Description ref={ref} className={cn("text-sm text-gray-10 leading-5", className)} {...props} />
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 

@@ -2,12 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
-import { IconName, RaycastLogoNegIcon } from "@raycast/icons";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
-import { Category, Quicklink, categories } from "../quicklinks";
+import { Category, Quicklink, categories as originalCategories } from "../quicklinks";
 import { extractQuicklinks } from "../utils/extractQuicklinks";
-import { addQuicklinkToRaycast, addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
+import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 import copy from "copy-to-clipboard";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import styles from "./quicklinks.module.css";
@@ -18,8 +17,6 @@ import {
   CopyClipboardIcon,
   DownloadIcon,
   LinkIcon,
-  MinusCircleIcon,
-  PencilIcon,
   PlusCircleIcon,
   StarsIcon,
   TrashIcon,
@@ -29,25 +26,42 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "../components/ScrollArea";
 import { Instructions } from "../components/Instructions";
 import * as Collapsible from "@radix-ui/react-collapsible";
-import * as ContextMenu from "@radix-ui/react-context-menu";
 import { NavigationActions } from "@/components/navigation";
 import { Kbd, Kbds } from "@/components/kbd";
 import { InfoDialog } from "../components/InfoDialog";
-import { IconComponent } from "../components/IconComponent";
-import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
-import { Input } from "@/components/input";
-import { cn } from "@/utils/cn";
+import { QuicklinkComponent } from "../components/quicklink";
+import { shortenUrl } from "@/utils/common";
+import { toast } from "@/components/toast";
 
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
+  const [categories, setCategories] = React.useState<Category[]>(originalCategories);
+  const updateQuicklink = (updatedQuicklink: Quicklink) => {
+    const updatedCategories = categories.map((category) => {
+      const updatedQuicklinks = category.quicklinks.map((quicklink) => {
+        if (quicklink.id === updatedQuicklink.id) {
+          return updatedQuicklink;
+        }
+        return quicklink;
+      });
+
+      return {
+        ...category,
+        quicklinks: updatedQuicklinks,
+      };
+    });
+
+    setCategories(updatedCategories);
+  };
+
+  const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
+
   const router = useRouter();
-
-  const [selectedQuicklinks, setselectedQuicklinks] = React.useState<Quicklink[]>([]);
-
-  const [showToast, setShowToast] = React.useState(false);
-  const [toastMessage, setToastMessage] = React.useState("");
+  const selectedQuicklinks = categories.flatMap((category) => {
+    return category.quicklinks.filter((quicklink) => selectedQuicklinkIds.includes(quicklink.id));
+  });
 
   const [actionsOpen, setActionsOpen] = React.useState(false);
   const [isTouch, setIsTouch] = React.useState<boolean>();
@@ -55,7 +69,7 @@ export function Quicklinks() {
   const onStart = ({ event, selection }: SelectionEvent) => {
     if (!isTouch && !event?.ctrlKey && !event?.metaKey) {
       selection.clearSelection();
-      setselectedQuicklinks([]);
+      setSelectedQuicklinkIds([]);
     }
   };
 
@@ -67,24 +81,24 @@ export function Quicklinks() {
     const addedQuicklinks = extractQuicklinks(added, categories);
     const removedQuicklinks = extractQuicklinks(removed, categories);
 
-    setselectedQuicklinks((prevPrompts) => {
-      const prompts = [...prevPrompts];
+    setSelectedQuicklinkIds((prevQuicklinkIds) => {
+      let quicklinkIds = [...prevQuicklinkIds];
 
-      addedQuicklinks.forEach((prompt) => {
-        if (!prompt) {
+      addedQuicklinks.forEach((quicklink) => {
+        if (!quicklink) {
           return;
         }
-        if (prompts.find((p) => p.id === prompt.id)) {
+        if (quicklinkIds.includes(quicklink.id)) {
           return;
         }
-        prompts.push(prompt);
+        quicklinkIds.push(quicklink.id);
       });
 
-      removedQuicklinks.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+      removedQuicklinks.forEach((quicklink) => {
+        quicklinkIds = quicklinkIds.filter((s) => s !== quicklink?.id);
       });
 
-      return prompts;
+      return quicklinkIds;
     });
   };
 
@@ -94,46 +108,29 @@ export function Quicklinks() {
 
   const handleCopyData = React.useCallback(() => {
     copyData(selectedQuicklinks);
-    setToastMessage("Copied to clipboard");
-    setShowToast(true);
+    toast.success("Copied to clipboard!");
   }, [selectedQuicklinks]);
 
   const handleCopyUrl = React.useCallback(async () => {
-    setToastMessage("Copying URL to clipboard...");
-    setShowToast(true);
-
     const url = makeUrl(selectedQuicklinks);
-    let urlToCopy = url;
-    const encodedUrl = encodeURIComponent(urlToCopy);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=quicklinks`).then((res) =>
-      res.json(),
+    toast.promise(
+      shortenUrl(url, "quicklinks").then((urlToCopy) => {
+        if (urlToCopy === null) return null;
+
+        copy(urlToCopy);
+        return "Copied URL to clipboard!";
+      }),
+      {
+        loading: "Copying URL to clipboard...",
+        success: "Copied URL to clipboard!",
+        error: "Failed to copy URL to clipboard",
+      },
     );
-
-    if (response.link) {
-      urlToCopy = response.link;
-    }
-
-    copy(urlToCopy);
-    setShowToast(true);
-    setToastMessage("Copied URL to clipboard!");
   }, [selectedQuicklinks]);
-
-  const handleCopyLink = React.useCallback((quicklink: Quicklink) => {
-    copy(quicklink.link);
-    setShowToast(true);
-    setToastMessage("Copied to clipboard");
-  }, []);
 
   const handleAddToRaycast = React.useCallback(
     () => addToRaycast(router, selectedQuicklinks),
     [router, selectedQuicklinks],
-  );
-
-  const handleAddQuicklinkToRaycast = React.useCallback(
-    (quicklink: Quicklink) => {
-      addQuicklinkToRaycast(router, quicklink);
-    },
-    [router],
   );
 
   React.useEffect(() => {
@@ -180,20 +177,13 @@ export function Quicklinks() {
 
       if (key === "a" && metaKey) {
         event.preventDefault();
+        setSelectedQuicklinkIds(categories.flatMap((category) => category.quicklinks.map((quicklink) => quicklink.id)));
       }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, [setActionsOpen, selectedQuicklinks, handleCopyData, handleDownload, handleCopyUrl, handleAddToRaycast]);
-
-  React.useEffect(() => {
-    if (showToast) {
-      setTimeout(() => {
-        setShowToast(false);
-      }, 2000);
-    }
-  }, [showToast]);
 
   return (
     <div>
@@ -246,12 +236,6 @@ export function Quicklinks() {
         </div>
       </NavigationActions>
 
-      <Toast open={showToast} onOpenChange={setShowToast}>
-        <ToastTitle className={styles.toastTitle}>
-          <CopyClipboardIcon /> {toastMessage}
-        </ToastTitle>
-      </Toast>
-
       <div className={styles.main}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarInner}>
@@ -287,9 +271,9 @@ export function Quicklinks() {
                             <button
                               className={styles.summaryItemButton}
                               onClick={() => {
-                                setselectedQuicklinks(
-                                  selectedQuicklinks.filter(
-                                    (selectedQuicklink) => selectedQuicklink.id !== quicklink.id,
+                                setSelectedQuicklinkIds(
+                                  selectedQuicklinkIds.filter(
+                                    (selectedQuicklinkId) => selectedQuicklinkId !== quicklink.id,
                                   ),
                                 );
                               }}
@@ -306,7 +290,7 @@ export function Quicklinks() {
                         Add to Raycast
                       </Button>
 
-                      <Button onClick={() => setselectedQuicklinks([])}>Clear selected</Button>
+                      <Button onClick={() => setSelectedQuicklinkIds([])}>Clear selected</Button>
                     </div>
                   </div>
                 )}
@@ -347,135 +331,25 @@ export function Quicklinks() {
                     </h2>
                     <div className={styles.prompts}>
                       {category.quicklinks.map((quicklink, index) => {
-                        const isSelected = selectedQuicklinks.some(
-                          (selectedQuicklink) => selectedQuicklink.id === quicklink.id,
-                        );
-                        let domain = "";
-                        if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
-                          const url = new URL(quicklink?.icon?.link || quicklink.link);
-                          domain = url.hostname.replace("www.", "");
-                        }
+                        const isSelected = selectedQuicklinkIds.includes(quicklink.id);
+                        const setIsSelected = (value: boolean) => {
+                          if (isSelected) {
+                            return setSelectedQuicklinkIds((prevQuicklinkIds) =>
+                              prevQuicklinkIds.filter((prevQuicklinkId) => prevQuicklinkId !== quicklink.id),
+                            );
+                          }
+                          setSelectedQuicklinkIds((prevQuicklinkIds) => [...prevQuicklinkIds, quicklink.id]);
+                        };
                         return (
-                          <ContextMenu.Root key={quicklink.id}>
-                            <ContextMenu.Trigger>
-                              <div
-                                className={`${styles.item} selectable overflow-hidden group`}
-                                data-selected={isSelected}
-                                data-key={`${category.slug}-${index}`}
-                              >
-                                <div className="w-full flex flex-col space-between h-full">
-                                  <div className="flex-1">
-                                    <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
-                                      {quicklink?.icon?.name ? (
-                                        <IconComponent icon={quicklink.icon.name} />
-                                      ) : (
-                                        <img
-                                          src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
-                                          width={16}
-                                          className={cn(
-                                            `grayscale rounded overflow-hidden contrast-150 group-hover:grayscale-0`,
-                                            quicklink?.icon?.invert && "invert",
-                                          )}
-                                        />
-                                      )}
-                                    </div>
-                                    <p className="text-[15px] text-gray-12 mb-1 font-medium">{quicklink.name}</p>
-                                    <p className="text-[13px] text-gray-11">{quicklink.description}</p>
-                                  </div>
-                                  <Dialog>
-                                    <DialogTrigger
-                                      onClick={(event) => event.stopPropagation()}
-                                      className="border-t border-gray-4 group-hover:border-[#2A1E48] -mx-4 px-4 -mb-4 h-[28px] flex items-center mt-3 pb-[3px] overflow-hidden text-left w-[calc(100%+32px)] group/footer gap-1 outline-purple rounded-b-xl"
-                                    >
-                                      <span className="text-xxs whitespace-nowrap overflow-hidden text-ellipsis w-full block group-hover/footer:text-white transition-colors duration-150">
-                                        {quicklink.link}
-                                      </span>
-                                      <span className="opacity-0 group-hover:opacity-100 group-hover/footer:text-white rounded-sm w-4 h-4 flex items-center justify-center shrink-0 -mr-2 transition-colors duration-150">
-                                        <PencilIcon className="w-3" />
-                                      </span>
-                                    </DialogTrigger>
-                                    <DialogContent>
-                                      <DialogTitle>Edit Quicklink</DialogTitle>
-                                      <form className="flex flex-col gap-4">
-                                        <label>
-                                          <span className="block text-sm text-gray-11 mb-2">Name</span>
-                                          <Input
-                                            type="text"
-                                            defaultValue={quicklink.name}
-                                            size="large"
-                                            className="w-full"
-                                          />
-                                        </label>
-                                        <label>
-                                          <span className="block text-sm text-gray-11 mb-2">Link</span>
-                                          <Input
-                                            type="text"
-                                            defaultValue={quicklink.link}
-                                            size="large"
-                                            className="w-full"
-                                          />
-                                        </label>
-                                        <label>
-                                          <span className="block text-sm text-gray-11 mb-2">Open with</span>
-                                          <Input
-                                            type="text"
-                                            value={quicklink.openWith || "Default"}
-                                            size="large"
-                                            className="w-full"
-                                          />
-                                          <p className="text-xs text-gray-10 mt-2">
-                                            Type the application name exactly like it shows up in Finder
-                                          </p>
-                                        </label>
-                                        <div className="flex justify-end">
-                                          <div className="flex gap-2">
-                                            <DialogClose asChild>
-                                              <Button variant="secondary">Cancel</Button>
-                                            </DialogClose>
-                                            <DialogClose asChild>
-                                              <Button type="submit" variant="primary">
-                                                Save
-                                              </Button>
-                                            </DialogClose>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    </DialogContent>
-                                  </Dialog>
-                                </div>
-                              </div>
-                            </ContextMenu.Trigger>
-                            <ContextMenu.Portal>
-                              <ContextMenu.Content className={styles.contextMenuContent}>
-                                <ContextMenu.Item
-                                  className={styles.contextMenuItem}
-                                  onSelect={() => handleAddQuicklinkToRaycast(quicklink)}
-                                >
-                                  <RaycastLogoNegIcon /> Add to Raycast
-                                </ContextMenu.Item>
-                                <ContextMenu.Item
-                                  className={styles.contextMenuItem}
-                                  onSelect={() => {
-                                    if (isSelected) {
-                                      return setselectedQuicklinks((prevQuicklinks) =>
-                                        prevQuicklinks.filter((prevQuicklink) => prevQuicklink.id !== quicklink.id),
-                                      );
-                                    }
-                                    setselectedQuicklinks((prevQuicklinks) => [...prevQuicklinks, quicklink]);
-                                  }}
-                                >
-                                  {isSelected ? <MinusCircleIcon /> : <PlusCircleIcon />}
-                                  {isSelected ? "Deselect Quicklink" : "Select Quicklink"}
-                                </ContextMenu.Item>
-                                <ContextMenu.Item
-                                  className={styles.contextMenuItem}
-                                  onSelect={() => handleCopyLink(quicklink)}
-                                >
-                                  <CopyClipboardIcon /> Copy Quicklink Link{" "}
-                                </ContextMenu.Item>
-                              </ContextMenu.Content>
-                            </ContextMenu.Portal>
-                          </ContextMenu.Root>
+                          <QuicklinkComponent
+                            key={quicklink.id}
+                            quicklink={quicklink}
+                            updateQuicklink={updateQuicklink}
+                            isSelected={isSelected}
+                            setIsSelected={setIsSelected}
+                            index={index}
+                            categorySlug={category.slug}
+                          />
                         );
                       })}
                     </div>

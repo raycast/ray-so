@@ -27,13 +27,16 @@ function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
 function makeQueryString(quicklinks: Quicklink[]): string {
   const queryString = quicklinks
     .map((selectedQuicklink) => {
-      const { name, link, openWith } = selectedQuicklink;
+      const { name, link, openWith, icon } = selectedQuicklink;
 
       return `quicklinks=${encodeURIComponent(
         JSON.stringify({
           name,
           link,
           openWith,
+          iconName: icon?.name,
+          iconUrl: icon?.link,
+          iconInvert: icon?.invert,
         }),
       )}`;
     })

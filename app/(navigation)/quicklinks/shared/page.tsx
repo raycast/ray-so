@@ -21,8 +21,14 @@ function parseURLQuicklink(quicklinkQueryString?: string | string[]): Quicklink[
   } else {
     quicklinks = [quicklinkQueryString];
   }
+
   return quicklinks.map((quicklink) => ({
     ...JSON.parse(quicklink),
+    icon: {
+      name: JSON.parse(quicklink).iconName,
+      link: JSON.parse(quicklink).iconUrl,
+      invert: JSON.parse(quicklink).iconInvert,
+    },
     id: nanoid(),
     isShared: true,
   }));

@@ -106,7 +106,7 @@ export function Prompts({ models }: Props) {
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.link) {
@@ -277,7 +277,7 @@ export function Prompts({ models }: Props) {
                               className={styles.summaryItemButton}
                               onClick={() => {
                                 setSelectedPrompts(
-                                  selectedPrompts.filter((selectedPrompt) => selectedPrompt.id !== prompt.id)
+                                  selectedPrompts.filter((selectedPrompt) => selectedPrompt.id !== prompt.id),
                                 );
                               }}
                             >
@@ -351,7 +351,7 @@ export function Prompts({ models }: Props) {
                                       dangerouslySetInnerHTML={{
                                         __html: prompt.prompt.replace(
                                           /\{[^}]+\}/g,
-                                          `<span class="${styles.placeholder}">$&</span>`
+                                          `<span class="${styles.placeholder}">$&</span>`,
                                         ),
                                       }}
                                     ></pre>
@@ -393,7 +393,7 @@ export function Prompts({ models }: Props) {
                                   onSelect={() => {
                                     if (isSelected) {
                                       return setSelectedPrompts((prevPrompts) =>
-                                        prevPrompts.filter((prevPrompt) => prevPrompt.id !== prompt.id)
+                                        prevPrompts.filter((prevPrompt) => prevPrompt.id !== prompt.id),
                                       );
                                     }
                                     setSelectedPrompts((prevPrompts) => [...prevPrompts, prompt]);

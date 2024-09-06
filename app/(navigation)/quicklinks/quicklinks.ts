@@ -22,6 +22,8 @@ export type Quicklink = {
     name: string;
     link?: string;
   };
+  // Used to keep track of UI state
+  isEdited?: boolean;
 };
 
 const folders: Quicklink[] = [
@@ -99,7 +101,7 @@ const folders: Quicklink[] = [
   },
 ];
 
-const documentation: Quicklink[] = [
+const development: Quicklink[] = [
   {
     id: "raycastapi",
     name: "Search Raycast API Docs",
@@ -107,6 +109,36 @@ const documentation: Quicklink[] = [
     icon: {
       name: "raycast-logo-neg",
     },
+  },
+  {
+    id: "github",
+    name: "Search GitHub",
+    link: "https://github.com/search?q={Query}&type=repositories",
+  },
+  {
+    id: "sentry",
+    name: "Search Sentry Issues",
+    link: "https://sentry.io/issues/?query={Query}&referrer=issue-list&statsPeriod=14d",
+  },
+  {
+    id: "svgl",
+    name: "Search SVGL",
+    link: "https://svgl.app/?search={query}",
+  },
+  {
+    id: "npm",
+    name: "Search NPM",
+    link: "https://www.npmjs.com/search?q={Query}",
+  },
+  {
+    id: "dub",
+    name: "Search Dub Shortlinks",
+    link: "https://app.dub.co/?search={Query}",
+  },
+  {
+    id: "resend",
+    name: "Search Resend sent emails",
+    link: "https://resend.com/emails?page=1&search={Query}",
   },
   {
     id: "mdn",
@@ -201,48 +233,56 @@ const documentation: Quicklink[] = [
     name: "Supabase Docs",
     link: "https://supabase.io/docs",
   },
-];
-
-const extensions: Quicklink[] = [
   {
-    id: "spotify-player",
-    name: "Search Spotify Player",
-    description: "Searches the Spotify Player extension",
-    link: `${raycastProtocol}://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
-    icon: {
-      link: "https://www.spotify.com",
-    },
-  },
-  {
-    id: "selection-email",
-    name: "Email selected text",
-    description: "Grabs the current selection and sends an Email via Dash Off",
-    link: `${raycastProtocol}://extensions/peduarte/dash-off/email-selected-text`,
-    icon: {
-      name: "envelope",
-    },
-  },
-  {
-    id: "encycolorpedia-picker",
-    name: "Encycolorpedia Picker",
-    description: "Search Encycolorpedia with the Color Picker Extension",
-    link: `https://encycolopedia.com/{tool name="color-picker/tools/pick-color | tool name="color-picker/tools/remove-leading-hash"}`,
-    icon: {
-      name: "swatch",
-    },
-  },
-  {
-    id: "selection-translate",
-    name: "Translate selected text",
-    description: "Grabs the current selection and translates it with Raycast Translator",
-    link: `${raycastProtocol}://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
-    icon: {
-      name: "magnifying-glass",
-    },
+    id: "stackoverflow",
+    name: "Search Stack Overflow",
+    link: "https://stackoverflow.com/search?q={Query}",
   },
 ];
 
-const apps: Quicklink[] = [
+const design: Quicklink[] = [
+  {
+    id: "mobbin",
+    name: "Search Mobbin",
+    link: 'https://mobbin.com/search/{argument name="Device" options=" ios , android , web " default=" ios "}/screens?filter=aiDescriptionSearch.{argument name="Query"}',
+    icon: {
+      invert: true,
+    },
+  },
+  {
+    id: "Unsplash",
+    name: "Search Unsplash",
+    link: "https://unsplash.com/s/photos/{Query}",
+    icon: {
+      invert: true,
+    },
+  },
+  {
+    id: "layers",
+    name: "Search Layers.to",
+    link: "https://layers.to/search?keyword={Query}",
+    icon: {
+      invert: true,
+    },
+  },
+  {
+    id: "dribbble",
+    name: "Search Dribbble",
+    link: "https://dribbble.com/search/{Query}",
+  },
+  {
+    id: "google-fonts",
+    name: "Search Google Fonts",
+    link: "https://fonts.google.com/?query={query}",
+  },
+  {
+    id: "thenounproject",
+    name: "Search The Noun Project",
+    link: "https://thenounproject.com/search/?q={query}",
+  },
+];
+
+const communication: Quicklink[] = [
   {
     id: "slack-channel",
     name: "Open Slack Channel",
@@ -279,6 +319,16 @@ const apps: Quicklink[] = [
       name: "envelope",
     },
   },
+  {
+    id: "gmail",
+    name: "Search Gmail",
+    link: "https://mail.google.com/mail/#search/{query}",
+  },
+  {
+    id: "google-calendar",
+    name: "Search Google Calendar",
+    link: "https://calendar.google.com/calendar/r/search?q={query}",
+  },
 ];
 
 const search: Quicklink[] = [
@@ -287,6 +337,9 @@ const search: Quicklink[] = [
     name: "Search Apple Maps",
     link: "https://maps.apple.com/?q={query}",
     openWith: "Maps",
+    icon: {
+      name: "brand-apple",
+    },
   },
   {
     id: "google-maps",
@@ -294,47 +347,12 @@ const search: Quicklink[] = [
     link: "https://www.google.com/maps/search/{Place}",
   },
   {
-    id: "apple-music",
-    name: "Search Apple Music",
-    link: "music://search?term={Query}",
-    openWith: "Music",
-    icon: {
-      link: "htps://music.apple.com",
-    },
-  },
-  {
-    id: "mobbin",
-    name: "Search Mobbin",
-    link: 'https://mobbin.com/search/{argument name="Device" options=" ios , android , web " default=" ios "}/screens?filter=aiDescriptionSearch.{argument name="Query"}',
-    icon: {
-      invert: true,
-    },
-  },
-  {
-    id: "youtube",
-    name: "Search YouTube",
-    link: "https://www.youtube.com/results?search_query={Query}",
-  },
-  {
-    id: "tweets",
-    name: "Search Tweets",
-    description: "Search from a list of users",
-    link: 'https://x.com/search?q={argument name="query" | raw} from:{argument name="handle" options=" @samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default=" @samuelkraft " | raw}&src=typed_query&f=live',
-  },
-  {
-    id: "linkedin",
-    name: "Search LinkedIn",
-    link: "https://www.linkedin.com/search/results/all/?keywords={Query}",
-  },
-  {
-    id: "github",
-    name: "Search GitHub",
-    link: "https://github.com/search?q={Query}&type=repositories",
-  },
-  {
     id: "appstore",
     name: "Search App Store",
     link: "itms-apps://itunes.apple.com/search?term={App}",
+    icon: {
+      name: "brand-apple",
+    },
   },
   {
     id: "google-images",
@@ -352,57 +370,9 @@ const search: Quicklink[] = [
     link: "https://hn.algolia.com/?q={Query}",
   },
   {
-    id: "Unsplash",
-    name: "Search Unsplash",
-    link: "https://unsplash.com/s/photos/{Query}",
-    icon: {
-      invert: true,
-    },
-  },
-  {
-    id: "stackoverflow",
-    name: "Search Stack Overflow",
-    link: "https://stackoverflow.com/search?q={Query}",
-  },
-  {
-    id: "dribbble",
-    name: "Search Dribbble",
-    link: "https://dribbble.com/search/{Query}",
-  },
-  {
-    id: "giphy",
-    name: "Search Giphy",
-    link: "https://giphy.com/{Query}",
-  },
-  {
-    id: "google-translate",
-    name: "Search Google Translate",
-    link: "https://translate.google.com/?sl={source language:auto}&tl={target language}&text={word}&op=translate",
-  },
-  {
     id: "duckduckgo",
     name: "Search DuckDuckGo",
     link: "https://duckduckgo.com/?q={Query}",
-  },
-  {
-    id: "threads-user",
-    name: "Go to a threads user",
-    link: "https://threads.net/@{query}",
-  },
-  {
-    id: "threads-post",
-    name: "Post to Threads",
-    link: "https://www.threads.net/intent/post?text={query}",
-  },
-  {
-    id: "threads",
-    name: "Search Threads",
-    link: "https://www.threads.net/search/?q={Query}&serp_type=default",
-  },
-  {
-    id: "google-calendar",
-    name: "Search Google Calendar",
-    link: "https://calendar.google.com/calendar/r/search?q={query}",
   },
   {
     id: "chrome-web-store",
@@ -410,67 +380,9 @@ const search: Quicklink[] = [
     link: "https://chrome.google.com/webstore/search/{query}?hl=en-US",
   },
   {
-    id: "chrome-history",
-    name: "View Google Chrome History",
-    link: "chrome://history/search/",
-    openWith: "Google Chrome",
-    icon: {
-      link: "https://chrome.google.com",
-    },
-  },
-  {
     id: "google-drive",
     name: "Search Google Drive",
     link: "https://drive.google.com/drive/search?q={query}",
-  },
-  {
-    id: "google-fonts",
-    name: "Search Google Fonts",
-    link: "https://fonts.google.com/?query={query}",
-  },
-  {
-    id: "gmail",
-    name: "Search Gmail",
-    link: "https://mail.google.com/mail/#search/{query}",
-  },
-  {
-    id: "thenounproject",
-    name: "Search The Noun Project",
-    link: "https://thenounproject.com/search/?q={query}",
-  },
-  {
-    id: "imdb",
-    name: "Search IMDb",
-    link: "https://www.imdb.com/find?s=all&q={query}",
-  },
-  {
-    id: "netflix",
-    name: "Search Netflix",
-    link: "https://www.netflix.com/search?q={query}",
-    icon: {
-      invert: true,
-    },
-  },
-  {
-    id: "letterboxd",
-    name: "Search Letterboxd",
-    link: "https://letterboxd.com/search/{query}/",
-  },
-  {
-    id: "spotify",
-    name: "Search Spotify",
-    link: "https://open.spotify.com/search/{query}",
-    openWith: "Spotify",
-  },
-  {
-    id: "twitch",
-    name: "Search Twitch",
-    link: "https://www.twitch.tv/search?term={query}",
-  },
-  {
-    id: "reddit",
-    name: "Search Reddit",
-    link: "https://www.reddit.com/search/?q={query}",
   },
   {
     id: "google-trends",
@@ -487,50 +399,9 @@ const search: Quicklink[] = [
     name: "Search Robinhood Ticker",
     link: "https://robinhood.com/stocks/{query}",
   },
-  {
-    id: "svgl",
-    name: "Search SVGL",
-    link: "https://svgl.app/?search={query}",
-  },
-  {
-    id: "npm",
-    name: "Search NPM",
-    link: "https://www.npmjs.com/search?q={Query}",
-  },
-  {
-    id: "dub",
-    name: "Search Dub Shortlinks",
-    link: "https://app.dub.co/?search={Query}",
-  },
-  {
-    id: "resend",
-    name: "Search Resend",
-    description: "Search for sent emails on Resend",
-    link: "https://resend.com/emails?page=1&search={Query}",
-  },
-  {
-    id: "layers",
-    name: "Search Layers.to",
-    link: "https://layers.to/search?keyword={Query}",
-    icon: {
-      invert: true,
-    },
-  },
-  {
-    id: "tiktok",
-    name: "Search TikTok",
-    link: "https://www.tiktok.com/search?q={Query}",
-  },
-  {
-    id: "sentry",
-    name: "Search Sentry Issues",
-    link: "https://sentry.io/issues/?query={Query}&referrer=issue-list&statsPeriod=14d",
-  },
-  {
-    id: "pinterest",
-    name: "Search Pinterest",
-    link: "https://pinterest.com/search/pins/?q={Query}&rs=typed",
-  },
+];
+
+const shopping: Quicklink[] = [
   {
     id: "amazon",
     name: "Search Amazon",
@@ -553,6 +424,135 @@ const search: Quicklink[] = [
   },
 ];
 
+const entertainment: Quicklink[] = [
+  {
+    id: "spotify-player",
+    name: "Search Spotify Extension",
+    link: `${raycastProtocol}://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
+    icon: {
+      link: "https://www.spotify.com",
+    },
+  },
+  {
+    id: "spotify",
+    name: "Search Spotify",
+    link: "https://open.spotify.com/search/{query}",
+    openWith: "Spotify",
+  },
+  {
+    id: "apple-music",
+    name: "Search Apple Music",
+    link: "music://search?term={Query}",
+    openWith: "Music",
+    icon: {
+      link: "htps://music.apple.com",
+    },
+  },
+  {
+    id: "imdb",
+    name: "Search IMDb",
+    link: "https://www.imdb.com/find?s=all&q={query}",
+  },
+  {
+    id: "netflix",
+    name: "Search Netflix",
+    link: "https://www.netflix.com/search?q={query}",
+    icon: {
+      invert: true,
+    },
+  },
+  {
+    id: "letterboxd",
+    name: "Search Letterboxd",
+    link: "https://letterboxd.com/search/{query}/",
+  },
+];
+
+const socials: Quicklink[] = [
+  {
+    id: "tweets",
+    name: "Search Tweets",
+    description: "Search from a list of users",
+    link: 'https://x.com/search?q={argument name="query" | raw} from:{argument name="handle" options=" @samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default=" @samuelkraft " | raw}&src=typed_query&f=live',
+  },
+  {
+    id: "youtube",
+    name: "Search YouTube",
+    link: "https://www.youtube.com/results?search_query={Query}",
+  },
+  {
+    id: "linkedin",
+    name: "Search LinkedIn",
+    link: "https://www.linkedin.com/search/results/all/?keywords={Query}",
+  },
+  {
+    id: "pinterest",
+    name: "Search Pinterest",
+    link: "https://pinterest.com/search/pins/?q={Query}&rs=typed",
+  },
+  {
+    id: "threads-user",
+    name: "Go to a threads user",
+    link: "https://threads.net/@{query}",
+  },
+  {
+    id: "threads-post",
+    name: "Post to Threads",
+    link: "https://www.threads.net/intent/post?text={query}",
+  },
+  {
+    id: "threads",
+    name: "Search Threads",
+    link: "https://www.threads.net/search/?q={Query}&serp_type=default",
+  },
+  {
+    id: "tiktok",
+    name: "Search TikTok",
+    link: "https://www.tiktok.com/search?q={Query}",
+  },
+  {
+    id: "twitch",
+    name: "Search Twitch",
+    link: "https://www.twitch.tv/search?term={query}",
+  },
+  {
+    id: "reddit",
+    name: "Search Reddit",
+    link: "https://www.reddit.com/search/?q={query}",
+  },
+  {
+    id: "giphy",
+    name: "Search Giphy",
+    link: "https://giphy.com/{Query}",
+  },
+];
+
+const misc: Quicklink[] = [
+  {
+    id: "chrome-history",
+    name: "View Google Chrome History",
+    link: "chrome://history/search/",
+    openWith: "Google Chrome",
+    icon: {
+      link: "https://chrome.google.com",
+    },
+  },
+  {
+    id: "selection-translate",
+    name: "Translate selected text",
+    description: "Grabs the current selection and translates it with Raycast Translator",
+    link: `${raycastProtocol}://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
+    icon: {
+      name: "magnifying-glass",
+    },
+  },
+  {
+    id: "google-translate",
+    name: "Google Translate",
+    link: "https://translate.google.com/?sl={source language:auto}&tl={target language}&text={word}&op=translate",
+  },
+];
+
 type IconComponent = (props: SVGProps<SVGSVGElement>) => JSX.Element;
 
 export type Category = {
@@ -571,28 +571,52 @@ export const categories: Category[] = [
     icon: "finder" as IconName,
   },
   {
-    name: "Documentation",
-    slug: "/documentation",
-    quicklinks: [...documentation],
+    name: "Development",
+    slug: "/development",
+    quicklinks: [...development],
     icon: "code" as IconName,
   },
   {
-    name: "Extensions",
-    slug: "/extensions",
-    quicklinks: [...extensions],
-    icon: "store" as IconName,
+    name: "Design",
+    slug: "/design",
+    quicklinks: [...design],
+    icon: "brush" as IconName,
   },
   {
-    name: "Apps",
-    slug: "/apps",
-    quicklinks: [...apps],
-    icon: "app-window" as IconName,
+    name: "Shopping",
+    slug: "/shopping",
+    quicklinks: [...shopping],
+    icon: "cart" as IconName,
+  },
+  {
+    name: "Socials",
+    slug: "/socials",
+    quicklinks: [...socials],
+    icon: "speech-bubble" as IconName,
+  },
+  {
+    name: "Communication",
+    slug: "/communication",
+    quicklinks: [...communication],
+    icon: "phone" as IconName,
+  },
+  {
+    name: "Entertainment",
+    slug: "/entertainment",
+    quicklinks: [...entertainment],
+    icon: "music" as IconName,
   },
   {
     name: "Search",
     slug: "/search",
     quicklinks: [...search],
     icon: "magnifying-glass" as IconName,
+  },
+  {
+    name: "Misc",
+    slug: "/misc",
+    quicklinks: [...misc],
+    icon: "folder" as IconName,
   },
 ].map((category) => {
   return {
