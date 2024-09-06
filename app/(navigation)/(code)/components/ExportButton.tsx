@@ -64,30 +64,25 @@ const ExportButton: React.FC = () => {
     setFlashShown(false);
   };
 
-  const copyPng = () => {
+  const copyPng = async () => {
     setFlashMessage({ icon: <ClipboardIcon />, message: "Copying PNG" });
+    if (!frameContext?.current) {
+      throw new Error("Couldn't find a frame to export");
+    }
+    const blob = await toBlob(frameContext.current, {
+      pixelRatio: exportSize,
+    });
+    if (!blob) {
+      throw new Error("expected toBlob to return a blob");
+    }
 
-    navigator.clipboard.write([
+    await navigator.clipboard.write([
       new ClipboardItem({
-        "image/png": new Promise((resolve) => {
-          if (!frameContext?.current) {
-            throw new Error("Couldn't find a frame to export");
-          }
-
-          toBlob(frameContext.current, {
-            pixelRatio: exportSize,
-          }).then((blob) => {
-            if (!blob) {
-              throw new Error("expected toBlob to return a blob");
-            }
-
-            resolve(blob);
-
-            setFlashMessage({ icon: <ClipboardIcon />, message: "PNG Copied to clipboard!", timeout: 2000 });
-          });
-        }),
+        "image/png": blob,
       }),
     ]);
+
+    setFlashMessage({ icon: <ClipboardIcon />, message: "PNG Copied to clipboard!", timeout: 2000 });
   };
 
   const saveSvg = async () => {
