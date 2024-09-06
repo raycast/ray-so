@@ -187,6 +187,11 @@ export function Quicklinks() {
     return () => document.removeEventListener("keydown", down);
   }, [setActionsOpen, selectedQuicklinks, handleCopyData, handleDownload, handleCopyUrl, handleAddToRaycast]);
 
+  const filteredCategories = categories.filter((c) => {
+    if (!search) return true;
+    return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
+  });
+
   return (
     <div>
       <NavigationActions>
@@ -257,11 +262,18 @@ export function Quicklinks() {
                       <MagnifyingGlassIcon className="w-3.5 h-3.5" />
                     </InputSlot>
                   </Input>
-                  <p className={styles.sidebarTitle}>Categories</p>
+                  {filteredCategories.length ? <p className={styles.sidebarTitle}>Categories</p> : null}
 
-                  {categories.map((category) => (
-                    <NavItem key={category.slug} category={category} />
-                  ))}
+                  {filteredCategories.map((category) => {
+                    const categoryWithFilteredQuicklinks = {
+                      ...category,
+                      quicklinks: category.quicklinks.filter((q) =>
+                        q.name.toLowerCase().includes(search.toLowerCase()),
+                      ),
+                    };
+
+                    return <NavItem key={category.slug} category={categoryWithFilteredQuicklinks} />;
+                  })}
                 </div>
 
                 {selectedQuicklinks.length === 0 && <Instructions />}
