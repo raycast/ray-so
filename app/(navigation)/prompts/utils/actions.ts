@@ -15,7 +15,7 @@ function prepareModel(model?: string) {
   if (model && /^".*"$/.test(model)) {
     return model.slice(1, model.length - 1) as Model;
   }
-  return model || "openai-gpt-3.5-turbo";
+  return model || "openai-gpt-4o-mini";
 }
 
 function makePromptImportData(prompts: Prompt[]): string {
@@ -46,7 +46,7 @@ function makeQueryString(prompts: Prompt[]): string {
           creativity,
           icon,
           model: prepareModel(model),
-        })
+        }),
       )}`;
     })
     .join("&");
