@@ -67,7 +67,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       },
       other: {
         "twitter:label1": "Model",
-        "twitter:data": prompt.model || "openai-gpt-3.5-turbo",
+        "twitter:data": prompt.model || "openai-gpt-4o-mini",
         "twitter:label2": "Creativity",
         "twitter:data2": prompt.creativity,
       },
@@ -79,7 +79,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       prompts.length === 2 ? "prompt" : "prompts"
     }`;
     const ogImage = `/prompts/og?title=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
-      ogImageDescription
+      ogImageDescription,
     )}`;
 
     return {

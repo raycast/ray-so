@@ -739,7 +739,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "explain-this-in-simple-terms-custom",
@@ -761,7 +761,7 @@ Explanation: Philosophy is the study of the fundamental nature of knowledge, rea
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "make-longer-custom",
@@ -779,7 +779,7 @@ Stictly follow these rules:
     creativity: "high",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "make-shorter-custom",
@@ -819,7 +819,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "change-tone-to-friendly",
@@ -837,7 +837,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "change-tone-to-confident-custom",
@@ -858,7 +858,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "change-tone-to-casual-custom",
@@ -880,7 +880,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "rephrase-as-tweet-custom",
@@ -905,7 +905,7 @@ Tweet:
     creativity: "high",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "explain-code-custom",
@@ -938,7 +938,7 @@ The code is a React component that goes to the previous page.
     creativity: "medium",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "find-bugs-custom",
@@ -987,7 +987,7 @@ Nothing found - LGTM 👌` + generateSelection("Code", "Review"),
     creativity: "medium",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
   },
   {
     id: "summarize-website-custom",
