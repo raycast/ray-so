@@ -44,8 +44,8 @@ export function Quicklinks() {
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
   // The current flavor of Raycast is saved in localStorage,
   // so we need to convert all links on the client to not get hydration errors
+  const raycastProtocol = getRaycastFlavor();
   useEffect(() => {
-    const raycastProtocol = getRaycastFlavor();
     const flavoredCategories = originalCategories.map((category) => {
       return {
         ...category,
@@ -60,7 +60,7 @@ export function Quicklinks() {
       };
     });
     setCategories(flavoredCategories);
-  }, []);
+  }, [raycastProtocol]);
 
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
