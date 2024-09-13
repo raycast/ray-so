@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const description = searchParams.get("description") || "Raycast Quicklink";
     const ellipsedDescription = description.length > 120 ? `${description.slice(0, 120)}...` : description;
     const hasIconName = searchParams.has("iconName");
-    const iconName = searchParams.get("iconName");
+    const iconName = searchParams.get("iconName") || "link";
     const hasIconUrl = searchParams.has("iconUrl");
     const iconUrl = searchParams.get("iconUrl");
 
@@ -62,7 +62,7 @@ export async function GET(request: Request) {
               flex: 1,
             }}
           >
-            {hasIconName ? (
+            {hasIconName || !hasIconUrl ? (
               <div
                 style={{
                   color: "white",

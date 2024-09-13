@@ -89,7 +89,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     }`;
     const ogImage = `/quicklinks/og?name=${encodeURIComponent(pageTitle)}&description=${encodeURIComponent(
       ogImageDescription,
-    )}&iconName="stars"`;
+    )}`;
 
     return {
       title: pageTitle,
