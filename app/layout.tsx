@@ -38,12 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <TooltipProvider>
         <body className={cn("isolate", inter.className)}>
           <Log />
+          <RaycastFlavor />
           {children}
           <Toaster position="top-center" offset={70} duration={2000} />
         </body>
       </TooltipProvider>
       <Analytics />
-      <RaycastFlavor />
     </html>
   );
 }
