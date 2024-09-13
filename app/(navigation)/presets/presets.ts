@@ -275,7 +275,7 @@ Here are some rules:
 `,
     icon: "brand-javascript",
     creativity: "low",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
     web_search: true,
     date: "2024-06-21",
     author: {
@@ -309,7 +309,7 @@ Here are the rules you must follow:
       "A writing coach that helps you improve your writing skills and corrects your spelling, grammar and punctuation mistakes.",
     icon: "pencil",
     creativity: "low",
-    model: "openai-gpt-3.5-turbo",
+    model: "openai-gpt-4o-mini",
     date: "2024-03-26",
   },
   {

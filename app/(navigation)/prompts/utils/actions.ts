@@ -3,19 +3,13 @@ import { Prompt } from "../prompts";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
 import { Model } from "@/api/ai";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 function prepareModel(model?: string) {
   if (model && /^".*"$/.test(model)) {
     return model.slice(1, model.length - 1) as Model;
   }
-  return model || "openai-gpt-3.5-turbo";
+  return model || "openai-gpt-4o-mini";
 }
 
 function makePromptImportData(prompts: Prompt[]): string {
@@ -46,7 +40,7 @@ function makeQueryString(prompts: Prompt[]): string {
           creativity,
           icon,
           model: prepareModel(model),
-        })
+        }),
       )}`;
     })
     .join("&");
@@ -75,5 +69,6 @@ export function copyUrl(prompts: Prompt[]) {
 }
 
 export function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
+  const raycastProtocol = getRaycastFlavor();
   router.replace(`${raycastProtocol}://prompts/import?${makeQueryString(prompts)}`);
 }

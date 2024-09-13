@@ -3,13 +3,7 @@ import { Preset } from "../presets";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
 import { Model } from "@/api/ai";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 function prepareModel(model: Model) {
   if (model && /^".*"$/.test(model)) {
@@ -45,7 +39,7 @@ function makeQueryString(preset: Preset): string {
       web_search,
       image_generation,
       id,
-    })
+    }),
   )}`;
 }
 
@@ -74,5 +68,6 @@ export function copyUrl(preset: Preset) {
 }
 
 export function addToRaycast(router: AppRouterInstance, preset: Preset) {
+  const raycastProtocol = getRaycastFlavor();
   router.replace(`${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
 }
