@@ -1,7 +1,7 @@
 "use client";
 
 import { Quicklink } from "../quicklinks";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import copy from "copy-to-clipboard";
@@ -21,22 +21,45 @@ import { Kbd, Kbds } from "@/components/kbd";
 import { QuicklinkComponent } from "../components/quicklink";
 import { toast } from "@/components/toast";
 import { shortenUrl } from "@/utils/common";
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
   const router = useRouter();
 
-  const initialCategories = [
-    {
-      name: `${quicklinks.length} ${quicklinks.length > 1 ? "quicklinks" : "quicklink"} shared with you`,
-      isTemplate: true,
-      isShared: true,
-      quicklinks: quicklinks,
-      slug: "/shared",
-      icon: LinkIcon,
-    },
-  ];
+  const initialCategories = useMemo(
+    () => [
+      {
+        name: `${quicklinks.length} ${quicklinks.length > 1 ? "quicklinks" : "quicklink"} shared with you`,
+        isTemplate: true,
+        isShared: true,
+        quicklinks: quicklinks,
+        slug: "/shared",
+        icon: LinkIcon,
+      },
+    ],
+    [quicklinks],
+  );
+
+  const raycastProtocol = getRaycastFlavor();
 
   const [categories, setCategories] = React.useState(initialCategories);
+  useEffect(() => {
+    const flavoredCategories = initialCategories.map((category) => {
+      return {
+        ...category,
+        quicklinks: category.quicklinks.map((quicklink) => {
+          return {
+            ...quicklink,
+            link: quicklink.link
+              .replace("raycast://", `${raycastProtocol}://`)
+              .replace("raycastinternal://", `${raycastProtocol}://`),
+          };
+        }),
+      };
+    });
+    setCategories(flavoredCategories);
+  }, [initialCategories, raycastProtocol]);
+
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
       const updatedQuicklinks = category.quicklinks.map((quicklink) => {

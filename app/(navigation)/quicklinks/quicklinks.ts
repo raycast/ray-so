@@ -1,6 +1,5 @@
 import { IconName, Icons } from "@raycast/icons";
 import { SVGProps } from "react";
-import { raycastProtocol } from "./utils/actions";
 
 export type Quicklink = {
   id: string;
@@ -67,7 +66,7 @@ const folders: Quicklink[] = [
     id: "downloads-file-search",
     name: "Open Downloads in File Search",
     description: "Opens the Downloads folder in the File Search Command",
-    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Downloads/`,
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Downloads/`,
     icon: {
       name: "folder",
     },
@@ -76,7 +75,7 @@ const folders: Quicklink[] = [
     id: "documents-file-search",
     name: "Open Documents in File Search",
     description: "Opens the Documents folder in the File Search Command",
-    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Documents/`,
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Documents/`,
     icon: {
       name: "folder",
     },
@@ -85,7 +84,7 @@ const folders: Quicklink[] = [
     id: "desktop-file-search",
     name: "Open Desktop in File Search",
     description: "Opens the Desktop folder in the File Search Command",
-    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/`,
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/`,
     icon: {
       name: "folder",
     },
@@ -94,7 +93,7 @@ const folders: Quicklink[] = [
     id: "root-file-search",
     name: "Open Root in File Search",
     description: "Opens the Root folder in the File Search Command",
-    link: `${raycastProtocol}://extensions/raycast/file-search/search-files?fallbackText=~/`,
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/`,
     icon: {
       name: "folder",
     },
@@ -423,7 +422,7 @@ const entertainment: Quicklink[] = [
   {
     id: "spotify-player",
     name: "Search Spotify Extension",
-    link: `${raycastProtocol}://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
+    link: `raycast://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
     icon: {
       link: "https://www.spotify.com",
     },
@@ -536,7 +535,7 @@ const misc: Quicklink[] = [
     id: "selection-translate",
     name: "Translate selected text",
     description: "Grabs the current selection and translates it with Raycast Translator",
-    link: `${raycastProtocol}://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
+    link: `raycast://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
     icon: {
       name: "magnifying-glass",
     },

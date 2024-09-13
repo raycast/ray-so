@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { Category, Quicklink, categories as originalCategories } from "../quicklinks";
@@ -34,6 +34,7 @@ import { QuicklinkComponent } from "../components/quicklink";
 import { shortenUrl } from "@/utils/common";
 import { toast } from "@/components/toast";
 import { Input, InputSlot } from "@/components/input";
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
@@ -41,6 +42,26 @@ export function Quicklinks() {
   const [search, setSearch] = React.useState("");
 
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
+  // The current flavor of Raycast is saved in localStorage,
+  // so we need to convert all links on the client to not get hydration errors
+  useEffect(() => {
+    const raycastProtocol = getRaycastFlavor();
+    const flavoredCategories = originalCategories.map((category) => {
+      return {
+        ...category,
+        quicklinks: category.quicklinks.map((quicklink) => {
+          return {
+            ...quicklink,
+            link: quicklink.link
+              .replace("raycast://", `${raycastProtocol}://`)
+              .replace("raycastinternal://", `${raycastProtocol}://`),
+          };
+        }),
+      };
+    });
+    setCategories(flavoredCategories);
+  }, []);
+
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
       const updatedQuicklinks = category.quicklinks.map((quicklink) => {
