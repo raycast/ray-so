@@ -5,7 +5,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ChevronDownIcon, PlusCircleIcon, PlusIcon } from "@raycast/icons";
 import { useRaycastTheme } from "@themes/components/raycast-theme-provider";
 import { isTouchDevice } from "@themes/lib/isTouchDevice";
-import { BuildTypes, makeRaycastImportUrl } from "@themes/lib/url";
+import { makeRaycastImportUrl } from "@themes/lib/url";
 
 export function AddToRaycast() {
   const [isTouch, setIsTouch] = React.useState<boolean | null>(null);
@@ -29,7 +29,7 @@ export function AddToRaycast() {
     copy(url);
     const encodedUrl = encodeURIComponent(url);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=themes`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.error) {
@@ -53,11 +53,9 @@ export function AddToRaycast() {
 
   const handleAddToRaycast = React.useCallback(() => {
     if (!activeTheme) return;
-    const queryParams = new URLSearchParams(window.location.search);
-    const build = (queryParams.get("build") ?? undefined) as BuildTypes | undefined;
 
     console.log("Opening theme in Raycast from button");
-    window.open(makeRaycastImportUrl(activeTheme, build));
+    window.open(makeRaycastImportUrl(activeTheme));
   }, [activeTheme]);
 
   React.useEffect(() => {

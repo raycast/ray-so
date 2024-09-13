@@ -41,13 +41,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -186,7 +180,7 @@ export default function Snippets() {
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=snippets`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.link) {
@@ -198,9 +192,11 @@ export default function Snippets() {
     setToastMessage("Copied URL to clipboard!");
   }, [makeQueryString]);
 
+  const raycastProtocol = getRaycastFlavor();
+
   const handleAddToRaycast = React.useCallback(
     () => router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`),
-    [router, makeQueryString]
+    [router, makeQueryString, raycastProtocol],
   );
 
   React.useEffect(() => {
@@ -425,7 +421,7 @@ export default function Snippets() {
                               className={styles.summaryItemButton}
                               onClick={() => {
                                 setSelectedSnippets(
-                                  selectedSnippets.filter((selectedSnippet) => selectedSnippet.id !== snippet.id)
+                                  selectedSnippets.filter((selectedSnippet) => selectedSnippet.id !== snippet.id),
                                 );
                               }}
                             >
@@ -495,7 +491,7 @@ export default function Snippets() {
                             className={`${styles.item} selectable`}
                             key={snippet.id}
                             data-selected={selectedSnippets.some(
-                              (selectedSnippet) => selectedSnippet.id === snippet.id
+                              (selectedSnippet) => selectedSnippet.id === snippet.id,
                             )}
                             data-key={`${snippetGroup.slug}-${index}`}
                           >

@@ -1,20 +1,14 @@
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 import { Theme } from "@themes/lib/theme";
 
-export type BuildTypes = "prod" | "internal" | "debug";
-
-const PROTOCOL: Record<BuildTypes, string> = {
-  prod: "raycast",
-  internal: "raycastinternal",
-  debug: "raycastdebug",
-};
-
-export function makeRaycastImportUrl(theme: Theme, build: BuildTypes = "prod") {
+export function makeRaycastImportUrl(theme: Theme) {
   const { slug, colors, ...restTheme } = theme;
 
-  const url = new URL(`${PROTOCOL[build]}://theme`);
+  const raycastProtocol = getRaycastFlavor();
+  const url = new URL(`${raycastProtocol}://theme`);
 
   const encodedParams = Object.entries(restTheme).map(
-    ([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+    ([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
   );
 
   const orderedColors = [

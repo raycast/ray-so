@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/tooltip";
 import { Viewport } from "next";
 import { Log } from "./log";
 import { Toaster } from "@/components/toast";
+import { RaycastFlavor } from "./RaycastFlavor";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </body>
       </TooltipProvider>
       <Analytics />
+      <RaycastFlavor />
     </html>
   );
 }
