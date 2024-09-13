@@ -109,8 +109,8 @@ export function QuicklinkComponent({
           <div className="w-full flex flex-col space-between h-full">
             <div className="flex-1">
               <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
-                {quicklink?.icon?.name ? (
-                  <IconComponent icon={quicklink.icon.name} />
+                {quicklink?.icon?.name || !domain.startsWith("http") ? (
+                  <IconComponent icon={quicklink?.icon?.name || "link"} />
                 ) : (
                   <img
                     src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
