@@ -8,6 +8,7 @@ import { Viewport } from "next";
 import { Log } from "./log";
 import { Toaster } from "@/components/toast";
 import { RaycastFlavor } from "./RaycastFlavor";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
@@ -38,9 +39,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <TooltipProvider>
         <body className={cn("isolate", inter.className)}>
           <Log />
-          <RaycastFlavor />
+
           {children}
           <Toaster position="top-center" offset={70} duration={2000} />
+          <Suspense>
+            <RaycastFlavor />
+          </Suspense>
         </body>
       </TooltipProvider>
       <Analytics />
