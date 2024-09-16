@@ -48,7 +48,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
       const url = new URL(quicklink?.icon?.link || quicklink.link);
       const domain = url.hostname.replace("www.", "");
-      iconUrl = `https://api.ray.so/favicon?url=%5C${domain}&size=64`;
+      iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
     }
     const ogImage = `/quicklinks/og?name=${encodeURIComponent(quicklink.name)}${
       quicklink.description ? `&description=${encodeURIComponent(quicklink.description)}` : ""
