@@ -106,8 +106,6 @@ export function Quicklinks() {
       changed: { added, removed },
     },
   }: SelectionEvent) => {
-    console.log("added", added);
-    console.log("removed", removed);
     const addedQuicklinks = extractQuicklinks(added, categories);
     const removedQuicklinks = extractQuicklinks(removed, categories);
 
