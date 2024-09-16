@@ -100,7 +100,8 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
           <div className="w-full flex flex-col space-between h-full">
             <div className="flex-1">
               <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
-                {quicklink?.icon?.name || !quicklink.link.startsWith("http") ? (
+                {quicklink?.icon?.name ||
+                (!quicklink.link.startsWith("http") && !quicklink?.icon?.link?.startsWith("http")) ? (
                   <IconComponent icon={quicklink?.icon?.name || "link"} />
                 ) : (
                   <img
@@ -116,9 +117,11 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
                 )}
               </div>
               <p className="text-[15px] text-gray-12 mb-1 font-medium line-clamp-2">{quicklink.name}</p>
-              <p className="text-[13px] text-gray-11 line-clamp-3">{quicklink.description}</p>
+              {quicklink.description && (
+                <p className="text-[13px] text-gray-11 mb-1 last:mb-0 line-clamp-3">{quicklink.description}</p>
+              )}
               {quicklink.author && (
-                <p className="text-[13px] text-gray-11 mt-1">
+                <p className="text-[13px] text-gray-11">
                   <span className="text-gray-10">by </span>
                   {quicklink.author.link ? (
                     <a

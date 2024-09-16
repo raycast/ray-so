@@ -4,24 +4,26 @@ import { SVGProps } from "react";
 export type Quicklink = {
   id: string;
   name: string;
+  // Optional description of the quicklink if name is not descriptive enough
   description?: string;
   link: string;
-  // Optional - defaults to "Default" app
+  // Optional app to open the link with - defaults to the default app for the link
   openWith?: string;
-  // Override the default icon - defaults to favicon from the link itself
+  // Override the default icon fetched from the link itself
   icon?: {
     // 1. Icon name from Raycast Icons
     name?: IconName;
     // 2. URL to fetch favicon from
     link?: string;
-    // Use for dark favicons
+    // Use to display dark favicons in the explorer
     invert?: boolean;
   };
   author?: {
     name: string;
     link?: string;
   };
-  // Used to keep track of UI state
+
+  // Only used to keep track of UI state
   isEdited?: boolean;
 };
 
@@ -430,6 +432,10 @@ const entertainment: Quicklink[] = [
     link: `raycast://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
     icon: {
       link: "https://www.spotify.com",
+    },
+    author: {
+      name: "Pedro Duarte",
+      link: "https://x.com/peduarte",
     },
   },
   {
