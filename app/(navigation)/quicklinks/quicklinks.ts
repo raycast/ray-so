@@ -393,6 +393,11 @@ const search: Quicklink[] = [
     name: "Search Robinhood Ticker",
     link: "https://robinhood.com/stocks/{query}",
   },
+  {
+    id: "perplexity",
+    name: "Search Perplexity",
+    link: "https://perplexity.ai/search?q={query}",
+  },
 ];
 
 const shopping: Quicklink[] = [
@@ -440,6 +445,11 @@ const entertainment: Quicklink[] = [
     openWith: "Music",
   },
   {
+    id: "youtube",
+    name: "Search YouTube",
+    link: "https://www.youtube.com/results?search_query={Query}",
+  },
+  {
     id: "imdb",
     name: "Search IMDb",
     link: "https://www.imdb.com/find?s=all&q={query}",
@@ -448,9 +458,6 @@ const entertainment: Quicklink[] = [
     id: "netflix",
     name: "Search Netflix",
     link: "https://www.netflix.com/search?q={query}",
-    icon: {
-      invert: true,
-    },
   },
   {
     id: "letterboxd",
@@ -465,11 +472,6 @@ const socials: Quicklink[] = [
     name: "Search Tweets",
     description: "Search from a list of users",
     link: 'https://x.com/search?q={argument name="query" | raw} from:{argument name="handle" options=" @samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default=" @samuelkraft " | raw}&src=typed_query&f=live',
-  },
-  {
-    id: "youtube",
-    name: "Search YouTube",
-    link: "https://www.youtube.com/results?search_query={Query}",
   },
   {
     id: "linkedin",
