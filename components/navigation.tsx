@@ -109,21 +109,23 @@ export function Navigation() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="p-2 gap-1.5 flex flex-col">
-            {links.map((link) => (
-              <DropdownMenuItem
-                key={link.href}
-                onSelect={() => router.push(link.href)}
-                className="pl-[10px] pr-6 py-2 group"
-              >
-                <div className="flex gap-3 items-center">
-                  {link.icon && <link.icon className="w-8 h-8" />}
-                  <div className="flex flex-col leading-none gap-1">
-                    <span className="text-[15px] font-medium text-gray-12">{link.label}</span>
-                    <span className="text-[13px] text-gray-9 group-hover:text-gray-10">{link.description}</span>
+            {links
+              .filter((link) => link !== links[4])
+              .map((link) => (
+                <DropdownMenuItem
+                  key={link.href}
+                  onSelect={() => router.push(link.href)}
+                  className="pl-[10px] pr-6 py-2 group"
+                >
+                  <div className="flex gap-3 items-center">
+                    {link.icon && <link.icon className="w-8 h-8" />}
+                    <div className="flex flex-col leading-none gap-1">
+                      <span className="text-[15px] font-medium text-gray-12">{link.label}</span>
+                      <span className="text-[13px] text-gray-9 group-hover:text-gray-10">{link.description}</span>
+                    </div>
                   </div>
-                </div>
-              </DropdownMenuItem>
-            ))}
+                </DropdownMenuItem>
+              ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
