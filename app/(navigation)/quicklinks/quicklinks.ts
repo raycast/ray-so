@@ -436,11 +436,8 @@ const entertainment: Quicklink[] = [
   {
     id: "apple-music",
     name: "Search Apple Music",
-    link: "music://search?term={Query}",
+    link: "https://music.apple.com/us/search?l=en&term={Query}",
     openWith: "Music",
-    icon: {
-      link: "htps://music.apple.com",
-    },
   },
   {
     id: "imdb",
@@ -540,11 +537,6 @@ const misc: Quicklink[] = [
       name: "magnifying-glass",
     },
   },
-  {
-    id: "google-translate",
-    name: "Google Translate",
-    link: "https://translate.google.com/?sl={source language:auto}&tl={target language}&text={word}&op=translate",
-  },
 ];
 
 type IconComponent = (props: SVGProps<SVGSVGElement>) => JSX.Element;
@@ -559,8 +551,8 @@ export type Category = {
 
 export const categories: Category[] = [
   {
-    name: "Folders",
-    slug: "/folders",
+    name: "File System",
+    slug: "/file-system",
     quicklinks: [...folders],
     icon: "finder" as IconName,
   },
