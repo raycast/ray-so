@@ -184,11 +184,6 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
         handleCopyData();
         setActionsOpen(false);
       }
-
-      if (key === "a" && metaKey) {
-        event.preventDefault();
-        setSelectedQuicklinkIds(categories.flatMap((category) => category.quicklinks.map((quicklink) => quicklink.id)));
-      }
     };
 
     document.addEventListener("keydown", down);
@@ -283,8 +278,6 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
                           updateQuicklink={updateQuicklink}
                           isSelected={isSelected}
                           setIsSelected={setIsSelected}
-                          index={index}
-                          categorySlug="/shared"
                         />
                       );
                     })}

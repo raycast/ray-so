@@ -26,19 +26,10 @@ type QuicklinkComponentProps = {
   quicklink: Quicklink;
   isSelected: boolean;
   setIsSelected: (value: boolean) => void;
-  index: number; // TODO: Remove this prop
-  categorySlug: string;
   updateQuicklink: (quicklink: Quicklink) => void;
 };
 
-export function QuicklinkComponent({
-  quicklink,
-  isSelected,
-  setIsSelected,
-  index,
-  categorySlug,
-  updateQuicklink,
-}: QuicklinkComponentProps) {
+export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updateQuicklink }: QuicklinkComponentProps) {
   const router = useRouter();
 
   let domain = "";
@@ -104,7 +95,7 @@ export function QuicklinkComponent({
         <div
           className={`${styles.item} selectable overflow-hidden group`}
           data-selected={isSelected}
-          data-key={`${categorySlug}-${index}`}
+          data-key={quicklink.id}
         >
           <div className="w-full flex flex-col space-between h-full">
             <div className="flex-1">

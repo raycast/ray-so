@@ -1,4 +1,6 @@
-export function extractQuicklinks<T>(els: Element[], categories: { slug: string; quicklinks: T[] }[]) {
+import { Quicklink } from "../quicklinks";
+
+export function extractQuicklinks<T>(els: Element[], categories: { slug: string; quicklinks: Quicklink[] }[]) {
   const ids = els.map((v) => v.getAttribute("data-key"));
 
   const quicklinks = ids
@@ -6,10 +8,9 @@ export function extractQuicklinks<T>(els: Element[], categories: { slug: string;
       if (!id) {
         return;
       }
-      const [slug, index] = id?.split("-") ?? [];
-      const category = categories.find((category) => category.slug === slug);
-
-      return category?.quicklinks[parseInt(index)];
+      const allQuicklinks = categories.flatMap((category) => category.quicklinks);
+      const quicklink = allQuicklinks.find((quicklink) => quicklink.id === id);
+      return quicklink;
     })
     .filter(Boolean);
 

@@ -619,5 +619,3 @@ export const categories: Category[] = [
     quicklinks: category.quicklinks,
   };
 });
-
-const allQuicklinks = categories.flatMap((category) => category.quicklinks);
