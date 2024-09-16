@@ -1,0 +1,74 @@
+.item {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: #ffffff60;
+  gap: 16px;
+  transition: all 30ms;
+
+  &:hover {
+    background-color: rgba(44, 29, 75, 0.2);
+    box-shadow: inset 0 0 0 1px #2c1d4b;
+
+    .placeholder {
+      color: #ff6363;
+    }
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px #9261f9;
+    color: #fff;
+    outline: none;
+
+    .placeholder {
+      color: #ff6363;
+    }
+  }
+
+  &[data-selected="true"] {
+    background-color: rgba(44, 29, 75, 0.5);
+    box-shadow: inset 0 0 0 2px solid #2c1d4b;
+    color: #fff;
+    user-select: none;
+
+    .placeholder {
+      color: #ff6363;
+    }
+  }
+}
+
+.contextMenuContent {
+  z-index: 100;
+  overflow: hidden;
+  min-width: 220px;
+  padding: 6px;
+  border: 1px solid hsla(0, 0%, 100%, 0.07);
+  border-radius: 8px;
+  background-color: #252525;
+  box-shadow: 0 4px 16px 0 rgb(0 0 0 / 50%);
+}
+
+.contextMenuItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 3px;
+  color: var(--violet-11);
+  cursor: default;
+  font-size: 13px;
+  gap: 6px;
+  line-height: 1;
+  outline: none;
+  user-select: none;
+
+  &[data-highlighted] {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
