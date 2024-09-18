@@ -33,6 +33,7 @@ This repository contains the source code for [ray.so](https://ray.so), a collect
 - [**Icon Maker**](</app/(navigation)/icon/>): Create beautiful icons for Raycast Extensions.
 - [**Prompt Explorer**](</app/(navigation)/prompts/>): Explore AI Prompts for Raycast.
 - [**Preset Explorer**](</app/(navigation)/presets/>): Explore AI Presets for Raycast.
+- [**Quicklink Explorer**](</app/(navigation)/quicklinks/>): Browse and import Raycast Quicklinks.
 - [**Snippet Explorer**](</app/(navigation)/snippets/>): Browse and import Raycast Snippets.
 - [**Theme Explorer**](</app/(navigation)/themes/>): Browse and import Raycast Themes.
 
