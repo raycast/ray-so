@@ -34,7 +34,7 @@ const folders: Quicklink[] = [
     description: "Opens the Downloads folder in Finder",
     link: "~/Downloads",
     icon: {
-      name: "folder",
+      name: "download",
     },
   },
   {
@@ -43,7 +43,7 @@ const folders: Quicklink[] = [
     description: "Opens the Documents folder in Finder",
     link: "~/Documents",
     icon: {
-      name: "folder",
+      name: "blank-document",
     },
   },
   {
@@ -52,7 +52,7 @@ const folders: Quicklink[] = [
     description: "Opens the Desktop folder in Finder",
     link: "~/Desktop",
     icon: {
-      name: "folder",
+      name: "desktop",
     },
   },
   {
@@ -70,7 +70,7 @@ const folders: Quicklink[] = [
     description: "Opens the Downloads folder in the File Search Command",
     link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Downloads/`,
     icon: {
-      name: "folder",
+      name: "download",
     },
   },
   {
@@ -79,7 +79,7 @@ const folders: Quicklink[] = [
     description: "Opens the Documents folder in the File Search Command",
     link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Documents/`,
     icon: {
-      name: "folder",
+      name: "blank-document",
     },
   },
   {
@@ -88,7 +88,7 @@ const folders: Quicklink[] = [
     description: "Opens the Desktop folder in the File Search Command",
     link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/Desktop/`,
     icon: {
-      name: "folder",
+      name: "desktop",
     },
   },
   {
@@ -279,8 +279,8 @@ const design: Quicklink[] = [
   {
     id: "icones",
     name: "Search Icones",
-    link: "https://icones.js.org/collection/all?s={Query}"
-  }
+    link: "https://icones.js.org/collection/all?s={Query}",
+  },
 ];
 
 const communication: Quicklink[] = [
