@@ -355,8 +355,7 @@ export function Quicklinks() {
               onMove={onMove}
               selectables=".selectable"
               features={{
-                // Disable support for touch devices
-                touch: isTouch ? false : true,
+                touch: false,
                 range: !isTouch,
                 singleTap: {
                   allow: true,
