@@ -276,6 +276,11 @@ const design: Quicklink[] = [
     name: "Search The Noun Project",
     link: "https://thenounproject.com/search/?q={query}",
   },
+  {
+    id: "icones",
+    name: "Search Icones",
+    link: "https://icones.js.org/collection/all?s={Query}"
+  }
 ];
 
 const communication: Quicklink[] = [
