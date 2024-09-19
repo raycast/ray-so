@@ -357,7 +357,7 @@ export function Quicklinks() {
               features={{
                 // Disable support for touch devices
                 touch: isTouch ? false : true,
-                range: true,
+                range: !isTouch,
                 singleTap: {
                   allow: true,
                   intersect: "native",
