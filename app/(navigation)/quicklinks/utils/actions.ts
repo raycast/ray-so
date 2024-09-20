@@ -18,7 +18,7 @@ function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
     .join(",")}]`;
 }
 
-function makeQueryString(quicklinks: Quicklink[]): string {
+function makeQueryString(quicklinks: Quicklink[], isRaycastImport?: boolean): string {
   const queryString = quicklinks
     .map((selectedQuicklink) => {
       const { name, link, openWith, icon } = selectedQuicklink;
@@ -28,7 +28,7 @@ function makeQueryString(quicklinks: Quicklink[]): string {
           name,
           link,
           openWith,
-          iconName: icon?.name,
+          iconName: isRaycastImport ? getRaycastIconName(icon?.name) : icon?.name,
           iconUrl: icon?.link,
           iconInvert: icon?.invert,
         }),
@@ -61,18 +61,26 @@ export function copyUrl(quicklinks: Quicklink[]) {
 
 export function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
   const raycastProtocol = getRaycastFlavor();
-  router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks)}`);
+  router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
 }
 
 export function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
   const raycastProtocol = getRaycastFlavor();
-  const { name, link, openWith } = quicklink;
+  const { name, link, openWith, icon } = quicklink;
   const encodedQuicklink = encodeURIComponent(
     JSON.stringify({
       name,
       link,
       openWith,
+      icon: getRaycastIconName(icon?.name),
     }),
   );
   router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
+}
+
+function getRaycastIconName(iconName?: string) {
+  if (iconName) {
+    return `${iconName}-16`;
+  }
+  return undefined;
 }
