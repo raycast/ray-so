@@ -315,7 +315,7 @@ const communication: Quicklink[] = [
     id: "send-email",
     name: "Send Email",
     description: "Draft an email in the default Email App",
-    link: "mailto:{email}?subject={subject}&body={body}",
+    link: "mailto:{argument name="email@example.com" | raw}?subject={subject}&body={body}",
     icon: {
       name: "envelope",
     },
