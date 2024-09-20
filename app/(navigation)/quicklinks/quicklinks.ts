@@ -405,6 +405,11 @@ const search: Quicklink[] = [
     name: "Search Perplexity",
     link: "https://perplexity.ai/search?q={query}",
   },
+  {
+    id: "kagi",
+    name: "Search Kagi",
+    link: "https://kagi.com/search?q={Query}",
+  },
 ];
 
 const shopping: Quicklink[] = [
