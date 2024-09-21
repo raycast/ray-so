@@ -409,6 +409,10 @@ const search: Quicklink[] = [
     id: "kagi",
     name: "Search Kagi",
     link: "https://kagi.com/search?q={Query}",
+    author: {
+      name: "Dakota Chambers",
+      link: "https://github.com/dcchambers",
+    },
   },
 ];
 
