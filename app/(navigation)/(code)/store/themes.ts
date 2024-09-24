@@ -808,6 +808,45 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
+  triggerdark: {
+    id: "trigger.dev",
+    name: "Trigger.dev",
+    background: {
+      from: "#15171A",
+      to: "#0D0E12",
+    },
+    font: "geist-mono",
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#333333",
+        constant: "#1E1E1E",
+        string: "#262626",
+        comment: "#5F6570",
+        keyword: "#B114D3",
+        parameter: "#404040",
+        function: "#5C40FF",
+        stringExpression: "#0879E2",
+        punctuation: "#333333",
+        link: "#1A1A1A",
+        number: "#262626",
+        property: "#222222",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#878C99",
+        constant: "#9C9AF2",
+        string: "#AFEC73",
+        comment: "#5F6570",
+        keyword: "#E888F8",
+        parameter: "#CCCBFF",
+        function: "#826DFF",
+        stringExpression: "#AFEC73",
+        punctuation: "#878C99",
+        link: "#826DFF",
+        number: "#b5cea8",
+        property: "#CCCBFF",
+      }),
+    },
+  },
 };
 
 const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
@@ -841,11 +880,11 @@ const themeLineNumbersAtom = atom<boolean>((get) => {
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
 export {
-  themeAtom,
   darkModeAtom,
-  themeCSSAtom,
+  themeAtom,
   themeBackgroundAtom,
+  themeCSSAtom,
   themeFontAtom,
-  unlockedThemesAtom,
   themeLineNumbersAtom,
+  unlockedThemesAtom,
 };
