@@ -31,7 +31,7 @@ const VercelFrame = () => {
         styles.frame,
         showBackground && styles.vercelFrame,
         showBackground && !darkMode && styles.vercelFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -60,7 +60,7 @@ const SupabaseFrame = () => {
         styles.frame,
         showBackground && styles.supabaseFrame,
         !darkMode && styles.supabaseFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -100,7 +100,7 @@ const TailwindFrame = () => {
         showBackground && styles.tailwindFrame,
         !darkMode && styles.tailwindFrameLightMode,
         !showBackground && styles.noBackground,
-        isSafari && styles.isSafari
+        isSafari && styles.isSafari,
       )}
       style={{ padding }}
     >
@@ -133,6 +133,45 @@ const TailwindFrame = () => {
   );
 };
 
+const ClerkFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.clerkFrame,
+        !darkMode && styles.clerkFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.clerkWindow}>
+        <div className={styles.clerkHeader}>
+          <div className={classNames(styles.fileName, styles.clerkFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+        </div>
+        <div className={styles.clerkCode}>
+          <Editor />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -148,7 +187,7 @@ const DefaultFrame = () => {
         styles.frame,
         styles[theme.id],
         darkMode && styles.darkMode,
-        showBackground && styles.withBackground
+        showBackground && styles.withBackground,
       )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
@@ -197,6 +236,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
@@ -216,6 +257,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
