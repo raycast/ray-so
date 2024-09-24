@@ -139,7 +139,6 @@ const ClerkFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const [fileName, setFileName] = useAtom(fileNameAtom);
 
   return (
     <div
@@ -154,19 +153,6 @@ const ClerkFrame = () => {
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
       <div className={styles.clerkWindow}>
-        <div className={styles.clerkHeader}>
-          <div className={classNames(styles.fileName, styles.clerkFileName)} data-value={fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            {fileName.length === 0 ? <span>Untitled-1</span> : null}
-          </div>
-        </div>
         <div className={styles.clerkCode}>
           <Editor />
         </div>
