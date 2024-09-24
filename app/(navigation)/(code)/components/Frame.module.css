@@ -615,7 +615,7 @@
   }
 
   .clerkPattern {
-    fill: rgb(0 0 0 / 0.2);
+    opacity: 0.2;
   }
 
   .clerkCode {

@@ -20,6 +20,8 @@ import beams from "../assets/tailwind/beams.png";
 import beamsLight from "../assets/tailwind/beams-light.jpg";
 import beamsDark from "../assets/tailwind/beams-dark.jpg";
 
+import clerkPattern from "../assets/clerk/pattern.svg?url";
+
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -150,6 +152,7 @@ const ClerkFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
       <div className={styles.clerkWindow}>
         <div className={styles.clerkHeader}>
           <div className={classNames(styles.fileName, styles.clerkFileName)} data-value={fileName}>
