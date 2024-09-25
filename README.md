@@ -33,6 +33,7 @@ This repository contains the source code for [ray.so](https://ray.so), a collect
 - [**Icon Maker**](</app/(navigation)/icon/>): Create beautiful icons for Raycast Extensions.
 - [**Prompt Explorer**](</app/(navigation)/prompts/>): Explore AI Prompts for Raycast.
 - [**Preset Explorer**](</app/(navigation)/presets/>): Explore AI Presets for Raycast.
+- [**Quicklink Explorer**](</app/(navigation)/quicklinks/>): Browse and import Raycast Quicklinks.
 - [**Snippet Explorer**](</app/(navigation)/snippets/>): Browse and import Raycast Snippets.
 - [**Theme Explorer**](</app/(navigation)/themes/>): Browse and import Raycast Themes.
 
@@ -51,9 +52,9 @@ npm run dev
 
 We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. If you're interested in contributing, follow the steps below:
 
-### Presets, Prompts & Snippets
+### Presets, Prompts, Quicklinks & Snippets
 
-- Open [prompts.ts](</app/(navigation)/prompts/prompts.ts>) or [presets.ts](</app/(navigation)/presets/presets.ts>) or [snippets.ts](</app/(navigation)/snippets/snippets.ts>)
+- Open [prompts.ts](</app/(navigation)/prompts/prompts.ts>) or [presets.ts](</app/(navigation)/presets/presets.ts>) or [snippets.ts](</app/(navigation)/snippets/snippets.ts>) or [quicklinks.ts](</app/(navigation)/quicklinks/quicklinks.ts>)
 - Add your data to the relevant category
   - Ensure it includes all fields, and that they're unique within their category
 - Create a pull request 🚀

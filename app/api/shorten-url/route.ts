@@ -14,9 +14,10 @@ const tagIdsByRef = {
   themes: "clsoki8190008kz0gzajzalh7",
   icons: "cltyfpaho0001lwxwdcd93mkc",
   presets: "clu9ko3n300068tq0zhk7bc7f",
+  quicklinks: "cm0qhn6fo000w3dl1i22hcgoz",
 };
 
-type refProps = keyof typeof tagIdsByRef;
+export type refProps = keyof typeof tagIdsByRef;
 
 const getTagId = (ref: refProps) => {
   return ref ? tagIdsByRef[ref] : undefined;

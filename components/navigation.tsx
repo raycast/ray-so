@@ -18,6 +18,7 @@ import CodeImagesIcon from "@/app/assets/code-images.svg";
 import IconMakerIcon from "@/app/assets/icon-maker.svg";
 import SnippetExplorerIcon from "@/app/assets/snippet-explorer.svg";
 import PresetExplorerIcon from "@/app/assets/preset-explorer.svg";
+import QuicklinkExplorerIcon from "@/app/assets/quicklink-explorer.svg";
 import PromptExplorerIcon from "@/app/assets/prompt-explorer.svg";
 import ThemeExplorerIcon from "@/app/assets/theme-explorer.svg";
 import { Button } from "./button";
@@ -48,6 +49,12 @@ const links = [
     icon: PresetExplorerIcon,
   },
   {
+    href: "/quicklinks",
+    label: "Quicklinks",
+    description: "Explore Raycast Quicklinks",
+    icon: QuicklinkExplorerIcon,
+  },
+  {
     href: "/snippets",
     label: "Snippets",
     description: "Browse and import Raycast Snippets",
@@ -73,14 +80,14 @@ export function Navigation() {
       <div
         className={cn(
           "flex items-center gap-3 transition-transform ease-in-out",
-          showBackButton ? "translate-x-0" : "-translate-x-10"
+          showBackButton ? "translate-x-0" : "-translate-x-10",
         )}
       >
         <Button
           asChild
           className={cn(
             "rounded-full shadow-none w-6 h-6 bg-gray-4 hover:bg-gray-5 text-gray-12",
-            showBackButton ? "opacity-100 scale-100" : "opacity-0 scale-75"
+            showBackButton ? "opacity-100 scale-100" : "opacity-0 scale-75",
           )}
         >
           <Link
@@ -129,7 +136,7 @@ export function NavigationActions({ children, className }: { children: React.Rea
     <div
       className={cn(
         "h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44",
-        className
+        className,
       )}
     >
       {children}
