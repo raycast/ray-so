@@ -19,6 +19,7 @@ import Image from "next/image";
 import beams from "../assets/tailwind/beams.png";
 import beamsLight from "../assets/tailwind/beams-light.jpg";
 import beamsDark from "../assets/tailwind/beams-dark.jpg";
+import clerkPattern from "../assets/clerk/clerk-pattern.png";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -143,7 +144,6 @@ const TriggerdotdevFrame = () => {
     <div
       className={classNames(
         styles.frame,
-        styles.id,
         showBackground && styles.triggerFrame,
         !darkMode && styles.triggerFrameLightMode,
         !showBackground && styles.noBackground,
@@ -157,6 +157,32 @@ const TriggerdotdevFrame = () => {
         <span className={styles.triggerBracketLeft} data-grid></span>
         <span className={styles.triggerBracketRight} data-grid></span>
         <Editor />
+      </div>
+    </div>
+  );
+};
+
+const ClerkFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.clerkFrame,
+        !darkMode && styles.clerkFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
+      <div className={styles.clerkWindow}>
+        <div className={styles.clerkCode}>
+          <Editor />
+        </div>
       </div>
     </div>
   );
@@ -228,6 +254,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <TailwindFrame />
           ) : THEMES.triggerdev.id === theme.id ? (
             <TriggerdotdevFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
@@ -249,6 +277,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <TailwindFrame />
           ) : THEMES.triggerdev.id === theme.id ? (
             <TriggerdotdevFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
