@@ -11,6 +11,8 @@ import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
+import ClerkLogo from "../assets/clerk.svg";
+import ClerkLogoUrl from "../assets/clerk.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -249,6 +251,55 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#C1B2F9",
         highlight: "rgba(193,178,249,0.12)",
         highlightHover: "rgba(193,178,249,0.07)",
+      }),
+    },
+  },
+  clerk: {
+    id: "clerk",
+    name: "Clerk",
+    background: {
+      from: "#000000",
+      to: "#000000",
+    },
+    icon: ClerkLogo,
+    iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    font: "geist-mono",
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#131316", //
+        constant: "#22c543", //
+        string: "#00aee3", //
+        comment: "#9394a1", //
+        keyword: "#6c47ff", //
+        parameter: "#22c543", //
+        function: "#6c47ff", //
+        stringExpression: "#00aee3", //
+        punctuation: "#747686",
+        link: "#22c543", //
+        number: "#22c543", //
+        property: "#22c543", //
+        highlight: "#00aee313", //
+        highlightHover: "#00aee306", //
+        highlightBorder: "#00000000", //
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff", //
+        constant: "#86ef9b", //
+        string: "#5de3ff", //
+        comment: "#9394a1", //
+        keyword: "#bab1ff", //
+        parameter: "#86ef9b", //
+        function: "#bab1ff", //
+        stringExpression: "#5de3ff", //
+        punctuation: "#b7b8c2", //
+        link: "#86ef9b", //
+        number: "#86ef9b", //
+        property: "#86ef9b", //
+        highlight: "#5de3ff1a", //
+        highlightHover: "#5de3ff0d", //
+        highlightBorder: "#00000000", //
       }),
     },
   },

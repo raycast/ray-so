@@ -26,7 +26,11 @@
   background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
     linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
     linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
   background-size: 20px 20px;
   inset: 0;
 }
@@ -44,14 +48,22 @@
 
   &.withBorder {
     border: none;
-    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border);
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border);
   }
 
   &.withShadow {
     border: none;
-    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
-      0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -461,7 +473,9 @@
 
   .tailwindWindow {
     background: rgb(255 255 255 / 75%);
-    box-shadow: 0 0 0 1px color(display-p3 0.0572 0.0889 0.1628 / 0.1), 0px 2px 4px 0px color(display-p3 0 0 0 / 0.06);
+    box-shadow:
+      0 0 0 1px color(display-p3 0.0572 0.0889 0.1628 / 0.1),
+      0px 2px 4px 0px color(display-p3 0 0 0 / 0.06);
   }
 
   &.isSafari {
@@ -487,6 +501,87 @@
   .tailwindBeams {
     top: 0;
     transform: translateX(-50%);
+  }
+}
+
+/* Clerk Frame */
+
+.clerkFrame {
+  background: #222222;
+}
+
+.clerkPattern {
+  position: absolute;
+  bottom: 0;
+  left: -32px;
+  width: calc(100% + 64px);
+  height: 128px;
+  mask-image: radial-gradient(farthest-side at 50% 100%, black, transparent);
+}
+
+.clerkWindow {
+  position: relative;
+  padding: 3px;
+  border-radius: 8px;
+  background: #111111;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 35%),
+    0 1px 0 0 rgb(255 255 255 / 3%) inset,
+    0 0 0 6px rgb(0 0 0 / 8%),
+    0 72px 29px 0 rgb(0 0 0 / 2%),
+    0 41px 24px 0 rgb(0 0 0 / 7%),
+    0 18px 18px 0 rgb(0 0 0 / 11%),
+    0 5px 10px 0 rgb(0 0 0 / 13%);
+}
+
+.clerkCode {
+  border-radius: 5px;
+  background: #191919;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 8%),
+    0 14px 6px 0 rgb(0 0 0 / 4%),
+    0 8px 5px 0 rgb(0 0 0 / 12%),
+    0 3px 3px 0 rgb(0 0 0 / 20%),
+    0 1px 2px 0 rgb(0 0 0 / 23%);
+  --line-number: #484848;
+}
+
+.clerkHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.clerkFrameLightMode {
+  background: #f9f9f9;
+
+  .clerkWindow {
+    background: #f8f8f8;
+    box-shadow:
+      0 0 0 8px rgb(0 0 0 / 2%),
+      0 1px 0 0 rgb(255 255 255 / 80%) inset,
+      0 0 0 1px rgb(0 0 0 / 4%),
+      0 113px 32px 0 rgb(0 0 0 / 0%),
+      0 72px 29px 0 rgb(0 0 0 / 1%),
+      0 41px 24px 0 rgb(0 0 0 / 2%),
+      0 18px 18px 0 rgb(0 0 0 / 4%),
+      0 5px 10px 0 rgb(0 0 0 / 4%);
+  }
+
+  .clerkPattern {
+    opacity: 0.2;
+  }
+
+  .clerkCode {
+    --line-number: #c9c9c9;
+    background: #ffffff;
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 2%),
+      0 14px 6px 0 rgb(0 0 0 / 1%),
+      0 8px 5px 0 rgb(0 0 0 / 3%),
+      0 3px 3px 0 rgb(0 0 0 / 5%),
+      0 1px 2px 0 rgb(0 0 0 / 6%);
   }
 }
 
@@ -535,7 +630,9 @@
 
   .withShadow {
     border: none;
-    box-shadow: 0 0 0 1px var(--frame-highlight-border), 0 0 0 1.5px var(--frame-shadow-border),
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border),
       0 4px 6px rgba(0, 0, 0, 0.05);
   }
 

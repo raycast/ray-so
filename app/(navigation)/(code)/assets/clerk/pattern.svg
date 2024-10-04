@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0">
+  <defs>
+    <pattern id="clerk-pattern" patternUnits="userSpaceOnUse" width="48" height="48">
+      <rect width="2" height="2" x="0" y="0" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="0" y="4" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="0" y="8" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="0" y="12" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="0" y="16" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="0" y="20" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="0" y="24" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="0" y="28" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="0" y="32" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="0" y="36" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="0" y="40" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="0" y="44" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="4" y="0" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="4" y="4" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="4" y="8" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="4" y="12" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="4" y="16" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="4" y="20" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="4" y="24" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="4" y="28" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="4" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="4" y="36" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="4" y="40" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="4" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="0" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="8" y="4" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="8" y="8" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="12" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="16" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="8" y="20" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="24" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="28" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="8" y="36" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="8" y="40" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="8" y="44" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="12" y="0" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="12" y="4" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="12" y="8" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="12" y="12" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="12" y="16" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="12" y="20" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="12" y="24" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="12" y="28" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="12" y="32" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="12" y="36" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="12" y="40" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="12" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="16" y="0" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="4" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="8" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="12" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="16" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="20" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="24" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="16" y="28" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="16" y="36" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="16" y="40" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="16" y="44" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="20" y="0" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="20" y="4" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="20" y="8" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="20" y="12" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="20" y="16" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="20" y="20" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="20" y="24" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="20" y="28" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="20" y="32" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="20" y="36" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="20" y="40" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="20" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="24" y="0" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="24" y="4" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="24" y="8" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="24" y="12" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="24" y="16" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="24" y="20" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="24" y="24" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="24" y="28" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="24" y="32" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="24" y="36" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="24" y="40" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="24" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="28" y="0" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="28" y="4" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="28" y="8" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="28" y="12" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="28" y="16" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="28" y="20" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="28" y="24" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="28" y="28" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="28" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="28" y="36" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="28" y="40" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="28" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="32" y="0" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="32" y="4" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="32" y="8" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="32" y="12" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="32" y="16" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="32" y="20" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="32" y="24" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="32" y="28" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="32" y="32" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="32" y="36" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="32" y="40" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="32" y="44" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="36" y="0" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="36" y="4" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="36" y="8" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="36" y="12" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="36" y="16" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="36" y="20" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="36" y="24" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="36" y="28" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="36" y="32" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="36" y="36" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="36" y="40" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="36" y="44" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="40" y="0" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="40" y="4" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="40" y="8" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="40" y="12" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="40" y="16" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="40" y="20" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="40" y="24" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="40" y="28" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="40" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="40" y="36" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="40" y="40" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="40" y="44" fill-opacity="1"></rect>
+      <rect width="2" height="2" x="44" y="0" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="44" y="4" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="44" y="8" fill-opacity="0.2"></rect>
+      <rect width="2" height="2" x="44" y="12" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="44" y="16" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="44" y="20" fill-opacity="0.8"></rect>
+      <rect width="2" height="2" x="44" y="24" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="44" y="28" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="44" y="32" fill-opacity="0.3"></rect>
+      <rect width="2" height="2" x="44" y="36" fill-opacity="0.5"></rect>
+      <rect width="2" height="2" x="44" y="40" fill-opacity="0.1"></rect>
+      <rect width="2" height="2" x="44" y="44" fill-opacity="0.5"></rect>
+    </pattern>
+    <pattern id="clerk-pattern-2" patternUnits="userSpaceOnUse" width="48" height="48"
+      patternTransform="translate(40 64)">
+      <rect width="48" height="48" fill="url(#clerk-pattern)"></rect>
+    </pattern>
+    <pattern id="clerk-pattern-3" patternUnits="userSpaceOnUse" width="96" height="48">
+      <rect width="48" height="48" fill="url(#clerk-pattern)"></rect>
+      <rect width="48" height="48" fill="url(#clerk-pattern-2)" x="48"></rect>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#clerk-pattern-3)" x="0"></rect>
+</svg>

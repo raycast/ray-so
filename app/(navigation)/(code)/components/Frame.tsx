@@ -20,6 +20,8 @@ import beams from "../assets/tailwind/beams.png";
 import beamsLight from "../assets/tailwind/beams-light.jpg";
 import beamsDark from "../assets/tailwind/beams-dark.jpg";
 
+import clerkPattern from "../assets/clerk/pattern.svg?url";
+
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -31,7 +33,7 @@ const VercelFrame = () => {
         styles.frame,
         showBackground && styles.vercelFrame,
         showBackground && !darkMode && styles.vercelFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -60,7 +62,7 @@ const SupabaseFrame = () => {
         styles.frame,
         showBackground && styles.supabaseFrame,
         !darkMode && styles.supabaseFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -100,7 +102,7 @@ const TailwindFrame = () => {
         showBackground && styles.tailwindFrame,
         !darkMode && styles.tailwindFrameLightMode,
         !showBackground && styles.noBackground,
-        isSafari && styles.isSafari
+        isSafari && styles.isSafari,
       )}
       style={{ padding }}
     >
@@ -133,6 +135,32 @@ const TailwindFrame = () => {
   );
 };
 
+const ClerkFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.clerkFrame,
+        !darkMode && styles.clerkFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
+      <div className={styles.clerkWindow}>
+        <div className={styles.clerkCode}>
+          <Editor />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -148,7 +176,7 @@ const DefaultFrame = () => {
         styles.frame,
         styles[theme.id],
         darkMode && styles.darkMode,
-        showBackground && styles.withBackground
+        showBackground && styles.withBackground,
       )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
@@ -197,6 +225,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
@@ -216,6 +246,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.clerk.id === theme.id ? (
+            <ClerkFrame />
           ) : (
             <DefaultFrame />
           )}
