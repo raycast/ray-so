@@ -428,6 +428,24 @@ const shopping: Quicklink[] = [
     name: "Search AliExpress",
     link: "https://www.aliexpress.com/wholesale?SearchText={Query}",
   },
+  {
+    id: "bhphotovideo",
+    name: "Search B&H",
+    link: "https://www.bhphotovideo.com/c/search?q={Query}",
+    author: {
+      name: "Stephen Kaplan",
+      link: "https://github.com/SKaplanOfficial",
+    },
+  },
+  {
+    id: "newegg",
+    name: "Search Newegg",
+    link: "https://www.newegg.com/p/pl?d={Query}",
+    author: {
+      name: "Stephen Kaplan",
+      link: "https://github.com/SKaplanOfficial",
+    },
+  },
 ];
 
 const entertainment: Quicklink[] = [
