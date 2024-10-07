@@ -13,8 +13,6 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
-import MintlifyLogo from "../assets/mintlify.svg";
-import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -270,85 +268,38 @@ export const THEMES: { [index: string]: Theme } = {
     font: "geist-mono",
     syntax: {
       light: convertToShikiTheme({
-        foreground: "#131316",
-        constant: "#22c543",
-        string: "#00aee3",
-        comment: "#9394a1",
-        keyword: "#6c47ff",
-        parameter: "#22c543",
-        function: "#6c47ff",
-        stringExpression: "#00aee3",
+        foreground: "#131316", //
+        constant: "#22c543", //
+        string: "#00aee3", //
+        comment: "#9394a1", //
+        keyword: "#6c47ff", //
+        parameter: "#22c543", //
+        function: "#6c47ff", //
+        stringExpression: "#00aee3", //
         punctuation: "#747686",
-        link: "#22c543",
-        number: "#22c543",
-        property: "#22c543",
-        highlight: "#00aee313",
-        highlightHover: "#00aee306",
-        highlightBorder: "#00000000",
+        link: "#22c543", //
+        number: "#22c543", //
+        property: "#22c543", //
+        highlight: "#00aee313", //
+        highlightHover: "#00aee306", //
+        highlightBorder: "#00000000", //
       }),
       dark: convertToShikiTheme({
-        foreground: "#ffffff",
-        constant: "#86ef9b",
-        string: "#5de3ff",
-        comment: "#9394a1",
-        keyword: "#bab1ff",
-        parameter: "#86ef9b",
-        function: "#bab1ff",
-        stringExpression: "#5de3ff",
-        punctuation: "#b7b8c2",
-        link: "#86ef9b",
-        number: "#86ef9b",
-        property: "#86ef9b",
-        highlight: "#5de3ff1a",
-        highlightHover: "#5de3ff0d",
-        highlightBorder: "#00000000",
-      }),
-    },
-  },
-  mintlify: {
-    id: "mintlify",
-    name: "Mintlify",
-    background: {
-      from: "#000",
-      to: "#000",
-    },
-    icon: MintlifyLogo,
-    iconUrl: `${BASE_URL}${MintlifyLogoUrl.src}`,
-    partner: true,
-    syntax: {
-      light: convertToShikiTheme({
-        foreground: "#171717",
-        constant: "#0d9373",
-        string: "#171717",
-        comment: "#707070",
-        keyword: "#0d548f",
-        parameter: "#0576b7",
-        function: "#0576b7",
-        stringExpression: "#d55d2e",
-        punctuation: "#808080",
-        link: "#4aab15",
-        number: "#4aab15",
-        property: "#4aab15",
-        highlight: "#dfbe5b3a",
-        highlightHover: "#dfbe5b1b",
-        highlightBorder: "#e8bc39",
-      }),
-      dark: convertToShikiTheme({
-        foreground: "#F3F7F6",
-        constant: "#4ec9b0",
-        string: "#F3F7F6",
-        comment: "#707070",
-        keyword: "#569cd6",
-        parameter: "#9cdcfe",
-        function: "#9cdcfe",
-        stringExpression: "#ce9178",
-        punctuation: "#808080",
-        link: "#b5cea8",
-        number: "#b5cea8",
-        property: "#b5cea8",
-        highlight: "rgb(131 114 55 / 30%)",
-        highlightHover: "rgb(131 114 55 / 15%)",
-        highlightBorder: "#f7d87c",
+        foreground: "#ffffff", //
+        constant: "#86ef9b", //
+        string: "#5de3ff", //
+        comment: "#9394a1", //
+        keyword: "#bab1ff", //
+        parameter: "#86ef9b", //
+        function: "#bab1ff", //
+        stringExpression: "#5de3ff", //
+        punctuation: "#b7b8c2", //
+        link: "#86ef9b", //
+        number: "#86ef9b", //
+        property: "#86ef9b", //
+        highlight: "#5de3ff1a", //
+        highlightHover: "#5de3ff0d", //
+        highlightBorder: "#00000000", //
       }),
     },
   },
