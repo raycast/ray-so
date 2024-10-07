@@ -365,6 +365,7 @@
   width: 1293px;
   max-width: none;
   height: auto;
+  pointer-events: none;
   transform: translateX(calc(-50% - 200px));
 }
 
@@ -517,6 +518,7 @@
   width: calc(100% + 64px);
   height: 128px;
   mask-image: radial-gradient(farthest-side at 50% 100%, black, transparent);
+  pointer-events: none;
 }
 
 .clerkWindow {
