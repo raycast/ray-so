@@ -234,6 +234,15 @@ const development: Quicklink[] = [
     name: "Search Stack Overflow",
     link: "https://stackoverflow.com/search?q={Query}",
   },
+  {
+    id: "aws",
+    name: "Search AWS Docs",
+    link: "https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation&searchQuery={Query}",
+    author: {
+      name: "Alan Williams",
+      link: "https://github.com/alanwill",
+    },
+  },
 ];
 
 const design: Quicklink[] = [
