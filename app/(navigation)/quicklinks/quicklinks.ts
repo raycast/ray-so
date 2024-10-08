@@ -521,6 +521,11 @@ const entertainment: Quicklink[] = [
     name: "Search Letterboxd",
     link: "https://letterboxd.com/search/{query}/",
   },
+  {
+    id: "justwatched",
+    name: "Find out Where it's Streaming",
+    link: "https://www.justwatch.com/us/search?q={Query}",
+  },
 ];
 
 const socials: Quicklink[] = [
