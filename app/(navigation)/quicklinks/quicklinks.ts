@@ -601,6 +601,11 @@ const misc: Quicklink[] = [
       name: "magnifying-glass",
     },
   },
+  {
+    id: "whois",
+    name: "Search Domain Names or IP Addresses",
+    link: "https://www.whois.com/whois/{query}",
+  },
 ];
 
 type IconComponent = (props: SVGProps<SVGSVGElement>) => JSX.Element;
