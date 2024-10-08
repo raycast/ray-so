@@ -497,6 +497,11 @@ const entertainment: Quicklink[] = [
     link: "https://www.whosampled.com/search/?q={Query}",
   },
   {
+    id: "discogs",
+    name: "Search Discogs for an Artist",
+    link: "https://www.discogs.com/search/?type=artist&title={Query}",
+  },
+  {
     id: "youtube",
     name: "Search YouTube",
     link: "https://www.youtube.com/results?search_query={Query}",
