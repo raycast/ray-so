@@ -492,6 +492,11 @@ const entertainment: Quicklink[] = [
     openWith: "Music",
   },
   {
+    id: "who-sampled",
+    name: "Find Who Sampled a Song",
+    link: "https://www.whosampled.com/search/?q={Query}",
+  },
+  {
     id: "youtube",
     name: "Search YouTube",
     link: "https://www.youtube.com/results?search_query={Query}",
