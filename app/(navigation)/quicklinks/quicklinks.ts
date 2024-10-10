@@ -492,6 +492,30 @@ const entertainment: Quicklink[] = [
     openWith: "Music",
   },
   {
+    id: "who-sampled",
+    name: "Find Who Sampled a Song",
+    link: "https://www.whosampled.com/search/?q={Query}",
+    icon: {
+      name: "microphone",
+    },
+    author: {
+      name: "Nate Whistler",
+      link: "https://infosec.exchange/@Onyx/",
+    },
+  },
+  {
+    id: "discogs",
+    name: "Search Discogs for an Artist",
+    link: "https://www.discogs.com/search/?type=artist&title={Query}",
+    icon: {
+      name: "music",
+    },
+    author: {
+      name: "Nate Whistler",
+      link: "https://infosec.exchange/@Onyx/",
+    },
+  },
+  {
     id: "youtube",
     name: "Search YouTube",
     link: "https://www.youtube.com/results?search_query={Query}",
@@ -510,6 +534,15 @@ const entertainment: Quicklink[] = [
     id: "letterboxd",
     name: "Search Letterboxd",
     link: "https://letterboxd.com/search/{query}/",
+  },
+  {
+    id: "justwatched",
+    name: "Find out Where it's Streaming",
+    link: "https://www.justwatch.com/us/search?q={Query}",
+    author: {
+      name: "Nate Whistler",
+      link: "https://infosec.exchange/@Onyx/",
+    },
   },
 ];
 
@@ -584,6 +617,15 @@ const misc: Quicklink[] = [
     link: `raycast://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
     icon: {
       name: "magnifying-glass",
+    },
+  },
+  {
+    id: "whois",
+    name: "Search Domain Names or IP Addresses",
+    link: "https://www.whois.com/whois/{query}",
+    author: {
+      name: "Nate Whistler",
+      link: "https://infosec.exchange/@Onyx/",
     },
   },
 ];
