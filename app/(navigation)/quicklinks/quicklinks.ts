@@ -496,7 +496,7 @@ const entertainment: Quicklink[] = [
     name: "Find Who Sampled a Song",
     link: "https://www.whosampled.com/search/?q={Query}",
     icon: {
-      link: "https://www.whosampled.com",
+      name: "microphone",
     },
     author: {
       name: "Nate Whistler",
@@ -508,7 +508,7 @@ const entertainment: Quicklink[] = [
     name: "Search Discogs for an Artist",
     link: "https://www.discogs.com/search/?type=artist&title={Query}",
     icon: {
-      link: "https://www.discogs.com",
+      name: "music",
     },
     author: {
       name: "Nate Whistler",
@@ -539,9 +539,6 @@ const entertainment: Quicklink[] = [
     id: "justwatched",
     name: "Find out Where it's Streaming",
     link: "https://www.justwatch.com/us/search?q={Query}",
-    icon: {
-      link: "https://www.justwatch.com",
-    },
     author: {
       name: "Nate Whistler",
       link: "https://infosec.exchange/@Onyx/",
@@ -626,9 +623,6 @@ const misc: Quicklink[] = [
     id: "whois",
     name: "Search Domain Names or IP Addresses",
     link: "https://www.whois.com/whois/{query}",
-    icon: {
-      link: "https://www.whois.com",
-    },
     author: {
       name: "Nate Whistler",
       link: "https://infosec.exchange/@Onyx/",
