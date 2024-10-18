@@ -11,6 +11,8 @@ import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
+import OpenAiLogo from "../assets/openai.svg";
+import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
 import { showLineNumbersAtom } from ".";
@@ -251,6 +253,52 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#C1B2F9",
         highlight: "rgba(193,178,249,0.12)",
         highlightHover: "rgba(193,178,249,0.07)",
+      }),
+    },
+  },
+  openai: {
+    id: "openai",
+    name: "OpenAI",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: OpenAiLogo,
+    iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
+    partner: true,
+    font: "soehne-mono",
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#171717",
+        string: "#ededed",
+        comment: "#a6a6a6",
+        keyword: "#2e95d3",
+        parameter: "#ededed",
+        function: "#171717",
+        stringExpression: "#00a67d",
+        punctuation: "#a0a0a0",
+        link: "#df3079",
+        number: "#df3079",
+        property: "#df3079",
+        highlight: "oklch(0.88 0.22 153.28 / 0.12)",
+        highlightHover: "oklch(0.88 0.22 153.28 / 0.06)",
+        highlightBorder: "#009a55",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        constant: "#df3079",
+        string: "#fff",
+        comment: "rgba(255,255,255,0.5)",
+        keyword: "#2E95D3",
+        parameter: "#fff",
+        function: "#00A67D",
+        stringExpression: "#00A67D",
+        punctuation: "#fff",
+        link: "#F22C3D",
+        number: " #e9950c",
+        property: "#F22C3D",
       }),
     },
   },

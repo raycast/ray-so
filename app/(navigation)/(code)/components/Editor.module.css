@@ -13,7 +13,10 @@
     width: calc(100% + 32px);
     padding: 0 16px;
     margin: 0 -16px;
-    transition: width 0.2s, padding 0.2s, margin 0.2s;
+    transition:
+      width 0.2s,
+      padding 0.2s,
+      margin 0.2s;
 
     &:before {
       position: relative;
@@ -143,5 +146,10 @@
 
 .geistMono {
   font-family: var(--font-geist-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
+
+.soehneMono {
+  font-family: var(--font-soehne-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }

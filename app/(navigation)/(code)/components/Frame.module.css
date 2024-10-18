@@ -587,6 +587,42 @@
   }
 }
 
+/* OpenAI Frame */
+
+.openAIFrame {
+  background: linear-gradient(140deg, #030303 0%, #000 100%);
+  font-family: var(--font-soehne-mono);
+
+  /* Make non-highlighted lines grayscale */
+  &:has(:global(.highlighted-line)) {
+    :global(.line):not(:global(.highlighted-line)) {
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition:
+        filter 1s,
+        opacity 1s;
+    }
+  }
+
+  /* Make highlighted lines full width */
+  :global(.line) {
+    width: calc(100% + 16px + 3rem + calc(var(--padding) * 2));
+    padding: 0 16px 0 calc(3rem + var(--padding));
+    margin: 0 -16px 0 calc(-3rem - var(--padding));
+  }
+
+  .isHighlightingLines {
+    :global(.line):not(:global(.highlighted-line)):hover {
+      filter: none !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+.openAIFrameLightMode {
+  background: linear-gradient(140deg, #f7f7f8 0%, #eee 100%);
+}
+
 .bitmap {
   --frame-background: rgba(255, 255, 255, 0.95);
 

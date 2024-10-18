@@ -242,7 +242,9 @@ function Editor() {
             ? styles.ibmPlexMono
             : themeFont === "fira-code"
               ? styles.firaCode
-              : styles.jetBrainsMono,
+              : themeFont === "soehne-mono"
+                ? styles.soehneMono
+                : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers && selectedLanguage !== LANGUAGES.plaintext && styles.showLineNumbers,
       )}
