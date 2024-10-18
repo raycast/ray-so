@@ -13,6 +13,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
+import PrismaLogo from "../assets/prisma.svg";
+import PrismaLogoUrl from "../assets/prisma.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -300,6 +302,54 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#5de3ff1a", //
         highlightHover: "#5de3ff0d", //
         highlightBorder: "#00000000", //
+      }),
+    },
+  },
+  prisma: {
+    id: "prisma",
+    name: "Prisma",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: PrismaLogo,
+    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1A202C",
+        constant: "#805AD5",
+        string: "#EDA31F",
+        comment: "#718096",
+        keyword: "#D5408C",
+        parameter: "#805AD5",
+        function: "#805AD5",
+        stringExpression: "#EDA31F",
+        punctuation: "#1A202C",
+        link: "#805AD5",
+        number: "#DD6B21",
+        property: "#319795",
+        highlight: "hsla(179, 100%, 38%, 0.25)",
+        highlightHover: "hsla(179, 100%, 38%, 0.16)",
+        highlightBorder: "#00C1BD",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#BFA2FF",
+        string: "#FFC153",
+        comment: "#718096",
+        keyword: "#FC8CC6",
+        parameter: "#F675F4",
+        function: "#BFA2FF",
+        stringExpression: "#FFC153",
+        punctuation: "#FFFFFF",
+        link: "#BFA2FF",
+        number: "#FF8A3D",
+        property: "#12D0CC",
+        highlight: "hsla(179, 84%, 44%, 0.25)",
+        highlightHover: "hsla(179, 84%, 44%, 0.14)",
+        highlightBorder: "#12D0CC",
       }),
     },
   },
