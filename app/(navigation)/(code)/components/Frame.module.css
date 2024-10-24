@@ -590,7 +590,8 @@
 /* OpenAI Frame */
 
 .openAIFrame {
-  background: linear-gradient(140deg, #030303 0%, #000 100%);
+  --line-number: rgba(255, 255, 255, 0.2);
+  background: #121a29;
   font-family: var(--font-soehne-mono);
 
   /* Make non-highlighted lines grayscale */
@@ -604,13 +605,6 @@
     }
   }
 
-  /* Make highlighted lines full width */
-  :global(.line) {
-    width: calc(100% + 16px + 3rem + calc(var(--padding) * 2));
-    padding: 0 16px 0 calc(3rem + var(--padding));
-    margin: 0 -16px 0 calc(-3rem - var(--padding));
-  }
-
   .isHighlightingLines {
     :global(.line):not(:global(.highlighted-line)):hover {
       filter: none !important;
@@ -619,8 +613,212 @@
   }
 }
 
+.openAIWindow {
+  position: relative;
+  z-index: 1;
+  padding: 0 4px;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: #232b41;
+  box-shadow:
+    0px 100px 89px 0px rgba(0, 0, 0, 0.07),
+    0px 41.778px 37.182px 0px rgba(0, 0, 0, 0.05),
+    0px 22.336px 19.879px 0px rgba(0, 0, 0, 0.04),
+    0px 12.522px 11.144px 0px rgba(0, 0, 0, 0.04),
+    0px 6.65px 5.919px 0px rgba(0, 0, 0, 0.03),
+    0px 2.767px 2.463px 0px rgba(0, 0, 0, 0.02);
+}
+
 .openAIFrameLightMode {
-  background: linear-gradient(140deg, #f7f7f8 0%, #eee 100%);
+  background: #28044a;
+  --line-number: rgba(0, 0, 0, 0.2);
+
+  .openAIWindow {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    background-color: #f5f6fa;
+    box-shadow:
+      0px 100px 89px 0px rgba(0, 0, 0, 0.05),
+      0px 41.778px 37.182px 0px rgba(0, 0, 0, 0.04),
+      0px 22.336px 19.879px 0px rgba(0, 0, 0, 0.03),
+      0px 12.522px 11.144px 0px rgba(0, 0, 0, 0.02);
+
+    .box {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: #7df178;
+      content: "";
+      transform: translateX(-8px);
+
+      &:nth-child(1) {
+        top: 0px;
+        left: -40px;
+      }
+
+      &:nth-child(2) {
+        top: -40px;
+        left: -20px;
+      }
+
+      &:nth-child(3) {
+        top: -20px;
+        left: 20px;
+      }
+
+      &:nth-child(4) {
+        top: -40px;
+        left: 40px;
+      }
+
+      &:nth-child(5) {
+        top: -60px;
+        left: 20px;
+      }
+
+      &:nth-child(6) {
+        top: -20px;
+        left: 80px;
+      }
+
+      &:nth-child(7) {
+        top: -40px;
+        left: 120px;
+      }
+
+      &:nth-child(8) {
+        top: -20px;
+        left: 140px;
+      }
+
+      &:nth-child(9) {
+        top: -60px;
+        left: 160px;
+      }
+
+      &:nth-child(10) {
+        top: -20px;
+        left: 200px;
+      }
+
+      &:nth-child(11) {
+        top: -40px;
+        left: 220px;
+      }
+
+      &:nth-child(12) {
+        top: -60px;
+        left: 240px;
+      }
+
+      &:nth-child(13) {
+        top: -20px;
+        left: 260px;
+      }
+
+      &:nth-child(14) {
+        top: -40px;
+        left: 300px;
+      }
+
+      &:nth-child(15) {
+        top: -20px;
+        left: 300px;
+      }
+
+      &:nth-child(16) {
+        top: -60px;
+        left: 320px;
+      }
+
+      &:nth-child(17) {
+        top: -40px;
+        left: 340px;
+      }
+
+      &:nth-child(18) {
+        top: -20px;
+        left: 360px;
+      }
+
+      &:nth-child(19) {
+        top: -60px;
+        left: 380px;
+      }
+
+      &:nth-child(20) {
+        top: -20px;
+        right: -28px;
+      }
+
+      &:nth-child(21) {
+        top: -40px;
+        right: -68px;
+      }
+
+      &:nth-child(22) {
+        top: -60px;
+        right: -48px;
+      }
+
+      &:nth-child(23) {
+        top: 20px;
+        right: -28px;
+      }
+
+      &:nth-child(24) {
+        top: 20px;
+        right: -48px;
+      }
+
+      &:nth-child(25) {
+        top: 40px;
+        right: -88px;
+      }
+
+      &:nth-child(26) {
+        top: 60px;
+        right: -48px;
+      }
+
+      &:nth-child(27) {
+        top: 80px;
+        right: -28px;
+      }
+
+      &:nth-child(28) {
+        top: 120px;
+        right: -28px;
+      }
+
+      &:nth-child(29) {
+        top: 140px;
+        right: -48px;
+      }
+
+      &:nth-child(30) {
+        top: -80px;
+        left: 180px;
+      }
+
+      &:nth-child(31) {
+        top: -80px;
+        left: 80px;
+      }
+
+      &:nth-child(32) {
+        top: -80px;
+        left: 220px;
+      }
+
+      &:nth-child(33) {
+        top: -60px;
+        left: 60px;
+      }
+    }
+  }
 }
 
 .bitmap {

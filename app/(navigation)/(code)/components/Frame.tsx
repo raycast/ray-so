@@ -175,6 +175,39 @@ const OpenAIFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.openAIWindow}>
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
+        <span className={styles.box} />
         <Editor />
       </div>
     </div>
