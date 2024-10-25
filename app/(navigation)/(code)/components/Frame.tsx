@@ -16,6 +16,8 @@ import styles from "./Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
 
 import beams from "../assets/tailwind/beams.png";
+import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
+import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 
@@ -158,15 +160,59 @@ const ClerkFrame = () => {
   );
 };
 
-const OpenAIFrame = () => {
+const MintlifyFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
 
   return (
     <div
       className={classNames(
         styles.frame,
+        showBackground && styles.mintlifyFrame,
+        !darkMode && styles.mintlifyFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <span className={styles.mintlifyPatternWrapper}>
+          <img
+            src={darkMode ? mintlifyPatternDark.src : mintlifyPatternLight.src}
+            alt=""
+            className={styles.mintlifyPattern}
+          />
+        </span>
+      )}
+      <div className={styles.mintlifyWindow}>
+        <div className={styles.mintlifyHeader}>
+          <div className={classNames(styles.fileName, styles.mintlifyFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
+const OpenAIFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  return (
+    <div
+      className={classNames(
         styles.openAIFrame,
         !darkMode && styles.openAIFrameLightMode,
         !showBackground && styles.noBackground,
@@ -246,6 +292,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <TailwindFrame />;
       case THEMES.clerk.id:
         return <ClerkFrame />;
+      case THEMES.mintlify.id:
+        return <MintlifyFrame />;
       case THEMES.openai.id:
         return <OpenAIFrame />;
       default:

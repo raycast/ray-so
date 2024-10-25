@@ -95,7 +95,6 @@
   align-items: center;
   justify-content: center;
   color: var(--frame-title-placeholder-color);
-  font-family: Inter, sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.32px;
@@ -642,70 +641,199 @@
       0px 73px 83px 0px rgba(0, 0, 0, 0.03),
       0px 4.855px 5.52px 0px rgba(0, 0, 0, 0.01),
       0px 2.02px 2.297px 0px rgba(0, 0, 0, 0.01);
-  }
-}
+    /* Mintlify Frame */
+    .mintlifyFrame {
+      background: #121212;
+    }
 
-.bitmap {
-  --frame-background: rgba(255, 255, 255, 0.95);
+    .mintlifyWindow {
+      position: relative;
+      z-index: 1;
+      border-radius: 12px;
+      background: #070a08;
+      box-shadow:
+        0px 173px 48px 0px rgba(0, 0, 0, 0),
+        0px 110px 44px 0px rgba(0, 0, 0, 0.01),
+        0px 62px 37px 0px rgba(0, 0, 0, 0.05),
+        0px 28px 28px 0px rgba(0, 0, 0, 0.09),
+        0px 7px 15px 0px rgba(0, 0, 0, 0.1);
+    }
 
-  &.withBackground {
-    background-color: black;
-    background-image: url("../assets/manifesto.png") !important;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
+    .mintlifyHeader {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #141818;
+      background: #010201;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      gap: 12px;
+    }
 
-  &.darkMode {
-    --frame-background: rgba(0, 0, 0, 0.88);
-  }
-}
+    .mintlifyFileName {
+      position: relative;
+      display: grid;
+      height: 40px;
+      align-items: center;
+      color: #55d799;
+      font-size: 12px;
+      line-height: 40px;
+      vertical-align: top;
 
-.noir {
-  --frame-background: rgba(255, 255, 255, 0.95);
+      input,
+      & > span,
+      &:after {
+        position: static;
+        z-index: 2;
+        width: auto;
+        min-width: 1em;
+        padding: 0 16px;
+        border: none;
+        margin: 0;
+        appearance: none;
+        background: none;
+        font: var(--font-inter);
+        font-weight: 500;
+        grid-area: 1 / 2;
+        letter-spacing: 0.4px;
+        resize: none;
+        text-align: left;
+      }
 
-  &.withBackground {
-    background-image: url("../assets/distortion.png") !important;
-    background-position: center;
-    background-size: cover;
-  }
+      & > span {
+        position: relative;
+        z-index: 1;
+      }
 
-  &.darkMode {
-    --frame-background: rgba(0, 0, 0, 0.9);
-  }
-}
+      input {
+        color: inherit;
+      }
 
-.ice {
-  --background: #f6f6f6;
-  --dot-color: rgba(0, 0, 0, 0.12);
+      &:after {
+        content: attr(data-value) " ";
+        visibility: hidden;
+      }
 
-  &.withBackground {
-    background-color: var(--background) !important;
-    background-image: radial-gradient(var(--dot-color) 1px, transparent 0) !important;
-    background-position: -8.5px -8.5px;
-    background-repeat: repeat;
-    background-size: 17px 17px;
-    inset: 0;
-  }
+      &:before {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        content: "";
+      }
+    }
 
-  .withShadow {
-    border: none;
-    box-shadow:
-      0 0 0 1px var(--frame-highlight-border),
-      0 0 0 1.5px var(--frame-shadow-border),
-      0 4px 6px rgba(0, 0, 0, 0.05);
-  }
+    .mintlifyPatternWrapper {
+      position: absolute;
+      top: 0;
+      right: -25px;
+      width: 700px;
+      height: 600px;
+      background: radial-gradient(49.63% 57.02% at 58.99% -7.2%, rgba(13, 147, 115, 0.1) 39.4%, rgba(0, 0, 0, 0) 100%);
+    }
 
-  &.darkMode {
-    --background: #0e0e0e;
-    --dot-color: rgba(255, 255, 255, 0.09);
-  }
-}
+    .mintlifyPattern {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 600px;
+      max-width: none;
+    }
 
-.noBackground {
-  background: none;
+    .mintlifyFrameLightMode {
+      background: #f6fbf9;
 
-  [data-grid="true"] {
-    display: none;
+      .mintlifyWindow {
+        border-color: #dfdfdf;
+        background: #ffffff;
+        box-shadow:
+          0px 173px 48px 0px rgba(0, 0, 0, 0),
+          0px 110px 44px 0px rgba(0, 0, 0, 0.01),
+          0px 62px 37px 0px rgba(0, 0, 0, 0.03),
+          0px 28px 28px 0px rgba(0, 0, 0, 0.05),
+          0px 7px 15px 0px rgba(0, 0, 0, 0.06);
+      }
+
+      .mintlifyHeader {
+        border-color: #dfdfdf;
+        background: #fcfcfc;
+      }
+
+      .mintlifyFileName {
+        color: #0d9373;
+      }
+
+      .mintlifyLanguage {
+        color: #707070;
+      }
+    }
+
+    .bitmap {
+      --frame-background: rgba(255, 255, 255, 0.95);
+
+      &.withBackground {
+        background-color: black;
+        background-image: url("../assets/manifesto.png") !important;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+
+      &.darkMode {
+        --frame-background: rgba(0, 0, 0, 0.88);
+      }
+    }
+
+    .noir {
+      --frame-background: rgba(255, 255, 255, 0.95);
+
+      &.withBackground {
+        background-image: url("../assets/distortion.png") !important;
+        background-position: center;
+        background-size: cover;
+      }
+
+      &.darkMode {
+        --frame-background: rgba(0, 0, 0, 0.9);
+      }
+    }
+
+    .ice {
+      --background: #f6f6f6;
+      --dot-color: rgba(0, 0, 0, 0.12);
+
+      &.withBackground {
+        background-color: var(--background) !important;
+        background-image: radial-gradient(var(--dot-color) 1px, transparent 0) !important;
+        background-position: -8.5px -8.5px;
+        background-repeat: repeat;
+        background-size: 17px 17px;
+        inset: 0;
+      }
+
+      .withShadow {
+        border: none;
+        box-shadow:
+          0 0 0 1px var(--frame-highlight-border),
+          0 0 0 1.5px var(--frame-shadow-border),
+          0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      &.darkMode {
+        --background: #0e0e0e;
+        --dot-color: rgba(255, 255, 255, 0.09);
+      }
+    }
+
+    .noBackground {
+      background: none;
+
+      [data-grid="true"] {
+        display: none;
+      }
+    }
   }
 }
