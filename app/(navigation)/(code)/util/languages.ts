@@ -150,6 +150,11 @@ export const LANGUAGES: { [index: string]: Language } = {
     className: "matlab",
     src: () => import("shiki/langs/matlab.mjs"),
   },
+  move: {
+    name: "Move",
+    className: "move",
+    src: () => import("shiki/langs/move.mjs"),
+  },
   plaintext: {
     name: "Plaintext",
     className: "",
