@@ -29,7 +29,9 @@ const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) =
   }
 
   let dataUrl = await htmlToPng(svgRef.current, { pixelRatio: 1, quality: 1, width: size, height: size });
-  download(dataUrl, `${fileName}.png`);
+  setTimeout(() => {
+    download(dataUrl, `${fileName}.png`);
+  }, 100);
   return dataUrl;
 };
 
@@ -37,13 +39,7 @@ const exportToSvg = async (svgRef: SvgRefType, fileName: string) => {
   if (!svgRef.current) {
     return;
   }
-  const element = document.createElement("a");
-  element.setAttribute("href", `data:text/plain;charset=utf-8,${encodeURIComponent(svgRef.current.outerHTML)}`);
-  element.setAttribute("download", `${fileName}.svg`);
-  element.style.display = "none";
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
+  download(`data:text/plain;charset=utf-8,${encodeURIComponent(svgRef.current.outerHTML)}`, `${fileName}.svg`);
   return;
 };
 
