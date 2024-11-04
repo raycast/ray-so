@@ -5,7 +5,7 @@ import React, { use, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import cn from "classnames";
-import { svgAsPngUri } from "save-svg-as-png";
+import { toPng as htmlToPng } from "html-to-image";
 import { CSSTransition } from "react-transition-group";
 import { ColorChangeHandler, SketchPicker } from "react-color";
 import * as Popover from "@radix-ui/react-popover";
@@ -29,8 +29,6 @@ import {
   CopyClipboardIcon,
   LinkIcon,
   BrushIcon,
-  SpeechBubbleIcon,
-  BrandGithubIcon,
   MagnifyingGlassIcon,
 } from "@raycast/icons";
 
@@ -343,7 +341,7 @@ export const IconGenerator = () => {
         return settingsToSet;
       });
     },
-    [setSettings]
+    [setSettings],
   );
 
   const showInfoMessage = (message: string, showUndo = false) => {
@@ -398,7 +396,7 @@ export const IconGenerator = () => {
       // Fixes @2x png export instead of the same size as png
       const realPixelRatio = window.devicePixelRatio;
       window.devicePixelRatio = 1;
-      const dataUri = await svgAsPngUri(svgRef.current, { encoderOptions: 1 });
+      const dataUri = await htmlToPng(svgRef.current, { pixelRatio: 1, width: 512, height: 512 });
       const blob = await (await fetch(dataUri)).blob();
       await navigator.clipboard.write([
         new ClipboardItem({
@@ -413,13 +411,13 @@ export const IconGenerator = () => {
   const onCopyShareUrl = async () => {
     showInfoMessage("Copying URL to clipboard…", false);
     const url = `${BASE_URL}/icon?${new URLSearchParams(
-      Object.entries(settings).map(([key, value]) => [key, String(value)])
+      Object.entries(settings).map(([key, value]) => [key, String(value)]),
     ).toString()}`;
 
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(url);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=icons`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.link) {
@@ -720,7 +718,7 @@ export const IconGenerator = () => {
   }
 
   const filteredIcons = Object.keys(Icons).filter((key) =>
-    key.toLowerCase().includes(searchTerm.toLowerCase())
+    key.toLowerCase().includes(searchTerm.toLowerCase()),
   ) as IconName[];
 
   const scaleOptions = scales.map((value) => ({
@@ -890,7 +888,7 @@ export const IconGenerator = () => {
               styles.panel,
               styles.icons,
               iconsPanelOpened && styles.opened,
-              optionsPanelOpened && styles.hidden
+              optionsPanelOpened && styles.hidden,
             )}
           >
             <button
@@ -1014,7 +1012,7 @@ export const IconGenerator = () => {
               styles.options,
               panelsVisible ? "" : styles.hidden,
               iconsPanelOpened && styles.hidden,
-              optionsPanelOpened && styles.opened
+              optionsPanelOpened && styles.opened,
             )}
           >
             <button

@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import cn from "classnames";
 
 import { PlusIcon, TrashIcon } from "@raycast/icons";
-
-import { saveSvgAsPng } from "save-svg-as-png";
+import { toPng as htmlToPng } from "html-to-image";
 
 import styles from "./ExportModal.module.css";
 import { Select, SelectItem, SelectContent, SelectItemText, SelectValue, SelectTrigger } from "@/components/select";
 import { Button } from "@/components/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/dialog";
 import { Input, InputSlot } from "@/components/input";
+import download from "../../(code)/util/download";
 
 type ExportFormat = "PNG" | "SVG";
 
@@ -27,7 +27,10 @@ const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) =
   if (!svgRef.current) {
     return;
   }
-  return saveSvgAsPng(svgRef.current, `${fileName}.png`, { encoderOptions: 1, scale: size / 512 });
+
+  let dataUrl = await htmlToPng(svgRef.current, { pixelRatio: 1, quality: 1, width: size, height: size });
+  download(dataUrl, `${fileName}.png`);
+  return dataUrl;
 };
 
 const exportToSvg = async (svgRef: SvgRefType, fileName: string) => {
