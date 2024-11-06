@@ -602,6 +602,24 @@ const socials: Quicklink[] = [
 
 const misc: Quicklink[] = [
   {
+    id: "selection-notes",
+    name: "Selection to Notes",
+    description: "Creates a note in Raycast Notes with the selected text",
+    link: `raycast://extensions/raycast/raycast-notes/create-note?fallbackText={selection | raw}`,
+    icon: {
+      name: "fountain-tip",
+    },
+  },
+  {
+    id: "daily-note",
+    name: "Create daily note",
+    description: "Creates a note in Raycast Notes with todays date",
+    link: `raycast://extensions/raycast/raycast-notes/create-note?fallbackText=%23%20{date}`,
+    icon: {
+      name: "fountain-tip",
+    },
+  },
+  {
     id: "chrome-history",
     name: "View Google Chrome History",
     link: "chrome://history/search/",
