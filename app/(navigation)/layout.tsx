@@ -19,7 +19,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-firacode" });
 const sohneMono = localFont({
-  src: "../assets/soehne-mono.woff2",
+  src: "../assets/soehne-mono-buch.woff2",
   variable: "--font-soehne-mono",
 });
 
