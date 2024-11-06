@@ -21,8 +21,6 @@ import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "./components/InfoDialog";
-import { WandIcon } from "@raycast/icons";
-import { Button } from "@/components/button";
 import FormatButton from "./components/FormatCodeButton";
 
 export function Code() {

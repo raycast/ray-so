@@ -21,7 +21,7 @@ export function InfoDialog() {
           <Info02Icon /> About
         </Button>
       </DialogTrigger>
-      <DialogContent size="large" className="overflow-hidden">
+      <DialogContent size="large">
         <div className="flex gap-8">
           <div className="flex flex-col gap-3 flex-1 text-[13px] text-gray-11 leading-relaxed">
             <DialogTitle>About</DialogTitle>
