@@ -13,6 +13,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
+import PrismaLogo from "../assets/prisma.svg";
+import PrismaLogoUrl from "../assets/prisma.svg?url";
 import MintlifyLogo from "../assets/mintlify.svg";
 import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import { showLineNumbersAtom } from ".";
@@ -349,6 +351,54 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgb(131 114 55 / 30%)",
         highlightHover: "rgb(131 114 55 / 15%)",
         highlightBorder: "#f7d87c",
+      }),
+    },
+  },
+  prisma: {
+    id: "prisma",
+    name: "Prisma",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: PrismaLogo,
+    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1A202C",
+        constant: "#5A67D8",
+        string: "#16A394",
+        comment: "#718096",
+        keyword: "#16A394",
+        parameter: "#805AD5",
+        function: "#5A67D8",
+        stringExpression: "#16A394",
+        punctuation: "#1A202C",
+        link: "#5A67D8",
+        number: "#16A394",
+        property: "#16A394",
+        highlight: "#16a39528",
+        highlightHover: "#16a3950e",
+        highlightBorder: "#16A394",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#7F9CF5",
+        string: "#71E8DF",
+        comment: "#718096",
+        keyword: "#71E8DF",
+        parameter: "#71E8DF",
+        function: "#7F9CF5",
+        stringExpression: "#71E8DF",
+        punctuation: "#FFFFFF",
+        link: "#7F9CF5",
+        number: "#71E8DF",
+        property: "#71E8DF",
+        highlight: "#71e8de2e",
+        highlightHover: "#71e8de1b",
+        highlightBorder: "#71E8DF",
       }),
     },
   },
