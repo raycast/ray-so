@@ -14,7 +14,6 @@ import ResizableFrame from "./ResizableFrame";
 
 import styles from "./Frame.module.css";
 import { selectedLanguageAtom } from "../store/code";
-import Image from "next/image";
 
 import beams from "../assets/tailwind/beams.png";
 import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
@@ -235,6 +234,33 @@ const MintlifyFrame = () => {
   );
 };
 
+const PrismaFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.prismaFrame,
+        !darkMode && styles.prismaFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.prismaWindow}>
+        <span data-frameborder />
+        <span data-frameborder />
+        <span data-frameborder />
+        <span data-frameborder />
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -289,25 +315,31 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
   const [theme] = useAtom(themeAtom);
   const darkMode = useAtomValue(darkModeAtom);
 
+  function renderFrame() {
+    switch (theme.id) {
+      case THEMES.vercel.id:
+      case THEMES.rabbit.id:
+        return <VercelFrame />;
+      case THEMES.supabase.id:
+        return <SupabaseFrame />;
+      case THEMES.tailwind.id:
+        return <TailwindFrame />;
+      case THEMES.clerk.id:
+        return <ClerkFrame />;
+      case THEMES.mintlify.id:
+        return <MintlifyFrame />;
+      case THEMES.prisma.id:
+        return <PrismaFrame />;
+      default:
+        return <DefaultFrame />;
+    }
+  }
+
   if (!resize) {
     return (
       <div className={styles.frameContainer}>
         <div className={styles.outerFrame} ref={frameContext} id="frame">
-          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
-            <VercelFrame />
-          ) : THEMES.supabase.id === theme.id ? (
-            <SupabaseFrame />
-          ) : THEMES.tailwind.id === theme.id ? (
-            <TailwindFrame />
-          ) : THEMES.triggerdev.id === theme.id ? (
-            <TriggerdotdevFrame />
-          ) : THEMES.clerk.id === theme.id ? (
-            <ClerkFrame />
-          ) : THEMES.mintlify.id === theme.id ? (
-            <MintlifyFrame />
-          ) : (
-            <DefaultFrame />
-          )}
+          {renderFrame()}
         </div>
       </div>
     );
@@ -318,21 +350,7 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
       <ResizableFrame>
         <FlashMessage />
         <div className={styles.outerFrame} ref={frameContext} id="frame">
-          {[THEMES.vercel.id, THEMES.rabbit.id].includes(theme.id) ? (
-            <VercelFrame />
-          ) : THEMES.supabase.id === theme.id ? (
-            <SupabaseFrame />
-          ) : THEMES.tailwind.id === theme.id ? (
-            <TailwindFrame />
-          ) : THEMES.triggerdev.id === theme.id ? (
-            <TriggerdotdevFrame />
-          ) : THEMES.clerk.id === theme.id ? (
-            <ClerkFrame />
-          ) : THEMES.mintlify.id === theme.id ? (
-            <MintlifyFrame />
-          ) : (
-            <DefaultFrame />
-          )}
+          {renderFrame()}
         </div>
       </ResizableFrame>
     </div>

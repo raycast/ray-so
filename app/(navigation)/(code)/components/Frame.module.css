@@ -606,6 +606,82 @@
   }
 }
 
+/* Prisma Frame */
+
+.prismaFrame {
+  --gradient-angle: 140deg;
+  background: linear-gradient(var(--gradient-angle), #0c1d26 0%, #0a0c17 100%);
+}
+
+.prismaWindow {
+  position: relative;
+  overflow: visible;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background-color: var(--background);
+  --radius: 10px;
+  --frame-border-gradient: linear-gradient(var(--gradient-angle), #3e4083, #16544f);
+  --background: hsla(223, 41%, 7%, 75%);
+
+  [data-frameborder] {
+    &:before {
+      position: absolute;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background: var(--frame-border-gradient) border-box;
+      content: "";
+      inset: 0;
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    &:nth-of-type(1):before {
+      inset: -1px;
+    }
+    &:nth-of-type(2):before {
+      border-radius: calc(var(--radius) + 6px);
+      inset: -6px;
+      opacity: 50%;
+    }
+
+    &:nth-of-type(3):before {
+      border-radius: calc(var(--radius) + 11px);
+      inset: -11px;
+      opacity: 30%;
+    }
+
+    &:nth-of-type(4):before {
+      border-radius: calc(var(--radius) + 16px);
+      inset: -16px;
+      opacity: 10%;
+    }
+  }
+}
+
+.prismaHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.prismaFrameLightMode {
+  background: linear-gradient(140deg, #e8e8ff 0%, #e7fefc 100%);
+
+  &.noBackground {
+    .prismaWindow {
+      --background: hsl(193, 72%, 96%, 0.9);
+    }
+  }
+
+  .prismaWindow {
+    --background: hsl(193, 72%, 96%, 0.5);
+    --frame-border-gradient: linear-gradient(var(--gradient-angle), #6164cc, #31baaf);
+  }
+}
+
 /* Mintlify Frame */
 .mintlifyFrame {
   background: #121212;
