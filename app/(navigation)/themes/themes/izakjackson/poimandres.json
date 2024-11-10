@@ -1,0 +1,21 @@
+{
+  "author": "Izak Jackson",
+  "authorUsername": "izakjackson",
+  "version": "1",
+  "name": "Poimandres",
+  "appearance": "dark",
+  "colors": {
+    "background": "#1B1E28",
+    "backgroundSecondary": "#303340",
+    "text": "#FFFFFF",
+    "selection": "#ADD7FF",
+    "loader": "#5DE4C7",
+    "red": "#FF8181",
+    "orange": "#FFBE6F",
+    "yellow": "#FFFBC2",
+    "green": "#5DE4C6",
+    "blue": "#89DDFF",
+    "purple": "#D0679D",
+    "magenta": "#FDC5E9"
+  }
+}
