@@ -978,6 +978,7 @@ const themeAtom = atomWithHash<Theme>(
     },
     deserialize(key) {
       if (key && key in THEMES) {
+        localStorage.setItem("codeTheme", key);
         return THEMES[key as keyof typeof THEMES];
       } else {
         return THEMES.candy;
