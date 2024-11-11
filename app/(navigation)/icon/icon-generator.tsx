@@ -56,6 +56,7 @@ import { Input, InputSlot } from "@/components/input";
 import { SelectItemText } from "@radix-ui/react-select";
 import { InfoDialog } from "./components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
+import { ScrollArea } from "@/components/scroll-area";
 
 const scales = [0.25, 0.5, 1, 2];
 
@@ -935,23 +936,25 @@ export const IconGenerator = () => {
             ) : (
               <>
                 <h4>{searchTerm ? "Results" : "All Icons"}</h4>
-                <div className={styles.iconsWrapper}>
-                  {filteredIcons.map((icon) => {
-                    const Component = Icons[icon];
-                    return (
-                      <label key={icon} className={styles.icon}>
-                        <input
-                          type="radio"
-                          name="icon"
-                          value={icon}
-                          checked={icon === settings.icon}
-                          onChange={() => onChangeIcon(icon)}
-                        />
-                        <Component width={16} height={16} />
-                      </label>
-                    );
-                  })}
-                </div>
+                <ScrollArea className={styles.scrollWrapper}>
+                  <div className={styles.iconsWrapper}>
+                    {filteredIcons.map((icon) => {
+                      const Component = Icons[icon];
+                      return (
+                        <label key={icon} className={styles.icon}>
+                          <input
+                            type="radio"
+                            name="icon"
+                            value={icon}
+                            checked={icon === settings.icon}
+                            onChange={() => onChangeIcon(icon)}
+                          />
+                          <Component width={16} height={16} />
+                        </label>
+                      );
+                    })}
+                  </div>
+                </ScrollArea>
               </>
             )}
           </div>
@@ -1021,302 +1024,304 @@ export const IconGenerator = () => {
             >
               <AppImageSidebarRightIcon />
             </button>
-            <div className={styles.inner}>
-              <details className={styles.section} open>
-                <summary>
-                  Presets
-                  <ChevronUpIcon className={styles.closed} />
-                  <ChevronDownIcon className={styles.opened} />
-                </summary>
-                <div className={styles.presets}>
-                  {presets.map((preset, index) => {
-                    return (
-                      <label key={index} className={styles.preset}>
-                        <input
-                          type="radio"
-                          name="preset"
-                          value={index}
-                          checked={
-                            settings.selectedPresetIndex === null
-                              ? false
-                              : index === Number(settings.selectedPresetIndex)
-                          }
-                          onChange={() => onPresetChange(preset, index)}
-                        />
-
-                        <ResultIcon size={20} isPreview settings={{ ...settings, ...preset, backgroundRadius: 0 }} />
-                      </label>
-                    );
-                  })}
-                </div>
-              </details>
-              <form onChange={onFormChange} ref={formRef} style={{ width: "100%" }}>
+            <ScrollArea>
+              <div className={styles.inner}>
                 <details className={styles.section} open>
                   <summary>
-                    Fill Styles
+                    Presets
                     <ChevronUpIcon className={styles.closed} />
                     <ChevronDownIcon className={styles.opened} />
                   </summary>
-                  <div>
-                    <label className={styles.formItem}>
-                      <span>Fill Type</span>
-                      <Select
-                        name="backgroundFillType"
-                        value={settings.backgroundFillType}
-                        onValueChange={onChangeFillType}
-                      >
-                        <SelectTrigger className="w-[120px]" size="large">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {fillTypeOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              <SelectItemText>{option.label}</SelectItemText>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </label>
-                    <label className={styles.formItem}>
-                      <span>{settings.backgroundFillType === "Solid" ? "Color" : "Primary color"}</span>
-                      <ColorInput
-                        value={settings.backgroundStartColor}
-                        name="backgroundStartColor"
-                        onChange={onChangeColorSetting("backgroundStartColor")}
-                        recentColors={recentColors}
-                      />
-                    </label>
-                    {settings.backgroundFillType !== "Solid" && (
-                      <label
-                        className={cn(styles.formItem, settings.backgroundFillType === "Solid" && styles.disabled)}
-                      >
-                        <span>Secondary color</span>
+                  <div className={styles.presets}>
+                    {presets.map((preset, index) => {
+                      return (
+                        <label key={index} className={styles.preset}>
+                          <input
+                            type="radio"
+                            name="preset"
+                            value={index}
+                            checked={
+                              settings.selectedPresetIndex === null
+                                ? false
+                                : index === Number(settings.selectedPresetIndex)
+                            }
+                            onChange={() => onPresetChange(preset, index)}
+                          />
+
+                          <ResultIcon size={20} isPreview settings={{ ...settings, ...preset, backgroundRadius: 0 }} />
+                        </label>
+                      );
+                    })}
+                  </div>
+                </details>
+                <form onChange={onFormChange} ref={formRef} style={{ width: "100%" }}>
+                  <details className={styles.section} open>
+                    <summary>
+                      Fill Styles
+                      <ChevronUpIcon className={styles.closed} />
+                      <ChevronDownIcon className={styles.opened} />
+                    </summary>
+                    <div>
+                      <label className={styles.formItem}>
+                        <span>Fill Type</span>
+                        <Select
+                          name="backgroundFillType"
+                          value={settings.backgroundFillType}
+                          onValueChange={onChangeFillType}
+                        >
+                          <SelectTrigger className="w-[120px]" size="large">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {fillTypeOptions.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                <SelectItemText>{option.label}</SelectItemText>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </label>
+                      <label className={styles.formItem}>
+                        <span>{settings.backgroundFillType === "Solid" ? "Color" : "Primary color"}</span>
                         <ColorInput
-                          value={settings.backgroundEndColor}
-                          name="backgroundEndColor"
-                          onChange={onChangeColorSetting("backgroundEndColor")}
+                          value={settings.backgroundStartColor}
+                          name="backgroundStartColor"
+                          onChange={onChangeColorSetting("backgroundStartColor")}
                           recentColors={recentColors}
                         />
                       </label>
-                    )}
-                    {settings.backgroundFillType === "Radial" ? (
-                      <>
-                        <label className={styles.formItem}>
-                          <span>Position</span>
-                          <Select
-                            name="backgroundPosition"
-                            value={settings.backgroundPosition}
-                            onValueChange={onChangeBackgroundPosition}
-                          >
-                            <SelectTrigger className="w-[120px]" size="large">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {backgroundPositionOptions.map((option) => (
-                                <SelectItem key={option.value} value={option.value}>
-                                  <SelectItemText>{option.label}</SelectItemText>
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                      {settings.backgroundFillType !== "Solid" && (
+                        <label
+                          className={cn(styles.formItem, settings.backgroundFillType === "Solid" && styles.disabled)}
+                        >
+                          <span>Secondary color</span>
+                          <ColorInput
+                            value={settings.backgroundEndColor}
+                            name="backgroundEndColor"
+                            onChange={onChangeColorSetting("backgroundEndColor")}
+                            recentColors={recentColors}
+                          />
                         </label>
+                      )}
+                      {settings.backgroundFillType === "Radial" ? (
+                        <>
+                          <label className={styles.formItem}>
+                            <span>Position</span>
+                            <Select
+                              name="backgroundPosition"
+                              value={settings.backgroundPosition}
+                              onValueChange={onChangeBackgroundPosition}
+                            >
+                              <SelectTrigger className="w-[120px]" size="large">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {backgroundPositionOptions.map((option) => (
+                                  <SelectItem key={option.value} value={option.value}>
+                                    <SelectItemText>{option.label}</SelectItemText>
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </label>
+                          <label className={styles.formItem}>
+                            <span>Spread</span>
+                            <Input
+                              name="backgroundSpread"
+                              type="number"
+                              defaultValue={settings.backgroundSpread}
+                              min={0}
+                              max={100}
+                              className="w-[120px]"
+                              size="large"
+                            >
+                              <InputSlot>%</InputSlot>
+                            </Input>
+                          </label>
+                        </>
+                      ) : settings.backgroundFillType === "Linear" ? (
                         <label className={styles.formItem}>
-                          <span>Spread</span>
+                          <span>Angle</span>
                           <Input
-                            name="backgroundSpread"
+                            name="backgroundAngle"
                             type="number"
-                            defaultValue={settings.backgroundSpread}
+                            onChange={onChangeAngle}
+                            defaultValue={settings.backgroundAngle}
                             min={0}
-                            max={100}
+                            max={360}
                             className="w-[120px]"
                             size="large"
                           >
-                            <InputSlot>%</InputSlot>
+                            <InputSlot>º</InputSlot>
                           </Input>
                         </label>
-                      </>
-                    ) : settings.backgroundFillType === "Linear" ? (
-                      <label className={styles.formItem}>
-                        <span>Angle</span>
+                      ) : null}
+                    </div>
+                  </details>
+                  <details className={styles.section}>
+                    <summary>
+                      Background
+                      <ChevronUpIcon className={styles.closed} />
+                      <ChevronDownIcon className={styles.opened} />
+                    </summary>
+                    <div>
+                      <label className={cn(styles.formItem)}>
+                        <span>Radial glare</span>
+                        <Switch
+                          name="backgroundRadialGlare"
+                          checked={settings.backgroundRadialGlare}
+                          onCheckedChange={(checked) =>
+                            pushNewSettings({
+                              backgroundRadialGlare: checked,
+                            })
+                          }
+                          className="focus-visible:ring-offset-gray-3"
+                        />
+                      </label>
+
+                      <label className={cn(styles.formItem)}>
+                        <span>Noise texture</span>
+                        <Switch
+                          name="backgroundNoiseTexture"
+                          checked={settings.backgroundNoiseTexture}
+                          onCheckedChange={(checked) =>
+                            pushNewSettings({
+                              backgroundNoiseTexture: checked,
+                            })
+                          }
+                          className="focus-visible:ring-offset-gray-3"
+                        />
+                      </label>
+                      <label className={cn(styles.formItem, !settings.backgroundNoiseTexture && styles.disabled)}>
+                        <span>Noise opacity</span>
                         <Input
-                          name="backgroundAngle"
+                          name="backgroundNoiseTextureOpacity"
                           type="number"
-                          onChange={onChangeAngle}
-                          defaultValue={settings.backgroundAngle}
                           min={0}
-                          max={360}
+                          max={100}
+                          defaultValue={settings.backgroundNoiseTextureOpacity}
                           className="w-[120px]"
                           size="large"
                         >
-                          <InputSlot>º</InputSlot>
+                          <InputSlot>%</InputSlot>
                         </Input>
                       </label>
-                    ) : null}
-                  </div>
-                </details>
-                <details className={styles.section}>
-                  <summary>
-                    Background
-                    <ChevronUpIcon className={styles.closed} />
-                    <ChevronDownIcon className={styles.opened} />
-                  </summary>
-                  <div>
-                    <label className={cn(styles.formItem)}>
-                      <span>Radial glare</span>
-                      <Switch
-                        name="backgroundRadialGlare"
-                        checked={settings.backgroundRadialGlare}
-                        onCheckedChange={(checked) =>
-                          pushNewSettings({
-                            backgroundRadialGlare: checked,
-                          })
-                        }
-                        className="focus-visible:ring-offset-gray-3"
-                      />
-                    </label>
-
-                    <label className={cn(styles.formItem)}>
-                      <span>Noise texture</span>
-                      <Switch
-                        name="backgroundNoiseTexture"
-                        checked={settings.backgroundNoiseTexture}
-                        onCheckedChange={(checked) =>
-                          pushNewSettings({
-                            backgroundNoiseTexture: checked,
-                          })
-                        }
-                        className="focus-visible:ring-offset-gray-3"
-                      />
-                    </label>
-                    <label className={cn(styles.formItem, !settings.backgroundNoiseTexture && styles.disabled)}>
-                      <span>Noise opacity</span>
-                      <Input
-                        name="backgroundNoiseTextureOpacity"
-                        type="number"
-                        min={0}
-                        max={100}
-                        defaultValue={settings.backgroundNoiseTextureOpacity}
-                        className="w-[120px]"
-                        size="large"
-                      >
-                        <InputSlot>%</InputSlot>
-                      </Input>
-                    </label>
-                    <label className={cn(styles.formItem)}>
-                      <span>Radius</span>
-                      <Input
-                        name="backgroundRadius"
-                        type="number"
-                        min={0}
-                        max={256}
-                        defaultValue={settings.backgroundRadius}
-                        className="w-[120px]"
-                        size="large"
-                      >
-                        <InputSlot>px</InputSlot>
-                      </Input>
-                    </label>
-                    <label className={styles.formItem}>
-                      <span>Stroke size</span>
-                      <Input
-                        name="backgroundStrokeSize"
-                        type="number"
-                        min={0}
-                        defaultValue={settings.backgroundStrokeSize}
-                        className="w-[120px]"
-                      >
-                        <InputSlot>px</InputSlot>
-                      </Input>
-                    </label>
-                    <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
-                      <span>Stroke color</span>
-                      <ColorInput
-                        value={settings.backgroundStrokeColor}
-                        name="backgroundStrokeColor"
-                        onChange={onChangeColorSetting("backgroundStrokeColor")}
-                        recentColors={recentColors}
-                      />
-                    </label>
-                    <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
-                      <span>Stroke opacity</span>
-                      <Input
-                        name="backgroundStrokeOpacity"
-                        type="number"
-                        defaultValue={settings.backgroundStrokeOpacity}
-                        className="w-[120px]"
-                        size="large"
-                      >
-                        <InputSlot>%</InputSlot>
-                      </Input>
-                    </label>
-                  </div>
-                </details>
-
-                <details className={styles.section}>
-                  <summary>
-                    Icon
-                    <ChevronUpIcon className={styles.closed} />
-                    <ChevronDownIcon className={styles.opened} />
-                  </summary>
-                  <div>
-                    {!customSvgIsPng && (
+                      <label className={cn(styles.formItem)}>
+                        <span>Radius</span>
+                        <Input
+                          name="backgroundRadius"
+                          type="number"
+                          min={0}
+                          max={256}
+                          defaultValue={settings.backgroundRadius}
+                          className="w-[120px]"
+                          size="large"
+                        >
+                          <InputSlot>px</InputSlot>
+                        </Input>
+                      </label>
                       <label className={styles.formItem}>
-                        <span>Color</span>
+                        <span>Stroke size</span>
+                        <Input
+                          name="backgroundStrokeSize"
+                          type="number"
+                          min={0}
+                          defaultValue={settings.backgroundStrokeSize}
+                          className="w-[120px]"
+                        >
+                          <InputSlot>px</InputSlot>
+                        </Input>
+                      </label>
+                      <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
+                        <span>Stroke color</span>
                         <ColorInput
-                          value={settings.iconColor}
-                          name="iconColor"
-                          onChange={onChangeColorSetting("iconColor")}
+                          value={settings.backgroundStrokeColor}
+                          name="backgroundStrokeColor"
+                          onChange={onChangeColorSetting("backgroundStrokeColor")}
                           recentColors={recentColors}
                         />
                       </label>
-                    )}
-                    <label className={styles.formItem}>
-                      <span>Size</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
+                      <label className={cn(styles.formItem, settings.backgroundStrokeSize == 0 && styles.disabled)}>
+                        <span>Stroke opacity</span>
                         <Input
-                          name="iconSize"
+                          name="backgroundStrokeOpacity"
                           type="number"
-                          defaultValue={settings.iconSize}
-                          min={0}
+                          defaultValue={settings.backgroundStrokeOpacity}
                           className="w-[120px]"
                           size="large"
                         >
-                          <InputSlot>px</InputSlot>
+                          <InputSlot>%</InputSlot>
                         </Input>
-                      </div>
-                    </label>
-                    <label className={styles.formItem}>
-                      <span>X Offset</span>
-                      <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
-                        <Input
-                          name="iconOffsetX"
-                          type="number"
-                          defaultValue={settings.iconOffsetX}
-                          className="w-[120px]"
-                          size="large"
-                        >
-                          <InputSlot>px</InputSlot>
-                        </Input>
-                      </div>
-                    </label>
-                    <label className={styles.formItem}>
-                      <span>Y Offset</span>
-                      <div className="flex flex-col">
-                        <Input
-                          name="iconOffsetY"
-                          type="number"
-                          defaultValue={settings.iconOffsetY}
-                          className="w-[120px]"
-                          size="large"
-                        >
-                          <InputSlot>px</InputSlot>
-                        </Input>
-                      </div>
-                    </label>
-                  </div>
-                </details>
-              </form>
-            </div>
+                      </label>
+                    </div>
+                  </details>
+
+                  <details className={styles.section}>
+                    <summary>
+                      Icon
+                      <ChevronUpIcon className={styles.closed} />
+                      <ChevronDownIcon className={styles.opened} />
+                    </summary>
+                    <div>
+                      {!customSvgIsPng && (
+                        <label className={styles.formItem}>
+                          <span>Color</span>
+                          <ColorInput
+                            value={settings.iconColor}
+                            name="iconColor"
+                            onChange={onChangeColorSetting("iconColor")}
+                            recentColors={recentColors}
+                          />
+                        </label>
+                      )}
+                      <label className={styles.formItem}>
+                        <span>Size</span>
+                        <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
+                          <Input
+                            name="iconSize"
+                            type="number"
+                            defaultValue={settings.iconSize}
+                            min={0}
+                            className="w-[120px]"
+                            size="large"
+                          >
+                            <InputSlot>px</InputSlot>
+                          </Input>
+                        </div>
+                      </label>
+                      <label className={styles.formItem}>
+                        <span>X Offset</span>
+                        <div className={cn(styles.inputWrapper, styles.inputWithUnit)}>
+                          <Input
+                            name="iconOffsetX"
+                            type="number"
+                            defaultValue={settings.iconOffsetX}
+                            className="w-[120px]"
+                            size="large"
+                          >
+                            <InputSlot>px</InputSlot>
+                          </Input>
+                        </div>
+                      </label>
+                      <label className={styles.formItem}>
+                        <span>Y Offset</span>
+                        <div className="flex flex-col">
+                          <Input
+                            name="iconOffsetY"
+                            type="number"
+                            defaultValue={settings.iconOffsetY}
+                            className="w-[120px]"
+                            size="large"
+                          >
+                            <InputSlot>px</InputSlot>
+                          </Input>
+                        </div>
+                      </label>
+                    </div>
+                  </details>
+                </form>
+              </div>
+            </ScrollArea>
           </div>
         </CSSTransition>
       </main>

@@ -24,7 +24,7 @@ import {
 } from "@raycast/icons";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import { Instructions } from "../components/Instructions";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import * as ContextMenu from "@radix-ui/react-context-menu";

@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { isTouchDevice } from "../utils/isTouchDevice";
@@ -28,7 +28,6 @@ import {
   DownloadIcon,
   LinkIcon,
   PlusCircleIcon,
-  RaycastLogoNegIcon,
   TrashIcon,
 } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
