@@ -299,7 +299,10 @@
     cursor: pointer;
     outline: none;
 
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    transition:
+      color 0.3s ease-in-out,
+      background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out;
 
     &:hover {
       border-radius: 6px;
@@ -416,24 +419,17 @@
     }
   }
 
-  .iconsWrapper {
-    display: flex;
-    overflow: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0 15px 16px;
-    margin: 0 -16px 0;
-    gap: 8px;
+  .scrollWrapper {
+    width: calc(100% + 26px);
+    padding: 0 13px;
+    margin: 0 -13px;
+  }
 
-    @media (max-width: 720px) {
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      gap: 4px;
-      justify-items: space-between;
-    }
+  .iconsWrapper {
+    display: grid;
+    padding-bottom: 16px;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .emptyIconsListIcon {
@@ -471,12 +467,13 @@
 
   .icon {
     display: flex;
-    width: 66px;
-    height: 66px;
+    width: 100%;
+    height: auto;
     align-items: center;
     justify-content: center;
     padding: 10px;
     border-radius: 4px;
+    aspect-ratio: 1/1;
 
     background: rgba(255, 255, 255, 0.05);
     color: white;
@@ -494,12 +491,6 @@
       position: absolute;
       appearance: none;
       opacity: 0;
-    }
-
-    @media (max-width: 720px) {
-      width: 24%;
-      height: auto;
-      aspect-ratio: 1/1;
     }
   }
 
@@ -631,7 +622,10 @@
     border-radius: 6px;
     background: #343434;
 
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    transition:
+      color 0.3s ease-in-out,
+      background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.4);

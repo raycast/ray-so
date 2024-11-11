@@ -5,7 +5,7 @@ import { cn } from "@/utils/cn";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 
 import styles from "./presets.module.css";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { ChevronDownIcon, Info01Icon, LinkIcon, PlusCircleIcon, StarsIcon } from "@raycast/icons";
 import { PresetComponent } from "../components/Preset";
