@@ -960,18 +960,31 @@ export const THEMES: { [index: string]: Theme } = {
   },
 };
 
-const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
-  serialize(value) {
-    return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
-  },
-  deserialize(key) {
-    if (key) {
-      return THEMES[key];
-    } else {
-      return THEMES.candy;
+const themeAtom = atomWithHash<Theme>(
+  "theme",
+  (() => {
+    if (typeof window !== "undefined") {
+      // Check if a valid theme is stored in localStorage
+      const codeTheme = localStorage.getItem("codeTheme");
+      if (codeTheme && codeTheme in THEMES) {
+        return THEMES[codeTheme as keyof typeof THEMES];
+      }
     }
+    return THEMES.candy; // Fallback to default theme
+  })(),
+  {
+    serialize(value) {
+      return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
+    },
+    deserialize(key) {
+      if (key && key in THEMES) {
+        return THEMES[key as keyof typeof THEMES];
+      } else {
+        return THEMES.candy;
+      }
+    },
   },
-});
+);
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 
