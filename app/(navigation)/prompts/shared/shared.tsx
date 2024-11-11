@@ -23,7 +23,7 @@ import { extractPrompts } from "../utils/extractPrompts";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 
 import styles from "../[[...slug]]/prompts.module.css";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import CreativityIcon from "../components/CreativityIcon";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
@@ -116,7 +116,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.link) {
@@ -279,7 +279,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                                     dangerouslySetInnerHTML={{
                                       __html: prompt.prompt.replace(
                                         /\{[^}]+\}/g,
-                                        `<span class="${styles.placeholder}">$&</span>`
+                                        `<span class="${styles.placeholder}">$&</span>`,
                                       ),
                                     }}
                                   ></pre>
@@ -301,7 +301,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                                 onSelect={() => {
                                   if (isSelected) {
                                     return setSelectedPrompts((prevPrompts) =>
-                                      prevPrompts.filter((prevPrompt) => prevPrompt.id !== prompt.id)
+                                      prevPrompts.filter((prevPrompt) => prevPrompt.id !== prompt.id),
                                     );
                                   }
                                   setSelectedPrompts((prevPrompts) => [...prevPrompts, prompt]);
