@@ -261,6 +261,27 @@ const PrismaFrame = () => {
   );
 };
 
+const OpenAIFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  return (
+    <div
+      className={classNames(
+        styles.openAIFrame,
+        !darkMode && styles.openAIFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding, "--padding": `${padding}px` } as React.CSSProperties}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.openAIWindow}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -328,6 +349,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ClerkFrame />;
       case THEMES.mintlify.id:
         return <MintlifyFrame />;
+      case THEMES.openai.id:
+        return <OpenAIFrame />;
       case THEMES.prisma.id:
         return <PrismaFrame />;
       default:

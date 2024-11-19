@@ -606,6 +606,63 @@
   }
 }
 
+/* OpenAI Frame */
+
+.openAIFrame {
+  --line-number: rgba(255, 255, 255, 0.2);
+  background: #121a29;
+  font-family: var(--font-soehne-mono);
+
+  /* Make non-highlighted lines grayscale */
+  &:has(:global(.highlighted-line)) {
+    :global(.line):not(:global(.highlighted-line)) {
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition:
+        filter 1s,
+        opacity 1s;
+    }
+  }
+
+  .isHighlightingLines {
+    :global(.line):not(:global(.highlighted-line)):hover {
+      filter: none !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+.openAIWindow {
+  position: relative;
+  z-index: 1;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: #232b41;
+  box-shadow:
+    0px 100px 89px 0px rgba(0, 0, 0, 0.07),
+    0px 41.778px 37.182px 0px rgba(0, 0, 0, 0.05),
+    0px 22.336px 19.879px 0px rgba(0, 0, 0, 0.04),
+    0px 12.522px 11.144px 0px rgba(0, 0, 0, 0.04),
+    0px 6.65px 5.919px 0px rgba(0, 0, 0, 0.03),
+    0px 2.767px 2.463px 0px rgba(0, 0, 0, 0.02);
+}
+
+.openAIFrameLightMode {
+  background: linear-gradient(238deg, #f1f0f4 0%, #f8f8fd 100%);
+  --line-number: hsla(240, 12%, 71%, 1);
+
+  .openAIWindow {
+    position: relative;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow:
+      0px 73px 83px 0px rgba(0, 0, 0, 0.03),
+      0px 4.855px 5.52px 0px rgba(0, 0, 0, 0.01),
+      0px 2.02px 2.297px 0px rgba(0, 0, 0, 0.01);
+  }
+}
+
 /* Prisma Frame */
 
 .prismaFrame {

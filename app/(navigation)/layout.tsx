@@ -2,6 +2,7 @@ import { Fira_Code, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import cn from "classnames";
 import { Navigation } from "@/components/navigation";
 import { GeistMono } from "geist/font/mono";
+import localFont from "next/font/local";
 import React from "react";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -17,6 +18,10 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibmplexmono",
 });
 const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-firacode" });
+const soehneMono = localFont({
+  src: "../assets/soehne-mono-buch.woff2",
+  variable: "--font-soehne-mono",
+});
 
 /**
  * We can't adjust the fallback stack of the font so instead we just extract the
@@ -28,7 +33,7 @@ const geistMonoFontName = GeistMono.style.fontFamily.split(",")[0];
 export default function NavigationLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable)}
+      className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable, soehneMono.variable)}
       style={
         {
           "--font-geist-mono": geistMonoFontName,
