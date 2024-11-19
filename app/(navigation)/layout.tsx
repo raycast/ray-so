@@ -18,7 +18,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibmplexmono",
 });
 const firaCode = Fira_Code({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-firacode" });
-const sohneMono = localFont({
+const soehneMono = localFont({
   src: "../assets/soehne-mono-buch.woff2",
   variable: "--font-soehne-mono",
 });
@@ -33,7 +33,7 @@ const geistMonoFontName = GeistMono.style.fontFamily.split(",")[0];
 export default function NavigationLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable, sohneMono.variable)}
+      className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable, soehneMono.variable)}
       style={
         {
           "--font-geist-mono": geistMonoFontName,
