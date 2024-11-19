@@ -56,7 +56,7 @@ const detectLanguage: (input: string) => Promise<string> = async (input) => {
     if (highlightResult.language) {
       resolve(highlightResult.language);
     } else {
-      resolve(LANGUAGES.plaintext.className);
+      resolve(LANGUAGES.plaintext.name.toLowerCase());
     }
   });
 };
@@ -100,13 +100,13 @@ export const selectedLanguageAtom = atom(
   },
   (get, set, newLanguage: Language | null) => {
     set(userInputtedLanguageAtom, newLanguage);
-  }
+  },
 );
 
 export const codeExampleAtom = atom<CodeSample | null>(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
 
 export const isCodeExampleAtom = atom<boolean>(
-  (get) => !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom))
+  (get) => !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom)),
 );
 
 const isSSR = () => typeof window === "undefined";
@@ -152,7 +152,7 @@ export const codeAtom = atom(
         set(detectedLanguageAtom, LANGUAGES[language]);
       }
     });
-  }
+  },
 );
 
 codeAtom.onMount = (setValue) => {

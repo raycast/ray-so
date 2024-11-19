@@ -1,0 +1,21 @@
+{
+  "author": "Izak Jackson",
+  "authorUsername": "izakjackson",
+  "version": "1",
+  "name": "Monokai Spectrum",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#111111",
+    "text": "#F7F1FF",
+    "selection": "#FC618D",
+    "loader": "#FCE566",
+    "red": "#FC618D",
+    "orange": "#FD9353",
+    "yellow": "#FCE566",
+    "green": "#7BD88F",
+    "blue": "#5AD4E6",
+    "purple": "#948AE3",
+    "magenta": "#FC618D"
+  }
+}

@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import styles from "../[[...slug]]/snippets.module.css";
@@ -279,7 +279,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
                             className={`${styles.item} selectable`}
                             key={snippet.id}
                             data-selected={selectedSnippets.some(
-                              (selectedSnippet) => selectedSnippet?.id === snippet.id
+                              (selectedSnippet) => selectedSnippet?.id === snippet.id,
                             )}
                             data-key={`${snippetGroup.slug}-${index}`}
                           >

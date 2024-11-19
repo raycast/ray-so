@@ -206,6 +206,33 @@ const MintlifyFrame = () => {
   );
 };
 
+const PrismaFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.prismaFrame,
+        !darkMode && styles.prismaFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.prismaWindow}>
+        <span data-frameborder />
+        <span data-frameborder />
+        <span data-frameborder />
+        <span data-frameborder />
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const OpenAIFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -296,6 +323,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <MintlifyFrame />;
       case THEMES.openai.id:
         return <OpenAIFrame />;
+      case THEMES.prisma.id:
+        return <PrismaFrame />;
       default:
         return <DefaultFrame />;
     }

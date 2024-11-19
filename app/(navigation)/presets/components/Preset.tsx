@@ -1,15 +1,7 @@
 import Link from "next/link";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 import styles from "./Preset.module.css";
-import {
-  CopyClipboardIcon,
-  DownloadIcon,
-  Globe01Icon,
-  Icons,
-  ImageIcon,
-  LinkIcon,
-  PlusCircleIcon,
-} from "@raycast/icons";
+import { CopyClipboardIcon, DownloadIcon, Globe01Icon, ImageIcon, LinkIcon, PlusCircleIcon } from "@raycast/icons";
 import CreativityIcon from "./CreativityIcon";
 import ModelIcon from "./ModelIcon";
 import * as ContextMenu from "@radix-ui/react-context-menu";
@@ -63,7 +55,7 @@ export function PresetComponent({ preset, models }: { preset: Preset; models: Ai
     if (!preset.id) {
       const encodedUrl = encodeURIComponent(urlToCopy);
       const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=presets`).then((res) =>
-        res.json()
+        res.json(),
       );
 
       if (response.link) {
