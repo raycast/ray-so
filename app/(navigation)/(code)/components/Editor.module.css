@@ -13,7 +13,10 @@
     width: calc(100% + 32px);
     padding: 0 16px;
     margin: 0 -16px;
-    transition: width 0.2s, padding 0.2s, margin 0.2s;
+    transition:
+      width 0.2s,
+      padding 0.2s,
+      margin 0.2s;
 
     &:before {
       position: relative;
@@ -77,20 +80,25 @@
 }
 
 .showLineNumbers {
+  --line-number-padding: 3rem;
   .textarea,
   .formatted,
   .editor:after {
-    padding-left: 3rem;
+    padding-left: var(--line-number-padding);
   }
 
   :global(.line) {
-    width: calc(100% + 16px + 3rem);
-    padding: 0 16px 0 3rem;
-    margin: 0 -16px 0 -3rem;
+    width: calc(100% + 16px + var(--line-number-padding));
+    padding: 0 16px 0 var(--line-number-padding);
+    margin: 0 -16px 0 calc(-1 * var(--line-number-padding));
 
     &:before {
       opacity: 1;
     }
+  }
+
+  &.showLineNumbersLarge {
+    --line-number-padding: 3.5rem;
   }
 }
 
@@ -143,5 +151,10 @@
 
 .geistMono {
   font-family: var(--font-geist-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
+
+.soehneMono {
+  font-family: var(--font-soehne-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
