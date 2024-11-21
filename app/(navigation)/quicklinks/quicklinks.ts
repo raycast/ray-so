@@ -551,7 +551,7 @@ const socials: Quicklink[] = [
     id: "tweets",
     name: "Search Tweets",
     description: "Search from a list of users",
-    link: 'https://x.com/search?q={argument name="query" | raw} from:{argument name="handle" options=" @samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default=" @samuelkraft " | raw}&src=typed_query&f=live',
+    link: 'https://x.com/search?q={argument name="query" | raw}%20from:{argument name="handle" options="@samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default="@samuelkraft" | raw}&src=typed_query&f=live',
   },
   {
     id: "linkedin",
@@ -605,7 +605,7 @@ const misc: Quicklink[] = [
     id: "selection-notes",
     name: "Selection to Notes",
     description: "Creates a note in Raycast Notes with the selected text",
-    link: `raycast://extensions/raycast/raycast-notes/create-note?fallbackText={selection | raw}`,
+    link: `raycast://extensions/raycast/raycast-notes/create-note?fallbackText={selection}`,
     icon: {
       name: "fountain-tip",
     },
@@ -632,7 +632,7 @@ const misc: Quicklink[] = [
     id: "selection-translate",
     name: "Translate selected text",
     description: "Grabs the current selection and translates it with Raycast Translator",
-    link: `raycast://extensions/raycast/translator/translate?fallbackText={selection | raw}`,
+    link: `raycast://extensions/raycast/translator/translate?fallbackText={selection}`,
     icon: {
       name: "magnifying-glass",
     },
