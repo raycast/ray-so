@@ -166,7 +166,11 @@ function Editor() {
           setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
         setTheme(THEMES.rabbit);
-        localStorage.setItem("codeTheme", THEMES.rabbit.id);
+        try {
+          localStorage.setItem("codeTheme", THEMES.rabbit.id);
+        } catch (error) {
+          console.log("Could not set theme in localStorage", error);
+        }
         setFlashMessage({
           message: "Evil Rabbit Theme Unlocked",
           variant: "unlock",

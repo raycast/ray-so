@@ -26,7 +26,11 @@ const ThemeControl: React.FC = () => {
 
   const setTheme = (theme: Theme) => {
     atomSetTheme(theme);
-    localStorage.setItem("codeTheme", theme.id);
+    try {
+      localStorage.setItem("codeTheme", theme.id);
+    } catch (error) {
+      console.log("Could not set theme in localStorage", error);
+    }
   };
 
   useEffect(() => {

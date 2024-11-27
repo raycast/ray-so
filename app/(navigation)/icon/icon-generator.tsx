@@ -446,7 +446,11 @@ export const IconGenerator = () => {
   }, []);
 
   const onSelectCustomIcon = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    localStorage.setItem("uploadCustomIconClicked", "1");
+    try {
+      localStorage.setItem("uploadCustomIconClicked", "1");
+    } catch (error) {
+      console.log("Could not set uploadCustomIconClicked in localStorage", error);
+    }
     if (event && event.target && event.target.files) {
       const file = event.target.files[0];
       if (file?.type === "image/svg+xml") {
