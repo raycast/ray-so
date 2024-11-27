@@ -1057,10 +1057,14 @@ const themeAtom = atomWithHash<Theme>(
   "theme",
   (() => {
     if (typeof window !== "undefined") {
-      // Check if a valid theme is stored in localStorage
-      const codeTheme = localStorage.getItem("codeTheme");
-      if (codeTheme && codeTheme in THEMES) {
-        return THEMES[codeTheme as keyof typeof THEMES];
+      try {
+        // Check if theme is stored in localStorage
+        const codeTheme = localStorage.getItem("codeTheme");
+        if (codeTheme && codeTheme in THEMES) {
+          return THEMES[codeTheme as keyof typeof THEMES];
+        }
+      } catch (error) {
+        console.log("Could not get theme from localStorage", error);
       }
     }
     return THEMES.candy; // Fallback to default theme
@@ -1071,7 +1075,11 @@ const themeAtom = atomWithHash<Theme>(
     },
     deserialize(key) {
       if (key && key in THEMES) {
-        localStorage.setItem("codeTheme", key);
+        try {
+          localStorage.setItem("codeTheme", key);
+        } catch (error) {
+          console.log("Could not set theme in localStorage", error);
+        }
         return THEMES[key as keyof typeof THEMES];
       } else {
         return THEMES.candy;
