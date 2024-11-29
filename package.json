@@ -45,7 +45,7 @@
     "html-react-parser": "^5.1.10",
     "html-to-image": "^1.11.3",
     "image-downloader": "^4.3.0",
-    "jotai": "^2.8.3",
+    "jotai": "^2.10.0",
     "jotai-location": "^0.5.5",
     "js-base64": "^3.7.3",
     "lodash.debounce": "^4.0.8",
