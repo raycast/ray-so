@@ -40,7 +40,6 @@ const ThemeControl: React.FC = () => {
   const handleAddCustom = async (url: string) => {
     setIsImporting(true);
     const themes = await fetchFromMarketplace(url);
-    console.log("themes", themes);
     if (themes) {
       const newThemes = themes.map(({ label, theme }) => ({
         id: label,
@@ -70,9 +69,9 @@ const ThemeControl: React.FC = () => {
           }
           return acc;
         },
-        { partnerThemes: [], themes: [] }
+        { partnerThemes: [], themes: [] },
       ),
-    []
+    [],
   );
 
   return (
@@ -203,7 +202,7 @@ async function fetchFromMarketplace(url: string) {
         label,
         theme,
       };
-    })
+    }),
   );
 }
 
