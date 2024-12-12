@@ -48,6 +48,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Elm",
     src: () => import("shiki/langs/elm.mjs"),
   },
+  erb: {
+    name: "ERB",
+    src: () => import("shiki/langs/erb.mjs"),
+  },
   elixir: {
     name: "Elixir",
     src: () => import("shiki/langs/elixir.mjs"),
