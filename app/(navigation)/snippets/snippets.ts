@@ -638,6 +638,15 @@ const coding: Snippet[] = [
     type: "template",
   },
   {
+    name: "XML tags",
+    id: nanoid(),
+    text: `<{argument name="tag name"}>
+{cursor}
+</{argument name="tag name"}>`,
+    keyword: "xml",
+    type: "template",
+  },
+  {
     name: "Vue: Base Single File Component",
     id: nanoid(),
     text: `<script lang="ts" setup>
