@@ -565,6 +565,10 @@ Follow these instructions unless otherwise stated and without specifically menti
     creativity: "medium",
     model: "anthropic-claude-sonnet",
     date: "2024-11-22",
+    author: {
+      name: "Nathan Cheng",
+      link: "https://nathancheng.fyi/",
+    },
   },
   {
     id: "history-teacher",
