@@ -7,6 +7,7 @@ import ExportButton from "./ExportButton";
 import LanguageControl from "./LanguageControl";
 import PaddingControl from "./PaddingControl";
 import ThemeControl from "./ThemeControl";
+import LineNumberControl from "./LineNumberControl";
 
 const Controls: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Controls: React.FC = () => {
       <ThemeControl />
       <BackgroundControl />
       <DarkModeControl />
+      <LineNumberControl />
       <PaddingControl />
       <LanguageControl />
     </div>
