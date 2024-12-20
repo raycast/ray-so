@@ -603,6 +603,11 @@ const socials: Quicklink[] = [
     name: "Search Giphy",
     link: "https://giphy.com/{Query}",
   },
+  {
+    id: "bluesky",
+    name: "Search Bluesky",
+    link: "https://bsky.app/search?q={Query}",
+  },
 ];
 
 const misc: Quicklink[] = [
