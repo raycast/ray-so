@@ -56,10 +56,19 @@ const folders: Quicklink[] = [
     },
   },
   {
+    id: "user",
+    name: "Open Home",
+    description: "Opens your Home folder Finder",
+    link: "~/",
+    icon: {
+      name: "folder",
+    },
+  },
+  {
     id: "root",
     name: "Open Root",
     description: "Opens the Root folder of your drive in Finder",
-    link: "~/",
+    link: "/",
     icon: {
       name: "folder",
     },
@@ -92,10 +101,19 @@ const folders: Quicklink[] = [
     },
   },
   {
+    id: "home-file-search",
+    name: "Open Home in File Search",
+    description: "Opens your Home folder in the File Search Command",
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/`,
+    icon: {
+      name: "folder",
+    },
+  },
+  {
     id: "root-file-search",
     name: "Open Root in File Search",
     description: "Opens the Root folder in the File Search Command",
-    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=~/`,
+    link: `raycast://extensions/raycast/file-search/search-files?fallbackText=/`,
     icon: {
       name: "folder",
     },
