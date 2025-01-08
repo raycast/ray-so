@@ -608,6 +608,11 @@ const socials: Quicklink[] = [
     name: "Search Bluesky",
     link: "https://bsky.app/search?q={Query}",
   },
+  {
+    id: "gist",
+    name: "Search Gist",
+    link: "https://gist.github.com/search?q={Query}",
+  },
 ];
 
 const misc: Quicklink[] = [
