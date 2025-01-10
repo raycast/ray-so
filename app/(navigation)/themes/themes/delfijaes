@@ -1,0 +1,21 @@
+{
+  "author": "Delfi",
+  "authorUsername": "delfi",
+  "version": "1",
+  "name": "delfi",
+  "appearance": "dark",
+  "colors": {
+    "background": "#171B23",
+    "backgroundSecondary": "#004282",
+    "text": "#ADB2C9",
+    "selection": "#A8C1FF",
+    "loader": "#00E2FF",
+    "red": "#F84141",
+    "orange": "#FFB156",
+    "yellow": "#FEFF7F",
+    "green": "#63BA89",
+    "blue": "#2E99FF",
+    "purple": "#C58AFA",
+    "magenta": "#E465FB"
+  }
+}
