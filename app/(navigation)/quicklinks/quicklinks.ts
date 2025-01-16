@@ -266,6 +266,11 @@ const development: Quicklink[] = [
       link: "https://github.com/alanwill",
     },
   },
+  {
+    id: "kotlin-docs",
+    link: "https://kotlinlang.org/docs/home.html?q={argument}&s=full",
+    name: "Kotlin Docs",
+  },
 ];
 
 const design: Quicklink[] = [
