@@ -451,6 +451,14 @@ const search: Quicklink[] = [
       link: "https://github.com/dcchambers",
     },
   },
+  {
+    name: "prime video",
+    link: "https://www.primevideo.com/search/ref=atv_nb_sug?phrase={query}",
+    author: {
+      name: "Gianpiero Spinelli",
+      link: "https://github.com/gianpispi",
+    },
+  },
 ];
 
 const shopping: Quicklink[] = [
