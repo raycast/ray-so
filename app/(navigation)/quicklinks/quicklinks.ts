@@ -452,6 +452,7 @@ const search: Quicklink[] = [
     },
   },
   {
+    id: "prime-video",
     name: "prime video",
     link: "https://www.primevideo.com/search/ref=atv_nb_sug?phrase={query}",
     author: {
