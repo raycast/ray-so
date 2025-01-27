@@ -450,16 +450,7 @@ const search: Quicklink[] = [
       name: "Dakota Chambers",
       link: "https://github.com/dcchambers",
     },
-  },
-  {
-    id: "prime-video",
-    name: "prime video",
-    link: "https://www.primevideo.com/search/ref=atv_nb_sug?phrase={query}",
-    author: {
-      name: "Gianpiero Spinelli",
-      link: "https://github.com/gianpispi",
-    },
-  },
+  }
 ];
 
 const shopping: Quicklink[] = [
@@ -579,6 +570,15 @@ const entertainment: Quicklink[] = [
     author: {
       name: "Nate Whistler",
       link: "https://infosec.exchange/@Onyx/",
+    },
+  },
+  {
+    id: "prime-video",
+    name: "prime video",
+    link: "https://www.primevideo.com/search/ref=atv_nb_sug?phrase={query}",
+    author: {
+      name: "Gianpiero Spinelli",
+      link: "https://github.com/gianpispi",
     },
   },
 ];
