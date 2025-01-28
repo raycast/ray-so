@@ -22,6 +22,8 @@ import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
+import TinybirdLogo from "../assets/tinybird.svg";
+import TinybirdLogoUrl from "../assets/tinybird.svg?url";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -1004,6 +1006,53 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#FFAF65",
         number: "#E7CF55",
         property: "#E978A1",
+      }),
+    },
+  },
+  tinybird: {
+    id: "tinybird",
+    name: "Tinybird",
+    background: {
+      from: "#000000",
+      to: "#000000",
+    },
+    icon: TinybirdLogo,
+    iconUrl: `${BASE_URL}${TinybirdLogoUrl.src}`,
+    partner: true,
+    font: "geist-mono",
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#DF3079",
+        string: "#171717",
+        comment: "hsla(240, 12%, 71%, 1)",
+        keyword: "#2E95D3",
+        parameter: "#ededed",
+        function: "#00A67D",
+        stringExpression: "#00a67d",
+        punctuation: "#171717",
+        link: "#F22C3D",
+        number: "#e9950c",
+        property: "#F22C3D",
+        highlight: "rgba(0,0,0,0.02)",
+        highlightHover: "rgba(0,0,0,0.015)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        constant: "#df3079",
+        string: "#fff",
+        comment: "rgba(255,255,255,0.4)",
+        keyword: "#2E95D3",
+        parameter: "#fff",
+        function: "#00A67D",
+        stringExpression: "#00A67D",
+        punctuation: "#fff",
+        link: "#F22C3D",
+        number: "#e9950c",
+        property: "#F22C3D",
+        highlight: "rgba(255, 255, 255, 0.05)",
+        highlightHover: "rgba(255, 255, 255, 0.03)",
       }),
     },
   },

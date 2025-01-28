@@ -913,3 +913,49 @@
     display: none;
   }
 }
+
+.tinybirdFrame {
+  background: #000000; /* Adjust to match Tinybird's brand */
+}
+
+.tinybirdWindow {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  background: #070a08; /* Adjust background color */
+}
+
+.tinybirdHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #141818;
+  background: #010201;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  gap: 12px;
+}
+
+.tinybirdFileName {
+  /* Similar to other fileName styles */
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #your-color;
+  font-size: 12px;
+  line-height: 40px;
+}
+
+.tinybirdFrameLightMode {
+  background: #your-light-background;
+
+  .tinybirdWindow {
+    background: #ffffff;
+  }
+
+  .tinybirdHeader {
+    background: #fcfcfc;
+  }
+}
