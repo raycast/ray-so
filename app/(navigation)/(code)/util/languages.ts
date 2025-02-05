@@ -32,6 +32,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "CSS",
     src: () => import("shiki/langs/css.mjs"),
   },
+  cypher: {
+    name: "Cypher",
+    src: () => import("shiki/langs/cypher.mjs"),
+  },
   dart: {
     name: "Dart",
     src: () => import("shiki/langs/dart.mjs"),
