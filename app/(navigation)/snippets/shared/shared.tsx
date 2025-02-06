@@ -1,25 +1,16 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import SelectionArea, { SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
-import { nanoid } from "nanoid";
 import { SnippetsIcon } from "../components/Icons";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import styles from "../[[...slug]]/snippets.module.css";
-import buttonStyles from "../components/Button.module.css";
 import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
 import { Snippet } from "../snippets";
@@ -232,7 +223,6 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
                       <Kbd>C</Kbd>
                     </Kbds>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
                 </DropdownMenuContent>
               </DropdownMenu>
             </ButtonGroup>
