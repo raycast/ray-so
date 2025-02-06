@@ -11,7 +11,8 @@ export type Model =
   | "groq-llama-3.1-70b-versatile"
   | "groq-llama-3.1-8b-instant"
   | "groq-llama3-70b-8192"
-  | "groq-mixtral-8x7b-32768";
+  | "groq-mixtral-8x7b-32768"
+  | "ray-1";
 
 export type AiModel = {
   id: Model;

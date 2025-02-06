@@ -4,11 +4,16 @@ import {
   BrandMistralIcon,
   BrandOpenaiIcon,
   BrandPerplexityIcon,
+  RaycastLogoNegIcon,
 } from "@raycast/icons";
 import { Preset } from "../presets";
 
 export default function ModelIcon({ model }: { model: Preset["model"] }) {
   let component = null;
+  if (model.includes("ray")) {
+    component = <RaycastLogoNegIcon />;
+  }
+
   if (model?.includes("openai")) {
     component = <BrandOpenaiIcon />;
   }

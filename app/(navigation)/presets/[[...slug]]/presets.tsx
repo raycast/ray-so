@@ -16,38 +16,50 @@ import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import { InfoDialog } from "../components/InfoDialog";
 import { AiModel } from "@/api/ai";
+import { Extension } from "@/api/store";
 
 type Props = {
   models: AiModel[];
+  extensions: Extension[];
 };
 
-export default function Presets({ models }: Props) {
+export default function Presets({ models, extensions }: Props) {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
   const [showAdvancedModels, setShowAdvancedModels] = React.useState(true);
+  const [checkedExtensions, setCheckedExtensions] = React.useState<string[]>([]);
 
   const advancedModels = models.filter((model) => model.requires_better_ai).map((model) => model.model);
 
   const filteredCategories = React.useMemo(() => {
-    if (showAdvancedModels) {
-      return categories;
-    } else {
+    if (!showAdvancedModels || checkedExtensions.length > 0) {
       return categories
         .map((category) => ({
           ...category,
           presets: category.presets.filter((preset) => {
             const presetObj = models.find((model) => model.id === preset.model);
-            return !advancedModels.includes(presetObj?.model || "");
+            const passesAdvancedFilter = showAdvancedModels || !advancedModels.includes(presetObj?.model || "");
+
+            const passesExtensionFilter =
+              checkedExtensions.length === 0 || preset.extensions?.some((ext) => checkedExtensions.includes(ext));
+
+            return passesAdvancedFilter && passesExtensionFilter;
           }),
         }))
         .filter((category) => category.presets.length > 0);
     }
-  }, [showAdvancedModels, advancedModels, models]);
+    return categories;
+  }, [showAdvancedModels, advancedModels, models, checkedExtensions]);
 
   React.useEffect(() => {
     setEnableViewObserver(true);
   }, []);
+
+  const extensionIds = categories
+    .flatMap((category) => category.presets)
+    .flatMap((preset) => preset.extensions ?? [])
+    .filter((id): id is string => id !== undefined && id !== null);
 
   return (
     <>
@@ -88,16 +100,19 @@ export default function Presets({ models }: Props) {
                   ))}
                 </div>
                 <span className={styles.sidebarNavDivider}></span>
-                <div className={styles.sidebarNav}>
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
+                    <p className="text-[13px] font-medium text-gray-11">Models</p>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info01Icon className="text-gray-11" />
+                      </TooltipTrigger>
+                      <TooltipContent>Advanced AI requires the Advanced AI add-on to Raycast Pro</TooltipContent>
+                    </Tooltip>
+                  </div>
                   <div className={styles.filter}>
                     <span className={styles.label}>
-                      <label htmlFor="advancedModels">Show Advanced AI Models</label>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info01Icon />
-                        </TooltipTrigger>
-                        <TooltipContent>Requires Advanced AI add-on to Raycast Pro</TooltipContent>
-                      </Tooltip>
+                      <label htmlFor="advancedModels">Show Advanced AI</label>
                     </span>
 
                     <Switch
@@ -107,6 +122,54 @@ export default function Presets({ models }: Props) {
                       color="purple"
                     />
                   </div>
+                </div>
+                <span className={styles.sidebarNavDivider}></span>
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
+                    <p className="text-[13px] font-medium text-gray-11">AI Extensions</p>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info01Icon className="text-gray-11" />
+                      </TooltipTrigger>
+                      <TooltipContent>AI Extensions provide additional functionality to AI models</TooltipContent>
+                    </Tooltip>
+                  </div>
+
+                  <ul className={styles.extensionsList}>
+                    {extensionIds.map((id) => {
+                      const extension = extensions.find((ext) => ext.id === id);
+                      if (!extension) return null;
+                      const icon = extension.icons.dark || extension.icons.light;
+                      return (
+                        <li key={id} className="flex items-center gap-2 justify-between pr-3">
+                          <label
+                            htmlFor={`extension-${id}`}
+                            className="flex items-center gap-2 flex-1 hover:text-gray-12 transition-colors"
+                          >
+                            {icon ? (
+                              <img src={icon} alt={extension.title} width={16} height={16} />
+                            ) : (
+                              <div className="w-4 h-4 bg-gray-4 rounded" />
+                            )}
+                            {extension.title}
+                          </label>
+                          <input
+                            type="checkbox"
+                            id={`extension-${id}`}
+                            className="rounded"
+                            checked={checkedExtensions.some((ext) => ext === id)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setCheckedExtensions([...checkedExtensions, id]);
+                              } else {
+                                setCheckedExtensions(checkedExtensions.filter((ext) => ext !== id));
+                              }
+                            }}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </ScrollArea>
@@ -129,7 +192,7 @@ export default function Presets({ models }: Props) {
                 </h2>
                 <div className={styles.presets}>
                   {category.presets.map((preset) => (
-                    <PresetComponent key={preset.id} preset={preset} models={models} />
+                    <PresetComponent key={preset.id} preset={preset} models={models} extensions={extensions} />
                   ))}
                 </div>
               </div>

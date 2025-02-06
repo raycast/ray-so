@@ -3,6 +3,7 @@ import { allPresets } from "../../presets";
 import { getAvailableAiModels } from "@/api/ai";
 import { PresetDetail } from "../../components/PresetDetail";
 import { Metadata, ResolvingMetadata } from "next";
+import { getExtensions } from "@/api/store";
 
 type Props = {
   params: { slug: string };
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const pageTitle = `${preset.name} - Raycast AI Preset`;
   const ogImage = `/presets/og?title=${encodeURIComponent(preset.name)}&description=${encodeURIComponent(
-    preset.description || ""
+    preset.description || "",
   )}&icon=${preset.icon}`;
 
   return {
@@ -45,11 +46,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
     },
+    // TODO: Get extension names
     other: {
       "twitter:label1": "Model",
       "twitter:data": preset.model,
-      "twitter:label2": "Creativity",
-      "twitter:data2": preset.creativity,
+      "twitter:label2": preset.creativity ? "Creativity" : preset.extensions ? "AI Extensions" : "",
+      "twitter:data2": preset.creativity
+        ? preset.creativity
+        : preset.extensions
+          ? preset.extensions.map((extension) => extension)
+          : "",
     },
   };
 }
@@ -71,8 +77,8 @@ export default async function Page({ params }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
-
-  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} />;
+  const extensions = await getExtensions({ extensionIds: preset.extensions || [] });
+  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }
 
 export async function generateStaticParams() {

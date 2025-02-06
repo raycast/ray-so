@@ -8,8 +8,9 @@ export type Preset = {
   description?: string;
   instructions: string;
   icon: IconName;
-  creativity: "none" | "low" | "medium" | "high" | "maximum";
+  creativity?: "none" | "low" | "medium" | "high" | "maximum";
   model: Model;
+  extensions?: string[];
   web_search?: boolean;
   image_generation?: boolean;
   date: `${number}-${number}-${number}`;
@@ -517,6 +518,26 @@ Here are the rules you must follow:
 ];
 
 const misc: Preset[] = [
+  {
+    id: "personal-assistant",
+    name: "Personal Assistant",
+    instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
+    description: "Helps the user with booking meetings and keeping track of their schedule.",
+    icon: "person",
+    model: "ray-1",
+    date: "2025-01-24",
+    extensions: ["calendar", "web", "4d342edf-4371-498e-8ead-a424d65f933f"],
+  },
+  {
+    id: "fitness-coach",
+    name: "Fitness Coach",
+    instructions: `You are a personal fitness coach. You are a highly skilled coach who is able to help the user with their goals and aspirations. You are able to help the user with their goals and aspirations.`,
+    description: "Helps the user with their goals and aspirations.",
+    icon: "person",
+    model: "ray-1",
+    date: "2025-01-24",
+    extensions: ["e7c677b5-5a43-4094-96a5-4fffffdfdc72"],
+  },
   {
     id: "quality-control",
     name: "Quality Control",

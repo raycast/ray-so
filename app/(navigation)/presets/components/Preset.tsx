@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
 import styles from "./Preset.module.css";
-import { CopyClipboardIcon, DownloadIcon, Globe01Icon, ImageIcon, LinkIcon, PlusCircleIcon } from "@raycast/icons";
+import {
+  CopyClipboardIcon,
+  DownloadIcon,
+  Globe01Icon,
+  ImageIcon,
+  LinkIcon,
+  PlusCircleIcon,
+  StarsIcon,
+} from "@raycast/icons";
 import CreativityIcon from "./CreativityIcon";
 import ModelIcon from "./ModelIcon";
 import * as ContextMenu from "@radix-ui/react-context-menu";
@@ -13,6 +21,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { Preset } from "../presets";
 import { AiModel } from "@/api/ai";
+import { Extension } from "@/api/store";
 
 export const creativity = {
   none: ["None", "No Creativity"],
@@ -22,11 +31,46 @@ export const creativity = {
   maximum: ["Maximum", "Max Creativity"],
 };
 
-export function PresetComponent({ preset, models }: { preset: Preset; models: AiModel[] }) {
+export function PresetComponent({
+  preset,
+  models,
+  extensions,
+}: {
+  preset: Preset;
+  models: AiModel[];
+  extensions: Extension[];
+}) {
   const [showToast, setShowToast] = React.useState(false);
   const [toastMessage, setToastMessage] = React.useState("");
   const router = useRouter();
-  const model = models?.find((m) => m.id === preset.model);
+  let model = models?.find((m) => m.id === preset.model);
+  if (preset.model === "ray-1") {
+    model = {
+      id: "ray-1",
+      name: "Ray-1",
+      description: "Raycast",
+      availability: "public",
+      features: [],
+      suggestions: [],
+      provider: "raycast",
+      provider_name: "Raycast",
+      provider_brand: "raycast",
+      model: "ray-1",
+      in_better_ai_subscription: true,
+      requires_better_ai: false,
+      speed: 1,
+      intelligence: 1,
+      context: 0,
+      abilities: {
+        image_generation: {
+          model: "ray-1",
+        },
+        web_search: {
+          toggleable: false,
+        },
+      },
+    };
+  }
 
   const handleCopyInstruction = React.useCallback(() => {
     copy(preset.instructions);
@@ -114,6 +158,29 @@ export function PresetComponent({ preset, models }: { preset: Preset; models: Ai
                       <span className={styles.mobileOnly}>{creativity[preset.creativity][0]}</span>
                       <span className={styles.desktopOnly}>{creativity[preset.creativity][1]}</span>
                     </span>
+                  </>
+                ) : null}
+                {preset.extensions && preset.extensions.length > 0 ? (
+                  <>
+                    <span className={styles.metaDivider} />
+
+                    {preset.extensions?.length > 0 ? (
+                      <Tooltip delayDuration={700}>
+                        <TooltipTrigger>
+                          <span className={styles.metaItem}>
+                            <StarsIcon />
+
+                            {preset.extensions
+                              .map((id) => {
+                                const extension = extensions.find((e) => e.id === id);
+                                return extension ? extension.title : id;
+                              })
+                              .join(", ")}
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent>AI Extensions</TooltipContent>
+                      </Tooltip>
+                    ) : null}
                   </>
                 ) : null}
                 {preset.web_search ? (
