@@ -254,6 +254,45 @@ const OpenAIFrame = () => {
   );
 };
 
+const TinybirdFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.tinybirdFrame,
+        !darkMode && styles.tinybirdFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.tinybirdWindow}>
+        <div className={styles.tinybirdHeader}>
+          <div className={styles.tinybirdCircleText}>tb {">"}</div>
+          <div className={classNames(styles.fileName, styles.tinybirdFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            <span>{fileName || "Untitled-1"}</span>
+          </div>
+        </div>
+        <Editor />
+        <div className={styles.tinybirdWindowBorder} />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -325,6 +364,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <OpenAIFrame />;
       case THEMES.prisma.id:
         return <PrismaFrame />;
+      case THEMES.tinybird.id:
+        return <TinybirdFrame />;
       default:
         return <DefaultFrame />;
     }

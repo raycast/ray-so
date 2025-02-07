@@ -913,3 +913,112 @@
     display: none;
   }
 }
+
+.tinybirdFrame {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.tinybirdWindow {
+  position: relative;
+  z-index: 1;
+  border: 1px solid #c2c2c2;
+  border-bottom: none;
+  background: #0a0a0a;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%);
+}
+
+.tinybirdWindow {
+  font-family: "JetBrains Mono", monospace;
+  mask-image: linear-gradient(to bottom, #0a0a0a 70%, transparent 100%);
+}
+
+.tinybirdWindow::after {
+  position: absolute;
+  z-index: 100;
+  top: -4px;
+  right: -28px;
+  width: 59px;
+  height: 5px;
+  background: #c2c2c2;
+  content: "";
+  transform: rotate(45deg);
+  transform-origin: left;
+}
+
+.tinybirdHeader {
+  position: relative;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 12px;
+  background: #0a0a0a;
+  gap: 8px;
+}
+
+.tinybirdHeader::before {
+  position: absolute;
+  right: -2px;
+  bottom: 0px;
+  left: 0px;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent 0%, #2af895 10%, #2af895 100%);
+  content: "";
+  mask-image: linear-gradient(to left, transparent 50%, #0a0a0a 99%, #0a0a0a 100%);
+}
+
+.tinybirdCircle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #c2c2c2;
+  border-radius: 50%;
+  margin-right: 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.tinybirdCircleText {
+  color: #2af895;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tinybirdFileName {
+  position: relative;
+  display: grid;
+  align-items: center;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+
+  > input {
+    color: rgba(0, 0, 0, 0);
+  }
+
+  > input:focus + span {
+    display: block;
+  }
+}
+
+.tinybirdFrameLightMode {
+  background: #e8e3d9;
+
+  .tinybirdWindow {
+    background: #e8e3d9;
+  }
+
+  .tinybirdHeader {
+    background: #d9d4ca;
+  }
+
+  .tinybirdCircleText {
+    color: #7c917c;
+  }
+
+  .tinybirdHeader::before {
+    background-image: none;
+  }
+}
