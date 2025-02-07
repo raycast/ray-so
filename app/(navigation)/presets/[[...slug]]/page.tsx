@@ -4,7 +4,7 @@ import { getAvailableAiModels } from "@/api/ai";
 import OgImage from "../assets/og-image.png";
 import { allPresets } from "../presets";
 import { getExtensions } from "@/api/store";
-
+import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
 const pageTitle = "Preset Explorer by Raycast";
 const pageDescription = "Easily browse, share, and add presets to Raycast.";
 const ogUrl = OgImage.src;
@@ -45,7 +45,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const models = await getAvailableAiModels();
-  const allExtensionIds = allPresets.reduce((acc: string[], preset) => {
+  const inlineExtensionIds = allPresets.flatMap((preset) => getExtensionIdsFromString(preset.instructions) ?? []);
+  const extensionIds = allPresets.reduce((acc: string[], preset) => {
     if (preset.extensions) {
       const extensionList = Array.isArray(preset.extensions) ? preset.extensions : [preset.extensions];
       extensionList.forEach((extension) => {
@@ -56,6 +57,7 @@ export default async function Page() {
     }
     return acc;
   }, []);
+  const allExtensionIds = Array.from(new Set([...inlineExtensionIds, ...extensionIds]));
   const extensions = await getExtensions({ extensionIds: allExtensionIds });
   return <Presets models={models} extensions={extensions} />;
 }

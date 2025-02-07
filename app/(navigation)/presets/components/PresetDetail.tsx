@@ -36,6 +36,8 @@ import { InfoDialog } from "./InfoDialog";
 import { Kbd } from "@/components/kbd";
 import { AiModel } from "@/api/ai";
 import { Extension } from "@/api/store";
+import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
+import { AIExtension } from "@/components/ai-extension";
 
 type PresetPageProps = {
   preset: Preset;
@@ -173,6 +175,10 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
     image_generation,
   } = preset;
 
+  const allExtensions = Array.from(
+    new Set([...(preset.extensions || []), ...getExtensionIdsFromString(preset.instructions)]),
+  );
+
   return (
     <>
       <NavigationActions>
@@ -257,7 +263,23 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                   <CopyClipboardIcon data-icon="copy" className="w-4 h-4" />
                 </button>
               </div>
-              <pre className={styles.pre}>{instructions}</pre>
+              <pre className={styles.pre}>
+                {instructions.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                  const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                  if (match) {
+                    const extension = extensions.find((e) => e.id === match[2]);
+                    return <AIExtension key={index} extension={extension} fallback={match[1]} />;
+                  }
+                  return (
+                    <span
+                      key={index}
+                      dangerouslySetInnerHTML={{
+                        __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
+                      }}
+                    />
+                  );
+                })}
+              </pre>
             </div>
           </div>
           <div className={styles.meta}>
@@ -303,9 +325,9 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                 </div>
               </div>
             )}
-            {preset.extensions && (
+            {allExtensions && (
               <>
-                {preset.extensions.map((id) => {
+                {allExtensions.map((id) => {
                   const extension = extensions.find((e) => e.id === id);
                   const icon = extension?.icons.dark || extension?.icons.light;
                   return (

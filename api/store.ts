@@ -1,3 +1,10 @@
+// Basic icon type
+type Icons = {
+  light?: string;
+  dark?: string;
+};
+
+// Tool type for extension features
 type Tool = {
   id: string;
   name: string;
@@ -8,48 +15,86 @@ type Tool = {
   functionalities?: string[];
 };
 
-type Icons = {
-  light?: string;
-  dark?: string;
-};
-
+// Main extension type
 export type Extension = {
+  id: string;
   title: string;
   name: string;
-  id: string;
   icons: Icons;
   tools?: Tool[];
-  author: {
-    handle: string;
-  };
 };
 
 type GetExtensionsProps = {
   extensionIds: string[];
 };
 
-const nativeExtensions = ["calendar", "web"];
+const nativeExtensionsMap = {
+  builtin_package_raycastFocus: {
+    id: "builtin_package_raycastFocus",
+    title: "Raycast Focus",
+    name: "raycast-focus",
+    icons: {
+      dark: "/icons/focus.png",
+    },
+  },
+  builtin_package_calendar: {
+    id: "builtin_package_calendar",
+    title: "Calendar",
+    name: "calendar",
+    icons: {
+      dark: "/icons/calendar.svg",
+    },
+  },
+  builtin_package_finder: {
+    id: "builtin_package_finder",
+    title: "Finder",
+    name: "finder",
+    icons: {
+      dark: "/icons/finder.png",
+    },
+  },
+  remote_package_web: {
+    id: "remote_package_web",
+    title: "Web",
+    name: "web",
+    icons: {
+      dark: "/icons/web.svg",
+    },
+  },
+  remote_package_dalle: {
+    id: "remote_package_dalle",
+    title: "DALL-E",
+    name: "dalle",
+    icons: {
+      dark: "/icons/image.svg",
+    },
+  },
+};
 
 export async function getExtensions({ extensionIds }: GetExtensionsProps): Promise<Extension[]> {
-  const filteredExtensionIds = extensionIds.filter((id) => !nativeExtensions.includes(id));
-  const results = await fetch(
-    `https://www.raycast.com/frontend_api/extensions/search?q=&page=1&ids[]=${filteredExtensionIds.join("&ids[]=")}`,
+  // Split extensions into store and native (builtin/remote) types
+  const storeExtensions = extensionIds.filter((id) => !id.startsWith("builtin_") && !id.startsWith("remote_"));
+  const nativeExtensions = extensionIds.filter((id) => id.startsWith("builtin_") || id.startsWith("remote_"));
+
+  // Fetch store extensions
+  const response = await fetch(
+    `https://www.raycast.com/frontend_api/extensions/search?q=&page=1&ids[]=${storeExtensions.join("&ids[]=")}`,
   );
-  const data = (await results.json()) as {
-    data: Extension[];
-  };
-  console.log(data);
+  const { data } = (await response.json()) as { data: Extension[] };
 
-  const extensionResults = [
-    ...data.data,
-    ...nativeExtensions.map((extension) => ({
-      id: extension,
-      title: extension.charAt(0).toUpperCase() + extension.slice(1),
-      name: extension,
+  // Create native extension objects
+  const nativeExtensionObjects = nativeExtensions.map((id) => {
+    const mappedExtension = nativeExtensionsMap[id as keyof typeof nativeExtensionsMap];
+    if (mappedExtension) {
+      return mappedExtension;
+    }
+    return {
+      id,
+      title: id.charAt(0).toUpperCase() + id.slice(1),
+      name: id,
       icons: {},
-      author: { handle: "raycast" },
-    })),
-  ];
+    };
+  });
 
-  return extensionResults;
+  return [...data, ...nativeExtensionObjects];
 }

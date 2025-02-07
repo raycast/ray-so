@@ -32,9 +32,25 @@ export default function Presets({ models, extensions }: Props) {
 
   const advancedModels = models.filter((model) => model.requires_better_ai).map((model) => model.model);
 
+  // create a new array of categories
+  const categoriesWithInlineExtensions = categories.map((category) => ({
+    ...category,
+    presets: category.presets.map((preset) => ({
+      ...preset,
+      extensions: Array.from(
+        new Set([
+          ...(preset.extensions || []),
+          ...(preset.instructions
+            .match(/\{id=([^}]+)\}/g)
+            ?.map((match) => match.replace(/\{id=/, "").replace(/\}/, "")) ?? []),
+        ]),
+      ),
+    })),
+  }));
+
   const filteredCategories = React.useMemo(() => {
     if (!showAdvancedModels || checkedExtensions.length > 0) {
-      return categories
+      return categoriesWithInlineExtensions
         .map((category) => ({
           ...category,
           presets: category.presets.filter((preset) => {
@@ -49,17 +65,21 @@ export default function Presets({ models, extensions }: Props) {
         }))
         .filter((category) => category.presets.length > 0);
     }
-    return categories;
-  }, [showAdvancedModels, advancedModels, models, checkedExtensions]);
+    return categoriesWithInlineExtensions;
+  }, [showAdvancedModels, advancedModels, models, checkedExtensions, categoriesWithInlineExtensions]);
 
   React.useEffect(() => {
     setEnableViewObserver(true);
   }, []);
 
-  const extensionIds = categories
-    .flatMap((category) => category.presets)
-    .flatMap((preset) => preset.extensions ?? [])
-    .filter((id): id is string => id !== undefined && id !== null);
+  const extensionIds = Array.from(
+    new Set(
+      categoriesWithInlineExtensions
+        .flatMap((category) => category.presets)
+        .flatMap((preset) => preset.extensions ?? [])
+        .filter((id): id is string => id !== undefined && id !== null),
+    ),
+  );
 
   return (
     <>

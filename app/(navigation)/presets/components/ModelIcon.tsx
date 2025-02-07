@@ -10,7 +10,7 @@ import { Preset } from "../presets";
 
 export default function ModelIcon({ model }: { model: Preset["model"] }) {
   let component = null;
-  if (model.includes("ray")) {
+  if (model.includes("raycast")) {
     component = <RaycastLogoNegIcon />;
   }
 

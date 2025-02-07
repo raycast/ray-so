@@ -39,8 +39,10 @@ import { Metadata } from "next";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
+import { AIExtension } from "../[[...slug]]/prompts";
+import { Extension } from "@/api/store";
 
-export function Shared({ prompts }: { prompts: Prompt[] }) {
+export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions: Extension[] }) {
   const router = useRouter();
 
   const [copied, setCopied] = React.useState(false);
@@ -274,15 +276,26 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                             >
                               <div className={styles.promptTemplate}>
                                 <ScrollArea>
-                                  <pre
-                                    className={styles.template}
-                                    dangerouslySetInnerHTML={{
-                                      __html: prompt.prompt.replace(
-                                        /\{[^}]+\}/g,
-                                        `<span class="${styles.placeholder}">$&</span>`,
-                                      ),
-                                    }}
-                                  ></pre>
+                                  <pre className={styles.template}>
+                                    {prompt.prompt.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                                      const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                                      if (match) {
+                                        const extension = extensions.find((e) => e.id === match[2]);
+                                        return <AIExtension key={index} extension={extension} fallback={match[1]} />;
+                                      }
+                                      return (
+                                        <span
+                                          key={index}
+                                          dangerouslySetInnerHTML={{
+                                            __html: part.replace(
+                                              /\{[^}]+\}/g,
+                                              `<span class="${styles.placeholder}">$&</span>`,
+                                            ),
+                                          }}
+                                        />
+                                      );
+                                    })}
+                                  </pre>
                                 </ScrollArea>
                               </div>
                               <div className={styles.prompt}>

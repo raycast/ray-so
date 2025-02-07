@@ -7,7 +7,7 @@ export type Prompt = {
   title: string;
   prompt: string;
   icon: IconName;
-  creativity: "none" | "low" | "medium" | "high" | "maximum";
+  creativity?: "none" | "low" | "medium" | "high" | "maximum";
   model?: Model;
   date: `${number}-${number}-${number}`;
   author?: {
@@ -711,6 +711,15 @@ You can use the following template to create the summary:
       link: "https://github.com/Alireza29675",
     },
   },
+  {
+    id: "focus-mode",
+    title: "Focus mode",
+    prompt:
+      '@linak-desk-controller{id=f9aaf2b2-0bc4-407f-ab4d-34908a6c779c} move desk to standing and start a @raycast-focus{id=builtin_package_raycastFocus} session for 30mins blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 30 mins to "Focus mode" with the :focus: icon',
+    icon: "circle-disabled",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
 ];
 
 const raycast: Prompt[] = [
@@ -1113,7 +1122,7 @@ export const baseCategories: Category[] = [
   };
 });
 
-const allPrompts = baseCategories.flatMap((category) => category.prompts);
+export const allPrompts = baseCategories.flatMap((category) => category.prompts);
 
 const newCategory = {
   name: "New",

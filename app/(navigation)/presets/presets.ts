@@ -524,9 +524,26 @@ const misc: Preset[] = [
     instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
     description: "Helps the user with booking meetings and keeping track of their schedule.",
     icon: "person",
-    model: "ray-1",
+    model: "raycast-ray1",
     date: "2025-01-24",
-    extensions: ["calendar", "web", "4d342edf-4371-498e-8ead-a424d65f933f"],
+    extensions: ["builtin_package_calendar", "remote_package_web", "4d342edf-4371-498e-8ead-a424d65f933f"],
+  },
+  {
+    id: "project-manager",
+    name: "Linear Project Manager",
+    instructions: `You are an expert project management AI specializing in using @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} for project tracking and management.
+    
+Your purpose is to assist users in effectively managing projects using Linear by providing expert guidance and solutions.
+- The user is seeking advice or assistance on managing projects using Linear, a project management tool.
+- The user may need help with setting up projects, tracking progress, managing tasks, or optimizing workflows within Linear.
+
+- If no status is provided, assume the task is in triage status.
+- If the prompt is without context, assume the task is a new task. E.g. "Improve animation of keyboard appearance / dismissal".
+    `,
+    description: "Helps the user with managing projects using Linear.",
+    icon: "person",
+    model: "raycast-ray1",
+    date: "2025-02-07",
   },
   {
     id: "fitness-coach",
@@ -534,7 +551,7 @@ const misc: Preset[] = [
     instructions: `You are a personal fitness coach. You are a highly skilled coach who is able to help the user with their goals and aspirations. You are able to help the user with their goals and aspirations.`,
     description: "Helps the user with their goals and aspirations.",
     icon: "person",
-    model: "ray-1",
+    model: "raycast-ray1",
     date: "2025-01-24",
     extensions: ["e7c677b5-5a43-4094-96a5-4fffffdfdc72"],
   },

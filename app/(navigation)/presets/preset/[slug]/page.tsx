@@ -77,7 +77,11 @@ export default async function Page({ params }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
-  const extensions = await getExtensions({ extensionIds: preset.extensions || [] });
+  const inlineExtensionIds =
+    preset.instructions.match(/\{id=([^}]+)\}/g)?.map((match) => match.replace(/\{id=/, "").replace(/\}/, "")) ?? [];
+  const allExtensionIds = Array.from(new Set([...inlineExtensionIds, ...(preset.extensions || [])]));
+  const extensions = await getExtensions({ extensionIds: allExtensionIds });
+
   return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }
 
