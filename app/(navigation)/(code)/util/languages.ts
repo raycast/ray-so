@@ -76,6 +76,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Go",
     src: () => import("shiki/langs/go.mjs"),
   },
+  hcl: {
+    name: "HCL",
+    src: () => import("shiki/langs/hcl.mjs"),
+  },
   haskell: {
     name: "Haskell",
     src: () => import("shiki/langs/haskell.mjs"),
