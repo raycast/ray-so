@@ -917,7 +917,8 @@
 .tinybirdFrame {
   position: relative;
   overflow: hidden;
-  background: #0a0a0a;
+  background: #151515;
+  font-family: var(--font-ia-writer-mono);
 }
 
 .tinybirdWindow {
@@ -925,13 +926,12 @@
   z-index: 1;
   border: 1px solid #c2c2c2;
   border-bottom: none;
-  background: #0a0a0a;
+  background: #151515;
   clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%);
 }
 
 .tinybirdWindow {
-  font-family: "JetBrains Mono", monospace;
-  mask-image: linear-gradient(to bottom, #0a0a0a 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #151515 70%, transparent 100%);
 }
 
 .tinybirdWindow::after {
@@ -954,7 +954,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 0 12px;
-  background: #0a0a0a;
+  background: #151515;
   gap: 8px;
 }
 
@@ -964,9 +964,9 @@
   bottom: 0px;
   left: 0px;
   height: 1px;
-  background-image: linear-gradient(to right, transparent 0%, #2af895 10%, #2af895 100%);
+  background-image: linear-gradient(to right, transparent 0%, #27f795 10%, #27f795 100%);
   content: "";
-  mask-image: linear-gradient(to left, transparent 50%, #0a0a0a 99%, #0a0a0a 100%);
+  mask-image: linear-gradient(to left, transparent 50%, #151515 99%, #151515 100%);
 }
 
 .tinybirdCircle {
@@ -981,7 +981,7 @@
 }
 
 .tinybirdCircleText {
-  color: #2af895;
+  color: #27f795;
   font-size: 12px;
   font-weight: 700;
 }
@@ -1004,21 +1004,38 @@
 }
 
 .tinybirdFrameLightMode {
-  background: #e8e3d9;
+  background: #ffffff;
 
   .tinybirdWindow {
-    background: #e8e3d9;
+    background: #ffffff;
   }
 
   .tinybirdHeader {
-    background: #d9d4ca;
+    background: #ffffff;
   }
 
   .tinybirdCircleText {
-    color: #7c917c;
+    color: #151515;
+  }
+
+  .tinybirdFileName {
+    color: #151515;
   }
 
   .tinybirdHeader::before {
     background-image: none;
+  }
+
+  .tinybirdWindow {
+    border: 1px solid #151515;
+  }
+
+  .tinybirdWindow::after {
+    background: #151515;
+  }
+
+  .tinybirdHeader::before {
+    background-image: linear-gradient(to right, transparent 0%, #151515 10%, #151515 100%);
+    mask-image: linear-gradient(to left, transparent 50%, #151515 99%, #151515 100%);
   }
 }

@@ -22,6 +22,10 @@ const soehneMono = localFont({
   src: "../assets/soehne-mono-buch.woff2",
   variable: "--font-soehne-mono",
 });
+const writerMono = localFont({
+  src: "../assets/iAWriterMonoS-Regular.woff2",
+  variable: "--font-ia-writer-mono",
+});
 
 /**
  * We can't adjust the fallback stack of the font so instead we just extract the
@@ -33,7 +37,14 @@ const geistMonoFontName = GeistMono.style.fontFamily.split(",")[0];
 export default function NavigationLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={cn("h-full", jetBrainsMono.variable, ibmPlexMono.variable, firaCode.variable, soehneMono.variable)}
+      className={cn(
+        "h-full",
+        jetBrainsMono.variable,
+        ibmPlexMono.variable,
+        firaCode.variable,
+        soehneMono.variable,
+        writerMono.variable,
+      )}
       style={
         {
           "--font-geist-mono": geistMonoFontName,

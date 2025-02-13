@@ -158,3 +158,8 @@
   font-family: var(--font-soehne-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
+
+.iaWriterMono {
+  font-family: var(--font-ia-writer-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
