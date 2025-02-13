@@ -31,7 +31,7 @@ const VercelFrame = () => {
         styles.frame,
         showBackground && styles.vercelFrame,
         showBackground && !darkMode && styles.vercelFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -60,7 +60,7 @@ const SupabaseFrame = () => {
         styles.frame,
         showBackground && styles.supabaseFrame,
         !darkMode && styles.supabaseFrameLightMode,
-        !showBackground && styles.noBackground
+        !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
@@ -100,7 +100,7 @@ const TailwindFrame = () => {
         showBackground && styles.tailwindFrame,
         !darkMode && styles.tailwindFrameLightMode,
         !showBackground && styles.noBackground,
-        isSafari && styles.isSafari
+        isSafari && styles.isSafari,
       )}
       style={{ padding }}
     >
@@ -133,6 +133,34 @@ const TailwindFrame = () => {
   );
 };
 
+const TriggerdotdevFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [themeBackground] = useAtom(themeBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.id,
+        darkMode && styles.darkMode,
+        showBackground && styles.withBackground,
+      )}
+      style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.triggerWindow}>
+        <span className={styles.triggerGridlinesHorizontal} data-grid></span>
+        <span className={styles.triggerGridlinesVertical} data-grid></span>
+        <span className={styles.triggerBracketLeft} data-grid></span>
+        <span className={styles.triggerBracketRight} data-grid></span>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -148,7 +176,7 @@ const DefaultFrame = () => {
         styles.frame,
         styles[theme.id],
         darkMode && styles.darkMode,
-        showBackground && styles.withBackground
+        showBackground && styles.withBackground,
       )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
@@ -197,6 +225,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.triggerdotdev.id === theme.id ? (
+            <TriggerdotdevFrame />
           ) : (
             <DefaultFrame />
           )}
@@ -216,6 +246,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
+          ) : THEMES.triggerdotdev.id === theme.id ? (
+            <TriggerdotdevFrame />
           ) : (
             <DefaultFrame />
           )}

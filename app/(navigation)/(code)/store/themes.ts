@@ -808,12 +808,12 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
-  triggerdark: {
-    id: "trigger.dev",
+  triggerdotdev: {
+    id: "triggerdotdev",
     name: "Trigger.dev",
     background: {
-      from: "#15171A",
-      to: "#0D0E12",
+      from: "#121317",
+      to: "#121317",
     },
     font: "geist-mono",
     syntax: {
