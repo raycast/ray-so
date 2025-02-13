@@ -278,13 +278,6 @@
   }
 }
 
-.triggerBracketRight {
-  top: auto;
-  right: -12px;
-  bottom: -12px;
-  left: auto;
-}
-
 /* Supabase theme frame */
 
 .supabaseFrame {
