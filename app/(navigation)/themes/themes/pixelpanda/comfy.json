@@ -1,0 +1,21 @@
+{
+  "author": "Drew Andersen",
+  "authorUsername": "PixelPandaCreative",
+  "version": "1",
+  "name": "Comfy",
+  "appearance": "light",
+  "colors": {
+    "background": "#FEECDD",
+    "backgroundSecondary": "#FEECDD",
+    "text": "#B03D0B",
+    "selection": "#FF8500",
+    "loader": "#8E9BFF",
+    "red": "#E82A90",
+    "orange": "#FF6F31",
+    "yellow": "#FFD600",
+    "green": "#10FF33",
+    "blue": "#1034FF",
+    "purple": "#5906FF",
+    "magenta": "#FF277D"
+  }
+}
