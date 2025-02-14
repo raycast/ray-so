@@ -14,20 +14,6 @@ const parsers = {
 
 export const formatterSupportedLanguages: Language["name"][] = Object.keys(parsers);
 
-const ruffConfig = {
-  preview: false,
-  builtins: [],
-  "target-version": "py312",
-  "line-length": 80,
-  "indent-width": 4,
-  format: {
-    "indent-style": "space",
-    "quote-style": "double",
-    "skip-magic-trailing-comma": false,
-    "line-ending": "auto",
-  },
-};
-
 const prettierConfig = {
   singleQuote: false,
   printWidth: 80,
@@ -42,7 +28,7 @@ const formatCode = async (code: string, language: Language | null) => {
     const { default: initRuff, Workspace } = await import("@astral-sh/ruff-wasm-web");
     await initRuff();
 
-    const workspace = new Workspace(ruffConfig);
+    const workspace = new Workspace(Workspace.defaultSettings());
     const formatted = workspace.format(code);
     return formatted.replace(/\n$/, "");
   }
