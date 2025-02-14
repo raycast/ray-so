@@ -9,9 +9,24 @@ const parsers = {
   CSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   SCSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   YAML: { import: () => import("prettier/plugins/yaml"), name: "yaml" },
+  Python: { import: () => Promise.resolve({ default: {} }), name: "python" },
 };
 
 export const formatterSupportedLanguages: Language["name"][] = Object.keys(parsers);
+
+const ruffConfig = {
+  preview: false,
+  builtins: [],
+  "target-version": "py312",
+  "line-length": 80,
+  "indent-width": 4,
+  format: {
+    "indent-style": "space",
+    "quote-style": "double",
+    "skip-magic-trailing-comma": false,
+    "line-ending": "auto",
+  },
+};
 
 const prettierConfig = {
   singleQuote: false,
@@ -22,6 +37,16 @@ const formatCode = async (code: string, language: Language | null) => {
   if (!language || !formatterSupportedLanguages.includes(language.name)) {
     return code;
   }
+
+  if (language.name === "Python") {
+    const { default: initRuff, Workspace } = await import("@astral-sh/ruff-wasm-web");
+    await initRuff();
+
+    const workspace = new Workspace(ruffConfig);
+    const formatted = workspace.format(code);
+    return formatted.replace(/\n$/, "");
+  }
+
   const prettier = await import("prettier/standalone");
 
   const parser = parsers[language.name as keyof typeof parsers];

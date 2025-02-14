@@ -15,6 +15,7 @@
     "node": "^18"
   },
   "dependencies": {
+    "@astral-sh/ruff-wasm-web": "^0.9.6",
     "@next/bundle-analyzer": "^14.2.4",
     "@radix-ui/react-collapsible": "^1.0.3",
     "@radix-ui/react-context-menu": "^2.1.5",
