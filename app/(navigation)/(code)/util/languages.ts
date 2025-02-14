@@ -212,6 +212,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "TSX",
     src: () => import("shiki/langs/tsx.mjs"),
   },
+  v: {
+    name: "V",
+    src: () => import("shiki/langs/v.mjs"),
+  },
   vue: {
     name: "Vue",
     src: () => import("shiki/langs/vue.mjs"),
