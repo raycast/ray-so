@@ -1,0 +1,21 @@
+{
+  "author": "Drew Andersen",
+  "authorUsername": "PixelPandaCreative",
+  "version": "1",
+  "name": "Arc",
+  "appearance": "dark",
+  "colors": {
+    "background": "#520081",
+    "backgroundSecondary": "#000026",
+    "text": "#DF87C5",
+    "selection": "#FF13BB",
+    "loader": "#DFBCD5",
+    "red": "#FF7F7F",
+    "orange": "#DFB162",
+    "yellow": "#DFC320",
+    "green": "#9AFC00",
+    "blue": "#086CFB",
+    "purple": "#9940E0",
+    "magenta": "#FF00CE"
+  }
+}
