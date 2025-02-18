@@ -20,8 +20,8 @@ function makePresetImportData(preset: Preset): string {
     creativity,
     icon,
     model: prepareModel(model),
-    web_search,
-    image_generation,
+    web_search: web_search ? true : false,
+    image_generation: image_generation ? true : false,
   })}]`;
 }
 
@@ -36,8 +36,8 @@ function makeQueryString(preset: Preset): string {
       creativity,
       icon,
       model: prepareModel(model),
-      web_search,
-      image_generation,
+      web_search: web_search ? true : false,
+      image_generation: image_generation ? true : false,
       id,
     }),
   )}`;
