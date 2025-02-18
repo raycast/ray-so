@@ -282,7 +282,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
               </pre>
             </div>
           </div>
-          <div className={styles.meta}>
+          <div className={clsx(styles.meta, styles.grid)}>
             <div className={styles.metaItem}>
               <h3 className={styles.compactTitle}>Model</h3>
               <div className={styles.metaContent}>
@@ -309,14 +309,16 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                 </div>
               </div>
             ) : null}
-            <div className={styles.metaItem}>
-              <h3 className={styles.compactTitle}>Web Search</h3>
-              <div className={styles.metaContent}>
-                {web_search ? <Globe01Icon /> : <XMarkCircleIcon />}
-                {web_search ? "On" : "Off"}
+            {(web_search === true || web_search === false) && (
+              <div className={styles.metaItem}>
+                <h3 className={styles.compactTitle}>Web Search</h3>
+                <div className={styles.metaContent}>
+                  {web_search ? <Globe01Icon /> : <XMarkCircleIcon />}
+                  {web_search ? "On" : "Off"}
+                </div>
               </div>
-            </div>
-            {modelSupportsImageGen && (
+            )}
+            {modelSupportsImageGen && (image_generation === true || image_generation === false) && (
               <div className={styles.metaItem}>
                 <h3 className={styles.compactTitle}>Image Generation</h3>
                 <div className={styles.metaContent}>

@@ -45,6 +45,22 @@ const nativeExtensionsMap = {
       dark: "/icons/calendar.svg",
     },
   },
+  builtin_package_raycastNotes: {
+    id: "builtin_package_raycastNotes",
+    title: "Raycast Notes",
+    name: "raycast-notes",
+    icons: {
+      dark: "/icons/notes.svg",
+    },
+  },
+  builtin_package_chart: {
+    id: "builtin_package_chart",
+    title: "Chart",
+    name: "chart",
+    icons: {
+      dark: "/icons/chart.svg",
+    },
+  },
   builtin_package_finder: {
     id: "builtin_package_finder",
     title: "Finder",

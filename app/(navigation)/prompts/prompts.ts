@@ -393,6 +393,15 @@ The "imagine prompt" should strictly contain under 1,500 words. Use the end argu
       link: "https://github.com/SKaplanOfficial",
     },
   },
+  {
+    id: "media-converter",
+    title: "Convert HEIC to JPG",
+    prompt:
+      "@media-converter{id=dbec16d9-89d5-4255-a360-e9cd150076f4} convert all heic files in @finder{id=builtin_package_finder} Downloads folder to jpg.",
+    icon: "image",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
 ];
 
 const writing: Prompt[] = [
@@ -439,6 +448,15 @@ const writing: Prompt[] = [
       link: "https://nathancheng.fyi",
     },
   },
+  {
+    id: "notes-to-notion",
+    title: "Add Notes to Notion",
+    prompt:
+      "Get my last @raycast-notes{id=builtin_package_raycastNotes} note and add it as a new page to @notion{id=5f2e08d5-fdf1-4171-b252-aa53065621b4}.",
+    icon: "paragraph",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
 ];
 
 const music: Prompt[] = [
@@ -461,6 +479,15 @@ const music: Prompt[] = [
     creativity: "high",
     date: "2023-06-06",
     icon: "music",
+  },
+  {
+    id: "spotify-playlist-maker",
+    title: "Spotify Playlist Maker",
+    prompt:
+      "Create a high energy @spotify{id=320f40ef-a633-415a-ab0e-1e99515478f7} playlist, with songs similar to marea from fred again.",
+    icon: "music",
+    model: "raycast-ray1",
+    date: "2025-02-07",
   },
 ];
 
@@ -712,11 +739,81 @@ You can use the following template to create the summary:
     },
   },
   {
-    id: "focus-mode",
-    title: "Focus mode",
+    id: "deep-focus",
+    title: "Start Deep Focus Session",
     prompt:
-      '@linak-desk-controller{id=f9aaf2b2-0bc4-407f-ab4d-34908a6c779c} move desk to standing and start a @raycast-focus{id=builtin_package_raycastFocus} session for 30mins blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 30 mins to "Focus mode" with the :focus: icon',
+      'Start a @raycast-focus{id=builtin_package_raycastFocus} session for 1h blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 1h to "Focus mode" with the :focus: icon and @linak-desk-controller{id=f9aaf2b2-0bc4-407f-ab4d-34908a6c779c} move desk to standing.',
     icon: "circle-disabled",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "daily-focus",
+    title: "Create Daily Focus Note",
+    prompt:
+      "What tasks do I have from @todoist{id=f9e9c663-3b16-4d34-a9b0-00f4af260acf}, @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @calendar{id=builtin_package_calendar} for today? Create a new note with @raycast-notes{id=builtin_package_raycastNotes} formatted as a markdown list with the tasks as checkboxes.",
+    icon: "check-circle",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "calendar-task-blocker",
+    title: "Calendar Task Blocker",
+    prompt:
+      "Summarize my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @github{id=89648e03-cceb-4205-9f40-75fcb039a4c6} inbox to identify urgent issues and tasks. Block time on my @calendar{id=builtin_package_calendar} today for high-priority tasks",
+    icon: "calendar",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "linear-to-things",
+    title: "Convert Linear Tasks to Things",
+    prompt:
+      "Convert my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} tasks marked as 'Todo' to @things{id=1e915fb4-4a40-4555-8fad-99319ca35f19} tasks.",
+    icon: "check",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "desktop-cleaner",
+    title: "Clean Desktop",
+    prompt: "@finder{id=builtin_package_finder} Move all desktop files to a new folder named after today's date.",
+    icon: "trash",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "meeting-planner",
+    title: "Plan meeting",
+    prompt:
+      "Create a new @zoom{id=4d342edf-4371-498e-8ead-a424d65f933f} meeting today for 1h based on my @calendar{id=builtin_package_calendar} availability. Avoid gaps between meetings and prefer to have meetings in the afternoon.",
+    icon: "calendar",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "things-focus",
+    title: "Start Things Focus Session",
+    prompt:
+      'Start a focus session with @raycast-focus{id=builtin_package_raycastFocus} for 30mins blocking all the default categories of apps. Set the goal to my first @things{id=1e915fb4-4a40-4555-8fad-99319ca35f19} task in "Today".',
+    icon: "circle-disabled",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "notion-meeting-summary",
+    title: "Summarize Marketing Meeting",
+    prompt: "@notion{id=5f2e08d5-fdf1-4171-b252-aa53065621b4} Summarize the last weekly marketing meeting.",
+    icon: "paragraph",
+    model: "raycast-ray1",
+    date: "2025-02-07",
+  },
+  {
+    id: "chart-workout-distance",
+    title: "Chart Workout Distance",
+    prompt:
+      "Get my last 5 @workouts{id=e7c677b5-5a43-4094-96a5-4fffffdfdc72} and @chart{id=builtin_package_chart} them by distance",
+    icon: "bar-chart",
     model: "raycast-ray1",
     date: "2025-02-07",
   },
