@@ -71,7 +71,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         "twitter:label1": "Model",
         "twitter:data": prompt.model || "openai-gpt-4o-mini",
         "twitter:label2": "Creativity",
-        "twitter:data2": prompt.creativity,
+        "twitter:data2": prompt.creativity || "none",
       },
     };
   } else {
