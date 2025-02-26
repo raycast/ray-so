@@ -37,14 +37,7 @@ export default function Presets({ models, extensions }: Props) {
     ...category,
     presets: category.presets.map((preset) => ({
       ...preset,
-      extensions: Array.from(
-        new Set([
-          ...(preset.extensions || []),
-          ...(preset.instructions
-            .match(/\{id=([^}]+)\}/g)
-            ?.map((match) => match.replace(/\{id=/, "").replace(/\}/, "")) ?? []),
-        ]),
-      ),
+      tools: Array.from(new Set([...(preset.tools || [])])),
     })),
   }));
 
@@ -58,7 +51,7 @@ export default function Presets({ models, extensions }: Props) {
             const passesAdvancedFilter = showAdvancedModels || !advancedModels.includes(presetObj?.model || "");
 
             const passesExtensionFilter =
-              checkedExtensions.length === 0 || preset.extensions?.some((ext) => checkedExtensions.includes(ext));
+              checkedExtensions.length === 0 || preset.tools?.some((tool) => checkedExtensions.includes(tool.id));
 
             return passesAdvancedFilter && passesExtensionFilter;
           }),
@@ -76,7 +69,7 @@ export default function Presets({ models, extensions }: Props) {
     new Set(
       categoriesWithInlineExtensions
         .flatMap((category) => category.presets)
-        .flatMap((preset) => preset.extensions ?? [])
+        .flatMap((preset) => preset.tools.map((tool) => tool.id))
         .filter((id): id is string => id !== undefined && id !== null),
     ),
   );

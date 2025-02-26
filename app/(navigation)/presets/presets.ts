@@ -10,7 +10,10 @@ export type Preset = {
   icon: IconName;
   creativity?: "none" | "low" | "medium" | "high" | "maximum";
   model: Model;
-  extensions?: string[];
+  tools?: {
+    name: string;
+    id: string;
+  }[];
   web_search?: boolean;
   image_generation?: boolean;
   date: `${number}-${number}-${number}`;
@@ -526,7 +529,11 @@ const misc: Preset[] = [
     icon: "person",
     model: "raycast-ray1",
     date: "2025-01-24",
-    extensions: ["builtin_package_calendar", "remote_package_web", "4d342edf-4371-498e-8ead-a424d65f933f"],
+    tools: [
+      { name: "calendar", id: "builtin_package_calendar" },
+      { name: "web", id: "remote_package_web" },
+      { name: "zoom", id: "4d342edf-4371-498e-8ead-a424d65f933f" },
+    ],
   },
   {
     id: "project-manager",
@@ -553,7 +560,7 @@ Your purpose is to assist users in effectively managing projects using Linear by
     icon: "person",
     model: "raycast-ray1",
     date: "2025-01-24",
-    extensions: ["e7c677b5-5a43-4094-96a5-4fffffdfdc72"],
+    tools: [{ name: "workouts", id: "e7c677b5-5a43-4094-96a5-4fffffdfdc72" }],
   },
   {
     id: "quality-control",

@@ -175,9 +175,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
     image_generation,
   } = preset;
 
-  const allExtensions = Array.from(
-    new Set([...(preset.extensions || []), ...getExtensionIdsFromString(preset.instructions)]),
-  );
+  const allTools = Array.from(new Set([...(preset.tools || [])]));
 
   return (
     <>
@@ -327,13 +325,13 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                 </div>
               </div>
             )}
-            {allExtensions && (
+            {allTools && (
               <>
-                {allExtensions.map((id) => {
-                  const extension = extensions.find((e) => e.id === id);
+                {allTools.map((tool) => {
+                  const extension = extensions.find((e) => e.id === tool.id);
                   const icon = extension?.icons.dark || extension?.icons.light;
                   return (
-                    <div key={id} className={styles.metaItem}>
+                    <div key={tool.id} className={styles.metaItem}>
                       <h3 className={styles.compactTitle}>AI Extension</h3>
                       <div className={styles.metaContent}>
                         {icon ? (

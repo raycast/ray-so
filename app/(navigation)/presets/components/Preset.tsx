@@ -135,11 +135,11 @@ export function PresetComponent({
                     </span>
                   </>
                 ) : null}
-                {preset.extensions && preset.extensions.length > 0 ? (
+                {preset.tools && preset.tools.length > 0 ? (
                   <>
                     <span className={styles.metaDivider} />
 
-                    {preset.extensions?.length > 0 ? (
+                    {preset.tools?.length > 0 ? (
                       <Tooltip delayDuration={700}>
                         <TooltipTrigger>
                           <span className={styles.metaItem}>
@@ -158,8 +158,8 @@ export function PresetComponent({
                               />
                             </svg>
 
-                            {preset.extensions
-                              .map((id) => {
+                            {preset.tools
+                              .map(({ id }) => {
                                 const extension = extensions.find((e) => e.id === id);
                                 return extension ? extension.title : id;
                               })

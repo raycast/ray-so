@@ -46,15 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         },
       ],
     },
-    // TODO: Get extension names
     other: {
       "twitter:label1": "Model",
       "twitter:data": preset.model,
-      "twitter:label2": preset.creativity ? "Creativity" : preset.extensions ? "AI Extensions" : "",
+      "twitter:label2": preset.creativity ? "Creativity" : preset.tools ? "AI Tools" : "",
       "twitter:data2": preset.creativity
         ? preset.creativity
-        : preset.extensions
-          ? preset.extensions.map((extension) => extension)
+        : preset.tools
+          ? preset.tools.map((tool) => tool.name)
           : "",
     },
   };
@@ -77,10 +76,8 @@ export default async function Page({ params }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
-  const inlineExtensionIds =
-    preset.instructions.match(/\{id=([^}]+)\}/g)?.map((match) => match.replace(/\{id=/, "").replace(/\}/, "")) ?? [];
-  const allExtensionIds = Array.from(new Set([...inlineExtensionIds, ...(preset.extensions || [])]));
-  const extensions = await getExtensions({ extensionIds: allExtensionIds });
+  const allToolIds = Array.from(new Set([...(preset?.tools?.map((tool) => tool.id) || [])]));
+  const extensions = await getExtensions({ extensionIds: allToolIds });
 
   return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }

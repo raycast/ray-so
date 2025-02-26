@@ -45,19 +45,17 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const models = await getAvailableAiModels();
-  const inlineExtensionIds = allPresets.flatMap((preset) => getExtensionIdsFromString(preset.instructions) ?? []);
-  const extensionIds = allPresets.reduce((acc: string[], preset) => {
-    if (preset.extensions) {
-      const extensionList = Array.isArray(preset.extensions) ? preset.extensions : [preset.extensions];
-      extensionList.forEach((extension) => {
-        if (!acc.includes(extension)) {
-          acc.push(extension);
+  const toolIds = allPresets.reduce((acc: string[], preset) => {
+    if (preset.tools) {
+      const toolList = Array.isArray(preset.tools) ? preset.tools : [preset.tools];
+      toolList.forEach((tool) => {
+        if (!acc.includes(tool.id)) {
+          acc.push(tool.id);
         }
       });
     }
     return acc;
   }, []);
-  const allExtensionIds = Array.from(new Set([...inlineExtensionIds, ...extensionIds]));
-  const extensions = await getExtensions({ extensionIds: allExtensionIds });
+  const extensions = await getExtensions({ extensionIds: toolIds });
   return <Presets models={models} extensions={extensions} />;
 }

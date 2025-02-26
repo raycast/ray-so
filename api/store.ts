@@ -94,7 +94,7 @@ export async function getExtensions({ extensionIds }: GetExtensionsProps): Promi
 
   // Fetch store extensions
   const response = await fetch(
-    `https://www.raycast.com/frontend_api/extensions/search?q=&page=1&ids[]=${storeExtensions.join("&ids[]=")}`,
+    `https://www.raycast.com/frontend_api/extensions/search?q=&page=1&per_page=200&ids[]=${storeExtensions.join("&ids[]=")}`,
   );
   const { data } = (await response.json()) as { data: Extension[] };
 
