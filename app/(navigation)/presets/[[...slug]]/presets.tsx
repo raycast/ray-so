@@ -190,27 +190,29 @@ export default function Presets({ models, extensions }: Props) {
         </div>
 
         <div className={styles.container}>
-          {filteredCategories.map((category) => {
-            return (
-              <div
-                key={category.name}
-                data-section-slug={`/presets${category.slug}`}
-                style={{
-                  outline: "none",
-                }}
-                tabIndex={-1}
-              >
-                <h2 className={styles.subtitle}>
-                  <category.iconComponent /> {category.name}
-                </h2>
-                <div className={styles.presets}>
-                  {category.presets.map((preset) => (
-                    <PresetComponent key={preset.id} preset={preset} models={models} extensions={extensions} />
-                  ))}
+          {filteredCategories
+            .filter((category) => (checkedExtensions.length > 0 ? category.slug !== "/new" : true))
+            .map((category) => {
+              return (
+                <div
+                  key={category.name}
+                  data-section-slug={`/presets${category.slug}`}
+                  style={{
+                    outline: "none",
+                  }}
+                  tabIndex={-1}
+                >
+                  <h2 className={styles.subtitle}>
+                    <category.iconComponent /> {category.name}
+                  </h2>
+                  <div className={styles.presets}>
+                    {category.presets.map((preset) => (
+                      <PresetComponent key={preset.id} preset={preset} models={models} extensions={extensions} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </>

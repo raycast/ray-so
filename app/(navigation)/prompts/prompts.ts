@@ -394,13 +394,22 @@ The "imagine prompt" should strictly contain under 1,500 words. Use the end argu
     },
   },
   {
+    id: "daily-tasks",
+    title: "Daily tasks",
+    prompt:
+      "Summarize my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @github{id=89648e03-cceb-4205-9f40-75fcb039a4c6} inbox to identify urgent issues and tasks. Check my @calendar{id=builtin_package_calendar} and return a list of things to focus on today.",
+    icon: "check-circle",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+  },
+  {
     id: "media-converter",
     title: "Convert HEIC to JPG",
     prompt:
-      "@media-converter{id=dbec16d9-89d5-4255-a360-e9cd150076f4} convert all heic files in @finder{id=builtin_package_finder} Downloads folder to jpg.",
+      "@media-converter{id=dbec16d9-89d5-4255-a360-e9cd150076f4} convert all mov files in @finder{id=builtin_package_finder} Downloads folder to mp4.",
     icon: "image",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
 ];
 
@@ -455,7 +464,7 @@ const writing: Prompt[] = [
       "Get my last @raycast-notes{id=builtin_package_raycastNotes} note and add it as a new page to @notion{id=5f2e08d5-fdf1-4171-b252-aa53065621b4}.",
     icon: "paragraph",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
 ];
 
@@ -487,7 +496,7 @@ const music: Prompt[] = [
       "Create a high energy @spotify{id=320f40ef-a633-415a-ab0e-1e99515478f7} playlist, with songs similar to marea from fred again.",
     icon: "music",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
 ];
 
@@ -739,40 +748,13 @@ You can use the following template to create the summary:
     },
   },
   {
-    id: "deep-focus",
-    title: "Start Deep Focus Session",
-    prompt:
-      'Start a @raycast-focus{id=builtin_package_raycastFocus} session for 1h blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 1h to "Focus mode" with the :focus: icon and @linak-desk-controller{id=f9aaf2b2-0bc4-407f-ab4d-34908a6c779c} move desk to standing.',
-    icon: "circle-disabled",
-    model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
-    id: "daily-focus",
-    title: "Create Daily Focus Note",
-    prompt:
-      "What tasks do I have from @todoist{id=f9e9c663-3b16-4d34-a9b0-00f4af260acf}, @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @calendar{id=builtin_package_calendar} for today? Create a new note with @raycast-notes{id=builtin_package_raycastNotes} formatted as a markdown list with the tasks as checkboxes.",
-    icon: "check-circle",
-    model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
-    id: "calendar-task-blocker",
-    title: "Calendar Task Blocker",
-    prompt:
-      "Summarize my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @github{id=89648e03-cceb-4205-9f40-75fcb039a4c6} inbox to identify urgent issues and tasks. Block time on my @calendar{id=builtin_package_calendar} today for high-priority tasks",
-    icon: "calendar",
-    model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
     id: "linear-to-things",
     title: "Convert Linear Tasks to Things",
     prompt:
       "Convert my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} tasks marked as 'Todo' to @things{id=1e915fb4-4a40-4555-8fad-99319ca35f19} tasks.",
     icon: "check",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
   {
     id: "desktop-cleaner",
@@ -780,7 +762,7 @@ You can use the following template to create the summary:
     prompt: "@finder{id=builtin_package_finder} Move all desktop files to a new folder named after today's date.",
     icon: "trash",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
   {
     id: "meeting-planner",
@@ -789,24 +771,7 @@ You can use the following template to create the summary:
       "Create a new @zoom{id=4d342edf-4371-498e-8ead-a424d65f933f} meeting today for 1h based on my @calendar{id=builtin_package_calendar} availability. Avoid gaps between meetings and prefer to have meetings in the afternoon.",
     icon: "calendar",
     model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
-    id: "things-focus",
-    title: "Start Things Focus Session",
-    prompt:
-      'Start a focus session with @raycast-focus{id=builtin_package_raycastFocus} for 30mins blocking all the default categories of apps. Set the goal to my first @things{id=1e915fb4-4a40-4555-8fad-99319ca35f19} task in "Today".',
-    icon: "circle-disabled",
-    model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
-    id: "notion-meeting-summary",
-    title: "Summarize Marketing Meeting",
-    prompt: "@notion{id=5f2e08d5-fdf1-4171-b252-aa53065621b4} Summarize the last weekly marketing meeting.",
-    icon: "paragraph",
-    model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
   },
   {
     id: "chart-workout-distance",
@@ -815,7 +780,112 @@ You can use the following template to create the summary:
       "Get my last 5 @workouts{id=e7c677b5-5a43-4094-96a5-4fffffdfdc72} and @chart{id=builtin_package_chart} them by distance",
     icon: "bar-chart",
     model: "raycast-ray1",
-    date: "2025-02-07",
+    date: "2025-02-26",
+  },
+  {
+    id: "application-support-directory",
+    title: "Application Support Directory",
+    prompt: "@finder{id=builtin_package_finder} go to application support directory",
+    icon: "folder",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+  },
+  {
+    id: "create-calendar-event",
+    title: "Create Calendar Event",
+    prompt: "Create @calendar event with {selection} in my personal calendar",
+    icon: "calendar",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    author: {
+      name: "Berenger Zantangni",
+      link: "https://raycastcommunity.slack.com/team/U028NK2AXL6",
+    },
+  },
+  {
+    id: "deep-focus",
+    title: "Start Deep Focus Session",
+    prompt:
+      'Start a @raycast-focus{id=builtin_package_raycastFocus} session for 1h blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 1h to "Focus mode" with the :focus: icon.',
+    icon: "circle-disabled",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+  },
+  {
+    id: "meeting-notes",
+    title: "Meeting Notes",
+    prompt: `@calendar{id=builtin_package_calendar} @raycast-notes{id=builtin_package_raycastNotes} 
+
+**Prompt for Meeting Notes of the Day:**
+
+1. **Objective**: Generate individual notes for every meeting of today including a template for the agenda and notes. 
+
+2. **Meetings**:
+- @calendar Retrieve all scheduled meetings for today, use the meeting name for the title.
+
+3. **Format**:
+- Use the following template for each of the meetings.
+- Don't output the template or content in your response.
+
+Template:
+# Call Notes: [Date in YYMMDD Format] [Meeting Title]
+Date: [Date in DD.MM.YYY Format]
+Time: [Calendar Timeframe] [Timezone i.e. CET]
+
+## Attendees
+[List the Attendees from the calendar invite as bulletpoints]
+
+## Pre-Meeting Notes
+- 
+
+## Agenda
+- 
+
+## Notes 
+- 
+
+## Action Points
+[]
+
+4. **Save and Update**:
+- @raycast-notes{id=builtin_package_raycastNotes} For every meeting i confirmed, create a new note. Insert the template into each note.`,
+    icon: "new-document",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    author: {
+      name: "Torsten Bergler",
+      link: "https://raycastcommunity.slack.com/team/U075UE53PAN",
+    },
+  },
+  {
+    id: "ice-skating-report",
+    title: "Ice Skating Report",
+    prompt:
+      'Reply with the latest ice report (israpport) from Nacka Kommun.  \n\nHere are some rules:\n- Always start with the date of the latest report\n- Reply with a markdown formatted table of all lakes starting with Bastusjön (my local favorite lake). \n- Always include columns of the thickness of the ice, and the exact description as written on the website\n- use @curl{id=a5faaafa-956f-45a2-a5a0-4bb69a4fe81c} to get the html from the official ice report: "https://www.nacka.se/uppleva--gora/friluftsliv-motion/trana-i-naturen/skridskoakning-pa-sjoisar-och-israpport/"',
+    icon: "snowflake",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    author: {
+      name: "Samuel Kraft",
+      link: "https://samuelkraft.com",
+    },
+  },
+  {
+    id: "daily-focus",
+    title: "Create Daily Focus Note",
+    prompt:
+      "What tasks do I have from @todoist{id=f9e9c663-3b16-4d34-a9b0-00f4af260acf}, @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @calendar{id=builtin_package_calendar} for today? Create a new note with @raycast-notes{id=builtin_package_raycastNotes} formatted as a markdown list with the tasks as checkboxes.",
+    icon: "check-circle",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+  },
+  {
+    id: "decline-message",
+    title: "Decline Message",
+    prompt: "@messages{id=f872e5ef-af26-4086-8b11-261e5c6f6c93} politely decline the party invitation",
+    icon: "x-mark-circle",
+    model: "raycast-ray1",
+    date: "2025-02-26",
   },
 ];
 

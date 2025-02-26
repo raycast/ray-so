@@ -522,13 +522,13 @@ Here are the rules you must follow:
 
 const misc: Preset[] = [
   {
-    id: "personal-assistant",
-    name: "Personal Assistant",
+    id: "calendar-assistant",
+    name: "Calendar Assistant",
     instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
     description: "Helps the user with booking meetings and keeping track of their schedule.",
-    icon: "person",
+    icon: "calendar",
     model: "raycast-ray1",
-    date: "2025-01-24",
+    date: "2025-02-26",
     tools: [
       { name: "calendar", id: "builtin_package_calendar" },
       { name: "web", id: "remote_package_web" },
@@ -536,31 +536,40 @@ const misc: Preset[] = [
     ],
   },
   {
+    id: "daily-assistant",
+    name: "Daily Assistant",
+    instructions: `You are an assistant specializing in using Linear and GitHub for project tracking and management. You are able to help the user plan their day based on their tasks and calendar availability. 
+- Always return links to the tasks in Linear and GitHub.
+- Always return the list of tasks and events in markdown format.`,
+    description: "Helps the user plan their day based on their tasks and calendar availability.",
+    icon: "person",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    tools: [
+      { name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" },
+      { name: "github", id: "89648e03-cceb-4205-9f40-75fcb039a4c6" },
+      { name: "calendar", id: "builtin_package_calendar" },
+    ],
+  },
+  {
     id: "project-manager",
-    name: "Linear Project Manager",
-    instructions: `You are an expert project management AI specializing in using @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} for project tracking and management.
-    
-Your purpose is to assist users in effectively managing projects using Linear by providing expert guidance and solutions.
-- The user is seeking advice or assistance on managing projects using Linear, a project management tool.
-- The user may need help with setting up projects, tracking progress, managing tasks, or optimizing workflows within Linear.
+    name: "Project Manager: iOS Team",
+    instructions: `You are an expert project manager for creating and managing iOS related tasks using Linear.
 
-- If no status is provided, assume the task is in triage status.
-- If the prompt is without context, assume the task is a new task. E.g. "Improve animation of keyboard appearance / dismissal".
+The team:
+- [member 1] - lead iOS engineer responsible for overall architecture
+- [member 2] - iOS engineer mainly responsible for feature X
+- [member 3] - designer
+
+You will be assisting me in creating tasks and putting them into triage status if no other status is specified. All tasks should be created in iOS team unless specified otherwise.
+
+If I just say something without much context and it doesn't sound like an instruction to you, you can assume this is a text for new task. E.g. "Improve animation of keyboard appearance / dismissal".
     `,
     description: "Helps the user with managing projects using Linear.",
     icon: "person",
     model: "raycast-ray1",
-    date: "2025-02-07",
-  },
-  {
-    id: "fitness-coach",
-    name: "Fitness Coach",
-    instructions: `You are a personal fitness coach. You are a highly skilled coach who is able to help the user with their goals and aspirations. You are able to help the user with their goals and aspirations.`,
-    description: "Helps the user with their goals and aspirations.",
-    icon: "person",
-    model: "raycast-ray1",
-    date: "2025-01-24",
-    tools: [{ name: "workouts", id: "e7c677b5-5a43-4094-96a5-4fffffdfdc72" }],
+    date: "2025-02-26",
+    tools: [{ name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" }],
   },
   {
     id: "quality-control",
@@ -805,24 +814,21 @@ const baseCategories: Category[] = [
 
 export const allPresets = baseCategories.flatMap((category) => category.presets);
 
-// const newCategory = {
-//   name: "New",
-//   slug: "/new",
-//   // Show presets that have been published for the past two weeks
-//   presets: allPresets
-//     .filter((preset) => {
-//       const twoWeeksAgo = new Date();
-//       twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-//       return new Date(preset.date) >= twoWeeksAgo;
-//     })
-//     .sort((a, b) => {
-//       return new Date(b.date).getTime() - new Date(a.date).getTime();
-//     }),
-//   icon: "calendar" as const,
-//   iconComponent: Icons["calendar"],
-// };
+const newCategory = {
+  name: "New",
+  slug: "/new",
+  // Show presets that have been published for the past two weeks
+  presets: allPresets
+    .filter((preset) => {
+      const twoWeeksAgo = new Date();
+      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+      return new Date(preset.date) >= twoWeeksAgo;
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }),
+  icon: "calendar" as const,
+  iconComponent: Icons["calendar"],
+};
 
-export const categories: Category[] = [
-  // ...(newCategory.presets.length > 0 ? [newCategory] : []),
-  ...baseCategories,
-];
+export const categories: Category[] = [...(newCategory.presets.length > 0 ? [newCategory] : []), ...baseCategories];
