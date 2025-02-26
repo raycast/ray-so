@@ -18,6 +18,7 @@ import {
   MinusCircleIcon,
   PlusCircleIcon,
   StarsIcon,
+  StarsSquareIcon,
 } from "@raycast/icons";
 import { extractPrompts } from "../utils/extractPrompts";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
@@ -39,8 +40,11 @@ import { Metadata } from "next";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
+import { Extension } from "@/api/store";
+import { AIExtension } from "@/components/ai-extension";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 
-export function Shared({ prompts }: { prompts: Prompt[] }) {
+export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions: Extension[] }) {
   const router = useRouter();
 
   const [copied, setCopied] = React.useState(false);
@@ -262,6 +266,7 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                       const Icon = prompt.icon in Icons ? Icons[prompt.icon] : StarsIcon;
 
                       const isSelected = selectedPrompts.some((selectedPrompt) => selectedPrompt.id === prompt.id);
+                      const hasAIExtensions = prompt.prompt.includes("{id=") && prompt.prompt.includes("@");
 
                       return (
                         <ContextMenu.Root key={prompt.id}>
@@ -274,15 +279,26 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                             >
                               <div className={styles.promptTemplate}>
                                 <ScrollArea>
-                                  <pre
-                                    className={styles.template}
-                                    dangerouslySetInnerHTML={{
-                                      __html: prompt.prompt.replace(
-                                        /\{[^}]+\}/g,
-                                        `<span class="${styles.placeholder}">$&</span>`,
-                                      ),
-                                    }}
-                                  ></pre>
+                                  <pre className={styles.template}>
+                                    {prompt.prompt.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                                      const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                                      if (match) {
+                                        const extension = extensions.find((e) => e.id === match[2]);
+                                        return <AIExtension key={index} extension={extension} fallback={match[1]} />;
+                                      }
+                                      return (
+                                        <span
+                                          key={index}
+                                          dangerouslySetInnerHTML={{
+                                            __html: part.replace(
+                                              /\{[^}]+\}/g,
+                                              `<span class="${styles.placeholder}">$&</span>`,
+                                            ),
+                                          }}
+                                        />
+                                      );
+                                    })}
+                                  </pre>
                                 </ScrollArea>
                               </div>
                               <div className={styles.prompt}>
@@ -290,7 +306,15 @@ export function Shared({ prompts }: { prompts: Prompt[] }) {
                                   <Icon />
                                   {prompt.title}
                                 </span>
-                                <CreativityIcon creativity={prompt.creativity} />
+                                {prompt.creativity ? <CreativityIcon creativity={prompt.creativity} /> : null}
+                                {hasAIExtensions ? (
+                                  <Tooltip>
+                                    <TooltipTrigger>
+                                      <StarsSquareIcon />
+                                    </TooltipTrigger>
+                                    <TooltipContent>Includes AI Extensions</TooltipContent>
+                                  </Tooltip>
+                                ) : null}
                               </div>
                             </div>
                           </ContextMenu.Trigger>

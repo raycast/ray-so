@@ -208,7 +208,10 @@
   background-color: rgba(255, 255, 255, 0.1);
   opacity: 0;
   transform: scale(0.8);
-  transition: background-color 100ms ease-in-out, opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition:
+    background-color 100ms ease-in-out,
+    opacity 200ms ease-in-out,
+    transform 200ms ease-in-out;
 
   &:hover,
   &:focus {
@@ -292,7 +295,9 @@
       background: rgba(255, 99, 99, 0.3);
     }
     &:not(:disabled):focus {
-      box-shadow: 0 0 0 2px #191919, 0 0 0 4px rgba(255, 99, 99, 0.2);
+      box-shadow:
+        0 0 0 2px #191919,
+        0 0 0 4px rgba(255, 99, 99, 0.2);
     }
   }
 
@@ -304,7 +309,9 @@
       background-color: hsla(0, 0%, 100%, 0.1);
     }
     &:not(:disabled):focus {
-      box-shadow: 0 0 0 2px #191919, 0 0 0 4px hsla(0, 0%, 100%, 0.1);
+      box-shadow:
+        0 0 0 2px #191919,
+        0 0 0 4px hsla(0, 0%, 100%, 0.1);
     }
   }
 
@@ -443,4 +450,12 @@
     gap: 8px;
     letter-spacing: 0.1px;
   }
+}
+
+.extensionsList {
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  gap: 12px;
 }

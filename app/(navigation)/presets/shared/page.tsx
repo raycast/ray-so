@@ -3,6 +3,7 @@ import { allPresets } from "../presets";
 import { getAvailableAiModels } from "@/api/ai";
 import { PresetDetail } from "../components/PresetDetail";
 import { Metadata, ResolvingMetadata } from "next";
+import { getExtensions } from "@/api/store";
 
 type Props = {
   params: { slug: string };
@@ -23,7 +24,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   }
   const pageTitle = `${preset.name} - Raycast AI Preset`;
   const ogImage = `/presets/og?title=${encodeURIComponent(preset.name)}&description=${encodeURIComponent(
-    preset.description || ""
+    preset.description || "",
   )}&icon=${preset.icon}`;
 
   return {
@@ -78,6 +79,7 @@ export default async function Page({ params, searchParams }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
+  const extensions = await getExtensions({ extensionIds: preset.extensions || [] });
 
-  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} />;
+  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }
