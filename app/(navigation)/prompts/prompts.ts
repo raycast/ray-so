@@ -793,7 +793,7 @@ You can use the following template to create the summary:
   {
     id: "create-calendar-event",
     title: "Create Calendar Event",
-    prompt: "Create @calendar event with {selection} in my personal calendar",
+    prompt: "Create @calendar{id=builtin_package_calendar} event with {selection} in my personal calendar",
     icon: "calendar",
     model: "raycast-ray1",
     date: "2025-02-26",

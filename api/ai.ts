@@ -6,13 +6,15 @@ export type Model =
   | "anthropic-claude-haiku"
   | "anthropic-claude-opus"
   | "anthropic-claude-sonnet"
+  | "anthropic-claude-3-7-sonnet-latest"
   | "perplexity-llama-3-sonar-large-32k-online"
   | "perplexity-llama-3-sonar-small-32k-online"
   | "groq-llama-3.1-70b-versatile"
   | "groq-llama-3.1-8b-instant"
   | "groq-llama3-70b-8192"
   | "groq-mixtral-8x7b-32768"
-  | "raycast-ray1";
+  | "raycast-ray1"
+  | "raycast-ray1-mini";
 
 export type AiModel = {
   id: Model;
@@ -42,33 +44,6 @@ export type AiModel = {
 
 export async function getAvailableAiModels() {
   const res = await fetch("https://raycast.com/api/v1/ai/models");
-  const models = await res.json();
-  return [
-    ...models.models,
-    {
-      id: "raycast-ray1",
-      name: "ray1",
-      description: "Raycast",
-      availability: "public",
-      features: [],
-      suggestions: [],
-      provider: "raycast",
-      provider_name: "Raycast",
-      provider_brand: "raycast",
-      model: "raycast-ray1",
-      in_better_ai_subscription: true,
-      requires_better_ai: false,
-      speed: 1,
-      intelligence: 1,
-      context: 0,
-      abilities: {
-        image_generation: {
-          model: "raycast-ray1",
-        },
-        web_search: {
-          toggleable: false,
-        },
-      },
-    },
-  ];
+  const data = await res.json();
+  return data.models;
 }

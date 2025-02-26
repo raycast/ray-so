@@ -43,7 +43,7 @@ export function PresetComponent({
   const [showToast, setShowToast] = React.useState(false);
   const [toastMessage, setToastMessage] = React.useState("");
   const router = useRouter();
-  let model = models?.find((m) => m.id === preset.model);
+  const model = models?.find((m) => m.id === preset.model);
 
   const handleCopyInstruction = React.useCallback(() => {
     copy(preset.instructions);
@@ -92,8 +92,6 @@ export function PresetComponent({
       }, 2000);
     }
   }, [showToast]);
-
-  console.log(preset);
 
   return (
     <>
