@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import { Shared } from "./shared";
 import { Prompt } from "../prompts";
 import { nanoid } from "nanoid";
+import { getExtensions } from "@/api/store";
+import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
 
 type Props = {
   params: { slug: string };
@@ -69,7 +71,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         "twitter:label1": "Model",
         "twitter:data": prompt.model || "openai-gpt-4o-mini",
         "twitter:label2": "Creativity",
-        "twitter:data2": prompt.creativity,
+        "twitter:data2": prompt.creativity || "none",
       },
     };
   } else {
@@ -117,5 +119,7 @@ export default async function Page({ params, searchParams }: Props) {
   if (!prompts) {
     notFound();
   }
-  return <Shared prompts={prompts} />;
+  const extensionIds = prompts.flatMap((prompt) => getExtensionIdsFromString(prompt.prompt));
+  const allExtensions = await getExtensions({ extensionIds });
+  return <Shared prompts={prompts} extensions={allExtensions} />;
 }

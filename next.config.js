@@ -11,6 +11,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["shiki"],
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "files.raycast.com",
+        protocol: "https",
+      },
+    ],
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
@@ -42,7 +50,7 @@ const nextConfig = {
             },
           },
         ],
-      }
+      },
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.

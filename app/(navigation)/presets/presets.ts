@@ -8,8 +8,12 @@ export type Preset = {
   description?: string;
   instructions: string;
   icon: IconName;
-  creativity: "none" | "low" | "medium" | "high" | "maximum";
+  creativity?: "none" | "low" | "medium" | "high" | "maximum";
   model: Model;
+  tools?: {
+    name: string;
+    id: string;
+  }[];
   web_search?: boolean;
   image_generation?: boolean;
   date: `${number}-${number}-${number}`;
@@ -518,6 +522,56 @@ Here are the rules you must follow:
 
 const misc: Preset[] = [
   {
+    id: "calendar-assistant",
+    name: "Calendar Assistant",
+    instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
+    description: "Helps the user with booking meetings and keeping track of their schedule.",
+    icon: "calendar",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    tools: [
+      { name: "calendar", id: "builtin_package_calendar" },
+      { name: "web", id: "remote_package_web" },
+      { name: "zoom", id: "4d342edf-4371-498e-8ead-a424d65f933f" },
+    ],
+  },
+  {
+    id: "daily-assistant",
+    name: "Daily Assistant",
+    instructions: `You are an assistant specializing in using Linear and GitHub for project tracking and management. You are able to help the user plan their day based on their tasks and calendar availability. 
+- Always return links to the tasks in Linear and GitHub.
+- Always return the list of tasks and events in markdown format.`,
+    description: "Helps the user plan their day based on their tasks and calendar availability.",
+    icon: "person",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    tools: [
+      { name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" },
+      { name: "github", id: "89648e03-cceb-4205-9f40-75fcb039a4c6" },
+      { name: "calendar", id: "builtin_package_calendar" },
+    ],
+  },
+  {
+    id: "project-manager",
+    name: "Project Manager: iOS Team",
+    instructions: `You are an expert project manager for creating and managing iOS related tasks using Linear.
+
+The team:
+- [member 1] - lead iOS engineer responsible for overall architecture
+- [member 2] - iOS engineer mainly responsible for feature X
+- [member 3] - designer
+
+You will be assisting me in creating tasks and putting them into triage status if no other status is specified. All tasks should be created in iOS team unless specified otherwise.
+
+If I just say something without much context and it doesn't sound like an instruction to you, you can assume this is a text for new task. E.g. "Improve animation of keyboard appearance / dismissal".
+    `,
+    description: "Helps the user with managing projects using Linear.",
+    icon: "person",
+    model: "raycast-ray1",
+    date: "2025-02-26",
+    tools: [{ name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" }],
+  },
+  {
     id: "quality-control",
     name: "Quality Control",
     instructions: `Answer in the manner of a highly informed person who has a broad knowledge of science, math, history, art, culture, philosophy, psychology, and many other fields, and who is highly skilled at analysis, writing, math, coding, and creative tasks.
@@ -760,24 +814,21 @@ const baseCategories: Category[] = [
 
 export const allPresets = baseCategories.flatMap((category) => category.presets);
 
-// const newCategory = {
-//   name: "New",
-//   slug: "/new",
-//   // Show presets that have been published for the past two weeks
-//   presets: allPresets
-//     .filter((preset) => {
-//       const twoWeeksAgo = new Date();
-//       twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-//       return new Date(preset.date) >= twoWeeksAgo;
-//     })
-//     .sort((a, b) => {
-//       return new Date(b.date).getTime() - new Date(a.date).getTime();
-//     }),
-//   icon: "calendar" as const,
-//   iconComponent: Icons["calendar"],
-// };
+const newCategory = {
+  name: "New",
+  slug: "/new",
+  // Show presets that have been published for the past two weeks
+  presets: allPresets
+    .filter((preset) => {
+      const twoWeeksAgo = new Date();
+      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+      return new Date(preset.date) >= twoWeeksAgo;
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }),
+  icon: "calendar" as const,
+  iconComponent: Icons["calendar"],
+};
 
-export const categories: Category[] = [
-  // ...(newCategory.presets.length > 0 ? [newCategory] : []),
-  ...baseCategories,
-];
+export const categories: Category[] = [...(newCategory.presets.length > 0 ? [newCategory] : []), ...baseCategories];
