@@ -50,7 +50,7 @@
     "js-base64": "^3.7.3",
     "lodash.debounce": "^4.0.8",
     "nanoid": "^5.0.7",
-    "next": "14.2.3",
+    "next": "^14.2.3",
     "prettier": "^3.3.3",
     "react": "18.3.1",
     "react-color": "^2.19.3",
