@@ -1,0 +1,20 @@
+{  "author": "Vatsal Sanjay",
+  "authorUsername": "vatsalsanjay",
+  "version": "1",
+  "name": "Raycast Dark - Purple",
+  "appearance": "dark",
+  "colors": {
+    "background": "#68246D",
+    "backgroundSecondary": "#030303",
+    "text": "#F2F2F2",
+    "selection": "#FFFFFF",
+    "loader": "#FFFFFF",
+    "red": "#F84E4E",
+    "orange": "#F88D4E",
+    "yellow": "#FFCC47",
+    "green": "#4EF8A7",
+    "blue": "#228CF6",
+    "purple": "#7B4EF8",
+    "magenta": "#F84EBD"
+  }
+}
