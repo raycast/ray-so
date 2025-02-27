@@ -450,7 +450,12 @@ const search: Quicklink[] = [
       name: "Dakota Chambers",
       link: "https://github.com/dcchambers",
     },
-  }
+  },
+  {
+    id: "unduck",
+    name: "Search Unduck",
+    link: "https://unduck.link?q={query}",
+  },
 ];
 
 const shopping: Quicklink[] = [
