@@ -339,7 +339,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                         {icon ? (
                           <img src={icon} alt={extension?.title} className={styles.metaIcon} width={16} height={16} />
                         ) : null}
-                        <div className={styles.metaContent}>{extension?.title}</div>
+                        <div className={styles.metaContent}>{extension?.title || tool.name}</div>
                       </div>
                     </div>
                   );
