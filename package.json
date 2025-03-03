@@ -75,7 +75,7 @@
     "eslint-config-next": "^14.2.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.47",
     "postcss-nested": "^6.0.0",
     "stylelint": "^14.11.0",
     "stylelint-config-idiomatic-order": "^9.0.0",
