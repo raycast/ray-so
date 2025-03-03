@@ -46,10 +46,6 @@ export function PresetComponent({
   const router = useRouter();
   const model = models?.find((m) => m.id === preset.model);
 
-  console.log("preset model", preset.model);
-  console.log("models", models);
-  console.log("model", model);
-
   const handleCopyInstruction = React.useCallback(() => {
     copy(preset.instructions);
     setToastMessage("Copied to clipboard");
