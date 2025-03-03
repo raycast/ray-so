@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { allPresets } from "../presets";
+import { allPresets, Preset } from "../presets";
 import { getAvailableAiModels } from "@/api/ai";
 import { PresetDetail } from "../components/PresetDetail";
 import { Metadata, ResolvingMetadata } from "next";
@@ -67,7 +67,7 @@ export default async function Page({ params, searchParams }: Props) {
     notFound();
   }
 
-  const preset = parseURLPreset(searchParams.preset as string);
+  const preset = parseURLPreset(searchParams.preset as string) as Preset;
 
   if (!preset) {
     notFound();
@@ -79,7 +79,8 @@ export default async function Page({ params, searchParams }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
-  const extensions = await getExtensions({ extensionIds: preset.extensions || [] });
+  const extensionIds = preset.tools?.map((tool) => tool.id) || [];
+  const extensions = await getExtensions({ extensionIds });
 
   return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }
