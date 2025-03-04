@@ -799,7 +799,7 @@ You can use the following template to create the summary:
     date: "2025-02-26",
     author: {
       name: "Berenger Zantangni",
-      link: "https://raycastcommunity.slack.com/team/U028NK2AXL6",
+      link: "https://x.com/princeberenger",
     },
   },
   {
