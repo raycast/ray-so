@@ -452,10 +452,28 @@ const search: Quicklink[] = [
     },
   },
   {
+    id: "bing",
+    name: "Search Bing",
+    link: "https://www.bing.com/search?q={Query}",
+    author: {
+      name: "Roman Roan",
+      link: "https://github.com/romanr",
+    },
+  },
+  {
+    id: "bing-images",
+    name: "Search Bing Images",
+    link: "https://www.bing.com/images/search?q={Query}",
+    author: {
+      name: "Roman Roan",
+      link: "https://github.com/romanr",
+    },
+  },
+  {
     id: "unduck",
     name: "Search Unduck",
     link: "https://unduck.link?q={query}",
-  },
+  }
 ];
 
 const shopping: Quicklink[] = [
