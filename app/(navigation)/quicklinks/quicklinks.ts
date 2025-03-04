@@ -468,6 +468,11 @@ const search: Quicklink[] = [
       name: "Roman Roan",
       link: "https://github.com/romanr",
     },
+  },
+  {
+    id: "unduck",
+    name: "Search Unduck",
+    link: "https://unduck.link?q={query}",
   }
 ];
 

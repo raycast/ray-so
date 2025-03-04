@@ -13,6 +13,7 @@ import styles from "./prompts.module.css";
 import { ButtonGroup } from "@/components/button-group";
 import { Button } from "@/components/button";
 import {
+  AtSymbolIcon,
   ChevronDownIcon,
   CopyClipboardIcon,
   DownloadIcon,
@@ -20,6 +21,7 @@ import {
   MinusCircleIcon,
   PlusCircleIcon,
   StarsIcon,
+  StarsSquareIcon,
   TrashIcon,
 } from "@raycast/icons";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
@@ -33,12 +35,17 @@ import { NavigationActions } from "@/components/navigation";
 import { Kbd, Kbds } from "@/components/kbd";
 import { InfoDialog } from "../components/InfoDialog";
 import { AiModel } from "@/api/ai";
+import { Tooltip, TooltipContent } from "@/components/tooltip";
+import { TooltipTrigger } from "@/components/tooltip";
+import { Extension } from "@/api/store";
+import { AIExtension } from "@/components/ai-extension";
 
 type Props = {
   models: AiModel[];
+  extensions: Extension[];
 };
 
-export function Prompts({ models }: Props) {
+export function Prompts({ models, extensions }: Props) {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
 
@@ -336,25 +343,44 @@ export function Prompts({ models }: Props) {
                       {category.prompts.map((prompt, index) => {
                         const isSelected = selectedPrompts.some((selectedPrompt) => selectedPrompt.id === prompt.id);
                         const model = models?.find((m) => m.id === prompt.model);
+                        const hasAIExtensions = prompt.prompt.includes("{id=") && prompt.prompt.includes("@");
                         return (
                           <ContextMenu.Root key={prompt.id}>
                             <ContextMenu.Trigger>
                               <div
-                                className={`${styles.item} selectable`}
+                                className={`${styles.item} selectable group`}
                                 data-selected={isSelected}
                                 data-key={`${category.slug}-${index}`}
                               >
                                 <div className={styles.promptTemplate}>
                                   <ScrollArea>
-                                    <pre
-                                      className={styles.template}
-                                      dangerouslySetInnerHTML={{
-                                        __html: prompt.prompt.replace(
-                                          /\{[^}]+\}/g,
-                                          `<span class="${styles.placeholder}">$&</span>`,
-                                        ),
-                                      }}
-                                    ></pre>
+                                    <pre className={styles.template}>
+                                      {prompt.prompt.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                                        const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                                        if (match) {
+                                          const extension = extensions.find((e) => e.id === match[2]);
+                                          return (
+                                            <AIExtension
+                                              variant="secondary"
+                                              key={index}
+                                              extension={extension}
+                                              fallback={match[1]}
+                                            />
+                                          );
+                                        }
+                                        return (
+                                          <span
+                                            key={index}
+                                            dangerouslySetInnerHTML={{
+                                              __html: part.replace(
+                                                /\{[^}]+\}/g,
+                                                `<span class="${styles.placeholder}">$&</span>`,
+                                              ),
+                                            }}
+                                          />
+                                        );
+                                      })}
+                                    </pre>
                                   </ScrollArea>
                                 </div>
                                 <div className={styles.prompt}>
@@ -382,7 +408,16 @@ export function Prompts({ models }: Props) {
                                       {model?.name}
                                     </span>
                                   ) : null}
-                                  <CreativityIcon creativity={prompt.creativity} />
+                                  {prompt.creativity ? <CreativityIcon creativity={prompt.creativity} /> : null}
+
+                                  {hasAIExtensions ? (
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <StarsSquareIcon />
+                                      </TooltipTrigger>
+                                      <TooltipContent>Includes AI Extensions</TooltipContent>
+                                    </Tooltip>
+                                  ) : null}
                                 </div>
                               </div>
                             </ContextMenu.Trigger>

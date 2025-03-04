@@ -26,7 +26,7 @@ function makePresetImportData(preset: Preset): string {
 }
 
 function makeQueryString(preset: Preset): string {
-  const { name, instructions, description, creativity, icon, model, web_search, image_generation, id } = preset;
+  const { name, instructions, description, creativity, icon, model, web_search, image_generation, id, tools } = preset;
 
   return `preset=${encodeURIComponent(
     JSON.stringify({
@@ -39,6 +39,7 @@ function makeQueryString(preset: Preset): string {
       web_search: web_search ? true : false,
       image_generation: image_generation ? true : false,
       id,
+      tools,
     }),
   )}`;
 }
@@ -69,5 +70,6 @@ export function copyUrl(preset: Preset) {
 
 export function addToRaycast(router: AppRouterInstance, preset: Preset) {
   const raycastProtocol = getRaycastFlavor();
+  console.log("query", `${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
   router.replace(`${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
 }
