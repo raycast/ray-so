@@ -44,7 +44,7 @@ export function InfoDialog() {
             <p>
               The project is Open Source and{" "}
               <a href="https://github.com/raycast/ray-so" className="text-gray-12 underline underline-offset-2">
-                available on Github
+                available on GitHub
               </a>
               .
             </p>
