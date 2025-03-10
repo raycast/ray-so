@@ -14,10 +14,10 @@ let maxWidth = 920;
 let minWidth = 520;
 
 const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
-  const currentHandleRef = useRef<Handle>();
+  const currentHandleRef = useRef<Handle>(undefined);
   const windowRef = useRef<HTMLDivElement>(null);
-  const startWidthRef = useRef<number>();
-  const startXRef = useRef<number>();
+  const startWidthRef = useRef<number>(undefined);
+  const startXRef = useRef<number>(undefined);
   const [windowWidth, setWindowWidth] = useAtom(windowWidthAtom);
   const [isResizing, setResizing] = useState(false);
   const resetWindowWidthRef = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
 
       setWindowWidth(newWidth);
     },
-    [setWindowWidth]
+    [setWindowWidth],
   );
 
   const clearSelection = useCallback(() => {
@@ -73,7 +73,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
         document.addEventListener("mousemove", mouseMoveHandler);
         document.addEventListener("mouseup", mouseUpHandler);
       },
-    [mouseMoveHandler, mouseUpHandler]
+    [mouseMoveHandler, mouseUpHandler],
   );
 
   return (

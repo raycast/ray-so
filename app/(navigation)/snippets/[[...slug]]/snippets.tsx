@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
 import { Select, SelectItem, SelectContent, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
