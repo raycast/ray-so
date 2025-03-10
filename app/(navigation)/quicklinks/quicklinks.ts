@@ -513,6 +513,16 @@ const search: Quicklink[] = [
     id: "unduck",
     name: "Search Unduck",
     link: "https://unduck.link?q={query}",
+  },
+  {
+    id: "leo",
+    name: "Search Leo",
+    description: "Look up words in the English-German dictionary in Leo",
+    link: "https://dict.leo.org/german-english/{Query}",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
   }
 ];
 
