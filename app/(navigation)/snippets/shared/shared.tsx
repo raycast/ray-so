@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
 import { SnippetsIcon } from "../components/Icons";

@@ -5,7 +5,7 @@ import React from "react";
 import { nanoid } from "nanoid";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { notFound, useRouter, useSearchParams } from "next/navigation";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import copy from "copy-to-clipboard";
 
 import { isTouchDevice } from "../utils/isTouchDevice";

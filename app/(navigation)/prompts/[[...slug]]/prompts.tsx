@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { Category, Prompt, categories } from "../prompts";
 import { extractPrompts } from "../utils/extractPrompts";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";
