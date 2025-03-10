@@ -7,11 +7,10 @@ import { PageWithThemeMode } from "@themes/components/page-with-theme-mode";
 import { Metadata } from "next";
 import { BASE_URL } from "@/utils/common";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { theme: [author: string, theme: string] };
+export async function generateMetadata(props: {
+  params: Promise<{ theme: [author: string, theme: string] }>;
 }): Promise<Metadata> {
+  const params = await props.params;
   const [author, themeName] = params.theme;
 
   const slug = `${author}/${themeName}`;
@@ -53,7 +52,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ThemePage({ params }: { params: { theme: [author: string, theme: string] } }) {
+export default async function ThemePage(props: { params: Promise<{ theme: [author: string, theme: string] }> }) {
+  const params = await props.params;
   const [author, themeName] = params.theme;
   const slug = `${author}/${themeName}`;
   const themes = await getAllThemes();
