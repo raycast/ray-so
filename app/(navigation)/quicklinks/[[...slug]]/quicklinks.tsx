@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { Category, Quicklink, categories as originalCategories } from "../quicklinks";
 import { extractQuicklinks } from "../utils/extractQuicklinks";
 import { addToRaycast, copyData, downloadData, makeUrl } from "../utils/actions";

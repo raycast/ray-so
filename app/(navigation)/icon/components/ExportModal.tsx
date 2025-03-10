@@ -21,7 +21,7 @@ type ExportOption = {
   size: number;
 };
 
-type SvgRefType = React.RefObject<HTMLElement & SVGSVGElement>;
+type SvgRefType = React.RefObject<(HTMLElement & SVGSVGElement) | null>;
 
 const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) => {
   if (!svgRef.current) {

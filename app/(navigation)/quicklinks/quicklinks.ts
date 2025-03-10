@@ -1,5 +1,5 @@
 import { IconName, Icons } from "@raycast/icons";
-import { SVGProps } from "react";
+import { SVGProps, type JSX } from "react";
 
 export type Quicklink = {
   id: string;
@@ -473,7 +473,7 @@ const search: Quicklink[] = [
     id: "unduck",
     name: "Search Unduck",
     link: "https://unduck.link?q={query}",
-  }
+  },
 ];
 
 const shopping: Quicklink[] = [

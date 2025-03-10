@@ -6,8 +6,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { getExtensions } from "@/api/store";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 function parseURLPreset(presetQueryString?: string) {
@@ -17,7 +17,8 @@ function parseURLPreset(presetQueryString?: string) {
   return JSON.parse(presetQueryString);
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams;
   const preset = parseURLPreset(searchParams.preset as string);
   if (!preset) {
     notFound();
@@ -62,7 +63,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   };
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page(props: Props) {
+  const searchParams = await props.searchParams;
   if (!searchParams.preset) {
     notFound();
   }

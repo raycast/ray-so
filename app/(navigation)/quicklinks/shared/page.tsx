@@ -7,8 +7,8 @@ import { nanoid } from "nanoid";
 import { Base64 } from "js-base64";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 function parseURLQuicklink(quicklinkQueryString?: string | string[]): Quicklink[] {
@@ -34,7 +34,8 @@ function parseURLQuicklink(quicklinkQueryString?: string | string[]): Quicklink[
   }));
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams;
   const quicklinks = parseURLQuicklink(searchParams.quicklinks as string);
   if (!quicklinks) {
     notFound();
@@ -121,7 +122,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   }
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page(props: Props) {
+  const searchParams = await props.searchParams;
   const quicklinks = parseURLQuicklink(searchParams.quicklinks as string);
   if (!quicklinks) {
     notFound();
