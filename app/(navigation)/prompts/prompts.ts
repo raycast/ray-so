@@ -466,6 +466,15 @@ const writing: Prompt[] = [
     model: "raycast-ray1",
     date: "2025-02-26",
   },
+  {
+    id: "weekly-update-to-weekly-note",
+    title: "Weekly Update to Weekly Note",
+    icon: "check-list",
+    model: "raycast-ray1",
+    prompt:
+      'Convert my weekly update to a markdown list with a checkbox for each list item \n\nexample: \n* Update landing page -> [] update landing page\n\nAdd the markdown list to a new @raycast-notes{id=builtin_package_raycastNotes}. \n\nALWAYS start the note with this weeks number as the title e.g. "# Week 16".\n\nALWAYS return a link to the newly created note.\n\nHere:s my weekly update: \n\n{selection}',
+    date: "2025-03-11",
+  },
 ];
 
 const music: Prompt[] = [
