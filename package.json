@@ -35,7 +35,7 @@
     "@vercel/og": "^0.6.2",
     "@viselect/react": "^3.9.0",
     "class-variance-authority": "^0.7.0",
-    "classnames": "^2.3.2",
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "dub": "0.30.4",
