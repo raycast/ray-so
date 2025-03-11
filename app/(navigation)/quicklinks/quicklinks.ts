@@ -1,5 +1,5 @@
 import { IconName, Icons } from "@raycast/icons";
-import { SVGProps } from "react";
+import { SVGProps, type JSX } from "react";
 
 export type Quicklink = {
   id: string;

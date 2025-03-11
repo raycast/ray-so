@@ -3,7 +3,7 @@
 import { Quicklink } from "../quicklinks";
 import React, { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import copy from "copy-to-clipboard";
 
 import { isTouchDevice } from "../utils/isTouchDevice";
