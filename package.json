@@ -69,7 +69,7 @@
     "@types/react": "19.0.10",
     "@types/react-color": "^3.0.12",
     "@types/react-dom": "19.0.4",
-    "@types/react-transition-group": "^4.4.5",
+    "@types/react-transition-group": "^4.4.12",
     "@typescript-eslint/parser": "^7.12.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.32.0",
