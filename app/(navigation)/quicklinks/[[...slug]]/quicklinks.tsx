@@ -40,10 +40,18 @@ export function Quicklinks() {
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
   const [search, setSearch] = React.useState("");
 
+  const [raycastProtocol, setRaycastProtocol] = React.useState("");
+
+  React.useEffect(() => {
+    async function fetchRaycastProtocol() {
+      const protocol = await getRaycastFlavor();
+      setRaycastProtocol(protocol);
+    }
+    fetchRaycastProtocol();
+  }, []);
+
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
-  // The current flavor of Raycast is saved in localStorage,
-  // so we need to convert all links on the client to not get hydration errors
-  const raycastProtocol = getRaycastFlavor();
+
   useEffect(() => {
     const flavoredCategories = originalCategories.map((category) => {
       return {
