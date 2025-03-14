@@ -59,13 +59,13 @@ export function copyUrl(quicklinks: Quicklink[]) {
   copy(makeUrl(quicklinks));
 }
 
-export function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
-  const raycastProtocol = getRaycastFlavor();
+export async function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
+  const raycastProtocol = await getRaycastFlavor();
   router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
 }
 
-export function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
-  const raycastProtocol = getRaycastFlavor();
+export async function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
+  const raycastProtocol = await getRaycastFlavor();
   const { name, link, openWith, icon } = quicklink;
   const encodedQuicklink = encodeURIComponent(
     JSON.stringify({

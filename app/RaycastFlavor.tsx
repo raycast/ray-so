@@ -4,33 +4,32 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "@/components/toast";
 
-const flavors = ["raycast", "raycastinternal"];
+type Flavor = "raycast" | "raycastinternal";
 
-export function RaycastFlavor() {
-  const searchParams = useSearchParams();
-  const flavor = searchParams.get("flavor");
-
-  useEffect(() => {
-    if (flavor) {
-      if (flavors.includes(flavor)) {
-        if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-          localStorage.setItem("flavor", flavor);
-          toast.success(`Flavor set to "${flavor}"`);
-        }
-      } else {
-        toast.error(`Invalid flavor "${flavor}"`);
-      }
+async function isRaycastInternalRunning(): Promise<boolean> {
+  return new Promise((resolve) => {
+    try {
+      const socket = new WebSocket("ws://localhost:7264");
+      socket.onopen = () => {
+        socket.close();
+        resolve(true);
+      };
+      socket.onerror = () => resolve(false);
+      socket.onclose = () => resolve(false);
+    } catch (error) {
+      resolve(false);
     }
-  }, [flavor]);
-  return null;
+  });
 }
 
-export function getRaycastFlavor() {
-  if (typeof window !== "undefined" && typeof localStorage !== "undefined" && localStorage.getItem("flavor")) {
-    return localStorage.getItem("flavor");
-  } else if (process.env.NODE_ENV === "development") {
-    return flavors[1];
-  } else {
-    return flavors[0];
+let cachedFlavor: Flavor;
+
+export async function getRaycastFlavor(): Promise<Flavor> {
+  if (cachedFlavor) {
+    return cachedFlavor;
   }
+
+  const isInternal = await isRaycastInternalRunning();
+  cachedFlavor = isInternal ? "raycastinternal" : "raycast";
+  return cachedFlavor;
 }
