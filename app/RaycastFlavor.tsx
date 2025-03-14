@@ -1,15 +1,17 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "@/components/toast";
+type Flavor = "raycast" | "raycastinternal" | "raycastdebug";
 
-type Flavor = "raycast" | "raycastinternal";
+const FLAVOR_PORTS: Record<Flavor, number> = {
+  raycastdebug: 7263,
+  raycastinternal: 7264,
+  raycast: 7265,
+};
 
-async function isRaycastInternalRunning(): Promise<boolean> {
+async function isWebsocketOpen(port: number): Promise<boolean> {
   return new Promise((resolve) => {
     try {
-      const socket = new WebSocket("ws://localhost:7264");
+      const socket = new WebSocket(`ws://localhost:${port}`);
       socket.onopen = () => {
         socket.close();
         resolve(true);
@@ -29,7 +31,13 @@ export async function getRaycastFlavor(): Promise<Flavor> {
     return cachedFlavor;
   }
 
-  const isInternal = await isRaycastInternalRunning();
-  cachedFlavor = isInternal ? "raycastinternal" : "raycast";
+  if (await isWebsocketOpen(FLAVOR_PORTS.raycastdebug)) {
+    cachedFlavor = "raycastdebug";
+  } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
+    cachedFlavor = "raycastinternal";
+  } else {
+    cachedFlavor = "raycast";
+  }
+
   return cachedFlavor;
 }
