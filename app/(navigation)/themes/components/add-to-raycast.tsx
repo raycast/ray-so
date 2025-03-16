@@ -171,7 +171,6 @@ function Item({ children, onSelect }: { children: React.ReactNode; onSelect: () 
       className="flex justify-between gap-3 rounded pl-2 pr-1 py-1 outline-none
       data-[highlighted]:bg-black/10
       dark:data-[highlighted]:bg-white/10
-
       cursor-default"
       onSelect={onSelect}
     >
