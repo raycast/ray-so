@@ -1,10 +1,11 @@
 import { getRaycastFlavor } from "@/app/RaycastFlavor";
 import { Theme } from "@themes/lib/theme";
 
-export function makeRaycastImportUrl(theme: Theme) {
+export async function makeRaycastImportUrl(theme: Theme) {
   const { slug, colors, ...restTheme } = theme;
 
-  const raycastProtocol = getRaycastFlavor();
+  const raycastProtocol = await getRaycastFlavor();
+  console.log("raycastProtocol", raycastProtocol);
   const url = new URL(`${raycastProtocol}://theme`);
 
   const encodedParams = Object.entries(restTheme).map(

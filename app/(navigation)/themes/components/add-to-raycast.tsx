@@ -51,11 +51,12 @@ export function AddToRaycast() {
     link.click();
   }, [activeTheme]);
 
-  const handleAddToRaycast = React.useCallback(() => {
+  const handleAddToRaycast = React.useCallback(async () => {
     if (!activeTheme) return;
 
     console.log("Opening theme in Raycast from button");
-    window.open(makeRaycastImportUrl(activeTheme));
+    const importUrl = await makeRaycastImportUrl(activeTheme);
+    window.open(importUrl);
   }, [activeTheme]);
 
   React.useEffect(() => {
@@ -110,13 +111,13 @@ export function AddToRaycast() {
         <DropdownMenu.Portal>
           <DropdownMenu.Content
             sideOffset={8}
-            className={`rounded-md z-20 p-1 min-w-[200px] backdrop-blur-[6px] text-sm leading-[22px] 
-            text-black/60 
+            className={`rounded-md z-20 p-1 min-w-[200px] backdrop-blur-[6px] text-sm leading-[22px]
+            text-black/60
             dark:text-white
-            bg-white/50 
+            bg-white/50
             dark:bg-neutral-700/40
-            shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)] 
-            dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)] 
+            shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
+            dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
             `}
           >
             <Item onSelect={() => handleDownload()}>
@@ -150,12 +151,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, cla
     className={`h-[30px] flex items-center gap-2 px-4 outline-none
         bg-white/10
         dark:bg-black/10
-        hover:bg-white/50 
-        dark:hover:bg-black/50 
-        shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_29px_10px_rgba(0,0,0,0.06)] 
-        focus:shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_0px_1px_#737373] 
-        dark:shadow-[inset_0px_0px_0px_1px_#484848] 
-        dark:focus:shadow-[inset_0px_0px_0px_1px_#484848,0px_0px_0px_1px_#484848] 
+        hover:bg-white/50
+        dark:hover:bg-black/50
+        shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_29px_10px_rgba(0,0,0,0.06)]
+        focus:shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_0px_1px_#737373]
+        dark:shadow-[inset_0px_0px_0px_1px_#484848]
+        dark:focus:shadow-[inset_0px_0px_0px_1px_#484848,0px_0px_0px_1px_#484848]
         ${className}`}
   >
     {children}
@@ -167,10 +168,10 @@ Button.displayName = "Button";
 function Item({ children, onSelect }: { children: React.ReactNode; onSelect: () => void }) {
   return (
     <DropdownMenu.Item
-      className="flex justify-between gap-3 rounded pl-2 pr-1 py-1 outline-none 
-      data-[highlighted]:bg-black/10 
-      dark:data-[highlighted]:bg-white/10 
-      
+      className="flex justify-between gap-3 rounded pl-2 pr-1 py-1 outline-none
+      data-[highlighted]:bg-black/10
+      dark:data-[highlighted]:bg-white/10
+
       cursor-default"
       onSelect={onSelect}
     >
