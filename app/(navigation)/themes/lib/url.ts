@@ -5,7 +5,6 @@ export async function makeRaycastImportUrl(theme: Theme) {
   const { slug, colors, ...restTheme } = theme;
 
   const raycastProtocol = await getRaycastFlavor();
-  console.log("raycastProtocol", raycastProtocol);
   const url = new URL(`${raycastProtocol}://theme`);
 
   const encodedParams = Object.entries(restTheme).map(
