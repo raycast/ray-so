@@ -515,6 +515,10 @@ const music: Prompt[] = [
     creativity: "none",
     model: "raycast-ray1-mini",
     date: "2025-03-16",
+    author: {
+      name: "Kian Pasani",
+      link: "https://github.com/kianhub",
+    },
   },
   {
     id: "copy-currently-playing-spotify-to-apple",
@@ -524,6 +528,10 @@ const music: Prompt[] = [
     creativity: "none",
     model: "raycast-ray1-mini",
     date: "2025-03-16",
+    author: {
+      name: "Kian Pasani",
+      link: "https://github.com/kianhub",
+    },
   }
 ];
 
