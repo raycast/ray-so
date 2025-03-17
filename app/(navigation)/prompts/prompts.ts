@@ -507,6 +507,32 @@ const music: Prompt[] = [
     model: "raycast-ray1",
     date: "2025-02-26",
   },
+  {
+    id: "copy-currently-playing-apple-to-spotify",
+    title: "Copy Spotify URL from Currently Playing Apple Music Track",
+    prompt: "@music{id=2bfe94cd-50ab-4e48-a6cd-f1ff47a72706} Take the currently playing track, @spotify-player{id=320f40ef-a633-415a-ab0e-1e99515478f7} search that track and @clipboard{id=builtin_package_clipboardHistory} copy the link of the spotify song. Not in markdown, just the link.",
+    icon: "music",
+    creativity: "none",
+    model: "raycast-ray1-mini",
+    date: "2025-03-16",
+    author: {
+      name: "Kian Pasani",
+      link: "https://github.com/kianhub",
+    },
+  },
+  {
+    id: "copy-currently-playing-spotify-to-apple",
+    title: "Copy Apple Music URL from Currently Playing Spotify Track",
+    prompt: "@spotify-player{id=320f40ef-a633-415a-ab0e-1e99515478f7} Take the currently playing track, @music{id=2bfe94cd-50ab-4e48-a6cd-f1ff47a72706} search that track and @clipboard{id=builtin_package_clipboardHistory} copy the link of the spotify song. Not in markdown, just the link.",
+    icon: "music",
+    creativity: "none",
+    model: "raycast-ray1-mini",
+    date: "2025-03-16",
+    author: {
+      name: "Kian Pasani",
+      link: "https://github.com/kianhub",
+    },
+  }
 ];
 
 const ideas: Prompt[] = [
