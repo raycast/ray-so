@@ -770,27 +770,30 @@ const misc: Quicklink[] = [
 const science: Quicklink[] = [
   {
     id: "search-ensembl",
-    name: "Search the Ensembl Database"
+    name: "Search the Ensembl Database",
     description: "Search for a gene, variant, transcript, etc. in the ENSEMBL database",
     link : "https://www.ensembl.org/Multi/Search/Results?q={argument name=\"Search term\"};site=ensembl",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "ucsc-gene-search",
-    name: "UCSC Genome Browser (Gene - hg38)"
+    name: "UCSC Genome Browser (Gene - hg38)",
     description: "Open the UCSC genome browser at a gene locus – Human Genome b38",
     link : "http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position={argument name=\"Gene Name\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "ucsc-position-search",
-    name: "UCSC Genome Browser (Position - hg38)"
+    name: "UCSC Genome Browser (Position - hg38)",
     description: "Open the UCSC genome browser at a genomic region – Human Genome b38",
     link : "http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position={argument name=\"Chromosome (inc. chr)\"}:{argument name=\"Start Position\"}-{argument name=\"End Position\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-ncbi",
@@ -798,87 +801,96 @@ const science: Quicklink[] = [
     description: "Search NCBI database",
     link : "https://www.ncbi.nlm.nih.gov/search/all/?term={argument name=\"Search term\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-genecards",
-    name: "Search GeneCards database"
+    name: "Search GeneCards database",
     description: "Open the GeneCards page for a given gene",
     link : "https://www.genecards.org/cgi-bin/carddisp.pl?gene={argument name=\"Gene\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-pubmed",
-    name: "Search Pubmed for a manuscript"
+    name: "Search Pubmed for a manuscript",
     description: "Search for manuscripts in Pubmed",
     link : "https://pubmed.ncbi.nlm.nih.gov/?term={argument name=\"Search term\"}",
     author: {
-      name: "Yassine Souilmi",
-  },  
+      name: "Yassine Souilmi"
+    }
+  },
   {
     id: "search-googlescholar",
-    name: "Search Google Scholar for a manuscript, books, or patents"
+    name: "Search Google Scholar for a manuscript, books, or patents",
     description: "Search for manuscripts in Pubmed",
     link : "https://scholar.google.com/scholar?hl=en&as_sdt=0,5&q={argument name=\"Term\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
   },
   {
     id: "search-gwascatalog",
-    name: "Search GWAS Catalog"
+    name: "Search GWAS Catalog",
     description: "Search GWAS Catalog for a gene (HGNC/Ensembl), genomic regions (6:167120000-167130000), phenotype, or variant rsID",
     link : "https://www.ebi.ac.uk/gwas/search?query={argument name=\"Gene/Phenotype/Variant\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-gnomad-v4-variant",
-    name: "Search gnomAD v4 (Variant)"
+    name: "Search gnomAD v4 (Variant)",
     description: "Search gnomAD database for a variant rsID (rs548932103) or gnomAD ID (6-137871434-C-T)",
     link : "https://gnomad.broadinstitute.org/variant/{argument name=\"Variant: rsID/chr-pos-ref-alt\"}?dataset=gnomad_r4",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-gnomad-v4-gene",
-    name: "Search gnomAD v4 (Gene)"
+    name: "Search gnomAD v4 (Gene)",
     description: "Search gnomAD database for a gene (HGNC Symbol or Ensembl ID)",
     link : "https://gnomad.broadinstitute.org/gene/{argument name=\"Gene: HGNC/ENSEMBL\"}?dataset=gnomad_r4",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-uniprot",
-    name: "Search UniProt"
+    name: "Search UniProt",
     description: "Search UniProt database for proteins",
     link : "https://www.uniprot.org/uniprotkb?query={argument name=\"Protein/Gene Name\"}",
     author: {
-      name: "Yassine Souilmi",
-  }, https://www.biorxiv.org/search/souilmi
+      name: "Yassine Souilmi"
+    }
+  },
   {
     id: "search-biorxiv",
-    name: "Search bioRxiv"
+    name: "Search bioRxiv",
     description: "Search bioRxiv for biology preprints",
     link : "https://www.biorxiv.org/search/{argument name=\"Search Term\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-rxiv",
-    name: "Search aRxiv"
+    name: "Search aRxiv",
     description: "Search aRxiv for preprints",
     link : "https://arxiv.org/search/?query={argument name=\"Search Term\"}&searchtype=all&source=header",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
   },
   {
     id: "search-med",
-    name: "Search medRxiv"
+    name: "Search medRxiv",
     description: "Search medRxiv for medical preprints",
     link : "https://www.medrxiv.org/search/{argument name=\"Search Term\"}",
     author: {
-      name: "Yassine Souilmi",
+      name: "Yassine Souilmi"
+    }
   },
 ];
 
