@@ -775,7 +775,10 @@ const science: Quicklink[] = [
     link : "https://www.ensembl.org/Multi/Search/Results?q={argument name=\"Search term\"};site=ensembl",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "ucsc-gene-search",
@@ -784,7 +787,10 @@ const science: Quicklink[] = [
     link : "http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position={argument name=\"Gene Name\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "ucsc-position-search",
@@ -793,7 +799,10 @@ const science: Quicklink[] = [
     link : "http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position={argument name=\"Chromosome (inc. chr)\"}:{argument name=\"Start Position\"}-{argument name=\"End Position\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-ncbi",
@@ -802,7 +811,10 @@ const science: Quicklink[] = [
     link : "https://www.ncbi.nlm.nih.gov/search/all/?term={argument name=\"Search term\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-genecards",
@@ -811,7 +823,10 @@ const science: Quicklink[] = [
     link : "https://www.genecards.org/cgi-bin/carddisp.pl?gene={argument name=\"Gene\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-pubmed",
@@ -820,7 +835,10 @@ const science: Quicklink[] = [
     link : "https://pubmed.ncbi.nlm.nih.gov/?term={argument name=\"Search term\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "blank-document",
+	},
   },
   {
     id: "search-googlescholar",
@@ -829,7 +847,10 @@ const science: Quicklink[] = [
     link : "https://scholar.google.com/scholar?hl=en&as_sdt=0,5&q={argument name=\"Term\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "book",
+	},
   },
   {
     id: "search-gwascatalog",
@@ -838,7 +859,10 @@ const science: Quicklink[] = [
     link : "https://www.ebi.ac.uk/gwas/search?query={argument name=\"Gene/Phenotype/Variant\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-gnomad-v4-variant",
@@ -847,7 +871,10 @@ const science: Quicklink[] = [
     link : "https://gnomad.broadinstitute.org/variant/{argument name=\"Variant: rsID/chr-pos-ref-alt\"}?dataset=gnomad_r4",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-gnomad-v4-gene",
@@ -856,7 +883,10 @@ const science: Quicklink[] = [
     link : "https://gnomad.broadinstitute.org/gene/{argument name=\"Gene: HGNC/ENSEMBL\"}?dataset=gnomad_r4",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-uniprot",
@@ -865,7 +895,10 @@ const science: Quicklink[] = [
     link : "https://www.uniprot.org/uniprotkb?query={argument name=\"Protein/Gene Name\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "dna",
+	},
   },
   {
     id: "search-biorxiv",
@@ -874,7 +907,10 @@ const science: Quicklink[] = [
     link : "https://www.biorxiv.org/search/{argument name=\"Search Term\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "blank-document",
+	},
   },
   {
     id: "search-rxiv",
@@ -883,7 +919,10 @@ const science: Quicklink[] = [
     link : "https://arxiv.org/search/?query={argument name=\"Search Term\"}&searchtype=all&source=header",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "blank-document",
+	},
   },
   {
     id: "search-med",
@@ -892,7 +931,10 @@ const science: Quicklink[] = [
     link : "https://www.medrxiv.org/search/{argument name=\"Search Term\"}",
     author: {
       name: "Yassine Souilmi"
-    }
+    },
+	icon: {
+		name: "blank-document",
+	},
   },
 ];
 
