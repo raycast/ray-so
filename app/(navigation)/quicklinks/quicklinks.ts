@@ -1007,7 +1007,7 @@ export const categories: Category[] = [
     name: "Science",
     slug: "/science",
     quicklinks: [...science],
-    icon: "folder" as IconName,
+    icon: "dna" as IconName,
   },
 ].map((category) => {
   return {
