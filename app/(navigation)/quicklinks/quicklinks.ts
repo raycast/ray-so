@@ -1,5 +1,5 @@
 import { IconName, Icons } from "@raycast/icons";
-import { SVGProps } from "react";
+import { SVGProps, type JSX } from "react";
 
 export type Quicklink = {
   id: string;
@@ -133,6 +133,26 @@ const development: Quicklink[] = [
     id: "github",
     name: "Search GitHub",
     link: "https://github.com/search?q={Query}&type=repositories",
+  },
+  {
+    id: "githubcopilot",
+    name: "Github Copilot",
+    link: "https://github.com/copilot?prompt={Query}",
+    description: "Quickly chat with Github Copilot",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
+  },
+  {
+    id: "huggingface",
+    name: "Search Hugging Face",
+    description: "Search for models, datasets, and more",
+    link: "https://huggingface.co/search/full-text?q={Query}",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
   },
   {
     id: "sentry",
@@ -380,6 +400,26 @@ const search: Quicklink[] = [
     },
   },
   {
+    id: "google-scholar",
+    name: "Search Google Scholar",
+    link: "https://scholar.google.com/scholar?q={Query}",
+    description: "Search for scientific articles in Google Scholar",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
+  },
+  {
+    id: "semantic-scholar",
+    name: "Search Semantic Scholar",
+    link: "https://www.semanticscholar.org/search?q={Query}&sort=relevance",
+    description: "Search for scientific articles in Semantic Scholar",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
+  },
+  {
     id: "google-maps",
     name: "Search Google Maps",
     link: "https://www.google.com/maps/search/{Place}",
@@ -450,7 +490,40 @@ const search: Quicklink[] = [
       name: "Dakota Chambers",
       link: "https://github.com/dcchambers",
     },
-  }
+  },
+  {
+    id: "bing",
+    name: "Search Bing",
+    link: "https://www.bing.com/search?q={Query}",
+    author: {
+      name: "Roman Roan",
+      link: "https://github.com/romanr",
+    },
+  },
+  {
+    id: "bing-images",
+    name: "Search Bing Images",
+    link: "https://www.bing.com/images/search?q={Query}",
+    author: {
+      name: "Roman Roan",
+      link: "https://github.com/romanr",
+    },
+  },
+  {
+    id: "unduck",
+    name: "Search Unduck",
+    link: "https://unduck.link?q={query}",
+  },
+  {
+    id: "leo",
+    name: "Search Leo",
+    description: "Look up words in the English-German dictionary in Leo",
+    link: "https://dict.leo.org/german-english/{Query}",
+    author: {
+      name: "ViGeng",
+      link: "https://www.raycast.com/ViGeng/via=ViGeng",
+    },
+  },
 ];
 
 const shopping: Quicklink[] = [

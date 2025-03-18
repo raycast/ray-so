@@ -68,8 +68,8 @@ export function copyUrl(preset: Preset) {
   copy(makeUrl(preset));
 }
 
-export function addToRaycast(router: AppRouterInstance, preset: Preset) {
-  const raycastProtocol = getRaycastFlavor();
+export async function addToRaycast(router: AppRouterInstance, preset: Preset) {
+  const raycastProtocol = await getRaycastFlavor();
   console.log("query", `${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
   router.replace(`${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
 }

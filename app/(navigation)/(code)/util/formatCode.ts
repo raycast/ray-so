@@ -9,6 +9,7 @@ const parsers = {
   CSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   SCSS: { import: () => import("prettier/plugins/postcss"), name: "css" },
   YAML: { import: () => import("prettier/plugins/yaml"), name: "yaml" },
+  Python: { import: () => Promise.resolve({ default: {} }), name: "python" },
 };
 
 export const formatterSupportedLanguages: Language["name"][] = Object.keys(parsers);
@@ -22,6 +23,16 @@ const formatCode = async (code: string, language: Language | null) => {
   if (!language || !formatterSupportedLanguages.includes(language.name)) {
     return code;
   }
+
+  if (language.name === "Python") {
+    const { default: initRuff, Workspace } = await import("@astral-sh/ruff-wasm-web");
+    await initRuff();
+
+    const workspace = new Workspace(Workspace.defaultSettings());
+    const formatted = workspace.format(code);
+    return formatted.replace(/\n$/, "");
+  }
+
   const prettier = await import("prettier/standalone");
 
   const parser = parsers[language.name as keyof typeof parsers];

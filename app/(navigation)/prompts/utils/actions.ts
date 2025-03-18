@@ -68,7 +68,7 @@ export function copyUrl(prompts: Prompt[]) {
   copy(makeUrl(prompts));
 }
 
-export function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
-  const raycastProtocol = getRaycastFlavor();
+export async function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
+  const raycastProtocol = await getRaycastFlavor();
   router.replace(`${raycastProtocol}://prompts/import?${makeQueryString(prompts)}`);
 }

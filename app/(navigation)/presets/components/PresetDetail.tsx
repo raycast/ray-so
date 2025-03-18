@@ -252,34 +252,36 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
           </div>
         </header>
         <div className={styles.body}>
-          <div className={styles.instructions}>
-            <div className={styles.instructionsInner}>
-              <div className={styles.instructionsHeader}>
-                <h3 className={styles.compactTitle}>Instructions</h3>
-                <button className={styles.copyButton} onClick={handleCopyInstructions} data-copied={showCopied}>
-                  <CheckIcon data-icon="check" className="w-4 h-4" />
-                  <CopyClipboardIcon data-icon="copy" className="w-4 h-4" />
-                </button>
+          {instructions ? (
+            <div className={styles.instructions}>
+              <div className={styles.instructionsInner}>
+                <div className={styles.instructionsHeader}>
+                  <h3 className={styles.compactTitle}>Instructions</h3>
+                  <button className={styles.copyButton} onClick={handleCopyInstructions} data-copied={showCopied}>
+                    <CheckIcon data-icon="check" className="w-4 h-4" />
+                    <CopyClipboardIcon data-icon="copy" className="w-4 h-4" />
+                  </button>
+                </div>
+                <pre className={styles.pre}>
+                  {instructions.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                    const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                    if (match) {
+                      const extension = extensions.find((e) => e.id === match[2]);
+                      return <AIExtension key={index} extension={extension} fallback={match[1]} />;
+                    }
+                    return (
+                      <span
+                        key={index}
+                        dangerouslySetInnerHTML={{
+                          __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
+                        }}
+                      />
+                    );
+                  })}
+                </pre>
               </div>
-              <pre className={styles.pre}>
-                {instructions.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
-                  const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
-                  if (match) {
-                    const extension = extensions.find((e) => e.id === match[2]);
-                    return <AIExtension key={index} extension={extension} fallback={match[1]} />;
-                  }
-                  return (
-                    <span
-                      key={index}
-                      dangerouslySetInnerHTML={{
-                        __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
-                      }}
-                    />
-                  );
-                })}
-              </pre>
             </div>
-          </div>
+          ) : null}
           <div className={clsx(styles.meta, styles.grid)}>
             <div className={styles.metaItem}>
               <h3 className={styles.compactTitle}>Model</h3>
@@ -337,7 +339,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                         {icon ? (
                           <img src={icon} alt={extension?.title} className={styles.metaIcon} width={16} height={16} />
                         ) : null}
-                        <div className={styles.metaContent}>{extension?.title}</div>
+                        <div className={styles.metaContent}>{extension?.title || tool.name}</div>
                       </div>
                     </div>
                   );

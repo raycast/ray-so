@@ -1,36 +1,43 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "@/components/toast";
+type Flavor = "raycast" | "raycastinternal" | "raycastdebug";
 
-const flavors = ["raycast", "raycastinternal"];
+const FLAVOR_PORTS: Record<Flavor, number> = {
+  raycastdebug: 7263,
+  raycastinternal: 7264,
+  raycast: 7265,
+};
 
-export function RaycastFlavor() {
-  const searchParams = useSearchParams();
-  const flavor = searchParams.get("flavor");
-
-  useEffect(() => {
-    if (flavor) {
-      if (flavors.includes(flavor)) {
-        if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-          localStorage.setItem("flavor", flavor);
-          toast.success(`Flavor set to "${flavor}"`);
-        }
-      } else {
-        toast.error(`Invalid flavor "${flavor}"`);
-      }
+async function isWebsocketOpen(port: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    try {
+      const socket = new WebSocket(`ws://localhost:${port}`);
+      socket.onopen = () => {
+        socket.close();
+        resolve(true);
+      };
+      socket.onerror = () => resolve(false);
+      socket.onclose = () => resolve(false);
+    } catch (error) {
+      resolve(false);
     }
-  }, [flavor]);
-  return null;
+  });
 }
 
-export function getRaycastFlavor() {
-  if (typeof window !== "undefined" && typeof localStorage !== "undefined" && localStorage.getItem("flavor")) {
-    return localStorage.getItem("flavor");
-  } else if (process.env.NODE_ENV === "development") {
-    return flavors[1];
-  } else {
-    return flavors[0];
+let cachedFlavor: Flavor;
+
+export async function getRaycastFlavor(): Promise<Flavor> {
+  if (cachedFlavor) {
+    return cachedFlavor;
   }
+
+  if (await isWebsocketOpen(FLAVOR_PORTS.raycastdebug)) {
+    cachedFlavor = "raycastdebug";
+  } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
+    cachedFlavor = "raycastinternal";
+  } else {
+    cachedFlavor = "raycast";
+  }
+
+  return cachedFlavor;
 }
