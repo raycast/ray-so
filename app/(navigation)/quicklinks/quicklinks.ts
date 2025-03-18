@@ -523,7 +523,7 @@ const search: Quicklink[] = [
       name: "ViGeng",
       link: "https://www.raycast.com/ViGeng/via=ViGeng",
     },
-  }
+  },
 ];
 
 const shopping: Quicklink[] = [
