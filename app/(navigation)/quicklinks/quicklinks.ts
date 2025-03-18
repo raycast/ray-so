@@ -797,7 +797,7 @@ const science: Quicklink[] = [
   },
   {
     id: "search-ncbi",
-    name: "Search NCBI"
+    name: "Search NCBI",
     description: "Search NCBI database",
     link : "https://www.ncbi.nlm.nih.gov/search/all/?term={argument name=\"Search term\"}",
     author: {
@@ -829,6 +829,7 @@ const science: Quicklink[] = [
     link : "https://scholar.google.com/scholar?hl=en&as_sdt=0,5&q={argument name=\"Term\"}",
     author: {
       name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-gwascatalog",
@@ -882,6 +883,7 @@ const science: Quicklink[] = [
     link : "https://arxiv.org/search/?query={argument name=\"Search Term\"}&searchtype=all&source=header",
     author: {
       name: "Yassine Souilmi"
+    }
   },
   {
     id: "search-med",
