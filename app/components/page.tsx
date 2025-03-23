@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
 import { Switch } from "@/components/switch";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import {
   BrandCplusplusIcon,
   BrandJavascriptIcon,
