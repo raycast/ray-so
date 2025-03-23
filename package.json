@@ -44,7 +44,7 @@
     "highlight.js": "^11.7.0",
     "hotkeys-js": "^3.10.0",
     "html-react-parser": "^5.2.2",
-    "html-to-image": "^1.11.3",
+    "html-to-image": "^1.11.13",
     "image-downloader": "^4.3.0",
     "jotai": "^2.8.3",
     "jotai-location": "^0.5.5",
