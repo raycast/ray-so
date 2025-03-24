@@ -191,12 +191,10 @@ export default function Snippets() {
     setToastMessage("Copied URL to clipboard!");
   }, [makeQueryString]);
 
-  const raycastProtocol = getRaycastFlavor();
-
-  const handleAddToRaycast = React.useCallback(
-    () => router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`),
-    [router, makeQueryString, raycastProtocol],
-  );
+  const handleAddToRaycast = React.useCallback(async () => {
+    const raycastProtocol = await getRaycastFlavor();
+    router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+  }, [router, makeQueryString]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
