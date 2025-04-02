@@ -165,6 +165,11 @@ const development: Quicklink[] = [
     link: "https://www.npmjs.com/search?q={Query}",
   },
   {
+    id: "packagist",
+    name: "Search Packagist",
+    link: "https://packagist.org/?query={Query}"
+  },
+  {
     id: "dub",
     name: "Search Dub Shortlinks",
     link: "https://app.dub.co/?search={Query}",
