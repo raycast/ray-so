@@ -524,6 +524,11 @@ const search: Quicklink[] = [
       link: "https://www.raycast.com/ViGeng/via=ViGeng",
     },
   },
+  {
+    id: "qwant",
+    name: "Search Qwant",
+    link: "https://qwant.com/?q={Query}",
+  },
 ];
 
 const shopping: Quicklink[] = [
