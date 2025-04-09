@@ -21,6 +21,7 @@ import { makeUrl, addQuicklinkToRaycast } from "../utils/actions";
 
 import { shortenUrl } from "@/utils/common";
 import { useRouter } from "next/navigation";
+import { isValidLink } from "../utils/isValidLink";
 
 type QuicklinkComponentProps = {
   quicklink: Quicklink;
@@ -33,8 +34,9 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
   const router = useRouter();
 
   let domain = "";
-  if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
-    const url = new URL(quicklink?.icon?.link || quicklink.link);
+  const iconLink = quicklink?.icon?.link || quicklink.link;
+  if (isValidLink(iconLink)) {
+    const url = new URL(iconLink);
     domain = url.hostname.replace("www.", "");
   }
 
@@ -100,8 +102,7 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
           <div className="w-full flex flex-col space-between h-full">
             <div className="flex-1">
               <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
-                {quicklink?.icon?.name ||
-                (!quicklink.link.startsWith("http") && !quicklink?.icon?.link?.startsWith("http")) ? (
+                {!isValidLink(iconLink) ? (
                   <IconComponent icon={quicklink?.icon?.name || "link"} />
                 ) : (
                   <img
