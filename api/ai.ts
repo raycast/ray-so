@@ -43,7 +43,7 @@ export type AiModel = {
 };
 
 export async function getAvailableAiModels() {
-  const res = await fetch("https://raycast.com/api/v1/ai/models", {
+  const res = await fetch("https://www.raycast.com/api/v1/ai/models", {
     next: {
       revalidate: 24 * 3600,
     },
