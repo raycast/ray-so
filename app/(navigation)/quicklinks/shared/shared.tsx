@@ -40,7 +40,15 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
     [quicklinks],
   );
 
-  const raycastProtocol = getRaycastFlavor();
+  const [raycastProtocol, setRaycastProtocol] = React.useState("");
+
+  React.useEffect(() => {
+    async function fetchRaycastProtocol() {
+      const protocol = await getRaycastFlavor();
+      setRaycastProtocol(protocol);
+    }
+    fetchRaycastProtocol();
+  }, []);
 
   const [categories, setCategories] = React.useState(initialCategories);
   useEffect(() => {
