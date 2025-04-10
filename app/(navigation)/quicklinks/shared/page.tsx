@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Shared } from "./shared";
 import { Quicklink } from "../quicklinks";
 import { nanoid } from "nanoid";
-import { Base64 } from "js-base64";
+import { isValidLink } from "../utils/isValidLink";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -46,8 +46,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     const pageTitle = `${quicklink.name} - Raycast Quicklink`;
     const pageDescription = "Raycast Quicklink";
     let iconUrl = "";
-    if (quicklink?.icon?.link || quicklink.link.startsWith("https")) {
-      const url = new URL(quicklink?.icon?.link || quicklink.link);
+    const iconLink = quicklink?.icon?.link || quicklink.link;
+    if (isValidLink(iconLink)) {
+      const url = new URL(iconLink);
       const domain = url.hostname.replace("www.", "");
       iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
     }
