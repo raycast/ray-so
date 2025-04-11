@@ -4,7 +4,7 @@ export function Kbd({ children, size = "small" }: { children: React.ReactNode; s
   return (
     <kbd
       className={cn(
-        `inline-flex items-center justify-center px-2 font-medium bg-gray-a4 tracking-[0.1px] font-sans w-auto text-gray-a10`,
+        `hidden md:inline-flex items-center justify-center px-2 font-medium bg-gray-a4 tracking-[0.1px] font-sans w-auto text-gray-a10`,
         size === "small" && "h-[18px] px-1 text-[10px] rounded-[3px] min-w-[18px]",
         size === "medium" && "h-[28px] px-2 text-xs rounded-md min-w-[28px]"
       )}
