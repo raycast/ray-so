@@ -126,6 +126,53 @@
   }
 }
 
+/* Yumma CSS Frame */
+
+.yummaFrame {
+  background-image: url("../assets/yummacss/boxes.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.yummaWindow {
+  overflow: hidden;
+  border: 1px solid #31365e;
+  background-color: #21243f;
+}
+
+.yummaHeader {
+  position: relative;
+  display: flex;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #31365e;
+  background-color: #151724;
+}
+
+.yummaWindowControls {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  gap: 6px;
+}
+
+.yummaControl {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #30323d;
+}
+
+.yummaWindowTitle {
+  color: #cccccc;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
 /* Vercel Theme Frame */
 
 .vercelFrame {

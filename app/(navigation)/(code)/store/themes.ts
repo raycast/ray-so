@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import YummaCSSLogo from "../assets/yummacss.svg";
+import YummaCSSLogoUrl from "../assets/yummacss.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -94,6 +96,33 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  yummacss: {
+    id: "yummacss",
+    name: "Yumma CSS",
+    background: {
+      from: "#21243f",
+      to: "#151724",
+    },
+    icon: YummaCSSLogo,
+    iconUrl: `${BASE_URL}${YummaCSSLogoUrl.src}`,
+    partner: true,
+    lineNumbers: false,
+    font: "geist-mono",
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#ffffff",
+        highlight: "hsla(231, 73%, 77%, 0.100)",
+        highlightHover: "hsla(231, 73%, 77%, 0.100)",
+        highlightBorder: "hsl(231, 73%, 77%)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#151724",
+        highlight: "hsla(231, 73%, 77%, 0.100)",
+        highlightHover: "hsla(231, 73%, 77%, 0.100)",
+        highlightBorder: "hsl(231, 73%, 77%)",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",

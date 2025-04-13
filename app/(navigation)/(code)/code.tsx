@@ -18,6 +18,9 @@ import { LANGUAGES } from "./util/languages";
 
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
+
+import yummacssMidnight from "./assets/yummacss/yumma-css-midnight.json";
+
 import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "./components/InfoDialog";
@@ -28,7 +31,7 @@ export function Code() {
 
   useEffect(() => {
     getHighlighterCore({
-      themes: [shikiTheme, tailwindLight, tailwindDark],
+      themes: [shikiTheme, tailwindLight, tailwindDark, yummacssMidnight],
       langs: [LANGUAGES.javascript.src(), LANGUAGES.tsx.src(), LANGUAGES.swift.src(), LANGUAGES.python.src()],
       loadWasm: getWasm,
     }).then((highlighter) => {

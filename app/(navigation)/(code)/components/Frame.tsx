@@ -21,6 +21,30 @@ import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 
+const YummaCSSFrame = () => {
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(styles.frame, showBackground && styles.yummaFrame, !showBackground && styles.noBackground)}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.yummaWindow}>
+        <div className={styles.yummaHeader}>
+          <div className={styles.yummaWindowControls}>
+            <div className={styles.yummaControl}></div>
+            <div className={styles.yummaControl}></div>
+            <div className={styles.yummaControl}></div>
+          </div>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -310,6 +334,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.yummacss.id:
+        return <YummaCSSFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;
