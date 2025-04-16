@@ -1973,16 +1973,5 @@
       }
     }
   ],
-  "semanticHighlighting": true,
-  "semanticTokenColors": {
-    "enumMember": {
-      "foreground": "#93ddfb"
-    },
-    "variable.constant": {
-      "foreground": "#dda2f6"
-    },
-    "variable.defaultLibrary": {
-      "foreground": "#85b1e0"
-    }
-  }
+  "semanticHighlighting": true
 }
