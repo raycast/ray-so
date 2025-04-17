@@ -50,7 +50,12 @@ npm run dev
 
 ## Contributing
 
-We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. If you're interested in contributing, follow the steps below:
+We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. 
+
+> [!NOTE]
+> If you're interested in creating a new code theme we recommend forking the project to run your own version. However, certain partner themes may be considered. Please reach out by creating an issue or [contacting us](mailto:feedback+rayso@raycast.com) first. 
+
+If you're interested in contributing, follow the steps below:
 
 ### Presets, Prompts, Quicklinks & Snippets
 
