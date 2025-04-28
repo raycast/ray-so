@@ -56,6 +56,15 @@ Transcript: {browser-tab}`,
     date: "2024-03-18",
     icon: "play-filled",
   },
+  {
+    id: "deepwikit",
+    title: "Deepwikit",
+    prompt: `Replace "github.com" of the {browser-tab} url with "deepwiki.com". Output the new url only, without explanations or instructions.`,
+    creativity: "none",
+    model: "groq-llama3-70b-8192",
+    date: "2025-04-28",
+    icon: "plus-top-right-square",
+  },
 ];
 
 const code: Prompt[] = [
