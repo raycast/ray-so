@@ -32,6 +32,7 @@ type QuicklinkComponentProps = {
 
 export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updateQuicklink }: QuicklinkComponentProps) {
   const router = useRouter();
+  const [imgError, setImgError] = React.useState(false);
 
   let domain = "";
   const iconLink = quicklink?.icon?.link || quicklink.link;
@@ -104,6 +105,8 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
               <div className="flex w-8 h-8 flex-shrink-0 items-center justify-center border border-dashed border-white/20 rounded bg-gradient-radial from-[#171717] to-black text-gray-12 transition-colors duration-150 mb-2 group-hover:text-gray-12">
                 {!isValidLink(iconLink) ? (
                   <IconComponent icon={quicklink?.icon?.name || "link"} />
+                ) : imgError ? (
+                  <IconComponent icon="link" />
                 ) : (
                   <img
                     src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
@@ -114,6 +117,7 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
                       `grayscale rounded overflow-hidden contrast-150 group-hover:grayscale-0`,
                       quicklink?.icon?.invert && "invert",
                     )}
+                    onError={() => setImgError(true)}
                   />
                 )}
               </div>
