@@ -24,6 +24,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Clojure",
     src: () => import("shiki/langs/clojure.mjs"),
   },
+  console: {
+    name: "Console",
+    src: () => import("shiki/langs/console.mjs"),
+  },
   crystal: {
     name: "Crystal",
     src: () => import("shiki/langs/crystal.mjs"),
