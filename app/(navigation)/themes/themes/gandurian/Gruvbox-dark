@@ -1,0 +1,20 @@
+{  "author": "Tarik GANDUR",
+  "authorUsername": "gandurian",
+  "version": "1",
+  "name": "Gruvbox-Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282828",
+    "backgroundSecondary": "#282828",
+    "text": "#EBDBB2",
+    "selection": "#8EC07C",
+    "loader": "#8EC07C",
+    "red": "#FB7034",
+    "orange": "#D65D0E",
+    "yellow": "#D79921",
+    "green": "#98971A",
+    "blue": "#458588",
+    "purple": "#B16286",
+    "magenta": "#B876A1"
+  }
+}
