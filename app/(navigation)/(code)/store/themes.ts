@@ -1100,7 +1100,8 @@ const themeBackgroundAtom = atom<string>((get) => {
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
-  return get(showLineNumbersAtom) ?? (get(themeAtom).lineNumbers || false);
+  const theme = get(themeAtom);
+  return theme.partner ? theme.lineNumbers || false : (get(showLineNumbersAtom) ?? false);
 });
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
