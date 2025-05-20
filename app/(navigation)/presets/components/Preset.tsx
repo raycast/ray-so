@@ -5,10 +5,11 @@ import {
   CopyClipboardIcon,
   DownloadIcon,
   Globe01Icon,
-  Icons,
   ImageIcon,
   LinkIcon,
   PlusCircleIcon,
+  StarsIcon,
+  StarsSquareIcon,
 } from "@raycast/icons";
 import CreativityIcon from "./CreativityIcon";
 import ModelIcon from "./ModelIcon";
@@ -21,6 +22,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 import { IconComponent } from "./Icons";
 import { Preset } from "../presets";
 import { AiModel } from "@/api/ai";
+import { Extension } from "@/api/store";
 
 export const creativity = {
   none: ["None", "No Creativity"],
@@ -30,7 +32,15 @@ export const creativity = {
   maximum: ["Maximum", "Max Creativity"],
 };
 
-export function PresetComponent({ preset, models }: { preset: Preset; models: AiModel[] }) {
+export function PresetComponent({
+  preset,
+  models,
+  extensions,
+}: {
+  preset: Preset;
+  models: AiModel[];
+  extensions: Extension[];
+}) {
   const [showToast, setShowToast] = React.useState(false);
   const [toastMessage, setToastMessage] = React.useState("");
   const router = useRouter();
@@ -63,7 +73,7 @@ export function PresetComponent({ preset, models }: { preset: Preset; models: Ai
     if (!preset.id) {
       const encodedUrl = encodeURIComponent(urlToCopy);
       const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=presets`).then((res) =>
-        res.json()
+        res.json(),
       );
 
       if (response.link) {
@@ -122,6 +132,29 @@ export function PresetComponent({ preset, models }: { preset: Preset; models: Ai
                       <span className={styles.mobileOnly}>{creativity[preset.creativity][0]}</span>
                       <span className={styles.desktopOnly}>{creativity[preset.creativity][1]}</span>
                     </span>
+                  </>
+                ) : null}
+                {preset.tools && preset.tools.length > 0 ? (
+                  <>
+                    <span className={styles.metaDivider} />
+
+                    {preset.tools?.length > 0 ? (
+                      <Tooltip delayDuration={700}>
+                        <TooltipTrigger>
+                          <span className={styles.metaItem}>
+                            <StarsSquareIcon />
+
+                            {preset.tools
+                              .map(({ id }) => {
+                                const extension = extensions.find((e) => e.id === id);
+                                return extension ? extension.title : id;
+                              })
+                              .join(", ")}
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent>AI Extensions</TooltipContent>
+                      </Tooltip>
+                    ) : null}
                   </>
                 ) : null}
                 {preset.web_search ? (

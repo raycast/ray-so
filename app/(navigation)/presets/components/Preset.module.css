@@ -155,13 +155,17 @@
 }
 
 .presetDescription {
-  display: flex;
+  display: -webkit-box;
+  overflow: hidden;
   width: 100%;
   max-height: 320px;
   flex: 1;
   align-items: center;
+  -webkit-box-orient: vertical;
   font-size: 13px;
+  -webkit-line-clamp: 3;
   line-height: 180%;
+  text-overflow: ellipsis;
 }
 
 .contextMenuContent {

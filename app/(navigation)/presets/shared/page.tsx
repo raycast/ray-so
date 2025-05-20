@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
-import { allPresets } from "../presets";
+import { allPresets, Preset } from "../presets";
 import { getAvailableAiModels } from "@/api/ai";
 import { PresetDetail } from "../components/PresetDetail";
 import { Metadata, ResolvingMetadata } from "next";
+import { getExtensions } from "@/api/store";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 function parseURLPreset(presetQueryString?: string) {
@@ -16,14 +17,15 @@ function parseURLPreset(presetQueryString?: string) {
   return JSON.parse(presetQueryString);
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const searchParams = await props.searchParams;
   const preset = parseURLPreset(searchParams.preset as string);
   if (!preset) {
     notFound();
   }
   const pageTitle = `${preset.name} - Raycast AI Preset`;
   const ogImage = `/presets/og?title=${encodeURIComponent(preset.name)}&description=${encodeURIComponent(
-    preset.description || ""
+    preset.description || "",
   )}&icon=${preset.icon}`;
 
   return {
@@ -61,12 +63,13 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   };
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page(props: Props) {
+  const searchParams = await props.searchParams;
   if (!searchParams.preset) {
     notFound();
   }
 
-  const preset = parseURLPreset(searchParams.preset as string);
+  const preset = parseURLPreset(searchParams.preset as string) as Preset;
 
   if (!preset) {
     notFound();
@@ -78,6 +81,8 @@ export default async function Page({ params, searchParams }: Props) {
     .slice(0, 2);
 
   const models = await getAvailableAiModels();
+  const extensionIds = preset.tools?.map((tool) => tool.id) || [];
+  const extensions = await getExtensions({ extensionIds });
 
-  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} />;
+  return <PresetDetail preset={preset} relatedPresets={relatedPresets} models={models} extensions={extensions} />;
 }

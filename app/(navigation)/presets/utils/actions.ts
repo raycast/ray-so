@@ -3,13 +3,7 @@ import { Preset } from "../presets";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
 import { Model } from "@/api/ai";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 function prepareModel(model: Model) {
   if (model && /^".*"$/.test(model)) {
@@ -26,13 +20,13 @@ function makePresetImportData(preset: Preset): string {
     creativity,
     icon,
     model: prepareModel(model),
-    web_search,
-    image_generation,
+    web_search: web_search ? true : false,
+    image_generation: image_generation ? true : false,
   })}]`;
 }
 
 function makeQueryString(preset: Preset): string {
-  const { name, instructions, description, creativity, icon, model, web_search, image_generation, id } = preset;
+  const { name, instructions, description, creativity, icon, model, web_search, image_generation, id, tools } = preset;
 
   return `preset=${encodeURIComponent(
     JSON.stringify({
@@ -42,10 +36,11 @@ function makeQueryString(preset: Preset): string {
       creativity,
       icon,
       model: prepareModel(model),
-      web_search,
-      image_generation,
+      web_search: web_search ? true : false,
+      image_generation: image_generation ? true : false,
       id,
-    })
+      tools,
+    }),
   )}`;
 }
 
@@ -73,6 +68,8 @@ export function copyUrl(preset: Preset) {
   copy(makeUrl(preset));
 }
 
-export function addToRaycast(router: AppRouterInstance, preset: Preset) {
+export async function addToRaycast(router: AppRouterInstance, preset: Preset) {
+  const raycastProtocol = await getRaycastFlavor();
+  console.log("query", `${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
   router.replace(`${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
 }

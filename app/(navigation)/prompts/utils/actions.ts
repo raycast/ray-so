@@ -3,13 +3,7 @@ import { Prompt } from "../prompts";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
 import { Model } from "@/api/ai";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 function prepareModel(model?: string) {
   if (model && /^".*"$/.test(model)) {
@@ -74,6 +68,7 @@ export function copyUrl(prompts: Prompt[]) {
   copy(makeUrl(prompts));
 }
 
-export function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
+export async function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
+  const raycastProtocol = await getRaycastFlavor();
   router.replace(`${raycastProtocol}://prompts/import?${makeQueryString(prompts)}`);
 }

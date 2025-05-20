@@ -6,10 +6,17 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   transpilePackages: ["geist", "highlight.js"],
   experimental: {
     optimizePackageImports: ["shiki"],
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "files.raycast.com",
+        protocol: "https",
+      },
+    ],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -42,7 +49,7 @@ const nextConfig = {
             },
           },
         ],
-      }
+      },
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.

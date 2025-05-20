@@ -38,15 +38,16 @@ const FormatButton: React.FC = () => {
       {
         loading: "Formatting code...",
         success: "Formatted code!",
-        error: (data) => {
-          return (
-            <div className="space-y-2 overflow-hidden">
-              <p className="font-medium">Code formatting failed</p>
-              <pre className="w-full overflow-auto text-xs scrollbar-hide bg-gray-a3 p-2.5 rounded">
-                <code className="w-full">{data.message}</code>
+        error: (error) => {
+          const errorMessage = error.message;
+          return {
+            message: "Code formatting failed",
+            description: () => (
+              <pre className="w-full overflow-auto text-xs scrollbar-hide bg-gray-a3 p-2.5 rounded max-w-[300px]">
+                <code className="w-full">{errorMessage}</code>
               </pre>
-            </div>
-          );
+            ),
+          };
         },
       },
     );

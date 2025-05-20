@@ -11,6 +11,14 @@ import SupabaseLogo from "../assets/supabase.svg";
 import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
+import OpenAiLogo from "../assets/openai.svg";
+import OpenAiLogoUrl from "../assets/openai.svg?url";
+import ClerkLogo from "../assets/clerk.svg";
+import ClerkLogoUrl from "../assets/clerk.svg?url";
+import PrismaLogo from "../assets/prisma.svg";
+import PrismaLogoUrl from "../assets/prisma.svg?url";
+import MintlifyLogo from "../assets/mintlify.svg";
+import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -249,6 +257,197 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#C1B2F9",
         highlight: "rgba(193,178,249,0.12)",
         highlightHover: "rgba(193,178,249,0.07)",
+      }),
+    },
+  },
+  openai: {
+    id: "openai",
+    name: "OpenAI",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: OpenAiLogo,
+    iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
+    partner: true,
+    font: "soehne-mono",
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#DF3079",
+        string: "#171717",
+        comment: "hsla(240, 12%, 71%, 1)",
+        keyword: "#2E95D3",
+        parameter: "#ededed",
+        function: "#00A67D",
+        stringExpression: "#00a67d",
+        punctuation: "#171717",
+        link: "#F22C3D",
+        number: "#e9950c",
+        property: "#F22C3D",
+        highlight: "rgba(0,0,0,0.02)",
+        highlightHover: "rgba(0,0,0,0.015)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        constant: "#df3079",
+        string: "#fff",
+        comment: "rgba(255,255,255,0.4)",
+        keyword: "#2E95D3",
+        parameter: "#fff",
+        function: "#00A67D",
+        stringExpression: "#00A67D",
+        punctuation: "#fff",
+        link: "#F22C3D",
+        number: " #e9950c",
+        property: "#F22C3D",
+        highlight: "rgba(255, 255, 255, 0.05)",
+        highlightHover: "rgba(255, 255, 255, 0.03)",
+      }),
+    },
+  },
+  mintlify: {
+    id: "mintlify",
+    name: "Mintlify",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: MintlifyLogo,
+    iconUrl: `${BASE_URL}${MintlifyLogoUrl.src}`,
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#0d9373",
+        string: "#171717",
+        comment: "#707070",
+        keyword: "#0d548f",
+        parameter: "#0576b7",
+        function: "#0576b7",
+        stringExpression: "#d55d2e",
+        punctuation: "#808080",
+        link: "#4aab15",
+        number: "#4aab15",
+        property: "#4aab15",
+        highlight: "#dfbe5b3a",
+        highlightHover: "#dfbe5b1b",
+        highlightBorder: "#e8bc39",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#F3F7F6",
+        constant: "#4ec9b0",
+        string: "#F3F7F6",
+        comment: "#707070",
+        keyword: "#569cd6",
+        parameter: "#9cdcfe",
+        function: "#9cdcfe",
+        stringExpression: "#ce9178",
+        punctuation: "#808080",
+        link: "#b5cea8",
+        number: "#b5cea8",
+        property: "#b5cea8",
+        highlight: "rgb(131 114 55 / 30%)",
+        highlightHover: "rgb(131 114 55 / 15%)",
+        highlightBorder: "#f7d87c",
+      }),
+    },
+  },
+  prisma: {
+    id: "prisma",
+    name: "Prisma",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: PrismaLogo,
+    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1A202C",
+        constant: "#5A67D8",
+        string: "#16A394",
+        comment: "#718096",
+        keyword: "#16A394",
+        parameter: "#805AD5",
+        function: "#5A67D8",
+        stringExpression: "#16A394",
+        punctuation: "#1A202C",
+        link: "#5A67D8",
+        number: "#16A394",
+        property: "#16A394",
+        highlight: "#16a39528",
+        highlightHover: "#16a3950e",
+        highlightBorder: "#16A394",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#7F9CF5",
+        string: "#71E8DF",
+        comment: "#718096",
+        keyword: "#71E8DF",
+        parameter: "#71E8DF",
+        function: "#7F9CF5",
+        stringExpression: "#71E8DF",
+        punctuation: "#FFFFFF",
+        link: "#7F9CF5",
+        number: "#71E8DF",
+        property: "#71E8DF",
+        highlight: "#71e8de2e",
+        highlightHover: "#71e8de1b",
+        highlightBorder: "#71E8DF",
+      }),
+    },
+  },
+  clerk: {
+    id: "clerk",
+    name: "Clerk",
+    background: {
+      from: "#000000",
+      to: "#000000",
+    },
+    icon: ClerkLogo,
+    iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
+    partner: true,
+    lineNumbers: true,
+    font: "geist-mono",
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#131316",
+        constant: "#22c543",
+        string: "#00aee3",
+        comment: "#9394a1",
+        keyword: "#6c47ff",
+        parameter: "#22c543",
+        function: "#6c47ff",
+        stringExpression: "#00aee3",
+        punctuation: "#747686",
+        link: "#22c543",
+        number: "#22c543",
+        property: "#22c543",
+        highlight: "#00aee313",
+        highlightHover: "#00aee306",
+        highlightBorder: "#00000000",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#86ef9b",
+        string: "#5de3ff",
+        comment: "#9394a1",
+        keyword: "#bab1ff",
+        parameter: "#86ef9b",
+        function: "#bab1ff",
+        stringExpression: "#5de3ff",
+        punctuation: "#b7b8c2",
+        link: "#86ef9b",
+        number: "#86ef9b",
+        property: "#86ef9b",
+        highlight: "#5de3ff1a",
+        highlightHover: "#5de3ff0d",
+        highlightBorder: "#00000000",
       }),
     },
   },
@@ -810,18 +1009,40 @@ export const THEMES: { [index: string]: Theme } = {
   },
 };
 
-const themeAtom = atomWithHash<Theme>("theme", THEMES.candy, {
-  serialize(value) {
-    return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
-  },
-  deserialize(key) {
-    if (key) {
-      return THEMES[key];
-    } else {
-      return THEMES.candy;
+const themeAtom = atomWithHash<Theme>(
+  "theme",
+  (() => {
+    if (typeof window !== "undefined") {
+      try {
+        // Check if theme is stored in localStorage
+        const codeTheme = localStorage.getItem("codeTheme");
+        if (codeTheme && codeTheme in THEMES) {
+          return THEMES[codeTheme as keyof typeof THEMES];
+        }
+      } catch (error) {
+        console.log("Could not get theme from localStorage", error);
+      }
     }
+    return THEMES.candy; // Fallback to default theme
+  })(),
+  {
+    serialize(value) {
+      return Object.keys(THEMES).find((key) => THEMES[key].name.toLowerCase() === value.name.toLowerCase()) || "";
+    },
+    deserialize(key) {
+      if (key && key in THEMES) {
+        try {
+          localStorage.setItem("codeTheme", key);
+        } catch (error) {
+          console.log("Could not set theme in localStorage", error);
+        }
+        return THEMES[key as keyof typeof THEMES];
+      } else {
+        return THEMES.candy;
+      }
+    },
   },
-});
+);
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 

@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import SelectionArea, { SelectionEvent } from "@viselect/react";
+import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { useRouter } from "next/navigation";
 import copy from "copy-to-clipboard";
 import { Select, SelectItem, SelectContent, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/dropdown-menu";
 import { Toast, ToastTitle } from "../components/Toast";
-import { ScrollArea } from "../components/ScrollArea";
+import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { isTouchDevice } from "../utils/isTouchDevice";
@@ -28,7 +28,6 @@ import {
   DownloadIcon,
   LinkIcon,
   PlusCircleIcon,
-  RaycastLogoNegIcon,
   TrashIcon,
 } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
@@ -41,13 +40,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
+import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -186,7 +179,7 @@ export default function Snippets() {
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=snippets`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.link) {
@@ -198,10 +191,10 @@ export default function Snippets() {
     setToastMessage("Copied URL to clipboard!");
   }, [makeQueryString]);
 
-  const handleAddToRaycast = React.useCallback(
-    () => router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`),
-    [router, makeQueryString]
-  );
+  const handleAddToRaycast = React.useCallback(async () => {
+    const raycastProtocol = await getRaycastFlavor();
+    router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+  }, [router, makeQueryString]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -425,7 +418,7 @@ export default function Snippets() {
                               className={styles.summaryItemButton}
                               onClick={() => {
                                 setSelectedSnippets(
-                                  selectedSnippets.filter((selectedSnippet) => selectedSnippet.id !== snippet.id)
+                                  selectedSnippets.filter((selectedSnippet) => selectedSnippet.id !== snippet.id),
                                 );
                               }}
                             >
@@ -495,7 +488,7 @@ export default function Snippets() {
                             className={`${styles.item} selectable`}
                             key={snippet.id}
                             data-selected={selectedSnippets.some(
-                              (selectedSnippet) => selectedSnippet.id === snippet.id
+                              (selectedSnippet) => selectedSnippet.id === snippet.id,
                             )}
                             data-key={`${snippetGroup.slug}-${index}`}
                           >

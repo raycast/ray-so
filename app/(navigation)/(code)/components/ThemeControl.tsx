@@ -20,9 +20,18 @@ import { SelectItemText } from "@radix-ui/react-select";
 import { ChevronUpIcon } from "@raycast/icons";
 
 const ThemeControl: React.FC = () => {
-  const [currentTheme, setTheme] = useAtom(themeAtom);
+  const [currentTheme, atomSetTheme] = useAtom(themeAtom);
   const [padding, setPadding] = useAtom(paddingAtom);
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
+
+  const setTheme = (theme: Theme) => {
+    atomSetTheme(theme);
+    try {
+      localStorage.setItem("codeTheme", theme.id);
+    } catch (error) {
+      console.log("Could not set theme in localStorage", error);
+    }
+  };
 
   useEffect(() => {
     if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
@@ -52,9 +61,9 @@ const ThemeControl: React.FC = () => {
           }
           return acc;
         },
-        { partnerThemes: [], themes: [] }
+        { partnerThemes: [], themes: [] },
       ),
-    []
+    [],
   );
 
   return (

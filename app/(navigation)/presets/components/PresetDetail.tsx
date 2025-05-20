@@ -35,14 +35,18 @@ import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "./InfoDialog";
 import { Kbd } from "@/components/kbd";
 import { AiModel } from "@/api/ai";
+import { Extension } from "@/api/store";
+import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
+import { AIExtension } from "@/components/ai-extension";
 
 type PresetPageProps = {
   preset: Preset;
   relatedPresets: Preset[];
   models: AiModel[];
+  extensions: Extension[];
 };
 
-export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps) {
+export function PresetDetail({ preset, relatedPresets, models, extensions }: PresetPageProps) {
   const [actionsOpen, setActionsOpen] = React.useState(false);
   const [showCopied, setShowCopied] = React.useState(false);
 
@@ -95,7 +99,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
     if (!preset.id) {
       const encodedUrl = encodeURIComponent(urlToCopy);
       const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=presets`).then((res) =>
-        res.json()
+        res.json(),
       );
 
       if (response.link) {
@@ -170,6 +174,8 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
     web_search,
     image_generation,
   } = preset;
+
+  const allTools = Array.from(new Set([...(preset.tools || [])]));
 
   return (
     <>
@@ -246,19 +252,37 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
           </div>
         </header>
         <div className={styles.body}>
-          <div className={styles.instructions}>
-            <div className={styles.instructionsInner}>
-              <div className={styles.instructionsHeader}>
-                <h3 className={styles.compactTitle}>Instructions</h3>
-                <button className={styles.copyButton} onClick={handleCopyInstructions} data-copied={showCopied}>
-                  <CheckIcon data-icon="check" className="w-4 h-4" />
-                  <CopyClipboardIcon data-icon="copy" className="w-4 h-4" />
-                </button>
+          {instructions ? (
+            <div className={styles.instructions}>
+              <div className={styles.instructionsInner}>
+                <div className={styles.instructionsHeader}>
+                  <h3 className={styles.compactTitle}>Instructions</h3>
+                  <button className={styles.copyButton} onClick={handleCopyInstructions} data-copied={showCopied}>
+                    <CheckIcon data-icon="check" className="w-4 h-4" />
+                    <CopyClipboardIcon data-icon="copy" className="w-4 h-4" />
+                  </button>
+                </div>
+                <pre className={styles.pre}>
+                  {instructions.split(/(@[a-zA-Z0-9-]+\{id=[^}]+\})/).map((part, index) => {
+                    const match = part.match(/@([a-zA-Z0-9-]+)\{id=([^}]+)\}/);
+                    if (match) {
+                      const extension = extensions.find((e) => e.id === match[2]);
+                      return <AIExtension key={index} extension={extension} fallback={match[1]} />;
+                    }
+                    return (
+                      <span
+                        key={index}
+                        dangerouslySetInnerHTML={{
+                          __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
+                        }}
+                      />
+                    );
+                  })}
+                </pre>
               </div>
-              <pre className={styles.pre}>{instructions}</pre>
             </div>
-          </div>
-          <div className={clsx(styles.meta, modelSupportsImageGen && styles.grid)}>
+          ) : null}
+          <div className={clsx(styles.meta, styles.grid)}>
             <div className={styles.metaItem}>
               <h3 className={styles.compactTitle}>Model</h3>
               <div className={styles.metaContent}>
@@ -276,21 +300,25 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
                 )}
               </div>
             </div>
-            <div className={styles.metaItem}>
-              <h3 className={styles.compactTitle}>Creativity</h3>
-              <div className={styles.metaContent}>
-                <CreativityIcon creativity={creativity} />
-                {creativityString[creativity]?.[0]}
+            {creativity ? (
+              <div className={styles.metaItem}>
+                <h3 className={styles.compactTitle}>Creativity</h3>
+                <div className={styles.metaContent}>
+                  <CreativityIcon creativity={creativity} />
+                  {creativityString[creativity]?.[0]}
+                </div>
               </div>
-            </div>
-            <div className={styles.metaItem}>
-              <h3 className={styles.compactTitle}>Web Search</h3>
-              <div className={styles.metaContent}>
-                {web_search ? <Globe01Icon /> : <XMarkCircleIcon />}
-                {web_search ? "On" : "Off"}
+            ) : null}
+            {(web_search === true || web_search === false) && (
+              <div className={styles.metaItem}>
+                <h3 className={styles.compactTitle}>Web Search</h3>
+                <div className={styles.metaContent}>
+                  {web_search ? <Globe01Icon /> : <XMarkCircleIcon />}
+                  {web_search ? "On" : "Off"}
+                </div>
               </div>
-            </div>
-            {modelSupportsImageGen && (
+            )}
+            {modelSupportsImageGen && (image_generation === true || image_generation === false) && (
               <div className={styles.metaItem}>
                 <h3 className={styles.compactTitle}>Image Generation</h3>
                 <div className={styles.metaContent}>
@@ -298,6 +326,25 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
                   {image_generation ? "On" : "Off"}
                 </div>
               </div>
+            )}
+            {allTools && (
+              <>
+                {allTools.map((tool) => {
+                  const extension = extensions.find((e) => e.id === tool.id);
+                  const icon = extension?.icons.dark || extension?.icons.light;
+                  return (
+                    <div key={tool.id} className={styles.metaItem}>
+                      <h3 className={styles.compactTitle}>AI Extension</h3>
+                      <div className={styles.metaContent}>
+                        {icon ? (
+                          <img src={icon} alt={extension?.title} className={styles.metaIcon} width={16} height={16} />
+                        ) : null}
+                        <div className={styles.metaContent}>{extension?.title || tool.name}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
             )}
           </div>
         </div>
@@ -308,7 +355,7 @@ export function PresetDetail({ preset, relatedPresets, models }: PresetPageProps
               <p className={styles.subtitle}>Explore more presets</p>
               <div className={styles.grid}>
                 {relatedPresets.map((p) => (
-                  <PresetComponent key={p.id} preset={p} models={models} />
+                  <PresetComponent key={p.id} preset={p} models={models} extensions={extensions} />
                 ))}
               </div>
             </div>

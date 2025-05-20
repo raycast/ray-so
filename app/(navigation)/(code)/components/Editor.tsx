@@ -130,6 +130,7 @@ function Editor() {
   const setHighlightedLines = useSetAtom(highlightedLinesAtom);
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
   const [showLineNumbers] = useAtom(themeLineNumbersAtom);
+  const numberOfLines = (code.match(/\n/g) || []).length;
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -165,6 +166,11 @@ function Editor() {
           setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
         setTheme(THEMES.rabbit);
+        try {
+          localStorage.setItem("codeTheme", THEMES.rabbit.id);
+        } catch (error) {
+          console.log("Could not set theme in localStorage", error);
+        }
         setFlashMessage({
           message: "Evil Rabbit Theme Unlocked",
           variant: "unlock",
@@ -242,9 +248,15 @@ function Editor() {
             ? styles.ibmPlexMono
             : themeFont === "fira-code"
               ? styles.firaCode
-              : styles.jetBrainsMono,
+              : themeFont === "soehne-mono"
+                ? styles.soehneMono
+                : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
-        showLineNumbers && selectedLanguage !== LANGUAGES.plaintext && styles.showLineNumbers,
+        showLineNumbers &&
+          selectedLanguage !== LANGUAGES.plaintext && [
+            styles.showLineNumbers,
+            numberOfLines > 8 && styles.showLineNumbersLarge,
+          ],
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
       data-value={code}

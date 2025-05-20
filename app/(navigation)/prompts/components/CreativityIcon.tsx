@@ -12,6 +12,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
 
 export default function CreativityIcon({ creativity }: { creativity: Prompt["creativity"] }) {
   let component = null;
+  if (!creativity) {
+    return null;
+  }
   if (creativity === "none") {
     component = <CircleDisabledIcon />;
   }

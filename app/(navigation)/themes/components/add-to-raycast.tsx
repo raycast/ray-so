@@ -5,7 +5,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { ChevronDownIcon, PlusCircleIcon, PlusIcon } from "@raycast/icons";
 import { useRaycastTheme } from "@themes/components/raycast-theme-provider";
 import { isTouchDevice } from "@themes/lib/isTouchDevice";
-import { BuildTypes, makeRaycastImportUrl } from "@themes/lib/url";
+import { makeRaycastImportUrl } from "@themes/lib/url";
 
 export function AddToRaycast() {
   const [isTouch, setIsTouch] = React.useState<boolean | null>(null);
@@ -29,7 +29,7 @@ export function AddToRaycast() {
     copy(url);
     const encodedUrl = encodeURIComponent(url);
     const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=themes`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (response.error) {
@@ -51,13 +51,12 @@ export function AddToRaycast() {
     link.click();
   }, [activeTheme]);
 
-  const handleAddToRaycast = React.useCallback(() => {
+  const handleAddToRaycast = React.useCallback(async () => {
     if (!activeTheme) return;
-    const queryParams = new URLSearchParams(window.location.search);
-    const build = (queryParams.get("build") ?? undefined) as BuildTypes | undefined;
 
     console.log("Opening theme in Raycast from button");
-    window.open(makeRaycastImportUrl(activeTheme, build));
+    const importUrl = await makeRaycastImportUrl(activeTheme);
+    window.open(importUrl);
   }, [activeTheme]);
 
   React.useEffect(() => {
@@ -112,13 +111,13 @@ export function AddToRaycast() {
         <DropdownMenu.Portal>
           <DropdownMenu.Content
             sideOffset={8}
-            className={`rounded-md z-20 p-1 min-w-[200px] backdrop-blur-[6px] text-sm leading-[22px] 
-            text-black/60 
+            className={`rounded-md z-20 p-1 min-w-[200px] backdrop-blur-[6px] text-sm leading-[22px]
+            text-black/60
             dark:text-white
-            bg-white/50 
+            bg-white/50
             dark:bg-neutral-700/40
-            shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)] 
-            dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)] 
+            shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
+            dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
             `}
           >
             <Item onSelect={() => handleDownload()}>
@@ -152,12 +151,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, cla
     className={`h-[30px] flex items-center gap-2 px-4 outline-none
         bg-white/10
         dark:bg-black/10
-        hover:bg-white/50 
-        dark:hover:bg-black/50 
-        shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_29px_10px_rgba(0,0,0,0.06)] 
-        focus:shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_0px_1px_#737373] 
-        dark:shadow-[inset_0px_0px_0px_1px_#484848] 
-        dark:focus:shadow-[inset_0px_0px_0px_1px_#484848,0px_0px_0px_1px_#484848] 
+        hover:bg-white/50
+        dark:hover:bg-black/50
+        shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_29px_10px_rgba(0,0,0,0.06)]
+        focus:shadow-[inset_0px_0px_0px_1px_#737373,0px_0px_0px_1px_#737373]
+        dark:shadow-[inset_0px_0px_0px_1px_#484848]
+        dark:focus:shadow-[inset_0px_0px_0px_1px_#484848,0px_0px_0px_1px_#484848]
         ${className}`}
   >
     {children}
@@ -169,10 +168,9 @@ Button.displayName = "Button";
 function Item({ children, onSelect }: { children: React.ReactNode; onSelect: () => void }) {
   return (
     <DropdownMenu.Item
-      className="flex justify-between gap-3 rounded pl-2 pr-1 py-1 outline-none 
-      data-[highlighted]:bg-black/10 
-      dark:data-[highlighted]:bg-white/10 
-      
+      className="flex justify-between gap-3 rounded pl-2 pr-1 py-1 outline-none
+      data-[highlighted]:bg-black/10
+      dark:data-[highlighted]:bg-white/10
       cursor-default"
       onSelect={onSelect}
     >
