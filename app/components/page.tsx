@@ -216,7 +216,7 @@ export default function Components() {
                 <Shortcut keys={["C"]}>Change colors</Shortcut>
                 <Shortcut keys={["B"]}>Toggle background</Shortcut>
                 <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
-                <Shortcut keys={["N"]}>Toggle line number</Shortcut>
+                <Shortcut keys={["N"]}>Toggle line numbers</Shortcut>
                 <Shortcut keys={["P"]}>Change padding</Shortcut>
                 <Shortcut keys={["L"]}>Select language</Shortcut>
                 <Shortcut keys={["⌥", "click"]}>Highlight line</Shortcut>
