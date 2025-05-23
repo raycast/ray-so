@@ -37,7 +37,7 @@
 
 .window {
   display: flex;
-  min-height: 120px;
+  min-height: 100px;
   flex-direction: column;
   align-items: stretch;
   padding-top: 10px;
