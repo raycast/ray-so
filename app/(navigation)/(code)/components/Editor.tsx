@@ -258,10 +258,11 @@ function Editor() {
             numberOfLines > 8 && styles.showLineNumbersLarge,
           ],
       )}
-      style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
+      style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
       data-value={code}
     >
       <textarea
+        rows={1}
         tabIndex={-1}
         autoComplete="off"
         autoCorrect="off"
