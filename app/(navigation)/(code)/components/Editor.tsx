@@ -250,7 +250,9 @@ function Editor() {
               ? styles.firaCode
               : themeFont === "soehne-mono"
                 ? styles.soehneMono
-                : styles.jetBrainsMono,
+                : themeFont === "roboto-mono"
+                  ? styles.robotoMono
+                  : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers &&
           selectedLanguage !== LANGUAGES.plaintext && [

@@ -19,6 +19,8 @@ import PrismaLogo from "../assets/prisma.svg";
 import PrismaLogoUrl from "../assets/prisma.svg?url";
 import MintlifyLogo from "../assets/mintlify.svg";
 import MintlifyLogoUrl from "../assets/mintlify.svg?url";
+import ElevenLabsLogo from "../assets/elevenlabs.svg";
+import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -448,6 +450,54 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#5de3ff1a",
         highlightHover: "#5de3ff0d",
         highlightBorder: "#00000000",
+      }),
+    },
+  },
+  elevenlabs: {
+    id: "elevenlabs",
+    name: "ElevenLabs",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: ElevenLabsLogo,
+    iconUrl: `${BASE_URL}${ElevenLabsLogoUrl.src}`,
+    font: "roboto-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1c1c1c",
+        constant: "#4c3fff",
+        string: "#00a890",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1c1c1c",
+        parameter: "#4c3fff",
+        function: "#e85c5c",
+        stringExpression: "#00a890",
+        punctuation: "#1c1c1c",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        constant: "#8F8FFF",
+        string: "#a1ffe0",
+        comment: "hsla(0, 0%, 63%,1)",
+        keyword: "#fff9b2",
+        parameter: "#8F8FFF",
+        function: "#ff8080",
+        stringExpression: "#A1FFE0",
+        punctuation: "#fff",
+        link: "#8F8FFF",
+        number: "#8F8FFF",
+        property: "#8F8FFF",
+        highlight: "hsla(240, 100%, 78%, 0.09)",
+        highlightHover: "hsla(240, 100%, 78%, 0.05)",
+        highlightBorder: "hsla(240, 100%, 78%, 0.45)",
       }),
     },
   },
