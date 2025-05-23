@@ -511,6 +511,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "hsla(244, 100%, 62%, 0.09)",
         highlightHover: "hsla(244, 100%, 62%, 0.05)",
         highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#00a890",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#fff",
@@ -528,6 +530,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "hsla(240, 100%, 78%, 0.09)",
         highlightHover: "hsla(240, 100%, 78%, 0.05)",
         highlightBorder: "hsla(240, 100%, 78%, 0.45)",
+        diffInserted: "#a1ffe0",
+        diffDeleted: "#ff8080",
       }),
     },
   },
