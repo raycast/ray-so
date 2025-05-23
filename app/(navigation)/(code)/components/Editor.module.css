@@ -1,7 +1,8 @@
 .editor {
   display: grid;
   width: 100%;
-  grid-template: 1fr / 1fr;
+  min-height: 0;
+  grid-template: auto / 1fr;
 
   &:after {
     content: attr(data-value) " ";
@@ -62,7 +63,6 @@
 .textarea,
 .formatted,
 .editor:after {
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   padding: var(--editor-padding);
   margin: 0;
   counter-increment: step 0;
@@ -105,9 +105,9 @@
 .textarea {
   z-index: 2;
   overflow: hidden;
+  min-height: min-content;
   border: none;
   background: transparent;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
   caret-color: var(--ray-foreground);
   resize: none;
   -webkit-text-fill-color: transparent;
