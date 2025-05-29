@@ -67,7 +67,7 @@
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "19.0.10",
-    "@types/react-color": "^3.0.12",
+    "@types/react-color": "^3.0.13",
     "@types/react-dom": "19.0.4",
     "@types/react-transition-group": "^4.4.5",
     "@typescript-eslint/parser": "^7.12.0",
