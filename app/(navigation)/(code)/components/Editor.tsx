@@ -24,6 +24,7 @@ import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
+import { fontAtom } from "../store/font";
 
 function indentText(text: string) {
   return text
@@ -131,6 +132,8 @@ function Editor() {
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
   const [showLineNumbers] = useAtom(themeLineNumbersAtom);
   const numberOfLines = (code.match(/\n/g) || []).length;
+  const [font, setFont] = useAtom(fontAtom);
+  const selectedFont = theme?.font || font;
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -242,15 +245,15 @@ function Editor() {
     <div
       className={classNames(
         styles.editor,
-        themeFont === "geist-mono"
+        selectedFont === "geist-mono"
           ? styles.geistMono
-          : themeFont === "ibm-plex-mono"
+          : selectedFont === "ibm-plex-mono"
             ? styles.ibmPlexMono
-            : themeFont === "fira-code"
+            : selectedFont === "fira-code"
               ? styles.firaCode
-              : themeFont === "soehne-mono"
+              : selectedFont === "soehne-mono"
                 ? styles.soehneMono
-                : themeFont === "roboto-mono"
+                : selectedFont === "roboto-mono"
                   ? styles.robotoMono
                   : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
