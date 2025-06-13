@@ -488,6 +488,11 @@ export const IconGenerator = () => {
         customSvg: customText,
         icon: undefined,
       });
+    } else {
+      pushNewSettings({
+        customSvg: undefined,
+        icon: randomElement(Object.keys(Icons) as IconName[]),
+      });
     }
   };
 
@@ -726,13 +731,13 @@ export const IconGenerator = () => {
         ? `<svg width="${settings.iconSize}" height="${settings.iconSize}" viewBox="0 0 ${settings.iconSize} ${settings.iconSize}">
         <style>
           text {
-           font-family: Trebuchet MS, sans-serif;
+           font-family: Inter, sans-serif;
             font-weight: bold;
           }
          </style>
         <rect width="${settings.iconSize}" height="${settings.iconSize}" />
         <text 
-        x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="${settings.iconSize * 0.7}" font-family="Arial, sans-serif" fill="${settings.iconColor}"
+        x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="${settings.iconSize * 0.48}" font-family="Arial, sans-serif" fill="${settings.iconColor}"
         >
         ${settings.customSvg.split("=")[1]}
       </text>
