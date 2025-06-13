@@ -295,6 +295,7 @@ export const IconGenerator = () => {
   const [iconsPanelOpened, setIconsPanelOpened] = useState<boolean>(false);
   const [optionsPanelOpened, setOptionsPanelOpened] = useState<boolean>(false);
   const [exportDropdownOpen, setExportDropdownOpen] = useState<boolean>(false);
+  const [showTextIconInput, setShowTextIconInput] = useState<boolean>(false);
 
   const [draggingFile, setDraggingFile] = useState<boolean>(false);
   const [settings, setSettings] = useState<SettingsType>({
@@ -481,6 +482,17 @@ export const IconGenerator = () => {
       } else {
         showInfoMessage("We don't support that file format. Try dropping an .SVG or .PNG file instead.", false);
       }
+    } else if (event && event.target.value && showTextIconInput) {
+      const customText = "data:text/plaintext=" + event.target.value;
+      pushNewSettings({
+        customSvg: customText,
+        icon: undefined,
+      });
+    } else {
+      pushNewSettings({
+        customSvg: undefined,
+        icon: randomElement(Object.keys(Icons) as IconName[]),
+      });
     }
   };
 
@@ -711,10 +723,27 @@ export const IconGenerator = () => {
 
   let IconComponent: React.FC<React.SVGProps<SVGSVGElement>> = () => null;
   const customSvgIsPng = settings.customSvg?.startsWith("data:image/png");
+  const customSvgIsText = settings.customSvg?.startsWith("data:text/plaintext");
   if (settings.customSvg) {
     const svgSource = customSvgIsPng
       ? `<svg><image xlink:href="${settings.customSvg}" x="0" y="0" width="${settings.iconSize}" height="${settings.iconSize}" /></svg>`
-      : settings.customSvg;
+      : customSvgIsText
+        ? `<svg width="${settings.iconSize}" height="${settings.iconSize}" viewBox="0 0 ${settings.iconSize} ${settings.iconSize}">
+        <style>
+          text {
+           font-family: Inter, sans-serif;
+            font-weight: bold;
+          }
+         </style>
+        <rect width="${settings.iconSize}" height="${settings.iconSize}" />
+        <text 
+        x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="${settings.iconSize * 0.48}" font-family="Arial, sans-serif" fill="${settings.iconColor}"
+        >
+        ${settings.customSvg.split("=")[1]}
+      </text>
+      </svg>`
+        : settings.customSvg;
+
     IconComponent = function CustomSvg(props) {
       return <CustomSvgIcon {...props} svgSource={svgSource} />;
     };
@@ -919,6 +948,14 @@ export const IconGenerator = () => {
               <Button iconOnly size="large" onClick={onRandomIconClick} title="Random icon">
                 <ShuffleIcon className="!w-4 !h-4" />
               </Button>
+              <Button
+                iconOnly
+                size="large"
+                onClick={() => setShowTextIconInput(!showTextIconInput)}
+                title="Create text icon"
+              >
+                <span className="text-sm">Aa</span>
+              </Button>
               <Button iconOnly size="large" title="Upload your own SVG" className="relative">
                 <input
                   type="file"
@@ -929,6 +966,24 @@ export const IconGenerator = () => {
                 <FolderIcon className="!w-4 !h-4" />
               </Button>
             </div>
+
+            {showTextIconInput && (
+              <>
+                <h4>Text</h4>
+                <div className={styles.searchWrapper}>
+                  <Input
+                    type="text"
+                    placeholder="Enter text (e.g., AA, BN, C)"
+                    onChange={(e) => onSelectCustomIcon(e)}
+                    maxLength={2}
+                    size={"large"}
+                    variant={"soft"}
+                    className="w-full"
+                  />
+                </div>
+              </>
+            )}
+
             {filteredIcons.length === 0 ? (
               <div className={styles.emptyIconsList}>
                 <BrushIcon className={styles.emptyIconsListIcon} />
