@@ -785,6 +785,16 @@ const misc: Quicklink[] = [
       name: "arrow-ne",
     },
   },
+    {
+    id: "Makerworld",
+    name: "Search Makerworld",
+    description: "Search Makerworld.com for 3d models.",
+    link: "https://makerworld.com/en/search/models?keyword={query}",
+    author: {
+      name: "Nate Whistler",
+      link: "https://infosec.exchange/@Onyx/",
+    },
+  },
 ];
 const science: Quicklink[] = [
   {
