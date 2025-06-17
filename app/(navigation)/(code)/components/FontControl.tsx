@@ -7,18 +7,23 @@ import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger, Selec
 import { ChevronUpIcon } from "@raycast/icons";
 import { cn } from "@/utils/cn";
 import { useState } from "react";
+import { themeAtom } from "../store/themes";
 
 const FontControl: React.FC = () => {
   const [isOpen, setOpen] = useState(false);
   const [font, setFont] = useAtom(fontAtom);
   const [isLoadingFont] = useAtom(loadingFontAtom);
+  const [theme] = useAtom(themeAtom);
+
+  const selectedFont = font || (theme?.font && FONTS.includes(theme.font as Font) ? theme.font : FONTS[0]);
+
   return (
     <ControlContainer title="FontFamily">
       <Select
         open={isOpen}
         onOpenChange={(open) => setOpen(open)}
         onValueChange={(value) => setFont(value as Font)}
-        value={font}
+        value={selectedFont}
       >
         <SelectTrigger
           size="small"
