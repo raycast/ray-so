@@ -24,6 +24,7 @@ import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
+import { fontAtom, FONTS } from "../store/font";
 
 function indentText(text: string) {
   return text
@@ -131,6 +132,10 @@ function Editor() {
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
   const [showLineNumbers] = useAtom(themeLineNumbersAtom);
   const numberOfLines = (code.match(/\n/g) || []).length;
+  const [font] = useAtom(fontAtom);
+
+  // prioritize font from fontAtom (URL hash), then theme.font, then default
+  const selectedFont = font ? font : theme?.font ? theme.font : FONTS[0];
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -238,21 +243,20 @@ function Editor() {
     };
   }, []);
 
+  const fontClassMap = {
+    "geist-mono": styles.geistMono,
+    "ibm-plex-mono": styles.ibmPlexMono,
+    "fira-code": styles.firaCode,
+    "soehne-mono": styles.soehneMono,
+    "roboto-mono": styles.robotoMono,
+    "jetbrains-mono": styles.jetBrainsMono,
+  };
+
   return (
     <div
       className={classNames(
         styles.editor,
-        themeFont === "geist-mono"
-          ? styles.geistMono
-          : themeFont === "ibm-plex-mono"
-            ? styles.ibmPlexMono
-            : themeFont === "fira-code"
-              ? styles.firaCode
-              : themeFont === "soehne-mono"
-                ? styles.soehneMono
-                : themeFont === "roboto-mono"
-                  ? styles.robotoMono
-                  : styles.jetBrainsMono,
+        fontClassMap[selectedFont] || fontClassMap["jetbrains-mono"],
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers &&
           selectedLanguage !== LANGUAGES.plaintext && [

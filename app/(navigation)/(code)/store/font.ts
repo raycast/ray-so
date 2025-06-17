@@ -1,3 +1,4 @@
+import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 
 export const FONTS = [
@@ -11,6 +12,15 @@ export const FONTS = [
 
 export type Font = (typeof FONTS)[number];
 
-const fontAtom = atomWithHash<Font>("font", FONTS[0]);
+export const loadingFontAtom = atom<boolean>(false);
+
+const fontAtom = atomWithHash<Font | null>("font", null, {
+  serialize(value) {
+    return value || "";
+  },
+  deserialize(key) {
+    return FONTS.includes(key as Font) ? (key as Font) : null;
+  },
+});
 
 export { fontAtom };
