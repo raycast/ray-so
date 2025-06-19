@@ -1,0 +1,21 @@
+{
+  "author": "Lucas de França",
+  "authorUsername": "luxonauta",
+  "version": "1",
+  "name": "Alucard",
+  "appearance": "light",
+  "colors": {
+    "background": "#FFFBEB",
+    "backgroundSecondary": "#FFFBEB",
+    "text": "#1F1F1F",
+    "selection": "#CFCFDE",
+    "loader": "#6C664B",
+    "red": "#CB5A2A",
+    "orange": "#A34D14",
+    "yellow": "#846E15",
+    "green": "#14710A",
+    "blue": "#036A96",
+    "purple": "#644AC9",
+    "magenta": "#A3144D"
+  }
+}
