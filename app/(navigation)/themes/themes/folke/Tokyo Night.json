@@ -1,0 +1,22 @@
+{
+  "appearance": "dark",
+  "name": "Tokyo Night",
+  "version": "1",
+  "author": "Folke",
+  "authorUsername": "folke",
+  "colors": {
+    "background": "#292E42",
+    "backgroundSecondary": "#0C0E14",
+    "text": "#C0CAF5",
+    "selection": "#7AA2F7",
+    "loader": "#FF9E64",
+    "red": "#F7768E",
+    "orange": "#FF9E64",
+    "yellow": "#E0AF68",
+    "green": "#9ECE6A",
+    "blue": "#7AA2F7",
+    "purple": "#9D7CD8",
+    "magenta": "#FF007C"
+  }
+}
+
