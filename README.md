@@ -50,10 +50,10 @@ npm run dev
 
 ## Contributing
 
-We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes. 
+We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes.
 
 > [!NOTE]
-> If you're interested in creating a new code theme we recommend forking the project to run your own version. However, certain partner themes may be considered. Please reach out by creating an issue or [contacting us](mailto:feedback+rayso@raycast.com) first. 
+> If you're interested in creating a new code theme we recommend forking the project to run your own version. However, certain partner themes may be considered. Please reach out by creating an issue or [contacting us](mailto:feedback+rayso@raycast.com) first.
 
 If you're interested in contributing, follow the steps below:
 
@@ -62,6 +62,7 @@ If you're interested in contributing, follow the steps below:
 - Open [prompts.ts](</app/(navigation)/prompts/prompts.ts>) or [presets.ts](</app/(navigation)/presets/presets.ts>) or [snippets.ts](</app/(navigation)/snippets/snippets.ts>) or [quicklinks.ts](</app/(navigation)/quicklinks/quicklinks.ts>)
 - Add your data to the relevant category
   - Ensure it includes all fields, and that they're unique within their category
+- Add your name and (optional) website url to the `author` field
 - Create a pull request 🚀
 
 ### Themes
@@ -77,11 +78,6 @@ If you're interested in contributing, follow the steps below:
 - In that folder, create a file with the theme name, ie: `red.json`
 - In that file, paste the theme JSON you copied from Raycast's Theme Studio
 
-#### 3. Generate the theme OG image
-
-- Make sure your local server running (`npm run dev`)
-- Open a new terminal session and run `npm run generate-themes-og-images -- --slug=username/themename` (replace `username/themename` with your theme's folder and file name)
-
-#### 4. Commit and push your changes
+#### 3. Commit and push your changes
 
 - Create a Pull Request 🚀

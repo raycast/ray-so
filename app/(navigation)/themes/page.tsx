@@ -30,32 +30,14 @@ export async function generateMetadata(props: { searchParams: Promise<{ [key: st
     };
   }
 
-  const { colors, ...theme } = themeInUrl;
-
-  const queryParams = new URLSearchParams();
-  Object.entries(theme).forEach(([key, value]) => queryParams.set(key, value));
-  Object.entries(colors).forEach(([key, value]) => queryParams.set(key, value));
-
-  const title = theme.author ? `${theme.name} by ${theme.author}` : theme.name;
-  const image = `${BASE_URL}/themes/og?${queryParams}`;
-
+  const title = themeInUrl.author ? `${themeInUrl.name} by ${themeInUrl.author}` : themeInUrl.name;
   return {
     title,
     openGraph: {
       title,
-      images: [
-        {
-          url: image,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
-      images: [
-        {
-          url: image,
-        },
-      ],
     },
   };
 }
