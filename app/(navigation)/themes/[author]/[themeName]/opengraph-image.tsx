@@ -565,3 +565,14 @@ export default async function Image({ params }: { params: Promise<{ author: stri
     },
   );
 }
+
+export async function generateStaticParams() {
+  const themes = await getAllThemes();
+  return themes.map((theme) => {
+    const [author, themeName] = theme.slug!.split("/");
+    return {
+      author,
+      themeName,
+    };
+  });
+}
