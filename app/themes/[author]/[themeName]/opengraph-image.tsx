@@ -1,8 +1,3 @@
-// THIS FILE IS A COPY OF (navigation)/themes/[author]/[themeName]/opengraph-image
-// Next.js doesn't allow direct access to opengraph images via url when nested inside a route group (they add hashes to the url),
-// but we need that in order to return a link to the image via the ray.so api.
-// Learn more: https://github.com/vercel/next.js/issues/48106
-
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 
@@ -12,12 +7,40 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
+const assetsPromise = Promise.all([
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Regular.woff")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Medium.woff")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-SemiBold.woff")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Bold.woff")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-1-light.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-2-light.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-3-light.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-4-light.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-5-light.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-1-dark.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-2-dark.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-3-dark.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-4-dark.jpg")),
+  readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-5-dark.jpg")),
+]);
+
 export const alt = "Raycast Theme Preview";
 export const size = {
   width: 1200,
-  height: 600,
+  height: 630,
 };
 export const contentType = "image/png";
+
+export async function generateStaticParams() {
+  const themes = await getAllThemes();
+  return themes.map((theme) => {
+    const [author, themeName] = theme.slug!.split("/");
+    return {
+      author,
+      themeName,
+    };
+  });
+}
 
 export default async function Image({ params }: { params: Promise<{ author: string; themeName: string }> }) {
   const resolvedParams = await params;
@@ -64,22 +87,7 @@ export default async function Image({ params }: { params: Promise<{ author: stri
     darkGridImage3Data,
     darkGridImage4Data,
     darkGridImage5Data,
-  ] = await Promise.all([
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Regular.woff")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Medium.woff")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-SemiBold.woff")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/Inter-Bold.woff")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-1-light.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-2-light.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-3-light.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-4-light.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-5-light.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-1-dark.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-2-dark.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-3-dark.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-4-dark.jpg")),
-    readFile(join(process.cwd(), "app/(navigation)/themes/assets/grid-item-5-dark.jpg")),
-  ]);
+  ] = await assetsPromise;
 
   const images = {
     light: [
@@ -569,15 +577,4 @@ export default async function Image({ params }: { params: Promise<{ author: stri
       ],
     },
   );
-}
-
-export async function generateStaticParams() {
-  const themes = await getAllThemes();
-  return themes.map((theme) => {
-    const [author, themeName] = theme.slug!.split("/");
-    return {
-      author,
-      themeName,
-    };
-  });
 }
