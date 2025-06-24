@@ -8,10 +8,11 @@ import { Metadata } from "next";
 import { BASE_URL } from "@/utils/common";
 
 export async function generateMetadata(props: {
-  params: Promise<{ author: string; themeName: string }>;
+  params: Promise<{ theme: [author: string, theme: string] }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const { author, themeName } = params;
+  const [author, themeName] = params.theme;
+
   const slug = `${author}/${themeName}`;
   const themes = await getAllThemes();
   const theme = themes.find((theme) => theme.slug === slug);
@@ -21,7 +22,7 @@ export async function generateMetadata(props: {
   }
 
   const title = `${theme.name} by ${theme.author}`;
-  const image = `${BASE_URL}/themes/${slug}/opengraph-image`;
+  const image = `${BASE_URL}/themes/${theme.slug}/opengraph-image`;
 
   return {
     title,
@@ -45,9 +46,9 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function ThemePage(props: { params: Promise<{ author: string; themeName: string }> }) {
+export default async function ThemePage(props: { params: Promise<{ theme: [author: string, theme: string] }> }) {
   const params = await props.params;
-  const { author, themeName } = params;
+  const [author, themeName] = params.theme;
   const slug = `${author}/${themeName}`;
   const themes = await getAllThemes();
   const theme = themes.find((theme) => theme.slug === slug);
