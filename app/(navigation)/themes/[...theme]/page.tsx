@@ -21,14 +21,8 @@ export async function generateMetadata(props: {
     return {};
   }
 
-  const { colors, ...restTheme } = theme;
-
-  const queryParams = new URLSearchParams();
-  Object.entries(restTheme).forEach(([key, value]) => queryParams.set(key, value));
-  Object.entries(colors).forEach(([key, value]) => queryParams.set(key, value));
-
-  const title = `${restTheme.name} by ${restTheme.author}`;
-  const image = `${BASE_URL}/themes/og?${queryParams}`;
+  const title = `${theme.name} by ${theme.author}`;
+  const image = `${BASE_URL}/themes/${theme.slug}/opengraph-image`;
 
   return {
     title,
