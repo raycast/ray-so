@@ -664,6 +664,11 @@ const entertainment: Quicklink[] = [
       link: "https://github.com/gianpispi",
     },
   },
+  {
+    id: "genius",
+    name: "Search Genius",
+    link: "https://genius.com/search?q={Query}",
+  },
 ];
 
 const socials: Quicklink[] = [
