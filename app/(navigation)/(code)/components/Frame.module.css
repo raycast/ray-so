@@ -37,7 +37,7 @@
 
 .window {
   display: flex;
-  min-height: 120px;
+  min-height: 100px;
   flex-direction: column;
   align-items: stretch;
   padding-top: 10px;
@@ -849,6 +849,199 @@
   }
 }
 
+/* ElevenLabs Theme Frame */
+
+.elevenLabsFrame {
+  --background: #111;
+  --border-color: #353535;
+  --dot-color: white;
+
+  background: var(--background);
+
+  [data-grid="true"] {
+    background: var(--border-color);
+  }
+
+  [data-dot="true"] {
+    background: var(--dot-color);
+  }
+
+  :global(.highlighted-line):after {
+    z-index: 1 !important;
+    left: 0px !important;
+    width: 1px !important;
+  }
+}
+
+.elevenLabsFrameLightMode {
+  --background: #fff;
+  --border-color: #e5e7eb;
+  --dot-color: black;
+}
+
+.elevenLabsWindow {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    content: "";
+    pointer-events: none;
+  }
+}
+
+.elevenLabsEditor {
+  position: relative;
+  border-radius: 24px;
+  background: var(--background);
+}
+
+.elevenLabsCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  content: "";
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.elevenLabsGridlineHorizontalTop,
+.elevenLabsGridlineHorizontalCenter,
+.elevenLabsGridlineHorizontalBottom {
+  position: absolute;
+  left: -150px;
+  width: 1200px;
+  height: 1px;
+  background: var(--border-color);
+  content: "";
+}
+
+.elevenLabsGridlineHorizontalTop {
+  top: 0;
+}
+
+.elevenLabsGridlineHorizontalCenter {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.elevenLabsGridlineHorizontalBottom {
+  bottom: 0;
+}
+
+.elevenLabsGridlineVerticalLeft,
+.elevenLabsGridlineVerticalCenter,
+.elevenLabsGridlineVerticalRight {
+  position: absolute;
+  top: -150px;
+  bottom: 0;
+  width: 1px;
+  height: calc(100% + 300px);
+  background: var(--border-color);
+  content: "";
+}
+
+.elevenLabsGridlineVerticalLeft {
+  left: 0;
+}
+
+.elevenLabsGridlineVerticalCenter {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.elevenLabsGridlineVerticalRight {
+  right: 0;
+}
+
+.elevenLabsDotTopLeft,
+.elevenLabsDotTopRight,
+.elevenLabsDotBottomLeft,
+.elevenLabsDotBottomRight {
+  position: absolute;
+  z-index: 2;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  width: 3px;
+  height: 3px;
+}
+
+.elevenLabsDotBottomRight {
+  top: auto;
+  right: -1px;
+  bottom: -1px;
+  left: auto;
+}
+
+.elevenLabsDotBottomLeft {
+  top: auto;
+  bottom: -1px;
+  left: -1px;
+}
+
+.elevenLabsDotTopLeft {
+  top: -1px;
+  left: -1px;
+}
+
+.elevenLabsDotTopRight {
+  top: -1px;
+  right: -1px;
+  left: auto;
+}
+
+.elevenLabsGridlineCornerTopLeft,
+.elevenLabsGridlineCornerTopRight,
+.elevenLabsGridlineCornerBottomRight,
+.elevenLabsGridlineCornerBottomLeft {
+  position: absolute;
+}
+
+.elevenLabsGridlineCornerTopLeft {
+  top: -200px;
+  left: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+
+.elevenLabsGridlineCornerTopRight {
+  top: -200px;
+  right: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(45deg);
+  transform-origin: bottom left;
+}
+
+.elevenLabsGridlineCornerBottomRight {
+  right: 0;
+  bottom: -200px;
+  width: 1px;
+  height: 200px;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
+
+.elevenLabsGridlineCornerBottomLeft {
+  bottom: -200px;
+  left: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+/* All Themes */
+
 .bitmap {
   --frame-background: rgba(255, 255, 255, 0.95);
 
@@ -909,7 +1102,8 @@
 .noBackground {
   background: none;
 
-  [data-grid="true"] {
+  [data-grid="true"],
+  [data-dot="true"] {
     display: none;
   }
 }

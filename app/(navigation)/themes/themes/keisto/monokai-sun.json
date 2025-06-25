@@ -1,0 +1,21 @@
+{
+  "appearance": "light",
+  "name": "Monokai Sun",
+  "version": "1",
+  "author": "Tony Keiser",
+  "authorUsername": "keisto",
+  "colors": {
+    "background": "#F8EFE7",
+    "backgroundSecondary": "#EEE5DE",
+    "text": "#111111",
+    "selection": "#92898A",
+    "loader": "#00C7BE",
+    "red": "#CE4770",
+    "orange": "#D45E2B",
+    "yellow": "#B16803",
+    "green": "#218871",
+    "blue": "#2473B6",
+    "purple": "#6851A2",
+    "magenta": "#00C7BE"
+  }
+}

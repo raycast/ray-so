@@ -19,6 +19,8 @@ import PrismaLogo from "../assets/prisma.svg";
 import PrismaLogoUrl from "../assets/prisma.svg?url";
 import MintlifyLogo from "../assets/mintlify.svg";
 import MintlifyLogoUrl from "../assets/mintlify.svg?url";
+import ElevenLabsLogo from "../assets/elevenlabs.svg";
+import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -48,6 +50,8 @@ type ShikiSyntaxObject = {
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
+  diffDeleted?: string;
+  diffInserted?: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -71,6 +75,8 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-highlight": syntaxObject.highlight,
     "--ray-highlight-border": syntaxObject.highlightBorder,
     "--ray-highlight-hover": syntaxObject.highlightHover,
+    "--ray-token-diff-deleted": syntaxObject.diffDeleted,
+    "--ray-token-diff-inserted": syntaxObject.diffInserted,
   } as CSSProperties;
 }
 
@@ -122,6 +128,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "oklch(94.58% 0.0293 249.84870859673202)",
         highlightHover: "oklch(94.58% 0.0293 249.84870859673202 / 30%)",
         highlightBorder: "oklch(53.18% 0.2399 256.9900584162342)",
+        diffDeleted: "oklch(58.01% 0.227 25.12)",
+        diffInserted: "oklch(57.81% 0.1776 147.5)",
       }),
       dark: convertToShikiTheme({
         foreground: "hsla(0, 0%, 93%,1)",
@@ -139,6 +147,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "oklch(30.86% 0.1022 255.21)",
         highlightHover: "oklch(30.86% 0.1022 255.21 / 30%)",
         highlightBorder: "oklch(71.7% 0.1648 250.79360374054167)",
+        diffDeleted: "oklch(62.56% 0.2277 23.03)",
+        diffInserted: "oklch(58.11% 0.1815 146.55)",
       }),
     },
   },
@@ -168,6 +178,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#666666",
         number: "#111111",
         property: "#666666",
+        diffInserted: "#666666",
+        diffDeleted: "#666666",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -182,6 +194,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#a7a7a7",
         number: "#ffffff",
         property: "#a7a7a7",
+        diffInserted: "#a7a7a7",
+        diffDeleted: "#a7a7a7",
       }),
     },
   },
@@ -230,6 +244,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#232323",
         highlightHover: "#1D1D1D",
         highlightBorder: "#383838",
+        diffInserted: "#3ecf8e",
+        diffDeleted: "#F06A50",
       }),
     },
   },
@@ -288,6 +304,8 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#F22C3D",
         highlight: "rgba(0,0,0,0.02)",
         highlightHover: "rgba(0,0,0,0.015)",
+        diffInserted: "#00A67D",
+        diffDeleted: "#F22C3D",
       }),
       dark: convertToShikiTheme({
         foreground: "#fff",
@@ -304,6 +322,8 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#F22C3D",
         highlight: "rgba(255, 255, 255, 0.05)",
         highlightHover: "rgba(255, 255, 255, 0.03)",
+        diffInserted: "#00A67D",
+        diffDeleted: "#F22C3D",
       }),
     },
   },
@@ -334,6 +354,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#dfbe5b3a",
         highlightHover: "#dfbe5b1b",
         highlightBorder: "#e8bc39",
+        diffInserted: "#0d9373",
+        diffDeleted: "#DC2625",
       }),
       dark: convertToShikiTheme({
         foreground: "#F3F7F6",
@@ -351,6 +373,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgb(131 114 55 / 30%)",
         highlightHover: "rgb(131 114 55 / 15%)",
         highlightBorder: "#f7d87c",
+        diffInserted: "#4ec9b0",
+        diffDeleted: "#E17271",
       }),
     },
   },
@@ -382,6 +406,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#16a39528",
         highlightHover: "#16a3950e",
         highlightBorder: "#16A394",
+        diffInserted: "#16A394",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -399,6 +425,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#71e8de2e",
         highlightHover: "#71e8de1b",
         highlightBorder: "#71E8DF",
+        diffInserted: "#16A394",
+        diffDeleted: "#FC8280",
       }),
     },
   },
@@ -431,6 +459,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#00aee313",
         highlightHover: "#00aee306",
         highlightBorder: "#00000000",
+        diffInserted: "#22c543",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -448,6 +478,60 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "#5de3ff1a",
         highlightHover: "#5de3ff0d",
         highlightBorder: "#00000000",
+        diffInserted: "#86ef9b",
+        diffDeleted: "#E17271",
+      }),
+    },
+  },
+  elevenlabs: {
+    id: "elevenlabs",
+    name: "ElevenLabs",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: ElevenLabsLogo,
+    iconUrl: `${BASE_URL}${ElevenLabsLogoUrl.src}`,
+    font: "roboto-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1c1c1c",
+        constant: "#4c3fff",
+        string: "#00a890",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1c1c1c",
+        parameter: "#4c3fff",
+        function: "#e85c5c",
+        stringExpression: "#00a890",
+        punctuation: "#1c1c1c",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#00a890",
+        diffDeleted: "#FF605E",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fff",
+        constant: "#8F8FFF",
+        string: "#a1ffe0",
+        comment: "hsla(0, 0%, 63%,1)",
+        keyword: "#fff9b2",
+        parameter: "#8F8FFF",
+        function: "#ff8080",
+        stringExpression: "#A1FFE0",
+        punctuation: "#fff",
+        link: "#8F8FFF",
+        number: "#8F8FFF",
+        property: "#8F8FFF",
+        highlight: "hsla(240, 100%, 78%, 0.09)",
+        highlightHover: "hsla(240, 100%, 78%, 0.05)",
+        highlightBorder: "hsla(240, 100%, 78%, 0.45)",
+        diffInserted: "#a1ffe0",
+        diffDeleted: "#ff8080",
       }),
     },
   },
@@ -475,6 +559,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "hsla(348, 100%, 39%, 0.08)",
         highlightBorder: "#C90028",
         highlightHover: "hsla(348, 100%, 39%, 0.05)",
+        diffInserted: "#00A67D",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#FEFDFD",
@@ -492,6 +578,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "hsla(355, 76%, 63%, 0.25)",
         highlightBorder: "#E42B37",
         highlightHover: "hsla(355, 76%, 63%, 0.16)",
+        diffInserted: "#00DE55",
+        diffDeleted: "#FF605E",
       }),
     },
   },
@@ -516,6 +604,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#666666",
         number: "#111111",
         property: "#666666",
+        diffInserted: "#666666",
+        diffDeleted: "#666666",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -530,6 +620,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#a7a7a7",
         number: "#ffffff",
         property: "#a7a7a7",
+        diffInserted: "#a7a7a7",
+        diffDeleted: "#a7a7a7",
       }),
     },
   },
@@ -557,6 +649,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(0,167,219,0.1)",
         highlightBorder: "#00B0E9",
         highlightHover: "rgba(0,167,219,0.05)",
+        diffInserted: "#00B0E9",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -574,6 +668,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(146,222,246,0.14)",
         highlightBorder: "#92DEF6",
         highlightHover: "rgba(146,222,246,0.09)",
+        diffInserted: "#00B0E9",
+        diffDeleted: "#FF605E",
       }),
     },
   },
@@ -601,6 +697,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(218,135,68,0.1)",
         highlightBorder: "#DA8744",
         highlightHover: "rgba(218,135,68,0.05)",
+        diffInserted: "#A28C4E",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -618,6 +716,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(244,163,97,0.14)",
         highlightBorder: "#F4A361",
         highlightHover: "rgba(244,163,97,0.09)",
+        diffInserted: "#A28C4E",
+        diffDeleted: "#FF605E",
       }),
     },
   },
@@ -645,6 +745,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(75,148,66,0.12)",
         highlightBorder: "#4B9442",
         highlightHover: "rgba(75,148,66,0.07)",
+        diffInserted: "#4B9442",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -662,6 +764,8 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(170,180,163,0.14)",
         highlightBorder: "#6B8F71",
         highlightHover: "rgba(170,180,163,0.09)",
+        diffInserted: "#6B8F71",
+        diffDeleted: "#FF605E",
       }),
     },
   },
@@ -686,6 +790,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#666666",
         number: "#111111",
         property: "#666666",
+        diffInserted: "#666666",
+        diffDeleted: "#666666",
       }),
       dark: convertToShikiTheme({
         foreground: "#ffffff",
@@ -700,6 +806,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#a7a7a7",
         number: "#ffffff",
         property: "#a7a7a7",
+        diffInserted: "#a7a7a7",
+        diffDeleted: "#a7a7a7",
       }),
     },
   },
@@ -724,6 +832,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#625B6B",
         number: "#24805E",
         property: "#0B7880",
+        diffInserted: "#00A67D",
+        diffDeleted: "#C44170",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -738,6 +848,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#ECFEEF",
         number: "#55E7B2",
         property: "#49E8F2",
+        diffInserted: "#00A67D",
+        diffDeleted: "#F8518D",
       }),
     },
   },
@@ -762,6 +874,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#d15a8b",
         number: "#676DFF",
         property: "#2286A6",
+        diffInserted: "#009033",
+        diffDeleted: "#FF605E",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -776,6 +890,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#FF659C",
         number: "#7A7FFD",
         property: "#1AC8FF",
+        diffInserted: "#73DFA5",
+        diffDeleted: "#FF605E",
       }),
     },
   },
@@ -800,6 +916,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#BE3B3B",
         number: "#C94F0A",
         property: "#D15510",
+        diffInserted: "#00A67D",
+        diffDeleted: "#BE3B3B",
       }),
       dark: convertToShikiTheme({
         foreground: "#FEFDFD",
@@ -814,6 +932,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#EB6F6F",
         number: "#FDA97A",
         property: "#D15510",
+        diffInserted: "#6FEB71",
+        diffDeleted: "#EB6F6F",
       }),
     },
   },
@@ -838,6 +958,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#5C827D",
         number: "#AE6A65",
         property: "#839AA7",
+        diffInserted: "#5C827D",
+        diffDeleted: "#AE6A65",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -852,6 +974,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#9AB6B2",
         number: "#BD9C9C",
         property: "#799DB1",
+        diffInserted: "#9AB6B2",
+        diffDeleted: "#BD9C9C",
       }),
     },
   },
@@ -876,6 +1000,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#049649",
         number: "#2C8801",
         property: "#B6781B",
+        diffInserted: "#049649",
+        diffDeleted: "#B6781B",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -890,6 +1016,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#6DD79F",
         number: "#46B114",
         property: "#E4B165",
+        diffInserted: "#B3D767",
+        diffDeleted: "#E4B165",
       }),
     },
   },
@@ -914,6 +1042,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#5A797A",
         number: "#2D8264",
         property: "#766599",
+        diffInserted: "#2D8264",
+        diffDeleted: "#766599",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -928,6 +1058,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#7DA9AB",
         number: "#75D2B1",
         property: "#9681C2",
+        diffInserted: "#75D2B1",
+        diffDeleted: "#9681C2",
       }),
     },
   },
@@ -952,6 +1084,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#008DAC",
         number: "#7459E1",
         property: "#007BA1",
+        diffInserted: "#008DAC",
+        diffDeleted: "#7459E1",
       }),
       dark: convertToShikiTheme({
         foreground: "#E4F2FF",
@@ -966,6 +1100,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#2ED9FF",
         number: "#9984EE",
         property: "#008BB7",
+        diffInserted: "#2ED9FF",
+        diffDeleted: "#9984EE",
       }),
     },
   },
@@ -990,6 +1126,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#A1642C",
         number: "#856F00",
         property: "#AD5A78",
+        diffInserted: "#856F00",
+        diffDeleted: "#AD5A78",
       }),
       dark: convertToShikiTheme({
         foreground: "#FFFFFF",
@@ -1004,6 +1142,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#FFAF65",
         number: "#E7CF55",
         property: "#E978A1",
+        diffInserted: "#E7CF55",
+        diffDeleted: "#E978A1",
       }),
     },
   },
@@ -1056,7 +1196,8 @@ const themeBackgroundAtom = atom<string>((get) => {
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
-  return get(showLineNumbersAtom) ?? (get(themeAtom).lineNumbers || false);
+  const theme = get(themeAtom);
+  return theme.partner ? theme.lineNumbers || false : (get(showLineNumbersAtom) ?? false);
 });
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
