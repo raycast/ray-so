@@ -1,7 +1,8 @@
-{  "author": "Tarik GANDUR",
+{
+  "author": "Tarik GANDUR",
   "authorUsername": "gandurian",
   "version": "1",
-  "name": "Gruvbox-Light",
+  "name": "Gruvbox Light",
   "appearance": "light",
   "colors": {
     "background": "#FBF1C7",
