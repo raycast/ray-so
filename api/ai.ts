@@ -7,6 +7,7 @@ export type Model =
   | "anthropic-claude-opus"
   | "anthropic-claude-sonnet"
   | "anthropic-claude-3-7-sonnet-latest"
+  | "anthropic-claude-sonnet-4"
   | "perplexity-llama-3-sonar-large-32k-online"
   | "perplexity-llama-3-sonar-small-32k-online"
   | "groq-llama-3.1-70b-versatile"
