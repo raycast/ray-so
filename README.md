@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a aria-label="Follow Raycast on X" href="https://x.com/raycastapp">
+  <a aria-label="Follow Raycast on X" href="https://x.com/raycast">
     <img alt="" src="https://img.shields.io/badge/Follow%20@raycastapp-black.svg?style=for-the-badge&logo=X">
   </a>
   <a aria-label="Join the community on Slack" href="https://raycast.com/community">
