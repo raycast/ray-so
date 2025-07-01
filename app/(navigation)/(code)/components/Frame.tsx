@@ -340,6 +340,46 @@ const ElevenLabsFrame = () => {
   );
 };
 
+const ResendFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.resend,
+        showBackground && styles.resendFrame,
+        darkMode && styles.darkMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.resendWindow}>
+        <div className={styles.resendHeader}>
+          <div className={classNames(styles.fileName, styles.resendFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+          <span className={styles.resendLanguage}>{selectedLanguage?.name}</span>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -357,7 +397,10 @@ const DefaultFrame = () => {
         darkMode && styles.darkMode,
         showBackground && styles.withBackground,
       )}
-      style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
+      style={{
+        padding,
+        backgroundImage: showBackground ? themeBackground : ``,
+      }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div
@@ -413,6 +456,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <PrismaFrame />;
       case THEMES.elevenlabs.id:
         return <ElevenLabsFrame />;
+      case THEMES.resend.id:
+        return <ResendFrame />;
       default:
         return <DefaultFrame />;
     }
