@@ -2,6 +2,7 @@
   "name": "ray.so",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -30,6 +31,7 @@
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@raycast/icons": "^0.4.7",
+    "@reactivex/rxjs": "^6.6.7",
     "@vercel/analytics": "^1.1.1",
     "@vercel/og": "^0.6.2",
     "@viselect/react": "^3.9.0",
@@ -56,6 +58,7 @@
     "react-color": "^2.19.3",
     "react-dom": "19.0.0",
     "react-transition-group": "^4.4.5",
+    "rxjs": "^7.8.2",
     "shiki": "^1.0.0",
     "sonner": "^2.0.1",
     "tailwind-merge": "^2.3.0",
