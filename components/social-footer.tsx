@@ -7,7 +7,7 @@ const socialLinks = [
     icon: BrandGithubIcon,
   },
   {
-    href: "https://x.com/raycastapp",
+    href: "https://x.com/raycast",
     label: "X",
     icon: BrandXIcon,
   },
