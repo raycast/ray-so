@@ -1109,7 +1109,7 @@
 }
 
 .resend {
-  --frame-background: hsla(0, 0%, 99%, 0.92);
+  --frame-background: hsla(0, 0%, 100%, 0.72);
   --selection-background: #00cc9937;
   --selection-text-color: #007763fd;
   --frame-header-background: hsla(0, 0%, 100%, 0.1);
@@ -1123,14 +1123,14 @@
     color: var(--selection-text-color);
   }
 
-  font-family: "commit-mono", monospace;
   &.resendFrame {
     background-image: var(--frame-image) !important;
     background-position: center;
     background-size: cover;
   }
+
   &.darkMode {
-    --frame-background: hsla(0, 0%, 0%, 0.82);
+    --frame-background: hsla(0, 0%, 0%, 0.88);
     --frame-header-background: hsla(0, 0%, 0%, 0.9);
     --frame-border: hsla(0, 0%, 24%, 0.13);
     --frame-text-color: hsl(0, 0%, 98%);
@@ -1145,6 +1145,8 @@
   z-index: 1;
   border: 0.5px solid var(--frame-border);
   border-radius: var(--frame-border-radius);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   background: var(--frame-background);
 }
 
@@ -1201,16 +1203,6 @@
   &:after {
     content: attr(data-value) " ";
     visibility: hidden;
-  }
-
-  &:before {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    content: "";
   }
 }
 
