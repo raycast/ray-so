@@ -1116,17 +1116,10 @@
   --frame-border: hsla(0, 0%, 24%, 0.13);
   --frame-border-radius: 8px;
   --frame-text-color: hsl(0, 0%, 0%);
-  --frame-image: url("../assets/resend/resend-pattern-light.png");
 
   &::selection {
     background: var(--selection-background);
     color: var(--selection-text-color);
-  }
-
-  &.resendFrame {
-    background-image: var(--frame-image) !important;
-    background-position: center;
-    background-size: cover;
   }
 
   &.darkMode {
@@ -1134,7 +1127,6 @@
     --frame-header-background: hsla(0, 0%, 0%, 0.9);
     --frame-border: hsla(0, 0%, 24%, 0.13);
     --frame-text-color: hsl(0, 0%, 98%);
-    --frame-image: url("../assets/resend/resend-pattern-dark.png");
     --selection-background: #00fff61d;
     --selection-text-color: #67ffded2;
   }

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 import { fileNameAtom, showBackgroundAtom, windowWidthAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
@@ -18,7 +19,8 @@ import { codeAtom, selectedLanguageAtom } from "../store/code";
 import beams from "../assets/tailwind/beams.png";
 import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
 import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
-
+import lightResend from "../assets/resend/resend-pattern-light.png";
+import darkResend from "../assets/resend/resend-pattern-dark.png";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 
 const VercelFrame = () => {
@@ -359,6 +361,26 @@ const ResendFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && !darkMode && (
+        <Image
+          className="object-cover select-none pointer-events-none"
+          src={lightResend}
+          fill
+          placeholder="blur"
+          quality={90}
+          alt=""
+        />
+      )}
+      {showBackground && darkMode && (
+        <Image
+          className="object-cover select-none pointer-events-none"
+          src={darkResend}
+          fill
+          placeholder="blur"
+          quality={90}
+          alt=""
+        />
+      )}
       <div className={styles.resendWindow}>
         <div className={styles.resendHeader}>
           <div className={classNames(styles.fileName, styles.resendFileName)} data-value={fileName}>
