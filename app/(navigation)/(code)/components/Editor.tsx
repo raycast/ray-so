@@ -252,7 +252,9 @@ function Editor() {
                 ? styles.soehneMono
                 : themeFont === "roboto-mono"
                   ? styles.robotoMono
-                  : styles.jetBrainsMono,
+                  : themeFont === "commit-mono"
+                    ? styles.commitMono
+                    : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers &&
           selectedLanguage !== LANGUAGES.plaintext && [

@@ -22,6 +22,10 @@ const soehneMono = localFont({
   src: "../assets/soehne-mono-buch.woff2",
   variable: "--font-soehne-mono",
 });
+const commitMono = localFont({
+  src: "../assets/commit-mono-regular.woff2",
+  variable: "--font-commitmono",
+});
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   weight: "400",
@@ -45,6 +49,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         ibmPlexMono.variable,
         firaCode.variable,
         soehneMono.variable,
+        commitMono.variable,
         robotoMono.variable,
       )}
       style={
