@@ -1150,8 +1150,8 @@
   padding: 0 16px;
   border-bottom: 1px solid var(--frame-border);
   background: var(--frame-header-background);
-  border-top-left-radius: var(--frame-border-radius);
-  border-top-right-radius: var(--frame-border-radius);
+  border-top-left-radius: calc(var(--frame-border-radius) - 0.5px);
+  border-top-right-radius: calc(var(--frame-border-radius) - 0.5px);
   gap: 12px;
 }
 
