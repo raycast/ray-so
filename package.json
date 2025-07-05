@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "type-check": "tsc --noEmit",
-    "generate-themes-og-images": "node 'app/(navigation)/themes/lib/generate-og-images.js'"
+    "type-check": "tsc --noEmit"
   },
   "engines": {
     "node": "^18"

@@ -60,7 +60,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       },
       twitter: {
         card: "summary_large_image",
-        creator: "@raycastapp",
+        creator: "@raycast",
         title: pageTitle,
         description: pageDescription,
         images: [
@@ -103,7 +103,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       },
       twitter: {
         card: "summary_large_image",
-        creator: "@raycastapp",
+        creator: "@raycast",
         title: pageTitle,
         description: pageDescription,
         images: [

@@ -664,6 +664,11 @@ const entertainment: Quicklink[] = [
       link: "https://github.com/gianpispi",
     },
   },
+  {
+    id: "genius",
+    name: "Search Genius",
+    link: "https://genius.com/search?q={Query}",
+  },
 ];
 
 const socials: Quicklink[] = [
@@ -671,7 +676,7 @@ const socials: Quicklink[] = [
     id: "tweets",
     name: "Search Tweets",
     description: "Search from a list of users",
-    link: 'https://x.com/search?q={argument name="query" | raw}%20from:{argument name="handle" options="@samuelkraft ,  @raycastapp , @peduarte , @thomaspaulmann " default="@samuelkraft" | raw}&src=typed_query&f=live',
+    link: 'https://x.com/search?q={argument name="query" | raw}%20from:{argument name="handle" options="@samuelkraft ,  @raycast , @peduarte , @thomaspaulmann " default="@samuelkraft" | raw}&src=typed_query&f=live',
   },
   {
     id: "linkedin",
@@ -785,7 +790,7 @@ const misc: Quicklink[] = [
       name: "arrow-ne",
     },
   },
-    {
+  {
     id: "Makerworld",
     name: "Search Makerworld",
     description: "Search Makerworld.com for 3d models.",

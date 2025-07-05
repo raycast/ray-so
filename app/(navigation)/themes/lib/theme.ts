@@ -48,8 +48,12 @@ export async function getAllThemes(): Promise<Theme[]> {
       const parentDirName = basename(filePath.replace(fileName, ""));
       const slug = `${parentDirName}/${fileName.replace(".json", "")}`.toLowerCase();
 
-      return { ...themeData, slug, og_image: `${BASE_URL}/themes-og/${slug.replace("/", "_")}.png` };
-    })
+      return {
+        ...themeData,
+        slug,
+        og_image: `${BASE_URL}/themes/${slug}/opengraph-image`,
+      };
+    }),
   );
 
   return themes;
