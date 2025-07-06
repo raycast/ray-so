@@ -1147,6 +1147,48 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
+  whithub: {
+    id: "whithub",
+    name: "Whithub",
+    background: {
+      from: "#FFFFFF",
+      to: "#F5F5F5",
+    },
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#24292e",
+        constant: "#005cc5",
+        string: "#032f62",
+        comment: "#6a737d",
+        keyword: "#d73a49",
+        parameter: "#e36209",
+        function: "#6f42c1",
+        stringExpression: "#032f62",
+        punctuation: "#24292e",
+        link: "#0366d6",
+        number: "#005cc5",
+        property: "#24292e",
+        diffInserted: "#28a745",
+        diffDeleted: "#d73a49",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#c9d1d9",
+        constant: "#79c0ff",
+        string: "#a5d6ff",
+        comment: "#8b949e",
+        keyword: "#ff7b72",
+        parameter: "#ffa657",
+        function: "#d2a8ff",
+        stringExpression: "#a5d6ff",
+        punctuation: "#c9d1d9",
+        link: "#58a6ff",
+        number: "#b392f0",
+        property: "#c9d1d9",
+        diffInserted: "#3fb950",
+        diffDeleted: "#ff7b72",
+      }),
+    },
+  },
 };
 
 const themeAtom = atomWithHash<Theme>(
