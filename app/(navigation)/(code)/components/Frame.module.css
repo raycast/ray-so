@@ -1107,3 +1107,100 @@
     display: none;
   }
 }
+
+.resend {
+  --frame-background: hsla(0, 0%, 100%, 0.72);
+  --selection-background: #00cc9937;
+  --selection-text-color: #007763fd;
+  --frame-header-background: hsla(0, 0%, 100%, 0.1);
+  --frame-border: hsla(0, 0%, 24%, 0.13);
+  --frame-border-radius: 8px;
+  --frame-text-color: hsl(0, 0%, 0%);
+
+  &::selection {
+    background: var(--selection-background);
+    color: var(--selection-text-color);
+  }
+
+  &.darkMode {
+    --frame-background: hsla(0, 0%, 0%, 0.88);
+    --frame-header-background: hsla(0, 0%, 0%, 0.9);
+    --frame-border: hsla(0, 0%, 24%, 0.13);
+    --frame-text-color: hsl(0, 0%, 98%);
+    --selection-background: #00fff61d;
+    --selection-text-color: #67ffded2;
+  }
+}
+
+.resendWindow {
+  position: relative;
+  z-index: 1;
+  border: 0.5px solid var(--frame-border);
+  border-radius: var(--frame-border-radius);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: var(--frame-background);
+}
+
+.resendHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--frame-border);
+  background: var(--frame-header-background);
+  border-top-left-radius: calc(var(--frame-border-radius) - 0.5px);
+  border-top-right-radius: calc(var(--frame-border-radius) - 0.5px);
+  gap: 12px;
+}
+
+.resendFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: var(--frame-text-color);
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.resendLanguage {
+  height: 40px;
+  color: #898989;
+  font-size: 14px;
+  line-height: 40px;
+}
