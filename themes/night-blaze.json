@@ -1,8 +1,9 @@
 {
   "author": "Faye Håkansdotter",
   "authorUsername": "Valkerie1488",
-  "version": "1",
+  "version": "1.0.0",
   "name": "Night Blaze",
+  "description": "A warm dark theme featuring deep ocean blues with golden flames - perfect for late-night coding sessions with a touch of elegance.",
   "appearance": "dark",
   "colors": {
     "background": "#2A3B4D",
