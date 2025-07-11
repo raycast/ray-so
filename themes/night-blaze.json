@@ -1,0 +1,21 @@
+{
+  "author": "Faye Håkansdotter",
+  "authorUsername": "Valkerie1488",
+  "version": "1",
+  "name": "Night Blaze",
+  "appearance": "dark",
+  "colors": {
+    "background": "#2A3B4D",
+    "backgroundSecondary": "#1C2735",
+    "text": "#FFCC00",
+    "selection": "#F5B643",
+    "loader": "#F5B643",
+    "red": "#D94B4B",
+    "orange": "#D98A4B",
+    "yellow": "#E6B83D",
+    "green": "#3ED6A0",
+    "blue": "#1E7EDB",
+    "purple": "#6B3EDB",
+    "magenta": "#D94E9B"
+  }
+}
