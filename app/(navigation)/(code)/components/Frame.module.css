@@ -235,46 +235,21 @@
 
 /* Trigger.dev Theme Frame */
 
+.triggerFrame {
+  background: #121317;
+}
+
 .triggerWindow {
   position: relative;
-  background: #0d0e12;
+  border-radius: 8px;
+  background: #121317;
 }
 
-.triggerGridlinesHorizontal {
-  &:before,
-  &:after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -150px;
-    width: 1200px;
-    height: 1px;
-    background: #3b3e45;
-    content: "";
-  }
+.triggerFrameLightMode {
+  background: #fafafa;
 
-  &:after {
-    top: auto;
-    bottom: 0;
-  }
-}
-
-.triggerGridlinesVertical {
-  &:before,
-  &:after {
-    position: absolute;
-    top: -150px;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    height: calc(100% + 300px);
-    background: #3b3e45;
-    content: "";
-  }
-
-  &:after {
-    right: 0;
-    left: auto;
+  .triggerWindow {
+    background: #ffffff;
   }
 }
 

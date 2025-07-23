@@ -144,8 +144,9 @@ const TriggerdotdevFrame = () => {
       className={classNames(
         styles.frame,
         styles.id,
-        darkMode && styles.darkMode,
-        showBackground && styles.withBackground,
+        showBackground && styles.triggerFrame,
+        !darkMode && styles.triggerFrameLightMode,
+        !showBackground && styles.noBackground,
       )}
       style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
     >
@@ -225,7 +226,7 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
-          ) : THEMES.triggerdotdev.id === theme.id ? (
+          ) : THEMES.triggerdev.id === theme.id ? (
             <TriggerdotdevFrame />
           ) : (
             <DefaultFrame />
@@ -246,7 +247,7 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
             <SupabaseFrame />
           ) : THEMES.tailwind.id === theme.id ? (
             <TailwindFrame />
-          ) : THEMES.triggerdotdev.id === theme.id ? (
+          ) : THEMES.triggerdev.id === theme.id ? (
             <TriggerdotdevFrame />
           ) : (
             <DefaultFrame />
