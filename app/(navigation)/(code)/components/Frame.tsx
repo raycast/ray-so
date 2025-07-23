@@ -136,12 +136,12 @@ const TailwindFrame = () => {
   );
 };
 
-const TriggerdotdevFrame = () => {
+const TriggerdevFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
-
+  const [fileName, setFileName] = useAtom(fileNameAtom);
   return (
     <div
       className={classNames(
@@ -502,6 +502,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <MintlifyFrame />;
       case THEMES.openai.id:
         return <OpenAIFrame />;
+      case THEMES.triggerdev.id:
+        return <TriggerdevFrame />;
       case THEMES.prisma.id:
         return <PrismaFrame />;
       case THEMES.elevenlabs.id:

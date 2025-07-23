@@ -40,7 +40,7 @@ const ThemeControl: React.FC = () => {
   }, [currentTheme, setPadding]);
 
   useHotkeys("c", () => {
-    const availableThemes = Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden);
+    const availableThemes = Object.values(THEMES).filter((theme) => !theme.hidden);
     const currentIndex = availableThemes.indexOf(currentTheme);
     if (Object.values(availableThemes)[currentIndex + 1]) {
       setTheme(Object.values(availableThemes)[currentIndex + 1]);
@@ -82,7 +82,7 @@ const ThemeControl: React.FC = () => {
           <SelectGroup>
             <SelectLabel>Partners</SelectLabel>
             {partnerThemes
-              .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
+              .filter((theme) => !theme.hidden || theme.name === currentTheme.name)
               .map((theme, index) => {
                 return (
                   <SelectItem key={index} value={theme.name} textValue={theme.name}>
