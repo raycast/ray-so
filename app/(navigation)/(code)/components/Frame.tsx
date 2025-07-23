@@ -142,6 +142,7 @@ const TriggerdevFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+
   return (
     <div
       className={classNames(
@@ -158,6 +159,24 @@ const TriggerdevFrame = () => {
         <span className={styles.triggerGridlinesVertical} data-grid></span>
         <span className={styles.triggerBracketLeft} data-grid></span>
         <span className={styles.triggerBracketRight} data-grid></span>
+        <div className={styles.triggerHeader}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={classNames(styles.fileName, styles.triggerFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+        </div>
         <Editor />
       </div>
     </div>
