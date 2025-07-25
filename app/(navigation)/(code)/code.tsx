@@ -21,7 +21,6 @@ import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
-// import { InfoDialog } from "./components/InfoDialog";
 
 export function Code() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
@@ -40,7 +39,6 @@ export function Code() {
     <>
       <FrameContextStore>
         <NavigationActions>
-          {/* <InfoDialog /> */}
           <ExportButton />
         </NavigationActions>
         <div className={styles.app}>

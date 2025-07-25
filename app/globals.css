@@ -384,9 +384,6 @@ svg {
   opacity: 0 !important;
 }
 
-[data-raycast] {
-  transition: all 200ms ease-in-out;
-}
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
 .scrollbar-hide::-webkit-scrollbar {

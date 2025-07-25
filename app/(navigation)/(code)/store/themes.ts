@@ -4,7 +4,6 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
-import { BASE_URL } from "@/utils/common";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",

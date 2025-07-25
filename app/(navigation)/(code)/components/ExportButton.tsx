@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
 import { track } from "@vercel/analytics";
+import { Download } from "lucide-react";
 
 import ImageIcon from "../assets/icons/image-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
@@ -32,7 +33,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/dropdown-menu";
-import { DownloadIcon } from "@raycast/icons";
 import { Kbd, Kbds } from "@/components/kbd";
 
 const ExportButton: React.FC = () => {
@@ -169,7 +169,7 @@ const ExportButton: React.FC = () => {
   return (
     <ButtonGroup>
       <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
-        <DownloadIcon className="w-4 h-4" />
+        <Download className="w-4 h-4" />
         Export <span className="hidden md:inline-block">Image</span>
       </Button>
       <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>

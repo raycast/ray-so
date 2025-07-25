@@ -1,5 +1,5 @@
 {
-  "name": "ray.so",
+  "name": "tech-stacker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
   "engines": {
@@ -29,7 +28,6 @@
     "@radix-ui/react-toast": "^1.2.6",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
-    "@raycast/icons": "^0.4.7",
     "@vercel/analytics": "^1.1.1",
     "@vercel/og": "^0.6.2",
     "@viselect/react": "^3.9.0",
@@ -49,6 +47,7 @@
     "jotai-location": "^0.5.5",
     "js-base64": "^3.7.3",
     "lodash.debounce": "^4.0.8",
+    "lucide-react": "^0.525.0",
     "nanoid": "^5.1.3",
     "next": "15.3.0",
     "prettier": "^3.3.3",
@@ -73,8 +72,6 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^8.32.0",
     "eslint-config-next": "15.2.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
     "postcss": "^8.4.38",
     "postcss-nested": "^6.0.0",
     "stylelint": "^14.11.0",

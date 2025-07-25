@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -22,14 +21,15 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@code/*": ["./app/(navigation)/(code)/*"],
-      "@presets/*": ["./app/(navigation)/presets/*"],
-      "@prompts/*": ["./app/(navigation)/prompts/*"],
-      "@snippets/*": ["./app/(navigation)/snippets/*"],
-      "@themes/*": ["./app/(navigation)/themes/*"],
-      "@icon/*": ["./app/(navigation)/icon/*"]
+      "@code/*": ["./app/(navigation)/(code)/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.wasm", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.wasm",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
