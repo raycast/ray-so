@@ -8,6 +8,7 @@ import { shikiTheme } from "./store/themes";
 
 import Frame from "./components/Frame";
 import Controls from "./components/Controls";
+import TechStackSelector from "./components/TechStackSelector";
 import FrameContextStore from "./store/FrameContextStore";
 
 import styles from "./code.module.css";
@@ -46,8 +47,11 @@ export function Code() {
         </NavigationActions>
         <div className={styles.app}>
           <NoSSR>
-            {highlighter && <Frame />}
-            <Controls />
+            <div className={styles.mainContent}>
+              {highlighter && <Frame />}
+              <Controls />
+            </div>
+            <TechStackSelector />
           </NoSSR>
         </div>
       </FrameContextStore>

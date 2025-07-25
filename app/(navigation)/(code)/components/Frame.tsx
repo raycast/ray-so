@@ -9,7 +9,7 @@ import { paddingAtom } from "../store/padding";
 import { THEMES, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 
-import Editor from "./Editor";
+import SelectedTools from "./SelectedTools";
 import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
 
@@ -44,7 +44,7 @@ const VercelFrame = () => {
         <span className={styles.vercelGridlinesVertical} data-grid></span>
         <span className={styles.vercelBracketLeft} data-grid></span>
         <span className={styles.vercelBracketRight} data-grid></span>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -83,7 +83,7 @@ const SupabaseFrame = () => {
           </div>
           <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
         </div>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -130,7 +130,7 @@ const TailwindFrame = () => {
             <div className={styles.control}></div>
           </div>
         </div>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -155,7 +155,7 @@ const ClerkFrame = () => {
       {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
       <div className={styles.clerkWindow}>
         <div className={styles.clerkCode}>
-          <Editor />
+          <SelectedTools />
         </div>
       </div>
     </div>
@@ -202,7 +202,7 @@ const MintlifyFrame = () => {
             {fileName.length === 0 ? <span>Untitled-1</span> : null}
           </div>
         </div>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -229,7 +229,7 @@ const PrismaFrame = () => {
         <span data-frameborder />
         <span data-frameborder />
         <span data-frameborder />
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -250,7 +250,7 @@ const OpenAIFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.openAIWindow}>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -335,7 +335,7 @@ const ElevenLabsFrame = () => {
         <span className={styles.elevenLabsGridlineCornerBottomLeft} data-grid></span>
 
         <div className={styles.elevenLabsEditor}>
-          <Editor />
+          <SelectedTools />
         </div>
       </div>
     </div>
@@ -396,7 +396,7 @@ const ResendFrame = () => {
           </div>
           <span className={styles.resendLanguage}>{selectedLanguage?.name}</span>
         </div>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
@@ -448,7 +448,7 @@ const DefaultFrame = () => {
             {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
           </div>
         </div>
-        <Editor />
+        <SelectedTools />
       </div>
     </div>
   );
