@@ -113,19 +113,19 @@ export const tools: Record<CategoryType, Tool[]> = {
   ],
   infra: [
     {
-      id: 15,
+      id: 17,
       name: "AWS",
       icon: "/icons/aws.svg",
       url: "https://aws.amazon.com",
     },
     {
-      id: 16,
+      id: 18,
       name: "Google Cloud",
       icon: "/icons/gcp.svg",
       url: "https://cloud.google.com",
     },
     {
-      id: 17,
+      id: 19,
       name: "Azure",
       icon: "/icons/azure.svg",
       url: "https://azure.microsoft.com",
@@ -133,13 +133,13 @@ export const tools: Record<CategoryType, Tool[]> = {
   ],
   devops: [
     {
-      id: 18,
+      id: 20,
       name: "Docker",
       icon: "/icons/docker.svg",
       url: "https://www.docker.com",
     },
     {
-      id: 19,
+      id: 21,
       name: "Kubernetes",
       icon: "/icons/kubernetes.svg",
       url: "https://kubernetes.io",

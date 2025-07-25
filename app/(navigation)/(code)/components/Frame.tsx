@@ -460,29 +460,7 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
   const darkMode = useAtomValue(darkModeAtom);
 
   function renderFrame() {
-    switch (theme.id) {
-      case THEMES.vercel.id:
-      case THEMES.rabbit.id:
-        return <VercelFrame />;
-      case THEMES.supabase.id:
-        return <SupabaseFrame />;
-      case THEMES.tailwind.id:
-        return <TailwindFrame />;
-      case THEMES.clerk.id:
-        return <ClerkFrame />;
-      case THEMES.mintlify.id:
-        return <MintlifyFrame />;
-      case THEMES.openai.id:
-        return <OpenAIFrame />;
-      case THEMES.prisma.id:
-        return <PrismaFrame />;
-      case THEMES.elevenlabs.id:
-        return <ElevenLabsFrame />;
-      case THEMES.resend.id:
-        return <ResendFrame />;
-      default:
-        return <DefaultFrame />;
-    }
+    return <DefaultFrame />;
   }
 
   if (!resize) {

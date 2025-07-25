@@ -1,13 +1,23 @@
 import React from "react";
 import { useAtom } from "jotai";
 import { tools, CategoryType } from "@/app/lib/tools";
-import { selectedToolsAtom, addToolAtom, removeToolAtom } from "../store/selectedTools";
-import styles from "./TechStackSelector.module.css";
+import {
+  selectedToolsAtom,
+  addToolAtom,
+  removeToolAtom,
+  sidebarCollapsedAtom,
+  toggleSidebarAtom,
+} from "../store/selectedTools";
+import { Button } from "@/components/button";
+import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 const TechStackSelector: React.FC = () => {
   const [selectedTools] = useAtom(selectedToolsAtom);
   const [, addTool] = useAtom(addToolAtom);
   const [, removeTool] = useAtom(removeToolAtom);
+  const [isCollapsed] = useAtom(sidebarCollapsedAtom);
+  const [, toggleSidebar] = useAtom(toggleSidebarAtom);
 
   const categories: { key: CategoryType; label: string }[] = [
     { key: "frontend", label: "Frontend" },
@@ -30,27 +40,74 @@ const TechStackSelector: React.FC = () => {
   };
 
   return (
-    <div className={styles.sidebar}>
-      <h2 className={styles.title}>Tech Stack</h2>
+    <div
+      className={cn(
+        "fixed z-10 top-[50px] right-0 h-[calc(100vh-50px)] bg-panel border-l border-gray-6 transition-all duration-300 ease-in-out overflow-hidden",
+        isCollapsed ? "w-12" : "w-80",
+      )}
+    >
+      {/* Collapse/Expand Button */}
+      <div className="flex items-center justify-between p-3 border-b border-gray-6">
+        {!isCollapsed && <h2 className="text-lg font-semibold text-gray-12">Tech Stack</h2>}
+        <Button
+          variant="transparent"
+          size="medium"
+          iconOnly
+          onClick={toggleSidebar}
+          className="shrink-0"
+          title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            className={cn("transition-transform duration-200", isCollapsed && "rotate-180")}
+          >
+            <path
+              d="M6 4L10 8L6 12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Button>
+      </div>
 
-      {categories.map(({ key, label }) => (
-        <div key={key} className={styles.category}>
-          <h3 className={styles.categoryTitle}>{label}</h3>
-          <div className={styles.toolGrid}>
-            {tools[key].map((tool) => (
-              <button
-                key={tool.id}
-                className={`${styles.toolButton} ${isSelected(tool.id) ? styles.selected : ""}`}
-                onClick={() => handleToolClick(tool)}
-                title={tool.name}
-              >
-                <img src={tool.icon} alt={tool.name} className={styles.toolIcon} />
-                <span className={styles.toolName}>{tool.name}</span>
-              </button>
-            ))}
-          </div>
+      {/* Sidebar Content */}
+      <div
+        className={cn(
+          "h-full overflow-y-auto transition-all duration-300",
+          isCollapsed ? "opacity-0 pointer-events-none" : "opacity-100",
+        )}
+      >
+        <div className="p-4 space-y-6">
+          {categories.map(({ key, label }) => (
+            <div key={key}>
+              <h3 className="mb-3 text-sm font-medium text-gray-11 uppercase tracking-wider">{label}</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {tools[key].map((tool) => (
+                  <button
+                    key={tool.id}
+                    className={cn(
+                      "flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105",
+                      "bg-gray-3 border-transparent hover:border-gray-6 hover:bg-gray-4",
+                      "focus:outline-none focus:ring-2 focus:ring-gray-8 focus:border-transparent",
+                      isSelected(tool.id) && "border-brand bg-brand/10 shadow-sm",
+                    )}
+                    onClick={() => handleToolClick(tool)}
+                    title={tool.name}
+                  >
+                    <Image src={tool.icon} alt={tool.name} width={32} height={32} className="mb-2 object-contain" />
+                    <span className="text-xs font-medium text-gray-12 text-center leading-tight">{tool.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
