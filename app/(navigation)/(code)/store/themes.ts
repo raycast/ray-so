@@ -23,7 +23,6 @@ import ElevenLabsLogo from "../assets/elevenlabs.svg";
 import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
 import ResendLogoUrl from "../assets/resend.svg?url";
-import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
 
@@ -94,7 +93,6 @@ export type Theme = {
   font?: Font;
   partner?: boolean;
   hidden?: boolean;
-  lineNumbers?: boolean;
   syntax: {
     light: CSSProperties;
     dark: CSSProperties;
@@ -261,7 +259,6 @@ export const THEMES: { [index: string]: Theme } = {
     icon: TailwindLogo,
     iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
     partner: true,
-    lineNumbers: true,
     font: "fira-code",
     syntax: {
       light: convertToShikiTheme({
@@ -289,7 +286,6 @@ export const THEMES: { [index: string]: Theme } = {
     iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
     partner: true,
     font: "soehne-mono",
-    lineNumbers: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#171717",
@@ -390,7 +386,6 @@ export const THEMES: { [index: string]: Theme } = {
     icon: PrismaLogo,
     iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
     partner: true,
-    lineNumbers: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#1A202C",
@@ -442,7 +437,6 @@ export const THEMES: { [index: string]: Theme } = {
     icon: ClerkLogo,
     iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
     partner: true,
-    lineNumbers: true,
     font: "geist-mono",
     syntax: {
       light: convertToShikiTheme({
@@ -1243,19 +1237,6 @@ const themeBackgroundAtom = atom<string>((get) => {
 
 const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
-const themeLineNumbersAtom = atom<boolean>((get) => {
-  const theme = get(themeAtom);
-  return theme.partner ? theme.lineNumbers || false : (get(showLineNumbersAtom) ?? false);
-});
-
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
-export {
-  themeAtom,
-  darkModeAtom,
-  themeCSSAtom,
-  themeBackgroundAtom,
-  themeFontAtom,
-  unlockedThemesAtom,
-  themeLineNumbersAtom,
-};
+export { themeAtom, darkModeAtom, themeCSSAtom, themeBackgroundAtom, themeFontAtom, unlockedThemesAtom };

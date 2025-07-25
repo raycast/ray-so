@@ -10,19 +10,12 @@ import React, {
 import styles from "./Editor.module.css";
 import { useAtom, useSetAtom } from "jotai";
 import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import {
-  THEMES,
-  themeAtom,
-  themeCSSAtom,
-  themeFontAtom,
-  themeLineNumbersAtom,
-  unlockedThemesAtom,
-} from "../store/themes";
+import { THEMES, themeAtom, themeCSSAtom, themeFontAtom, unlockedThemesAtom } from "../store/themes";
 import useHotkeys from "../../../../utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
-import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
+import { highlightedLinesAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
 
 function indentText(text: string) {
@@ -129,7 +122,6 @@ function Editor() {
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
   const setHighlightedLines = useSetAtom(highlightedLinesAtom);
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
-  const [showLineNumbers] = useAtom(themeLineNumbersAtom);
   const numberOfLines = (code.match(/\n/g) || []).length;
 
   useHotkeys("f", (event) => {
@@ -196,17 +188,6 @@ function Editor() {
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const lineNumber = (target.closest("[data-line]") as HTMLElement)?.dataset?.line;
-      if (lineNumber && isHighlightingLines) {
-        setHighlightedLines((prev) => {
-          const line = Number(lineNumber);
-          if (prev.includes(line)) {
-            return prev.filter((l) => l !== line);
-          } else {
-            return [...prev, line];
-          }
-        });
-      }
     };
 
     document.addEventListener("click", listener);
@@ -256,11 +237,6 @@ function Editor() {
                     ? styles.commitMono
                     : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
-        showLineNumbers &&
-          selectedLanguage !== LANGUAGES.plaintext && [
-            styles.showLineNumbers,
-            numberOfLines > 8 && styles.showLineNumbersLarge,
-          ],
       )}
       style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
       data-value={code}

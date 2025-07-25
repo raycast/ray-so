@@ -79,29 +79,6 @@
   white-space: pre-wrap;
 }
 
-.showLineNumbers {
-  --line-number-padding: 3rem;
-  .textarea,
-  .formatted,
-  .editor:after {
-    padding-left: var(--line-number-padding);
-  }
-
-  :global(.line) {
-    width: calc(100% + 16px + var(--line-number-padding));
-    padding: 0 16px 0 var(--line-number-padding);
-    margin: 0 -16px 0 calc(-1 * var(--line-number-padding));
-
-    &:before {
-      opacity: 1;
-    }
-  }
-
-  &.showLineNumbersLarge {
-    --line-number-padding: 3.5rem;
-  }
-}
-
 .textarea {
   z-index: 2;
   overflow: hidden;

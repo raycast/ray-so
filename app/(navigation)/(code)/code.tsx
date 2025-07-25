@@ -20,7 +20,7 @@ import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
-import { InfoDialog } from "./components/InfoDialog";
+// import { InfoDialog } from "./components/InfoDialog";
 import FormatButton from "./components/FormatCodeButton";
 
 export function Code() {
@@ -40,7 +40,7 @@ export function Code() {
     <>
       <FrameContextStore>
         <NavigationActions>
-          <InfoDialog />
+          {/* <InfoDialog /> */}
           <FormatButton />
           <ExportButton />
         </NavigationActions>
