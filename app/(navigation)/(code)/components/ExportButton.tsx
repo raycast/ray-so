@@ -2,7 +2,6 @@ import React, { MouseEventHandler, useContext, useState } from "react";
 import { track } from "@vercel/analytics";
 
 import ImageIcon from "../assets/icons/image-16.svg";
-import LinkIcon from "../assets/icons/link-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
 import ArrowsExpandingIcon from "../assets/icons/arrows-expanding-16.svg";
@@ -70,18 +69,16 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    const clipboardItem = new ClipboardItem(
-      {
-        "image/png": toBlob(frameContext.current, {
-          pixelRatio: exportSize,
-        }).then((blob) => {
-            if (!blob) {
-              throw new Error("expected toBlob to return a blob");
-            }
-            return blob;
-        }),
-      }
-    );
+    const clipboardItem = new ClipboardItem({
+      "image/png": toBlob(frameContext.current, {
+        pixelRatio: exportSize,
+      }).then((blob) => {
+        if (!blob) {
+          throw new Error("expected toBlob to return a blob");
+        }
+        return blob;
+      }),
+    });
 
     await navigator.clipboard.write([clipboardItem]);
 
@@ -206,14 +203,6 @@ const ExportButton: React.FC = () => {
               </Kbds>
             </DropdownMenuItem>
           )}
-          <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
-            <LinkIcon /> Copy URL
-            <Kbds>
-              <Kbd>⌘</Kbd>
-              <Kbd>⇧</Kbd>
-              <Kbd>C</Kbd>
-            </Kbds>
-          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>

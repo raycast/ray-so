@@ -9,15 +9,17 @@
 }
 
 .categoriesContainer {
-  display: flex;
+  display: grid;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
+  max-width: 1200px;
+  align-items: start;
   gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .categorySection {
   display: flex;
+  min-width: 0; /* Allows grid items to shrink below their intrinsic width */
   flex-direction: column;
   gap: 16px;
 }
@@ -37,8 +39,8 @@
 .toolsGrid {
   display: grid;
   width: 100%;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .toolCard {
@@ -46,9 +48,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 16px;
+  padding: 16px 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
+  border-radius: 12px;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
@@ -66,16 +68,16 @@
 }
 
 .toolIcon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 12px;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
   object-fit: contain;
 }
 
 .toolName {
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -83,11 +85,11 @@
 
 .removeButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   display: flex;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   align-items: center;
   justify-content: center;
   border: none;
@@ -95,7 +97,7 @@
   background: rgba(255, 255, 255, 0.2);
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   line-height: 1;
   opacity: 0;

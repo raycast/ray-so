@@ -1,16 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
-const isDev = process.env.NODE_ENV === "development";
-
 const useAudio = (path: string): [boolean, () => void] => {
-  let url: string;
-  if (isDev) {
-    url = `http://localhost:3000/${path}`;
-  } else {
-    url = `https://ray.so/${path}`;
-  }
-
-  const audio = useMemo(() => new Audio(url), [url]);
+  const audio = useMemo(() => new Audio(`/${path}`), [path]);
   const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
