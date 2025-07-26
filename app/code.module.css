@@ -2,7 +2,7 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-areas: "content sidebar";
+  grid-template-areas: 'content sidebar';
   grid-template-columns: 1fr 320px;
   grid-template-rows: 1fr;
   isolation: isolate;
@@ -16,9 +16,9 @@
   justify-content: center;
   grid-area: content;
   grid-template-areas:
-    "top"
-    "content"
-    "footer";
+    'top'
+    'content'
+    'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 15px auto 110px;
 }
@@ -29,7 +29,6 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 40px;
-  background-image: url("./assets/footer-background.jpg");
   background-position: center -5px;
   background-repeat: no-repeat;
   background-size: 700px 245px;

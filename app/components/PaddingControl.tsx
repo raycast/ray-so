@@ -1,17 +1,22 @@
-import React from "react";
-import { useAtom } from "jotai";
-import classNames from "classnames";
-import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import React from 'react';
+import { useAtom } from 'jotai';
+import classNames from 'classnames';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
-import ControlContainer from "./ControlContainer";
-import styles from "./PaddingControl.module.css";
-import { isPadding, Padding, paddingAtom, PADDING_OPTIONS } from "../store/padding";
-import useHotkeys from "../../../../utils/useHotkeys";
+import ControlContainer from './ControlContainer';
+import styles from './PaddingControl.module.css';
+import {
+  isPadding,
+  Padding,
+  paddingAtom,
+  PADDING_OPTIONS,
+} from '../store/padding';
+import useHotkeys from '@/utils/useHotkeys';
 
 const PaddingControl: React.FC = () => {
   const [padding, setPadding] = useAtom(paddingAtom);
 
-  useHotkeys("p", (e) => {
+  useHotkeys('p', (e) => {
     console.info(e.target);
     const currentIndex = PADDING_OPTIONS.indexOf(padding);
     if (PADDING_OPTIONS[currentIndex + 1]) {
@@ -22,12 +27,12 @@ const PaddingControl: React.FC = () => {
   });
 
   return (
-    <ControlContainer title="Padding">
+    <ControlContainer title='Padding'>
       <ToggleGroup.Root
         className={styles.toggleGroup}
-        type="single"
+        type='single'
         value={`${padding}`}
-        aria-label="Frame Padding"
+        aria-label='Frame Padding'
         onValueChange={(value) => {
           const intValue = parseInt(value, 10);
           if (isPadding(intValue)) {
