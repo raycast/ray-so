@@ -22,7 +22,7 @@ import tailwindDark from "./assets/tailwind/dark.json";
 import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
 
-export function Code() {
+export function TechStacker() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
   useEffect(() => {

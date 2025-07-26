@@ -123,7 +123,7 @@ const ExportButton: React.FC = () => {
     track('Export', {
       theme: params.get('theme') || 'candy',
       background: params.get('background') || 'true',
-      darkMode: params.get('darkMode') || 'true',
+      darkMode: 'true',
       padding: params.get('padding') || '64',
       language:
         Object.keys(LANGUAGES).find(

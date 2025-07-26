@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 
-import { Code } from './code';
+import { TechStacker } from './tech-stacker';
 import { BASE_URL } from '@/utils/common';
 
 const title = 'Create and share your tech stack';
-const description =
-  'Create and share your tech stack. Choose from a range of tech stacks, and share your tech stack with your friends.';
+const description = 'Create and share your tech stack.';
 
 export const metadata: Metadata = {
   title: title,
@@ -21,10 +20,9 @@ export const metadata: Metadata = {
     description: description,
     images: [],
   },
-  keywords:
-    'generate, create, convert, source, code, snippet, image, picture, share, export',
+  keywords: 'generate, create, tech, stack, image, picture, share, export',
 };
 
 export default function Page() {
-  return <Code />;
+  return <TechStacker />;
 }
