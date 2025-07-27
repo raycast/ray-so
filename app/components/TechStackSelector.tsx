@@ -104,9 +104,20 @@ const TechStackSelector: React.FC = () => {
       {/* Sidebar Content */}
       <div
         className={cn(
-          'h-full overflow-y-auto transition-all duration-300',
+          'h-[calc(100%-73px)] overflow-y-auto transition-all duration-300',
+          'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent hover:scrollbar-thumb-gray-6',
           isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'
         )}
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.scrollbarColor = 'rgb(107 114 126) transparent';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.scrollbarColor = 'transparent transparent';
+        }}
       >
         <div className='p-4 space-y-6'>
           {categories.map(({ key, label }) => (
