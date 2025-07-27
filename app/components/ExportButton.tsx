@@ -1,5 +1,4 @@
 import React, { MouseEventHandler, useContext, useState } from 'react';
-import { track } from '@vercel/analytics';
 import { Download } from 'lucide-react';
 
 import ImageIcon from '../assets/icons/image-16.svg';
@@ -21,7 +20,6 @@ import {
   SIZE_LABELS,
   exportSizeAtom,
 } from '../store/image';
-import { LANGUAGES } from '../util/languages';
 import { ButtonGroup } from '@/components/button-group';
 import { Button } from '@/components/button';
 import {
@@ -115,17 +113,6 @@ const ExportButton: React.FC = () => {
 
   const handleExportClick: MouseEventHandler = (event) => {
     event.preventDefault();
-
-    const params = new URLSearchParams(window.location.hash.replace('#', '?'));
-    track('Export', {
-      theme: params.get('theme') || 'candy',
-      background: params.get('background') || 'true',
-      darkMode: 'true',
-      padding: params.get('padding') || '64',
-      title: params.get('title') || 'untitled',
-      width: params.get('width') || 'auto',
-      size: SIZE_LABELS[exportSize],
-    });
     savePng();
   };
 

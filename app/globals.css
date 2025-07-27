@@ -38,7 +38,11 @@
   }
 
   .themes-body {
-    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0 0% 100% / 0.2) 0, hsl(0 0% 100% / 0) 100%);
+    background-image: radial-gradient(
+      43.48% 62.9% at 50% 31.28%,
+      hsl(0 0% 100% / 0.2) 0,
+      hsl(0 0% 100% / 0) 100%
+    );
   }
 }
 
@@ -72,7 +76,11 @@
   --gray-a12: hsla(0, 0%, 0%, 0.8745);
 
   .themes-body {
-    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0, 0, 0, 0.2) 0, transparent 100%);
+    background-image: radial-gradient(
+      43.48% 62.9% at 50% 31.28%,
+      hsl(0, 0, 0, 0.2) 0,
+      transparent 100%
+    );
   }
 }
 
@@ -193,7 +201,7 @@ svg {
   --line-number: rgba(0, 0, 0, 0.2);
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --frame-background: rgba(0, 0, 0, 0.75);
   --frame-control-color: rgba(255, 255, 255, 0.2);
   --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
@@ -247,7 +255,7 @@ svg {
       margin-top: 12px;
       margin-bottom: 12px;
       color: rgba(255, 255, 255, 0.6);
-      content: "Recents";
+      content: 'Recents';
       font-size: 13px;
       font-weight: 400;
       line-height: 16px;
@@ -258,7 +266,7 @@ svg {
     display: block;
     margin-bottom: 12px;
     color: rgba(255, 255, 255, 0.6);
-    content: "Pick color";
+    content: 'Pick color';
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;
@@ -360,16 +368,16 @@ svg {
   animation: flicker 1000ms linear;
 }
 
-.dark [data-hide-on-theme="dark"],
-.light [data-hide-on-theme="light"] {
+.dark [data-hide-on-theme='dark'],
+.light [data-hide-on-theme='light'] {
   display: none;
 }
 
-.dark [data-theme-toggle="dark"] {
+.dark [data-theme-toggle='dark'] {
   @apply bg-white/10;
 }
 
-.light [data-theme-toggle="light"] {
+.light [data-theme-toggle='light'] {
   @apply bg-black/10;
 }
 
@@ -377,13 +385,12 @@ svg {
   transition: opacity 200ms ease-in-out;
 }
 
-.light [data-wallpaper="dark"] {
+.light [data-wallpaper='dark'] {
   opacity: 0 !important;
 }
-.dark [data-wallpaper="light"] {
+.dark [data-wallpaper='light'] {
   opacity: 0 !important;
 }
-
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
 .scrollbar-hide::-webkit-scrollbar {

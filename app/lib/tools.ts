@@ -47,7 +47,7 @@ export const tools: Record<CategoryType, Tool[]> = {
     },
     {
       id: 6,
-      name: 'Tailwind CSS',
+      name: 'Tailwind',
       icon: '/icons/tailwind.svg',
       url: 'https://tailwindcss.com',
     },
@@ -125,7 +125,7 @@ export const tools: Record<CategoryType, Tool[]> = {
     },
     {
       id: 18,
-      name: 'Google Cloud',
+      name: 'GCP',
       icon: '/icons/gcp.svg',
       url: 'https://cloud.google.com',
     },

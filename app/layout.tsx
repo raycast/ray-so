@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
 import {
   Inter,
   Fira_Code,
@@ -98,7 +97,6 @@ export default function RootLayout({
           <Toaster position='top-center' offset={70} duration={2000} />
         </body>
       </TooltipProvider>
-      <Analytics />
     </html>
   );
 }
