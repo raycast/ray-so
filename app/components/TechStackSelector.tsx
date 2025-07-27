@@ -1,32 +1,34 @@
-import React from "react";
-import { useAtom } from "jotai";
-import { tools, CategoryType } from "@/app/lib/tools";
+import React from 'react';
+import { useAtom } from 'jotai';
+import { tools, CategoryType } from '@/app/lib/tools';
 import {
   selectedToolsAtom,
   addToolAtom,
   removeToolAtom,
+  clearSelectedToolsAtom,
   sidebarCollapsedAtom,
   toggleSidebarAtom,
-} from "../store/selectedTools";
-import { themeAtom } from "../store/themes";
-import { Button } from "@/components/button";
-import { cn } from "@/utils/cn";
-import Image from "next/image";
+} from '../store/selectedTools';
+import { themeAtom } from '../store/themes';
+import { Button } from '@/components/button';
+import { cn } from '@/utils/cn';
+import Image from 'next/image';
 
 const TechStackSelector: React.FC = () => {
   const [selectedTools] = useAtom(selectedToolsAtom);
   const [, addTool] = useAtom(addToolAtom);
   const [, removeTool] = useAtom(removeToolAtom);
+  const [, clearSelectedTools] = useAtom(clearSelectedToolsAtom);
   const [isCollapsed] = useAtom(sidebarCollapsedAtom);
   const [, toggleSidebar] = useAtom(toggleSidebarAtom);
   const [currentTheme] = useAtom(themeAtom);
 
   const categories: { key: CategoryType; label: string }[] = [
-    { key: "frontend", label: "Frontend" },
-    { key: "backend", label: "Backend" },
-    { key: "database", label: "Database" },
-    { key: "infra", label: "Infrastructure" },
-    { key: "devops", label: "DevOps" },
+    { key: 'frontend', label: 'Frontend' },
+    { key: 'backend', label: 'Backend' },
+    { key: 'database', label: 'Database' },
+    { key: 'infra', label: 'Infrastructure' },
+    { key: 'devops', label: 'DevOps' },
   ];
 
   const isSelected = (toolId: number) => {
@@ -48,34 +50,52 @@ const TechStackSelector: React.FC = () => {
   return (
     <div
       className={cn(
-        "fixed z-10 top-[50px] right-0 h-[calc(100vh-50px)] bg-panel border-l border-gray-6 transition-all duration-300 ease-in-out overflow-hidden",
-        isCollapsed ? "w-12" : "w-80",
+        'fixed z-10 top-[50px] right-0 h-[calc(100vh-50px)] bg-panel border-l border-gray-6 transition-all duration-300 ease-in-out overflow-hidden',
+        isCollapsed ? 'w-12' : 'w-80'
       )}
     >
       {/* Collapse/Expand Button */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-6">
-        {!isCollapsed && <h2 className="text-lg font-semibold text-gray-12">Tech Stack</h2>}
+      <div className='flex items-center justify-between p-3 border-b border-gray-6'>
+        {!isCollapsed && (
+          <div className='flex items-center gap-2'>
+            <h2 className='text-lg font-semibold text-gray-12'>Tech Stack</h2>
+            {selectedTools.length > 0 && (
+              <Button
+                variant='transparent'
+                size='medium'
+                onClick={clearSelectedTools}
+                className='text-xs text-gray-11 hover:text-gray-12'
+                title='Clear all selected tools'
+              >
+                Clear
+              </Button>
+            )}
+          </div>
+        )}
         <Button
-          variant="transparent"
-          size="medium"
+          variant='transparent'
+          size='medium'
           iconOnly
           onClick={toggleSidebar}
-          className="shrink-0"
-          title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className='shrink-0'
+          title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            className={cn("transition-transform duration-200", isCollapsed && "rotate-180")}
+            width='16'
+            height='16'
+            viewBox='0 0 16 16'
+            fill='none'
+            className={cn(
+              'transition-transform duration-200',
+              isCollapsed && 'rotate-180'
+            )}
           >
             <path
-              d="M6 4L10 8L6 12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d='M6 4L10 8L6 12'
+              stroke='currentColor'
+              strokeWidth='1.5'
+              strokeLinecap='round'
+              strokeLinejoin='round'
             />
           </svg>
         </Button>
@@ -84,24 +104,26 @@ const TechStackSelector: React.FC = () => {
       {/* Sidebar Content */}
       <div
         className={cn(
-          "h-full overflow-y-auto transition-all duration-300",
-          isCollapsed ? "opacity-0 pointer-events-none" : "opacity-100",
+          'h-full overflow-y-auto transition-all duration-300',
+          isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'
         )}
       >
-        <div className="p-4 space-y-6">
+        <div className='p-4 space-y-6'>
           {categories.map(({ key, label }) => (
             <div key={key}>
-              <h3 className="mb-3 text-sm font-medium text-gray-11 uppercase tracking-wider">{label}</h3>
-              <div className="grid grid-cols-3 gap-2">
+              <h3 className='mb-3 text-sm font-medium text-gray-11 uppercase tracking-wider'>
+                {label}
+              </h3>
+              <div className='grid grid-cols-3 gap-2'>
                 {tools[key].map((tool) => (
                   <button
                     key={tool.id}
                     className={cn(
-                      "flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105",
-                      "bg-gray-3 border-transparent hover:border-gray-6 hover:bg-gray-4",
-                      "focus:outline-none focus:ring-2 focus:ring-gray-8",
-                      !isSelected(tool.id) && "focus:border-transparent",
-                      isSelected(tool.id) && "shadow-sm",
+                      'flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105',
+                      'bg-gray-3 border-transparent hover:border-gray-6 hover:bg-gray-4',
+                      'focus:outline-none focus:ring-2 focus:ring-gray-8',
+                      !isSelected(tool.id) && 'focus:border-transparent',
+                      isSelected(tool.id) && 'shadow-sm'
                     )}
                     style={
                       isSelected(tool.id)
@@ -115,8 +137,18 @@ const TechStackSelector: React.FC = () => {
                     onClick={() => handleToolClick(tool)}
                     title={tool.name}
                   >
-                    <Image src={tool.icon} alt={tool.name} width={32} height={32} className="mb-2 object-contain" />
-                    <span className="text-xs font-medium text-gray-12 text-center leading-tight">{tool.name}</span>
+                    <div className='flex items-center justify-center w-8 h-8 mb-2'>
+                      <Image
+                        src={tool.icon}
+                        alt={tool.name}
+                        width={32}
+                        height={32}
+                        className='object-contain max-w-full max-h-full'
+                      />
+                    </div>
+                    <span className='text-xs font-medium text-gray-12 text-center leading-tight'>
+                      {tool.name}
+                    </span>
                   </button>
                 ))}
               </div>
