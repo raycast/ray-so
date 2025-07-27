@@ -21,7 +21,6 @@ import {
   SIZE_LABELS,
   exportSizeAtom,
 } from '../store/image';
-import { autoDetectLanguageAtom, selectedLanguageAtom } from '../store/code';
 import { LANGUAGES } from '../util/languages';
 import { ButtonGroup } from '@/components/button-group';
 import { Button } from '@/components/button';
@@ -48,8 +47,6 @@ const ExportButton: React.FC = () => {
   const customFileName = useAtomValue(fileNameAtom);
   const fileName = customFileName.replaceAll(' ', '-') || 'ray-so-export';
   const [exportSize, setExportSize] = useAtom(exportSizeAtom);
-  const selectedLanguage = useAtomValue(selectedLanguageAtom);
-  const autoDetectLanguage = useAtomValue(autoDetectLanguageAtom);
 
   const savePng = async () => {
     if (!frameContext?.current) {
@@ -125,11 +122,6 @@ const ExportButton: React.FC = () => {
       background: params.get('background') || 'true',
       darkMode: 'true',
       padding: params.get('padding') || '64',
-      language:
-        Object.keys(LANGUAGES).find(
-          (key) => LANGUAGES[key].name === selectedLanguage?.name
-        ) || 'auto',
-      autoDetectLanguage: autoDetectLanguage.toString(),
       title: params.get('title') || 'untitled',
       width: params.get('width') || 'auto',
       size: SIZE_LABELS[exportSize],

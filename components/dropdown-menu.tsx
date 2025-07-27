@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import * as React from 'react';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "@raycast/icons";
-import { cn } from "@/utils/cn";
+import { Check, ChevronRight, Circle } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -28,20 +28,21 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex gap-2 cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none text-gray-10 focus:bg-gray-a2 data-[state=open]:bg-accent",
-      inset && "pl-8",
+      'flex gap-2 cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none text-gray-10 focus:bg-gray-a2 data-[state=open]:bg-accent',
+      inset && 'pl-8',
       className
     )}
     {...props}
   >
     {children}
-    <div className="ml-auto flex gap-1 items-center">
-      {value && <span className="text-gray-9">{value}</span>}
-      <ChevronRightIcon className="h-4 w-4 text-gray-9" />
+    <div className='ml-auto flex gap-1 items-center'>
+      {value && <span className='text-gray-9'>{value}</span>}
+      <ChevronRight className='h-4 w-4 text-gray-9' />
     </div>
   </DropdownMenuPrimitive.SubTrigger>
 ));
-DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
+DropdownMenuSubTrigger.displayName =
+  DropdownMenuPrimitive.SubTrigger.displayName;
 
 const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
@@ -62,7 +63,8 @@ const DropdownMenuSubContent = React.forwardRef<
     />
   </DropdownMenuPrimitive.Portal>
 ));
-DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName;
+DropdownMenuSubContent.displayName =
+  DropdownMenuPrimitive.SubContent.displayName;
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
@@ -99,7 +101,7 @@ const DropdownMenuItem = React.forwardRef<
     className={cn(
       `relative gap-2 flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors 
       text-gray-10 focus:bg-gray-a2 dark:focus:bg-gray-a2 focus:text-gray-11 data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
-      inset && "pl-8",
+      inset && 'pl-8',
       className
     )}
     {...props}
@@ -114,21 +116,22 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      'text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <CheckIcon className="h-4 w-4" />
+        <Check className='h-4 w-4' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
-DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;
+DropdownMenuCheckboxItem.displayName =
+  DropdownMenuPrimitive.CheckboxItem.displayName;
 
 const DropdownMenuRadioItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
@@ -137,14 +140,14 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-gray-12",
+      'text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-gray-12',
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <CircleIcon className="h-1.5 w-1.5 fill-current" />
+        <Circle className='h-1.5 w-1.5 fill-current' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -160,7 +163,11 @@ const DropdownMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
     ref={ref}
-    className={cn("px-2 py-1.5 text-xs text-gray-9", inset && "pl-8", className)}
+    className={cn(
+      'px-2 py-1.5 text-xs text-gray-9',
+      inset && 'pl-8',
+      className
+    )}
     {...props}
   />
 ));
@@ -170,14 +177,26 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator ref={ref} className={cn("-mx-1 my-1 h-px bg-gray-4", className)} {...props} />
+  <DropdownMenuPrimitive.Separator
+    ref={ref}
+    className={cn('-mx-1 my-1 h-px bg-gray-4', className)}
+    {...props}
+  />
 ));
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
-const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
-  return <span className={cn("ml-auto text-xs tracking-widest opacity-60", className)} {...props} />;
+const DropdownMenuShortcut = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <span
+      className={cn('ml-auto text-xs tracking-widest opacity-60', className)}
+      {...props}
+    />
+  );
 };
-DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
+DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
 export {
   DropdownMenu,

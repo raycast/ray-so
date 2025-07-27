@@ -8,6 +8,7 @@ import {
   sidebarCollapsedAtom,
   toggleSidebarAtom,
 } from "../store/selectedTools";
+import { themeAtom } from "../store/themes";
 import { Button } from "@/components/button";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -18,6 +19,7 @@ const TechStackSelector: React.FC = () => {
   const [, removeTool] = useAtom(removeToolAtom);
   const [isCollapsed] = useAtom(sidebarCollapsedAtom);
   const [, toggleSidebar] = useAtom(toggleSidebarAtom);
+  const [currentTheme] = useAtom(themeAtom);
 
   const categories: { key: CategoryType; label: string }[] = [
     { key: "frontend", label: "Frontend" },
@@ -38,6 +40,10 @@ const TechStackSelector: React.FC = () => {
       addTool(tool);
     }
   };
+
+  // Dynamic theme colors for selected tools
+  const themeBorderColor = currentTheme.background.from;
+  const themeBackgroundColor = `${currentTheme.background.from}20`; // 20 is ~12% opacity in hex
 
   return (
     <div
@@ -93,9 +99,19 @@ const TechStackSelector: React.FC = () => {
                     className={cn(
                       "flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105",
                       "bg-gray-3 border-transparent hover:border-gray-6 hover:bg-gray-4",
-                      "focus:outline-none focus:ring-2 focus:ring-gray-8 focus:border-transparent",
-                      isSelected(tool.id) && "border-brand bg-brand/10 shadow-sm",
+                      "focus:outline-none focus:ring-2 focus:ring-gray-8",
+                      !isSelected(tool.id) && "focus:border-transparent",
+                      isSelected(tool.id) && "shadow-sm",
                     )}
+                    style={
+                      isSelected(tool.id)
+                        ? ({
+                            borderColor: themeBorderColor,
+                            backgroundColor: themeBackgroundColor,
+                            '--tw-ring-color': themeBorderColor,
+                          } as React.CSSProperties)
+                        : {}
+                    }
                     onClick={() => handleToolClick(tool)}
                     title={tool.name}
                   >
