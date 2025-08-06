@@ -185,6 +185,15 @@ const development: Quicklink[] = [
     link: "https://developer.mozilla.org/en-US/search?q={Query}",
   },
   {
+    id: "can-i-use",
+    name: "Can I Use",
+    link: "https://caniuse.com/?search={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/toFrankie",
+    },
+  },
+  {
     id: "apple",
     name: "Search Apple Dev Docs",
     link: "https://developer.apple.com/search/?q={Query}&type=Documentation",
@@ -296,6 +305,15 @@ const development: Quicklink[] = [
     link: "https://kotlinlang.org/docs/home.html?q={argument}&s=full",
     name: "Kotlin Docs",
   },
+  {
+    id: "weixin-docs",
+    name: "Search Weixin Docs",
+    link: "https://developers.weixin.qq.com/doc/search.html?doc_type=miniprogram&query={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/toFrankie",
+    },
+  },
 ];
 
 const design: Quicklink[] = [
@@ -342,6 +360,15 @@ const design: Quicklink[] = [
     id: "icones",
     name: "Search Icones",
     link: "https://icones.js.org/collection/all?s={Query}",
+  },
+  {
+    id: "freepik",
+    name: "Search Freepik",
+    link: "https://www.freepik.com/search?ai=excluded&format=search&orientation=landscape&type=photo&license=free&query={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/toFrankie",
+    },
   },
 ];
 
