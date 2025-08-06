@@ -1,0 +1,21 @@
+{
+  "appearance": "dark",
+  "name": "Ayu Mirage Owl 🦉",
+  "version": "1",
+  "author": "Abhi Mehrotra",
+  "authorUsername": "speedy_bee",
+  "colors": {
+    "background": "#1F2430",
+    "backgroundSecondary": "#FFAE57",
+    "text": "#A8D96E",
+    "selection": "#C7A6FF",
+    "loader": "#5CCFE6",
+    "red": "#FFA27A",
+    "orange": "#FFAE57",
+    "yellow": "#FFCC66",
+    "green": "#A8D96E",
+    "blue": "#5CCFE6",
+    "purple": "#C7A6FF",
+    "magenta": "#FF9FD4"
+  }
+}
