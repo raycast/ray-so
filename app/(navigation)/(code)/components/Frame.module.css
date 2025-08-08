@@ -232,6 +232,97 @@
   left: auto;
 }
 
+/* Trigger.dev Theme Frame */
+
+.triggerFrame {
+  background: #121317;
+}
+
+.triggerWindow {
+  position: relative;
+  border-radius: 8px;
+  background: #121317;
+}
+
+.triggerFrameLightMode {
+  background: #fafafa;
+
+  .triggerWindow {
+    background: #f5f5f5;
+  }
+
+  .triggerHeader {
+    border-bottom: 1px solid #e5e5e5;
+    background: #f8f8f8;
+  }
+
+  .triggerFileName {
+    color: #171717;
+  }
+
+  .triggerHeader .control {
+    background-color: #e5e7eb;
+  }
+}
+
+.triggerHeader {
+  composes: header;
+  height: 40px;
+  padding: 0 16px;
+  background: #16181d;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  gap: 12px;
+
+  .control {
+    background-color: #282a2f;
+  }
+}
+
+.triggerFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #d7d9dd;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
 /* Supabase theme frame */
 
 .supabaseFrame {
