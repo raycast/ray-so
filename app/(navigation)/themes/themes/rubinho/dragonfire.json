@@ -1,0 +1,21 @@
+{
+  "author": "Rúben Gomes",
+  "authorUsername": "rubinho",
+  "version": "1",
+  "name": "Dragon Fire",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#910000",
+    "text": "#F2F2F2",
+    "selection": "#FF0000",
+    "loader": "#FF0000",
+    "red": "#F82D2D",
+    "orange": "#F8762A",
+    "yellow": "#FFC93B",
+    "green": "#26F894",
+    "blue": "#3394F6",
+    "purple": "#6834F8",
+    "magenta": "#F839B6"
+  }
+}
