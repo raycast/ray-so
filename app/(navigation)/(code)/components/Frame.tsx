@@ -23,6 +23,7 @@ import lightResend from "../assets/resend/resend-pattern-light.png";
 import darkResend from "../assets/resend/resend-pattern-dark.png";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
+import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -144,6 +145,7 @@ const TriggerdevFrame = () => {
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const flashShown = useAtomValue(flashShownAtom);
 
   return (
     <div
@@ -179,7 +181,7 @@ const TriggerdevFrame = () => {
             </div>
             <span className={styles.triggerLanguage}>{selectedLanguage?.name}</span>
           </div>
-        ) : (
+        ) : flashShown ? null : (
           <div className={styles.triggerHeader} data-ignore-in-export>
             <div className={classNames(styles.fileName, styles.triggerFileName)} data-value={fileName}>
               <input
