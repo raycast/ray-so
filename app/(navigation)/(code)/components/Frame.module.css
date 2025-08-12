@@ -307,40 +307,12 @@
   background: #121317;
 }
 
-.triggerFrameLightMode {
-  background: #fafafa;
-
-  .triggerWindow {
-    background: #f5f5f5;
-  }
-
-  .triggerHeader {
-    border-bottom: 1px solid #e5e5e5;
-    background: #f8f8f8;
-  }
-
-  .triggerFileName {
-    color: #171717;
-  }
-
-  .triggerGridlinesHorizontal,
-  .triggerGridlinesVertical {
-    &:before,
-    &:after {
-      background: #d9d7d7;
-    }
-  }
-
-  .triggerPatternTop,
-  .triggerPatternBottom {
-    opacity: 0.1;
-  }
-}
-
 .triggerHeader {
   display: flex;
   width: 100%;
   height: 40px;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 16px;
   background: #16181d;
   border-top-left-radius: 8px;
@@ -353,7 +325,7 @@
   display: grid;
   height: 40px;
   align-items: center;
-  color: #d7d9dd;
+  color: #b5b8c0;
   font-family: "Geist Mono", monospace;
   font-size: 14px;
   line-height: 40px;
@@ -389,6 +361,48 @@
   &:after {
     content: attr(data-value) " ";
     visibility: hidden;
+  }
+}
+
+.triggerLanguage {
+  height: 40px;
+  color: #5f6570;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.triggerFrameLightMode {
+  background: #fafafa;
+
+  .triggerWindow {
+    background: #f5f5f5;
+  }
+
+  .triggerHeader {
+    border-bottom: 1px solid #e5e5e5;
+    background: #f8f8f8;
+  }
+
+  .triggerFileName {
+    color: #171717;
+  }
+
+  .triggerLanguage {
+    color: #707070;
+  }
+
+  .triggerGridlinesHorizontal,
+  .triggerGridlinesVertical {
+    &:before,
+    &:after {
+      background: #d9d7d7;
+    }
+  }
+
+  .triggerPatternTop,
+  .triggerPatternBottom {
+    opacity: 0.1;
   }
 }
 

@@ -22,6 +22,7 @@ import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import lightResend from "../assets/resend/resend-pattern-light.png";
 import darkResend from "../assets/resend/resend-pattern-dark.png";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
+import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -142,6 +143,7 @@ const TriggerdevFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
 
   return (
     <div
@@ -151,32 +153,48 @@ const TriggerdevFrame = () => {
         !darkMode && styles.triggerFrameLightMode,
         !showBackground && styles.noBackground,
       )}
-      style={{ padding, backgroundImage: showBackground ? themeBackground : `` }}
+      style={{ padding, backgroundImage: showBackground && darkMode ? themeBackground : `` }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <>
+          <div className={styles.triggerPatternTop} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
+          <div className={styles.triggerPatternBottom} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
+        </>
+      )}
       <div className={styles.triggerWindow}>
         <span className={styles.triggerGridlinesHorizontal} data-grid></span>
         <span className={styles.triggerGridlinesVertical} data-grid></span>
-        <span className={styles.triggerBracketLeft} data-grid></span>
-        <span className={styles.triggerBracketRight} data-grid></span>
-        <div className={styles.triggerHeader}>
-          <div className={styles.controls}>
-            <div className={styles.control}></div>
-            <div className={styles.control}></div>
-            <div className={styles.control}></div>
+        {fileName.length > 0 ? (
+          <div className={styles.triggerHeader}>
+            <div className={classNames(styles.fileName, styles.triggerFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+            <span className={styles.triggerLanguage}>{selectedLanguage?.name}</span>
           </div>
-          <div className={classNames(styles.fileName, styles.triggerFileName)} data-value={fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+        ) : (
+          <div className={styles.triggerHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.triggerFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+            <span className={styles.triggerLanguage}>{selectedLanguage?.name}</span>
           </div>
-        </div>
+        )}
         <Editor />
       </div>
     </div>
