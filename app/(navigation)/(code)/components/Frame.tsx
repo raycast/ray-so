@@ -23,7 +23,7 @@ import lightResend from "../assets/resend/resend-pattern-light.png";
 import darkResend from "../assets/resend/resend-pattern-dark.png";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
-import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
+import { flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
