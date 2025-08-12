@@ -1201,8 +1201,8 @@ export const THEMES: { [index: string]: Theme } = {
     id: "triggerdev",
     name: "Trigger.dev",
     background: {
-      from: "#6B62F3",
-      to: "#A646E6",
+      from: "#121317",
+      to: "#121317",
     },
     icon: TriggerLogo,
     iconUrl: `${BASE_URL}${TriggerLogoUrl.src}`,
