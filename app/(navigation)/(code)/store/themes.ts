@@ -1230,7 +1230,7 @@ export const THEMES: { [index: string]: Theme } = {
         comment: "#5F6570",
         keyword: "#E888F8",
         parameter: "#CCCBFF",
-        function: "#826DFF",
+        function: "#9684FF",
         stringExpression: "#AFEC73",
         punctuation: "#878C99",
         link: "#826DFF",
