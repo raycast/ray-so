@@ -26,6 +26,10 @@ const commitMono = localFont({
   src: "../assets/commit-mono-regular.woff2",
   variable: "--font-commitmono",
 });
+const monaspaceNeon = localFont({
+  src: "../assets/MonaspaceNeon-Medium.woff",
+  variable: "--font-monaspace-neon",
+});
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   weight: "400",
@@ -50,6 +54,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         firaCode.variable,
         soehneMono.variable,
         commitMono.variable,
+        monaspaceNeon.variable,
         robotoMono.variable,
       )}
       style={

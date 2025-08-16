@@ -23,6 +23,8 @@ import lightResend from "../assets/resend/resend-pattern-light.png";
 import darkResend from "../assets/resend/resend-pattern-dark.png";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
+import inboundPattern from "../assets/inbound/pattern.svg?url";
+import inboundBg from "../assets/inbound/inbound-bg.png";
 import { flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
@@ -195,6 +197,68 @@ const TriggerdevFrame = () => {
               <span>Untitled-1</span>
             </div>
             <span className={styles.triggerLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        )}
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
+const InboundFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [themeBackground] = useAtom(themeBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const flashShown = useAtomValue(flashShownAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.inboundFrame,
+        !darkMode && styles.inboundFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding, backgroundImage: showBackground && darkMode ? themeBackground : `` }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <div className={styles.inboundBackgroundImage} style={{ backgroundImage: `url(${inboundBg.src})` }} />
+      )}
+      <div className={styles.inboundWindow}>
+        <span className={styles.inboundGridlinesHorizontal} data-grid></span>
+        <span className={styles.inboundGridlinesVertical} data-grid></span>
+        {fileName.length > 0 ? (
+          <div className={styles.inboundHeader}>
+            <div className={classNames(styles.fileName, styles.inboundFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+            <span className={styles.inboundLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.inboundHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.inboundFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+            <span className={styles.inboundLanguage}>{selectedLanguage?.name}</span>
           </div>
         )}
         <Editor />
@@ -543,6 +607,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <OpenAIFrame />;
       case THEMES.triggerdev.id:
         return <TriggerdevFrame />;
+      case THEMES.inbound.id:
+        return <InboundFrame />;
       case THEMES.prisma.id:
         return <PrismaFrame />;
       case THEMES.elevenlabs.id:
