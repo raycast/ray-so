@@ -8,6 +8,7 @@ export const FONTS = [
   "soehne-mono",
   "roboto-mono",
   "commit-mono",
+  "monaspace-neon",
 ] as const;
 
 export type Font = (typeof FONTS)[number];

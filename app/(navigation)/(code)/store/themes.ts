@@ -13,6 +13,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
+import InboundLogo from "../assets/inbound.svg";
+import InboundLogoUrl from "../assets/inbound.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
@@ -1236,6 +1238,58 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#826DFF",
         number: "#b5cea8",
         property: "#CCCBFF",
+      }),
+    },
+  },
+  inbound: {
+    id: "inbound",
+    name: "Inbound",
+    background: {
+      from: "#1B1C1D",
+      to: "#1B1C1D",
+    },
+    icon: InboundLogo,
+    iconUrl: `${BASE_URL}${InboundLogoUrl.src}`,
+    font: "monaspace-neon",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1B1C1D",
+        constant: "#8B5CF6",
+        string: "#F59E0B",
+        comment: "#6B7280",
+        keyword: "#EC4899",
+        parameter: "#1B1C1D",
+        function: "#3B82F6",
+        stringExpression: "#F59E0B",
+        punctuation: "#1B1C1D",
+        link: "#6C47FF",
+        number: "#8B5CF6",
+        property: "#EC4899",
+        highlight: "rgba(108, 71, 255, 0.1)",
+        highlightHover: "rgba(108, 71, 255, 0.05)",
+        highlightBorder: "#6C47FF",
+        diffInserted: "#10B981",
+        diffDeleted: "#EF4444",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#c792ea",
+        string: "#ffcb6b",
+        comment: "#8a8a8a",
+        keyword: "#ff6b9d",
+        parameter: "#ffffff",
+        function: "#82aaff",
+        stringExpression: "#ffcb6b",
+        punctuation: "#ffffff",
+        link: "#ffffff",
+        number: "#c792ea",
+        property: "#ff6b9d",
+        highlight: "rgba(255, 255, 255, 0.1)",
+        highlightHover: "rgba(255, 255, 255, 0.05)",
+        highlightBorder: "#6C47FF",
+        diffInserted: "#c3e88d",
+        diffDeleted: "#ff6b9d",
       }),
     },
   },
