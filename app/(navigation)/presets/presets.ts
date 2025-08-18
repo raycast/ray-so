@@ -376,7 +376,7 @@ Output formatting:
   2. **Best Practices** → recommended improvements, not required for audits`,
     icon: "universal-access",
     creativity: "low",
-    model: "openai-gpt-5",
+    model: "openai-gpt-5-mini",
     web_search: true,
     date: "2025-08-18",
     author: {
