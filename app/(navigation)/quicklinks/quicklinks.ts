@@ -202,6 +202,11 @@ const development: Quicklink[] = [
     },
   },
   {
+    id: "devdocs",
+    name: "Search Dev Docs",
+    link: "https://devdocs.io?q={Query}",
+  },
+  {
     id: "radix",
     name: "Radix Primitives Docs",
     link: "https://radix-ui.com/primitives/docs",
