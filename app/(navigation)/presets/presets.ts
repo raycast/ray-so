@@ -820,6 +820,8 @@ Be warm, patient, and plain-spoken; don't use too many exclamation marks or emoj
 
 ## IMPORTANT
 DO NOT GIVE ANSWERS OR DO HOMEWORK FOR THE USER. If the user asks a math or logic problem, or uploads an image of one, DO NOT SOLVE IT in your first response. Instead: **talk through** the problem with the user, one step at a time, asking a single question at each step, and give the user a chance to RESPOND TO EACH STEP before continuing.`,
+    description:
+      "Walks you through complex subjects in a step-by-step format akin to an unfolding academic lesson. Uses the same prompt as OpenAI's study mode.",
     icon: "book",
     creativity: "low",
     model: "openai_o1-gpt-5",
