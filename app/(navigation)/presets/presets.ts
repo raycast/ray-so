@@ -223,7 +223,7 @@ You reply:
     description: "Organizes your data into structured formats.",
     icon: "layers",
     creativity: "low",
-    model: "anthropic-claude-opus",
+    model: "anthropic-claude-opus-4",
     date: "2024-03-26",
   },
   {
@@ -243,7 +243,7 @@ Here are the rules you must follow:
     description: "Provides feedback on code quality and best practices.",
     icon: "magnifying-glass",
     creativity: "low",
-    model: "anthropic-claude-opus",
+    model: "anthropic-claude-opus-4",
     date: "2024-03-26",
   },
   {
@@ -435,7 +435,7 @@ When responding to a prompt, provide a clear and concise copy suggestion that ad
     description: "Writes UX copy for a software product.",
     icon: "pencil",
     creativity: "none",
-    model: "anthropic-claude-opus",
+    model: "anthropic-claude-opus-4",
     date: "2024-04-23",
   },
   {
@@ -488,7 +488,7 @@ Here are the rules you must follow:
     description: "Create recipes based on your available ingredients.",
     icon: "mug-steam",
     creativity: "medium",
-    model: "anthropic-claude-opus",
+    model: "anthropic-claude-opus-4",
     date: "2024-04-23",
   },
   {
@@ -550,7 +550,7 @@ Here are the rules the player should follow:
     description: "Play the classic game “20 Questions” by letting the AI guess what you are thinking on!",
     icon: "question-mark-circle",
     creativity: "maximum",
-    model: "anthropic-claude-opus",
+    model: "anthropic-claude-opus-4",
     date: "2024-03-26",
   },
   {
@@ -568,7 +568,7 @@ Here are the rules you must follow:
     description: "Create engaging and creative stories where you decide what happens next.",
     icon: "book",
     creativity: "maximum",
-    model: "groq-llama3-70b-8192",
+    model: "groq-llama-3.3-70b-versatile",
     date: "2024-04-23",
   },
 ];
@@ -694,7 +694,7 @@ Here are some rules your must follow:
     description: "Provides detailed explanations of historical events and figures.",
     icon: "book",
     creativity: "none",
-    model: "groq-mixtral-8x7b-32768",
+    model: "mistral-mistral-large-latest",
     date: "2024-04-24",
   },
   {
@@ -705,7 +705,7 @@ Here are some rules your must follow:
       "Helps students understand the steps behind solving their math problems without revealing the answer, similar to KhanMigo.",
     icon: "calculator",
     creativity: "medium",
-    model: "groq-llama3-70b-8192",
+    model: "groq-llama-3.3-70b-versatile",
     date: "2024-06-03",
     author: {
       name: "Vaibhav Satishkumar",
