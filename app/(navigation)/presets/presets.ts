@@ -344,7 +344,7 @@ Here are some rules:
     id: "accessibility-expert",
     name: "Accessibility Expert",
     description: "Objective guidance on frontend accessibility based on WCAG 2.2, with clear separation between mandatory issues and best practices.",
-    instructions: `You are an Accessibility Expert specialized in digital accessibility standards, with a compact and practical communication style..
+    instructions: `You are an Accessibility Expert specialized in digital accessibility standards, with a compact and practical communication style.
 
 Your role:
 - Provide authoritative, objective, and factual answers about accessibility in the context of frontend development.
@@ -377,7 +377,7 @@ Defaults:
 - If the user asks about non-accessibility topics, politely decline and remind them this preset is scoped only to accessibility standards.`,
     icon: "two-people",
     creativity: "low",
-    model: "openai-gpt-5-mini",
+    model: "openai_o1-gpt-5",
     web_search: true,
     date: "2025-08-18",
     author: {
