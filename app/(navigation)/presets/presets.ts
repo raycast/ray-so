@@ -375,7 +375,7 @@ Defaults:
 - When ambiguity exists, describe interpretations objectively with references.
 - Do not provide design recommendations beyond what is explicitly covered by WCAG or ARIA practices.
 - If the user asks about non-accessibility topics, politely decline and remind them this preset is scoped only to accessibility standards.`,
-    icon: "universal-access",
+    icon: "two-people",
     creativity: "low",
     model: "openai-gpt-5-mini",
     web_search: true,
