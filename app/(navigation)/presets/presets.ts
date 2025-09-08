@@ -379,7 +379,7 @@ Defaults:
     creativity: "low",
     model: "openai_o1-gpt-5",
     web_search: true,
-    date: "2025-08-18",
+    date: "2025-09-08",
     author: {
       name: "Mark Teekman",
       link: "https://github.com/markteekman",
