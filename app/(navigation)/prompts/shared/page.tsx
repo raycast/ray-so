@@ -6,6 +6,7 @@ import { Prompt } from "../prompts";
 import { nanoid } from "nanoid";
 import { getExtensions } from "@/api/store";
 import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
+import { validatePromptData } from "@/utils/sanitizePromptContent";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -22,11 +23,30 @@ function parseURLPrompt(promptQueryString?: string | string[]): Prompt[] {
   } else {
     prompts = [promptQueryString];
   }
-  return prompts.map((prompt) => ({
-    ...JSON.parse(prompt),
-    id: nanoid(),
-    isShared: true,
-  }));
+
+  const validPrompts: Prompt[] = [];
+
+  for (const prompt of prompts) {
+    try {
+      const parsedPrompt = JSON.parse(prompt);
+      const validatedPrompt = validatePromptData(parsedPrompt);
+
+      if (validatedPrompt) {
+        validPrompts.push({
+          ...validatedPrompt,
+          id: nanoid(),
+          isShared: true,
+        });
+      }
+    } catch (error) {
+      // Skip invalid JSON, log error in development
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Invalid prompt data in URL:', error);
+      }
+    }
+  }
+
+  return validPrompts;
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

@@ -43,6 +43,7 @@ import { Kbd, Kbds } from "@/components/kbd";
 import { Extension } from "@/api/store";
 import { AIExtension } from "@/components/ai-extension";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/tooltip";
+import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
 
 export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions: Extension[] }) {
   const router = useRouter();
@@ -287,15 +288,9 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
                                         return <AIExtension key={index} extension={extension} fallback={match[1]} />;
                                       }
                                       return (
-                                        <span
-                                          key={index}
-                                          dangerouslySetInnerHTML={{
-                                            __html: part.replace(
-                                              /\{[^}]+\}/g,
-                                              `<span class="${styles.placeholder}">$&</span>`,
-                                            ),
-                                          }}
-                                        />
+                                        <span key={index}>
+                                          {renderSafePromptContent(part, styles.placeholder)}
+                                        </span>
                                       );
                                     })}
                                   </pre>

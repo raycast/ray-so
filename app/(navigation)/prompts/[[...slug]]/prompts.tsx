@@ -39,6 +39,7 @@ import { Tooltip, TooltipContent } from "@/components/tooltip";
 import { TooltipTrigger } from "@/components/tooltip";
 import { Extension } from "@/api/store";
 import { AIExtension } from "@/components/ai-extension";
+import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
 
 type Props = {
   models: AiModel[];
@@ -369,15 +370,9 @@ export function Prompts({ models, extensions }: Props) {
                                           );
                                         }
                                         return (
-                                          <span
-                                            key={index}
-                                            dangerouslySetInnerHTML={{
-                                              __html: part.replace(
-                                                /\{[^}]+\}/g,
-                                                `<span class="${styles.placeholder}">$&</span>`,
-                                              ),
-                                            }}
-                                          />
+                                          <span key={index}>
+                                            {renderSafePromptContent(part, styles.placeholder)}
+                                          </span>
                                         );
                                       })}
                                     </pre>
