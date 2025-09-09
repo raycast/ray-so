@@ -38,6 +38,7 @@ import { AiModel } from "@/api/ai";
 import { Extension } from "@/api/store";
 import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
 import { AIExtension } from "@/components/ai-extension";
+import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
 
 type PresetPageProps = {
   preset: Preset;
@@ -270,12 +271,9 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                       return <AIExtension key={index} extension={extension} fallback={match[1]} />;
                     }
                     return (
-                      <span
-                        key={index}
-                        dangerouslySetInnerHTML={{
-                          __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
-                        }}
-                      />
+                      <span key={index}>
+                        {renderSafePromptContent(part, styles.placeholder)}
+                      </span>
                     );
                   })}
                 </pre>
