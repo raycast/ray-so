@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 import { fileNameAtom, showBackgroundAtom, windowWidthAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
