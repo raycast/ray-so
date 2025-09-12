@@ -1291,6 +1291,16 @@
   --frame-border-radius: 8px;
   --frame-text-color: hsl(0, 0%, 0%);
 
+  &.withBackground {
+    background-image: url("../assets/resend/resend-pattern-light.png") !important;
+    background-position: center;
+    background-size: cover;
+
+    &.darkMode {
+      background-image: url("../assets/resend/resend-pattern-dark.png") !important;
+    }
+  }
+
   &::selection {
     background: var(--selection-background);
     color: var(--selection-text-color);
