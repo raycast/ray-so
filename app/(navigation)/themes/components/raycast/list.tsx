@@ -4,7 +4,7 @@ export function List() {
   return (
     <div className="py-1 px-2 text-[--text]">
       <div className="p-2 text-xs leading-none font-medium tracking-[0.1px] text-[--text-600]">List</div>
-      <div className="flex items-center gap-3 h-[40px] px-2 rounded-lg bg-[--selection-100]">
+      <div className="flex items-center gap-3 h-[40px] px-2 rounded-[10px] bg-[--selection-100]">
         <div>
           <CheckCircleIcon className="w-5 h-5" />
         </div>
@@ -22,7 +22,7 @@ export function List() {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 h-[40px] px-2 rounded-lg">
+      <div className="flex items-center gap-3 h-[40px] px-2 rounded-[10px]">
         <div>
           <CheckCircleIcon className="w-5 h-5" />
         </div>

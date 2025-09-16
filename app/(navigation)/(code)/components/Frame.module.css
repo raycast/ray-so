@@ -42,7 +42,7 @@
   align-items: stretch;
   padding-top: 10px;
   border: 1px solid hsl(0 0% 100% / 0.3);
-  border-radius: 10px;
+  border-radius: 18px;
   background: var(--frame-background);
   transition: all ease 0.3s;
 
@@ -73,18 +73,18 @@
   align-items: center;
   padding: 0 16px;
   grid-gap: 12px;
-  grid-template-columns: 48px 1fr 48px;
+  grid-template-columns: 60px 1fr 60px;
 }
 
 .controls {
   display: flex;
-  gap: 6px;
+  gap: 9px;
 }
 
 .control {
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
   background-color: var(--frame-control-color);
 }
 
