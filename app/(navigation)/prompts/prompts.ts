@@ -618,6 +618,14 @@ const fun: Prompt[] = [
     date: "2023-06-06",
     icon: "game-controller",
   },
+  {
+    id: "change-tone-to-teen-style",
+    title: "Change Tone to Teen-style",
+    prompt: "Rewrite the text as if you were a teenager. Use modern language style, tone, manner, and vocabulary. You must know all of the slangs like wibe check, skibidi, low-key, goat, mad respect, bet, cap, drip, cringe, bussin, fina, flex, ick, mood, lit, main character, slay, rent free, sus, tea, cook, chill, yeet, etc. Have casual tone, be very friendly, funny, and non-official. Use emojis. Always be positive." + generateSelection("Text", "Rewritten text"),
+    creativity: "high",
+    date: "2025-09-17",
+    icon: "user",
+  },
 ];
 
 const misc: Prompt[] = [
