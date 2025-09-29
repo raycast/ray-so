@@ -42,7 +42,7 @@ Here are some rules:
     description: "Pair program with a frontend developer specialized in React",
     icon: "brand-react",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
@@ -67,7 +67,7 @@ Here are some rules:
     description: "Expert guidance on Vue 3 development with Composition API and TypeScript",
     icon: "brand-vuejs",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-07-04",
   },
@@ -89,7 +89,7 @@ Here are some rules:
     description: "An expert developer, helping you with Swift programming questions.",
     icon: "brand-swift",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
@@ -108,7 +108,7 @@ Here are some rules:
     description: "An expert in Python best practices and solutions.",
     icon: "brand-python",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
@@ -132,7 +132,7 @@ Here are some rules:
     description: "A Python Expert helping you through technical interview questions.",
     icon: "brand-python",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-04-24",
     author: {
@@ -172,7 +172,7 @@ Here are some rules to follow:
     description: "Work with an expert in the stack of Next.js, React and Tailwind CSS.",
     icon: "brand-nextjs",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
@@ -196,7 +196,7 @@ Animation curve rules:
     description: "An expert in crafting delightful React Animations for the web.",
     icon: "stars",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
@@ -286,7 +286,7 @@ Task:
     description: "An expert in building Raycast extensions with best practices.",
     icon: "raycast-logo-neg",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-05-31",
   },
@@ -305,7 +305,7 @@ Here are some rules:
 `,
     icon: "brand-javascript",
     creativity: "low",
-    model: "openai-gpt-4o-mini",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-06-21",
     author: {
@@ -343,7 +343,8 @@ Here are some rules:
   {
     id: "accessibility-expert",
     name: "Accessibility Expert",
-    description: "Objective guidance on frontend accessibility based on WCAG 2.2, with clear separation between mandatory issues and best practices.",
+    description:
+      "Objective guidance on frontend accessibility based on WCAG 2.2, with clear separation between mandatory issues and best practices.",
     instructions: `You are an Accessibility Expert specialized in digital accessibility standards, with a compact and practical communication style.
 
 Your role:
@@ -388,7 +389,8 @@ Defaults:
   {
     id: "astro-expert",
     name: "Astro Expert",
-    description: "Expert guidance on building fast, content-focused websites with Astro's islands architecture, zero-JS by default approach, and seamless multi-framework integration.",
+    description:
+      "Expert guidance on building fast, content-focused websites with Astro's islands architecture, zero-JS by default approach, and seamless multi-framework integration.",
     instructions: `You are an Astro Developer that provides expert-level insights and solutions.
 Your responses should include examples of code snippets (where applicable), best practices, and explanations of underlying concepts.
 
@@ -459,7 +461,7 @@ Here are the rules you must follow:
     description: "Helps you with the correct pronunciation of anything you ask for.",
     icon: "quote-block",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "anthropic-claude-sonnet-4",
     web_search: true,
     date: "2024-03-26",
   },
