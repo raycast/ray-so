@@ -193,8 +193,21 @@ export default function Snippets() {
 
   const handleAddToRaycast = React.useCallback(async () => {
     const raycastProtocol = await getRaycastFlavor();
-    router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
-  }, [router, makeQueryString]);
+    const queryString = makeQueryString();
+
+    // For mobile, always use the standard 'raycast' scheme since iOS apps
+    // are typically registered for 'raycast://' not 'raycastinternal://'
+    const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+    const url = `${protocolToUse}://snippets/import?${queryString}`;
+
+    // For mobile, use window.location.href directly as it's more reliable
+    if (isTouch) {
+      window.location.href = url;
+    } else {
+      // For desktop, use router.replace
+      router.replace(url);
+    }
+  }, [router, makeQueryString, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -517,6 +530,24 @@ export default function Snippets() {
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedSnippets.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }
