@@ -20,6 +20,8 @@ import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
 import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
+import browserbaseNoiseTile from "../assets/browserbase/noise-tile.webp";
+import browserBaseDiagonalTile from "../assets/browserbase/diagonal-tile.webp";
 import { flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
@@ -445,6 +447,51 @@ const ResendFrame = () => {
   );
 };
 
+const BrowserbaseFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.browserbaseFrame,
+        !darkMode && styles.browserbaseFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <div className={styles.browserbaseBackground}>
+          <span className={styles.browserbaseBackgroundNoise} />
+          <span className={styles.browserbaseBackgroundDiagonal} />
+        </div>
+      )}
+      <div className={styles.browserbaseWindow}>
+        <div className={styles.browserbaseHeader}>
+          <div className={styles.browserbaseFileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+          <span className={styles.browserbaseLanguage}>{selectedLanguage?.name}</span>
+        </div>
+        <Editor />
+      </div>
+      <div className={styles.browserbaseOutline} style={{ "--padding": `${padding}px` } as React.CSSProperties}></div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -525,6 +572,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ElevenLabsFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
+      case THEMES.browserbase.id:
+        return <BrowserbaseFrame />;
       default:
         return <DefaultFrame />;
     }

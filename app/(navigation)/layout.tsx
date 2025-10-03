@@ -1,4 +1,4 @@
-import { Fira_Code, IBM_Plex_Mono, JetBrains_Mono, Roboto_Mono } from "next/font/google";
+import { Fira_Code, IBM_Plex_Mono, JetBrains_Mono, Roboto_Mono, Space_Mono } from "next/font/google";
 import cn from "classnames";
 import { Navigation } from "@/components/navigation";
 import { GeistMono } from "geist/font/mono";
@@ -33,6 +33,13 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-space-mono",
+});
+
 /**
  * We can't adjust the fallback stack of the font so instead we just extract the
  * font name and create our own CSS variable using it so that we can configure the
@@ -51,6 +58,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         soehneMono.variable,
         commitMono.variable,
         robotoMono.variable,
+        spaceMono.variable,
       )}
       style={
         {

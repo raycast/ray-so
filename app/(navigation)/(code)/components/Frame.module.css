@@ -1388,3 +1388,169 @@
   font-size: 14px;
   line-height: 40px;
 }
+
+/* Browserbase Theme Frame */
+
+.browserbaseFrame {
+  position: relative;
+  background: #000;
+}
+
+.browserbaseBackground {
+  opacity: 0.2;
+}
+
+.browserbaseBackgroundNoise {
+  position: absolute;
+  background-image: url("../assets/browserbase/noise-tile.png");
+  background-repeat: repeat;
+  background-size: 56px 56px;
+  content: "";
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.browserbaseBackgroundDiagonal {
+  position: absolute;
+  background-image: url("../assets/browserbase/diagonal-tile.png");
+  background-repeat: repeat;
+  background-size: 68px 68px;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+}
+
+.browserbaseBackground {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.browserbaseWindow {
+  position: relative;
+  z-index: 1;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  background: #000000;
+}
+
+.browserbaseHeader {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+.browserbaseFrameLightMode {
+  background: hsla(13.022, 97.313%, 47.654%);
+
+  .browserbaseBackground {
+    opacity: 1;
+  }
+
+  .browserbaseWindow {
+    border-color: #000;
+    background: #fff;
+  }
+
+  .browserbaseHeader {
+    border-bottom-color: #000;
+  }
+
+  .browserbaseLanguage {
+    color: #000;
+  }
+
+  .browserbaseFileName {
+    color: #000;
+
+    & > span {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &.noBackground {
+    background: transparent;
+  }
+
+  .browserbaseOutline {
+    opacity: 1;
+  }
+}
+
+.browserbaseFileName {
+  position: relative;
+  display: grid;
+  height: 44px;
+  align-items: center;
+  color: #ffffff;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    outline: none;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.browserbaseLanguage {
+  height: 44px;
+  color: #fff;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 44px;
+  text-transform: uppercase;
+}
+
+.browserbaseOutline {
+  position: absolute;
+  top: calc(var(--padding) + 10px);
+  left: calc(var(--padding) + 10px);
+  width: calc(100% - var(--padding) * 2);
+  height: calc(100% - var(--padding) * 2);
+  background-image: url("../assets/browserbase/diagonal-tile.png");
+  background-repeat: repeat;
+  background-size: 68px 68px;
+  opacity: 0.5;
+}

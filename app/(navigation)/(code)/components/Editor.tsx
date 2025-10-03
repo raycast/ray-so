@@ -117,6 +117,17 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
   document.execCommand("insertText", false, "}");
 }
 
+const fontMap = {
+  "jetbrains-mono": styles.jetBrainsMono,
+  "geist-mono": styles.geistMono,
+  "ibm-plex-mono": styles.ibmPlexMono,
+  "fira-code": styles.firaCode,
+  "soehne-mono": styles.soehneMono,
+  "roboto-mono": styles.jetBrainsMono, // Fallback to jetBrainsMono
+  "commit-mono": styles.commitMono,
+  "space-mono": styles.spaceMono,
+} as const;
+
 function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useAtom(codeAtom);
@@ -242,19 +253,7 @@ function Editor() {
     <div
       className={classNames(
         styles.editor,
-        themeFont === "geist-mono"
-          ? styles.geistMono
-          : themeFont === "ibm-plex-mono"
-            ? styles.ibmPlexMono
-            : themeFont === "fira-code"
-              ? styles.firaCode
-              : themeFont === "soehne-mono"
-                ? styles.soehneMono
-                : themeFont === "roboto-mono"
-                  ? styles.robotoMono
-                  : themeFont === "commit-mono"
-                    ? styles.commitMono
-                    : styles.jetBrainsMono,
+        themeFont ? fontMap[themeFont] : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers &&
           selectedLanguage !== LANGUAGES.plaintext && [
