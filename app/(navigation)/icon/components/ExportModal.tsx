@@ -28,7 +28,14 @@ const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) =
     return;
   }
 
-  let dataUrl = await htmlToPng(svgRef.current, { pixelRatio: 1, quality: 1, width: size, height: size });
+  let dataUrl = await htmlToPng(svgRef.current, {
+    pixelRatio: 1,
+    quality: 1,
+    width: size,
+    height: size,
+    skipFonts: true,
+    cacheBust: true,
+  });
   setTimeout(() => {
     download(dataUrl, `${fileName}.png`);
   }, 100);
@@ -68,14 +75,20 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
   const onExport = async () => {
     onOpenChange(false);
     onStartExport();
-    // Fixes @2x png export instead of the same size as png
-    const realPixelRatio = window.devicePixelRatio;
-    window.devicePixelRatio = 1;
-    const exportPromises = exportOptions.map((option) => {
-      return Exporters[option.format](svgRef, option.fileName, option.size);
-    });
-    await Promise.all(exportPromises);
-    window.devicePixelRatio = realPixelRatio;
+    try {
+      // Fixes @2x png export instead of the same size as png
+      const realPixelRatio = window.devicePixelRatio;
+      window.devicePixelRatio = 1;
+      const exportPromises = exportOptions.map((option) => {
+        return Exporters[option.format](svgRef, option.fileName, option.size);
+      });
+      await Promise.all(exportPromises);
+      window.devicePixelRatio = realPixelRatio;
+    } catch (error) {
+      console.error("Failed to export icon:", error);
+      // Re-throw to allow parent components to handle the error
+      throw error;
+    }
   };
 
   const onAddExportOption = () => {

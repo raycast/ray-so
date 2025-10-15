@@ -395,18 +395,29 @@ export const IconGenerator = () => {
 
   const onCopyImageToClipboard = useCallback(async () => {
     if (svgRef.current) {
-      // Fixes @2x png export instead of the same size as png
-      const realPixelRatio = window.devicePixelRatio;
-      window.devicePixelRatio = 1;
-      const dataUri = await htmlToPng(svgRef.current, { pixelRatio: 1, width: 512, height: 512 });
-      const blob = await (await fetch(dataUri)).blob();
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          [blob.type]: blob,
-        }),
-      ]);
-      window.devicePixelRatio = realPixelRatio;
-      showInfoMessage("Image copied to clipboard", false);
+      try {
+        // Fixes @2x png export instead of the same size as png
+        const realPixelRatio = window.devicePixelRatio;
+        window.devicePixelRatio = 1;
+        const dataUri = await htmlToPng(svgRef.current, {
+          pixelRatio: 1,
+          width: 512,
+          height: 512,
+          skipFonts: true,
+          cacheBust: true,
+        });
+        const blob = await (await fetch(dataUri)).blob();
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            [blob.type]: blob,
+          }),
+        ]);
+        window.devicePixelRatio = realPixelRatio;
+        showInfoMessage("Image copied to clipboard", false);
+      } catch (error) {
+        console.error("Failed to copy image to clipboard:", error);
+        showInfoMessage("Failed to copy image. Please try downloading instead.", false);
+      }
     }
   }, []);
 
