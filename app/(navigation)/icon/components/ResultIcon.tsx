@@ -113,18 +113,20 @@ const ResultIcon = React.forwardRef<SVGSVGElement, PropTypes>(
         </defs>
 
         {IconComponent ? (
-          <IconComponent
-            width={settings.iconSize}
-            height={settings.iconSize}
-            x={(size - settings.iconSize) / 2 + +settings.iconOffsetX}
-            y={(size - settings.iconSize) / 2 + +settings.iconOffsetY}
-            style={{ color: settings.iconColor }}
-            alignmentBaseline="middle"
-          />
+          <g
+            transform={`translate(${(size - settings.iconSize) / 2 + +settings.iconOffsetX}, ${(size - settings.iconSize) / 2 + +settings.iconOffsetY})`}
+          >
+            <IconComponent
+              width={settings.iconSize}
+              height={settings.iconSize}
+              style={{ color: settings.iconColor }}
+              alignmentBaseline="middle"
+            />
+          </g>
         ) : null}
       </svg>
     );
-  }
+  },
 );
 
 ResultIcon.displayName = "ResultIcon";
