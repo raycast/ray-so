@@ -23,9 +23,9 @@
 .transparentPattern {
   position: absolute;
   z-index: -1;
-  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
-    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
-    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-image:
+    linear-gradient(45deg, #1d1d1d 25%, transparent 0), linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(45deg, transparent 75%, #1d1d1d 0), linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
   background-position:
     0 0,
     0 10px,
@@ -101,11 +101,11 @@
   line-height: 12px;
   text-align: center;
 
-  > input:focus + span {
+  >input:focus+span {
     display: none;
   }
 
-  > input {
+  >input {
     position: absolute;
     width: 100%;
     border: none;
@@ -137,6 +137,7 @@
 
   .vercelGridlinesHorizontal,
   .vercelGridlinesVertical {
+
     &:before,
     &:after {
       background: #ebebeb;
@@ -145,6 +146,7 @@
 
   .vercelBracketLeft,
   .vercelBracketRight {
+
     &:before,
     &:after {
       background: #a8a8a8;
@@ -157,6 +159,7 @@
 }
 
 .vercelGridlinesHorizontal {
+
   &:before,
   &:after {
     position: absolute;
@@ -176,6 +179,7 @@
 }
 
 .vercelGridlinesVertical {
+
   &:before,
   &:after {
     position: absolute;
@@ -265,6 +269,7 @@
 }
 
 .triggerGridlinesHorizontal {
+
   &:before,
   &:after {
     position: absolute;
@@ -284,6 +289,7 @@
 }
 
 .triggerGridlinesVertical {
+
   &:before,
   &:after {
     position: absolute;
@@ -332,7 +338,7 @@
   vertical-align: top;
 
   input,
-  & > span,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -349,7 +355,7 @@
     text-align: left;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
   }
@@ -394,6 +400,7 @@
 
   .triggerGridlinesHorizontal,
   .triggerGridlinesVertical {
+
     &:before,
     &:after {
       background: #d9d7d7;
@@ -443,7 +450,7 @@
   vertical-align: top;
 
   input,
-  & > span,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -460,7 +467,7 @@
     text-align: left;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
   }
@@ -556,6 +563,7 @@
 }
 
 .tailwindGridlinesHorizontal {
+
   &:before,
   &:after {
     position: absolute;
@@ -578,6 +586,7 @@
 }
 
 .tailwindGridlinesVertical {
+
   &:before,
   &:after {
     position: absolute;
@@ -609,7 +618,7 @@
   height: 32px;
   margin-top: -1px;
 
-  > div {
+  >div {
     display: flex;
     width: clamp(14rem, 80%, 40rem);
     height: 2px;
@@ -620,13 +629,11 @@
 .tailwindGradient1 {
   width: 100%;
   flex: none;
-  background: linear-gradient(
-    90deg,
-    color(display-p3 0.2196 0.7412 0.9725 / 0) 0%,
-    color(display-p3 0.0549 0.6471 0.9137) 32.29%,
-    color(display-p3 0.9255 0.2824 0.6 / 0.3) 67.19%,
-    color(display-p3 0.9255 0.2824 0.6 / 0) 100%
-  );
+  background: linear-gradient(90deg,
+      color(display-p3 0.2196 0.7412 0.9725 / 0) 0%,
+      color(display-p3 0.0549 0.6471 0.9137) 32.29%,
+      color(display-p3 0.9255 0.2824 0.6 / 0.3) 67.19%,
+      color(display-p3 0.9255 0.2824 0.6 / 0) 100%);
   filter: blur(4px);
 }
 
@@ -662,16 +669,20 @@
   .tailwindHeader {
     border-color: rgb(0 0 0 / 10%);
   }
+
   .control {
     background-color: color(display-p3 0.8863 0.9098 0.9412);
   }
+
   .tailwindGridlinesHorizontal,
   .tailwindGridlinesVertical {
+
     &:before,
     &:after {
       background: color(display-p3 0.0078 0.0235 0.0902 / 0.1);
     }
   }
+
   .tailwindBeams {
     top: 0;
     transform: translateX(-50%);
@@ -848,9 +859,11 @@
       mask-composite: exclude;
       pointer-events: none;
     }
+
     &:nth-of-type(1):before {
       inset: -1px;
     }
+
     &:nth-of-type(2):before {
       border-radius: calc(var(--radius) + 6px);
       inset: -6px;
@@ -893,7 +906,7 @@
   vertical-align: top;
 
   input,
-  & > span,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -912,7 +925,7 @@
     text-align: left;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
   }
@@ -1002,7 +1015,7 @@
   vertical-align: top;
 
   input,
-  & > span,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -1021,7 +1034,7 @@
     text-align: left;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
   }
@@ -1418,7 +1431,7 @@
   vertical-align: top;
 
   input,
-  & > span,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -1435,7 +1448,7 @@
     text-align: left;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
   }
@@ -1480,15 +1493,19 @@
   &:nth-child(1) {
     left: 5%;
   }
+
   &:nth-child(2) {
     left: 20%;
   }
+
   &:nth-child(3) {
     left: 35%;
   }
+
   &:nth-child(4) {
     left: 50%;
   }
+
   &:nth-child(5) {
     left: 65%;
   }
@@ -1530,8 +1547,8 @@
     font-size: 14px;
     line-height: 24px;
 
-    > input,
-    & > span,
+    >input,
+    &>span,
     &:after {
       font-family: var(--font-space-mono), monospace;
       font-size: 14px;
@@ -1567,7 +1584,7 @@
   .browserbaseFileName {
     color: rgba(0, 0, 0, 0.6);
 
-    & > span {
+    &>span {
       color: rgba(0, 0, 0, 0.6);
     }
   }
@@ -1594,12 +1611,12 @@
   text-align: center;
   white-space: nowrap;
 
-  > input:focus + span {
+  >input:focus+span {
     display: none;
   }
 
-  > input,
-  & > span,
+  >input,
+  &>span,
   &:after {
     position: static;
     z-index: 2;
@@ -1617,7 +1634,7 @@
     text-align: center;
   }
 
-  & > span {
+  &>span {
     position: relative;
     z-index: 1;
     color: rgba(255, 255, 255, 0.6);
@@ -1713,15 +1730,13 @@
       position: absolute;
       padding: 1px;
       border-radius: inherit;
-      background: linear-gradient(
-        135deg,
-        #00dc82 0%,
-        #00dc82 8%,
-        transparent 20%,
-        transparent 80%,
-        #00dc82 92%,
-        #00dc82 100%
-      );
+      background: linear-gradient(135deg,
+          #00dc82 0%,
+          #00dc82 8%,
+          transparent 20%,
+          transparent 80%,
+          #00dc82 92%,
+          #00dc82 100%);
       content: "";
       inset: 0;
       -webkit-mask:
@@ -1742,16 +1757,15 @@
     &:nth-of-type(2) {
       border-radius: calc(var(--radius) + 8px);
       inset: -8px;
+
       &:before {
-        background: linear-gradient(
-          135deg,
-          #00dc82 0%,
-          #00dc82 10%,
-          transparent 26%,
-          transparent 74%,
-          #00dc82 90%,
-          #00dc82 100%
-        );
+        background: linear-gradient(135deg,
+            #00dc82 0%,
+            #00dc82 10%,
+            transparent 26%,
+            transparent 74%,
+            #00dc82 90%,
+            #00dc82 100%);
         opacity: 0.5;
       }
     }
@@ -1759,16 +1773,15 @@
     &:nth-of-type(3) {
       border-radius: calc(var(--radius) + 15px);
       inset: -14px;
+
       &:before {
-        background: linear-gradient(
-          135deg,
-          #00dc82 0%,
-          #00dc82 12%,
-          transparent 28%,
-          transparent 72%,
-          #00dc82 88%,
-          #00dc82 100%
-        );
+        background: linear-gradient(135deg,
+            #00dc82 0%,
+            #00dc82 12%,
+            transparent 28%,
+            transparent 72%,
+            #00dc82 88%,
+            #00dc82 100%);
         opacity: 0.25;
       }
     }
@@ -1920,11 +1933,159 @@
   --wrapped-grid: rgba(0, 0, 0, 0.04);
 
   .wrappedBottomGlow {
-    background: radial-gradient(
-      ellipse 50% 100% at center bottom,
-      rgba(194, 65, 12, 0.5) 0%,
-      rgba(194, 65, 12, 0.2) 40%,
-      transparent 80%
-    );
+    background: radial-gradient(ellipse 50% 100% at center bottom,
+        rgba(194, 65, 12, 0.5) 0%,
+        rgba(194, 65, 12, 0.2) 40%,
+        transparent 80%);
   }
+}
+
+/* Cloudflare Theme Frame */
+
+.cloudflareFrame {
+  background: #0a0a0a;
+}
+
+.cloudflareFrameLightMode {
+  background: #f5f5f5;
+
+  .cloudflareWindow {
+    border-color: #e5e5e5;
+    background: #ffffff;
+  }
+
+  .cloudflareHeader {
+    border-color: #e5e5e5;
+    background: #fafafa;
+  }
+
+  .cloudflareFileName {
+    color: oklch(14.5% 0 0);
+  }
+
+  .cloudflareLanguage {
+    color: oklch(70.8% 0 0);
+  }
+
+  .cloudflareGridlinesHorizontal,
+  .cloudflareGridlinesVertical {
+
+    &:before,
+    &:after {
+      background: #e5e5e5;
+    }
+  }
+}
+
+.cloudflareWindow {
+  position: relative;
+  border: none;
+  border-radius: 0;
+  background: #0a0a0a;
+}
+
+.cloudflareGridlinesHorizontal {
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: #262626;
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.cloudflareGridlinesVertical {
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: #262626;
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.cloudflareHeader {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #262626;
+  background: #0f0f0f;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  gap: 12px;
+}
+
+.cloudflareFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #ededed;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  &>span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  &>span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.cloudflareLanguage {
+  height: 40px;
+  color: #737373;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
 }

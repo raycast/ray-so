@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import CloudflareLogo from "../assets/cloudflare.svg";
+import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -108,6 +110,59 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  cloudflare: {
+    id: "cloudflare",
+    name: "Cloudflare",
+    background: {
+      from: "#0a0a0a",
+      to: "#0a0a0a",
+    },
+    icon: CloudflareLogo,
+    iconUrl: `${BASE_URL}${CloudflareLogoUrl.src}`,
+    font: "ibm-plex-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#521000",
+        constant: "#7c3aed",
+        string: "#059669",
+        comment: "oklch(55.4% .135 66.442)",
+        keyword: "#ff4801",
+        parameter: "#0284c7",
+        function: "#ea580c",
+        stringExpression: "#059669",
+        punctuation: "oklch(47.6% .114 61.907)",
+        link: "#0284c7",
+        number: "#7c3aed",
+        property: "#be185d",
+        highlight: "rgba(255, 72, 1, 0.1)",
+        highlightHover: "rgba(255, 72, 1, 0.05)",
+        highlightBorder: "#ff5315",
+        diffInserted: "#059669",
+        diffDeleted: "#dc2626",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#fef7ed",
+        constant: "#c084fc",
+        string: "#4ade80",
+        comment: "oklch(68.1% .162 75.834)",
+        keyword: "#ff7038",
+        parameter: "#60a5fa",
+        function: "#ffb10a",
+        stringExpression: "#4ade80",
+        punctuation: "oklch(85.2% .199 91.936)",
+        link: "#38bdf8",
+        number: "#c084fc",
+        property: "#f472b6",
+        highlight: "rgba(255, 112, 56, 0.15)",
+        highlightHover: "rgba(255, 112, 56, 0.08)",
+        highlightBorder: "#ff7038",
+        diffInserted: "#4ade80",
+        diffDeleted: "#f87171",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",
