@@ -1393,11 +1393,45 @@
 
 .browserbaseFrame {
   position: relative;
-  background: #000;
+  height: 100%;
+  background-color: hsla(0, 0%, 3%, 100%);
 }
 
 .browserbaseBackground {
-  opacity: 0.2;
+  position: relative;
+}
+
+.browserbaseBackgroundGridline {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  border-left: 2px dashed rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
+
+  &:nth-child(1) {
+    left: 5%;
+  }
+  &:nth-child(2) {
+    left: 20%;
+  }
+  &:nth-child(3) {
+    left: 35%;
+  }
+  &:nth-child(4) {
+    left: 50%;
+  }
+  &:nth-child(5) {
+    left: 65%;
+  }
+
+  &:nth-child(6) {
+    left: 80%;
+  }
+
+  &:nth-child(7) {
+    left: 95%;
+  }
 }
 
 .browserbaseBackgroundNoise {
@@ -1435,21 +1469,32 @@
 .browserbaseWindow {
   position: relative;
   z-index: 1;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  background: #000000;
-}
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: hsla(0, 0%, 6%, 100%);
 
-.browserbaseHeader {
-  display: flex;
-  height: 44px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+  .header {
+    height: 30px;
+    padding-top: 10px;
+  }
+
+  .fileName {
+    height: 24px;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 14px;
+    line-height: 24px;
+
+    > input,
+    & > span,
+    &:after {
+      font-family: var(--font-space-mono), monospace;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
 }
 
 .browserbaseFrameLightMode {
-  background: hsla(14.51, 82.168%, 46.811%);
+  background: hsla(21.572, 35.722%, 96.76%);
 
   .browserbaseBackground {
     opacity: 1;
@@ -1457,7 +1502,11 @@
 
   .browserbaseWindow {
     border-color: rgba(0, 0, 0, 0.7);
-    background: #fff3f0;
+    background: hsla(240, 0%, 100%);
+  }
+
+  .browserbaseBackgroundGridline {
+    border-color: rgba(0, 0, 0, 0.3);
   }
 
   .browserbaseHeader {
@@ -1469,7 +1518,7 @@
   }
 
   .browserbaseFileName {
-    color: #000;
+    color: rgba(0, 0, 0, 0.6);
 
     & > span {
       color: rgba(0, 0, 0, 0.6);
@@ -1487,17 +1536,22 @@
 
 .browserbaseFileName {
   position: relative;
-  display: grid;
-  height: 44px;
+  display: flex;
   align-items: center;
+  justify-content: center;
   color: #ffffff;
   font-family: var(--font-space-mono), monospace;
   font-size: 14px;
   font-weight: 500;
-  line-height: 44px;
-  vertical-align: top;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
 
-  input,
+  > input:focus + span {
+    display: none;
+  }
+
+  > input,
   & > span,
   &:after {
     position: static;
@@ -1513,7 +1567,7 @@
     grid-area: 1 / 2;
     outline: none;
     resize: none;
-    text-align: left;
+    text-align: center;
   }
 
   & > span {
@@ -1530,27 +1584,4 @@
     content: attr(data-value) " ";
     visibility: hidden;
   }
-}
-
-.browserbaseLanguage {
-  height: 44px;
-  color: #fff;
-  font-family: var(--font-space-mono), monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  line-height: 44px;
-  text-transform: uppercase;
-}
-
-.browserbaseOutline {
-  position: absolute;
-  top: calc(var(--padding) + 10px);
-  left: calc(var(--padding) + 10px);
-  width: calc(100% - var(--padding) * 2);
-  height: calc(100% - var(--padding) * 2);
-  background-image: url("../assets/browserbase/diagonal-tile.png");
-  background-repeat: repeat;
-  background-size: 68px 68px;
-  opacity: 0.3;
 }

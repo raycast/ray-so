@@ -467,13 +467,23 @@ const BrowserbaseFrame = () => {
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && (
         <div className={styles.browserbaseBackground}>
-          <span className={styles.browserbaseBackgroundNoise} />
-          <span className={styles.browserbaseBackgroundDiagonal} />
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
         </div>
       )}
       <div className={styles.browserbaseWindow}>
-        <div className={styles.browserbaseHeader}>
-          <div className={styles.browserbaseFileName}>
+        <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
             <input
               type="text"
               value={fileName}
@@ -483,7 +493,7 @@ const BrowserbaseFrame = () => {
             />
             {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
           </div>
-          <span className={styles.browserbaseLanguage}>{selectedLanguage?.name}</span>
+          <div />
         </div>
         <Editor />
       </div>
