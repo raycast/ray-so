@@ -1435,7 +1435,7 @@
 .browserbaseWindow {
   position: relative;
   z-index: 1;
-  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
   background: #000000;
 }
 
@@ -1445,7 +1445,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
 }
 
 .browserbaseFrameLightMode {
@@ -1456,12 +1456,12 @@
   }
 
   .browserbaseWindow {
-    border-color: #000;
-    background: #fff;
+    border-color: rgba(0, 0, 0, 0.7);
+    background: #fff3f0;
   }
 
   .browserbaseHeader {
-    border-bottom-color: #000;
+    border-bottom-color: rgba(0, 0, 0, 0.7);
   }
 
   .browserbaseLanguage {
@@ -1552,5 +1552,5 @@
   background-image: url("../assets/browserbase/diagonal-tile.png");
   background-repeat: repeat;
   background-size: 68px 68px;
-  opacity: 0.5;
+  opacity: 0.3;
 }
