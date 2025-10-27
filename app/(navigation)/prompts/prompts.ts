@@ -625,6 +625,10 @@ const fun: Prompt[] = [
     creativity: "high",
     date: "2025-09-17",
     icon: "user",
+    author: {
+      name: "Matej Bačo",
+      link: "https://github.com/meldiron",
+    },
   },
 ];
 
