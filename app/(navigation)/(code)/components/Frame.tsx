@@ -445,6 +445,33 @@ const ResendFrame = () => {
   );
 };
 
+const NuxtFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.nuxtFrame,
+        !darkMode && styles.nuxtFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <img src="/stars.svg" alt="stars" className={styles.nuxtStars} />
+      <div className={styles.nuxtWindow}>
+        <span data-frameborder />
+        <span data-frameborder />
+        <span data-frameborder />
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -525,6 +552,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ElevenLabsFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
+      case THEMES.nuxt.id:
+        return <NuxtFrame />;
       default:
         return <DefaultFrame />;
     }

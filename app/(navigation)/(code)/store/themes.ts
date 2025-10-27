@@ -25,6 +25,8 @@ import ElevenLabsLogo from "../assets/elevenlabs.svg";
 import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
 import ResendLogoUrl from "../assets/resend.svg?url";
+import NuxtLogo from "../assets/nuxt.svg";
+import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -582,6 +584,59 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#a7a7a7",
         diffInserted: "#a7a7a7",
         diffDeleted: "#a7a7a7",
+      }),
+    },
+  },
+  nuxt: {
+    id: "nuxt",
+    name: "Nuxt",
+    background: {
+      from: "#292D3E",
+      to: "#292D3E",
+    },
+    icon: NuxtLogo,
+    iconUrl: `${BASE_URL}${NuxtLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#90A4AE",
+        constant: "#39ADB5",
+        string: "#91B859",
+        comment: "#90A4AE",
+        keyword: "#39ADB5",
+        parameter: "#90A4AE",
+        function: "#6182B8",
+        stringExpression: "#E53935",
+        punctuation: "#39ADB5",
+        link: "#80CBC4",
+        number: "#F76D47",
+        property: "#E53935",
+        highlight: "rgba(128, 203, 196, 0.25)",
+        highlightHover: "rgba(128, 203, 196, 0.15)",
+        highlightBorder: "#80CBC4",
+        diffInserted: "#91B859",
+        diffDeleted: "#E53935",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#babed8",
+        constant: "#BABED8",
+        string: "#C3E88D",
+        comment: "#676E95",
+        keyword: "#C793EA",
+        parameter: "#babed8",
+        function: "#82AAFF",
+        stringExpression: "#f07178",
+        punctuation: "#89DDFF",
+        link: "#80CBC4",
+        number: "#F78C6C",
+        property: "#f07178",
+        highlight: "rgba(113, 124, 180, 0.31)",
+        highlightHover: "rgba(113, 124, 180, 0.2)",
+        highlightBorder: "#80CBC4",
+        diffInserted: "#C3E88D",
+        diffDeleted: "#f07178",
       }),
     },
   },
