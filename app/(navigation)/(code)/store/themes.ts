@@ -15,6 +15,8 @@ import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
+import McpUseLogo from "../assets/mcp-use.svg";
+import McpUseLogoUrl from "../assets/mcp-use.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
 import PrismaLogo from "../assets/prisma.svg";
@@ -104,6 +106,51 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  mcpuse: {
+    id: "mcpuse",
+    name: "mcp-use",
+    icon: McpUseLogo,
+    iconUrl: `${BASE_URL}${McpUseLogoUrl.src}`,
+    partner: true,
+    background: {
+      from: "#B1B1B1",
+      to: "#181818",
+    },
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#111111",
+        constant: "#666666",
+        parameter: "#666666",
+        stringExpression: "#666666",
+        keyword: "#666666",
+        function: "#111111",
+        punctuation: "#666666",
+        string: "#666666",
+        comment: "#999999",
+        link: "#666666",
+        number: "#111111",
+        property: "#666666",
+        diffInserted: "#666666",
+        diffDeleted: "#666666",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#a7a7a7",
+        parameter: "#a7a7a7",
+        stringExpression: "#a7a7a7",
+        keyword: "#a7a7a7",
+        function: "#ffffff",
+        punctuation: "#a7a7a7",
+        string: "#a7a7a7",
+        comment: "#666666",
+        link: "#a7a7a7",
+        number: "#ffffff",
+        property: "#a7a7a7",
+        diffInserted: "#a7a7a7",
+        diffDeleted: "#a7a7a7",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",
@@ -355,14 +402,14 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#4aab15",
         number: "#4aab15",
         property: "#4aab15",
-        highlight: "#dfbe5b3a",
-        highlightHover: "#dfbe5b1b",
+        highlight: "rgba(223, 190, 91, 0.23)",
+        highlightHover: "rgba(223, 190, 91, 0.11)",
         highlightBorder: "#e8bc39",
         diffInserted: "#0d9373",
         diffDeleted: "#DC2625",
       }),
       dark: convertToShikiTheme({
-        foreground: "#F3F7F6",
+        foreground: "#000000",
         constant: "#4ec9b0",
         string: "#F3F7F6",
         comment: "#707070",
@@ -374,8 +421,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#b5cea8",
         number: "#b5cea8",
         property: "#b5cea8",
-        highlight: "rgb(131 114 55 / 30%)",
-        highlightHover: "rgb(131 114 55 / 15%)",
+        highlight: "rgba(131, 114, 55, 0.3)",
+        highlightHover: "rgba(131, 114, 55, 0.15)",
         highlightBorder: "#f7d87c",
         diffInserted: "#4ec9b0",
         diffDeleted: "#E17271",

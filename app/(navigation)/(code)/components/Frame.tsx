@@ -20,6 +20,9 @@ import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
 import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
+import mcpuseGradientDark from "../assets/mcp-use-gradient-dark.svg?url";
+import mcpuseGradientLight from "../assets/mcp-use-gradient-light.svg?url";
+import McpUseLogo from "../assets/mcp-use.svg";
 import { flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
@@ -445,6 +448,82 @@ const ResendFrame = () => {
   );
 };
 
+const McpUseFrame = () => {
+  const [padding] = useAtom(paddingAtom);
+  const isSafari = useIsSafari();
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [themeBackground] = useAtom(themeBackgroundAtom);
+  const [theme] = useAtom(themeAtom);
+  const darkMode = useAtomValue(darkModeAtom);
+
+  const randomEmoji = React.useMemo(() => {
+    // Unicode ranges for various emoji blocks
+    const emojiRanges = [
+      [0x1f600, 0x1f64f], // Emoticons
+      [0x1f300, 0x1f5ff], // Misc Symbols and Pictographs
+      [0x1f680, 0x1f6ff], // Transport and Map
+      [0x1f900, 0x1f9ff], // Supplemental Symbols and Pictographs
+      [0x2600, 0x26ff], // Misc symbols
+      [0x2700, 0x27bf], // Dingbats
+    ];
+
+    const range = emojiRanges[Math.floor(Math.random() * emojiRanges.length)];
+    const codePoint = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+    return String.fromCodePoint(codePoint);
+  }, []);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles[theme.id],
+        darkMode && styles.darkMode,
+        showBackground && styles.withBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <img
+          src={darkMode ? mcpuseGradientDark.src : mcpuseGradientLight.src}
+          alt=""
+          className={styles.mcpuseBackgroundImage}
+        />
+      )}
+      <div
+        className={classNames(styles.window, {
+          [styles.withBorder]: !isSafari,
+          [styles.withShadow]: !isSafari && showBackground,
+        })}
+      >
+        <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+        </div>
+        <Editor />
+        <div className={styles.mcpuseFooter}>
+          <span>Made with {randomEmoji} by mcp-use</span>
+          <McpUseLogo className={styles.mcpuseFooterLogo} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -525,6 +604,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ElevenLabsFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
+      case THEMES.mcpuse.id:
+        return <McpUseFrame />;
       default:
         return <DefaultFrame />;
     }
