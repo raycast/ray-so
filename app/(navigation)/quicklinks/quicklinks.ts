@@ -165,6 +165,11 @@ const development: Quicklink[] = [
     link: "https://www.npmjs.com/search?q={Query}",
   },
   {
+    id: "pypi",
+    name: "Search PyPI",
+    link: "https://pypi.org/search/?q={Query}",
+  },
+  {
     id: "packagist",
     name: "Search Packagist",
     link: "https://packagist.org/?query={Query}",
