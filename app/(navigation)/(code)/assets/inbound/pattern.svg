@@ -1,0 +1,50 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="mask0_inbound" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+    <path d="M64 0H0V64H64V0Z" fill="white"/>
+  </mask>
+  <g mask="url(#mask0_inbound)">
+    <!-- Hexagonal grid pattern -->
+    <g stroke="#6C47FF" stroke-width="0.5" fill="none" opacity="0.3">
+      <!-- Row 1 -->
+      <polygon points="16,8 24,4 32,8 32,16 24,20 16,16"/>
+      <polygon points="32,8 40,4 48,8 48,16 40,20 32,16"/>
+      <polygon points="48,8 56,4 64,8 64,16 56,20 48,16"/>
+      
+      <!-- Row 2 -->
+      <polygon points="8,20 16,16 24,20 24,28 16,32 8,28"/>
+      <polygon points="24,20 32,16 40,20 40,28 32,32 24,28"/>
+      <polygon points="40,20 48,16 56,20 56,28 48,32 40,28"/>
+      <polygon points="56,20 64,16 72,20 72,28 64,32 56,28"/>
+      
+      <!-- Row 3 -->
+      <polygon points="16,32 24,28 32,32 32,40 24,44 16,40"/>
+      <polygon points="32,32 40,28 48,32 48,40 40,44 32,40"/>
+      <polygon points="48,32 56,28 64,32 64,40 56,44 48,40"/>
+      
+      <!-- Row 4 -->
+      <polygon points="8,44 16,40 24,44 24,52 16,56 8,52"/>
+      <polygon points="24,44 32,40 40,44 40,52 32,56 24,52"/>
+      <polygon points="40,44 48,40 56,44 56,52 48,56 40,52"/>
+      <polygon points="56,44 64,40 72,44 72,52 64,56 56,52"/>
+      
+      <!-- Row 5 -->
+      <polygon points="16,56 24,52 32,56 32,64 24,68 16,64"/>
+      <polygon points="32,56 40,52 48,56 48,64 40,68 32,64"/>
+      <polygon points="48,56 56,52 64,56 64,64 56,68 48,64"/>
+    </g>
+    
+    <!-- Accent dots at intersections -->
+    <g fill="#A18AFF" opacity="0.6">
+      <circle cx="24" cy="12" r="1"/>
+      <circle cx="40" cy="12" r="1"/>
+      <circle cx="16" cy="24" r="1"/>
+      <circle cx="32" cy="24" r="1"/>
+      <circle cx="48" cy="24" r="1"/>
+      <circle cx="24" cy="36" r="1"/>
+      <circle cx="40" cy="36" r="1"/>
+      <circle cx="16" cy="48" r="1"/>
+      <circle cx="32" cy="48" r="1"/>
+      <circle cx="48" cy="48" r="1"/>
+    </g>
+  </g>
+</svg>
