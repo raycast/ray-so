@@ -445,6 +445,48 @@ const ResendFrame = () => {
   );
 };
 
+const CloudflareFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.cloudflareFrame,
+        !darkMode && styles.cloudflareFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.cloudflareWindow}>
+        <span className={styles.cloudflareGridlinesHorizontal} data-grid></span>
+        <span className={styles.cloudflareGridlinesVertical} data-grid></span>
+        {fileName.length > 0 && (
+          <div className={styles.cloudflareHeader}>
+            <div className={classNames(styles.fileName, styles.cloudflareFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+            <span className={styles.cloudflareLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        )}
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -525,6 +567,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ElevenLabsFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
+      case THEMES.cloudflare.id:
+        return <CloudflareFrame />;
       default:
         return <DefaultFrame />;
     }
