@@ -59,9 +59,22 @@ export function copyUrl(quicklinks: Quicklink[]) {
   copy(makeUrl(quicklinks));
 }
 
-export async function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
+export async function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[], isTouch?: boolean) {
   const raycastProtocol = await getRaycastFlavor();
-  router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
+  const queryString = makeQueryString(quicklinks, true);
+
+  // For mobile, always use the standard 'raycast' scheme since iOS apps
+  // are typically registered for 'raycast://' not 'raycastinternal://'
+  const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+  const url = `${protocolToUse}://quicklinks/import?${queryString}`;
+
+  // For mobile, use window.location.href directly as it's more reliable
+  if (isTouch) {
+    window.location.href = url;
+  } else {
+    // For desktop, use router.replace
+    router.replace(url);
+  }
 }
 
 export async function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
