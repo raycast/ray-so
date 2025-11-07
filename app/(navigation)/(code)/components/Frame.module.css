@@ -1396,18 +1396,21 @@
   position: relative;
   background: #0b0c11;
 
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 220, 130, 0.15), transparent 70%);
-    content: "";
-    filter: blur(60px);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+  &.noBackground {
+    background: transparent;
+
+    .nuxtStars {
+      display: none;
+    }
+
+    .nuxtWindow {
+      --nuxt-background: rgba(11, 12, 17, 0.95);
+
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
   }
 }
 
@@ -1529,26 +1532,72 @@
 
   --line-number: #8b949e;
   --line-number-opacity: 1;
-}
 
-.nuxtFrameLightMode {
-  background: linear-gradient(var(--gradient-angle), #fafafa 0%, #e8f5e9 100%);
+  :global(.highlighted-line) {
+    background-color: rgba(25, 30, 35, 0.7) !important;
 
-  &.noBackground {
-    .nuxtWindow {
-      --nuxt-background: rgba(250, 250, 250, 0.95);
+    &:after {
+      display: none !important;
     }
   }
 
+  &:has(:global(.highlighted-line)) {
+    :global(.line):not(:global(.highlighted-line)) {
+      opacity: 0.35;
+    }
+  }
+}
+
+.nuxtFrameLightMode {
+  background: linear-gradient(var(--gradient-angle), #f8faf9 0%, #f0f9f4 100%);
+
+  &.noBackground {
+    background: transparent;
+
+    &:before {
+      display: none;
+    }
+
+    .nuxtStars {
+      display: none;
+    }
+
+    .nuxtWindow {
+      --nuxt-background: rgba(248, 250, 249, 0.95);
+    }
+  }
+
+  &:before {
+    background: radial-gradient(circle, rgba(0, 220, 130, 0.06), transparent 70%);
+  }
+
+  .nuxtStars {
+    opacity: 0.03;
+  }
+
   .nuxtWindow {
-    --nuxt-background: #fafafa;
-    --nuxt-border-gradient: linear-gradient(var(--gradient-angle), #80cbc4, #00dc82);
-    --line-number: #cfd8dc;
+    --nuxt-background: transparent;
+    --nuxt-border-gradient: linear-gradient(var(--gradient-angle), #3da896, #00dc82);
+    --line-number: #78909c;
     --line-number-opacity: 1;
 
     &:before,
     &:after {
       display: none;
+    }
+  }
+
+  :global(.highlighted-line) {
+    background-color: rgba(224, 242, 232, 0.9) !important;
+
+    &:after {
+      display: none !important;
+    }
+  }
+
+  &:has(:global(.highlighted-line)) {
+    :global(.line):not(:global(.highlighted-line)) {
+      opacity: 0.4;
     }
   }
 }
