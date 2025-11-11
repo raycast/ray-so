@@ -1,9 +1,8 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import { Theme } from "@themes/lib/theme";
 import { useRaycastTheme } from "@themes/components/raycast-theme-provider";
 import { ChevronLeftIcon, ChevronRightIcon } from "@raycast/icons";
-import useHotkeys from "@/utils/useHotkeys";
 
 export function ThemeNavigation({ themes }: { themes: Theme[] }) {
   const { activeTheme, setActiveTheme } = useRaycastTheme();
@@ -21,20 +20,31 @@ export function ThemeNavigation({ themes }: { themes: Theme[] }) {
   const previousDarkTheme = darkThemes[activeDarkThemeIndex - 1];
   const nextDarkTheme = darkThemes[activeDarkThemeIndex + 1];
 
-  // Navigate to previous theme (wraps to last if at beginning)
-  const handlePreviousTheme = useCallback(() => {
-    if (
-      document.activeElement?.closest('[role="menubar"]') ||
-      document.activeElement?.closest("[data-radix-menubar-content]")
-    ) {
-      return;
-    }
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        document.activeElement?.closest('[role="menubar"]') ||
+        document.activeElement?.closest("[data-radix-menubar-content]")
+      ) {
+        return;
+      }
 
-    if (isDarkThemeActive) {
-      setActiveTheme(previousDarkTheme || darkThemes[darkThemes.length - 1]);
-    } else {
-      setActiveTheme(previousLightTheme || lightThemes[lightThemes.length - 1]);
-    }
+      if (event.key === "ArrowLeft") {
+        setActiveTheme(isDarkThemeActive ? previousDarkTheme || darkThemes[0] : previousLightTheme || lightThemes[0]);
+      } else if (event.key === "ArrowRight") {
+        setActiveTheme(
+          isDarkThemeActive
+            ? nextDarkTheme || darkThemes[darkThemes.length - 1]
+            : nextLightTheme || lightThemes[lightThemes.length - 1]
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [
     isDarkThemeActive,
     setActiveTheme,
@@ -42,40 +52,35 @@ export function ThemeNavigation({ themes }: { themes: Theme[] }) {
     darkThemes,
     previousLightTheme,
     lightThemes,
+    nextDarkTheme,
+    nextLightTheme,
   ]);
-
-  // Navigate to next theme (wraps to first if at end)
-  const handleNextTheme = useCallback(() => {
-    if (
-      document.activeElement?.closest('[role="menubar"]') ||
-      document.activeElement?.closest("[data-radix-menubar-content]")
-    ) {
-      return;
-    }
-
-    if (isDarkThemeActive) {
-      setActiveTheme(nextDarkTheme || darkThemes[0]);
-    } else {
-      setActiveTheme(nextLightTheme || lightThemes[0]);
-    }
-  }, [isDarkThemeActive, setActiveTheme, nextDarkTheme, darkThemes, nextLightTheme, lightThemes]);
-
-  useHotkeys("left", handlePreviousTheme);
-  useHotkeys("right", handleNextTheme);
 
   return (
     <span className="inline-flex items-center text-base font-medium shadow-[0px_0px_29px_10px_rgba(0,0,0,0.06)] dark:shadow-[0px_0px_29px_10px_rgba(255,255,255,.06)] rounded-md">
       <Button
         disabled={isDarkThemeActive ? !previousDarkTheme : !previousLightTheme}
         className={`rounded-tl-md rounded-bl-md`}
-        onClick={handlePreviousTheme}
+        onClick={() => {
+          if (activeTheme?.appearance === "dark") {
+            setActiveTheme(previousDarkTheme || darkThemes[0]);
+          } else {
+            setActiveTheme(previousLightTheme || lightThemes[0]);
+          }
+        }}
       >
         <ChevronLeftIcon />
       </Button>
       <Button
         disabled={isDarkThemeActive ? !nextDarkTheme : !nextLightTheme}
         className="ml-[-1px] rounded-tr-md rounded-br-md"
-        onClick={handleNextTheme}
+        onClick={() => {
+          if (activeTheme?.appearance === "dark") {
+            setActiveTheme(nextDarkTheme || darkThemes[darkThemes.length - 1]);
+          } else {
+            setActiveTheme(nextLightTheme || lightThemes[lightThemes.length - 1]);
+          }
+        }}
       >
         <ChevronRightIcon />
       </Button>

@@ -39,13 +39,42 @@ const ThemeControl: React.FC = () => {
     }
   }, [currentTheme, setPadding]);
 
+  // Get available themes (filtered by unlocked/hidden status)
+  const availableThemes = React.useMemo(
+    () => Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden),
+    [unlockedThemes],
+  );
+
+  // Cycle forward through themes (C key)
   useHotkeys("c", () => {
-    const availableThemes = Object.values(THEMES).filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden);
     const currentIndex = availableThemes.indexOf(currentTheme);
-    if (Object.values(availableThemes)[currentIndex + 1]) {
-      setTheme(Object.values(availableThemes)[currentIndex + 1]);
+    const nextIndex = currentIndex + 1;
+    if (availableThemes[nextIndex]) {
+      setTheme(availableThemes[nextIndex]);
     } else {
-      setTheme(Object.values(availableThemes)[0]);
+      setTheme(availableThemes[0]);
+    }
+  });
+
+  // Cycle to previous theme (Left Arrow)
+  useHotkeys("left", () => {
+    const currentIndex = availableThemes.indexOf(currentTheme);
+    const previousIndex = currentIndex - 1;
+    if (previousIndex >= 0) {
+      setTheme(availableThemes[previousIndex]);
+    } else {
+      setTheme(availableThemes[availableThemes.length - 1]);
+    }
+  });
+
+  // Cycle to next theme (Right Arrow)
+  useHotkeys("right", () => {
+    const currentIndex = availableThemes.indexOf(currentTheme);
+    const nextIndex = currentIndex + 1;
+    if (availableThemes[nextIndex]) {
+      setTheme(availableThemes[nextIndex]);
+    } else {
+      setTheme(availableThemes[0]);
     }
   });
 

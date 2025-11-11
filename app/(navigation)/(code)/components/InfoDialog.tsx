@@ -65,6 +65,8 @@ export function InfoDialog() {
               <Shortcut keys={["F"]}>Focus text editor</Shortcut>
               <Shortcut keys={["Esc"]}>Unfocus text editor</Shortcut>
               <Shortcut keys={["C"]}>Change colors</Shortcut>
+              <Shortcut keys={["←"]}>Previous theme</Shortcut>
+              <Shortcut keys={["→"]}>Next theme</Shortcut>
               <Shortcut keys={["B"]}>Toggle background</Shortcut>
               <Shortcut keys={["D"]}>Toggle dark mode</Shortcut>
               <Shortcut keys={["N"]}>Toggle line numbers</Shortcut>
