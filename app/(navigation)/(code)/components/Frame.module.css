@@ -1501,7 +1501,7 @@
   }
 
   .browserbaseWindow {
-    border-color: rgba(0, 0, 0, 0.7);
+    border-color: rgba(0, 0, 0, 0.3);
     background: hsla(240, 0%, 100%);
   }
 
