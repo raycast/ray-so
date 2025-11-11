@@ -1434,27 +1434,6 @@
   }
 }
 
-.browserbaseBackgroundNoise {
-  position: absolute;
-  background-image: url("../assets/browserbase/noise-tile.png");
-  background-repeat: repeat;
-  background-size: 56px 56px;
-  content: "";
-  inset: 0;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.browserbaseBackgroundDiagonal {
-  position: absolute;
-  background-image: url("../assets/browserbase/diagonal-tile.png");
-  background-repeat: repeat;
-  background-size: 68px 68px;
-  content: "";
-  inset: 0;
-  pointer-events: none;
-}
-
 .browserbaseBackground {
   position: absolute;
   z-index: 0;
