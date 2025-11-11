@@ -1583,5 +1583,217 @@
   &:after {
     content: attr(data-value) " ";
     visibility: hidden;
+    /* Nuxt Frame */
+
+    .nuxtFrame {
+      --gradient-angle: 140deg;
+      position: relative;
+      background: #0b0c11;
+
+      &.noBackground {
+        background: transparent;
+
+        .nuxtStars {
+          display: none;
+        }
+
+        .nuxtWindow {
+          --nuxt-background: rgba(11, 12, 17, 0.95);
+
+          &:before,
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .nuxtStars {
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .nuxtWindow {
+      position: relative;
+      z-index: 1;
+      overflow: visible;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background-color: var(--nuxt-background);
+      --radius: 10px;
+      --nuxt-background: #0b0c11;
+      --nuxt-border-gradient: linear-gradient(var(--gradient-angle), #00dc82, #00a86b);
+
+      &:before {
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 250px;
+        height: 180px;
+        background: radial-gradient(ellipse, rgba(0, 220, 130, 0.6), transparent 70%);
+        content: "";
+        filter: blur(60px);
+        pointer-events: none;
+      }
+
+      &:after {
+        position: absolute;
+        right: -200px;
+        bottom: -200px;
+        width: 250px;
+        height: 180px;
+        background: radial-gradient(ellipse, rgba(0, 220, 130, 0.6), transparent 70%);
+        content: "";
+        filter: blur(60px);
+        pointer-events: none;
+      }
+
+      [data-frameborder] {
+        position: absolute;
+        border-radius: var(--radius);
+        pointer-events: none;
+
+        &:before {
+          position: absolute;
+          padding: 1px;
+          border-radius: inherit;
+          background: linear-gradient(
+            135deg,
+            #00dc82 0%,
+            #00dc82 8%,
+            transparent 20%,
+            transparent 80%,
+            #00dc82 92%,
+            #00dc82 100%
+          );
+          content: "";
+          inset: 0;
+          -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+
+        &:nth-of-type(1) {
+          border-radius: var(--radius);
+          inset: -1px;
+        }
+
+        &:nth-of-type(2) {
+          border-radius: calc(var(--radius) + 8px);
+          inset: -8px;
+          &:before {
+            background: linear-gradient(
+              135deg,
+              #00dc82 0%,
+              #00dc82 10%,
+              transparent 26%,
+              transparent 74%,
+              #00dc82 90%,
+              #00dc82 100%
+            );
+            opacity: 0.5;
+          }
+        }
+
+        &:nth-of-type(3) {
+          border-radius: calc(var(--radius) + 15px);
+          inset: -14px;
+          &:before {
+            background: linear-gradient(
+              135deg,
+              #00dc82 0%,
+              #00dc82 12%,
+              transparent 28%,
+              transparent 72%,
+              #00dc82 88%,
+              #00dc82 100%
+            );
+            opacity: 0.25;
+          }
+        }
+      }
+
+      --line-number: #8b949e;
+      --line-number-opacity: 1;
+
+      :global(.highlighted-line) {
+        background-color: rgba(25, 30, 35, 0.7) !important;
+
+        &:after {
+          display: none !important;
+        }
+      }
+
+      &:has(:global(.highlighted-line)) {
+        :global(.line):not(:global(.highlighted-line)) {
+          opacity: 0.35;
+        }
+      }
+    }
+
+    .nuxtFrameLightMode {
+      background: linear-gradient(var(--gradient-angle), #f8faf9 0%, #f0f9f4 100%);
+
+      &.noBackground {
+        background: transparent;
+
+        &:before {
+          display: none;
+        }
+
+        .nuxtStars {
+          display: none;
+        }
+
+        .nuxtWindow {
+          --nuxt-background: rgba(248, 250, 249, 0.95);
+        }
+      }
+
+      &:before {
+        background: radial-gradient(circle, rgba(0, 220, 130, 0.06), transparent 70%);
+      }
+
+      .nuxtStars {
+        opacity: 0.03;
+      }
+
+      .nuxtWindow {
+        --nuxt-background: transparent;
+        --nuxt-border-gradient: linear-gradient(var(--gradient-angle), #3da896, #00dc82);
+        --line-number: #78909c;
+        --line-number-opacity: 1;
+
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+
+      :global(.highlighted-line) {
+        background-color: rgba(224, 242, 232, 0.9) !important;
+
+        &:after {
+          display: none !important;
+        }
+      }
+
+      &:has(:global(.highlighted-line)) {
+        :global(.line):not(:global(.highlighted-line)) {
+          opacity: 0.4;
+        }
+      }
+    }
   }
 }
