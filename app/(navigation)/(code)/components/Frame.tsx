@@ -472,6 +472,61 @@ const NuxtFrame = () => {
   );
 };
 
+const BrowserbaseFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.browserbaseFrame,
+        !darkMode && styles.browserbaseFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <div className={styles.browserbaseBackground}>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+          <div className={styles.browserbaseBackgroundGridline}></div>
+        </div>
+      )}
+      <div className={styles.browserbaseWindow}>
+        <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+          <div />
+        </div>
+        <Editor />
+      </div>
+      <div className={styles.browserbaseOutline} style={{ "--padding": `${padding}px` } as React.CSSProperties}></div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -552,6 +607,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ElevenLabsFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
+      case THEMES.browserbase.id:
+        return <BrowserbaseFrame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
       default:

@@ -25,6 +25,8 @@ import ElevenLabsLogo from "../assets/elevenlabs.svg";
 import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
 import ResendLogoUrl from "../assets/resend.svg?url";
+import BrowserbaseLogo from "../assets/browserbase.svg";
+import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import { showLineNumbersAtom } from ".";
@@ -679,6 +681,59 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#80CBC4",
         diffInserted: "#C3E88D",
         diffDeleted: "#f07178",
+      }),
+    },
+  },
+  browserbase: {
+    id: "browserbase",
+    name: "Browserbase",
+    background: {
+      from: "#FF4500",
+      to: "#000000",
+    },
+    icon: BrowserbaseLogo,
+    iconUrl: `${BASE_URL}${BrowserbaseLogoUrl.src}`,
+    partner: true,
+    font: "space-mono",
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#000",
+        constant: "#FF4500",
+        string: "#FF6B35",
+        comment: "#6B7280",
+        keyword: "#FF4500",
+        parameter: "#FF4500",
+        function: "#000000",
+        stringExpression: "hsla(42.948, 100%, 61.838%)",
+        punctuation: "#374151",
+        link: "#FF4500",
+        number: "#FF4500",
+        property: "#FF4500",
+        highlight: "rgba(255, 69, 0, 0.1)",
+        highlightBorder: "#FF4500",
+        highlightHover: "rgba(255, 69, 0, 0.05)",
+        diffInserted: "#10B981",
+        diffDeleted: "#EF4444",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#FF6B35",
+        string: "#FFB800",
+        comment: "#6B7280",
+        keyword: "#FF4500",
+        parameter: "#FF6B35",
+        function: "#FFFFFF",
+        stringExpression: "#FFB800",
+        punctuation: "#D1D5DB",
+        link: "#FF6B35",
+        number: "#FF6B35",
+        property: "#FF6B35",
+        highlight: "rgba(255, 107, 53, 0.15)",
+        highlightBorder: "#FF6B35",
+        highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
       }),
     },
   },

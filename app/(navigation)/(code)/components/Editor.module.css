@@ -168,3 +168,8 @@
   font-family: var(--font-commitmono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
+
+.spaceMono {
+  font-family: var(--font-space-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-weight: 400;
+}
