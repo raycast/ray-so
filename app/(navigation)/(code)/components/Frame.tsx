@@ -20,8 +20,6 @@ import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
 import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
-import browserbaseNoiseTile from "../assets/browserbase/noise-tile.webp";
-import browserBaseDiagonalTile from "../assets/browserbase/diagonal-tile.webp";
 import { flashShownAtom } from "../store/flash";
 
 const VercelFrame = () => {
