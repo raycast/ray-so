@@ -123,7 +123,7 @@ const fontMap = {
   "ibm-plex-mono": styles.ibmPlexMono,
   "fira-code": styles.firaCode,
   "soehne-mono": styles.soehneMono,
-  "roboto-mono": styles.jetBrainsMono, // Fallback to jetBrainsMono
+  "roboto-mono": styles.robotoMono,
   "commit-mono": styles.commitMono,
   "space-mono": styles.spaceMono,
 } as const;
