@@ -950,6 +950,15 @@
     --background: hsl(193, 72%, 96%, 0.5);
     --frame-border-gradient: linear-gradient(var(--gradient-angle), #6164cc, #31baaf);
   }
+
+  .prismaHeader {
+    border-color: #dfdfdf;
+    background: hsla(192, 72%, 96%, 0.9);
+  }
+
+  .prismaFileName {
+    color: #16a394;
+  }
 }
 
 /* Mintlify Frame */
