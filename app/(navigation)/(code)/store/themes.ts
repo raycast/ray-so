@@ -233,8 +233,8 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#525252",
         number: "#525252",
         property: "#15593b",
-        highlight: "#1c1c1c",
-        highlightHover: "#1c1c1c",
+        highlight: "oklch(0.88 0.22 153.28 / 0.12)",
+        highlightHover: "oklch(0.88 0.22 153.28 / 0.06)",
         highlightBorder: "#009a55",
       }),
       dark: convertToShikiTheme({
