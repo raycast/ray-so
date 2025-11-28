@@ -396,7 +396,7 @@ export const THEMES: { [index: string]: Theme } = {
     icon: PrismaLogo,
     iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
     partner: true,
-    lineNumbers: true,
+    lineNumbers: false,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#1A202C",
