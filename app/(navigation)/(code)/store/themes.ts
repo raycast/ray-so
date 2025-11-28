@@ -29,6 +29,8 @@ import BrowserbaseLogo from "../assets/browserbase.svg";
 import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
+import StripeLogo from "../assets/stripe/logo.svg";
+import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -55,6 +57,7 @@ type ShikiSyntaxObject = {
   link?: string;
   number?: string;
   property?: string;
+  objectLiteral?: string;
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
@@ -85,6 +88,7 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-highlight-hover": syntaxObject.highlightHover,
     "--ray-token-diff-deleted": syntaxObject.diffDeleted,
     "--ray-token-diff-inserted": syntaxObject.diffInserted,
+    "--ray-token-object-literal": syntaxObject.objectLiteral,
   } as CSSProperties;
 }
 
@@ -101,10 +105,7 @@ export type Theme = {
   partner?: boolean;
   hidden?: boolean;
   lineNumbers?: boolean;
-  syntax: {
-    light: CSSProperties;
-    dark: CSSProperties;
-  };
+  syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
 };
 
 export const THEMES: { [index: string]: Theme } = {
@@ -729,6 +730,41 @@ export const THEMES: { [index: string]: Theme } = {
         link: "#FF6B35",
         number: "#FF6B35",
         property: "#FF6B35",
+        highlight: "rgba(255, 107, 53, 0.15)",
+        highlightBorder: "#FF6B35",
+        highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
+      }),
+    },
+  },
+  stripe: {
+    id: "stripe",
+    name: "Stripe",
+    background: {
+      from: "#0a2540",
+      to: "#0a2540",
+    },
+    icon: StripeLogo,
+    iconUrl: `${BASE_URL}${StripeLogoUrl.src}`,
+    partner: true,
+    font: "source-code-pro",
+    lineNumbers: true,
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#FFFFFF",
+        string: "#ffa956",
+        comment: "#a9bcce",
+        keyword: "#8095ff",
+        parameter: "#FF6B35",
+        function: "#00d4ff",
+        stringExpression: "#ffa956",
+        punctuation: "#FFFFFF",
+        link: "#ffa956",
+        number: "#ffa956",
+        property: "#1abdc0",
+        objectLiteral: "#1abdc0",
         highlight: "rgba(255, 107, 53, 0.15)",
         highlightBorder: "#FF6B35",
         highlightHover: "rgba(255, 107, 53, 0.08)",
@@ -1388,7 +1424,26 @@ const themeAtom = atomWithHash<Theme>(
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 
-const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
+const themeDarkModeAtom = atom<boolean>((get) => {
+  const theme = get(themeAtom);
+  const hasLight = !!theme.syntax.light;
+  const hasDark = !!theme.syntax.dark;
+
+  // If theme only has dark mode, force dark
+  if (hasDark && !hasLight) return true;
+
+  // If theme only has light mode, force light
+  if (hasLight && !hasDark) return false;
+
+  // If theme has both, use user preference
+  return get(darkModeAtom);
+});
+
+const themeCSSAtom = atom<CSSProperties>((get) => {
+  const isDark = get(themeDarkModeAtom);
+  const syntax = get(themeAtom).syntax;
+  return (isDark ? syntax.dark : syntax.light) || syntax.light || syntax.dark || {};
+});
 
 const themeBackgroundAtom = atom<string>((get) => {
   const { from, to } = get(themeAtom).background;
@@ -1409,6 +1464,7 @@ export {
   themeAtom,
   themeBackgroundAtom,
   themeCSSAtom,
+  themeDarkModeAtom,
   themeFontAtom,
   themeLineNumbersAtom,
   unlockedThemesAtom,

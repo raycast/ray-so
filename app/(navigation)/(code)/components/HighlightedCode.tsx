@@ -5,7 +5,7 @@ import { Language, LANGUAGES } from "../util/languages";
 import styles from "./Editor.module.css";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { darkModeAtom, themeAtom } from "../store/themes";
+import { themeDarkModeAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -17,7 +17,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const highlightedLines = useAtomValue(highlightedLinesAtom);
-  const darkMode = useAtomValue(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const theme = useAtomValue(themeAtom);
   const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
 
