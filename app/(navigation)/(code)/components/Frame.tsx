@@ -276,6 +276,7 @@ const PrismaFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
 
   return (
     <div
@@ -293,6 +294,29 @@ const PrismaFrame = () => {
         <span data-frameborder />
         <span data-frameborder />
         <span data-frameborder />
+        <div
+          className={styles.prismaHeader}
+          style={{
+            backgroundColor: !darkMode ? "transparent" : undefined,
+            border: !darkMode ? "none" : undefined,
+          }}
+        >
+          <div
+            className={classNames(styles.fileName, styles.prismaFileName)}
+            data-value={fileName}
+            style={{ color: !darkMode ? "#16A394" : undefined }}
+          >
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+        </div>
         <Editor />
       </div>
     </div>
