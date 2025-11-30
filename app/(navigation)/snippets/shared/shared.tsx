@@ -126,7 +126,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
     setCopied(true);
   }, [makeSnippetImportData]);
 
-  const handleAddToRaycast = React.useCallback(() => {
+  const handleAddToRaycast = React.useCallback(async () => {
     const queryString = selectedSnippets
       .map((snippet) => {
         const { name, text, type } = snippet;
@@ -134,8 +134,20 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
         return `snippet=${encodeURIComponent(JSON.stringify({ name, text, keyword, type }))}`;
       })
       .join("&");
-    return router.replace(`${raycastProtocol}://snippets/import?${queryString}`);
-  }, [router, selectedSnippets]);
+
+    // For mobile, always use the standard 'raycast' scheme since iOS apps
+    // are typically registered for 'raycast://' not 'raycastinternal://'
+    const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+    const url = `${protocolToUse}://snippets/import?${queryString}`;
+
+    // For mobile, use window.location.href directly as it's more reliable
+    if (isTouch) {
+      window.location.href = url;
+    } else {
+      // For desktop, use router.replace
+      router.replace(url);
+    }
+  }, [router, selectedSnippets, isTouch, raycastProtocol]);
 
   React.useEffect(() => {
     const down = (event: KeyboardEvent) => {
@@ -298,6 +310,24 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedSnippets.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleDownload}>
+            <DownloadIcon />
+            Download
+          </button>
+        </div>
+      )}
     </div>
   );
 }
