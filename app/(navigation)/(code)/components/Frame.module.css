@@ -126,6 +126,110 @@
   }
 }
 
+/* Firecrawl Theme Frame */
+
+.firecrawlFrame {
+  --background: black;
+  --grid-color: #1a1a1a;
+
+  background: var(--background);
+}
+
+.firecrawlFrameLightMode {
+  --background: white;
+  --grid-color: #ededed;
+}
+
+.firecrawlWindow {
+  position: relative;
+  padding-bottom: 80px;
+
+  background-image: url("../assets/firecrawl/heat.png");
+  background-position: bottom 10px left;
+  background-repeat: no-repeat;
+  background-size: 800px;
+}
+
+.firecrawlGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: var(--grid-color);
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.firecrawlGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: var(--grid-color);
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.firecrawlStarTopLeft,
+.firecrawlStarTopRight,
+.firecrawlStarBottomLeft,
+.firecrawlStarBottomRight {
+  --width: 18px;
+  --offset: calc(calc(var(--width) / 2 - 1px) * -1);
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  display: flex;
+  width: var(--width);
+  height: var(--width);
+  align-items: center;
+  justify-content: center;
+  color: var(--grid-color);
+}
+
+.firecrawlStarTopRight {
+  right: var(--offset);
+  left: auto;
+}
+
+.firecrawlStarBottomRight {
+  top: auto;
+  right: var(--offset);
+  bottom: var(--offset);
+  left: auto;
+}
+
+.firecrawlStarBottomLeft {
+  top: auto;
+  bottom: var(--offset);
+  left: var(--offset);
+}
+
+.firecrawlBracketRight {
+  top: auto;
+  right: var(--offset);
+  bottom: var(--offset);
+  left: auto;
+}
+
 /* Vercel Theme Frame */
 
 .vercelFrame {

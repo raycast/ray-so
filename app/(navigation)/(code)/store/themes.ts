@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import FirecrawlLogo from "../assets/firecrawl/logo.svg";
+import FirecrawlLogoUrl from "../assets/firecrawl/logo.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -108,6 +110,58 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  firecrawl: {
+    id: "firecrawl",
+    name: "Firecrawl",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: FirecrawlLogo,
+    iconUrl: `${BASE_URL}${FirecrawlLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "hsla(0, 0%, 9%,1)",
+        constant: "hsla(26.433, 82.533%, 50.131%)",
+        string: "hsla(26.433, 82.533%, 50.131%)",
+        comment: "hsla(180, 0%, 45.776%)",
+        keyword: "hsla(180, 0%, 45.776%)",
+        parameter: "hsla(26.433, 82.533%, 50.131%)",
+        function: "hsla(26.433, 82.533%, 50.131%)",
+        stringExpression: "hsla(26.433, 82.533%, 50.131%)",
+        punctuation: "hsla(180, 0%, 45.776%))",
+        link: "hsla(26.433, 82.533%, 50.131%)",
+        number: "#hsla(26.433, 82.533%, 50.131%)",
+        property: "hsla(180, 0%, 45.776%)",
+        highlight: "oklch(94.58% 0.0293 249.84870859673202)",
+        highlightHover: "oklch(94.58% 0.0293 249.84870859673202 / 30%)",
+        highlightBorder: "oklch(53.18% 0.2399 256.9900584162342)",
+        diffDeleted: "oklch(58.01% 0.227 25.12)",
+        diffInserted: "oklch(57.81% 0.1776 147.5)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "hsla(0, 0%, 93%,1)",
+        constant: "oklch(71.7% 0.1648 250.79360374054167)",
+        string: "oklch(73.1% 0.2158 148.29)",
+        comment: "hsla(0, 0%, 63%,1)",
+        keyword: "oklch(69.36% 0.2223 3.91)",
+        parameter: "oklch(77.21% 0.1991 64.28)",
+        function: "oklch(69.87% 0.2037 309.51)",
+        stringExpression: "oklch(73.1% 0.2158 148.29)",
+        punctuation: "hsla(0, 0%, 93%,1)",
+        link: "oklch(73.1% 0.2158 148.29)",
+        number: "#ffffff",
+        property: "oklch(71.7% 0.1648 250.79360374054167)",
+        highlight: "oklch(30.86% 0.1022 255.21)",
+        highlightHover: "oklch(30.86% 0.1022 255.21 / 30%)",
+        highlightBorder: "oklch(71.7% 0.1648 250.79360374054167)",
+        diffDeleted: "oklch(62.56% 0.2277 23.03)",
+        diffInserted: "oklch(58.11% 0.1815 146.55)",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",
