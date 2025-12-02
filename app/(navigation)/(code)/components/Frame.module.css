@@ -147,7 +147,7 @@
   background-image: url("../assets/firecrawl/heat.png");
   background-position: bottom 10px left;
   background-repeat: no-repeat;
-  background-size: 800px;
+  background-size: 100%;
 }
 
 .firecrawlGridlinesHorizontal {
