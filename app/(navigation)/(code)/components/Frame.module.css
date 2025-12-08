@@ -662,9 +662,11 @@
   .tailwindHeader {
     border-color: rgb(0 0 0 / 10%);
   }
+
   .control {
     background-color: color(display-p3 0.8863 0.9098 0.9412);
   }
+
   .tailwindGridlinesHorizontal,
   .tailwindGridlinesVertical {
     &:before,
@@ -672,6 +674,7 @@
       background: color(display-p3 0.0078 0.0235 0.0902 / 0.1);
     }
   }
+
   .tailwindBeams {
     top: 0;
     transform: translateX(-50%);
@@ -848,9 +851,11 @@
       mask-composite: exclude;
       pointer-events: none;
     }
+
     &:nth-of-type(1):before {
       inset: -1px;
     }
+
     &:nth-of-type(2):before {
       border-radius: calc(var(--radius) + 6px);
       inset: -6px;
@@ -1480,15 +1485,19 @@
   &:nth-child(1) {
     left: 5%;
   }
+
   &:nth-child(2) {
     left: 20%;
   }
+
   &:nth-child(3) {
     left: 35%;
   }
+
   &:nth-child(4) {
     left: 50%;
   }
+
   &:nth-child(5) {
     left: 65%;
   }
@@ -1742,6 +1751,7 @@
     &:nth-of-type(2) {
       border-radius: calc(var(--radius) + 8px);
       inset: -8px;
+
       &:before {
         background: linear-gradient(
           135deg,
@@ -1759,6 +1769,7 @@
     &:nth-of-type(3) {
       border-radius: calc(var(--radius) + 15px);
       inset: -14px;
+
       &:before {
         background: linear-gradient(
           135deg,
@@ -1851,7 +1862,8 @@
 .geminiFrame {
   position: relative;
   overflow: hidden;
-  background: #0e1016; /* Dark background behind stars */
+  background: #0e1016;
+  /* Dark background behind stars */
 }
 
 .geminiStars {
@@ -1875,7 +1887,8 @@
   padding-top: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  background: #16181d; /* User specified editor background */
+  background: #16181d;
+  /* User specified editor background */
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   transition: all ease 0.3s;
 }
@@ -1889,5 +1902,39 @@
 
   .geminiWindow {
     background: #16181d;
+  }
+}
+
+.geminiFrameLightMode {
+  /* Keep default dark background and stars */
+
+  .geminiWindow {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .fileName {
+    color: rgba(0, 0, 0, 0.4);
+
+    input {
+      color: #000000;
+    }
+  }
+
+  &.noBackground {
+    background: transparent;
+
+    .geminiWindow {
+      background: #ffffff;
+    }
+
+    .fileName {
+      color: rgba(0, 0, 0, 0.4);
+
+      input {
+        color: #000000;
+      }
+    }
   }
 }

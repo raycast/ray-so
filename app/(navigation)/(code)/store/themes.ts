@@ -320,22 +320,22 @@ export const THEMES: { [index: string]: Theme } = {
       }),
       dark: convertToShikiTheme({
         foreground: "#abb2bf",
-        constant: "#56b6c2", // Classes/Types mapped to constant
+        constant: "#56b6c2",
         string: "#98c379",
         comment: "#5c6370",
         keyword: "#5c9dc7",
-        parameter: "#abb2bf", // Default foreground as parameter wasn't specified
+        parameter: "#d19a66",
         function: "#98c379",
         stringExpression: "#98c379",
         punctuation: "#abb2bf",
         link: "#5c9dc7",
-        number: "#56b6c2", // Using Cyan for numbers as well
+        number: "#56b6c2",
         property: "#56b6c2",
-        highlight: "rgba(92, 157, 199, 0.15)", // Blueish highlight
+        highlight: "rgba(92, 157, 199, 0.15)",
         highlightHover: "rgba(92, 157, 199, 0.1)",
         highlightBorder: "#5c9dc7",
         diffInserted: "#98c379",
-        diffDeleted: "#e06c75", // Red (One Dark standard)
+        diffDeleted: "#e06c75",
       }),
     },
   },

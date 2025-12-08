@@ -495,7 +495,12 @@ const GeminiFrame = () => {
 
   return (
     <div
-      className={classNames(styles.frame, styles.geminiFrame, !showBackground && styles.noBackground)}
+      className={classNames(
+        styles.frame,
+        styles.geminiFrame,
+        !darkMode && styles.geminiFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
