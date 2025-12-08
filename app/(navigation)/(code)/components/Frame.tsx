@@ -486,6 +486,44 @@ const NuxtFrame = () => {
   );
 };
 
+const GeminiFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [isSafari] = useState(false); // Simplified for now
+
+  return (
+    <div
+      className={classNames(styles.frame, styles.geminiFrame, !showBackground && styles.noBackground)}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src="/stars.svg" alt="stars" className={styles.geminiStars} />}
+      <div className={styles.geminiWindow}>
+        <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const BrowserbaseFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -625,6 +663,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <BrowserbaseFrame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
+      case THEMES.gemini3.id:
+        return <GeminiFrame />;
       default:
         return <DefaultFrame />;
     }

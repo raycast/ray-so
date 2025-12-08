@@ -13,6 +13,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
+import GeminiLogo from "../assets/gemini.svg";
+import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
@@ -282,6 +284,58 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#C1B2F9",
         highlight: "rgba(193,178,249,0.12)",
         highlightHover: "rgba(193,178,249,0.07)",
+      }),
+    },
+  },
+  gemini3: {
+    id: "gemini3",
+    name: "Gemini 3",
+    background: {
+      from: "#16181d",
+      to: "#16181d",
+    },
+    icon: GeminiLogo,
+    iconUrl: `${BASE_URL}${GeminiLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#171717",
+        constant: "#4c3fff",
+        string: "#00a890",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1c1c1c",
+        parameter: "#4c3fff",
+        function: "#e85c5c",
+        stringExpression: "#00a890",
+        punctuation: "#1c1c1c",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#00a890",
+        diffDeleted: "#FF605E",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#abb2bf",
+        constant: "#56b6c2", // Classes/Types mapped to constant
+        string: "#98c379",
+        comment: "#5c6370",
+        keyword: "#5c9dc7",
+        parameter: "#abb2bf", // Default foreground as parameter wasn't specified
+        function: "#98c379",
+        stringExpression: "#98c379",
+        punctuation: "#abb2bf",
+        link: "#5c9dc7",
+        number: "#56b6c2", // Using Cyan for numbers as well
+        property: "#56b6c2",
+        highlight: "rgba(92, 157, 199, 0.15)", // Blueish highlight
+        highlightHover: "rgba(92, 157, 199, 0.1)",
+        highlightBorder: "#5c9dc7",
+        diffInserted: "#98c379",
+        diffDeleted: "#e06c75", // Red (One Dark standard)
       }),
     },
   },
