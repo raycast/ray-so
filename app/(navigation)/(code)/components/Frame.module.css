@@ -142,12 +142,25 @@
 
 .firecrawlWindow {
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: 0px;
 
-  background-image: url("../assets/firecrawl/heat.png");
-  background-position: bottom 10px left;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  &::before {
+    position: absolute;
+    background-image: url("../assets/firecrawl/heat.png");
+    background-position: bottom 5px left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    content: "";
+    inset: 0;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 70%,
+      rgba(0, 0, 0, 0.5) 90%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0.9) 100%);
+    pointer-events: none;
+  }
 }
 
 .firecrawlGridlinesHorizontal {
@@ -205,22 +218,28 @@
   color: var(--grid-color);
 }
 
+.firecrawlStarTopLeft {
+  top: calc(var(--offset) - 0.5px);
+  left: calc(var(--offset) - 0.5px);
+}
+
 .firecrawlStarTopRight {
-  right: var(--offset);
+  top: calc(var(--offset) - 0.5px);
+  right: calc(var(--offset) - 0.5px);
   left: auto;
 }
 
 .firecrawlStarBottomRight {
   top: auto;
-  right: var(--offset);
-  bottom: var(--offset);
+  right: calc(var(--offset) - 0.5px);
+  bottom: calc(var(--offset) - 0.5px);
   left: auto;
 }
 
 .firecrawlStarBottomLeft {
   top: auto;
-  bottom: var(--offset);
-  left: var(--offset);
+  bottom: calc(var(--offset) - 0.5px);
+  left: calc(var(--offset) - 0.5px);
 }
 
 .firecrawlBracketRight {
