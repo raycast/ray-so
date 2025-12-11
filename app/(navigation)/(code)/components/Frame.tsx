@@ -102,8 +102,6 @@ const SupabaseFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const [fileName, setFileName] = useAtom(fileNameAtom);
-  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
 
   return (
     <div
@@ -117,20 +115,6 @@ const SupabaseFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.supabaseWindow}>
-        <div className={styles.supabaseHeader}>
-          <div className={classNames(styles.fileName, styles.supabaseFileName)} data-value={fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            {fileName.length === 0 ? <span>Untitled-1</span> : null}
-          </div>
-          <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
-        </div>
         <Editor />
       </div>
     </div>
@@ -325,6 +309,8 @@ const PrismaFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const flashShown = useAtomValue(flashShownAtom);
 
   return (
     <div
@@ -342,6 +328,34 @@ const PrismaFrame = () => {
         <span data-frameborder />
         <span data-frameborder />
         <span data-frameborder />
+        {fileName.length > 0 ? (
+          <div className={styles.prismaHeader}>
+            <div className={classNames(styles.fileName, styles.prismaFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.prismaHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.prismaFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+          </div>
+        )}
         <Editor />
       </div>
     </div>
