@@ -1979,8 +1979,7 @@
   /* Keep default dark background and stars */
 
   .geminiWindow {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   }
 
