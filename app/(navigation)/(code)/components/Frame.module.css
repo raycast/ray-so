@@ -1983,12 +1983,8 @@
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   }
 
-  .fileName {
+  .geminiFileName {
     color: #1867d2;
-
-    input {
-      color: #1867d2;
-    }
   }
 
   .geminiHeader {
@@ -2000,14 +1996,6 @@
 
     .geminiWindow {
       background: #ffffff;
-    }
-
-    .fileName {
-      color: rgba(0, 0, 0, 0.4);
-
-      input {
-        color: #000000;
-      }
     }
   }
 }
