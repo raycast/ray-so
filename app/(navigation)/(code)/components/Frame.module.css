@@ -1863,7 +1863,12 @@
   position: relative;
   overflow: hidden;
   background: #0e1016;
-  /* Dark background behind stars */
+
+  &.isSafari {
+    .geminiWindow {
+      box-shadow: none;
+    }
+  }
 }
 
 .geminiStars {
@@ -1881,14 +1886,12 @@
   position: relative;
   z-index: 10;
   display: flex;
+  overflow: hidden;
   min-height: 100px;
   flex-direction: column;
   align-items: stretch;
-  padding-top: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 26px;
   background: #16181d;
-  /* User specified editor background */
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   transition: all ease 0.3s;
 }
@@ -1905,6 +1908,73 @@
   }
 }
 
+.geminiHeader {
+  display: flex;
+  overflow: hidden;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+  gap: 12px;
+}
+
+.geminiFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  margin: 0 16px;
+  color: #5c9ec7;
+  font-size: 12px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: var(--font-inter);
+    font-weight: 500;
+    grid-area: 1 / 2;
+    letter-spacing: 0.4px;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+
+  &:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    content: "";
+  }
+}
+
 .geminiFrameLightMode {
   /* Keep default dark background and stars */
 
@@ -1915,11 +1985,15 @@
   }
 
   .fileName {
-    color: rgba(0, 0, 0, 0.4);
+    color: #1867d2;
 
     input {
-      color: #000000;
+      color: #1867d2;
     }
+  }
+
+  .geminiHeader {
+    background: rgba(0, 0, 0, 0.03);
   }
 
   &.noBackground {
