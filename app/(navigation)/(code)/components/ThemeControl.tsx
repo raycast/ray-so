@@ -37,6 +37,9 @@ const ThemeControl: React.FC = () => {
     if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
       setPadding(64);
     }
+    if (currentTheme.name === THEMES.wrapped.name) {
+      setPadding(32);
+    }
   }, [currentTheme, setPadding]);
 
   useHotkeys("c", () => {
