@@ -17,7 +17,8 @@ import {
   SelectValue,
 } from "@/components/select";
 import { SelectItemText } from "@radix-ui/react-select";
-import { ChevronUpIcon } from "@raycast/icons";
+import { ChevronUpIcon, GiftIcon } from "@raycast/icons";
+import { cn } from "@/utils/cn";
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, atomSetTheme] = useAtom(themeAtom);
@@ -110,19 +111,28 @@ const ThemeControl: React.FC = () => {
           </SelectGroup>
           <SelectSeparator />
           <SelectGroup>
-            {themes.map((theme, index) => (
-              <SelectItem key={index} value={theme.name}>
-                <SelectItemText>
-                  <span
-                    className={styles.themePreview}
-                    style={{
-                      backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                    }}
-                  />
-                </SelectItemText>
-                {theme.name}
-              </SelectItem>
-            ))}
+            {themes.map((theme, index) => {
+              const isWrapped = theme.id === "wrapped";
+              return (
+                <SelectItem key={index} value={theme.name}>
+                  <SelectItemText>
+                    <span
+                      className={styles.themePreview}
+                      style={
+                        isWrapped
+                          ? undefined
+                          : {
+                              backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+                            }
+                      }
+                    >
+                      {isWrapped && <GiftIcon width={16} height={16} className={styles.giftIcon} />}
+                    </span>
+                  </SelectItemText>
+                  <div className={cn(isWrapped && styles.limited)}>{theme.name}</div>
+                </SelectItem>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>
