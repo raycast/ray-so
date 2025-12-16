@@ -581,6 +581,7 @@ const CloudflareFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const flashShown = useAtomValue(flashShownAtom);
 
   return (
     <div
@@ -596,7 +597,7 @@ const CloudflareFrame = () => {
       <div className={styles.cloudflareWindow}>
         <span className={styles.cloudflareGridlinesHorizontal} data-grid></span>
         <span className={styles.cloudflareGridlinesVertical} data-grid></span>
-        {fileName.length > 0 && (
+        {fileName.length > 0 ? (
           <div className={styles.cloudflareHeader}>
             <div className={classNames(styles.fileName, styles.cloudflareFileName)} data-value={fileName}>
               <input
@@ -607,6 +608,21 @@ const CloudflareFrame = () => {
                 tabIndex={-1}
                 size={1}
               />
+            </div>
+            <span className={styles.cloudflareLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.cloudflareHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.cloudflareFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
             </div>
             <span className={styles.cloudflareLanguage}>{selectedLanguage?.name}</span>
           </div>

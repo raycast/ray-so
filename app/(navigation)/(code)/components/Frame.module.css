@@ -101,11 +101,11 @@
   line-height: 12px;
   text-align: center;
 
-  >input:focus+span {
+  > input:focus + span {
     display: none;
   }
 
-  >input {
+  > input {
     position: absolute;
     width: 100%;
     border: none;
@@ -137,7 +137,6 @@
 
   .vercelGridlinesHorizontal,
   .vercelGridlinesVertical {
-
     &:before,
     &:after {
       background: #ebebeb;
@@ -146,7 +145,6 @@
 
   .vercelBracketLeft,
   .vercelBracketRight {
-
     &:before,
     &:after {
       background: #a8a8a8;
@@ -159,7 +157,6 @@
 }
 
 .vercelGridlinesHorizontal {
-
   &:before,
   &:after {
     position: absolute;
@@ -179,7 +176,6 @@
 }
 
 .vercelGridlinesVertical {
-
   &:before,
   &:after {
     position: absolute;
@@ -269,7 +265,6 @@
 }
 
 .triggerGridlinesHorizontal {
-
   &:before,
   &:after {
     position: absolute;
@@ -289,7 +284,6 @@
 }
 
 .triggerGridlinesVertical {
-
   &:before,
   &:after {
     position: absolute;
@@ -338,7 +332,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -355,7 +349,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
@@ -400,7 +394,6 @@
 
   .triggerGridlinesHorizontal,
   .triggerGridlinesVertical {
-
     &:before,
     &:after {
       background: #d9d7d7;
@@ -450,7 +443,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -467,7 +460,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
@@ -563,7 +556,6 @@
 }
 
 .tailwindGridlinesHorizontal {
-
   &:before,
   &:after {
     position: absolute;
@@ -586,7 +578,6 @@
 }
 
 .tailwindGridlinesVertical {
-
   &:before,
   &:after {
     position: absolute;
@@ -618,7 +609,7 @@
   height: 32px;
   margin-top: -1px;
 
-  >div {
+  > div {
     display: flex;
     width: clamp(14rem, 80%, 40rem);
     height: 2px;
@@ -629,11 +620,13 @@
 .tailwindGradient1 {
   width: 100%;
   flex: none;
-  background: linear-gradient(90deg,
-      color(display-p3 0.2196 0.7412 0.9725 / 0) 0%,
-      color(display-p3 0.0549 0.6471 0.9137) 32.29%,
-      color(display-p3 0.9255 0.2824 0.6 / 0.3) 67.19%,
-      color(display-p3 0.9255 0.2824 0.6 / 0) 100%);
+  background: linear-gradient(
+    90deg,
+    color(display-p3 0.2196 0.7412 0.9725 / 0) 0%,
+    color(display-p3 0.0549 0.6471 0.9137) 32.29%,
+    color(display-p3 0.9255 0.2824 0.6 / 0.3) 67.19%,
+    color(display-p3 0.9255 0.2824 0.6 / 0) 100%
+  );
   filter: blur(4px);
 }
 
@@ -676,7 +669,6 @@
 
   .tailwindGridlinesHorizontal,
   .tailwindGridlinesVertical {
-
     &:before,
     &:after {
       background: color(display-p3 0.0078 0.0235 0.0902 / 0.1);
@@ -906,7 +898,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -925,7 +917,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
@@ -1015,7 +1007,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -1034,7 +1026,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
@@ -1431,7 +1423,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -1448,7 +1440,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
@@ -1547,8 +1539,8 @@
     font-size: 14px;
     line-height: 24px;
 
-    >input,
-    &>span,
+    > input,
+    & > span,
     &:after {
       font-family: var(--font-space-mono), monospace;
       font-size: 14px;
@@ -1584,7 +1576,7 @@
   .browserbaseFileName {
     color: rgba(0, 0, 0, 0.6);
 
-    &>span {
+    & > span {
       color: rgba(0, 0, 0, 0.6);
     }
   }
@@ -1611,12 +1603,12 @@
   text-align: center;
   white-space: nowrap;
 
-  >input:focus+span {
+  > input:focus + span {
     display: none;
   }
 
-  >input,
-  &>span,
+  > input,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -1634,7 +1626,7 @@
     text-align: center;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
     color: rgba(255, 255, 255, 0.6);
@@ -1730,13 +1722,15 @@
       position: absolute;
       padding: 1px;
       border-radius: inherit;
-      background: linear-gradient(135deg,
-          #00dc82 0%,
-          #00dc82 8%,
-          transparent 20%,
-          transparent 80%,
-          #00dc82 92%,
-          #00dc82 100%);
+      background: linear-gradient(
+        135deg,
+        #00dc82 0%,
+        #00dc82 8%,
+        transparent 20%,
+        transparent 80%,
+        #00dc82 92%,
+        #00dc82 100%
+      );
       content: "";
       inset: 0;
       -webkit-mask:
@@ -1759,13 +1753,15 @@
       inset: -8px;
 
       &:before {
-        background: linear-gradient(135deg,
-            #00dc82 0%,
-            #00dc82 10%,
-            transparent 26%,
-            transparent 74%,
-            #00dc82 90%,
-            #00dc82 100%);
+        background: linear-gradient(
+          135deg,
+          #00dc82 0%,
+          #00dc82 10%,
+          transparent 26%,
+          transparent 74%,
+          #00dc82 90%,
+          #00dc82 100%
+        );
         opacity: 0.5;
       }
     }
@@ -1775,13 +1771,15 @@
       inset: -14px;
 
       &:before {
-        background: linear-gradient(135deg,
-            #00dc82 0%,
-            #00dc82 12%,
-            transparent 28%,
-            transparent 72%,
-            #00dc82 88%,
-            #00dc82 100%);
+        background: linear-gradient(
+          135deg,
+          #00dc82 0%,
+          #00dc82 12%,
+          transparent 28%,
+          transparent 72%,
+          #00dc82 88%,
+          #00dc82 100%
+        );
         opacity: 0.25;
       }
     }
@@ -1933,17 +1931,19 @@
   --wrapped-grid: rgba(0, 0, 0, 0.04);
 
   .wrappedBottomGlow {
-    background: radial-gradient(ellipse 50% 100% at center bottom,
-        rgba(194, 65, 12, 0.5) 0%,
-        rgba(194, 65, 12, 0.2) 40%,
-        transparent 80%);
+    background: radial-gradient(
+      ellipse 50% 100% at center bottom,
+      rgba(194, 65, 12, 0.5) 0%,
+      rgba(194, 65, 12, 0.2) 40%,
+      transparent 80%
+    );
   }
 }
 
 /* Cloudflare Theme Frame */
 
 .cloudflareFrame {
-  background: #0a0a0a;
+  background: #0c0c0c;
 }
 
 .cloudflareFrameLightMode {
@@ -1969,7 +1969,6 @@
 
   .cloudflareGridlinesHorizontal,
   .cloudflareGridlinesVertical {
-
     &:before,
     &:after {
       background: #e5e5e5;
@@ -1981,11 +1980,10 @@
   position: relative;
   border: none;
   border-radius: 0;
-  background: #0a0a0a;
+  background: #0c0c0c;
 }
 
 .cloudflareGridlinesHorizontal {
-
   &:before,
   &:after {
     position: absolute;
@@ -2005,7 +2003,6 @@
 }
 
 .cloudflareGridlinesVertical {
-
   &:before,
   &:after {
     position: absolute;
@@ -2050,7 +2047,7 @@
   vertical-align: top;
 
   input,
-  &>span,
+  & > span,
   &:after {
     position: static;
     z-index: 2;
@@ -2067,7 +2064,7 @@
     text-align: left;
   }
 
-  &>span {
+  & > span {
     position: relative;
     z-index: 1;
   }
