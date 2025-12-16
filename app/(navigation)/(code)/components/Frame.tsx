@@ -21,6 +21,7 @@ import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
+import wrappedGlow from "../assets/wrapped/glow.png";
 
 const VercelFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
@@ -541,6 +542,40 @@ const BrowserbaseFrame = () => {
   );
 };
 
+const WrappedFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.wrappedFrame,
+        !darkMode && styles.wrappedFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <>
+          <span className={styles.wrappedBottomGlow}></span>
+          <span className={styles.wrappedBorder}></span>
+          <span className={styles.wrappedFade}></span>
+          <span className={styles.wrappedGlowLeft}></span>
+          <span className={styles.wrappedGlowRight}></span>
+          <span className={styles.wrappedGlowBottom}></span>
+        </>
+      )}
+      <div className={styles.wrappedWindow}>
+        <Editor />
+      </div>
+      {/* <img src={wrappedGlow.src} alt="wrapped glow" className={styles.wrappedGlow} /> */}
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -625,6 +660,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <BrowserbaseFrame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
+      case THEMES.wrapped.id:
+        return <WrappedFrame />;
       default:
         return <DefaultFrame />;
     }
