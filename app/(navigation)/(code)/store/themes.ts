@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import CloudflareLogo from "../assets/cloudflare.svg";
+import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -735,6 +737,59 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(255, 107, 53, 0.08)",
         diffInserted: "#34D399",
         diffDeleted: "#F87171",
+      }),
+    },
+  },
+  cloudflare: {
+    id: "cloudflare",
+    name: "Cloudflare",
+    background: {
+      from: "#0C0C0C",
+      to: "#0C0C0C",
+    },
+    icon: CloudflareLogo,
+    iconUrl: `${BASE_URL}${CloudflareLogoUrl.src}`,
+    font: "ibm-plex-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#521000",
+        constant: "#5a11cc",
+        string: "#0876d9",
+        comment: "#52100080",
+        keyword: "#d94008",
+        parameter: "#c77700",
+        function: "#7612cc",
+        stringExpression: "#0876d9",
+        punctuation: "#52100080",
+        link: "#0876d9",
+        number: "#5a11cc",
+        property: "#5a11cc",
+        highlight: "rgba(255, 80, 10, 0.1)",
+        highlightHover: "rgba(255, 80, 10, 0.05)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#d94008",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#E8E8E8",
+        constant: "#79b8ff",
+        string: "#0A95FF",
+        comment: "#888888",
+        keyword: "#FF7F4D",
+        parameter: "#FFB366",
+        function: "#B084FF",
+        stringExpression: "#0A95FF",
+        punctuation: "#AAAAAA",
+        link: "#0A95FF",
+        number: "#79b8ff",
+        property: "#79b8ff",
+        highlight: "rgba(255, 80, 10, 0.15)",
+        highlightHover: "rgba(255, 80, 10, 0.08)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#FF7F4D",
       }),
     },
   },
