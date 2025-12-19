@@ -15,6 +15,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
+import GeminiLogo from "../assets/gemini.svg";
+import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
@@ -790,6 +792,58 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#FF500A",
         diffInserted: "#00C853",
         diffDeleted: "#FF7F4D",
+      }),
+    },
+  },
+  gemini: {
+    id: "gemini",
+    name: "Gemini",
+    background: {
+      from: "#16181d",
+      to: "#16181d",
+    },
+    icon: GeminiLogo,
+    iconUrl: `${BASE_URL}${GeminiLogoUrl.src}`,
+    font: "google-sans-code",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#37474f",
+        constant: "#37474f",
+        string: "#188038",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1967d2",
+        parameter: "#37474f",
+        function: "#37474f",
+        stringExpression: "#188038",
+        punctuation: "#37474f",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#188038",
+        diffDeleted: "#FF605E",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#abb2bf",
+        constant: "#56b6c2",
+        string: "#98c379",
+        comment: "#5c6370",
+        keyword: "#5c9dc7",
+        parameter: "#d19a66",
+        function: "#98c379",
+        stringExpression: "#98c379",
+        punctuation: "#abb2bf",
+        link: "#5c9dc7",
+        number: "#56b6c2",
+        property: "#56b6c2",
+        highlight: "rgba(92, 157, 199, 0.15)",
+        highlightHover: "rgba(92, 157, 199, 0.1)",
+        highlightBorder: "#5c9dc7",
+        diffInserted: "#98c379",
+        diffDeleted: "#e06c75",
       }),
     },
   },

@@ -487,6 +487,81 @@ const NuxtFrame = () => {
   );
 };
 
+const GeminiFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const isSafari = useIsSafari();
+  const flashShown = useAtomValue(flashShownAtom);
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.geminiFrame,
+        !darkMode && styles.geminiFrameLightMode,
+        !showBackground && styles.noBackground,
+        isSafari && styles.isSafari,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src="/stars.svg" alt="stars" className={styles.geminiStars} />}
+      <div className={styles.geminiWindow}>
+        {fileName.length > 0 ? (
+          <div className={styles.geminiHeader}>
+            <div className={classNames(styles.fileName, styles.geminiFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.geminiHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.geminiFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+          </div>
+        )}
+
+        {/* <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+        </div> */}
+        <div className={styles.geminiEditor}>
+          <Editor />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BrowserbaseFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -717,6 +792,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <BrowserbaseFrame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
+      case THEMES.gemini.id:
+        return <GeminiFrame />;
       case THEMES.wrapped.id:
         return <WrappedFrame />;
       case THEMES.cloudflare.id:

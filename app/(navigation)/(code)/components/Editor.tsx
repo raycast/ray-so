@@ -126,6 +126,7 @@ const fontMap = {
   "roboto-mono": styles.robotoMono,
   "commit-mono": styles.commitMono,
   "space-mono": styles.spaceMono,
+  "google-sans-code": styles.googleSansCode,
 } as const;
 
 function Editor() {
