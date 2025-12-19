@@ -331,7 +331,7 @@ const ComboboxEmpty = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ComboboxPrimitive.Empty
     ref={ref}
-    className={cn("px-2 py-4 text-center text-sm text-gray-8 empty:hidden", className)}
+    className={cn("px-2 py-4 text-center text-sm text-gray-8 empty:hidden -mb-2", className)}
     {...props}
   />
 ));

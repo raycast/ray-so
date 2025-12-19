@@ -16,6 +16,7 @@ import {
   ComboboxItem,
   ComboboxSeparator,
   ComboboxValue,
+  ComboboxEmpty,
 } from "@/components/combobox";
 import { UniqueSvg } from "@/components/unique-svg";
 import { ChevronUpIcon, GiftIcon } from "@raycast/icons";
@@ -139,6 +140,7 @@ const ThemeControl: React.FC = () => {
           <ComboboxValue<Theme>>{(value) => (value ? <ThemePreview theme={value} /> : "Select theme")}</ComboboxValue>
         </ComboboxTrigger>
         <ComboboxContent showSearchIcon>
+          <ComboboxEmpty>No themes found.</ComboboxEmpty>
           <ComboboxList<ThemeGroup>>
             {(group, groupIndex) => (
               <React.Fragment key={group.label}>
