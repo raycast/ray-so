@@ -1,5 +1,5 @@
-import { useAtom, useSetAtom } from "jotai";
-import React, { useEffect } from "react";
+import { useAtom } from "jotai";
+import React, { useEffect, useMemo } from "react";
 import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
 
@@ -7,17 +7,45 @@ import styles from "./ThemeControl.module.css";
 import useHotkeys from "../../../../utils/useHotkeys";
 import { paddingAtom } from "../store/padding";
 import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-  SelectValue,
-} from "@/components/select";
-import { SelectItemText } from "@radix-ui/react-select";
-import { ChevronUpIcon } from "@raycast/icons";
+  Combobox,
+  ComboboxTrigger,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxGroup,
+  ComboboxGroupLabel,
+  ComboboxItem,
+  ComboboxSeparator,
+  ComboboxValue,
+} from "@/components/combobox";
+import { UniqueSvg } from "@/components/unique-svg";
+import { ChevronUpIcon, GiftIcon } from "@raycast/icons";
+import { cn } from "@/utils/cn";
+
+interface ThemeGroup {
+  label: string;
+  items: Theme[];
+}
+
+function ThemePreview({ theme }: { theme: Theme }) {
+  const isWrapped = theme.id === "wrapped";
+
+  if (theme.icon) {
+    return (
+      <UniqueSvg className={styles.themePreview}>
+        {React.createElement(theme.icon as React.ElementType, { className: styles.logo })}
+      </UniqueSvg>
+    );
+  }
+
+  return (
+    <span
+      className={styles.themePreview}
+      style={{
+        backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
+      }}
+    ></span>
+  );
+}
 
 const ThemeControl: React.FC = () => {
   const [currentTheme, atomSetTheme] = useAtom(themeAtom);
@@ -49,7 +77,7 @@ const ThemeControl: React.FC = () => {
     }
   });
 
-  const { partnerThemes, themes } = React.useMemo(
+  const { partnerThemes, themes } = useMemo(
     () =>
       Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
         (acc, [key, value]) => {
@@ -66,63 +94,66 @@ const ThemeControl: React.FC = () => {
     [],
   );
 
+  const filteredPartnerThemes = useMemo(
+    () =>
+      partnerThemes.filter(
+        (theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name,
+      ),
+    [partnerThemes, unlockedThemes, currentTheme.name],
+  );
+
+  const filteredLimitedThemes = useMemo(() => {
+    return themes.filter((theme) => theme.id === "wrapped");
+  }, [themes]);
+
+  const filteredThemes = useMemo(() => {
+    return themes.filter((theme) => theme.id !== "wrapped");
+  }, [themes]);
+
+  const groupedItems: ThemeGroup[] = useMemo(
+    () => [
+      { label: "Limited edition", items: filteredLimitedThemes },
+      { label: "Partners", items: filteredPartnerThemes },
+      { label: "Themes", items: filteredThemes },
+    ],
+    [filteredLimitedThemes, filteredPartnerThemes, filteredThemes],
+  );
+
   return (
     <ControlContainer title="Theme">
-      <Select
-        value={`${currentTheme.name}`}
-        onValueChange={(value) => {
-          const theme = Object.values(THEMES).find(({ name }) => name === value) as Theme;
-          setTheme(theme);
+      <Combobox<Theme>
+        items={groupedItems}
+        value={currentTheme}
+        onValueChange={(theme) => {
+          if (theme) {
+            setTheme(theme);
+          }
         }}
+        itemToStringLabel={(theme) => theme?.name ?? ""}
+        isItemEqualToValue={(item, selected) => item.id === selected.id}
       >
-        <SelectTrigger size="small" className="w-[60px]" icon={ChevronUpIcon}>
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Partners</SelectLabel>
-            {partnerThemes
-              .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
-              .map((theme, index) => {
-                return (
-                  <SelectItem key={index} value={theme.name} textValue={theme.name}>
-                    <SelectItemText>
-                      {theme.icon ? (
-                        <span className={styles.themePreview}>
-                          {React.createElement(theme.icon, { className: styles.logo })}
-                        </span>
-                      ) : (
-                        <span
-                          className={styles.themePreview}
-                          style={{
-                            backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                          }}
-                        />
-                      )}
-                    </SelectItemText>
-                    {theme.name}
-                  </SelectItem>
-                );
-              })}
-          </SelectGroup>
-          <SelectSeparator />
-          <SelectGroup>
-            {themes.map((theme, index) => (
-              <SelectItem key={index} value={theme.name}>
-                <SelectItemText>
-                  <span
-                    className={styles.themePreview}
-                    style={{
-                      backgroundImage: `linear-gradient(140deg, ${theme.background.from}, ${theme.background.to})`,
-                    }}
-                  />
-                </SelectItemText>
-                {theme.name}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+        <ComboboxTrigger size="small" className="w-[60px]" icon={ChevronUpIcon}>
+          <ComboboxValue<Theme>>{(value) => (value ? <ThemePreview theme={value} /> : "Select theme")}</ComboboxValue>
+        </ComboboxTrigger>
+        <ComboboxContent showSearchIcon>
+          <ComboboxList<ThemeGroup>>
+            {(group, groupIndex) => (
+              <React.Fragment key={group.label}>
+                {groupIndex > 0 && <ComboboxSeparator />}
+                <ComboboxGroup items={group.items}>
+                  <ComboboxGroupLabel>{group.label}</ComboboxGroupLabel>
+                  {group.items.map((theme) => (
+                    <ComboboxItem key={theme.id} value={theme}>
+                      <ThemePreview theme={theme} />
+                      <div className={cn(theme.id === "wrapped" && styles.limited)}>{theme.name}</div>
+                    </ComboboxItem>
+                  ))}
+                </ComboboxGroup>
+              </React.Fragment>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
     </ControlContainer>
   );
 };
