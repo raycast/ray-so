@@ -9,6 +9,7 @@ export const FONTS = [
   "roboto-mono",
   "commit-mono",
   "space-mono",
+  "source-code-pro",
   "google-sans-code",
 ] as const;
 

@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { fileNameAtom, showBackgroundAtom, windowWidthAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
-import { THEMES, darkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
+import { THEMES, themeDarkModeAtom, themeAtom, themeBackgroundAtom, darkModeAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 
 import Editor from "./Editor";
@@ -21,10 +21,9 @@ import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
-import wrappedGlow from "../assets/wrapped/glow.png";
 
 const VercelFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
 
@@ -51,7 +50,7 @@ const VercelFrame = () => {
 };
 
 const SupabaseFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
 
@@ -74,7 +73,7 @@ const SupabaseFrame = () => {
 };
 
 const TailwindFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -121,7 +120,7 @@ const TailwindFrame = () => {
 };
 
 const TriggerdevFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
@@ -186,7 +185,7 @@ const TriggerdevFrame = () => {
 };
 
 const ClerkFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
 
@@ -212,7 +211,7 @@ const ClerkFrame = () => {
 };
 
 const MintlifyFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -258,7 +257,7 @@ const MintlifyFrame = () => {
 };
 
 const PrismaFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -315,7 +314,7 @@ const PrismaFrame = () => {
 };
 
 const OpenAIFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   return (
@@ -336,7 +335,7 @@ const OpenAIFrame = () => {
 };
 
 const ElevenLabsFrame = () => {
-  const darkMode = useAtomValue(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const padding = useAtomValue(paddingAtom);
   const showBackground = useAtomValue(showBackgroundAtom);
   const windowWidth = useAtomValue(windowWidthAtom);
@@ -422,7 +421,7 @@ const ElevenLabsFrame = () => {
 };
 
 const ResendFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -461,7 +460,7 @@ const ResendFrame = () => {
 };
 
 const NuxtFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
 
@@ -488,7 +487,7 @@ const NuxtFrame = () => {
 };
 
 const GeminiFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -563,7 +562,7 @@ const GeminiFrame = () => {
 };
 
 const BrowserbaseFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -617,7 +616,7 @@ const BrowserbaseFrame = () => {
 };
 
 const WrappedFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
 
@@ -645,13 +644,12 @@ const WrappedFrame = () => {
       <div className={styles.wrappedWindow}>
         <Editor />
       </div>
-      {/* <img src={wrappedGlow.src} alt="wrapped glow" className={styles.wrappedGlow} /> */}
     </div>
   );
 };
 
 const CloudflareFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
@@ -708,6 +706,102 @@ const CloudflareFrame = () => {
   );
 };
 
+const StripeFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const code = useAtomValue(codeAtom);
+  const windowWidth = useAtomValue(windowWidthAtom);
+  const isSafari = useIsSafari();
+
+  const windowRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [innerWindowWidth, setInnerWindowWidth] = useState(0);
+  const [frameHeight, setFrameHeight] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const numberOfLines = Math.max(1, (code.match(/\n/g) || []).length + 1);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (windowRef.current) {
+        setInnerWindowWidth(windowRef.current.offsetWidth);
+      }
+      if (frameRef.current) {
+        setFrameHeight(frameRef.current.offsetHeight);
+      }
+    };
+
+    updateDimensions();
+
+    const timeoutId = setTimeout(updateDimensions, 0);
+
+    window.addEventListener("resize", updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+      clearTimeout(timeoutId);
+    };
+  }, [windowWidth, numberOfLines, padding, isTransitioning]);
+
+  // Handle re-trigger when padding has finished changing
+  useEffect(() => {
+    setIsTransitioning(true);
+    const timer = setTimeout(() => setIsTransitioning(false), 200);
+    return () => clearTimeout(timer);
+  }, [padding]);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.stripeFrame,
+        !darkMode && styles.stripeFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+      ref={frameRef}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <div className={styles.stripeBackground}>
+          <div
+            className={styles.stripeBackgroundGridlineContainer}
+            style={{ "--window-width": `${innerWindowWidth}px` } as React.CSSProperties}
+          >
+            <div className={styles.stripeBackgroundGridline}></div>
+            <div className={styles.stripeBackgroundGridline}></div>
+            <div className={styles.stripeBackgroundGridline}></div>
+            <div className={styles.stripeBackgroundGridline}></div>
+            <div className={styles.stripeBackgroundGridline}></div>
+          </div>
+
+          <div className={classNames(styles.stripeStripe)}>
+            <div
+              className={styles.stripeBackgroundGridlineContainer}
+              style={{ "--window-width": `${innerWindowWidth}px` } as React.CSSProperties}
+            >
+              <div className={styles.stripeBackgroundGridline}></div>
+              <div className={styles.stripeBackgroundGridline}></div>
+              <div className={styles.stripeBackgroundGridline}></div>
+              <div className={styles.stripeBackgroundGridline}></div>
+              <div className={styles.stripeBackgroundGridline}></div>
+
+              <div className={classNames(styles.stripeSet, frameHeight < 240 && styles.isSmall)}>
+                <div className={styles.stripe1} />
+                <div className={styles.stripe2} />
+                <div className={styles.intersection} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className={classNames(styles.stripeWindow, isSafari && styles.isSafari)} ref={windowRef}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -715,7 +809,7 @@ const DefaultFrame = () => {
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [themeBackground] = useAtom(themeBackgroundAtom);
   const [theme] = useAtom(themeAtom);
-  const darkMode = useAtomValue(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
 
   return (
     <div
@@ -763,7 +857,7 @@ const DefaultFrame = () => {
 const Frame = ({ resize = true }: { resize?: boolean }) => {
   const frameContext = useContext(FrameContext);
   const [theme] = useAtom(themeAtom);
-  const darkMode = useAtomValue(darkModeAtom);
+  const darkMode = useAtomValue(themeDarkModeAtom);
 
   function renderFrame() {
     switch (theme.id) {
@@ -798,6 +892,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <WrappedFrame />;
       case THEMES.cloudflare.id:
         return <CloudflareFrame />;
+      case THEMES.stripe.id:
+        return <StripeFrame />;
       default:
         return <DefaultFrame />;
     }

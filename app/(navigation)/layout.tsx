@@ -1,4 +1,12 @@
-import { Fira_Code, Google_Sans_Code, IBM_Plex_Mono, JetBrains_Mono, Roboto_Mono, Space_Mono } from "next/font/google";
+import {
+  Fira_Code,
+  Google_Sans_Code,
+  IBM_Plex_Mono,
+  JetBrains_Mono,
+  Roboto_Mono,
+  Source_Code_Pro,
+  Space_Mono,
+} from "next/font/google";
 import cn from "classnames";
 import { Navigation } from "@/components/navigation";
 import { GeistMono } from "geist/font/mono";
@@ -40,6 +48,13 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
 });
 
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-source-code-pro",
+});
+
 const googleSansCode = Google_Sans_Code({
   subsets: ["latin"],
   weight: "400",
@@ -66,6 +81,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         commitMono.variable,
         robotoMono.variable,
         spaceMono.variable,
+        sourceCodePro.variable,
         googleSansCode.variable,
       )}
       style={

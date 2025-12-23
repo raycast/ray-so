@@ -1642,6 +1642,141 @@
   }
 }
 
+/* Stripe Theme Frame */
+
+.stripeFrame {
+  --bg: #0a2540;
+  --stripe: hsla(213.69, 52%, 97.828%);
+  --border: #0f395e;
+  --gridline: rgba(255, 255, 255, 0.1);
+  --window: #0c2e4e;
+  --line-number: #55718d;
+
+  position: relative;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.stripeBackground {
+  position: relative;
+}
+
+.stripeBackgroundGridlineContainer {
+  position: relative;
+  width: var(--window-width);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.stripeBackgroundGridline {
+  position: absolute;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  border-left: 1px dashed var(--gridline);
+  content: "";
+  pointer-events: none;
+
+  &:nth-child(1) {
+    left: 0;
+    border-style: solid;
+  }
+  &:nth-child(2) {
+    left: 25%;
+  }
+  &:nth-child(3) {
+    left: 50%;
+  }
+  &:nth-child(4) {
+    left: 75%;
+  }
+  &:nth-child(5) {
+    left: calc(100% - 1px);
+    border-style: solid;
+  }
+}
+
+.stripeBackground {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.stripeWindow {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--window);
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  &.isSafari {
+    box-shadow: none;
+  }
+}
+
+.stripeStripe {
+  position: absolute;
+  z-index: 0;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--stripe);
+  transform: skewY(-6deg);
+  transform-origin: 100% 0;
+
+  --gridline: rgba(66, 71, 112, 0.15);
+}
+
+.stripeSet {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  bottom: 65px;
+  left: calc(var(--window-width) * 0.75 - 50px);
+  width: 500px; /* at least half the frame width */
+  height: 50px;
+  transform-origin: 100% 0;
+
+  &.isSmall {
+    top: -49px;
+    bottom: auto;
+  }
+}
+
+.stripe1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(17, 239, 227);
+}
+
+.stripe2 {
+  position: absolute;
+  /* right: 0px; */
+  width: 100%;
+  height: 32px;
+  background: rgb(153, 102, 255);
+  transform: translate(50px, 50px);
+}
+
+.intersection {
+  position: absolute;
+  /* right: 0px; */
+  width: 100%;
+  height: 18px;
+  background: hsla(221.1, 99.822%, 44.876%);
+  transform: translate(50px, 32px);
+}
+
 /* Nuxt Frame */
 
 .nuxtFrame {
