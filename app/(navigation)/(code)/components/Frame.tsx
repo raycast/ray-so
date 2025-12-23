@@ -802,6 +802,102 @@ const StripeFrame = () => {
   );
 };
 
+const CommetFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const code = useAtomValue(codeAtom);
+  const windowWidth = useAtomValue(windowWidthAtom);
+  const isSafari = useIsSafari();
+
+  const windowRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [innerWindowWidth, setInnerWindowWidth] = useState(0);
+  const [frameHeight, setFrameHeight] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const numberOfLines = Math.max(1, (code.match(/\n/g) || []).length + 1);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (windowRef.current) {
+        setInnerWindowWidth(windowRef.current.offsetWidth);
+      }
+      if (frameRef.current) {
+        setFrameHeight(frameRef.current.offsetHeight);
+      }
+    };
+
+    updateDimensions();
+
+    const timeoutId = setTimeout(updateDimensions, 0);
+
+    window.addEventListener("resize", updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+      clearTimeout(timeoutId);
+    };
+  }, [windowWidth, numberOfLines, padding, isTransitioning]);
+
+  // Handle re-trigger when padding has finished changing
+  useEffect(() => {
+    setIsTransitioning(true);
+    const timer = setTimeout(() => setIsTransitioning(false), 200);
+    return () => clearTimeout(timer);
+  }, [padding]);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.commetFrame,
+        darkMode && styles.darkMode,
+        showBackground && styles.withBackground,
+      )}
+      style={{ padding }}
+      ref={frameRef}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <div className={styles.commetBackground}>
+          <div
+            className={styles.commetBackgroundGridlineContainer}
+            style={{ "--window-width": `${innerWindowWidth}px` } as React.CSSProperties}
+          >
+            <div className={styles.commetBackgroundGridline}></div>
+            <div className={styles.commetBackgroundGridline}></div>
+            <div className={styles.commetBackgroundGridline}></div>
+            <div className={styles.commetBackgroundGridline}></div>
+            <div className={styles.commetBackgroundGridline}></div>
+          </div>
+
+          <div className={classNames(styles.commetStripe)}>
+            <div
+              className={styles.commetBackgroundGridlineContainer}
+              style={{ "--window-width": `${innerWindowWidth}px` } as React.CSSProperties}
+            >
+              <div className={styles.commetBackgroundGridline}></div>
+              <div className={styles.commetBackgroundGridline}></div>
+              <div className={styles.commetBackgroundGridline}></div>
+              <div className={styles.commetBackgroundGridline}></div>
+              <div className={styles.commetBackgroundGridline}></div>
+
+              <div className={classNames(styles.commetSet, frameHeight < 240 && styles.isSmall)}>
+                <div className={styles.commet1} />
+                <div className={styles.commet2} />
+                <div className={styles.intersection} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className={classNames(styles.commetWindow, isSafari && styles.isSafari)} ref={windowRef}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const DefaultFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
@@ -894,6 +990,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <CloudflareFrame />;
       case THEMES.stripe.id:
         return <StripeFrame />;
+      case THEMES.commet.id:
+        return <CommetFrame />;
       default:
         return <DefaultFrame />;
     }

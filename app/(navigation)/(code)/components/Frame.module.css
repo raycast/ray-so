@@ -23,9 +23,9 @@
 .transparentPattern {
   position: absolute;
   z-index: -1;
-  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
-    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
-    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-image:
+    linear-gradient(45deg, #1d1d1d 25%, transparent 0), linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(45deg, transparent 75%, #1d1d1d 0), linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
   background-position:
     0 0,
     0 10px,
@@ -1775,6 +1775,79 @@
   height: 18px;
   background: hsla(221.1, 99.822%, 44.876%);
   transform: translate(50px, 32px);
+}
+
+/* Commet Theme Frame */
+
+.commetFrame {
+  --border: #ffffff;
+  --gridline: rgba(255, 255, 255, 0.1);
+  --window: #000000;
+  --line-number: #ffffff;
+
+  position: relative;
+  height: 100%;
+  background-color: var(--bg);
+
+  &.withBackground {
+    background-image: url("../assets/commet/commet-pattern.png") !important;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.commetBackground {
+  position: relative;
+}
+
+.commetBackgroundGridlineContainer {
+  position: relative;
+  width: var(--window-width);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.commetBackground {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.commetWindow {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--window);
+  /* Enhanced shadow for the window code */
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(0, 0, 0, 0.15) 0px 10px 20px -5px;
+
+  &.isSafari {
+    box-shadow: none;
+  }
+}
+.commet1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(17, 239, 227);
+}
+
+.commet2 {
+  position: absolute;
+  /* right: 0px; */
+  width: 100%;
+  height: 32px;
+  background: rgb(153, 102, 255);
+  transform: translate(50px, 50px);
 }
 
 /* Nuxt Frame */

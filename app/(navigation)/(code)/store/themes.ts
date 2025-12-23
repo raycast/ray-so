@@ -35,6 +35,8 @@ import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import StripeLogo from "../assets/stripe/logo.svg";
 import StripeLogoUrl from "../assets/stripe/logo.svg?url";
+import CommetLogo from "../assets/commet.svg";
+import CommetLogoUrl from "../assets/commet.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -878,6 +880,41 @@ export const THEMES: { [index: string]: Theme } = {
         highlight: "rgba(255, 107, 53, 0.15)",
         highlightBorder: "#FF6B35",
         highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
+      }),
+    },
+  },
+  commet: {
+    id: "commet",
+    name: "Commet",
+    partner: true,
+    background: {
+      from: "#0a2540",
+      to: "#0a2540",
+    },
+    icon: CommetLogo,
+    iconUrl: `${BASE_URL}${CommetLogoUrl.src}`,
+    font: "source-code-pro",
+    lineNumbers: true,
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#F5F7FA",
+        constant: "#F5F7FA",
+        string: "#60A5FA",
+        comment: "#9CA3AF",
+        keyword: "#818CF8",
+        parameter: "#34D399",
+        function: "#22D3EE",
+        stringExpression: "#60A5FA",
+        punctuation: "#CBD5E1",
+        link: "#60A5FA",
+        number: "#FBBF24",
+        property: "#34D399",
+        objectLiteral: "#34D399",
+        highlight: "rgba(59, 130, 246, 0.15)",
+        highlightBorder: "#3B82F6",
+        highlightHover: "rgba(59, 130, 246, 0.08)",
         diffInserted: "#34D399",
         diffDeleted: "#F87171",
       }),
