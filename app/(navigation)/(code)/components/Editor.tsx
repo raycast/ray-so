@@ -127,6 +127,7 @@ const fontMap = {
   "commit-mono": styles.commitMono,
   "space-mono": styles.spaceMono,
   "source-code-pro": styles.sourceCodePro,
+  "google-sans-code": styles.googleSansCode,
 } as const;
 
 function Editor() {

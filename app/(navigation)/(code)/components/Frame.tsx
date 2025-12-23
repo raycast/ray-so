@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { fileNameAtom, showBackgroundAtom, windowWidthAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
 import { paddingAtom } from "../store/padding";
-import { THEMES, themeDarkModeAtom, themeAtom, themeBackgroundAtom } from "../store/themes";
+import { THEMES, themeDarkModeAtom, themeAtom, themeBackgroundAtom, darkModeAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
 
 import Editor from "./Editor";
@@ -53,8 +53,6 @@ const SupabaseFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const [fileName, setFileName] = useAtom(fileNameAtom);
-  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
 
   return (
     <div
@@ -68,20 +66,6 @@ const SupabaseFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.supabaseWindow}>
-        <div className={styles.supabaseHeader}>
-          <div className={classNames(styles.fileName, styles.supabaseFileName)} data-value={fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            {fileName.length === 0 ? <span>Untitled-1</span> : null}
-          </div>
-          <span className={styles.supabaseLanguage}>{selectedLanguage?.name}</span>
-        </div>
         <Editor />
       </div>
     </div>
@@ -276,6 +260,8 @@ const PrismaFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const flashShown = useAtomValue(flashShownAtom);
 
   return (
     <div
@@ -293,6 +279,34 @@ const PrismaFrame = () => {
         <span data-frameborder />
         <span data-frameborder />
         <span data-frameborder />
+        {fileName.length > 0 ? (
+          <div className={styles.prismaHeader}>
+            <div className={classNames(styles.fileName, styles.prismaFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.prismaHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.prismaFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+          </div>
+        )}
         <Editor />
       </div>
     </div>
@@ -472,6 +486,81 @@ const NuxtFrame = () => {
   );
 };
 
+const GeminiFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const isSafari = useIsSafari();
+  const flashShown = useAtomValue(flashShownAtom);
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.geminiFrame,
+        !darkMode && styles.geminiFrameLightMode,
+        !showBackground && styles.noBackground,
+        isSafari && styles.isSafari,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && <img src="/stars.svg" alt="stars" className={styles.geminiStars} />}
+      <div className={styles.geminiWindow}>
+        {fileName.length > 0 ? (
+          <div className={styles.geminiHeader}>
+            <div className={classNames(styles.fileName, styles.geminiFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.geminiHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.geminiFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+          </div>
+        )}
+
+        {/* <div className={styles.header}>
+          <div className={styles.controls}>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+            <div className={styles.control}></div>
+          </div>
+          <div className={styles.fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+            />
+            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+          </div>
+        </div> */}
+        <div className={styles.geminiEditor}>
+          <Editor />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BrowserbaseFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -522,6 +611,97 @@ const BrowserbaseFrame = () => {
         <Editor />
       </div>
       <div className={styles.browserbaseOutline} style={{ "--padding": `${padding}px` } as React.CSSProperties}></div>
+    </div>
+  );
+};
+
+const WrappedFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.wrappedFrame,
+        !darkMode && styles.wrappedFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <>
+          <span className={styles.wrappedBottomGlow}></span>
+          <span className={styles.wrappedBorder}></span>
+          <span className={styles.wrappedFade}></span>
+          <span className={styles.wrappedGlowLeft}></span>
+          <span className={styles.wrappedGlowRight}></span>
+          <span className={styles.wrappedGlowBottom}></span>
+        </>
+      )}
+      <div className={styles.wrappedWindow}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
+const CloudflareFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+  const flashShown = useAtomValue(flashShownAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.cloudflareFrame,
+        !darkMode && styles.cloudflareFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.cloudflareWindow}>
+        <span className={styles.cloudflareGridlinesHorizontal} data-grid></span>
+        <span className={styles.cloudflareGridlinesVertical} data-grid></span>
+        {fileName.length > 0 ? (
+          <div className={styles.cloudflareHeader}>
+            <div className={classNames(styles.fileName, styles.cloudflareFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+            </div>
+            <span className={styles.cloudflareLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        ) : flashShown ? null : (
+          <div className={styles.cloudflareHeader} data-ignore-in-export>
+            <div className={classNames(styles.fileName, styles.cloudflareFileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              <span>Untitled-1</span>
+            </div>
+            <span className={styles.cloudflareLanguage}>{selectedLanguage?.name}</span>
+          </div>
+        )}
+        <Editor />
+      </div>
     </div>
   );
 };
@@ -706,6 +886,12 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <BrowserbaseFrame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
+      case THEMES.gemini.id:
+        return <GeminiFrame />;
+      case THEMES.wrapped.id:
+        return <WrappedFrame />;
+      case THEMES.cloudflare.id:
+        return <CloudflareFrame />;
       case THEMES.stripe.id:
         return <StripeFrame />;
       default:
