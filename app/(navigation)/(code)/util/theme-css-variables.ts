@@ -1,5 +1,6 @@
 // Adapted from https://github.com/shikijs/shiki/blob/main/packages/shiki/src/theme-css-variables.ts
 
+// deno-lint-ignore import-prefix-missing
 import type { ThemeRegistration } from "@shikijs/core";
 
 export interface CssVariablesThemeOptions {
