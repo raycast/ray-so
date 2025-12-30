@@ -1780,7 +1780,7 @@
 /* Commet Theme Frame */
 
 .commetFrame {
-  --border: #ffffff;
+  --border: #333;
   --gridline: rgba(255, 255, 255, 0.1);
   --window: #000000;
   --line-number: #ffffff;
@@ -1822,7 +1822,7 @@
   position: relative;
   z-index: 1;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background: var(--window);
   /* Enhanced shadow for the window code */
   box-shadow:
