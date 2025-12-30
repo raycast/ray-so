@@ -896,7 +896,7 @@ export const THEMES: { [index: string]: Theme } = {
     icon: CommetLogo,
     iconUrl: `${BASE_URL}${CommetLogoUrl.src}`,
     font: "source-code-pro",
-    lineNumbers: true,
+    lineNumbers: false,
     syntax: {
       dark: convertToShikiTheme({
         foreground: "#F5F7FA",
