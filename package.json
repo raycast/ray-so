@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
@@ -30,6 +29,7 @@
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@raycast/icons": "^0.4.7",
+    "@shikijs/core": "^3.20.0",
     "@vercel/analytics": "^1.1.1",
     "@vercel/og": "^0.6.2",
     "@viselect/react": "^3.9.0",

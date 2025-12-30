@@ -55,6 +55,9 @@ importers:
       "@raycast/icons":
         specifier: ^0.4.7
         version: 0.4.7
+      "@shikijs/core":
+        specifier: ^3.20.0
+        version: 3.20.0
       "@vercel/analytics":
         specifier: ^1.1.1
         version: 1.6.1(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
@@ -1771,6 +1774,10 @@ packages:
     resolution:
       { integrity: sha512-vju0lY9r27jJfOY4Z7+Rt/nIOjzJpZ3y+nYpqtUZInVoXQ/TJZcfGnNOGnKjFdVZb8qexiCuSlZRKcGfhhTTZQ== }
 
+  "@shikijs/core@3.20.0":
+    resolution:
+      { integrity: sha512-f2ED7HYV4JEk827mtMDwe/yQ25pRiXZmtHjWF8uzZKuKiEsJR7Ce1nuQ+HhV9FzDcbIo4ObBCD9GPTzNuy9S1g== }
+
   "@shikijs/engine-javascript@1.29.2":
     resolution:
       { integrity: sha512-iNEZv4IrLYPv64Q6k7EPpOCE/nuvGiKl7zxdq0WFuRPF5PAE9PRo2JGq/d8crLusM59BRemJ4eOqrFrC4wiQ+A== }
@@ -1790,6 +1797,10 @@ packages:
   "@shikijs/types@1.29.2":
     resolution:
       { integrity: sha512-VJjK0eIijTZf0QSTODEXCqinjBn0joAHQ+aPSBzrv4O2d/QSbsMw+ZeSRx03kV34Hy7NzUvV/7NqfYGRLrASmw== }
+
+  "@shikijs/types@3.20.0":
+    resolution:
+      { integrity: sha512-lhYAATn10nkZcBQ0BlzSbJA3wcmL5MXUUF8d2Zzon6saZDlToKaiRX60n2+ZaHJCmXEcZRWNzn+k9vplr8Jhsw== }
 
   "@shikijs/vscode-textmate@10.0.2":
     resolution:
@@ -7097,6 +7108,13 @@ snapshots:
       "@types/hast": 3.0.4
       hast-util-to-html: 9.0.5
 
+  "@shikijs/core@3.20.0":
+    dependencies:
+      "@shikijs/types": 3.20.0
+      "@shikijs/vscode-textmate": 10.0.2
+      "@types/hast": 3.0.4
+      hast-util-to-html: 9.0.5
+
   "@shikijs/engine-javascript@1.29.2":
     dependencies:
       "@shikijs/types": 1.29.2
@@ -7117,6 +7135,11 @@ snapshots:
       "@shikijs/types": 1.29.2
 
   "@shikijs/types@1.29.2":
+    dependencies:
+      "@shikijs/vscode-textmate": 10.0.2
+      "@types/hast": 3.0.4
+
+  "@shikijs/types@3.20.0":
     dependencies:
       "@shikijs/vscode-textmate": 10.0.2
       "@types/hast": 3.0.4
