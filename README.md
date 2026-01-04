@@ -1,83 +1,34 @@
-<!-- TEXT_SECTION:header:START -->
-<p align="center">
-  <a href="https://ray.so" target="_blank" rel="noopener noreferrer">
-    <img width="1024" src="app/assets/og-image.png" alt="ray.so">
-  </a>
-</p>
-<h1 align="center">
-  ray.so
-</h1>
-<h3 align="center">
-  Built by <a href="https://raycast.com/#ref=ray.so" target="_blank" rel="noopener noreferrer">Raycast</a>
-</h3>
-<p align="center">
-  Create code snippets, browse AI prompts, create extension icons and more.
-</p>
+# Second code image generator
 
-<p align="center">
-  <a aria-label="Follow Raycast on X" href="https://x.com/raycast">
-    <img alt="" src="https://img.shields.io/badge/Follow%20@raycastapp-black.svg?style=for-the-badge&logo=X">
-  </a>
-  <a aria-label="Join the community on Slack" href="https://raycast.com/community">
-    <img alt="" src="https://img.shields.io/badge/Join%20the%20community-black.svg?style=for-the-badge&logo=Slack">
-  </a>
-</p>
-
-<!-- TEXT_SECTION:header:END -->
+A fork of [ray.so](https://ray.so) for generating Second-branded code images.
 
 ## About
 
-This repository contains the source code for [ray.so](https://ray.so), a collection of tools built by [Raycast](https://raycast.com/#ref=ray.so). It includes:
+This is Second's fork of the excellent ray.so project originally built by [Raycast](https://raycast.com). We use it to generate branded code images for our bitcoin payment solutions and other projects. We forked the project to add our own Second theme!
 
-- [**Code Images**](</app/(navigation)/(code)>): Create beautiful images of your code.
-- [**Icon Maker**](</app/(navigation)/icon/>): Create beautiful icons for Raycast Extensions.
-- [**Prompt Explorer**](</app/(navigation)/prompts/>): Explore AI Prompts for Raycast.
-- [**Preset Explorer**](</app/(navigation)/presets/>): Explore AI Presets for Raycast.
-- [**Quicklink Explorer**](</app/(navigation)/quicklinks/>): Browse and import Raycast Quicklinks.
-- [**Snippet Explorer**](</app/(navigation)/snippets/>): Browse and import Raycast Snippets.
-- [**Theme Explorer**](</app/(navigation)/themes/>): Browse and import Raycast Themes.
+## What we're building
+
+[Second](https://second.tech) is building bitcoin payment solutions. We share a lot of technical content with our community, you'll find a lot of these code images [posted on our X](https://x.com/2ndbtc)!
 
 ## Setup
 
-This is a [Next.js](https://nextjs.org/) project. If you're unfamiliar with it, check out the [Next.js Documentation](https://nextjs.org/docs).
+This is a [Next.js](https://nextjs.org/) project.
 
-To get started, download the repo, install dependencies and run the development server:
+To run locally:
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Contributing
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-We welcome contributions primarily in the form of new presets, prompts, snippets, themes, and bug fixes.
+## License
 
-> [!NOTE]
-> If you're interested in creating a new code theme we recommend forking the project to run your own version. However, certain partner themes may be considered. Please reach out by creating an issue or [contacting us](mailto:feedback+rayso@raycast.com) first.
+MIT License—see [LICENSE](LICENSE) for details.
 
-If you're interested in contributing, follow the steps below:
+## Credits
 
-### Presets, Prompts, Quicklinks & Snippets
+Built by [Raycast](https://raycast.com/#ref=ray.so). Check out the [original project](https://github.com/raycast/ray-so) for more information.
 
-- Open [prompts.ts](</app/(navigation)/prompts/prompts.ts>) or [presets.ts](</app/(navigation)/presets/presets.ts>) or [snippets.ts](</app/(navigation)/snippets/snippets.ts>) or [quicklinks.ts](</app/(navigation)/quicklinks/quicklinks.ts>)
-- Add your data to the relevant category
-  - Ensure it includes all fields, and that they're unique within their category
-- Add your name and (optional) website url to the `author` field
-- Create a pull request 🚀
-
-### Themes
-
-#### 1. Copy the Theme JSON from Raycast
-
-- Open Theme Studio in Raycast
-- Right click on your Theme and select "Copy as JSON"
-
-#### 2. Add the theme to repo
-
-- In [themes](</app/(navigation)/themes/themes>), create a folder with your Raycast username, ie: `peduarte`
-- In that folder, create a file with the theme name, ie: `red.json`
-- In that file, paste the theme JSON you copied from Raycast's Theme Studio
-
-#### 3. Commit and push your changes
-
-- Create a Pull Request 🚀
+Follow Raycast on [X](https://x.com/raycast) or join their [Slack community](https://raycast.com/community).

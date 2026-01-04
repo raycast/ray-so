@@ -515,6 +515,147 @@
   }
 }
 
+/*
+ * Second Frame
+ *
+ * A clean, minimal frame with header bar showing filename and language.
+ * Uses neutral grey palette derived from brand colors #242424 and #eeeeee.
+ *
+ * Light mode: White backgrounds with subtle ambient drop shadow
+ * Dark mode: Neutral grey hierarchy (#080808 → #141414 → #1f1f1f)
+ */
+.secondFrame {
+  background: #ffffff;
+  --second-header-text: #b0b0b0; /* Light mode: subtle, doesn't distract from code */
+  --line-number: #b0b0b0;
+}
+
+.secondWindow {
+  position: relative;
+  z-index: 1;
+  border: none;
+  border-radius: 8px;
+  background: #ffffff;
+  /* Ambient shadow: even on all sides (no directional offset) */
+  box-shadow:
+    0px 0px 2px 0px rgba(0, 0, 0, 0.08),
+    0px 0px 6px 0px rgba(0, 0, 0, 0.06),
+    0px 0px 12px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 24px 0px rgba(0, 0, 0, 0.04);
+}
+
+.secondHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: none;
+  background: #f6f6f6;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  gap: 12px;
+}
+
+.secondFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: var(--second-header-text);
+  font-family: var(--font-source-code-pro), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+    color: var(--second-header-text);
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.secondLanguage {
+  height: 40px;
+  color: var(--second-header-text);
+  font-family: var(--font-source-code-pro), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+/* Dark mode overrides - HIGH CONTRAST version (neutral greys) */
+.secondFrameDarkMode {
+  background: #080808; /* Outer background */
+  --second-header-text: #737373;
+  --line-number: #737373;
+
+  .secondWindow {
+    background: #0c0c0c; /* Code area - very dark for high contrast */
+    box-shadow:
+      0px 0px 2px 0px #000000,
+      0px 0px 6px 0px #000000,
+      0px 0px 12px 0px #000000,
+      0px 0px 24px 0px #000000;
+  }
+
+  .secondHeader {
+    background: #101010; /* Header - slightly lighter than code area */
+  }
+}
+
+/* 
+ * PRESERVED: Previous dark mode settings (lower contrast)
+ * Uncomment to restore softer dark mode appearance
+ *
+ * .secondFrameDarkMode {
+ *   background: #080808;
+ *   --second-header-text: #737373;
+ *   --line-number: #737373;
+ *
+ *   .secondWindow {
+ *     background: #1f1f1f;
+ *     box-shadow:
+ *       0px 0px 2px 0px #000000,
+ *       0px 0px 6px 0px #000000,
+ *       0px 0px 12px 0px #000000,
+ *       0px 0px 24px 0px #000000;
+ *   }
+ *
+ *   .secondHeader {
+ *     background: #141414;
+ *   }
+ * }
+ */
+
 /* Tailwind Frame */
 .tailwindFrame {
   position: relative;

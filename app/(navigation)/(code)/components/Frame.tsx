@@ -72,6 +72,55 @@ const SupabaseFrame = () => {
   );
 };
 
+/**
+ * SecondFrame - Clean, minimal code frame for Second brand
+ *
+ * Features:
+ * - Header bar with editable filename and language display
+ * - Ambient drop shadow (no directional offset)
+ * - Light/dark mode with neutral grey palette
+ * - Uses Source Code Pro font (weight 500)
+ */
+const SecondFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const [selectedLanguage] = useAtom(selectedLanguageAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        styles.secondFrame,
+        darkMode && styles.secondFrameDarkMode,
+        showBackground && styles.withBackground,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.secondWindow}>
+        <div className={styles.secondHeader}>
+          <div className={classNames(styles.fileName, styles.secondFileName)} data-value={fileName}>
+            <input
+              type="text"
+              value={fileName}
+              onChange={(event) => setFileName(event.target.value)}
+              spellCheck={false}
+              tabIndex={-1}
+              size={1}
+            />
+            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+          </div>
+          <span className={styles.secondLanguage}>{selectedLanguage?.name}</span>
+        </div>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const TailwindFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -866,6 +915,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <VercelFrame />;
       case THEMES.supabase.id:
         return <SupabaseFrame />;
+      case THEMES.second.id:
+        return <SecondFrame />;
       case THEMES.tailwind.id:
         return <TailwindFrame />;
       case THEMES.clerk.id:

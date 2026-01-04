@@ -53,22 +53,32 @@ const ThemeControl: React.FC = () => {
     }
   });
 
-  const { partnerThemes, themes } = React.useMemo(
-    () =>
-      Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
-        (acc, [key, value]) => {
-          const themeWithKey = { ...value, key };
-          if (value.partner) {
-            acc.partnerThemes.push(themeWithKey);
-          } else {
-            acc.themes.push(themeWithKey);
-          }
-          return acc;
-        },
-        { partnerThemes: [], themes: [] },
-      ),
-    [],
-  );
+  const { partnerThemes, themes } = React.useMemo(() => {
+    const result = Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
+      (acc, [key, value]) => {
+        const themeWithKey = { ...value, key };
+        if (value.partner) {
+          acc.partnerThemes.push(themeWithKey);
+        } else {
+          acc.themes.push(themeWithKey);
+        }
+        return acc;
+      },
+      { partnerThemes: [], themes: [] },
+    );
+
+    // Sort both arrays: Second first, then alphabetically by name
+    const sortWithSecondFirst = (a: Theme, b: Theme) => {
+      if (a.id === "second") return -1;
+      if (b.id === "second") return 1;
+      return a.name.localeCompare(b.name);
+    };
+
+    result.partnerThemes.sort(sortWithSecondFirst);
+    result.themes.sort(sortWithSecondFirst);
+
+    return result;
+  }, []);
 
   return (
     <ControlContainer title="Theme">
@@ -84,7 +94,7 @@ const ThemeControl: React.FC = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Partners</SelectLabel>
+            <SelectLabel>Commercial themes</SelectLabel>
             {partnerThemes
               .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
               .map((theme, index) => {
@@ -111,6 +121,7 @@ const ThemeControl: React.FC = () => {
           </SelectGroup>
           <SelectSeparator />
           <SelectGroup>
+            <SelectLabel>Basic themes</SelectLabel>
             {themes.map((theme, index) => {
               const isWrapped = theme.id === "wrapped";
               return (

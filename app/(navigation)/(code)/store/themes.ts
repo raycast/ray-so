@@ -35,6 +35,8 @@ import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import StripeLogo from "../assets/stripe/logo.svg";
 import StripeLogoUrl from "../assets/stripe/logo.svg?url";
+import SecondLogo from "../assets/second.svg";
+import SecondLogoUrl from "../assets/second.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -260,6 +262,70 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#383838",
         diffInserted: "#3ecf8e",
         diffDeleted: "#F06A50",
+      }),
+    },
+  },
+  /**
+   * Second Theme
+   *
+   * Brand colors:
+   * - Primary: Red #fa1336, Blue #3d8afb, Yellow #f6d032
+   * - Tertiary: Green #43b929, Purple #6f2dbd, Orange #f4931b
+   * - Text: #242424 (light), #ffffff (dark)
+   * - Neutral greys: #080808, #141414, #1f1f1f, #737373, #eeeeee
+   *
+   * Note: lineNumbers is intentionally omitted to allow user toggle
+   * (explicitly set lineNumbers: true/false to lock the control)
+   */
+  second: {
+    id: "second",
+    name: "Second",
+    background: {
+      from: "#ffffff",
+      to: "#ffffff",
+    },
+    icon: SecondLogo,
+    iconUrl: `${BASE_URL}${SecondLogoUrl.src}`,
+    partner: true,
+    font: "source-code-pro",
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#242424",
+        constant: "#6f2dbd", // Purple (tertiary)
+        string: "#f4931b", // Orange (tertiary)
+        comment: "#8c8c8c",
+        keyword: "#fa1336", // Red (primary)
+        parameter: "#242424",
+        function: "#3d8afb", // Blue (primary)
+        stringExpression: "#f4931b", // Orange (tertiary)
+        punctuation: "#242424",
+        link: "#3d8afb", // Blue (primary)
+        number: "#f4931b", // Orange (tertiary)
+        property: "#3d8afb", // Blue (primary)
+        highlight: "rgba(246, 208, 50, 0.12)", // Yellow (primary)
+        highlightHover: "rgba(246, 208, 50, 0.06)",
+        highlightBorder: "#f6d032", // Yellow (primary)
+        diffInserted: "#43b929", // Green (tertiary)
+        diffDeleted: "#fa1336", // Red (primary)
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "#9257db", // Purple (tertiary) - brightened for contrast on dark
+        string: "#f6d032", // Yellow (primary) - better contrast on dark
+        comment: "#737373", // Neutral grey
+        keyword: "#fa1336", // Red (primary)
+        parameter: "#ffffff",
+        function: "#3d8afb", // Blue (primary)
+        stringExpression: "#f6d032", // Yellow (primary)
+        punctuation: "#ffffff",
+        link: "#3d8afb", // Blue (primary)
+        number: "#f6d032", // Yellow (primary)
+        property: "#3d8afb", // Blue (primary)
+        highlight: "rgba(246, 208, 50, 0.12)",
+        highlightHover: "rgba(246, 208, 50, 0.06)",
+        highlightBorder: "#f6d032",
+        diffInserted: "#43b929", // Green (tertiary)
+        diffDeleted: "#fa1336", // Red (primary)
       }),
     },
   },
@@ -1561,7 +1627,7 @@ const themeAtom = atomWithHash<Theme>(
         console.log("Could not get theme from localStorage", error);
       }
     }
-    return THEMES.candy; // Fallback to default theme
+    return THEMES.second; // Fallback to default theme
   })(),
   {
     serialize(value) {
@@ -1576,13 +1642,13 @@ const themeAtom = atomWithHash<Theme>(
         }
         return THEMES[key as keyof typeof THEMES];
       } else {
-        return THEMES.candy;
+        return THEMES.second;
       }
     },
   },
 );
 
-const darkModeAtom = atomWithHash<boolean>("darkMode", true);
+const darkModeAtom = atomWithHash<boolean>("darkMode", false);
 
 const themeDarkModeAtom = atom<boolean>((get) => {
   const theme = get(themeAtom);
@@ -1614,7 +1680,11 @@ const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbra
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
   const theme = get(themeAtom);
-  return theme.partner ? theme.lineNumbers || false : (get(showLineNumbersAtom) ?? false);
+  // If theme explicitly sets lineNumbers, use that value; otherwise use user preference
+  if (theme.lineNumbers !== undefined) {
+    return theme.lineNumbers;
+  }
+  return get(showLineNumbersAtom) ?? false;
 });
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
