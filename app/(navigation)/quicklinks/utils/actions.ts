@@ -7,9 +7,10 @@ import { getRaycastFlavor } from "@/app/RaycastFlavor";
 function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
   return `[${quicklinks
     .map((selectedQuicklink) => {
-      const { name, link, openWith } = selectedQuicklink;
+      const { icon, name, link, openWith } = selectedQuicklink;
 
       return JSON.stringify({
+        ...(icon?.name && { icon: icon.name }),
         name,
         link,
         openWith,
