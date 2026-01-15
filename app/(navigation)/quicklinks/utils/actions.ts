@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard";
 import { Quicklink } from "../quicklinks";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
-import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
 
 function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
   return `[${quicklinks
@@ -62,26 +62,48 @@ export function copyUrl(quicklinks: Quicklink[]) {
 
 export async function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
   const raycastProtocol = await getRaycastFlavor();
-  router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
+  const isXray = await getIsXray();
+
+  if (isXray) {
+    const context = encodeURIComponent(
+      JSON.stringify(
+        quicklinks.map(({ name, link, openWith, icon }) => ({
+          name,
+          link,
+          openWith,
+          icon: getRaycastIconName(icon?.name, true),
+        })),
+      ),
+    );
+    router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/import-quicklinks?context=${context}`);
+  } else {
+    router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
+  }
 }
 
 export async function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
   const raycastProtocol = await getRaycastFlavor();
+  const isXray = await getIsXray();
   const { name, link, openWith, icon } = quicklink;
   const encodedQuicklink = encodeURIComponent(
     JSON.stringify({
       name,
       link,
       openWith,
-      icon: getRaycastIconName(icon?.name),
+      icon: getRaycastIconName(icon?.name, isXray),
     }),
   );
-  router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
+
+  if (isXray) {
+    router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/create-quicklink?context=${encodedQuicklink}`);
+  } else {
+    router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
+  }
 }
 
-function getRaycastIconName(iconName?: string) {
+function getRaycastIconName(iconName?: string, isXray?: boolean) {
   if (iconName) {
-    return `${iconName}-16`;
+    return isXray ? iconName : `${iconName}-16`;
   }
   return undefined;
 }
