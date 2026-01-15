@@ -150,7 +150,7 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
                 className="border-t border-gray-4 group-hover:border-[#2A1E48] -mx-4 px-4 -mb-4 h-[28px] flex items-center mt-3 pb-[3px] overflow-hidden text-left w-[calc(100%+32px)] group/footer gap-1 outline-purple rounded-b-xl"
               >
                 <span
-                  className={`whitespace-nowrap overflow-hidden text-ellipsis w-full block transition-colors duration-150 text-xxs 
+                  className={`whitespace-nowrap overflow-hidden text-ellipsis w-full block transition-colors duration-150 text-xxs
                      ${quicklink.isEdited ? "text-purple " : "group-hover/footer:text-white"}
                   `}
                 >
