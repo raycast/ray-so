@@ -40,7 +40,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -193,8 +193,27 @@ export default function Snippets() {
 
   const handleAddToRaycast = React.useCallback(async () => {
     const raycastProtocol = await getRaycastFlavor();
-    router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
-  }, [router, makeQueryString]);
+    const isXray = await getIsXray();
+
+    if (isXray) {
+      const snippetsData = selectedSnippets.map((snippet) => {
+        const { name, text, type } = snippet;
+        const keyword =
+          snippet.type === "spelling"
+            ? snippet.keyword
+            : addModifiersToKeyword({
+                keyword: snippet.keyword,
+                start: startMod,
+                end: endMod,
+              });
+        return { name, text, keyword, type };
+      });
+      const context = encodeURIComponent(JSON.stringify(snippetsData));
+      router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+    } else {
+      router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+    }
+  }, [router, makeQueryString, selectedSnippets, startMod, endMod]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());

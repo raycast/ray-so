@@ -10,6 +10,7 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import { isTouchDevice } from "../utils/isTouchDevice";
+import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
 import styles from "../[[...slug]]/snippets.module.css";
 import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
@@ -17,13 +18,6 @@ import { Snippet } from "../snippets";
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-
-const raycastProtocolForEnvironments = {
-  development: "raycastinternal",
-  production: "raycast",
-  test: "raycastinternal",
-};
-const raycastProtocol = raycastProtocolForEnvironments[process.env.NODE_ENV];
 
 export function Shared({ snippets }: { snippets: Snippet[] }) {
   const router = useRouter();
@@ -126,15 +120,27 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
     setCopied(true);
   }, [makeSnippetImportData]);
 
-  const handleAddToRaycast = React.useCallback(() => {
-    const queryString = selectedSnippets
-      .map((snippet) => {
-        const { name, text, type } = snippet;
-        const keyword = snippet.keyword;
-        return `snippet=${encodeURIComponent(JSON.stringify({ name, text, keyword, type }))}`;
-      })
-      .join("&");
-    return router.replace(`${raycastProtocol}://snippets/import?${queryString}`);
+  const handleAddToRaycast = React.useCallback(async () => {
+    const raycastProtocol = await getRaycastFlavor();
+    const isXray = await getIsXray();
+
+    if (isXray) {
+      const snippetsData = selectedSnippets.map((snippet) => {
+        const { name, text, keyword, type } = snippet;
+        return { name, text, keyword, type };
+      });
+      const context = encodeURIComponent(JSON.stringify(snippetsData));
+      router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+    } else {
+      const queryString = selectedSnippets
+        .map((snippet) => {
+          const { name, text, type } = snippet;
+          const keyword = snippet.keyword;
+          return `snippet=${encodeURIComponent(JSON.stringify({ name, text, keyword, type }))}`;
+        })
+        .join("&");
+      router.replace(`${raycastProtocol}://snippets/import?${queryString}`);
+    }
   }, [router, selectedSnippets]);
 
   React.useEffect(() => {
