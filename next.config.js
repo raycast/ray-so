@@ -18,6 +18,40 @@ const nextConfig = {
       },
     ],
   },
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        as: "*.js",
+      },
+      "*.inline.png": {
+        loaders: ["url-loader"],
+        as: "*.js",
+      },
+      "*.inline.jpg": {
+        loaders: ["url-loader"],
+        as: "*.js",
+      },
+      "*.inline.gif": {
+        loaders: ["url-loader"],
+        as: "*.js",
+      },
+    },
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
