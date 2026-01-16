@@ -4,40 +4,41 @@ import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
 import CloudflareLogo from "../assets/cloudflare.svg";
-import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
-import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
-import RabbitLogoUrl from "../assets/rabbit.svg?url";
 import SupabaseLogo from "../assets/supabase.svg";
-import SupabaseLogoUrl from "../assets/supabase.svg?url";
 import TailwindLogo from "../assets/tailwind.svg";
-import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
-import TriggerLogoUrl from "../assets/triggerdev.svg?url";
 import GeminiLogo from "../assets/gemini.svg";
-import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
-import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
-import ClerkLogoUrl from "../assets/clerk.svg?url";
 import PrismaLogo from "../assets/prisma.svg";
-import PrismaLogoUrl from "../assets/prisma.svg?url";
 import MintlifyLogo from "../assets/mintlify.svg";
-import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import ElevenLabsLogo from "../assets/elevenlabs.svg";
-import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
-import ResendLogoUrl from "../assets/resend.svg?url";
 import BrowserbaseLogo from "../assets/browserbase.svg";
-import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
-import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import StripeLogo from "../assets/stripe/logo.svg";
-import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
+
+const CloudflareLogoUrl = new URL("../assets/cloudflare.svg", import.meta.url);
+const VercelLogoUrl = new URL("../assets/vercel.svg", import.meta.url);
+const RabbitLogoUrl = new URL("../assets/rabbit.svg", import.meta.url);
+const SupabaseLogoUrl = new URL("../assets/supabase.svg", import.meta.url);
+const TailwindLogoUrl = new URL("../assets/tailwind.svg", import.meta.url);
+const TriggerLogoUrl = new URL("../assets/triggerdev.svg", import.meta.url);
+const GeminiLogoUrl = new URL("../assets/gemini.svg", import.meta.url);
+const OpenAiLogoUrl = new URL("../assets/openai.svg", import.meta.url);
+const ClerkLogoUrl = new URL("../assets/clerk.svg", import.meta.url);
+const PrismaLogoUrl = new URL("../assets/prisma.svg", import.meta.url);
+const MintlifyLogoUrl = new URL("../assets/mintlify.svg", import.meta.url);
+const ElevenLabsLogoUrl = new URL("../assets/elevenlabs.svg", import.meta.url);
+const ResendLogoUrl = new URL("../assets/resend.svg", import.meta.url);
+const BrowserbaseLogoUrl = new URL("../assets/browserbase.svg", import.meta.url);
+const NuxtLogoUrl = new URL("../assets/nuxt.svg", import.meta.url);
+const StripeLogoUrl = new URL("../assets/stripe/logo.svg", import.meta.url);
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -121,7 +122,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#1F1F1F",
     },
     icon: VercelLogo,
-    iconUrl: `${BASE_URL}${VercelLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${VercelLogoUrl.href}`,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -173,7 +174,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: RabbitLogo,
-    iconUrl: `${BASE_URL}${RabbitLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${RabbitLogoUrl.href}`,
     font: "geist-mono",
     partner: true,
     hidden: true,
@@ -220,7 +221,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#121212",
     },
     icon: SupabaseLogo,
-    iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${SupabaseLogoUrl.href}`,
     partner: true,
     lineNumbers: true,
     font: "jetbrains-mono",
@@ -271,7 +272,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#36B6F0",
     },
     icon: TailwindLogo,
-    iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${TailwindLogoUrl.href}`,
     partner: true,
     lineNumbers: true,
     font: "fira-code",
@@ -298,7 +299,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: OpenAiLogo,
-    iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${OpenAiLogoUrl.href}`,
     partner: true,
     font: "soehne-mono",
     lineNumbers: true,
@@ -349,7 +350,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: MintlifyLogo,
-    iconUrl: `${BASE_URL}${MintlifyLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${MintlifyLogoUrl.href}`,
     partner: true,
     syntax: {
       light: convertToShikiTheme({
@@ -400,7 +401,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: PrismaLogo,
-    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${PrismaLogoUrl.href}`,
     partner: true,
     lineNumbers: false,
     syntax: {
@@ -452,7 +453,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: ClerkLogo,
-    iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${ClerkLogoUrl.href}`,
     partner: true,
     lineNumbers: true,
     font: "geist-mono",
@@ -505,7 +506,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: ElevenLabsLogo,
-    iconUrl: `${BASE_URL}${ElevenLabsLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${ElevenLabsLogoUrl.href}`,
     font: "roboto-mono",
     partner: true,
     syntax: {
@@ -557,7 +558,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#181818",
     },
     icon: ResendLogo,
-    iconUrl: `${BASE_URL}${ResendLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${ResendLogoUrl.href}`,
     font: "commit-mono",
     partner: true,
     syntax: {
@@ -603,7 +604,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#121317",
     },
     icon: TriggerLogo,
-    iconUrl: `${BASE_URL}${TriggerLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${TriggerLogoUrl.href}`,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -645,7 +646,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#292D3E",
     },
     icon: NuxtLogo,
-    iconUrl: `${BASE_URL}${NuxtLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${NuxtLogoUrl.href}`,
     font: "geist-mono",
     partner: true,
     lineNumbers: true,
@@ -698,7 +699,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: BrowserbaseLogo,
-    iconUrl: `${BASE_URL}${BrowserbaseLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${BrowserbaseLogoUrl.href}`,
     partner: true,
     font: "space-mono",
     lineNumbers: true,
@@ -751,7 +752,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#0C0C0C",
     },
     icon: CloudflareLogo,
-    iconUrl: `${BASE_URL}${CloudflareLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${CloudflareLogoUrl.href}`,
     font: "ibm-plex-mono",
     partner: true,
     lineNumbers: true,
@@ -804,7 +805,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#16181d",
     },
     icon: GeminiLogo,
-    iconUrl: `${BASE_URL}${GeminiLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${GeminiLogoUrl.href}`,
     font: "google-sans-code",
     partner: true,
     syntax: {
@@ -856,7 +857,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#0a2540",
     },
     icon: StripeLogo,
-    iconUrl: `${BASE_URL}${StripeLogoUrl.src}`,
+    iconUrl: `${BASE_URL}${StripeLogoUrl.href}`,
     partner: true,
     font: "source-code-pro",
     lineNumbers: true,

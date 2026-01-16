@@ -16,11 +16,12 @@ import styles from "./Frame.module.css";
 import { codeAtom, selectedLanguageAtom } from "../store/code";
 
 import beams from "../assets/tailwind/beams.png";
-import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
-import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
-import clerkPattern from "../assets/clerk/pattern.svg?url";
-import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
+
+const mintlifyPatternDark = new URL("../assets/mintlify-pattern-dark.svg", import.meta.url);
+const mintlifyPatternLight = new URL("../assets/mintlify-pattern-light.svg", import.meta.url);
+const clerkPattern = new URL("../assets/clerk/pattern.svg", import.meta.url);
+const triggerPattern = new URL("../assets/triggerdev/pattern.svg", import.meta.url);
 
 const VercelFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
@@ -141,8 +142,8 @@ const TriggerdevFrame = () => {
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && (
         <>
-          <div className={styles.triggerPatternTop} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
-          <div className={styles.triggerPatternBottom} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
+          <div className={styles.triggerPatternTop} style={{ backgroundImage: `url(${triggerPattern.href})` }} />
+          <div className={styles.triggerPatternBottom} style={{ backgroundImage: `url(${triggerPattern.href})` }} />
         </>
       )}
       <div className={styles.triggerWindow}>
@@ -200,7 +201,7 @@ const ClerkFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
-      {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
+      {showBackground && <img src={clerkPattern.href} alt="" className={styles.clerkPattern} />}
       <div className={styles.clerkWindow}>
         <div className={styles.clerkCode}>
           <Editor />
@@ -230,7 +231,7 @@ const MintlifyFrame = () => {
       {showBackground && (
         <span className={styles.mintlifyPatternWrapper}>
           <img
-            src={darkMode ? mintlifyPatternDark.src : mintlifyPatternLight.src}
+            src={darkMode ? mintlifyPatternDark.href : mintlifyPatternLight.href}
             alt=""
             className={styles.mintlifyPattern}
           />
