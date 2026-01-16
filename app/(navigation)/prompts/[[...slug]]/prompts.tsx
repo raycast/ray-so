@@ -132,7 +132,10 @@ export function Prompts({ models, extensions }: Props) {
     setToastMessage("Copied to clipboard");
   }, []);
 
-  const handleAddToRaycast = React.useCallback(() => addToRaycast(router, selectedPrompts), [router, selectedPrompts]);
+  const handleAddToRaycast = React.useCallback(
+    () => addToRaycast(router, selectedPrompts, isTouch),
+    [router, selectedPrompts, isTouch],
+  );
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -370,9 +373,7 @@ export function Prompts({ models, extensions }: Props) {
                                           );
                                         }
                                         return (
-                                          <span key={index}>
-                                            {renderSafePromptContent(part, styles.placeholder)}
-                                          </span>
+                                          <span key={index}>{renderSafePromptContent(part, styles.placeholder)}</span>
                                         );
                                       })}
                                     </pre>
@@ -451,6 +452,24 @@ export function Prompts({ models, extensions }: Props) {
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedPrompts.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }
