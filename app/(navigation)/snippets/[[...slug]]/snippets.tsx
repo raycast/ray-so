@@ -40,7 +40,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -193,9 +193,9 @@ export default function Snippets() {
 
   const handleAddToRaycast = React.useCallback(async () => {
     const raycastProtocol = await getRaycastFlavor();
-    const isXray = await getIsXray();
+    const isWindows = await getIsWindows();
 
-    if (isXray) {
+    if (isWindows) {
       const snippetsData = selectedSnippets.map((snippet) => {
         const { name, text, type } = snippet;
         const keyword =

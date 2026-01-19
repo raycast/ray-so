@@ -49,7 +49,7 @@ async function supportsWhoami(port: number): Promise<boolean> {
 }
 
 let cachedFlavor: Flavor;
-let cachedIsXray: boolean | undefined;
+let cachedIsWindows: boolean | undefined;
 
 export async function getRaycastFlavor(): Promise<Flavor> {
   if (cachedFlavor) {
@@ -71,25 +71,25 @@ export async function getRaycastFlavor(): Promise<Flavor> {
   return cachedFlavor;
 }
 
-export async function getIsXray(): Promise<boolean> {
-  if (cachedIsXray !== undefined) {
-    return cachedIsXray;
+export async function getIsWindows(): Promise<boolean> {
+  if (cachedIsWindows !== undefined) {
+    return cachedIsWindows;
   }
 
   const flavor = await getRaycastFlavor();
 
   if (flavor === "raycast-x-development" || flavor === "raycast-x-internal") {
-    cachedIsXray = true;
+    cachedIsWindows = true;
     return true;
   }
 
-  // Classic and X-Ray share the 'raycast' flavor, so we check whoami support to determine if it's X-Ray
-  // X-Ray supports whoami, Classic does not
+  // macOS and Windows versions share the 'raycast' flavor, so we check whoami support to determine if it's Windows
+  // Windows supports whoami, macOS does not
   if (flavor === "raycast") {
-    cachedIsXray = await supportsWhoami(FLAVOR_PORTS.raycast);
-    return cachedIsXray;
+    cachedIsWindows = await supportsWhoami(FLAVOR_PORTS.raycast);
+    return cachedIsWindows;
   }
 
-  cachedIsXray = false;
+  cachedIsWindows = false;
   return false;
 }

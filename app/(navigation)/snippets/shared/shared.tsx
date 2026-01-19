@@ -10,7 +10,7 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import { isTouchDevice } from "../utils/isTouchDevice";
-import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 import styles from "../[[...slug]]/snippets.module.css";
 import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
@@ -122,9 +122,9 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
 
   const handleAddToRaycast = React.useCallback(async () => {
     const raycastProtocol = await getRaycastFlavor();
-    const isXray = await getIsXray();
+    const isWindows = await getIsWindows();
 
-    if (isXray) {
+    if (isWindows) {
       const snippetsData = selectedSnippets.map((snippet) => {
         const { name, text, keyword, type } = snippet;
         return { name, text, keyword, type };

@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard";
 import { Quicklink } from "../quicklinks";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
-import { getRaycastFlavor, getIsXray } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 
 function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
   return `[${quicklinks
@@ -62,9 +62,9 @@ export function copyUrl(quicklinks: Quicklink[]) {
 
 export async function addToRaycast(router: AppRouterInstance, quicklinks: Quicklink[]) {
   const raycastProtocol = await getRaycastFlavor();
-  const isXray = await getIsXray();
+  const isWindows = await getIsWindows();
 
-  if (isXray) {
+  if (isWindows) {
     const context = encodeURIComponent(
       JSON.stringify(
         quicklinks.map(({ name, link, openWith, icon }) => ({
@@ -83,27 +83,27 @@ export async function addToRaycast(router: AppRouterInstance, quicklinks: Quickl
 
 export async function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
   const raycastProtocol = await getRaycastFlavor();
-  const isXray = await getIsXray();
+  const isWindows = await getIsWindows();
   const { name, link, openWith, icon } = quicklink;
   const encodedQuicklink = encodeURIComponent(
     JSON.stringify({
       name,
       link,
       openWith,
-      icon: getRaycastIconName(icon?.name, isXray),
+      icon: getRaycastIconName(icon?.name, isWindows),
     }),
   );
 
-  if (isXray) {
+  if (isWindows) {
     router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/create-quicklink?context=${encodedQuicklink}`);
   } else {
     router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
   }
 }
 
-function getRaycastIconName(iconName?: string, isXray?: boolean) {
+function getRaycastIconName(iconName?: string, isWindows?: boolean) {
   if (iconName) {
-    return isXray ? iconName : `${iconName}-16`;
+    return isWindows ? iconName : `${iconName}-16`;
   }
   return undefined;
 }
