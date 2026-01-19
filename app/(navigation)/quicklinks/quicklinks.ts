@@ -145,6 +145,26 @@ const development: Quicklink[] = [
     },
   },
   {
+    id: "githubPullRequests",
+    name: "GitHub Pull Requests (Created)",
+    link: "https://github.com/pulls",
+    description: "View your created GitHub Pull Requests",
+    author: {
+      name: "a2c",
+      link: "https://github.com/atzzCokeK",
+    },
+  },
+  {
+    id: "githubReviewRequestedPullRequests",
+    name: "GitHub Pull Requests (Review Requested)",
+    link: "https://github.com/pulls/review-requested",
+    description: "View GitHub Pull Requests where your review is requested",
+    author: {
+      name: "a2c",
+      link: "https://github.com/atzzCokeK",
+    },
+  },
+  {
     id: "huggingface",
     name: "Search Hugging Face",
     description: "Search for models, datasets, and more",
