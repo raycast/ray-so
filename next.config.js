@@ -22,28 +22,29 @@ const nextConfig = {
     rules: {
       "*.svg": [
         {
-          condition: { query: '?url' },
+          condition: { query: "?url" },
           loaders: ["url-loader"],
           as: "*.js",
         },
         {
-        loaders: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              svgoConfig: {
-                plugins: [
-                  {
-                    name: "removeViewBox",
-                    active: false,
-                  },
-                ],
+          loaders: [
+            {
+              loader: "@svgr/webpack",
+              options: {
+                svgoConfig: {
+                  plugins: [
+                    {
+                      name: "removeViewBox",
+                      active: false,
+                    },
+                  ],
+                },
               },
             },
-          },
-        ],
-        as: "*.js",
-      }],
+          ],
+          as: "*.js",
+        },
+      ],
       "*.inline.png": {
         loaders: ["url-loader"],
         as: "*.js",
