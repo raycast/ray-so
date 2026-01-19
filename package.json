@@ -39,7 +39,6 @@
     "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "dub": "0.30.4",
-    "file-loader": "^6.2.0",
     "geist": "^1.3.1",
     "glob": "^10.4.1",
     "highlight.js": "^11.7.0",
