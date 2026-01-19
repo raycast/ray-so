@@ -20,7 +20,13 @@ const nextConfig = {
   },
   turbopack: {
     rules: {
-      "*.svg": {
+      "*.svg": [
+        {
+          condition: { query: '?url' },
+          loaders: ["url-loader"],
+          as: "*.js",
+        },
+        {
         loaders: [
           {
             loader: "@svgr/webpack",
@@ -37,7 +43,7 @@ const nextConfig = {
           },
         ],
         as: "*.js",
-      },
+      }],
       "*.inline.png": {
         loaders: ["url-loader"],
         as: "*.js",
