@@ -204,27 +204,28 @@ export default function Snippets() {
     if (isTouch) {
       window.location.href = url;
     } else {
-    const isWindows = await getIsWindows();
+      const isWindows = await getIsWindows();
 
-    if (isWindows) {
-      const snippetsData = selectedSnippets.map((snippet) => {
-        const { name, text, type } = snippet;
-        const keyword =
-          snippet.type === "spelling"
-            ? snippet.keyword
-            : addModifiersToKeyword({
-                keyword: snippet.keyword,
-                start: startMod,
-                end: endMod,
-              });
-        return { name, text, keyword, type };
-      });
-      const context = encodeURIComponent(JSON.stringify(snippetsData));
-      router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
-    } else {
-      router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+      if (isWindows) {
+        const snippetsData = selectedSnippets.map((snippet) => {
+          const { name, text, type } = snippet;
+          const keyword =
+            snippet.type === "spelling"
+              ? snippet.keyword
+              : addModifiersToKeyword({
+                  keyword: snippet.keyword,
+                  start: startMod,
+                  end: endMod,
+                });
+          return { name, text, keyword, type };
+        });
+        const context = encodeURIComponent(JSON.stringify(snippetsData));
+        router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+      } else {
+        router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+      }
     }
-  }, [router, makeQueryString, selectedSnippets, startMod, endMod]);
+  }, [router, makeQueryString, selectedSnippets, startMod, endMod, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
