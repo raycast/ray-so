@@ -120,6 +120,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "LaTeX",
     src: () => import("shiki/langs/latex.mjs"),
   },
+  liquid: {
+    name: "Liquid",
+    src: () => import("shiki/langs/liquid.mjs"),
+  },
   lisp: {
     name: "Lisp",
     src: () => import("shiki/langs/lisp.mjs"),

@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import CloudflareLogo from "../assets/cloudflare.svg";
+import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -13,6 +15,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
+import GeminiLogo from "../assets/gemini.svg";
+import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
@@ -25,6 +29,12 @@ import ElevenLabsLogo from "../assets/elevenlabs.svg";
 import ElevenLabsLogoUrl from "../assets/elevenlabs.svg?url";
 import ResendLogo from "../assets/resend.svg";
 import ResendLogoUrl from "../assets/resend.svg?url";
+import BrowserbaseLogo from "../assets/browserbase.svg";
+import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
+import NuxtLogo from "../assets/nuxt.svg";
+import NuxtLogoUrl from "../assets/nuxt.svg?url";
+import StripeLogo from "../assets/stripe/logo.svg";
+import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -51,6 +61,7 @@ type ShikiSyntaxObject = {
   link?: string;
   number?: string;
   property?: string;
+  objectLiteral?: string;
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
@@ -81,6 +92,7 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-highlight-hover": syntaxObject.highlightHover,
     "--ray-token-diff-deleted": syntaxObject.diffDeleted,
     "--ray-token-diff-inserted": syntaxObject.diffInserted,
+    "--ray-token-object-literal": syntaxObject.objectLiteral,
   } as CSSProperties;
 }
 
@@ -97,10 +109,7 @@ export type Theme = {
   partner?: boolean;
   hidden?: boolean;
   lineNumbers?: boolean;
-  syntax: {
-    light: CSSProperties;
-    dark: CSSProperties;
-  };
+  syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
 };
 
 export const THEMES: { [index: string]: Theme } = {
@@ -213,36 +222,37 @@ export const THEMES: { [index: string]: Theme } = {
     icon: SupabaseLogo,
     iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
     partner: true,
-    font: "ibm-plex-mono",
+    lineNumbers: true,
+    font: "jetbrains-mono",
     syntax: {
       light: convertToShikiTheme({
-        foreground: "#171717",
-        constant: "#009a55",
-        string: "#ededed",
-        comment: "#a6a6a6",
-        keyword: "#a0a0a0",
-        parameter: "#ededed",
-        function: "#009a55",
-        stringExpression: "#009a55",
+        foreground: "#525252",
+        constant: "#15593b",
+        string: "#f1a10d",
+        comment: "#7e7e7e",
+        keyword: "#6b35dc",
+        parameter: "#525252",
+        function: "#15593b",
+        stringExpression: "#f1a10d",
         punctuation: "#a0a0a0",
-        link: "#171717",
-        number: "#171717",
-        property: "#009a55",
+        link: "#525252",
+        number: "#525252",
+        property: "#15593b",
         highlight: "oklch(0.88 0.22 153.28 / 0.12)",
         highlightHover: "oklch(0.88 0.22 153.28 / 0.06)",
         highlightBorder: "#009a55",
       }),
       dark: convertToShikiTheme({
-        foreground: "#ededed",
+        foreground: "#ffffff",
         constant: "#3ecf8e",
-        string: "#ededed",
-        comment: "#707070",
-        keyword: "#a0a0a0",
-        parameter: "#ededed",
+        string: "#ffcda1",
+        comment: "#7e7e7e",
+        keyword: "#bda4ff",
+        parameter: "#ffffff",
         function: "#3ecf8e",
-        stringExpression: "#3ecf8e",
-        punctuation: "#ededed",
-        link: "#ededed",
+        stringExpression: "#ffcda1",
+        punctuation: "#ffffff",
+        link: "#ffffff",
         number: "#ededed",
         property: "#3ecf8e",
         highlight: "#232323",
@@ -392,7 +402,7 @@ export const THEMES: { [index: string]: Theme } = {
     icon: PrismaLogo,
     iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
     partner: true,
-    lineNumbers: true,
+    lineNumbers: false,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#1A202C",
@@ -582,6 +592,344 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#a7a7a7",
         diffInserted: "#a7a7a7",
         diffDeleted: "#a7a7a7",
+      }),
+    },
+  },
+  triggerdev: {
+    id: "triggerdev",
+    name: "Trigger.dev",
+    background: {
+      from: "#121317",
+      to: "#121317",
+    },
+    icon: TriggerLogo,
+    iconUrl: `${BASE_URL}${TriggerLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#2E2E4B",
+        constant: "#1E1E1E",
+        string: "#262626",
+        comment: "#5F6570",
+        keyword: "#B114D3",
+        parameter: "#404040",
+        function: "#5C40FF",
+        stringExpression: "#0879E2",
+        punctuation: "#333333",
+        link: "#1A1A1A",
+        number: "#262626",
+        property: "#222222",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#CCCBFF",
+        constant: "#9C9AF2",
+        string: "#AFEC73",
+        comment: "#5F6570",
+        keyword: "#E888F8",
+        parameter: "#CCCBFF",
+        function: "#9684FF",
+        stringExpression: "#AFEC73",
+        punctuation: "#878C99",
+        link: "#826DFF",
+        number: "#b5cea8",
+        property: "#CCCBFF",
+      }),
+    },
+  },
+  nuxt: {
+    id: "nuxt",
+    name: "Nuxt",
+    background: {
+      from: "#292D3E",
+      to: "#292D3E",
+    },
+    icon: NuxtLogo,
+    iconUrl: `${BASE_URL}${NuxtLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#90A4AE",
+        constant: "#39ADB5",
+        string: "#91B859",
+        comment: "#90A4AE",
+        keyword: "#39ADB5",
+        parameter: "#90A4AE",
+        function: "#6182B8",
+        stringExpression: "#E53935",
+        punctuation: "#39ADB5",
+        link: "#80CBC4",
+        number: "#F76D47",
+        property: "#E53935",
+        highlight: "rgba(128, 203, 196, 0.25)",
+        highlightHover: "rgba(128, 203, 196, 0.15)",
+        highlightBorder: "#80CBC4",
+        diffInserted: "#91B859",
+        diffDeleted: "#E53935",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#babed8",
+        constant: "#BABED8",
+        string: "#C3E88D",
+        comment: "#676E95",
+        keyword: "#C793EA",
+        parameter: "#babed8",
+        function: "#82AAFF",
+        stringExpression: "#f07178",
+        punctuation: "#89DDFF",
+        link: "#80CBC4",
+        number: "#F78C6C",
+        property: "#f07178",
+        highlight: "rgba(113, 124, 180, 0.31)",
+        highlightHover: "rgba(113, 124, 180, 0.2)",
+        highlightBorder: "#80CBC4",
+        diffInserted: "#C3E88D",
+        diffDeleted: "#f07178",
+      }),
+    },
+  },
+  browserbase: {
+    id: "browserbase",
+    name: "Browserbase",
+    background: {
+      from: "#FF4500",
+      to: "#000000",
+    },
+    icon: BrowserbaseLogo,
+    iconUrl: `${BASE_URL}${BrowserbaseLogoUrl.src}`,
+    partner: true,
+    font: "space-mono",
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#000",
+        constant: "#FF4500",
+        string: "#FF6B35",
+        comment: "#6B7280",
+        keyword: "#FF4500",
+        parameter: "#FF4500",
+        function: "#000000",
+        stringExpression: "hsla(42.948, 100%, 61.838%)",
+        punctuation: "#374151",
+        link: "#FF4500",
+        number: "#FF4500",
+        property: "#FF4500",
+        highlight: "rgba(255, 69, 0, 0.1)",
+        highlightBorder: "#FF4500",
+        highlightHover: "rgba(255, 69, 0, 0.05)",
+        diffInserted: "#10B981",
+        diffDeleted: "#EF4444",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#FF6B35",
+        string: "#FFB800",
+        comment: "#6B7280",
+        keyword: "#FF4500",
+        parameter: "#FF6B35",
+        function: "#FFFFFF",
+        stringExpression: "#FFB800",
+        punctuation: "#D1D5DB",
+        link: "#FF6B35",
+        number: "#FF6B35",
+        property: "#FF6B35",
+        highlight: "rgba(255, 107, 53, 0.15)",
+        highlightBorder: "#FF6B35",
+        highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
+      }),
+    },
+  },
+  cloudflare: {
+    id: "cloudflare",
+    name: "Cloudflare",
+    background: {
+      from: "#0C0C0C",
+      to: "#0C0C0C",
+    },
+    icon: CloudflareLogo,
+    iconUrl: `${BASE_URL}${CloudflareLogoUrl.src}`,
+    font: "ibm-plex-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#521000",
+        constant: "#5a11cc",
+        string: "#0876d9",
+        comment: "#52100080",
+        keyword: "#d94008",
+        parameter: "#c77700",
+        function: "#7612cc",
+        stringExpression: "#0876d9",
+        punctuation: "#52100080",
+        link: "#0876d9",
+        number: "#5a11cc",
+        property: "#5a11cc",
+        highlight: "rgba(255, 80, 10, 0.1)",
+        highlightHover: "rgba(255, 80, 10, 0.05)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#d94008",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#E8E8E8",
+        constant: "#79b8ff",
+        string: "#0A95FF",
+        comment: "#888888",
+        keyword: "#FF7F4D",
+        parameter: "#FFB366",
+        function: "#B084FF",
+        stringExpression: "#0A95FF",
+        punctuation: "#AAAAAA",
+        link: "#0A95FF",
+        number: "#79b8ff",
+        property: "#79b8ff",
+        highlight: "rgba(255, 80, 10, 0.15)",
+        highlightHover: "rgba(255, 80, 10, 0.08)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#FF7F4D",
+      }),
+    },
+  },
+  gemini: {
+    id: "gemini",
+    name: "Gemini",
+    background: {
+      from: "#16181d",
+      to: "#16181d",
+    },
+    icon: GeminiLogo,
+    iconUrl: `${BASE_URL}${GeminiLogoUrl.src}`,
+    font: "google-sans-code",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#37474f",
+        constant: "#37474f",
+        string: "#188038",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1967d2",
+        parameter: "#37474f",
+        function: "#37474f",
+        stringExpression: "#188038",
+        punctuation: "#37474f",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#188038",
+        diffDeleted: "#FF605E",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#abb2bf",
+        constant: "#56b6c2",
+        string: "#98c379",
+        comment: "#5c6370",
+        keyword: "#5c9dc7",
+        parameter: "#d19a66",
+        function: "#98c379",
+        stringExpression: "#98c379",
+        punctuation: "#abb2bf",
+        link: "#5c9dc7",
+        number: "#56b6c2",
+        property: "#56b6c2",
+        highlight: "rgba(92, 157, 199, 0.15)",
+        highlightHover: "rgba(92, 157, 199, 0.1)",
+        highlightBorder: "#5c9dc7",
+        diffInserted: "#98c379",
+        diffDeleted: "#e06c75",
+      }),
+    },
+  },
+  stripe: {
+    id: "stripe",
+    name: "Stripe",
+    background: {
+      from: "#0a2540",
+      to: "#0a2540",
+    },
+    icon: StripeLogo,
+    iconUrl: `${BASE_URL}${StripeLogoUrl.src}`,
+    partner: true,
+    font: "source-code-pro",
+    lineNumbers: true,
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#FFFFFF",
+        string: "#ffa956",
+        comment: "#a9bcce",
+        keyword: "#8095ff",
+        parameter: "#FF6B35",
+        function: "#00d4ff",
+        stringExpression: "#ffa956",
+        punctuation: "#FFFFFF",
+        link: "#ffa956",
+        number: "#ffa956",
+        property: "#1abdc0",
+        objectLiteral: "#1abdc0",
+        highlight: "rgba(255, 107, 53, 0.15)",
+        highlightBorder: "#FF6B35",
+        highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
+      }),
+    },
+  },
+  wrapped: {
+    id: "wrapped",
+    name: "Wrapped",
+    background: {
+      from: "#ea580c",
+      to: "#f97316",
+    },
+    font: "jetbrains-mono",
+    lineNumbers: false,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1a1a1a",
+        constant: "#c2410c",
+        string: "#c2410c",
+        comment: "rgba(0, 0, 0, 0.6)",
+        keyword: "#ea580c",
+        parameter: "#ea580c",
+        function: "#1a1a1a",
+        stringExpression: "#ea580c",
+        punctuation: "rgba(0, 0, 0, 0.6)",
+        link: "#ea580c",
+        number: "#ea580c",
+        property: "#ea580c",
+        highlight: "rgba(234, 88, 12, 0.1)",
+        highlightBorder: "#ea580c",
+        highlightHover: "rgba(234, 88, 12, 0.05)",
+        diffInserted: "#16a34a",
+        diffDeleted: "#dc2626",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#e7e5e4",
+        constant: "#fb923c",
+        string: "#fdba74",
+        comment: "rgba(255, 255, 255, 0.4)",
+        keyword: "#f97316",
+        parameter: "#fb923c",
+        function: "#fafaf9",
+        stringExpression: "#fed7aa",
+        punctuation: "rgba(255, 255, 255, 0.4)",
+        link: "#fb923c",
+        number: "#fb923c",
+        property: "#fb923c",
+        highlight: "rgba(251, 146, 60, 0.15)",
+        highlightBorder: "#fb923c",
+        highlightHover: "rgba(251, 146, 60, 0.08)",
+        diffInserted: "#4ade80",
+        diffDeleted: "#f87171",
       }),
     },
   },
@@ -1197,48 +1545,6 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
-  triggerdev: {
-    id: "triggerdev",
-    name: "Trigger.dev",
-    background: {
-      from: "#121317",
-      to: "#121317",
-    },
-    icon: TriggerLogo,
-    iconUrl: `${BASE_URL}${TriggerLogoUrl.src}`,
-    font: "geist-mono",
-    partner: true,
-    syntax: {
-      light: convertToShikiTheme({
-        foreground: "#2E2E4B",
-        constant: "#1E1E1E",
-        string: "#262626",
-        comment: "#5F6570",
-        keyword: "#B114D3",
-        parameter: "#404040",
-        function: "#5C40FF",
-        stringExpression: "#0879E2",
-        punctuation: "#333333",
-        link: "#1A1A1A",
-        number: "#262626",
-        property: "#222222",
-      }),
-      dark: convertToShikiTheme({
-        foreground: "#CCCBFF",
-        constant: "#9C9AF2",
-        string: "#AFEC73",
-        comment: "#5F6570",
-        keyword: "#E888F8",
-        parameter: "#CCCBFF",
-        function: "#9684FF",
-        stringExpression: "#AFEC73",
-        punctuation: "#878C99",
-        link: "#826DFF",
-        number: "#b5cea8",
-        property: "#CCCBFF",
-      }),
-    },
-  },
 };
 
 const themeAtom = atomWithHash<Theme>(
@@ -1278,7 +1584,26 @@ const themeAtom = atomWithHash<Theme>(
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 
-const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
+const themeDarkModeAtom = atom<boolean>((get) => {
+  const theme = get(themeAtom);
+  const hasLight = !!theme.syntax.light;
+  const hasDark = !!theme.syntax.dark;
+
+  // If theme only has dark mode, force dark
+  if (hasDark && !hasLight) return true;
+
+  // If theme only has light mode, force light
+  if (hasLight && !hasDark) return false;
+
+  // If theme has both, use user preference
+  return get(darkModeAtom);
+});
+
+const themeCSSAtom = atom<CSSProperties>((get) => {
+  const isDark = get(themeDarkModeAtom);
+  const syntax = get(themeAtom).syntax;
+  return (isDark ? syntax.dark : syntax.light) || syntax.light || syntax.dark || {};
+});
 
 const themeBackgroundAtom = atom<string>((get) => {
   const { from, to } = get(themeAtom).background;
@@ -1299,6 +1624,7 @@ export {
   themeAtom,
   themeBackgroundAtom,
   themeCSSAtom,
+  themeDarkModeAtom,
   themeFontAtom,
   themeLineNumbersAtom,
   unlockedThemesAtom,

@@ -40,7 +40,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -204,10 +204,27 @@ export default function Snippets() {
     if (isTouch) {
       window.location.href = url;
     } else {
-      // For desktop, use router.replace
-      router.replace(url);
+    const isWindows = await getIsWindows();
+
+    if (isWindows) {
+      const snippetsData = selectedSnippets.map((snippet) => {
+        const { name, text, type } = snippet;
+        const keyword =
+          snippet.type === "spelling"
+            ? snippet.keyword
+            : addModifiersToKeyword({
+                keyword: snippet.keyword,
+                start: startMod,
+                end: endMod,
+              });
+        return { name, text, keyword, type };
+      });
+      const context = encodeURIComponent(JSON.stringify(snippetsData));
+      router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+    } else {
+      router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
     }
-  }, [router, makeQueryString, isTouch]);
+  }, [router, makeQueryString, selectedSnippets, startMod, endMod]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());

@@ -2,14 +2,15 @@ import copy from "copy-to-clipboard";
 import { Quicklink } from "../quicklinks";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
-import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 
 function makeQuicklinkImportData(quicklinks: Quicklink[]): string {
   return `[${quicklinks
     .map((selectedQuicklink) => {
-      const { name, link, openWith } = selectedQuicklink;
+      const { icon, name, link, openWith } = selectedQuicklink;
 
       return JSON.stringify({
+        ...(icon?.name && { icon: icon.name }),
         name,
         link,
         openWith,
@@ -72,28 +73,47 @@ export async function addToRaycast(router: AppRouterInstance, quicklinks: Quickl
   if (isTouch) {
     window.location.href = url;
   } else {
-    // For desktop, use router.replace
-    router.replace(url);
+  const isWindows = await getIsWindows();
+  if (isWindows) {
+    const context = encodeURIComponent(
+      JSON.stringify(
+        quicklinks.map(({ name, link, openWith, icon }) => ({
+          name,
+          link,
+          openWith,
+          icon: getRaycastIconName(icon?.name, true),
+        })),
+      ),
+    );
+    router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/import-quicklinks?context=${context}`);
+  } else {
+    router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
   }
 }
 
 export async function addQuicklinkToRaycast(router: AppRouterInstance, quicklink: Quicklink) {
   const raycastProtocol = await getRaycastFlavor();
+  const isWindows = await getIsWindows();
   const { name, link, openWith, icon } = quicklink;
   const encodedQuicklink = encodeURIComponent(
     JSON.stringify({
       name,
       link,
       openWith,
-      icon: getRaycastIconName(icon?.name),
+      icon: getRaycastIconName(icon?.name, isWindows),
     }),
   );
-  router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
+
+  if (isWindows) {
+    router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/create-quicklink?context=${encodedQuicklink}`);
+  } else {
+    router.replace(`${raycastProtocol}://extensions/raycast/raycast/create-quicklink?context=${encodedQuicklink}`);
+  }
 }
 
-function getRaycastIconName(iconName?: string) {
+function getRaycastIconName(iconName?: string, isWindows?: boolean) {
   if (iconName) {
-    return `${iconName}-16`;
+    return isWindows ? iconName : `${iconName}-16`;
   }
   return undefined;
 }
