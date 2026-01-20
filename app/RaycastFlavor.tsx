@@ -53,31 +53,45 @@ let flavorChecked = false;
 let cachedIsWindows: boolean | undefined;
 
 export async function getRaycastFlavor(): Promise<Flavor> {
+  console.log("[RaycastFlavor] getRaycastFlavor called, flavorChecked:", flavorChecked);
   if (flavorChecked) {
     return cachedFlavor;
   }
 
   flavorChecked = true;
 
+  console.log("[RaycastFlavor] checking x-development port");
   if (await isWebsocketOpen(FLAVOR_PORTS["raycast-x-development"])) {
     cachedFlavor = "raycast-x-development";
-  } else if (await isWebsocketOpen(FLAVOR_PORTS["raycast-x-internal"])) {
-    cachedFlavor = "raycast-x-internal";
-  } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastdebug)) {
-    cachedFlavor = "raycastdebug";
-  } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
-    cachedFlavor = "raycastinternal";
+  } else {
+    console.log("[RaycastFlavor] checking x-internal port");
+    if (await isWebsocketOpen(FLAVOR_PORTS["raycast-x-internal"])) {
+      cachedFlavor = "raycast-x-internal";
+    } else {
+      console.log("[RaycastFlavor] checking debug port");
+      if (await isWebsocketOpen(FLAVOR_PORTS.raycastdebug)) {
+        cachedFlavor = "raycastdebug";
+      } else {
+        console.log("[RaycastFlavor] checking internal port");
+        if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
+          cachedFlavor = "raycastinternal";
+        }
+      }
+    }
   }
 
+  console.log("[RaycastFlavor] returning flavor:", cachedFlavor);
   return cachedFlavor;
 }
 
 export async function getIsWindows(): Promise<boolean> {
+  console.log("[RaycastFlavor] getIsWindows called, cachedIsWindows:", cachedIsWindows);
   if (cachedIsWindows !== undefined) {
     return cachedIsWindows;
   }
 
   const flavor = await getRaycastFlavor();
+  console.log("[RaycastFlavor] getIsWindows got flavor:", flavor);
 
   if (flavor === "raycast-x-development" || flavor === "raycast-x-internal") {
     cachedIsWindows = true;
@@ -87,7 +101,9 @@ export async function getIsWindows(): Promise<boolean> {
   // macOS and Windows versions share the 'raycast' flavor, so we check whoami support to determine if it's Windows
   // Windows supports whoami, macOS does not
   if (flavor === "raycast") {
+    console.log("[RaycastFlavor] checking whoami support");
     cachedIsWindows = await supportsWhoami(FLAVOR_PORTS.raycast);
+    console.log("[RaycastFlavor] whoami result:", cachedIsWindows);
     return cachedIsWindows;
   }
 
