@@ -75,9 +75,13 @@ export async function addToRaycast(router: AppRouterInstance, quicklinks: Quickl
         })),
       ),
     );
-    router.replace(`${raycastProtocol}://extensions/raycast/quicklinks/import-quicklinks?context=${context}`);
+    const url = `${raycastProtocol}://extensions/raycast/quicklinks/import-quicklinks?context=${context}`;
+    console.log("[addToRaycast] Windows URL:", url);
+    router.replace(url);
   } else {
-    router.replace(`${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`);
+    const url = `${raycastProtocol}://quicklinks/import?${makeQueryString(quicklinks, true)}`;
+    console.log("[addToRaycast] macOS URL:", url);
+    router.replace(url);
   }
 }
 
