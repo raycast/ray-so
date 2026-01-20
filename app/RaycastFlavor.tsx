@@ -48,13 +48,16 @@ async function supportsWhoami(port: number): Promise<boolean> {
   });
 }
 
-let cachedFlavor: Flavor;
+let cachedFlavor: Flavor = "raycast";
+let flavorChecked = false;
 let cachedIsWindows: boolean | undefined;
 
 export async function getRaycastFlavor(): Promise<Flavor> {
-  if (cachedFlavor) {
+  if (flavorChecked) {
     return cachedFlavor;
   }
+
+  flavorChecked = true;
 
   if (await isWebsocketOpen(FLAVOR_PORTS["raycast-x-development"])) {
     cachedFlavor = "raycast-x-development";
@@ -64,8 +67,6 @@ export async function getRaycastFlavor(): Promise<Flavor> {
     cachedFlavor = "raycastdebug";
   } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
     cachedFlavor = "raycastinternal";
-  } else {
-    cachedFlavor = "raycast";
   }
 
   return cachedFlavor;
