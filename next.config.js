@@ -6,7 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["geist", "highlight.js"],
+  transpilePackages: ["highlight.js"],
   experimental: {
     optimizePackageImports: ["shiki"],
   },
