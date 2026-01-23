@@ -40,6 +40,7 @@ import { TooltipTrigger } from "@/components/tooltip";
 import { Extension } from "@/api/store";
 import { AIExtension } from "@/components/ai-extension";
 import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
+import { FloatingActionBar } from "@/components/floating-action-bar";
 
 type Props = {
   models: AiModel[];
@@ -453,23 +454,27 @@ export function Prompts({ models, extensions }: Props) {
         </div>
       </div>
 
-      {/* Floating Action Bar for Mobile */}
-      {isTouch && selectedPrompts.length > 0 && (
-        <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
-            <PlusCircleIcon />
-            Add to Raycast
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyData}>
-            <CopyClipboardIcon />
-            Copy JSON
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
-            <LinkIcon />
-            Share URL
-          </button>
-        </div>
-      )}
+      <FloatingActionBar
+        isVisible={isTouch === true && selectedPrompts.length > 0}
+        actions={[
+          {
+            icon: <PlusCircleIcon />,
+            label: "Add to Raycast",
+            onClick: handleAddToRaycast,
+            variant: "primary",
+          },
+          {
+            icon: <CopyClipboardIcon />,
+            label: "Copy JSON",
+            onClick: handleCopyData,
+          },
+          {
+            icon: <LinkIcon />,
+            label: "Share URL",
+            onClick: handleCopyUrl,
+          },
+        ]}
+      />
     </div>
   );
 }

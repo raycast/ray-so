@@ -18,6 +18,7 @@ import { Snippet } from "../snippets";
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
+import { FloatingActionBar } from "@/components/floating-action-bar";
 
 export function Shared({ snippets }: { snippets: Snippet[] }) {
   const router = useRouter();
@@ -319,23 +320,27 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
         </div>
       </div>
 
-      {/* Floating Action Bar for Mobile */}
-      {isTouch && selectedSnippets.length > 0 && (
-        <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
-            <PlusCircleIcon />
-            Add to Raycast
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyData}>
-            <CopyClipboardIcon />
-            Copy JSON
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleDownload}>
-            <DownloadIcon />
-            Download
-          </button>
-        </div>
-      )}
+      <FloatingActionBar
+        isVisible={isTouch === true && selectedSnippets.length > 0}
+        actions={[
+          {
+            icon: <PlusCircleIcon />,
+            label: "Add to Raycast",
+            onClick: handleAddToRaycast,
+            variant: "primary",
+          },
+          {
+            icon: <CopyClipboardIcon />,
+            label: "Copy JSON",
+            onClick: handleCopyData,
+          },
+          {
+            icon: <DownloadIcon />,
+            label: "Download",
+            onClick: handleDownload,
+          },
+        ]}
+      />
     </div>
   );
 }

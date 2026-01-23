@@ -1,0 +1,65 @@
+.floatingActionBar {
+  position: fixed;
+  z-index: 50;
+  bottom: 12px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  transform: translateX(-50%);
+  transition: all 300ms ease;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.floatingActionButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 6px;
+  transition: all 200ms ease;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &[data-variant="primary"] {
+    background-color: rgba(255, 99, 99, 0.15);
+    color: #ff6363;
+
+    &:hover {
+      background-color: rgba(255, 99, 99, 0.25);
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}

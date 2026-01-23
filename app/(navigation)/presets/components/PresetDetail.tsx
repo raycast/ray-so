@@ -38,6 +38,7 @@ import { AiModel } from "@/api/ai";
 import { Extension } from "@/api/store";
 import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
 import { AIExtension } from "@/components/ai-extension";
+import { FloatingActionBar } from "@/components/floating-action-bar";
 import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
 import { isTouchDevice } from "../utils/isTouchDevice";
 import { shortenUrl } from "@/utils/common";
@@ -370,23 +371,27 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
         </ToastTitle>
       </Toast>
 
-      {/* Floating Action Bar for Mobile */}
-      {isTouch && (
-        <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
-            <PlusCircleIcon />
-            Add to Raycast
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyData}>
-            <CopyClipboardIcon />
-            Copy JSON
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
-            <LinkIcon />
-            Share URL
-          </button>
-        </div>
-      )}
+      <FloatingActionBar
+        isVisible={isTouch === true}
+        actions={[
+          {
+            icon: <PlusCircleIcon />,
+            label: "Add to Raycast",
+            onClick: handleAddToRaycast,
+            variant: "primary",
+          },
+          {
+            icon: <CopyClipboardIcon />,
+            label: "Copy JSON",
+            onClick: handleCopyData,
+          },
+          {
+            icon: <LinkIcon />,
+            label: "Share URL",
+            onClick: handleCopyUrl,
+          },
+        ]}
+      />
     </>
   );
 }
