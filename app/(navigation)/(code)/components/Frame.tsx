@@ -141,8 +141,8 @@ const TriggerdevFrame = () => {
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && (
         <>
-          <div className={styles.triggerPatternTop} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
-          <div className={styles.triggerPatternBottom} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
+          <div className={styles.triggerPatternTop} style={{ backgroundImage: `url(${triggerPattern})` }} />
+          <div className={styles.triggerPatternBottom} style={{ backgroundImage: `url(${triggerPattern})` }} />
         </>
       )}
       <div className={styles.triggerWindow}>
@@ -200,7 +200,7 @@ const ClerkFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
-      {showBackground && <img src={clerkPattern.src} alt="" className={styles.clerkPattern} />}
+      {showBackground && <img src={clerkPattern} alt="" className={styles.clerkPattern} />}
       <div className={styles.clerkWindow}>
         <div className={styles.clerkCode}>
           <Editor />
@@ -230,7 +230,7 @@ const MintlifyFrame = () => {
       {showBackground && (
         <span className={styles.mintlifyPatternWrapper}>
           <img
-            src={darkMode ? mintlifyPatternDark.src : mintlifyPatternLight.src}
+            src={darkMode ? mintlifyPatternDark : mintlifyPatternLight}
             alt=""
             className={styles.mintlifyPattern}
           />
