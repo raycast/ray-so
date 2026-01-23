@@ -28,7 +28,7 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-switch": "^1.1.3",
     "@radix-ui/react-toast": "^1.2.6",
-    "@radix-ui/react-toggle-group": "^1.1.2",
+    "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@raycast/icons": "^0.4.7",
     "@vercel/analytics": "^1.1.1",
