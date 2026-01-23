@@ -68,7 +68,18 @@ export function copyUrl(prompts: Prompt[]) {
   copy(makeUrl(prompts));
 }
 
-export async function addToRaycast(router: AppRouterInstance, prompts: Prompt[]) {
+export async function addToRaycast(router: AppRouterInstance, prompts: Prompt[], isTouch?: boolean) {
   const raycastProtocol = await getRaycastFlavor();
-  router.replace(`${raycastProtocol}://prompts/import?${makeQueryString(prompts)}`);
+  const queryString = makeQueryString(prompts);
+
+  const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+  const url = `${protocolToUse}://prompts/import?${queryString}`;
+
+  // For mobile, use window.location.href directly as it's more reliable
+  if (isTouch) {
+    window.location.href = url;
+  } else {
+    // For desktop, use router.replace
+    router.replace(url);
+  }
 }

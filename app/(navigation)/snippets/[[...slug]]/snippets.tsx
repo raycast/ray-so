@@ -193,27 +193,39 @@ export default function Snippets() {
 
   const handleAddToRaycast = React.useCallback(async () => {
     const raycastProtocol = await getRaycastFlavor();
-    const isWindows = await getIsWindows();
+    const queryString = makeQueryString();
 
-    if (isWindows) {
-      const snippetsData = selectedSnippets.map((snippet) => {
-        const { name, text, type } = snippet;
-        const keyword =
-          snippet.type === "spelling"
-            ? snippet.keyword
-            : addModifiersToKeyword({
-                keyword: snippet.keyword,
-                start: startMod,
-                end: endMod,
-              });
-        return { name, text, keyword, type };
-      });
-      const context = encodeURIComponent(JSON.stringify(snippetsData));
-      router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+    // For mobile, always use the standard 'raycast' scheme since iOS apps
+    // are typically registered for 'raycast://' not 'raycastinternal://'
+    const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+    const url = `${protocolToUse}://snippets/import?${queryString}`;
+
+    // For mobile, use window.location.href directly as it's more reliable
+    if (isTouch) {
+      window.location.href = url;
     } else {
-      router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+      const isWindows = await getIsWindows();
+
+      if (isWindows) {
+        const snippetsData = selectedSnippets.map((snippet) => {
+          const { name, text, type } = snippet;
+          const keyword =
+            snippet.type === "spelling"
+              ? snippet.keyword
+              : addModifiersToKeyword({
+                  keyword: snippet.keyword,
+                  start: startMod,
+                  end: endMod,
+                });
+          return { name, text, keyword, type };
+        });
+        const context = encodeURIComponent(JSON.stringify(snippetsData));
+        router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+      } else {
+        router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+      }
     }
-  }, [router, makeQueryString, selectedSnippets, startMod, endMod]);
+  }, [router, makeQueryString, selectedSnippets, startMod, endMod, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -536,6 +548,24 @@ export default function Snippets() {
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedSnippets.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }
