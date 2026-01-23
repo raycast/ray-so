@@ -106,10 +106,10 @@ export type Theme = {
   icon?: string;
   iconUrl?: string;
   font?: Font;
+  partner?: boolean;
   hidden?: boolean;
   lineNumbers?: boolean;
   lineNumbersToggleable?: boolean;
-  partner?: boolean;
   syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
 };
 
@@ -754,9 +754,9 @@ export const THEMES: { [index: string]: Theme } = {
     icon: CloudflareLogo,
     iconUrl: `${BASE_URL}${CloudflareLogoUrl.src}`,
     font: "ibm-plex-mono",
+    partner: true,
     lineNumbers: true,
     lineNumbersToggleable: true,
-    partner: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#521000",
