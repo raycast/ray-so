@@ -70,15 +70,17 @@ const FirecrawlFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div className={styles.firecrawlWindow}>
-        <div className={styles.firecrawlBackground}>
-          <span className={styles.firecrawlGridlinesHorizontal} data-grid></span>
-          <span className={styles.firecrawlGridlinesVertical} data-grid></span>
-          <FirecrawlStar className={styles.firecrawlStarTopLeft} data-grid />
-          <FirecrawlStar className={styles.firecrawlStarTopRight} data-grid />
-          <FirecrawlStar className={styles.firecrawlStarBottomLeft} data-grid />
-          <FirecrawlStar className={styles.firecrawlStarBottomRight} data-grid />
-        </div>
-        <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>
+        {showBackground && (
+          <div className={styles.firecrawlBackground}>
+            <span className={styles.firecrawlGridlinesHorizontal} data-grid></span>
+            <span className={styles.firecrawlGridlinesVertical} data-grid></span>
+            <FirecrawlStar className={styles.firecrawlStarTopLeft} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarTopRight} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarBottomLeft} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarBottomRight} data-grid />
+          </div>
+        )}
+        {showBackground && <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>}
         <Editor />
       </div>
     </div>
