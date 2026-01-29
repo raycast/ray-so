@@ -68,8 +68,18 @@ export function copyUrl(preset: Preset) {
   copy(makeUrl(preset));
 }
 
-export async function addToRaycast(router: AppRouterInstance, preset: Preset) {
+export async function addToRaycast(router: AppRouterInstance, preset: Preset, isTouch?: boolean) {
   const raycastProtocol = await getRaycastFlavor();
-  console.log("query", `${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
-  router.replace(`${raycastProtocol}://presets/import?${makeQueryString(preset)}`);
+  const queryString = makeQueryString(preset);
+
+  const protocolToUse = isTouch ? "raycast" : raycastProtocol;
+  const url = `${protocolToUse}://presets/import?${queryString}`;
+
+  // For mobile, use window.location.href directly as it's more reliable
+  if (isTouch) {
+    window.location.href = url;
+  } else {
+    // For desktop, use router.replace
+    router.replace(url);
+  }
 }

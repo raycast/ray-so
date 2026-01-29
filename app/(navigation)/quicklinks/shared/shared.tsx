@@ -158,8 +158,8 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
   }, [selectedQuicklinks]);
 
   const handleAddToRaycast = React.useCallback(
-    () => addToRaycast(router, selectedQuicklinks),
-    [router, selectedQuicklinks],
+    () => addToRaycast(router, selectedQuicklinks, isTouch),
+    [router, selectedQuicklinks, isTouch],
   );
 
   React.useEffect(() => {
@@ -296,6 +296,24 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
           </SelectionArea>
         )}
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedQuicklinks.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }

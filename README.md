@@ -63,7 +63,7 @@ If you're interested in contributing, follow the steps below:
 - Add your data to the relevant category
   - Ensure it includes all fields, and that they're unique within their category
 - Add your name and (optional) website url to the `author` field
-- Create a pull request 🚀
+- Create a pull request
 
 ### Themes
 

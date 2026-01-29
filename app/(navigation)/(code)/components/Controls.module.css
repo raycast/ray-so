@@ -19,12 +19,35 @@
   overflow-x: auto;
 
   @media (min-width: 768px) {
+    --radius: 16px;
+
     left: 50%;
     overflow: initial;
     width: auto;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border: none;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
     transform: translateX(-50%);
+
+    &::before {
+      position: absolute;
+      padding: 1px;
+      background: linear-gradient(
+        20deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.25) 20%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      content: "";
+      inset: 0;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
   }
 }

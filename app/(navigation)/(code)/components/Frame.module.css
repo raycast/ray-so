@@ -790,9 +790,11 @@
   .tailwindHeader {
     border-color: rgb(0 0 0 / 10%);
   }
+
   .control {
     background-color: color(display-p3 0.8863 0.9098 0.9412);
   }
+
   .tailwindGridlinesHorizontal,
   .tailwindGridlinesVertical {
     &:before,
@@ -800,6 +802,7 @@
       background: color(display-p3 0.0078 0.0235 0.0902 / 0.1);
     }
   }
+
   .tailwindBeams {
     top: 0;
     transform: translateX(-50%);
@@ -976,9 +979,11 @@
       mask-composite: exclude;
       pointer-events: none;
     }
+
     &:nth-of-type(1):before {
       inset: -1px;
     }
+
     &:nth-of-type(2):before {
       border-radius: calc(var(--radius) + 6px);
       inset: -6px;
@@ -1608,15 +1613,19 @@
   &:nth-child(1) {
     left: 5%;
   }
+
   &:nth-child(2) {
     left: 20%;
   }
+
   &:nth-child(3) {
     left: 35%;
   }
+
   &:nth-child(4) {
     left: 50%;
   }
+
   &:nth-child(5) {
     left: 65%;
   }
@@ -1761,6 +1770,141 @@
   }
 }
 
+/* Stripe Theme Frame */
+
+.stripeFrame {
+  --bg: #0a2540;
+  --stripe: hsla(213.69, 52%, 97.828%);
+  --border: #0f395e;
+  --gridline: rgba(255, 255, 255, 0.1);
+  --window: #0c2e4e;
+  --line-number: #55718d;
+
+  position: relative;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.stripeBackground {
+  position: relative;
+}
+
+.stripeBackgroundGridlineContainer {
+  position: relative;
+  width: var(--window-width);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.stripeBackgroundGridline {
+  position: absolute;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  border-left: 1px dashed var(--gridline);
+  content: "";
+  pointer-events: none;
+
+  &:nth-child(1) {
+    left: 0;
+    border-style: solid;
+  }
+  &:nth-child(2) {
+    left: 25%;
+  }
+  &:nth-child(3) {
+    left: 50%;
+  }
+  &:nth-child(4) {
+    left: 75%;
+  }
+  &:nth-child(5) {
+    left: calc(100% - 1px);
+    border-style: solid;
+  }
+}
+
+.stripeBackground {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.stripeWindow {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--window);
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  &.isSafari {
+    box-shadow: none;
+  }
+}
+
+.stripeStripe {
+  position: absolute;
+  z-index: 0;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--stripe);
+  transform: skewY(-6deg);
+  transform-origin: 100% 0;
+
+  --gridline: rgba(66, 71, 112, 0.15);
+}
+
+.stripeSet {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  bottom: 65px;
+  left: calc(var(--window-width) * 0.75 - 50px);
+  width: 500px; /* at least half the frame width */
+  height: 50px;
+  transform-origin: 100% 0;
+
+  &.isSmall {
+    top: -49px;
+    bottom: auto;
+  }
+}
+
+.stripe1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(17, 239, 227);
+}
+
+.stripe2 {
+  position: absolute;
+  /* right: 0px; */
+  width: 100%;
+  height: 32px;
+  background: rgb(153, 102, 255);
+  transform: translate(50px, 50px);
+}
+
+.intersection {
+  position: absolute;
+  /* right: 0px; */
+  width: 100%;
+  height: 18px;
+  background: hsla(221.1, 99.822%, 44.876%);
+  transform: translate(50px, 32px);
+}
+
 /* Nuxt Frame */
 
 .nuxtFrame {
@@ -1870,6 +2014,7 @@
     &:nth-of-type(2) {
       border-radius: calc(var(--radius) + 8px);
       inset: -8px;
+
       &:before {
         background: linear-gradient(
           135deg,
@@ -1887,6 +2032,7 @@
     &:nth-of-type(3) {
       border-radius: calc(var(--radius) + 15px);
       inset: -14px;
+
       &:before {
         background: linear-gradient(
           135deg,
@@ -1970,6 +2116,379 @@
   &:has(:global(.highlighted-line)) {
     :global(.line):not(:global(.highlighted-line)) {
       opacity: 0.4;
+    }
+  }
+}
+
+/* Wrapped Frame */
+
+.wrappedFrame {
+  --wrapped-bg: #0a0a0a;
+  --wrapped-border: #a25f21;
+  --wrapped-glow: #a25f21;
+  --wrapped-grid: rgba(255, 255, 255, 0.04);
+
+  position: relative;
+  background-color: var(--wrapped-bg);
+  background-image: url("../assets/wrapped/glow.png");
+  background-position: center, bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrappedWindow {
+  position: relative;
+  z-index: 4;
+}
+
+.wrappedBorder {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid var(--wrapped-border);
+  inset: 0;
+  pointer-events: none;
+}
+
+.wrappedGlowLeft,
+.wrappedGlowRight {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+}
+
+.wrappedGlowLeft {
+  left: 0;
+  background: linear-gradient(to right, rgba(251, 146, 60, 0.15) 0%, transparent 100%);
+}
+
+.wrappedGlowRight {
+  right: 0;
+  background: linear-gradient(to left, rgba(251, 146, 60, 0.15) 0%, transparent 100%);
+}
+
+.wrappedGlowBottom {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(251, 146, 60, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Fade gradient from top to bottom */
+.wrappedFade {
+  position: absolute;
+  z-index: 3;
+  background: linear-gradient(to bottom, var(--wrapped-bg) 0%, transparent 100%);
+  inset: 0;
+  pointer-events: none;
+}
+
+.wrappedFrameLightMode {
+  --wrapped-bg: #fafaf9;
+  --wrapped-grid: rgba(0, 0, 0, 0.04);
+
+  .wrappedBottomGlow {
+    background: radial-gradient(
+      ellipse 50% 100% at center bottom,
+      rgba(194, 65, 12, 0.5) 0%,
+      rgba(194, 65, 12, 0.2) 40%,
+      transparent 80%
+    );
+  }
+}
+
+/* Cloudflare Theme Frame */
+
+.cloudflareFrame {
+  background: #0c0c0c;
+}
+
+.cloudflareFrameLightMode {
+  background: #f5f5f5;
+
+  .cloudflareWindow {
+    border-color: #e5e5e5;
+    background: #ffffff;
+  }
+
+  .cloudflareHeader {
+    border-color: #e5e5e5;
+    background: #fafafa;
+  }
+
+  .cloudflareFileName {
+    color: oklch(14.5% 0 0);
+  }
+
+  .cloudflareLanguage {
+    color: oklch(70.8% 0 0);
+  }
+
+  .cloudflareGridlinesHorizontal,
+  .cloudflareGridlinesVertical {
+    &:before,
+    &:after {
+      background: #e5e5e5;
+    }
+  }
+}
+
+.cloudflareWindow {
+  position: relative;
+  border: none;
+  border-radius: 0;
+  background: #0c0c0c;
+}
+
+.cloudflareGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: #262626;
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.cloudflareGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: #262626;
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.cloudflareHeader {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #262626;
+  background: #0f0f0f;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  gap: 12px;
+}
+
+.cloudflareFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #ededed;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.cloudflareLanguage {
+  height: 40px;
+  color: #737373;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+/* Gemini Theme Frame */
+
+.geminiFrame {
+  position: relative;
+  overflow: hidden;
+  background: #0e1016;
+
+  &.isSafari {
+    .geminiWindow {
+      box-shadow: none;
+    }
+  }
+}
+
+.geminiStars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.geminiWindow {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  overflow: hidden;
+  min-height: 100px;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 26px;
+  background: #16181d;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  transition: all ease 0.3s;
+}
+
+.geminiFrame.noBackground {
+  background: transparent;
+
+  .geminiStars {
+    display: none;
+  }
+
+  .geminiWindow {
+    background: #16181d;
+  }
+}
+
+.geminiHeader {
+  display: flex;
+  overflow: hidden;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+  gap: 12px;
+}
+
+.geminiFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  margin: 0 16px;
+  color: #5c9ec7;
+  font-size: 12px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: var(--font-inter);
+    font-weight: 500;
+    grid-area: 1 / 2;
+    letter-spacing: 0.4px;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+
+  &:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    content: "";
+  }
+}
+
+.geminiFrameLightMode {
+  /* Keep default dark background and stars */
+
+  .geminiWindow {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .geminiFileName {
+    color: #1867d2;
+  }
+
+  .geminiHeader {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  &.noBackground {
+    background: transparent;
+
+    .geminiWindow {
+      background: #ffffff;
     }
   }
 }

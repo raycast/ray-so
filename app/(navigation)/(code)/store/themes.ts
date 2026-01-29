@@ -5,6 +5,8 @@ import { CSSProperties } from "react";
 import { Font } from "./font";
 import FirecrawlLogo from "../assets/firecrawl/logo.svg";
 import FirecrawlLogoUrl from "../assets/firecrawl/logo.svg?url";
+import CloudflareLogo from "../assets/cloudflare.svg";
+import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
@@ -15,6 +17,8 @@ import TailwindLogo from "../assets/tailwind.svg";
 import TailwindLogoUrl from "../assets/tailwind.svg?url";
 import TriggerLogo from "../assets/triggerdev.svg";
 import TriggerLogoUrl from "../assets/triggerdev.svg?url";
+import GeminiLogo from "../assets/gemini.svg";
+import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
@@ -31,6 +35,8 @@ import BrowserbaseLogo from "../assets/browserbase.svg";
 import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
+import StripeLogo from "../assets/stripe/logo.svg";
+import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -57,6 +63,7 @@ type ShikiSyntaxObject = {
   link?: string;
   number?: string;
   property?: string;
+  objectLiteral?: string;
   highlight?: string;
   highlightBorder?: string;
   highlightHover?: string;
@@ -87,6 +94,7 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-highlight-hover": syntaxObject.highlightHover,
     "--ray-token-diff-deleted": syntaxObject.diffDeleted,
     "--ray-token-diff-inserted": syntaxObject.diffInserted,
+    "--ray-token-object-literal": syntaxObject.objectLiteral,
   } as CSSProperties;
 }
 
@@ -103,10 +111,7 @@ export type Theme = {
   partner?: boolean;
   hidden?: boolean;
   lineNumbers?: boolean;
-  syntax: {
-    light: CSSProperties;
-    dark: CSSProperties;
-  };
+  syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
 };
 
 export const THEMES: { [index: string]: Theme } = {
@@ -167,7 +172,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#1F1F1F",
     },
     icon: VercelLogo,
-    iconUrl: `${BASE_URL}${VercelLogoUrl.src}`,
+    iconUrl: VercelLogoUrl,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -219,7 +224,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: RabbitLogo,
-    iconUrl: `${BASE_URL}${RabbitLogoUrl.src}`,
+    iconUrl: RabbitLogoUrl,
     font: "geist-mono",
     partner: true,
     hidden: true,
@@ -266,7 +271,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#121212",
     },
     icon: SupabaseLogo,
-    iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
+    iconUrl: SupabaseLogoUrl,
     partner: true,
     lineNumbers: true,
     font: "jetbrains-mono",
@@ -317,7 +322,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#36B6F0",
     },
     icon: TailwindLogo,
-    iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
+    iconUrl: TailwindLogoUrl,
     partner: true,
     lineNumbers: true,
     font: "fira-code",
@@ -344,7 +349,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: OpenAiLogo,
-    iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
+    iconUrl: OpenAiLogoUrl,
     partner: true,
     font: "soehne-mono",
     lineNumbers: true,
@@ -395,7 +400,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: MintlifyLogo,
-    iconUrl: `${BASE_URL}${MintlifyLogoUrl.src}`,
+    iconUrl: MintlifyLogoUrl,
     partner: true,
     syntax: {
       light: convertToShikiTheme({
@@ -446,7 +451,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: PrismaLogo,
-    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    iconUrl: PrismaLogoUrl,
     partner: true,
     lineNumbers: false,
     syntax: {
@@ -498,7 +503,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: ClerkLogo,
-    iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
+    iconUrl: ClerkLogoUrl,
     partner: true,
     lineNumbers: true,
     font: "geist-mono",
@@ -551,7 +556,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: ElevenLabsLogo,
-    iconUrl: `${BASE_URL}${ElevenLabsLogoUrl.src}`,
+    iconUrl: ElevenLabsLogoUrl,
     font: "roboto-mono",
     partner: true,
     syntax: {
@@ -603,7 +608,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#181818",
     },
     icon: ResendLogo,
-    iconUrl: `${BASE_URL}${ResendLogoUrl.src}`,
+    iconUrl: ResendLogoUrl,
     font: "commit-mono",
     partner: true,
     syntax: {
@@ -649,7 +654,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#121317",
     },
     icon: TriggerLogo,
-    iconUrl: `${BASE_URL}${TriggerLogoUrl.src}`,
+    iconUrl: TriggerLogoUrl,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -691,7 +696,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#292D3E",
     },
     icon: NuxtLogo,
-    iconUrl: `${BASE_URL}${NuxtLogoUrl.src}`,
+    iconUrl: NuxtLogoUrl,
     font: "geist-mono",
     partner: true,
     lineNumbers: true,
@@ -744,7 +749,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: BrowserbaseLogo,
-    iconUrl: `${BASE_URL}${BrowserbaseLogoUrl.src}`,
+    iconUrl: BrowserbaseLogoUrl,
     partner: true,
     font: "space-mono",
     lineNumbers: true,
@@ -786,6 +791,196 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(255, 107, 53, 0.08)",
         diffInserted: "#34D399",
         diffDeleted: "#F87171",
+      }),
+    },
+  },
+  cloudflare: {
+    id: "cloudflare",
+    name: "Cloudflare",
+    background: {
+      from: "#0C0C0C",
+      to: "#0C0C0C",
+    },
+    icon: CloudflareLogo,
+    iconUrl: CloudflareLogoUrl,
+    font: "ibm-plex-mono",
+    partner: true,
+    lineNumbers: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#521000",
+        constant: "#5a11cc",
+        string: "#0876d9",
+        comment: "#52100080",
+        keyword: "#d94008",
+        parameter: "#c77700",
+        function: "#7612cc",
+        stringExpression: "#0876d9",
+        punctuation: "#52100080",
+        link: "#0876d9",
+        number: "#5a11cc",
+        property: "#5a11cc",
+        highlight: "rgba(255, 80, 10, 0.1)",
+        highlightHover: "rgba(255, 80, 10, 0.05)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#d94008",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#E8E8E8",
+        constant: "#79b8ff",
+        string: "#0A95FF",
+        comment: "#888888",
+        keyword: "#FF7F4D",
+        parameter: "#FFB366",
+        function: "#B084FF",
+        stringExpression: "#0A95FF",
+        punctuation: "#AAAAAA",
+        link: "#0A95FF",
+        number: "#79b8ff",
+        property: "#79b8ff",
+        highlight: "rgba(255, 80, 10, 0.15)",
+        highlightHover: "rgba(255, 80, 10, 0.08)",
+        highlightBorder: "#FF500A",
+        diffInserted: "#00C853",
+        diffDeleted: "#FF7F4D",
+      }),
+    },
+  },
+  gemini: {
+    id: "gemini",
+    name: "Gemini",
+    background: {
+      from: "#16181d",
+      to: "#16181d",
+    },
+    icon: GeminiLogo,
+    iconUrl: GeminiLogoUrl,
+    font: "google-sans-code",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#37474f",
+        constant: "#37474f",
+        string: "#188038",
+        comment: "hsla(0, 0%, 40%,1)",
+        keyword: "#1967d2",
+        parameter: "#37474f",
+        function: "#37474f",
+        stringExpression: "#188038",
+        punctuation: "#37474f",
+        link: "#4c3fff",
+        number: "#4c3fff",
+        property: "#4c3fff",
+        highlight: "hsla(244, 100%, 62%, 0.09)",
+        highlightHover: "hsla(244, 100%, 62%, 0.05)",
+        highlightBorder: "hsla(244, 100%, 62%, 0.45)",
+        diffInserted: "#188038",
+        diffDeleted: "#FF605E",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#abb2bf",
+        constant: "#56b6c2",
+        string: "#98c379",
+        comment: "#5c6370",
+        keyword: "#5c9dc7",
+        parameter: "#d19a66",
+        function: "#98c379",
+        stringExpression: "#98c379",
+        punctuation: "#abb2bf",
+        link: "#5c9dc7",
+        number: "#56b6c2",
+        property: "#56b6c2",
+        highlight: "rgba(92, 157, 199, 0.15)",
+        highlightHover: "rgba(92, 157, 199, 0.1)",
+        highlightBorder: "#5c9dc7",
+        diffInserted: "#98c379",
+        diffDeleted: "#e06c75",
+      }),
+    },
+  },
+  stripe: {
+    id: "stripe",
+    name: "Stripe",
+    background: {
+      from: "#0a2540",
+      to: "#0a2540",
+    },
+    icon: StripeLogo,
+    iconUrl: StripeLogoUrl,
+    partner: true,
+    font: "source-code-pro",
+    lineNumbers: true,
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#FFFFFF",
+        constant: "#FFFFFF",
+        string: "#ffa956",
+        comment: "#a9bcce",
+        keyword: "#8095ff",
+        parameter: "#FF6B35",
+        function: "#00d4ff",
+        stringExpression: "#ffa956",
+        punctuation: "#FFFFFF",
+        link: "#ffa956",
+        number: "#ffa956",
+        property: "#1abdc0",
+        objectLiteral: "#1abdc0",
+        highlight: "rgba(255, 107, 53, 0.15)",
+        highlightBorder: "#FF6B35",
+        highlightHover: "rgba(255, 107, 53, 0.08)",
+        diffInserted: "#34D399",
+        diffDeleted: "#F87171",
+      }),
+    },
+  },
+  wrapped: {
+    id: "wrapped",
+    name: "Wrapped",
+    background: {
+      from: "#ea580c",
+      to: "#f97316",
+    },
+    font: "jetbrains-mono",
+    lineNumbers: false,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#1a1a1a",
+        constant: "#c2410c",
+        string: "#c2410c",
+        comment: "rgba(0, 0, 0, 0.6)",
+        keyword: "#ea580c",
+        parameter: "#ea580c",
+        function: "#1a1a1a",
+        stringExpression: "#ea580c",
+        punctuation: "rgba(0, 0, 0, 0.6)",
+        link: "#ea580c",
+        number: "#ea580c",
+        property: "#ea580c",
+        highlight: "rgba(234, 88, 12, 0.1)",
+        highlightBorder: "#ea580c",
+        highlightHover: "rgba(234, 88, 12, 0.05)",
+        diffInserted: "#16a34a",
+        diffDeleted: "#dc2626",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#e7e5e4",
+        constant: "#fb923c",
+        string: "#fdba74",
+        comment: "rgba(255, 255, 255, 0.4)",
+        keyword: "#f97316",
+        parameter: "#fb923c",
+        function: "#fafaf9",
+        stringExpression: "#fed7aa",
+        punctuation: "rgba(255, 255, 255, 0.4)",
+        link: "#fb923c",
+        number: "#fb923c",
+        property: "#fb923c",
+        highlight: "rgba(251, 146, 60, 0.15)",
+        highlightBorder: "#fb923c",
+        highlightHover: "rgba(251, 146, 60, 0.08)",
+        diffInserted: "#4ade80",
+        diffDeleted: "#f87171",
       }),
     },
   },
@@ -1440,7 +1635,26 @@ const themeAtom = atomWithHash<Theme>(
 
 const darkModeAtom = atomWithHash<boolean>("darkMode", true);
 
-const themeCSSAtom = atom<CSSProperties>((get) => get(themeAtom).syntax[get(darkModeAtom) ? "dark" : "light"]);
+const themeDarkModeAtom = atom<boolean>((get) => {
+  const theme = get(themeAtom);
+  const hasLight = !!theme.syntax.light;
+  const hasDark = !!theme.syntax.dark;
+
+  // If theme only has dark mode, force dark
+  if (hasDark && !hasLight) return true;
+
+  // If theme only has light mode, force light
+  if (hasLight && !hasDark) return false;
+
+  // If theme has both, use user preference
+  return get(darkModeAtom);
+});
+
+const themeCSSAtom = atom<CSSProperties>((get) => {
+  const isDark = get(themeDarkModeAtom);
+  const syntax = get(themeAtom).syntax;
+  return (isDark ? syntax.dark : syntax.light) || syntax.light || syntax.dark || {};
+});
 
 const themeBackgroundAtom = atom<string>((get) => {
   const { from, to } = get(themeAtom).background;
@@ -1461,6 +1675,7 @@ export {
   themeAtom,
   themeBackgroundAtom,
   themeCSSAtom,
+  themeDarkModeAtom,
   themeFontAtom,
   themeLineNumbersAtom,
   unlockedThemesAtom,

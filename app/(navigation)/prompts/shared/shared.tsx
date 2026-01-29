@@ -288,9 +288,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
                                         return <AIExtension key={index} extension={extension} fallback={match[1]} />;
                                       }
                                       return (
-                                        <span key={index}>
-                                          {renderSafePromptContent(part, styles.placeholder)}
-                                        </span>
+                                        <span key={index}>{renderSafePromptContent(part, styles.placeholder)}</span>
                                       );
                                     })}
                                   </pre>
@@ -347,6 +345,24 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
           </SelectionArea>
         )}
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedPrompts.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }

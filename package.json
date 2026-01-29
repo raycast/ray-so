@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@astral-sh/ruff-wasm-web": "0.9.9",
-    "@next/bundle-analyzer": "15.2.1",
+    "@base-ui/react": "^1.0.0",
+    "@next/bundle-analyzer": "16.1.2",
     "@radix-ui/react-collapsible": "^1.1.3",
     "@radix-ui/react-context-menu": "^2.2.6",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -38,7 +39,6 @@
     "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "dub": "0.30.4",
-    "geist": "^1.3.1",
     "glob": "^10.4.1",
     "highlight.js": "^11.7.0",
     "hotkeys-js": "^3.10.0",
@@ -50,11 +50,11 @@
     "js-base64": "^3.7.3",
     "lodash.debounce": "^4.0.8",
     "nanoid": "^5.1.3",
-    "next": "15.5.7",
+    "next": "16.1.1-canary.36",
     "prettier": "^3.3.3",
-    "react": "19.0.0",
+    "react": "19.2.3",
     "react-color": "^2.19.3",
-    "react-dom": "19.0.0",
+    "react-dom": "19.2.3",
     "react-transition-group": "^4.4.5",
     "shiki": "^1.0.0",
     "sonner": "^2.0.1",
@@ -65,14 +65,14 @@
     "@svgr/webpack": "^6.4.0",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^22",
-    "@types/react": "19.0.10",
+    "@types/react": "19.2.8",
     "@types/react-color": "^3.0.12",
-    "@types/react-dom": "19.0.4",
+    "@types/react-dom": "19.2.3",
     "@types/react-transition-group": "^4.4.5",
-    "@typescript-eslint/parser": "^7.12.0",
+    "@typescript-eslint/parser": "8.53.0",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8.32.0",
-    "eslint-config-next": "15.2.1",
+    "eslint": "9.39.2",
+    "eslint-config-next": "16.1.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "postcss": "^8.4.38",
@@ -84,7 +84,7 @@
     "typescript": "^5.4.2"
   },
   "overrides": {
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4"
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3"
   }
 }
