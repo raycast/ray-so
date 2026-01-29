@@ -126,6 +126,134 @@
   }
 }
 
+/* Firecrawl Theme Frame */
+
+.firecrawlFrame {
+  --background: black;
+  --grid-color: #1a1a1a;
+
+  background: var(--background);
+}
+
+.firecrawlFrameLightMode {
+  --background: white;
+  --grid-color: #ededed;
+}
+
+.firecrawlWindow {
+  position: relative;
+  padding-bottom: 0px;
+  container-type: inline-size;
+}
+
+.firecrawlAsciiArt {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  color: #f97316;
+  font-family: monospace;
+  font-size: 1.3cqw;
+  line-height: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.9) 100%);
+  pointer-events: none;
+  text-align: center;
+  white-space: pre;
+}
+
+.firecrawlGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: var(--grid-color);
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.firecrawlGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: var(--grid-color);
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
+
+.firecrawlStarTopLeft,
+.firecrawlStarTopRight,
+.firecrawlStarBottomLeft,
+.firecrawlStarBottomRight {
+  --width: 18px;
+  --offset: calc(calc(var(--width) / 2 - 1px) * -1);
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  display: flex;
+  width: var(--width);
+  height: var(--width);
+  align-items: center;
+  justify-content: center;
+  color: var(--grid-color);
+}
+
+.firecrawlStarTopLeft {
+  top: calc(var(--offset) - 0.5px);
+  left: calc(var(--offset) - 0.5px);
+}
+
+.firecrawlStarTopRight {
+  top: calc(var(--offset) - 0.5px);
+  right: calc(var(--offset) - 0.5px);
+  left: auto;
+}
+
+.firecrawlStarBottomRight {
+  top: auto;
+  right: calc(var(--offset) - 0.5px);
+  bottom: calc(var(--offset) - 0.5px);
+  left: auto;
+}
+
+.firecrawlStarBottomLeft {
+  top: auto;
+  bottom: calc(var(--offset) - 0.5px);
+  left: calc(var(--offset) - 0.5px);
+}
+
+.firecrawlBracketRight {
+  top: auto;
+  right: var(--offset);
+  bottom: var(--offset);
+  left: auto;
+}
+
 /* Vercel Theme Frame */
 
 .vercelFrame {

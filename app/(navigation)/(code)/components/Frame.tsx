@@ -22,6 +22,71 @@ import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
 
+const FirecrawlStar = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M10 4C10 7.31371 7.31371 10 4 10H0V11H4C7.31371 11 10 13.6863 10 17V21H11V17C11 13.6863 13.6863 11 17 11H21V10H17C13.6863 10 11 7.31371 11 4V0H10V4Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+const FIRECRAWL_ASCII_ART = `                                   .. ..-
+                                   :          .
+                              ..        .   ..-
+                            .        .._  ..-...:.              ..       .
+                  .      .  .-.    ...     .-.-.._.-   ..        .-..     .      .
+               ...._. . .-.....-:....      ..-::.::._=:.  ....       ...  .-      ....
+             .....-._.._.:.....-.+:....-..    .....-:+++++++=:..-.---..    ...:.-..      ....
+           .._.-._.-.:_.:-.  ...+..+:._-....:-._:+++++===+:_:+:....      -..+++++.:..  .-._-..      .
+        .........--::+:._-:-.._..-.+:.-_::++_.:+:+========+=+:+:--..  .   _-_.:+===+-. ._..+:.-........  .
+       ....-..---_-++====+:_:=:..+:.:+=+-..._++++======X==========++::.:+-..  .:+====X==+=++++++-.-......
+     .......-:+:_:+:++=XX=X======++++++=X===::+++:++==XXXXXX===+==++===+=+=========XXX===++++=+:_---...-..-.
+    ....._.:++======+===XXXXXXXX=+=++============XXXXXXXXXX============X======XXXXXXX======X==++:._---_`;
+
+const FirecrawlFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.firecrawlFrame,
+        showBackground && !darkMode && styles.firecrawlFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.firecrawlWindow}>
+        {showBackground && (
+          <div className={styles.firecrawlBackground}>
+            <span className={styles.firecrawlGridlinesHorizontal} data-grid></span>
+            <span className={styles.firecrawlGridlinesVertical} data-grid></span>
+            <FirecrawlStar className={styles.firecrawlStarTopLeft} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarTopRight} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarBottomLeft} data-grid />
+            <FirecrawlStar className={styles.firecrawlStarBottomRight} data-grid />
+          </div>
+        )}
+        {showBackground && <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>}
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const VercelFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -861,6 +926,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.firecrawl.id:
+        return <FirecrawlFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;

@@ -3,6 +3,8 @@ import { atomWithHash } from "jotai-location";
 import { atomWithStorage } from "jotai/utils";
 import { CSSProperties } from "react";
 import { Font } from "./font";
+import FirecrawlLogo from "../assets/firecrawl/logo.svg";
+import FirecrawlLogoUrl from "../assets/firecrawl/logo.svg?url";
 import CloudflareLogo from "../assets/cloudflare.svg";
 import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
@@ -113,6 +115,55 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  firecrawl: {
+    id: "firecrawl",
+    name: "Firecrawl",
+    background: {
+      from: "#000",
+      to: "#000",
+    },
+    icon: FirecrawlLogo,
+    iconUrl: `${BASE_URL}${FirecrawlLogoUrl.src}`,
+    font: "geist-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "hsla(0, 0%, 9%,1)",
+        constant: "hsla(26.433, 82.533%, 50.131%)",
+        string: "hsla(26.433, 82.533%, 50.131%)",
+        comment: "hsla(180, 0%, 45.776%)",
+        keyword: "hsla(180, 0%, 45.776%)",
+        parameter: "hsla(26.433, 82.533%, 50.131%)",
+        function: "hsla(26.433, 82.533%, 50.131%)",
+        stringExpression: "hsla(26.433, 82.533%, 50.131%)",
+        punctuation: "hsla(180, 0%, 45.776%))",
+        link: "hsla(26.433, 82.533%, 50.131%)",
+        number: "#hsla(26.433, 82.533%, 50.131%)",
+        property: "hsla(180, 0%, 45.776%)",
+        highlight: "oklch(94.58% 0.0293 249.84870859673202)",
+        highlightHover: "oklch(94.58% 0.0293 249.84870859673202 / 30%)",
+        highlightBorder: "oklch(53.18% 0.2399 256.9900584162342)",
+        diffDeleted: "oklch(58.01% 0.227 25.12)",
+        diffInserted: "oklch(57.81% 0.1776 147.5)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#ffffff",
+        constant: "hsla(26.433, 82.533%, 50.131%)",
+        parameter: "hsla(26.433, 82.533%, 50.131%)",
+        stringExpression: "hsla(26.433, 82.533%, 50.131%)",
+        keyword: "#a7a7a7",
+        function: "hsla(26.433, 82.533%, 50.131%)",
+        punctuation: "#a7a7a7",
+        string: "hsla(26.433, 82.533%, 50.131%)",
+        comment: "#666666",
+        link: "hsla(26.433, 82.533%, 50.131%)",
+        number: "#ffffff",
+        property: "#a7a7a7",
+        diffInserted: "#a7a7a7",
+        diffDeleted: "#a7a7a7",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",
