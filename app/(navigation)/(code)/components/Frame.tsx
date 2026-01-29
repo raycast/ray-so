@@ -40,6 +40,19 @@ const FirecrawlStar = ({ className }: { className?: string }) => {
   );
 };
 
+const FIRECRAWL_ASCII_ART = `                                   .. ..-
+                                   :          .
+                              ..        .   ..-
+                            .        .._  ..-...:.              ..       .
+                  .      .  .-.    ...     .-.-.._.-   ..        .-..     .      .
+               ...._. . .-.....-:....      ..-::.::._=:.  ....       ...  .-      ....
+             .....-._.._.:.....-.+:....-..    .....-:+++++++=:..-.---..    ...:.-..      ....
+           .._.-._.-.:_.:-.  ...+..+:._-....:-._:+++++===+:_:+:....      -..+++++.:..  .-._-..      .
+        .........--::+:._-:-.._..-.+:.-_::++_.:+:+========+=+:+:--..  .   _-_.:+===+-. ._..+:.-........  .
+       ....-..---_-++====+:_:=:..+:.:+=+-..._++++======X==========++::.:+-..  .:+====X==+=++++++-.-......
+     .......-:+:_:+:++=XX=X======++++++=X===::+++:++==XXXXXX===+==++===+=+=========XXX===++++=+:_---...-..-.
+    ....._.:++======+===XXXXXXXX=+=++============XXXXXXXXXX============X======XXXXXXX======X==++:._---_`;
+
 const FirecrawlFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -65,6 +78,7 @@ const FirecrawlFrame = () => {
           <FirecrawlStar className={styles.firecrawlStarBottomLeft} data-grid />
           <FirecrawlStar className={styles.firecrawlStarBottomRight} data-grid />
         </div>
+        <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>
         <Editor />
       </div>
     </div>

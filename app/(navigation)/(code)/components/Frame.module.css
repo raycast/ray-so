@@ -143,24 +143,29 @@
 .firecrawlWindow {
   position: relative;
   padding-bottom: 0px;
+  container-type: inline-size;
+}
 
-  &::before {
-    position: absolute;
-    background-image: url("../assets/firecrawl/heat.png");
-    background-position: bottom 5px left;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    content: "";
-    inset: 0;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.1) 70%,
-      rgba(0, 0, 0, 0.5) 90%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0.9) 100%);
-    pointer-events: none;
-  }
+.firecrawlAsciiArt {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  color: #f97316;
+  font-family: monospace;
+  font-size: 1.3cqw;
+  line-height: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.9) 100%);
+  pointer-events: none;
+  text-align: center;
+  white-space: pre;
 }
 
 .firecrawlGridlinesHorizontal {
