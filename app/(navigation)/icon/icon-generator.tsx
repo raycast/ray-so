@@ -299,7 +299,7 @@ export const IconGenerator = () => {
 
   const [draggingFile, setDraggingFile] = useState<boolean>(false);
   const [settings, setSettings] = useState<SettingsType>({
-    fileName: "extension_icon",
+    fileName: "extension-icon",
     icon: "raycast-logo-pos",
     backgroundRadius: 128,
     backgroundStrokeSize: 0,
