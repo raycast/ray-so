@@ -22,6 +22,53 @@ import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
 
+const FIRECRAWL_ASCII_ART = `                                   .. ..-
+                                   :          .
+                              ..        .   ..-
+                            .        .._  ..-...:.              ..       .
+                  .      .  .-.    ...     .-.-.._.-   ..        .-..     .      .
+               ...._. . .-.....-:....      ..-::.::._=:.  ....       ...  .-      ....
+             .....-._.._.:.....-.+:....-..    .....-:+++++++=:..-.---..    ...:.-..      ....
+           .._.-._.-.:_.:-.  ...+..+:._-....:-._:+++++===+:_:+:....      -..+++++.:..  .-._-..      .
+        .........--::+:._-:-.._..-.+:.-_::++_.:+:+========+=+:+:--..  .   _-_.:+===+-. ._..+:.-........  .
+       ....-..---_-++====+:_:=:..+:.:+=+-..._++++======X==========++::.:+-..  .:+====X==+=++++++-.-......
+     .......-:+:_:+:++=XX=X======++++++=X===::+++:++==XXXXXX===+==++===+=+=========XXX===++++=+:_---...-..-.
+    ....._.:++======+===XXXXXXXX=+=++============XXXXXXXXXX============X======XXXXXXX======X==++:._---_`;
+
+const FirecrawlFrame = () => {
+  const [darkMode] = useAtom(darkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.firecrawlFrame,
+        showBackground && !darkMode && styles.firecrawlFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.firecrawlWindow}>
+        {showBackground && (
+          <div className={styles.firecrawlBackground}>
+            <span className={styles.firecrawlGridlinesHorizontal} data-grid></span>
+            <span className={styles.firecrawlGridlinesVertical} data-grid></span>
+            <span className={styles.firecrawlStarTopLeft} data-grid />
+            <span className={styles.firecrawlStarTopRight} data-grid />
+            <span className={styles.firecrawlStarBottomLeft} data-grid />
+            <span className={styles.firecrawlStarBottomRight} data-grid />
+          </div>
+        )}
+        {showBackground && <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>}
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const VercelFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -229,11 +276,7 @@ const MintlifyFrame = () => {
       {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       {showBackground && (
         <span className={styles.mintlifyPatternWrapper}>
-          <img
-            src={darkMode ? mintlifyPatternDark : mintlifyPatternLight}
-            alt=""
-            className={styles.mintlifyPattern}
-          />
+          <img src={darkMode ? mintlifyPatternDark : mintlifyPatternLight} alt="" className={styles.mintlifyPattern} />
         </span>
       )}
       <div className={styles.mintlifyWindow}>
@@ -861,6 +904,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.firecrawl.id:
+        return <FirecrawlFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;
