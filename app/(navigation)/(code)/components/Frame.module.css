@@ -224,7 +224,6 @@
 .firecrawlStarBottomLeft::before,
 .firecrawlStarBottomRight::before {
   position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   background: var(--grid-color);
@@ -232,6 +231,7 @@
     "M10.5 4C10.5 7.31371 7.81371 10 4.5 10H0.5V11H4.5C7.81371 11 10.5 13.6863 10.5 17V21H11.5V17C11.5 13.6863 14.1863 11 17.5 11H21.5V10H17.5C14.1863 10 11.5 7.31371 11.5 4V0H10.5V4Z"
   );
   content: "";
+  inset: 0;
 }
 
 /* Align star center with center of 1px grid lines (0.5, 0.5) at each corner */
@@ -248,14 +248,14 @@
 
 .firecrawlStarBottomLeft {
   top: auto;
-  bottom: -10.5px;
+  bottom: -11px; /* -10.5px + Arc/Chromium subpixel fix: bottom rounds down */
   left: -10.5px;
 }
 
 .firecrawlStarBottomRight {
   top: auto;
   right: -10.5px;
-  bottom: -10.5px;
+  bottom: -11px; /* -10.5px + Arc/Chromium subpixel fix: bottom rounds down */
   left: auto;
 }
 
