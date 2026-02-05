@@ -102,20 +102,18 @@ function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; paddi
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || size.width === 0 || size.height === 0) return;
+    const dpr = Math.min(2, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1);
+    canvas.width = size.width * dpr;
+    canvas.height = size.height * dpr;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    ctx.scale(dpr, dpr);
     draw(ctx, size.width, size.height, gridColorRef.current);
   }, [size, gridColor, draw]);
 
   return (
     <div ref={overlayRef} className={styles.firecrawlFrameOverlay} data-grid>
-      <canvas
-        ref={canvasRef}
-        width={size.width}
-        height={size.height}
-        style={{ display: "block", width: "100%", height: "100%" }}
-        aria-hidden
-      />
+      <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%" }} aria-hidden />
     </div>
   );
 }
