@@ -39,45 +39,46 @@ const FIRECRAWL_ASCII_ART = `                                   .. ..-
 const FIRECRAWL_STAR_PATH =
   "M10.5 4C10.5 7.31371 7.81371 10 4.5 10H0.5V11H4.5C7.81371 11 10.5 13.6863 10.5 17V21H11.5V17C11.5 13.6863 14.1863 11 17.5 11H21.5V10H17.5C14.1863 10 11.5 7.31371 11.5 4V0H10.5V4Z";
 
-function FirecrawlFrameCanvas({ gridColor }: { gridColor: string }) {
+function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; padding: number }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gridColorRef = useRef(gridColor);
   gridColorRef.current = gridColor;
   const [size, setSize] = useState({ width: 0, height: 0 });
 
-  const LINE_INSET = 50;
-
-  const draw = React.useCallback((ctx: CanvasRenderingContext2D, w: number, h: number, color: string) => {
-    const i = LINE_INSET;
-    ctx.clearRect(0, 0, w, h);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1;
-    /* Lines extend to canvas edges; they cross at the inset rectangle (stars at its corners). */
-    ctx.beginPath();
-    ctx.moveTo(0, i);
-    ctx.lineTo(w, i);
-    ctx.moveTo(0, h - i);
-    ctx.lineTo(w, h - i);
-    ctx.moveTo(i, 0);
-    ctx.lineTo(i, h);
-    ctx.moveTo(w - i, 0);
-    ctx.lineTo(w - i, h);
-    ctx.stroke();
-    const starPath = new Path2D(FIRECRAWL_STAR_PATH);
-    ctx.fillStyle = color;
-    const drawStar = (x: number, y: number) => {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.translate(-11, -10.5);
-      ctx.fill(starPath);
-      ctx.restore();
-    };
-    drawStar(i, i);
-    drawStar(w - i, i);
-    drawStar(i, h - i);
-    drawStar(w - i, h - i);
-  }, []);
+  const draw = React.useCallback(
+    (ctx: CanvasRenderingContext2D, w: number, h: number, color: string) => {
+      const i = padding;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1;
+      /* Lines extend to canvas edges; they cross at the inset rectangle (stars at its corners). */
+      ctx.beginPath();
+      ctx.moveTo(0, i);
+      ctx.lineTo(w, i);
+      ctx.moveTo(0, h - i);
+      ctx.lineTo(w, h - i);
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i, h);
+      ctx.moveTo(w - i, 0);
+      ctx.lineTo(w - i, h);
+      ctx.stroke();
+      const starPath = new Path2D(FIRECRAWL_STAR_PATH);
+      ctx.fillStyle = color;
+      const drawStar = (x: number, y: number) => {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.translate(-11, -10.5);
+        ctx.fill(starPath);
+        ctx.restore();
+      };
+      drawStar(i, i);
+      drawStar(w - i, i);
+      drawStar(i, h - i);
+      drawStar(w - i, h - i);
+    },
+    [padding],
+  );
 
   useEffect(() => {
     const el = overlayRef.current;
@@ -139,7 +140,7 @@ const FirecrawlFrame = () => {
       <div className={styles.firecrawlWindow}>
         {showBackground && <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>}
         <Editor />
-        {showBackground && <FirecrawlFrameCanvas gridColor={gridColor} />}
+        {showBackground && <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} />}
       </div>
     </div>
   );
