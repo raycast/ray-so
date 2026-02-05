@@ -129,8 +129,10 @@
 /* Firecrawl Theme Frame */
 
 .firecrawlFrame {
+  position: relative;
+  overflow: visible;
   --background: black;
-  --grid-color: #1a1a1a;
+  --grid-color: #222;
 
   background: var(--background);
 }
@@ -144,6 +146,29 @@
   position: relative;
   padding-bottom: 0px;
   container-type: inline-size;
+  overflow: visible;
+}
+
+/* Negative inset extends overlay to frame edges (black box); canvas draws lines to its edges. */
+.firecrawlFrameOverlay {
+  position: absolute;
+  top: calc(-1 * var(--frame-padding, 64px));
+  left: calc(-1 * var(--frame-padding, 64px));
+  right: calc(-1 * var(--frame-padding, 64px));
+  bottom: calc(-1 * var(--frame-padding, 64px));
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Single SVG overlay: rectangle (two lines) + star at each corner. One element = reliable export. */
+.firecrawlFrameSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--grid-color);
+  fill: currentColor;
+  stroke: currentColor;
+  shape-rendering: crispEdges;
 }
 
 .firecrawlAsciiArt {
@@ -166,97 +191,6 @@
   pointer-events: none;
   text-align: center;
   white-space: pre;
-}
-
-.firecrawlGridlinesHorizontal {
-  &:before,
-  &:after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -150px;
-    width: 1200px;
-    height: 1px;
-    background: var(--grid-color);
-    content: "";
-  }
-
-  &:after {
-    top: auto;
-    bottom: 0;
-  }
-}
-
-.firecrawlGridlinesVertical {
-  &:before,
-  &:after {
-    position: absolute;
-    top: -150px;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    height: calc(100% + 300px);
-    background: var(--grid-color);
-    content: "";
-  }
-
-  &:after {
-    right: 0;
-    left: auto;
-  }
-}
-
-/* Connector: CSS replica of the filled plus SVG (viewBox 0 0 22 21), same coordinate system as grid for export. */
-.firecrawlStarTopLeft,
-.firecrawlStarTopRight,
-.firecrawlStarBottomLeft,
-.firecrawlStarBottomRight {
-  --star-width: 22px;
-  --star-height: 21px;
-  position: absolute;
-  width: var(--star-width);
-  height: var(--star-height);
-  pointer-events: none;
-}
-
-.firecrawlStarTopLeft::before,
-.firecrawlStarTopRight::before,
-.firecrawlStarBottomLeft::before,
-.firecrawlStarBottomRight::before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: var(--grid-color);
-  clip-path: path(
-    "M10.5 4C10.5 7.31371 7.81371 10 4.5 10H0.5V11H4.5C7.81371 11 10.5 13.6863 10.5 17V21H11.5V17C11.5 13.6863 14.1863 11 17.5 11H21.5V10H17.5C14.1863 10 11.5 7.31371 11.5 4V0H10.5V4Z"
-  );
-  content: "";
-  inset: 0;
-}
-
-/* Align star center with center of 1px grid lines (0.5, 0.5) at each corner */
-.firecrawlStarTopLeft {
-  top: -10px;
-  left: -10.5px;
-}
-
-.firecrawlStarTopRight {
-  top: -10px;
-  right: -10.5px;
-  left: auto;
-}
-
-.firecrawlStarBottomLeft {
-  top: auto;
-  bottom: -11px; /* -10.5px + Arc/Chromium subpixel fix: bottom rounds down */
-  left: -10.5px;
-}
-
-.firecrawlStarBottomRight {
-  top: auto;
-  right: -10.5px;
-  bottom: -11px; /* -10.5px + Arc/Chromium subpixel fix: bottom rounds down */
-  left: auto;
 }
 
 /* Vercel Theme Frame */
