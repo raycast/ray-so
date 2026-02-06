@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { fileNameAtom, showBackgroundAtom, windowWidthAtom } from "../store";
 import { FrameContext } from "../store/FrameContextStore";
+import { exportSizeAtom } from "../store/image";
 import { paddingAtom } from "../store/padding";
 import { THEMES, themeDarkModeAtom, themeAtom, themeBackgroundAtom, darkModeAtom } from "../store/themes";
 import useIsSafari from "../util/useIsSafari";
@@ -39,11 +40,17 @@ const FIRECRAWL_ASCII_ART = `                                   .. ..-
 const FIRECRAWL_STAR_PATH =
   "M10.5 4C10.5 7.31371 7.81371 10 4.5 10H0.5V11H4.5C7.81371 11 10.5 13.6863 10.5 17V21H11.5V17C11.5 13.6863 14.1863 11 17.5 11H21.5V10H17.5C14.1863 10 11.5 7.31371 11.5 4V0H10.5V4Z";
 
-function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; padding: number }) {
+function FirecrawlFrameCanvas({
+  gridColor,
+  padding,
+  exportPixelRatio = 2,
+}: {
+  gridColor: string;
+  padding: number;
+  exportPixelRatio?: number;
+}) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const gridColorRef = useRef(gridColor);
-  gridColorRef.current = gridColor;
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   const draw = React.useCallback(
@@ -102,14 +109,16 @@ function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; paddi
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || size.width === 0 || size.height === 0) return;
-    const dpr = Math.min(2, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1);
+    const displayDpr = Math.min(2, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1);
+    /* Use at least export scale so the canvas stays sharp when user exports at 2x/4x/6x. */
+    const dpr = Math.max(displayDpr, exportPixelRatio);
     canvas.width = size.width * dpr;
     canvas.height = size.height * dpr;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.scale(dpr, dpr);
-    draw(ctx, size.width, size.height, gridColorRef.current);
-  }, [size, gridColor, draw]);
+    draw(ctx, size.width, size.height, gridColor);
+  }, [size, gridColor, draw, exportPixelRatio]);
 
   return (
     <div ref={overlayRef} className={styles.firecrawlFrameOverlay} data-grid>
@@ -122,6 +131,7 @@ const FirecrawlFrame = () => {
   const [darkMode] = useAtom(darkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const exportSize = useAtomValue(exportSizeAtom);
   const gridColor = darkMode ? "#444" : "#ededed";
 
   return (
@@ -138,7 +148,9 @@ const FirecrawlFrame = () => {
       <div className={styles.firecrawlWindow}>
         {showBackground && <pre className={styles.firecrawlAsciiArt}>{FIRECRAWL_ASCII_ART}</pre>}
         <Editor />
-        {showBackground && <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} />}
+        {showBackground && (
+          <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} exportPixelRatio={exportSize} />
+        )}
       </div>
     </div>
   );
@@ -487,9 +499,12 @@ const ElevenLabsFrame = () => {
 
   // Handle re-trigger when padding has finished changing
   useEffect(() => {
-    setIsTransitioning(true);
-    const timer = setTimeout(() => setIsTransitioning(false), 200);
-    return () => clearTimeout(timer);
+    const startId = setTimeout(() => setIsTransitioning(true), 0);
+    const endId = setTimeout(() => setIsTransitioning(false), 200);
+    return () => {
+      clearTimeout(startId);
+      clearTimeout(endId);
+    };
   }, [padding]);
 
   return (
@@ -862,9 +877,12 @@ const StripeFrame = () => {
 
   // Handle re-trigger when padding has finished changing
   useEffect(() => {
-    setIsTransitioning(true);
-    const timer = setTimeout(() => setIsTransitioning(false), 200);
-    return () => clearTimeout(timer);
+    const startId = setTimeout(() => setIsTransitioning(true), 0);
+    const endId = setTimeout(() => setIsTransitioning(false), 200);
+    return () => {
+      clearTimeout(startId);
+      clearTimeout(endId);
+    };
   }, [padding]);
 
   return (
