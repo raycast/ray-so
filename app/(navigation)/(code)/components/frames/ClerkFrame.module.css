@@ -1,0 +1,79 @@
+.frame {
+  background: #222222;
+}
+
+.pattern {
+  position: absolute;
+  bottom: 0;
+  left: -32px;
+  width: calc(100% + 64px);
+  height: 128px;
+  mask-image: radial-gradient(farthest-side at 50% 100%, black, transparent);
+  pointer-events: none;
+}
+
+.window {
+  position: relative;
+  padding: 3px;
+  border-radius: 8px;
+  background: #111111;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 35%),
+    0 1px 0 0 rgb(255 255 255 / 3%) inset,
+    0 0 0 6px rgb(0 0 0 / 8%),
+    0 72px 29px 0 rgb(0 0 0 / 2%),
+    0 41px 24px 0 rgb(0 0 0 / 7%),
+    0 18px 18px 0 rgb(0 0 0 / 11%),
+    0 5px 10px 0 rgb(0 0 0 / 13%);
+}
+
+.code {
+  border-radius: 5px;
+  background: #191919;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 8%),
+    0 14px 6px 0 rgb(0 0 0 / 4%),
+    0 8px 5px 0 rgb(0 0 0 / 12%),
+    0 3px 3px 0 rgb(0 0 0 / 20%),
+    0 1px 2px 0 rgb(0 0 0 / 23%);
+  --line-number: #484848;
+}
+
+.header {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.frameLightMode {
+  background: #f9f9f9;
+
+  .window {
+    background: #f8f8f8;
+    box-shadow:
+      0 0 0 8px rgb(0 0 0 / 2%),
+      0 1px 0 0 rgb(255 255 255 / 80%) inset,
+      0 0 0 1px rgb(0 0 0 / 4%),
+      0 113px 32px 0 rgb(0 0 0 / 0%),
+      0 72px 29px 0 rgb(0 0 0 / 1%),
+      0 41px 24px 0 rgb(0 0 0 / 2%),
+      0 18px 18px 0 rgb(0 0 0 / 4%),
+      0 5px 10px 0 rgb(0 0 0 / 4%);
+  }
+
+  .pattern {
+    opacity: 0.2;
+  }
+
+  .code {
+    --line-number: #c9c9c9;
+    background: #ffffff;
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 2%),
+      0 14px 6px 0 rgb(0 0 0 / 1%),
+      0 8px 5px 0 rgb(0 0 0 / 3%),
+      0 3px 3px 0 rgb(0 0 0 / 5%),
+      0 1px 2px 0 rgb(0 0 0 / 6%);
+  }
+}
