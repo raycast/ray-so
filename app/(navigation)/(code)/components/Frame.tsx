@@ -42,8 +42,6 @@ const FIRECRAWL_STAR_PATH =
 function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; padding: number }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const gridColorRef = useRef(gridColor);
-  gridColorRef.current = gridColor;
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   const draw = React.useCallback(
@@ -108,7 +106,7 @@ function FirecrawlFrameCanvas({ gridColor, padding }: { gridColor: string; paddi
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.scale(dpr, dpr);
-    draw(ctx, size.width, size.height, gridColorRef.current);
+    draw(ctx, size.width, size.height, gridColor);
   }, [size, gridColor, draw]);
 
   return (
@@ -487,9 +485,12 @@ const ElevenLabsFrame = () => {
 
   // Handle re-trigger when padding has finished changing
   useEffect(() => {
-    setIsTransitioning(true);
-    const timer = setTimeout(() => setIsTransitioning(false), 200);
-    return () => clearTimeout(timer);
+    const startId = setTimeout(() => setIsTransitioning(true), 0);
+    const endId = setTimeout(() => setIsTransitioning(false), 200);
+    return () => {
+      clearTimeout(startId);
+      clearTimeout(endId);
+    };
   }, [padding]);
 
   return (
@@ -862,9 +863,12 @@ const StripeFrame = () => {
 
   // Handle re-trigger when padding has finished changing
   useEffect(() => {
-    setIsTransitioning(true);
-    const timer = setTimeout(() => setIsTransitioning(false), 200);
-    return () => clearTimeout(timer);
+    const startId = setTimeout(() => setIsTransitioning(true), 0);
+    const endId = setTimeout(() => setIsTransitioning(false), 200);
+    return () => {
+      clearTimeout(startId);
+      clearTimeout(endId);
+    };
   }, [padding]);
 
   return (
