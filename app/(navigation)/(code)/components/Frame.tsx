@@ -6,24 +6,24 @@ import { FrameContext } from "../store/FrameContextStore";
 
 import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
-import BrowserbaseFrame from "./frame/BrowserbaseFrame";
-import ClerkFrame from "./frame/ClerkFrame";
-import CloudflareFrame from "./frame/CloudflareFrame";
-import DefaultFrame from "./frame/DefaultFrame";
-import ElevenLabsFrame from "./frame/ElevenLabsFrame";
-import FirecrawlFrame from "./frame/FirecrawlFrame";
-import GeminiFrame from "./frame/GeminiFrame";
-import MintlifyFrame from "./frame/MintlifyFrame";
-import NuxtFrame from "./frame/NuxtFrame";
-import OpenAIFrame from "./frame/OpenAIFrame";
-import PrismaFrame from "./frame/PrismaFrame";
-import ResendFrame from "./frame/ResendFrame";
-import StripeFrame from "./frame/StripeFrame";
-import SupabaseFrame from "./frame/SupabaseFrame";
-import TailwindFrame from "./frame/TailwindFrame";
-import TriggerdevFrame from "./frame/TriggerdevFrame";
-import VercelFrame from "./frame/VercelFrame";
-import WrappedFrame from "./frame/WrappedFrame";
+import BrowserbaseFrame from "./frames/BrowserbaseFrame";
+import ClerkFrame from "./frames/ClerkFrame";
+import CloudflareFrame from "./frames/CloudflareFrame";
+import DefaultFrame from "./frames/DefaultFrame";
+import ElevenLabsFrame from "./frames/ElevenLabsFrame";
+import FirecrawlFrame from "./frames/FirecrawlFrame";
+import GeminiFrame from "./frames/GeminiFrame";
+import MintlifyFrame from "./frames/MintlifyFrame";
+import NuxtFrame from "./frames/NuxtFrame";
+import OpenAIFrame from "./frames/OpenAIFrame";
+import PrismaFrame from "./frames/PrismaFrame";
+import ResendFrame from "./frames/ResendFrame";
+import StripeFrame from "./frames/StripeFrame";
+import SupabaseFrame from "./frames/SupabaseFrame";
+import TailwindFrame from "./frames/TailwindFrame";
+import TriggerdevFrame from "./frames/TriggerdevFrame";
+import VercelFrame from "./frames/VercelFrame";
+import WrappedFrame from "./frames/WrappedFrame";
 
 import styles from "./Frame.module.css";
 
@@ -34,8 +34,6 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
-      case THEMES.firecrawl.id:
-        return <FirecrawlFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;
@@ -69,6 +67,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <CloudflareFrame />;
       case THEMES.stripe.id:
         return <StripeFrame />;
+      case THEMES.firecrawl.id:
+        return <FirecrawlFrame />;
       default:
         return <DefaultFrame />;
     }
