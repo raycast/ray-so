@@ -111,6 +111,7 @@ export type Theme = {
   partner?: boolean;
   hidden?: boolean;
   lineNumbers?: boolean;
+  lineNumbersToggleable?: boolean;
   syntax: { light: CSSProperties; dark?: CSSProperties } | { light?: CSSProperties; dark: CSSProperties };
 };
 
@@ -757,6 +758,7 @@ export const THEMES: { [index: string]: Theme } = {
     font: "ibm-plex-mono",
     partner: true,
     lineNumbers: true,
+    lineNumbersToggleable: true,
     syntax: {
       light: convertToShikiTheme({
         foreground: "#521000",
@@ -1665,7 +1667,13 @@ const themeFontAtom = atom<Font | null>((get) => get(themeAtom)?.font || "jetbra
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
   const theme = get(themeAtom);
-  return theme.partner ? theme.lineNumbers || false : (get(showLineNumbersAtom) ?? false);
+  if (theme.partner) {
+    if (theme.lineNumbersToggleable) {
+      return get(showLineNumbersAtom) ?? theme.lineNumbers ?? false;
+    }
+    return theme.lineNumbers || false;
+  }
+  return get(showLineNumbersAtom) ?? false;
 });
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
