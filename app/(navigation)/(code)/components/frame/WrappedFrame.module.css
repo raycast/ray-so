@@ -1,0 +1,202 @@
+/* Shared frame styles */
+.frame {
+  transition: padding 200ms;
+}
+
+.transparentPattern {
+  position: absolute;
+  z-index: -1;
+  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
+    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
+  background-size: 20px 20px;
+  inset: 0;
+}
+
+.window {
+  display: flex;
+  min-height: 100px;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 10px;
+  border: 1px solid hsl(0 0% 100% / 0.3);
+  border-radius: 18px;
+  background: var(--frame-background);
+  transition: all ease 0.3s;
+
+  &.withBorder {
+    border: none;
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border);
+  }
+
+  &.withShadow {
+    border: none;
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.header {
+  display: grid;
+  height: 24px;
+  align-items: center;
+  padding: 0 16px;
+  grid-gap: 12px;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+.controls {
+  display: flex;
+  gap: 9px;
+}
+
+.control {
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: var(--frame-control-color);
+}
+
+.fileName {
+  position: relative;
+  display: flex;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  color: var(--frame-title-placeholder-color);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32px;
+  line-height: 12px;
+  text-align: center;
+
+  > input:focus + span {
+    display: none;
+  }
+
+  > input {
+    position: absolute;
+    width: 100%;
+    border: none;
+    margin: 0;
+    background-color: transparent;
+    color: var(--frame-title-color);
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    inset: 0;
+    letter-spacing: 0.32px;
+    line-height: 12px;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.noBackground {
+  background: none;
+
+  [data-grid="true"],
+  [data-dot="true"] {
+    display: none;
+  }
+}
+
+/* Wrapped Frame */
+
+.wrappedFrame {
+  --wrapped-bg: #0a0a0a;
+  --wrapped-border: #a25f21;
+  --wrapped-glow: #a25f21;
+  --wrapped-grid: rgba(255, 255, 255, 0.04);
+
+  position: relative;
+  background-color: var(--wrapped-bg);
+  background-image: url("../../assets/wrapped/glow.png");
+  background-position: center, bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrappedWindow {
+  position: relative;
+  z-index: 4;
+}
+
+.wrappedBorder {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid var(--wrapped-border);
+  inset: 0;
+  pointer-events: none;
+}
+
+.wrappedGlowLeft,
+.wrappedGlowRight {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+}
+
+.wrappedGlowLeft {
+  left: 0;
+  background: linear-gradient(to right, rgba(251, 146, 60, 0.15) 0%, transparent 100%);
+}
+
+.wrappedGlowRight {
+  right: 0;
+  background: linear-gradient(to left, rgba(251, 146, 60, 0.15) 0%, transparent 100%);
+}
+
+.wrappedGlowBottom {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(251, 146, 60, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Fade gradient from top to bottom */
+.wrappedFade {
+  position: absolute;
+  z-index: 3;
+  background: linear-gradient(to bottom, var(--wrapped-bg) 0%, transparent 100%);
+  inset: 0;
+  pointer-events: none;
+}
+
+.wrappedFrameLightMode {
+  --wrapped-bg: #fafaf9;
+  --wrapped-grid: rgba(0, 0, 0, 0.04);
+
+  .wrappedBottomGlow {
+    background: radial-gradient(
+      ellipse 50% 100% at center bottom,
+      rgba(194, 65, 12, 0.5) 0%,
+      rgba(194, 65, 12, 0.2) 40%,
+      transparent 80%
+    );
+  }
+}

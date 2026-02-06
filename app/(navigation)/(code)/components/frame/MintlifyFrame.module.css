@@ -1,0 +1,249 @@
+/* Shared frame styles */
+.frame {
+  transition: padding 200ms;
+}
+
+.transparentPattern {
+  position: absolute;
+  z-index: -1;
+  background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+    linear-gradient(-45deg, #1d1d1d 25%, transparent 0), linear-gradient(45deg, transparent 75%, #1d1d1d 0),
+    linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
+  background-size: 20px 20px;
+  inset: 0;
+}
+
+.window {
+  display: flex;
+  min-height: 100px;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 10px;
+  border: 1px solid hsl(0 0% 100% / 0.3);
+  border-radius: 18px;
+  background: var(--frame-background);
+  transition: all ease 0.3s;
+
+  &.withBorder {
+    border: none;
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border);
+  }
+
+  &.withShadow {
+    border: none;
+    box-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.header {
+  display: grid;
+  height: 24px;
+  align-items: center;
+  padding: 0 16px;
+  grid-gap: 12px;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+.controls {
+  display: flex;
+  gap: 9px;
+}
+
+.control {
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: var(--frame-control-color);
+}
+
+.fileName {
+  position: relative;
+  display: flex;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  color: var(--frame-title-placeholder-color);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32px;
+  line-height: 12px;
+  text-align: center;
+
+  > input:focus + span {
+    display: none;
+  }
+
+  > input {
+    position: absolute;
+    width: 100%;
+    border: none;
+    margin: 0;
+    background-color: transparent;
+    color: var(--frame-title-color);
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    inset: 0;
+    letter-spacing: 0.32px;
+    line-height: 12px;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.noBackground {
+  background: none;
+
+  [data-grid="true"],
+  [data-dot="true"] {
+    display: none;
+  }
+}
+
+/* Mintlify Frame */
+.mintlifyFrame {
+  background: #121212;
+}
+
+.mintlifyWindow {
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  background: #070a08;
+  box-shadow:
+    0px 173px 48px 0px rgba(0, 0, 0, 0),
+    0px 110px 44px 0px rgba(0, 0, 0, 0.01),
+    0px 62px 37px 0px rgba(0, 0, 0, 0.05),
+    0px 28px 28px 0px rgba(0, 0, 0, 0.09),
+    0px 7px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.mintlifyHeader {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #141818;
+  background: #010201;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  gap: 12px;
+}
+
+.mintlifyFileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: #55d799;
+  font-size: 12px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0 16px;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: var(--font-inter);
+    font-weight: 500;
+    grid-area: 1 / 2;
+    letter-spacing: 0.4px;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+
+  &:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+}
+
+.mintlifyPatternWrapper {
+  position: absolute;
+  top: 0;
+  right: -25px;
+  width: 700px;
+  height: 600px;
+  background: radial-gradient(49.63% 57.02% at 58.99% -7.2%, rgba(13, 147, 115, 0.1) 39.4%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mintlifyPattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 600px;
+  max-width: none;
+}
+
+.mintlifyFrameLightMode {
+  background: #f6fbf9;
+
+  .mintlifyWindow {
+    border-color: #dfdfdf;
+    background: #ffffff;
+    box-shadow:
+      0px 173px 48px 0px rgba(0, 0, 0, 0),
+      0px 110px 44px 0px rgba(0, 0, 0, 0.01),
+      0px 62px 37px 0px rgba(0, 0, 0, 0.03),
+      0px 28px 28px 0px rgba(0, 0, 0, 0.05),
+      0px 7px 15px 0px rgba(0, 0, 0, 0.06);
+  }
+
+  .mintlifyHeader {
+    border-color: #dfdfdf;
+    background: #fcfcfc;
+  }
+
+  .mintlifyFileName {
+    color: #0d9373;
+  }
+
+  .mintlifyLanguage {
+    color: #707070;
+  }
+}
