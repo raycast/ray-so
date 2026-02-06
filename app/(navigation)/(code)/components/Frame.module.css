@@ -126,6 +126,73 @@
   }
 }
 
+/* Firecrawl Theme Frame */
+
+.firecrawlFrame {
+  position: relative;
+  overflow: visible;
+  --background: black;
+  --grid-color: #222;
+
+  background: var(--background);
+}
+
+.firecrawlFrameLightMode {
+  --background: white;
+  --grid-color: #ededed;
+}
+
+.firecrawlWindow {
+  position: relative;
+  padding-bottom: 0px;
+  container-type: inline-size;
+  overflow: visible;
+}
+
+/* Negative inset extends overlay to frame edges (black box); canvas draws lines to its edges. */
+.firecrawlFrameOverlay {
+  position: absolute;
+  top: calc(-1 * var(--frame-padding, 64px));
+  left: calc(-1 * var(--frame-padding, 64px));
+  right: calc(-1 * var(--frame-padding, 64px));
+  bottom: calc(-1 * var(--frame-padding, 64px));
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Single SVG overlay: rectangle (two lines) + star at each corner. One element = reliable export. */
+.firecrawlFrameSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--grid-color);
+  fill: currentColor;
+  stroke: currentColor;
+  shape-rendering: crispEdges;
+}
+
+.firecrawlAsciiArt {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  color: #f97316;
+  font-family: monospace;
+  font-size: 1.3cqw;
+  line-height: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.9) 100%);
+  pointer-events: none;
+  text-align: center;
+  white-space: pre;
+}
+
 /* Vercel Theme Frame */
 
 .vercelFrame {
