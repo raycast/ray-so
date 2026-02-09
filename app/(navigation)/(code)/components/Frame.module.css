@@ -144,20 +144,27 @@
 
 .firecrawlWindow {
   position: relative;
+  overflow: visible;
   padding-bottom: 0px;
   container-type: inline-size;
-  overflow: visible;
 }
 
 /* Negative inset extends overlay to frame edges (black box); canvas draws lines to its edges. */
 .firecrawlFrameOverlay {
   position: absolute;
+  z-index: 10;
   top: calc(-1 * var(--frame-padding, 64px));
-  left: calc(-1 * var(--frame-padding, 64px));
   right: calc(-1 * var(--frame-padding, 64px));
   bottom: calc(-1 * var(--frame-padding, 64px));
-  z-index: 10;
+  left: calc(-1 * var(--frame-padding, 64px));
   pointer-events: none;
+}
+
+/* On mobile: tighter overlay so frame doesn’t dominate; lines/stars are drawn smaller in JS. */
+@media (max-width: 767px) {
+  .firecrawlFrameOverlay {
+    display: none;
+  }
 }
 
 /* Single SVG overlay: rectangle (two lines) + star at each corner. One element = reliable export. */
@@ -167,8 +174,8 @@
   height: 100%;
   color: var(--grid-color);
   fill: currentColor;
-  stroke: currentColor;
   shape-rendering: crispEdges;
+  stroke: currentColor;
 }
 
 .firecrawlAsciiArt {
