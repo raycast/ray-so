@@ -34,6 +34,7 @@ import { shortenUrl } from "@/utils/common";
 import { toast } from "@/components/toast";
 import { Input, InputSlot } from "@/components/input";
 import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { FloatingActionBar } from "@/components/floating-action-bar";
 
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
@@ -432,23 +433,27 @@ export function Quicklinks() {
         </div>
       </div>
 
-      {/* Floating Action Bar for Mobile */}
-      {isTouch && selectedQuicklinks.length > 0 && (
-        <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
-            <PlusCircleIcon />
-            Add to Raycast
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyData}>
-            <CopyClipboardIcon />
-            Copy JSON
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
-            <LinkIcon />
-            Share URL
-          </button>
-        </div>
-      )}
+      <FloatingActionBar
+        isVisible={isTouch === true && selectedQuicklinks.length > 0}
+        actions={[
+          {
+            icon: <PlusCircleIcon />,
+            label: "Add to Raycast",
+            onClick: handleAddToRaycast,
+            variant: "primary",
+          },
+          {
+            icon: <CopyClipboardIcon />,
+            label: "Copy JSON",
+            onClick: handleCopyData,
+          },
+          {
+            icon: <LinkIcon />,
+            label: "Share URL",
+            onClick: handleCopyUrl,
+          },
+        ]}
+      />
     </div>
   );
 }
