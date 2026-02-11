@@ -4,6 +4,10 @@ export type Language = {
 };
 
 export const LANGUAGES: { [index: string]: Language } = {
+  cedar: {
+    name: "Cedar",
+    src: () => import("./langs/cedar"),
+  },
   shell: {
     name: "Bash",
     src: () => import("shiki/langs/bash.mjs"),
