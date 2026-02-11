@@ -21,6 +21,8 @@ import GeminiLogo from "../assets/gemini.svg";
 import GeminiLogoUrl from "../assets/gemini.svg?url";
 import OpenAiLogo from "../assets/openai.svg";
 import OpenAiLogoUrl from "../assets/openai.svg?url";
+import MotionLogo from "../assets/motion/logo.svg";
+import MotionLogoUrl from "../assets/motion/logo.svg?url";
 import ClerkLogo from "../assets/clerk.svg";
 import ClerkLogoUrl from "../assets/clerk.svg?url";
 import PrismaLogo from "../assets/prisma.svg";
@@ -225,7 +227,7 @@ export const THEMES: { [index: string]: Theme } = {
     icon: SupabaseLogo,
     iconUrl: SupabaseLogoUrl,
     partner: true,
-    lineNumbers: true,
+    lineNumbers: false,
     font: "jetbrains-mono",
     syntax: {
       light: convertToShikiTheme({
@@ -276,7 +278,7 @@ export const THEMES: { [index: string]: Theme } = {
     icon: TailwindLogo,
     iconUrl: TailwindLogoUrl,
     partner: true,
-    lineNumbers: true,
+    lineNumbers: false,
     font: "fira-code",
     syntax: {
       light: convertToShikiTheme({
@@ -341,6 +343,41 @@ export const THEMES: { [index: string]: Theme } = {
         highlightHover: "rgba(255, 255, 255, 0.03)",
         diffInserted: "#00A67D",
         diffDeleted: "#F22C3D",
+      }),
+    },
+  },
+  motion: {
+    id: "motion",
+    name: "Motion",
+    background: {
+      from: "#6072FF",
+      to: "#FF4FBA",
+    },
+    icon: MotionLogo,
+    iconUrl: MotionLogoUrl,
+    partner: true,
+    lineNumbers: false,
+    font: "jetbrains-mono",
+    syntax: {
+      dark: convertToShikiTheme({
+        foreground: "#F5F5F5",
+        constant: "#67DBF0",
+        string: "#8DF0CC",
+        comment: "#757575",
+        keyword: "#B070FF",
+        parameter: "#67DBF0",
+        function: "#FF4FBA",
+        stringExpression: "#8DF0CC",
+        punctuation: "#F5F5F5",
+        link: "#6072FF",
+        number: "#FA3473",
+        property: "#67DBF0",
+        objectLiteral: "#6072FF",
+        highlight: "rgba(176, 112, 255, 0.16)",
+        highlightHover: "rgba(176, 112, 255, 0.1)",
+        highlightBorder: "#B070FF",
+        diffInserted: "#8DF0CC",
+        diffDeleted: "#FA3473",
       }),
     },
   },

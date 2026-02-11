@@ -144,19 +144,19 @@
 
 .firecrawlWindow {
   position: relative;
+  overflow: visible;
   padding-bottom: 0px;
   container-type: inline-size;
-  overflow: visible;
 }
 
 /* Negative inset extends overlay to frame edges (black box); canvas draws lines to its edges. */
 .firecrawlFrameOverlay {
   position: absolute;
+  z-index: 10;
   top: calc(-1 * var(--frame-padding, 64px));
-  left: calc(-1 * var(--frame-padding, 64px));
   right: calc(-1 * var(--frame-padding, 64px));
   bottom: calc(-1 * var(--frame-padding, 64px));
-  z-index: 10;
+  left: calc(-1 * var(--frame-padding, 64px));
   pointer-events: none;
 }
 
@@ -167,8 +167,8 @@
   height: 100%;
   color: var(--grid-color);
   fill: currentColor;
-  stroke: currentColor;
   shape-rendering: crispEdges;
+  stroke: currentColor;
 }
 
 .firecrawlAsciiArt {
@@ -2056,6 +2056,62 @@
     :global(.line):not(:global(.highlighted-line)) {
       opacity: 0.4;
     }
+  }
+}
+
+/* Motion Theme Frame */
+
+.motionFrame {
+  --motion-bg: #05060c;
+  --line-number: #757575;
+  --line-number-opacity: 1;
+
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(140% 100% at 50% -30%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(130% 120% at 100% 120%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 55%), var(--motion-bg);
+}
+
+.motionBackdrop {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: min(150%, 1400px);
+  max-width: none;
+  filter: grayscale(1) saturate(0) contrast(1.2) brightness(0.72);
+  opacity: 0.45;
+  pointer-events: none;
+  transform: translate(-50%, -44%);
+  user-select: none;
+}
+
+.motionBackdropFade {
+  position: absolute;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.45) 52%, rgba(0, 0, 0, 0.82) 100%);
+  inset: 0;
+  pointer-events: none;
+}
+
+.motionGlow {
+  position: absolute;
+  z-index: 1;
+  background: radial-gradient(70% 55% at 50% 12%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 75%),
+    radial-gradient(55% 55% at 86% 12%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(60% 45% at 18% 100%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 72%);
+  inset: 0;
+  pointer-events: none;
+}
+
+.motionCode {
+  position: relative;
+  z-index: 2;
+}
+
+.motionFrame:has(:global(.highlighted-line)) {
+  :global(.line):not(:global(.highlighted-line)) {
+    opacity: 0.38;
   }
 }
 

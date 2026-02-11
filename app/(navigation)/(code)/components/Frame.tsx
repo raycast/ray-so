@@ -17,6 +17,7 @@ import styles from "./Frame.module.css";
 import { codeAtom, selectedLanguageAtom } from "../store/code";
 
 import beams from "../assets/tailwind/beams.png";
+import motionBackdrop from "../assets/motion/rings.png";
 import mintlifyPatternDark from "../assets/mintlify-pattern-dark.svg?url";
 import mintlifyPatternLight from "../assets/mintlify-pattern-light.svg?url";
 import clerkPattern from "../assets/clerk/pattern.svg?url";
@@ -619,6 +620,30 @@ const NuxtFrame = () => {
   );
 };
 
+const MotionFrame = () => {
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(styles.frame, showBackground && styles.motionFrame, !showBackground && styles.noBackground)}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {showBackground && (
+        <>
+          <img src={motionBackdrop.src} alt="" className={styles.motionBackdrop} />
+          <span className={styles.motionBackdropFade}></span>
+          <span className={styles.motionGlow}></span>
+        </>
+      )}
+      <div className={styles.motionCode}>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const GeminiFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -1012,6 +1037,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <MintlifyFrame />;
       case THEMES.openai.id:
         return <OpenAIFrame />;
+      case THEMES.motion.id:
+        return <MotionFrame />;
       case THEMES.triggerdev.id:
         return <TriggerdevFrame />;
       case THEMES.prisma.id:
