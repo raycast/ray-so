@@ -1,0 +1,188 @@
+.frame {
+  --background: #111;
+  --border-color: #353535;
+  --dot-color: white;
+
+  background: var(--background);
+
+  [data-grid="true"] {
+    background: var(--border-color);
+  }
+
+  [data-dot="true"] {
+    background: var(--dot-color);
+  }
+
+  :global(.highlighted-line):after {
+    z-index: 1 !important;
+    left: 0px !important;
+    width: 1px !important;
+  }
+}
+
+.frameLightMode {
+  --background: #fff;
+  --border-color: #e5e7eb;
+  --dot-color: black;
+}
+
+.window {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    content: "";
+    pointer-events: none;
+  }
+}
+
+.editor {
+  position: relative;
+  border-radius: 24px;
+  background: var(--background);
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  content: "";
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.gridlineHorizontalTop,
+.gridlineHorizontalCenter,
+.gridlineHorizontalBottom {
+  position: absolute;
+  left: -150px;
+  width: 1200px;
+  height: 1px;
+  background: var(--border-color);
+  content: "";
+}
+
+.gridlineHorizontalTop {
+  top: 0;
+}
+
+.gridlineHorizontalCenter {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gridlineHorizontalBottom {
+  bottom: 0;
+}
+
+.gridlineVerticalLeft,
+.gridlineVerticalCenter,
+.gridlineVerticalRight {
+  position: absolute;
+  top: -150px;
+  bottom: 0;
+  width: 1px;
+  height: calc(100% + 300px);
+  background: var(--border-color);
+  content: "";
+}
+
+.gridlineVerticalLeft {
+  left: 0;
+}
+
+.gridlineVerticalCenter {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gridlineVerticalRight {
+  right: 0;
+}
+
+.dotTopLeft,
+.dotTopRight,
+.dotBottomLeft,
+.dotBottomRight {
+  position: absolute;
+  z-index: 2;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  width: 3px;
+  height: 3px;
+}
+
+.dotBottomRight {
+  top: auto;
+  right: -1px;
+  bottom: -1px;
+  left: auto;
+}
+
+.dotBottomLeft {
+  top: auto;
+  bottom: -1px;
+  left: -1px;
+}
+
+.dotTopLeft {
+  top: -1px;
+  left: -1px;
+}
+
+.dotTopRight {
+  top: -1px;
+  right: -1px;
+  left: auto;
+}
+
+.gridlineCornerTopLeft,
+.gridlineCornerTopRight,
+.gridlineCornerBottomRight,
+.gridlineCornerBottomLeft {
+  position: absolute;
+}
+
+.gridlineCornerTopLeft {
+  top: -200px;
+  left: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+
+.gridlineCornerTopRight {
+  top: -200px;
+  right: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(45deg);
+  transform-origin: bottom left;
+}
+
+.gridlineCornerBottomRight {
+  right: 0;
+  bottom: -200px;
+  width: 1px;
+  height: 200px;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
+
+.gridlineCornerBottomLeft {
+  bottom: -200px;
+  left: 0;
+  width: 1px;
+  height: 200px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
