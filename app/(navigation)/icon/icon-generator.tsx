@@ -36,7 +36,7 @@ import ResultIcon from "./components/ResultIcon";
 import { Button } from "@/components/button";
 import CustomSvgIcon from "./components/CustomSvgIcon";
 
-import { randomElement, debounce, uniq, randomNumberBetween, getPastedSvgFile } from "./lib/utils";
+import { randomElement, debounce, uniq, getPastedSvgFile } from "./lib/utils";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
 
@@ -256,7 +256,7 @@ const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: C
     <Popover.Root>
       <div className={cn(styles.inputWrapper)}>
         <Popover.Trigger className={styles.popoverTrigger}>
-          <Input name={name} type="text" value={value} disabled={disabled} className="w-[120px]" size="large">
+          <Input name={name} type="text" value={value} disabled={disabled} readOnly className="w-[120px]" size="large">
             <InputSlot side="left">
               <div className={styles.colorExample} style={{ backgroundColor: value }} />
             </InputSlot>
@@ -286,11 +286,11 @@ export const IconGenerator = () => {
     typeof window !== "undefined" && window.innerWidth < 512 ? window.innerWidth / 512 - 0.03125 * 2 : 1,
   );
   const [initialSettings] = useState<SettingsType>(() => {
-    const randomPresetIndex = randomNumberBetween(0, presets.length - 1);
-    const randomIcon = randomElement(Object.keys(Icons) as IconName[]);
+    const defaultPresetIndex = 0;
+    const defaultIcon = (Object.keys(Icons)[0] || "Dots") as IconName;
     const baseSettings: SettingsType = {
       fileName: "extension_icon",
-      icon: randomIcon,
+      icon: defaultIcon,
       backgroundRadius: 128,
       backgroundStrokeSize: 0,
       backgroundStrokeColor: "#FFFFFF",
@@ -304,9 +304,9 @@ export const IconGenerator = () => {
       iconSize: 352,
       iconOffsetX: 0,
       iconOffsetY: 0,
-      selectedPresetIndex: randomPresetIndex,
+      selectedPresetIndex: defaultPresetIndex,
       customSvg: undefined,
-      ...presets[randomPresetIndex],
+      ...presets[defaultPresetIndex],
     };
 
     const settingsFromUrl = Object.keys(baseSettings).reduce((acc, key) => {
@@ -822,7 +822,13 @@ export const IconGenerator = () => {
             <span className={styles.label}>Redo</span>
           </Button>
         </div>
-        <div className={styles.filename} contentEditable onBlur={onFileNameBlured} onKeyDown={onFileNameKeydown}>
+        <div
+          className={styles.filename}
+          contentEditable
+          suppressContentEditableWarning
+          onBlur={onFileNameBlured}
+          onKeyDown={onFileNameKeydown}
+        >
           {settings.fileName}
         </div>
         <div className={cn(styles.actions, styles.actionsRight)}>
