@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./Editor.module.css";
-import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
+import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom, diffModeAtom } from "../store";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { themeDarkModeAtom, themeAtom } from "../store/themes";
 
@@ -17,6 +17,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const highlightedLines = useAtomValue(highlightedLinesAtom);
+  const diffMode = useAtomValue(diffModeAtom);
   const darkMode = useAtomValue(themeDarkModeAtom);
   const theme = useAtomValue(themeAtom);
   const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
@@ -49,6 +50,16 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
             line(node, line) {
               node.properties["data-line"] = line;
               if (highlightedLines.includes(line)) this.addClassToHast(node, "highlighted-line");
+
+              // Handle diff mode
+              if (diffMode) {
+                const lineContent = code.split("\n")[line - 1];
+                if (lineContent?.startsWith("+")) {
+                  this.addClassToHast(node, "diff-add");
+                } else if (lineContent?.startsWith("-")) {
+                  this.addClassToHast(node, "diff-remove");
+                }
+              }
             },
           },
         ],
@@ -58,7 +69,16 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
     generateHighlightedHtml().then((newHtml) => {
       setHighlightedHtml(newHtml);
     });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
+  }, [
+    code,
+    selectedLanguage,
+    highlighter,
+    setIsLoadingLanguage,
+    setHighlightedHtml,
+    highlightedLines,
+    themeName,
+    diffMode,
+  ]);
 
   return (
     <div
