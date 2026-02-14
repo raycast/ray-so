@@ -48,6 +48,32 @@
       content: "";
     }
   }
+
+  :global(.diff-add) {
+    background-color: rgba(46, 160, 67, 0.15) !important;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      padding-left: 8px;
+      color: rgba(46, 160, 67, 0.8);
+      content: "+";
+      font-weight: 600;
+    }
+  }
+
+  :global(.diff-remove) {
+    background-color: rgba(248, 81, 73, 0.15) !important;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      padding-left: 8px;
+      color: rgba(248, 81, 73, 0.8);
+      content: "-";
+      font-weight: 600;
+    }
+  }
 }
 
 .isHighlightingLines {
