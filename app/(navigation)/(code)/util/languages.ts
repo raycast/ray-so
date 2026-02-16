@@ -24,6 +24,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Clojure",
     src: () => import("shiki/langs/clojure.mjs"),
   },
+  cfml: {
+    name: "CFML",
+    src: () => import("../grammars/cfml"),
+  },
   console: {
     name: "Console",
     src: () => import("shiki/langs/console.mjs"),
