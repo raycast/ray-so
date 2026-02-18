@@ -860,30 +860,6 @@
         },
         {
           "include": "#source-js-function-declaration"
-        },
-        {
-          "include": "#source-js-class-declaration"
-        },
-        {
-          "include": "#source-js-interface-declaration"
-        },
-        {
-          "include": "#source-js-enum-declaration"
-        },
-        {
-          "include": "#source-js-namespace-declaration"
-        },
-        {
-          "include": "#source-js-type-alias-declaration"
-        },
-        {
-          "include": "#source-js-import-equals-declaration"
-        },
-        {
-          "include": "#source-js-import-declaration"
-        },
-        {
-          "include": "#source-js-export-declaration"
         }
       ]
     },
@@ -1065,9 +1041,6 @@
         },
         {
           "include": "#source-js-function-expression"
-        },
-        {
-          "include": "#source-js-class-expression"
         },
         {
           "include": "#source-js-arrow-function"
@@ -1342,9 +1315,6 @@
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
             {
-              "include": "#source-js-object-binding-pattern"
-            },
-            {
               "include": "#source-js-comment"
             }
           ]
@@ -1354,9 +1324,6 @@
           "begin": "(?<!=|:|^of|[^\\._$[:alnum:]]of|^in|[^\\._$[:alnum:]]in)\\s*(?=\\[)",
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
-            {
-              "include": "#source-js-array-binding-pattern"
-            },
             {
               "include": "#source-js-comment"
             }
@@ -1372,9 +1339,6 @@
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
             {
-              "include": "#source-js-object-binding-pattern-const"
-            },
-            {
               "include": "#source-js-comment"
             }
           ]
@@ -1384,9 +1348,6 @@
           "begin": "(?<!=|:|^of|[^\\._$[:alnum:]]of|^in|[^\\._$[:alnum:]]in)\\s*(?=\\[)",
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
-            {
-              "include": "#source-js-array-binding-pattern-const"
-            },
             {
               "include": "#source-js-comment"
             }
@@ -1530,9 +1491,6 @@
         },
         {
           "include": "#source-js-decorator"
-        },
-        {
-          "include": "#source-js-destructuring-parameter"
         },
         {
           "include": "#source-js-parameter-name"
@@ -2165,9 +2123,6 @@
           "include": "#source-js-comment"
         },
         {
-          "include": "#source-js-object-literal-method-declaration"
-        },
-        {
           "name": "meta.object.member.js meta.object-literal.key.js",
           "begin": "(?=\\[)",
           "end": "(?=:)",
@@ -2362,9 +2317,6 @@
       "patterns": [
         {
           "include": "#source-js-paren-expression"
-        },
-        {
-          "include": "#source-js-class-declaration"
         },
         {
           "include": "#source-js-type"
@@ -2972,25 +2924,7 @@
           "include": "#source-js-numeric-literal"
         },
         {
-          "include": "#source-js-type-primitive"
-        },
-        {
           "include": "#source-js-type-builtin-literals"
-        },
-        {
-          "include": "#source-js-type-tuple"
-        },
-        {
-          "include": "#source-js-type-object"
-        },
-        {
-          "include": "#source-js-type-operators"
-        },
-        {
-          "include": "#source-js-type-paren-or-function-parameters"
-        },
-        {
-          "include": "#source-js-type-function-return-type"
         },
         {
           "include": "#source-js-type-name"
@@ -3644,9 +3578,6 @@
           "include": "#source-js-cfoutput-function-expression"
         },
         {
-          "include": "#source-js-class-expression"
-        },
-        {
           "include": "#source-js-cfoutput-arrow-function"
         },
         {
@@ -3993,30 +3924,6 @@
         },
         {
           "include": "#source-js-cfoutput-function-declaration"
-        },
-        {
-          "include": "#source-js-class-declaration"
-        },
-        {
-          "include": "#source-js-interface-declaration"
-        },
-        {
-          "include": "#source-js-enum-declaration"
-        },
-        {
-          "include": "#source-js-namespace-declaration"
-        },
-        {
-          "include": "#source-js-type-alias-declaration"
-        },
-        {
-          "include": "#source-js-import-equals-declaration"
-        },
-        {
-          "include": "#source-js-import-declaration"
-        },
-        {
-          "include": "#source-js-export-declaration"
         }
       ]
     },
@@ -4259,9 +4166,6 @@
           "include": "#source-js-cfoutput-comment"
         },
         {
-          "include": "#source-js-object-literal-method-declaration"
-        },
-        {
           "name": "meta.object.member.js meta.object-literal.key.js",
           "begin": "(?=\\[)",
           "end": "(?=:)",
@@ -4416,9 +4320,6 @@
         },
         {
           "include": "#source-js-cfoutput-paren-expression"
-        },
-        {
-          "include": "#source-js-class-declaration"
         },
         {
           "include": "#source-js-type"
@@ -5328,9 +5229,6 @@
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
             {
-              "include": "#source-js-cfoutput-object-binding-pattern"
-            },
-            {
               "include": "#source-js-cfoutput-comment"
             }
           ]
@@ -5340,9 +5238,6 @@
           "begin": "(?<!=|:|^of|[^\\._$[:alnum:]]of|^in|[^\\._$[:alnum:]]in)\\s*(?=\\[)",
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
-            {
-              "include": "#source-js-array-binding-pattern"
-            },
             {
               "include": "#source-js-comment"
             }
@@ -5358,9 +5253,6 @@
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
             {
-              "include": "#source-js-cfoutput-object-binding-pattern-const"
-            },
-            {
               "include": "#source-js-cfoutput-comment"
             }
           ]
@@ -5370,9 +5262,6 @@
           "begin": "(?<!=|:|^of|[^\\._$[:alnum:]]of|^in|[^\\._$[:alnum:]]in)\\s*(?=\\[)",
           "end": "(?=$|^|[;,=}]|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+))",
           "patterns": [
-            {
-              "include": "#source-js-cfoutput-array-binding-pattern-const"
-            },
             {
               "include": "#source-js-cfoutput-comment"
             }
@@ -5533,9 +5422,6 @@
         },
         {
           "include": "#source-js-cfoutput-decorator"
-        },
-        {
-          "include": "#source-js-destructuring-parameter"
         },
         {
           "include": "#source-js-cfoutput-parameter-name"
@@ -8252,7 +8138,7 @@
                   "include": "#source-css-cfoutput-url"
                 },
                 {
-                  "include": "#source-css-cfoutput-commas"
+                  "include": "#source-css-commas"
                 },
                 {
                   "include": "#source-css-cfoutput-comment-block"
