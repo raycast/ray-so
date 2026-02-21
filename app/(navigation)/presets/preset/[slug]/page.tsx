@@ -60,6 +60,23 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
+const hashString = (value: string) => {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash * 31 + value.charCodeAt(i)) | 0;
+  }
+  return hash;
+};
+
+const getRelatedPresets = (presetId: string) => {
+  const candidates = allPresets.filter((p) => p.id !== presetId).sort((a, b) => a.id.localeCompare(b.id));
+  if (candidates.length <= 2) {
+    return candidates;
+  }
+  const startIndex = Math.abs(hashString(presetId)) % candidates.length;
+  return [...candidates.slice(startIndex), ...candidates.slice(0, startIndex)].slice(0, 2);
+};
+
 export default async function Page(props: Props) {
   const params = await props.params;
   if (!params.slug) {
@@ -72,10 +89,7 @@ export default async function Page(props: Props) {
     notFound();
   }
 
-  const relatedPresets = allPresets
-    .filter((p) => p.id !== preset.id)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 2);
+  const relatedPresets = getRelatedPresets(preset.id);
 
   const models = await getAvailableAiModels();
   const allToolIds = Array.from(new Set([...(preset?.tools?.map((tool) => tool.id) || [])]));

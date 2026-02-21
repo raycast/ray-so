@@ -1,4 +1,7 @@
+import type { ComponentType, SVGProps } from "react";
 import { IconName } from "@raycast/icons";
+
+export type IconComponentType = ComponentType<SVGProps<SVGSVGElement> & { x?: number; y?: number }>;
 
 export type SettingsType = {
   backgroundFillType: string;

@@ -51,8 +51,11 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
   }, []);
 
   const [categories, setCategories] = React.useState(initialCategories);
-  useEffect(() => {
-    const flavoredCategories = initialCategories.map((category) => {
+  const flavoredCategories = useMemo(() => {
+    if (!raycastProtocol) {
+      return categories;
+    }
+    return categories.map((category) => {
       return {
         ...category,
         quicklinks: category.quicklinks.map((quicklink) => {
@@ -65,8 +68,7 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
         }),
       };
     });
-    setCategories(flavoredCategories);
-  }, [initialCategories, raycastProtocol]);
+  }, [categories, raycastProtocol]);
 
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
@@ -89,7 +91,7 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
   const [actionsOpen, setActionsOpen] = React.useState(false);
 
   const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
-  const selectedQuicklinks = categories.flatMap((category) => {
+  const selectedQuicklinks = flavoredCategories.flatMap((category) => {
     return category.quicklinks.filter((quicklink) => selectedQuicklinkIds.includes(quicklink.id));
   });
 
@@ -107,8 +109,8 @@ export function Shared({ quicklinks }: { quicklinks: Quicklink[] }) {
       changed: { added, removed },
     },
   }: SelectionEvent) => {
-    const addedQuicklinks = extractQuicklinks(added, categories);
-    const removedQuicklinks = extractQuicklinks(removed, categories);
+    const addedQuicklinks = extractQuicklinks(added, flavoredCategories);
+    const removedQuicklinks = extractQuicklinks(removed, flavoredCategories);
 
     setSelectedQuicklinkIds((prevQuicklinkIds) => {
       let quicklinkIds = [...prevQuicklinkIds];

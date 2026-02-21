@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 
 import { PlusIcon, TrashIcon } from "@raycast/icons";
@@ -16,7 +16,6 @@ import download from "../../(code)/util/download";
 type ExportFormat = "PNG" | "SVG";
 
 type ExportOption = {
-  fileName: string;
   format: ExportFormat;
   size: number;
 };
@@ -58,32 +57,17 @@ type ExportModalProps = {
 function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: ExportModalProps) {
   const [exportOptions, setExportOptions] = useState<ExportOption[]>([
     {
-      fileName,
       format: "PNG",
       size: 512,
     },
   ]);
 
-  // Update export options when fileName changes
-  useEffect(() => {
-    setExportOptions((prevOptions) =>
-      prevOptions.map((option, index) => {
-        if (index === 0) {
-          // Update the first option's fileName to match the current fileName
-          return {
-            ...option,
-            fileName: option.format === "SVG" ? fileName : fileName,
-          };
-        } else {
-          // Update other options to use the new fileName as base
-          return {
-            ...option,
-            fileName: option.format === "SVG" ? fileName : `${fileName}@${option.size}px`,
-          };
-        }
-      }),
-    );
-  }, [fileName]);
+  const getExportFileName = (option: ExportOption, index: number) => {
+    if (option.format === "SVG") {
+      return fileName;
+    }
+    return index === 0 ? fileName : `${fileName}@${option.size}px`;
+  };
 
   const onExport = async () => {
     onOpenChange(false);
@@ -95,7 +79,7 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
     // Export each option sequentially to avoid browser download blocking
     for (let i = 0; i < exportOptions.length; i++) {
       const option = exportOptions[i];
-      await Exporters[option.format](svgRef, option.fileName, option.size);
+      await Exporters[option.format](svgRef, getExportFileName(option, i), option.size);
       // Add a small delay between downloads to prevent browser blocking
       if (i < exportOptions.length - 1) {
         await new Promise((resolve) => setTimeout(resolve, 150));
@@ -112,7 +96,6 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
       {
         format: "PNG",
         size: newSize,
-        fileName: `${fileName}@${newSize}px`,
       },
     ]);
   };
@@ -133,11 +116,7 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
     const newExportOption = {
       ...exportOption,
       [key]: value,
-      fileName: updateIndex != 0 && key === "size" ? `${fileName}@${value}px` : exportOption.fileName,
     };
-    if (newExportOption.format === "SVG") {
-      newExportOption.fileName = fileName;
-    }
     const newExportOptions = exportOptions.reduce((acc: ExportOption[], value, index) => {
       acc.push(updateIndex === index ? newExportOption : value);
       return acc;
@@ -152,7 +131,7 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
         {exportOptions.map((option, index) => (
           <div className={styles.exportOption} key={index}>
             <div className={styles.exportOptionFileName}>
-              {option.fileName}.{option.format.toLowerCase()}
+              {getExportFileName(option, index)}.{option.format.toLowerCase()}
             </div>
             <div className={styles.exportOptionSettings}>
               <div className={styles.exportOptionSize}>

@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
-
 import { alpha } from "@themes/lib/alpha";
 import { getAllThemes, Theme } from "@themes/lib/theme";
 import { ImageResponse } from "next/og";

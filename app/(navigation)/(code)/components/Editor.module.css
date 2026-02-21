@@ -62,6 +62,11 @@
     }
   }
 
+  :global(.diff-word-add) {
+    border-radius: 2px;
+    background-color: rgba(46, 160, 67, 0.4) !important;
+  }
+
   :global(.diff-remove) {
     background-color: rgba(248, 81, 73, 0.15) !important;
 
@@ -73,6 +78,11 @@
       content: "-";
       font-weight: 600;
     }
+  }
+
+  :global(.diff-word-remove) {
+    border-radius: 2px;
+    background-color: rgba(248, 81, 73, 0.4) !important;
   }
 }
 
