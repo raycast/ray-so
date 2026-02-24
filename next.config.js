@@ -20,31 +20,28 @@ const nextConfig = {
   },
   turbopack: {
     rules: {
-      "*.svg": [
-        {
-          condition: { query: "?url" },
-          loaders: ["url-loader"],
-          as: "*.js",
-        },
-        {
-          loaders: [
-            {
-              loader: "@svgr/webpack",
-              options: {
-                svgoConfig: {
-                  plugins: [
-                    {
-                      name: "removeViewBox",
-                      active: false,
-                    },
-                  ],
-                },
+      "*.svg?url": {
+        loaders: ["url-loader"],
+        as: "*.js",
+      },
+      "*.svg": {
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
               },
             },
-          ],
-          as: "*.js",
-        },
-      ],
+          },
+        ],
+        as: "*.js",
+      },
       "*.inline.png": {
         loaders: ["url-loader"],
         as: "*.js",
