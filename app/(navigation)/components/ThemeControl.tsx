@@ -19,7 +19,7 @@ import {
   ComboboxEmpty,
 } from "@/components/combobox";
 import { UniqueSvg } from "@/components/unique-svg";
-import { ChevronUpIcon, GiftIcon } from "@raycast/icons";
+import { ChevronUpIcon } from "@raycast/icons";
 import { cn } from "@/utils/cn";
 
 interface ThemeGroup {
@@ -28,8 +28,6 @@ interface ThemeGroup {
 }
 
 function ThemePreview({ theme }: { theme: Theme }) {
-  const isWrapped = theme.id === "wrapped";
-
   if (theme.icon) {
     return (
       <UniqueSvg className={styles.themePreview}>
@@ -66,9 +64,6 @@ const ThemeControl: React.FC = () => {
     if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
       setPadding(64);
     }
-    if (currentTheme.name === THEMES.wrapped.name) {
-      setPadding(32);
-    }
   }, [currentTheme, setPadding]);
 
   useHotkeys("c", () => {
@@ -81,47 +76,15 @@ const ThemeControl: React.FC = () => {
     }
   });
 
-  const { partnerThemes, themes } = useMemo(
+  const allThemes = useMemo(
     () =>
-      Object.entries(THEMES).reduce<{ partnerThemes: Theme[]; themes: Theme[] }>(
-        (acc, [key, value]) => {
-          const themeWithKey = { ...value, key };
-          if (value.partner) {
-            acc.partnerThemes.push(themeWithKey);
-          } else {
-            acc.themes.push(themeWithKey);
-          }
-          return acc;
-        },
-        { partnerThemes: [], themes: [] },
-      ),
-    [],
+      Object.entries(THEMES)
+        .map(([key, value]) => ({ ...value, key }))
+        .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name),
+    [unlockedThemes, currentTheme.name],
   );
 
-  const filteredPartnerThemes = useMemo(
-    () =>
-      partnerThemes.filter(
-        (theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name,
-      ),
-    [partnerThemes, unlockedThemes, currentTheme.name],
-  );
-
-  const filteredLimitedThemes = useMemo(() => {
-    return themes.filter((theme) => theme.id === "wrapped");
-  }, [themes]);
-
-  const filteredThemes = useMemo(() => {
-    return themes.filter((theme) => theme.id !== "wrapped");
-  }, [themes]);
-
-  const groupedItems: ThemeGroup[] = useMemo(
-    () => [
-      { label: "Limited edition", items: filteredLimitedThemes },
-      { label: "Partners", items: filteredPartnerThemes },
-      { label: "Themes", items: filteredThemes },
-    ],
-    [filteredLimitedThemes, filteredPartnerThemes, filteredThemes],
-  );
+  const groupedItems: ThemeGroup[] = useMemo(() => [{ label: "Partners", items: allThemes }], [allThemes]);
 
   return (
     <ControlContainer title="Theme">
@@ -150,7 +113,7 @@ const ThemeControl: React.FC = () => {
                   {group.items.map((theme) => (
                     <ComboboxItem key={theme.id} value={theme}>
                       <ThemePreview theme={theme} />
-                      <div className={cn(theme.id === "wrapped" && styles.limited)}>{theme.name}</div>
+                      <div>{theme.name}</div>
                     </ComboboxItem>
                   ))}
                 </ComboboxGroup>
