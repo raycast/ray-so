@@ -76,15 +76,23 @@ const ThemeControl: React.FC = () => {
     }
   });
 
-  const allThemes = useMemo(
-    () =>
-      Object.entries(THEMES)
-        .map(([key, value]) => ({ ...value, key }))
-        .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name),
-    [unlockedThemes, currentTheme.name],
-  );
+  const { partnerThemes, standardThemes } = useMemo(() => {
+    const all = Object.entries(THEMES)
+      .map(([key, value]) => ({ ...value, key }))
+      .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name);
+    return {
+      partnerThemes: all.filter((t) => t.partner),
+      standardThemes: all.filter((t) => !t.partner),
+    };
+  }, [unlockedThemes, currentTheme.name]);
 
-  const groupedItems: ThemeGroup[] = useMemo(() => [{ label: "Partners", items: allThemes }], [allThemes]);
+  const groupedItems: ThemeGroup[] = useMemo(
+    () => [
+      { label: "Partners", items: partnerThemes },
+      { label: "Themes", items: standardThemes },
+    ],
+    [partnerThemes, standardThemes],
+  );
 
   return (
     <ControlContainer title="Theme">
