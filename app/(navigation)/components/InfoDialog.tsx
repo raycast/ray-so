@@ -34,14 +34,6 @@ export function InfoDialog() {
               as a png, svg or share a link to your code.
             </p>
             <p>You can also change the image resolution in the export menu.</p>
-            <h2 className="text-base font-medium text-gray-12">Contribute</h2>
-            <p>
-              The project is Open Source and{" "}
-              <a href="https://github.com/raycast/ray-so" className="text-gray-12 underline underline-offset-2">
-                available on GitHub
-              </a>
-              .
-            </p>
           </div>
 
           <div className="w-px h-full bg-gray-a3" />
