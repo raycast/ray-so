@@ -4,8 +4,8 @@ import { useAtom, useAtomValue } from "jotai";
 import { fileNameAtom, showBackgroundAtom } from "../../store";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
-import mintlifyPatternDark from "../../assets/mintlify-pattern-dark.svg?url";
-import mintlifyPatternLight from "../../assets/mintlify-pattern-light.svg?url";
+import mintlifyPatternDark from "../../assets/mintlify-pattern-dark.svg";
+import mintlifyPatternLight from "../../assets/mintlify-pattern-light.svg";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
@@ -31,7 +31,7 @@ const MintlifyFrame = () => {
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       {showBackground && (
         <span className={styles.patternWrapper}>
-          <img src={darkMode ? mintlifyPatternDark : mintlifyPatternLight} alt="" className={styles.pattern} />
+          <img src={darkMode ? mintlifyPatternDark.src : mintlifyPatternLight.src} alt="" className={styles.pattern} />
         </span>
       )}
       <div className={styles.window}>

@@ -6,7 +6,7 @@ import { selectedLanguageAtom } from "../../store/code";
 import { flashShownAtom } from "../../store/flash";
 import { paddingAtom } from "../../store/padding";
 import { themeBackgroundAtom, themeDarkModeAtom } from "../../store/themes";
-import triggerPattern from "../../assets/triggerdev/pattern.svg?url";
+import triggerPattern from "../../assets/triggerdev/pattern.svg";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
@@ -35,8 +35,8 @@ const TriggerdevFrame = () => {
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       {showBackground && (
         <>
-          <div className={styles.patternTop} style={{ backgroundImage: `url(${triggerPattern})` }} />
-          <div className={styles.patternBottom} style={{ backgroundImage: `url(${triggerPattern})` }} />
+          <div className={styles.patternTop} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
+          <div className={styles.patternBottom} style={{ backgroundImage: `url(${triggerPattern.src})` }} />
         </>
       )}
       <div className={styles.window}>

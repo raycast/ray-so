@@ -4,7 +4,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { showBackgroundAtom } from "../../store";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
-import clerkPattern from "../../assets/clerk/pattern.svg?url";
+import clerkPattern from "../../assets/clerk/pattern.svg";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
@@ -27,7 +27,7 @@ const ClerkFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      {showBackground && <img src={clerkPattern} alt="" className={styles.pattern} />}
+      {showBackground && <img src={clerkPattern.src} alt="" className={styles.pattern} />}
       <div className={styles.window}>
         <div className={styles.code}>
           <Editor />
