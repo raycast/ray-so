@@ -16,7 +16,7 @@ const FormatButton: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   const handleFormatCode = () => {

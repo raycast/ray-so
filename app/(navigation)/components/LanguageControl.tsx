@@ -6,7 +6,7 @@ import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./LanguageControl.module.css";
 
-import useHotkeys from "../../../../utils/useHotkeys";
+import useHotkeys from "@/utils/useHotkeys";
 import { loadingLanguageAtom } from "../store";
 import {
   Combobox,

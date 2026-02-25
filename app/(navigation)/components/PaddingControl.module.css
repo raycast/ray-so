@@ -18,7 +18,9 @@
   letter-spacing: 0.1px;
   line-height: 16px;
 
-  transition: color 200ms, background-color 200ms;
+  transition:
+    color 200ms,
+    background-color 200ms;
 
   --focus-ring-color: rgba(255, 255, 255, 0.1);
 
@@ -27,7 +29,9 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px var(--panel-background), 0 0 0 4px var(--focus-ring-color);
+    box-shadow:
+      0 0 0 2px var(--panel-background),
+      0 0 0 4px var(--focus-ring-color);
     outline: none;
   }
 

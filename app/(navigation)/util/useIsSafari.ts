@@ -5,7 +5,7 @@ export default function useIsSafari() {
 
   useEffect(() => {
     const isSafari = navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf("Chrome") <= -1;
-    setSafari(isSafari);
+    setSafari(isSafari); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   return isSafari;

@@ -13,7 +13,7 @@ import { fileNameAtom } from "../store";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
-import useHotkeys from "../../../../utils/useHotkeys";
+import useHotkeys from "@/utils/useHotkeys";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
 import { useAtom, useAtomValue } from "jotai";
 import { EXPORT_SIZE_OPTIONS, SIZE_LABELS, exportSizeAtom } from "../store/image";
@@ -70,18 +70,16 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    const clipboardItem = new ClipboardItem(
-      {
-        "image/png": toBlob(frameContext.current, {
-          pixelRatio: exportSize,
-        }).then((blob) => {
-            if (!blob) {
-              throw new Error("expected toBlob to return a blob");
-            }
-            return blob;
-        }),
-      }
-    );
+    const clipboardItem = new ClipboardItem({
+      "image/png": toBlob(frameContext.current, {
+        pixelRatio: exportSize,
+      }).then((blob) => {
+        if (!blob) {
+          throw new Error("expected toBlob to return a blob");
+        }
+        return blob;
+      }),
+    });
 
     await navigator.clipboard.write([clipboardItem]);
 

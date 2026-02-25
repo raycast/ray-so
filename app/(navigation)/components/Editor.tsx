@@ -18,7 +18,7 @@ import {
   themeLineNumbersAtom,
   unlockedThemesAtom,
 } from "../store/themes";
-import useHotkeys from "../../../../utils/useHotkeys";
+import useHotkeys from "@/utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";

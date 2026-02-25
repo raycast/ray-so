@@ -4,7 +4,7 @@ import { themeAtom, THEMES, Theme, unlockedThemesAtom } from "../store/themes";
 import ControlContainer from "./ControlContainer";
 
 import styles from "./ThemeControl.module.css";
-import useHotkeys from "../../../../utils/useHotkeys";
+import useHotkeys from "@/utils/useHotkeys";
 import { paddingAtom } from "../store/padding";
 import {
   Combobox,

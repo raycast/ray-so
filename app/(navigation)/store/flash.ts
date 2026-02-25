@@ -33,8 +33,8 @@ export const derivedFlashMessageAtom = atom(
         window.setTimeout(() => {
           set(flashShownAtom, false);
           set(messageAtom, "");
-        }, flashMessage.timeout)
+        }, flashMessage.timeout),
       );
     }
-  }
+  },
 );
