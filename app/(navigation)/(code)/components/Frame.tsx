@@ -23,7 +23,6 @@ import SupabaseFrame from "./frames/SupabaseFrame";
 import TailwindFrame from "./frames/TailwindFrame";
 import TriggerdevFrame from "./frames/TriggerdevFrame";
 import VercelFrame from "./frames/VercelFrame";
-import WrappedFrame from "./frames/WrappedFrame";
 
 import styles from "./Frame.module.css";
 
@@ -61,8 +60,6 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <NuxtFrame />;
       case THEMES.gemini.id:
         return <GeminiFrame />;
-      case THEMES.wrapped.id:
-        return <WrappedFrame />;
       case THEMES.cloudflare.id:
         return <CloudflareFrame />;
       case THEMES.stripe.id:

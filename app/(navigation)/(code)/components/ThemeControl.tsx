@@ -19,8 +19,7 @@ import {
   ComboboxEmpty,
 } from "@/components/combobox";
 import { UniqueSvg } from "@/components/unique-svg";
-import { ChevronUpIcon, GiftIcon } from "@raycast/icons";
-import { cn } from "@/utils/cn";
+import { ChevronUpIcon } from "@raycast/icons";
 
 interface ThemeGroup {
   label: string;
@@ -28,8 +27,6 @@ interface ThemeGroup {
 }
 
 function ThemePreview({ theme }: { theme: Theme }) {
-  const isWrapped = theme.id === "wrapped";
-
   if (theme.icon) {
     return (
       <UniqueSvg className={styles.themePreview}>
@@ -65,9 +62,6 @@ const ThemeControl: React.FC = () => {
   useEffect(() => {
     if (currentTheme.name === THEMES.vercel.name || currentTheme.name === THEMES.rabbit.name) {
       setPadding(64);
-    }
-    if (currentTheme.name === THEMES.wrapped.name) {
-      setPadding(32);
     }
   }, [currentTheme, setPadding]);
 
@@ -106,21 +100,12 @@ const ThemeControl: React.FC = () => {
     [partnerThemes, unlockedThemes, currentTheme.name],
   );
 
-  const filteredLimitedThemes = useMemo(() => {
-    return themes.filter((theme) => theme.id === "wrapped");
-  }, [themes]);
-
-  const filteredThemes = useMemo(() => {
-    return themes.filter((theme) => theme.id !== "wrapped");
-  }, [themes]);
-
   const groupedItems: ThemeGroup[] = useMemo(
     () => [
-      { label: "Limited edition", items: filteredLimitedThemes },
       { label: "Partners", items: filteredPartnerThemes },
-      { label: "Themes", items: filteredThemes },
+      { label: "Themes", items: themes },
     ],
-    [filteredLimitedThemes, filteredPartnerThemes, filteredThemes],
+    [filteredPartnerThemes, themes],
   );
 
   return (
@@ -150,7 +135,7 @@ const ThemeControl: React.FC = () => {
                   {group.items.map((theme) => (
                     <ComboboxItem key={theme.id} value={theme}>
                       <ThemePreview theme={theme} />
-                      <div className={cn(theme.id === "wrapped" && styles.limited)}>{theme.name}</div>
+                      <div>{theme.name}</div>
                     </ComboboxItem>
                   ))}
                 </ComboboxGroup>

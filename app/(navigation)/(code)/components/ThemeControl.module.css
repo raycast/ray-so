@@ -13,16 +13,3 @@
   max-height: 14px;
   color: white;
 }
-
-.limited {
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: linear-gradient(160deg, #f26f17, #ffd7ab);
-  -webkit-text-fill-color: transparent;
-}
-
-.giftIcon {
-  color: #f26f17;
-  text-shadow: 0 0 0 10px #f26f17;
-  transform: scale(1.1);
-}
