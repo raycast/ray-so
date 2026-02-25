@@ -24,7 +24,6 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@raycast",
   },
 };
 

@@ -1,7 +1,6 @@
 import { Button } from "@/components/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
 import { Shortcut } from "@/components/kbd";
-import { SocialFooter } from "@/components/social-footer";
 import useHotkeys from "@/utils/useHotkeys";
 import { Info02Icon } from "@raycast/icons";
 import { useCallback, useState } from "react";
@@ -25,7 +24,7 @@ export function InfoDialog() {
         <div className="flex gap-8">
           <div className="flex flex-col gap-3 flex-1 text-[13px] text-gray-11 leading-relaxed">
             <DialogTitle>About</DialogTitle>
-            <p>Code Images by Raycast is a tool to create beautiful screenshots of your code.</p>
+            <p>Code Images is a tool to create beautiful screenshots of your code.</p>
             <p>
               Pick a theme from a range of syntax colors and backgrounds, the language of your code and choose between
               light or dark mode.
@@ -43,18 +42,6 @@ export function InfoDialog() {
               </a>
               .
             </p>
-            <p>
-              If you have any questions or feedback, please write to us on{" "}
-              <a href="https://x.com/raycast" className="text-gray-12 underline underline-offset-2">
-                𝕏
-              </a>{" "}
-              or{" "}
-              <a href="mailto:feedback+rayso@raycast.com" className="text-gray-12 underline underline-offset-2">
-                send us an email
-              </a>
-              .
-            </p>
-            <SocialFooter referral="code-image" />
           </div>
 
           <div className="w-px h-full bg-gray-a3" />

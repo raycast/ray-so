@@ -41,10 +41,8 @@ struct CircleImage: View {
   },
   {
     language: LANGUAGES.tsx,
-    code: `import { Detail } from "@raycast/api";
-
-export default function Command() {
-  return <Detail markdown="Hello World" />;
+    code: `export default function Hello() {
+  return <h1>Hello, world!</h1>;
 }`,
   },
 ];
