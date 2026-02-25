@@ -8,6 +8,8 @@ import LanguageControl from "./LanguageControl";
 import PaddingControl from "./PaddingControl";
 import ThemeControl from "./ThemeControl";
 import LineNumberControl from "./LineNumberControl";
+import { InfoDialog } from "./InfoDialog";
+import FormatButton from "./FormatCodeButton";
 
 const Controls: React.FC = () => {
   return (
@@ -18,6 +20,9 @@ const Controls: React.FC = () => {
       <LineNumberControl />
       <PaddingControl />
       <LanguageControl />
+      <FormatButton />
+      <InfoDialog />
+      <ExportButton />
     </div>
   );
 };

@@ -9,7 +9,6 @@ import {
   Space_Mono,
 } from "next/font/google";
 import cn from "classnames";
-import { Navigation } from "@/components/navigation";
 import localFont from "next/font/local";
 import React from "react";
 
@@ -86,8 +85,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         geistMono.variable,
       )}
     >
-      <Navigation />
-      <main className="flex flex-col min-h-full pt-[50px]">{children}</main>
+      <main className="flex flex-col min-h-full">{children}</main>
     </div>
   );
 }

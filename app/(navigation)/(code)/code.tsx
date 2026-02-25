@@ -18,11 +18,6 @@ import { LANGUAGES } from "./util/languages";
 
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
-import ExportButton from "./components/ExportButton";
-import { NavigationActions } from "@/components/navigation";
-import { InfoDialog } from "./components/InfoDialog";
-import FormatButton from "./components/FormatCodeButton";
-
 export function Code() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
 
@@ -39,11 +34,6 @@ export function Code() {
   return (
     <>
       <FrameContextStore>
-        <NavigationActions>
-          <InfoDialog />
-          <FormatButton />
-          <ExportButton />
-        </NavigationActions>
         <div className={styles.app}>
           <NoSSR>
             {highlighter && <Frame />}
