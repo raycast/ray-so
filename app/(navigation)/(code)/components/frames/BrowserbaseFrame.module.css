@@ -69,8 +69,10 @@
 
   .fileName {
     height: 24px;
+    color: #ffffff;
     font-family: var(--font-space-mono), monospace;
     font-size: 14px;
+    font-weight: 500;
     line-height: 24px;
 
     > input,
@@ -79,6 +81,10 @@
       font-family: var(--font-space-mono), monospace;
       font-size: 14px;
       line-height: 24px;
+    }
+
+    & > span {
+      color: rgba(255, 255, 255, 0.6);
     }
   }
 }
@@ -121,57 +127,5 @@
 
   .outline {
     opacity: 1;
-  }
-}
-
-.fileName {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-family: var(--font-space-mono), monospace;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: center;
-  white-space: nowrap;
-
-  > input:focus + span {
-    display: none;
-  }
-
-  > input,
-  & > span,
-  &:after {
-    position: static;
-    z-index: 2;
-    width: auto;
-    min-width: 1em;
-    padding: 0;
-    border: none;
-    margin: 0;
-    appearance: none;
-    background: none;
-    font: inherit;
-    grid-area: 1 / 2;
-    outline: none;
-    resize: none;
-    text-align: center;
-  }
-
-  & > span {
-    position: relative;
-    z-index: 1;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  input {
-    color: inherit;
-  }
-
-  &:after {
-    content: attr(data-value) " ";
-    visibility: hidden;
   }
 }

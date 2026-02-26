@@ -46,7 +46,7 @@ const BrowserbaseFrame = () => {
             <div className={sharedStyles.control}></div>
             <div className={sharedStyles.control}></div>
           </div>
-          <div className={classNames(sharedStyles.fileName, styles.fileName)}>
+          <div className={sharedStyles.fileName}>
             <input
               type="text"
               value={fileName}
