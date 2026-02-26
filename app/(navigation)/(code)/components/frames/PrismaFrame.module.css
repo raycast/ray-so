@@ -118,6 +118,10 @@
   }
 }
 
+.frame.noBackground {
+  background: transparent;
+}
+
 .frameLightMode {
   background: linear-gradient(140deg, #e8e8ff 0%, #e7fefc 100%);
 
