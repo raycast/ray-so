@@ -51,7 +51,7 @@ const DropdownMenuSubContent = React.forwardRef<
     <DropdownMenuPrimitive.SubContent
       ref={ref}
       className={cn(
-        `z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-4 bg-panel p-1 shadow-lg 
+        `z-50 min-w-32 overflow-hidden rounded-md border border-gray-4 bg-panel p-1 shadow-lg 
         data-[side=bottom]:animate-slideDownAndFade 
         data-[side=left]:animate-slideLeftAndFade
         data-[side=right]:animate-slideRightAndFade
@@ -73,7 +73,7 @@ const DropdownMenuContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        `will-change-[opacity,transform] z-50 min-w-[9.5rem] overflow-hidden rounded-md bg-panel border border-gray-4 p-1 shadow-md
+        `will-change-[opacity,transform] z-50 min-w-38 overflow-hidden rounded-md bg-panel border border-gray-4 p-1 shadow-md
         data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 
         data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 
         data-[side=bottom]:animate-slideDownAndFade 
@@ -98,7 +98,7 @@ const DropdownMenuItem = React.forwardRef<
     ref={ref}
     className={cn(
       `relative gap-2 flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none transition-colors 
-      text-gray-10 focus:bg-gray-a2 dark:focus:bg-gray-a2 focus:text-gray-11 data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
+      text-gray-10 focus:bg-gray-a2 dark:focus:bg-gray-a2 focus:text-gray-11 data-disabled:pointer-events-none data-disabled:opacity-50`,
       inset && "pl-8",
       className
     )}
@@ -114,7 +114,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-disabled:pointer-events-none data-disabled:opacity-50",
       className
     )}
     checked={checked}
@@ -137,7 +137,7 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-gray-12",
+      "text-gray-10 relative flex cursor-default select-none items-center rounded py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-gray-a2 data-disabled:pointer-events-none data-disabled:opacity-50 data-[state=checked]:text-gray-12",
       className
     )}
     {...props}

@@ -921,11 +921,11 @@ export const IconGenerator = () => {
                 onChange={onChangeSearchTerm}
               >
                 <InputSlot side="left">
-                  <MagnifyingGlassIcon className="!w-4 !h-4" />
+                  <MagnifyingGlassIcon className="w-4! h-4!" />
                 </InputSlot>
               </Input>
               <Button iconOnly size="large" onClick={onRandomIconClick} title="Random icon">
-                <ShuffleIcon className="!w-4 !h-4" />
+                <ShuffleIcon className="w-4! h-4!" />
               </Button>
               <Button
                 iconOnly
@@ -942,7 +942,7 @@ export const IconGenerator = () => {
                   onChange={onSelectCustomIcon}
                   accept=".svg, .png"
                 />
-                <FolderIcon className="!w-4 !h-4" />
+                <FolderIcon className="w-4! h-4!" />
               </Button>
             </div>
 

@@ -1,6 +1,141 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* ============================================================
+   Tailwind v4 Theme Configuration
+   (migrated from tailwind.config.ts)
+   ============================================================ */
+
+@theme {
+  /* Font family */
+  --font-family-sans:
+    Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+
+  /* Custom colors — values are defined as hsl() using CSS vars resolved at runtime */
+  --color-background: hsl(var(--background));
+  --color-panel: hsl(var(--panel));
+  --color-brand: hsl(var(--brand));
+  --color-purple: hsl(var(--purple));
+  --color-blue: hsl(var(--blue));
+
+  --color-gray-1: hsl(var(--gray-1));
+  --color-gray-2: hsl(var(--gray-2));
+  --color-gray-3: hsl(var(--gray-3));
+  --color-gray-4: hsl(var(--gray-4));
+  --color-gray-5: hsl(var(--gray-5));
+  --color-gray-6: hsl(var(--gray-6));
+  --color-gray-7: hsl(var(--gray-7));
+  --color-gray-8: hsl(var(--gray-8));
+  --color-gray-9: hsl(var(--gray-9));
+  --color-gray-10: hsl(var(--gray-10));
+  --color-gray-11: hsl(var(--gray-11));
+  --color-gray-12: hsl(var(--gray-12));
+
+  --color-gray-a1: var(--gray-a1);
+  --color-gray-a2: var(--gray-a2);
+  --color-gray-a3: var(--gray-a3);
+  --color-gray-a4: var(--gray-a4);
+  --color-gray-a5: var(--gray-a5);
+  --color-gray-a6: var(--gray-a6);
+  --color-gray-a7: var(--gray-a7);
+  --color-gray-a8: var(--gray-a8);
+  --color-gray-a9: var(--gray-a9);
+  --color-gray-a10: var(--gray-a10);
+  --color-gray-a11: var(--gray-a11);
+  --color-gray-a12: var(--gray-a12);
+
+  /* Custom spacing */
+  --spacing-scrollbar-offset: calc(16px + var(--removed-body-scroll-bar-size, 0px));
+
+  /* Custom border radius */
+  --radius-inherit: inherit;
+
+  /* Custom font sizes */
+  --text-xxs: 11px;
+
+  /* Animations — migrated from JS config keyframes/animation */
+  --animate-slideDownAndFade: slideDownAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideLeftAndFade: slideLeftAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideUpAndFade: slideUpAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideRightAndFade: slideRightAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-overlayShow: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-contentShow: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideLeftAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideRightAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translateY(-1%) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0%) scale(1);
+    }
+  }
+}
+
+/* ============================================================
+   Custom Variants
+   (migrated from screens with `raw` media queries in config)
+   ============================================================ */
+
+@custom-variant tall (@media (min-height: 840px));
+@custom-variant tallx2 (@media (min-height: 1000px));
+@custom-variant desktop (@media (min-height: 840px) and (min-width: 960px));
+
+/* Dark mode via class strategy (replaces darkMode: "class" in config) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   CSS Custom Properties (design tokens)
+   ============================================================ */
 
 @layer base {
   :root {
@@ -72,9 +207,13 @@
   --gray-a12: hsla(0, 0%, 0%, 0.8745);
 
   .themes-body {
-    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0, 0, 0, 0.2) 0, transparent 100%);
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0, 0%, 0%, 0.2) 0, transparent 100%);
   }
 }
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
 
 html,
 body {
@@ -172,7 +311,9 @@ svg {
   animation: flicker 2000ms linear infinite;
 }
 
-/* code images legacy */
+/* ============================================================
+   Code Images Legacy Variables
+   ============================================================ */
 
 :root {
   --panel-background: #191919;
@@ -205,7 +346,10 @@ svg {
   --line-number: rgba(255, 255, 255, 0.2);
 }
 
-/* icon maker */
+/* ============================================================
+   Icon Maker — Sketch Picker Overrides
+   ============================================================ */
+
 .sketch-picker {
   border: 1px solid #333333 !important;
   border-radius: 12px !important;
@@ -265,7 +409,9 @@ svg {
   }
 }
 
-/* theme explorer */
+/* ============================================================
+   Theme Explorer Animations
+   ============================================================ */
 
 @keyframes flash {
   0%,
@@ -286,31 +432,6 @@ svg {
   50% {
     left: 102%;
     transform: translateX(-100%);
-  }
-}
-
-@keyframes flicker {
-  0%,
-  24% {
-    opacity: 1;
-  }
-  25%,
-  29% {
-    opacity: 0.5;
-  }
-  30%,
-  69% {
-    opacity: 1;
-  }
-  70%,
-  74% {
-    opacity: 0.7;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -360,6 +481,10 @@ svg {
   animation: flicker 1000ms linear;
 }
 
+/* ============================================================
+   Theme Visibility Utilities
+   ============================================================ */
+
 .dark [data-hide-on-theme="dark"],
 .light [data-hide-on-theme="light"] {
   display: none;
@@ -387,6 +512,10 @@ svg {
 [data-raycast] {
   transition: all 200ms ease-in-out;
 }
+
+/* ============================================================
+   Scrollbar Utilities
+   ============================================================ */
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
 .scrollbar-hide::-webkit-scrollbar {

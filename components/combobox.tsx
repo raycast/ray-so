@@ -192,10 +192,10 @@ const ComboboxContent = React.forwardRef<React.ElementRef<typeof ComboboxPrimiti
         <ComboboxPrimitive.Popup
           ref={ref}
           className={cn(
-            `relative min-w-[6rem] overflow-hidden rounded-md border border-gray-4 bg-panel shadow-lg
-            origin-[var(--transform-origin)] transition-[transform,scale,opacity] duration-100
-            data-[starting-style]:scale-95 data-[starting-style]:opacity-0
-            data-[ending-style]:scale-95 data-[ending-style]:opacity-0`,
+            `relative min-w-24 overflow-hidden rounded-md border border-gray-4 bg-panel shadow-lg
+            origin-(--transform-origin) transition-[transform,scale,opacity] duration-100
+            data-starting-style:scale-95 data-starting-style:opacity-0
+            data-ending-style:scale-95 data-ending-style:opacity-0`,
             className,
           )}
           {...props}
@@ -277,8 +277,8 @@ const ComboboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       `h-[29px] gap-2 relative flex w-full cursor-default select-none items-center rounded py-1.5 pl-2 pr-8 text-sm outline-none transition-colors 
-      data-[highlighted]:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50
-      text-gray-10 data-[selected]:bg-gray-a3 data-[highlighted]:data-[selected]:bg-gray-a3 data-[selected]:text-gray-12`,
+      data-highlighted:bg-gray-a2 data-disabled:pointer-events-none data-disabled:opacity-50
+      text-gray-10 data-selected:bg-gray-a3 data-highlighted:data-selected:bg-gray-a3 data-selected:text-gray-12`,
       className,
     )}
     {...props}

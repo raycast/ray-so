@@ -95,7 +95,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        `relative z-50 max-h-96 min-w-[6rem] overflow-hidden rounded-md border border-gray-4 bg-panel shadow-lg`,
+        `relative z-50 max-h-96 min-w-24 overflow-hidden rounded-md border border-gray-4 bg-panel shadow-lg`,
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className
@@ -108,7 +108,7 @@ const SelectContent = React.forwardRef<
         className={cn(
           "p-1",
           position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+            "h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width)"
         )}
       >
         {children}
@@ -135,7 +135,7 @@ const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       `h-[29px] gap-2 relative flex w-full cursor-default select-none items-center rounded py-1.5 pl-2 pr-8 text-sm outline-none transition-colors 
-      focus:bg-gray-a2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50
+      focus:bg-gray-a2 data-disabled:pointer-events-none data-disabled:opacity-50
       text-gray-10 data-[state=checked]:bg-gray-a3 focus:data-[state=checked]:bg-gray-a3 data-[state=checked]:text-gray-12`,
       className
     )}
