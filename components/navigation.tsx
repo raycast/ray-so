@@ -2,25 +2,12 @@
 
 import { useRouter, useSelectedLayoutSegments } from "next/navigation";
 
-import {
-  BrandGithubIcon,
-  BrandSlackIcon,
-  BrandXIcon,
-  BrandYoutubeIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  RaycastLogoNegIcon,
-} from "@raycast/icons";
+import { ChevronLeftIcon } from "@raycast/icons";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 import CodeImagesIcon from "@/app/assets/code-images.svg";
 import IconMakerIcon from "@/app/assets/icon-maker.svg";
-import SnippetExplorerIcon from "@/app/assets/snippet-explorer.svg";
-import PresetExplorerIcon from "@/app/assets/preset-explorer.svg";
-import QuicklinkExplorerIcon from "@/app/assets/quicklink-explorer.svg";
-import PromptExplorerIcon from "@/app/assets/prompt-explorer.svg";
-import ThemeExplorerIcon from "@/app/assets/theme-explorer.svg";
 import { Button } from "./button";
 
 const links = [
@@ -35,36 +22,6 @@ const links = [
     label: "Icon Maker",
     description: "Create beautiful icons",
     icon: IconMakerIcon,
-  },
-  {
-    href: "/prompts",
-    label: "Prompts",
-    description: "Explore AI Prompts for Raycast",
-    icon: PromptExplorerIcon,
-  },
-  {
-    href: "/presets",
-    label: "Presets",
-    description: "Explore AI Presets for Raycast",
-    icon: PresetExplorerIcon,
-  },
-  {
-    href: "/quicklinks",
-    label: "Quicklinks",
-    description: "Explore Raycast Quicklinks",
-    icon: QuicklinkExplorerIcon,
-  },
-  {
-    href: "/snippets",
-    label: "Snippets",
-    description: "Browse and import Raycast Snippets",
-    icon: SnippetExplorerIcon,
-  },
-  {
-    href: "/themes",
-    label: "Themes",
-    description: "Browse and import Raycast Themes",
-    icon: ThemeExplorerIcon,
   },
 ];
 
@@ -124,15 +81,6 @@ export function Navigation() {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <div className="-ml-2 flex items-center relative z-10 gap-[4px]">
-          <span className="text-sm text-gray-9">by </span>
-          <Button variant="transparent" asChild className="pl-[8px]">
-            <a href="https://raycast.com#ref=ray-so" target="_blank" rel="noopener">
-              <RaycastLogoNegIcon className="w-5 h-5 text-brand" />
-              <span className="text-sm text-gray-12 font-medium hidden sm:block">Raycast</span>
-            </a>
-          </Button>
-        </div>
       </div>
     </nav>
   );
