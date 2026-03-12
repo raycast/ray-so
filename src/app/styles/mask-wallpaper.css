@@ -1,0 +1,45 @@
+.tw-mask {
+  -webkit-mask: center repeat;
+  -webkit-mask-size: var(--app-pattern-size) auto;
+  -webkit-mask-image: var(--app-pattern-image);
+  opacity: var(--app-pattern-opacity);
+}
+
+.tw-wrap {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+  background: var(--app-pattern-background);
+}
+
+.tw-canvas.tw-mask + .tw-pattern {
+  filter: none;
+  opacity: initial;
+  background-image: none;
+}
+
+.tw-canvas {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.tw-pattern {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  mix-blend-mode: overlay;
+  background: center repeat;
+  opacity: var(--app-pattern-opacity);
+  filter: blur(var(--app-pattern-blur));
+  background-image: var(--app-pattern-image);
+  background-size: var(--app-pattern-size) auto;
+}

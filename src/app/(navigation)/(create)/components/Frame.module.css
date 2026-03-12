@@ -1,0 +1,21 @@
+@reference tailwindcss;
+
+.frameContainer {
+  display: flex;
+  justify-content: center;
+  grid-area: content;
+  transform: scale(0.6);
+  min-width: 0;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    transform: scale(1);
+  }
+}
+
+.outerFrame {
+  position: relative;
+  overflow: hidden;
+  min-width: 520px;
+  max-width: 920px;
+}

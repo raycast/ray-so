@@ -1,0 +1,1448 @@
+{
+  "vercel": {
+    "id": "vercel",
+    "name": "Vercel",
+    "background": {
+      "from": "#232323",
+      "to": "#1F1F1F"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNOC4xMzgzIDAuMDU0MDU0M0wxNi4xMzgzIDEzLjkxMDZIMC4xMzgzMDJMOC4xMzgzIDAuMDU0MDU0M1oiIGZpbGw9ImN1cnJlbnRDb2xvciIvPgo8L3N2Zz4K",
+    "font": "geist-mono",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "hsla(0, 0%, 9%,1)",
+        "--ray-token-constant": "oklch(53.18% 0.2399 256.9900584162342)",
+        "--ray-token-string": "oklch(51.75% 0.1453 147.65)",
+        "--ray-token-comment": "hsla(0, 0%, 40%,1)",
+        "--ray-token-keyword": "oklch(53.5% 0.2058 2.84)",
+        "--ray-token-parameter": "oklch(52.79% 0.1496 54.65)",
+        "--ray-token-function": "oklch(47.18% 0.2579 304)",
+        "--ray-token-string-expression": "oklch(51.75% 0.1453 147.65)",
+        "--ray-token-punctuation": "hsla(0, 0%, 9%,1)",
+        "--ray-token-link": "oklch(51.75% 0.1453 147.65)",
+        "--ray-token-number": "#111111",
+        "--ray-token-property": "oklch(53.18% 0.2399 256.9900584162342)",
+        "--ray-highlight": "oklch(94.58% 0.0293 249.84870859673202)",
+        "--ray-highlight-border": "oklch(53.18% 0.2399 256.9900584162342)",
+        "--ray-highlight-hover": "oklch(94.58% 0.0293 249.84870859673202 / 30%)",
+        "--ray-token-diff-deleted": "oklch(58.01% 0.227 25.12)",
+        "--ray-token-diff-inserted": "oklch(57.81% 0.1776 147.5)"
+      },
+      "dark": {
+        "--ray-foreground": "hsla(0, 0%, 93%,1)",
+        "--ray-token-constant": "oklch(71.7% 0.1648 250.79360374054167)",
+        "--ray-token-string": "oklch(73.1% 0.2158 148.29)",
+        "--ray-token-comment": "hsla(0, 0%, 63%,1)",
+        "--ray-token-keyword": "oklch(69.36% 0.2223 3.91)",
+        "--ray-token-parameter": "oklch(77.21% 0.1991 64.28)",
+        "--ray-token-function": "oklch(69.87% 0.2037 309.51)",
+        "--ray-token-string-expression": "oklch(73.1% 0.2158 148.29)",
+        "--ray-token-punctuation": "hsla(0, 0%, 93%,1)",
+        "--ray-token-link": "oklch(73.1% 0.2158 148.29)",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "oklch(71.7% 0.1648 250.79360374054167)",
+        "--ray-highlight": "oklch(30.86% 0.1022 255.21)",
+        "--ray-highlight-border": "oklch(71.7% 0.1648 250.79360374054167)",
+        "--ray-highlight-hover": "oklch(30.86% 0.1022 255.21 / 30%)",
+        "--ray-token-diff-deleted": "oklch(62.56% 0.2277 23.03)",
+        "--ray-token-diff-inserted": "oklch(58.11% 0.1815 146.55)"
+      }
+    }
+  },
+  "rabbit": {
+    "id": "rabbit",
+    "name": "Evil Rabbit",
+    "background": {
+      "from": "#000000",
+      "to": "#000000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wLjA2MzAwMDYgMC4wNjg2ODMxQy0wLjA1MDkxNjYgMC4xODI2MDEgLTAuMDI5Njc0NSAwLjM1OTIxMiAwLjI4ODY1MSAxLjk0MzVDMC43Mjg5NjkgNC4xMzUxMiAwLjgxNDkwNyA0LjMwOTI0IDIuMjM0OTYgNS44ODYxMkMzLjI3NTUxIDcuMDQxNjIgMy4zNDAwMyA3LjEzMDA1IDMuNDc2MTYgNy41ODg1N0MzLjYwNDcgOC4wMjEzNiAzLjU5NTQyIDguMzkwNjcgMy40Mzc3NCA5LjEyMDM2QzMuMzI3NzcgOS42MjkzMSAzLjMwNTI1IDkuOTIyMDMgMy4zMDg2NSAxMC43OTg5QzMuMzE0NTQgMTIuMzAxNCAzLjQ5MDQyIDEyLjkzODcgNC4wODA5NSAxMy41OTY1QzQuMjE4NjUgMTMuNzQ5OSA0LjQ1MzgzIDE0LjEwMzIgNC42MDM1NiAxNC4zODE1QzUuMDcxODUgMTUuMjUyMSA1Ljg0MzI0IDE1LjkwNzkgNi40OTk2NyAxNS45OTM4QzYuNjQxMzIgMTYuMDEyMyA2LjkyMjE0IDE1Ljk4ODIgNy4xMjM2MyAxNS45NDAyQzcuNDA3NzkgMTUuODcyNiA3LjU3MTIzIDE1Ljg2NzIgNy44NTE5MyAxNS45MTZDOC40OTEwMSAxNi4wMjcxIDguODQzMDIgMTUuOTk4MSA5LjI0MTk0IDE1LjgwMTVDOS43MzY1MSAxNS41NTc4IDEwLjI3NzcgMTUuMDAwNSAxMC41OTc1IDE0LjQwNTVDMTAuNzQwMyAxNC4xNCAxMS4wMDU0IDEzLjczNjYgMTEuMTg2NyAxMy41MDkxQzExLjczNjMgMTIuODE5NSAxMS44OTAxIDEyLjIxMzQgMTEuODkxMSAxMC43MzQxQzExLjg5MTUgOS45MDYgMTEuODM5NyA5LjQzMjQzIDExLjY2NzMgOC42ODg5QzExLjU1NTMgOC4yMDYwNCAxMS42MjM4IDcuNjcxNDEgMTEuODU0OSA3LjIyNDg1QzExLjkzNDUgNy4wNzA5MyAxMi40NDY3IDYuNDUwMzEgMTIuOTkyOSA1Ljg0NTY0QzE0LjQxMzMgNC4yNzM0OSAxNC40OTM3IDQuMTAzNjggMTQuOTUzNCAxLjcwOTQxQzE1LjIxODUgMC4zMjc4MzUgMTUuMjM4NCAwLjE2NjYzOSAxNS4xNTQxIDAuMDgyMzM4NkMxNS4wOTM5IDAuMDIyMDcyMyAxNS4wMDcxIDAuMDAyMjI2IDE0LjkxMDMgMC4wMjY1MDI1QzE0LjcyMjEgMC4wNzM3MjA1IDEyLjIwNSAyLjI0NzMyIDExLjc5NDEgMi43MTczN0MxMS4zMzU5IDMuMjQxNjggMTEuMTA3MSAzLjU3ODk0IDEwLjUxOTQgNC41OTY3M0M5Ljk0MTQxIDUuNTk3NTkgOS42NjY1NCA1LjkyMzY5IDkuMTg3NjggNi4xNzY0N0M4Ljg4NDE3IDYuMzM2NjMgOC44NzAxNSA2LjMzODA5IDcuNjA2OTIgNi4zMzgwOUM2LjM0MzY5IDYuMzM4MDkgNi4zMjk2NyA2LjMzNjYzIDYuMDI2MTYgNi4xNzY0N0M1LjU0ODg4IDUuOTI0NTQgNS4yODQzMyA1LjYwNjg4IDQuNjcxNzcgNC41NTAzN0MzLjgwMTEgMy4wNDg1NiAzLjQ4ODk2IDIuNjg2MTEgMS44NDEyNiAxLjI2MzMzQzEuMjA3MDMgMC43MTU2NTEgMC42MDkzNDYgMC4yMDY0NTIgMC41MTMwMjcgMC4xMzE3NDFDMC4zMTc3MjIgLTAuMDE5ODY1NSAwLjE3MTk0MSAtMC4wNDAyNTc5IDAuMDYzMDAwNiAwLjA2ODY4MzFaTTcuMzU1NiAxNC4zMjc1QzcuNjA4OTggMTQuMzkyNSA3LjcwOTkxIDE0LjM4NzkgOC4wNzI3OCAxNC4yOTQzQzguMzA1MTEgMTQuMjM0NSA4LjUwNjc5IDE0LjE5NzIgOC41MjA5OSAxNC4yMTE0QzguNTM1MjUgMTQuMjI1NyA4LjQ1MDc3IDE0LjM0OTYgOC4zMzMyNyAxNC40ODY5QzguMjE1ODMgMTQuNjI0MSA4LjAzMDQ4IDE0Ljg5NTEgNy45MjE0MiAxNS4wODkxQzcuODEyMzYgMTUuMjgzMSA3LjY4NDQ4IDE1LjQ0MTggNy42MzcyNiAxNS40NDE4QzcuNTkwMDUgMTUuNDQxOCA3LjQ2MTUgMTUuMjgxOSA3LjM1MTY1IDE1LjA4NjRDNy4yNDE3NCAxNC44OTEgNy4wNjk5MiAxNC42Mjc2IDYuOTY5NzIgMTQuNTAxMUM2Ljc1MTc4IDE0LjIyNiA2Ljc0MzE2IDE0LjE3MjQgNi45MjQxNCAxNC4yMTc2QzYuOTk5MjggMTQuMjM2NCA3LjE5MzQzIDE0LjI4NTggNy4zNTU2IDE0LjMyNzVaIiBmaWxsPSJjdXJyZW50Q29sb3IiLz4KPC9zdmc+Cg==",
+    "font": "geist-mono",
+    "partner": true,
+    "group": "Brands",
+    "hidden": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#111111",
+        "--ray-token-constant": "#666666",
+        "--ray-token-string": "#666666",
+        "--ray-token-comment": "#999999",
+        "--ray-token-keyword": "#666666",
+        "--ray-token-parameter": "#666666",
+        "--ray-token-function": "#111111",
+        "--ray-token-string-expression": "#666666",
+        "--ray-token-punctuation": "#666666",
+        "--ray-token-link": "#666666",
+        "--ray-token-number": "#111111",
+        "--ray-token-property": "#666666",
+        "--ray-token-diff-deleted": "#666666",
+        "--ray-token-diff-inserted": "#666666"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#a7a7a7",
+        "--ray-token-string": "#a7a7a7",
+        "--ray-token-comment": "#666666",
+        "--ray-token-keyword": "#a7a7a7",
+        "--ray-token-parameter": "#a7a7a7",
+        "--ray-token-function": "#ffffff",
+        "--ray-token-string-expression": "#a7a7a7",
+        "--ray-token-punctuation": "#a7a7a7",
+        "--ray-token-link": "#a7a7a7",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "#a7a7a7",
+        "--ray-token-diff-deleted": "#a7a7a7",
+        "--ray-token-diff-inserted": "#a7a7a7"
+      }
+    }
+  },
+  "supabase": {
+    "id": "supabase",
+    "name": "Supabase",
+    "background": {
+      "from": "#121212",
+      "to": "#121212"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzFfNCkiPgo8cGF0aCBkPSJNOS4wMjA1NCAxNS42MTU0QzguNjE1NjYgMTYuMTI1MyA3Ljc5NDcxIDE1Ljg0NTkgNy43ODQ5NiAxNS4xOTQ5TDcuNjQyMyA1LjY3MjZIMTQuMDQ1MUMxNS4yMDQ4IDUuNjcyNiAxNS44NTE2IDcuMDEyMDggMTUuMTMwNSA3LjkyMDM0TDkuMDIwNTQgMTUuNjE1NFoiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8xXzQpIi8+CjxwYXRoIGQ9Ik05LjAyMDU0IDE1LjYxNTRDOC42MTU2NiAxNi4xMjUzIDcuNzk0NzEgMTUuODQ1OSA3Ljc4NDk2IDE1LjE5NDlMNy42NDIzIDUuNjcyNkgxNC4wNDUxQzE1LjIwNDggNS42NzI2IDE1Ljg1MTYgNy4wMTIwOCAxNS4xMzA1IDcuOTIwMzRMOS4wMjA1NCAxNS42MTU0WiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyXzFfNCkiIGZpbGwtb3BhY2l0eT0iMC4yIi8+CjxwYXRoIGQ9Ik02LjQxNjU3IDAuMjkzMjQ1QzYuODIxNDUgLTAuMjE2Njg4IDcuNjQyNDEgMC4wNjI3MTg1IDcuNjUyMTcgMC43MTM3NzJMNy43MTQ2OCAxMC4yMzYxSDEuMzkyMDJDMC4yMzIyNjkgMTAuMjM2MSAtMC40MTQ1NDYgOC44OTY1OCAwLjMwNjYyMiA3Ljk4ODMyTDYuNDE2NTcgMC4yOTMyNDVaIiBmaWxsPSIjM0VDRjhFIi8+CjwvZz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xXzQiIHgxPSI3LjY0MjMiIHkxPSI3Ljc4MzkzIiB4Mj0iMTMuMzMyOSIgeTI9IjEwLjE3MDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzI0OTM2MSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRUNGOEUiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyXzFfNCIgeDE9IjUuMTE5NCIgeTE9IjQuMzI5NjMiIHgyPSI3LjcxNDYiIHkyPSI5LjIxNDk1IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xXzQiPgo8cmVjdCB3aWR0aD0iMTUuNDMzNiIgaGVpZ2h0PSIxNiIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": true,
+    "font": "jetbrains-mono",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#525252",
+        "--ray-token-constant": "#15593b",
+        "--ray-token-string": "#f1a10d",
+        "--ray-token-comment": "#7e7e7e",
+        "--ray-token-keyword": "#6b35dc",
+        "--ray-token-parameter": "#525252",
+        "--ray-token-function": "#15593b",
+        "--ray-token-string-expression": "#f1a10d",
+        "--ray-token-punctuation": "#a0a0a0",
+        "--ray-token-link": "#525252",
+        "--ray-token-number": "#525252",
+        "--ray-token-property": "#15593b",
+        "--ray-highlight": "oklch(0.88 0.22 153.28 / 0.12)",
+        "--ray-highlight-border": "#009a55",
+        "--ray-highlight-hover": "oklch(0.88 0.22 153.28 / 0.06)"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#3ecf8e",
+        "--ray-token-string": "#ffcda1",
+        "--ray-token-comment": "#7e7e7e",
+        "--ray-token-keyword": "#bda4ff",
+        "--ray-token-parameter": "#ffffff",
+        "--ray-token-function": "#3ecf8e",
+        "--ray-token-string-expression": "#ffcda1",
+        "--ray-token-punctuation": "#ffffff",
+        "--ray-token-link": "#ffffff",
+        "--ray-token-number": "#ededed",
+        "--ray-token-property": "#3ecf8e",
+        "--ray-highlight": "#232323",
+        "--ray-highlight-border": "#383838",
+        "--ray-highlight-hover": "#1D1D1D",
+        "--ray-token-diff-deleted": "#F06A50",
+        "--ray-token-diff-inserted": "#3ecf8e"
+      }
+    }
+  },
+  "tailwind": {
+    "id": "tailwind",
+    "name": "Tailwind",
+    "background": {
+      "from": "#36B6F0",
+      "to": "#36B6F0"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTggMEM1Ljg2NjY5IDAgNC41MzMzMSAxLjA2NjY5IDQgMy4yQzQuOCAyLjEzMzMxIDUuNzMzMzEgMS43MzMzMSA2LjggMkM3LjQwODU2IDIuMTUyMTMgNy44NDM1NiAyLjU5MzY5IDguMzI1MDYgMy4wODIzOEM5LjEwOTQ0IDMuODc4NTYgMTAuMDE3MiA0LjggMTIgNC44QzE0LjEzMzMgNC44IDE1LjQ2NjcgMy43MzMzMSAxNiAxLjZDMTUuMiAyLjY2NjY5IDE0LjI2NjcgMy4wNjY2OSAxMy4yIDIuOEMxMi41OTE0IDIuNjQ3ODcgMTIuMTU2NCAyLjIwNjMxIDExLjY3NDkgMS43MTc2M0MxMC44OTA2IDAuOTIxNDM4IDkuOTgyODEgMCA4IDBaTTQgNC44QzEuODY2NjkgNC44IDAuNTMzMzEyIDUuODY2NjkgMCA4QzAuOCA2LjkzMzMxIDEuNzMzMzEgNi41MzMzMSAyLjggNi44QzMuNDA4NTYgNi45NTIxMyAzLjg0MzU2IDcuMzkzNjkgNC4zMjUwNiA3Ljg4MjM3QzUuMTA5NDQgOC42Nzg1NiA2LjAxNzE5IDkuNiA4IDkuNkMxMC4xMzMzIDkuNiAxMS40NjY3IDguNTMzMzEgMTIgNi40QzExLjIgNy40NjY2OSAxMC4yNjY3IDcuODY2NjkgOS4yIDcuNkM4LjU5MTQ0IDcuNDQ3ODcgOC4xNTY0NCA3LjAwNjMxIDcuNjc0OTQgNi41MTc2MkM2Ljg5MDU2IDUuNzIxNDQgNS45ODI4MSA0LjggNCA0LjhaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMl85KSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzJfOSIgeDE9Ii00NC40NDgiIHkxPSIzMDcuMiIgeDI9IjEzMzcuNDEiIHkyPSIxMTAzLjk2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMyMjk4QkQiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEVEN0I1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": true,
+    "font": "fira-code",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#000",
+        "--ray-highlight": "rgba(25,147,211,0.10)",
+        "--ray-highlight-border": "#0484C7",
+        "--ray-highlight-hover": "rgba(25,147,211,0.06)"
+      },
+      "dark": {
+        "--ray-foreground": "#fff",
+        "--ray-highlight": "rgba(193,178,249,0.12)",
+        "--ray-highlight-border": "#C1B2F9",
+        "--ray-highlight-hover": "rgba(193,178,249,0.07)"
+      }
+    }
+  },
+  "openai": {
+    "id": "openai",
+    "name": "OpenAI",
+    "background": {
+      "from": "#000",
+      "to": "#000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0Ljc0NTkgNi41NDc1M0MxNC45MjQ4IDYuMDA4NzkgMTQuOTg2NyA1LjQzODA3IDE0LjkyNzQgNC44NzM1QzE0Ljg2ODIgNC4zMDg5MyAxNC42ODkxIDMuNzYzNTEgMTQuNDAyMiAzLjI3MzY4QzEzLjUyOTQgMS43NTQ1MyAxMS43NzU0IDAuOTczMTA2IDEwLjA2MjMgMS4zNDAzQzkuNTg3OTIgMC44MTI2ODMgOC45ODMxMSAwLjQxOTE2IDguMzA4NTcgMC4xOTkyNTRDNy42MzQwMyAtMC4wMjA2NTI2IDYuOTEzNDkgLTAuMDU5MjAwOSA2LjIxOTM0IDAuMDg3NDgwNEM1LjUyNTE4IDAuMjM0MTYyIDQuODgxODQgMC41NjA5MDkgNC4zNTM5MiAxLjAzNDkxQzMuODI2MDEgMS41MDg5IDMuNDMyMSAyLjExMzQ2IDMuMjExNzcgMi43ODc4N0MyLjY1NTU0IDIuOTAxOTMgMi4xMzAwNiAzLjEzMzQgMS42NzA0NCAzLjQ2NjgxQzEuMjEwODMgMy44MDAyMiAwLjgyNzY4MiA0LjIyNzg5IDAuNTQ2NTk2IDQuNzIxMjRDLTAuMzM1NjMxIDYuMjM3OTggLTAuMTM1MzI3IDguMTUxMTQgMS4wNDE4NCA5LjQ1MjM1QzAuODYyMjc2IDkuOTkwODMgMC43OTk3NzUgMTAuNTYxNSAwLjg1ODUxNyAxMS4xMjZDMC45MTcyNiAxMS42OTA2IDEuMDk1ODkgMTIuMjM2MiAxLjM4MjQ2IDEyLjcyNjFDMi4yNTYzIDE0LjI0NTggNC4wMTE1MSAxNS4wMjcyIDUuNzI1NTMgMTQuNjU5NUM2LjEwMjM4IDE1LjA4MzkgNi41NjU0MyAxNS40MjMgNy4wODM3NSAxNS42NTQxQzcuNjAyMDcgMTUuODg1MyA4LjE2Mzc0IDE2LjAwMzIgOC43MzEyNyAxNi4wMDAxQzEwLjQ4NzIgMTYuMDAxNiAxMi4wNDI4IDE0Ljg2ODEgMTIuNTc5MiAxMy4xOTYxQzEzLjEzNTMgMTMuMDgxOCAxMy42NjA3IDEyLjg1MDMgMTQuMTIwMyAxMi41MTY5QzE0LjU3OTggMTIuMTgzNSAxNC45NjMgMTEuNzU1OSAxNS4yNDQzIDExLjI2MjdDMTYuMTE1OCA5Ljc0ODcgMTUuOTE0NyA3Ljg0NTkxIDE0Ljc0NTkgNi41NDc1M1pNOC43MzEyNyAxNC45NTI5QzguMDMwMzkgMTQuOTU0IDcuMzUxNDkgMTQuNzA4NCA2LjgxMzYxIDE0LjI1OUw2LjkwODI1IDE0LjIwNTRMMTAuMDkzOCAxMi4zNjY3QzEwLjE3MyAxMi4zMjAyIDEwLjIzODkgMTIuMjUzOCAxMC4yODQ4IDEyLjE3NDJDMTAuMzMwNyAxMi4wOTQ2IDEwLjM1NTEgMTIuMDA0NCAxMC4zNTU2IDExLjkxMjVWNy40MjExOUwxMS43MDI0IDguMjAwMjFDMTEuNzE1OCA4LjIwNzA2IDExLjcyNTIgOC4yMTk5NCAxMS43Mjc2IDguMjM0OTJWMTEuOTU2NkMxMS43MjQxIDEzLjYxIDEwLjM4NDYgMTQuOTQ5NSA4LjczMTI3IDE0Ljk1MjlaTTIuMjkwODMgMTIuMjAyN0MxLjkzOTM0IDExLjU5NTcgMS44MTMxMyAxMC44ODQzIDEuOTM0NDIgMTAuMTkzNUwyLjAyOSAxMC4yNTAzTDUuMjE3NzEgMTIuMDg5MUM1LjI5NjYxIDEyLjEzNTQgNS4zODY0MyAxMi4xNTk4IDUuNDc3OTEgMTIuMTU5OEM1LjU2OTM5IDEyLjE1OTggNS42NTkyMSAxMi4xMzU0IDUuNzM4MTEgMTIuMDg5MUw5LjYzMzI4IDkuODQzNDZWMTEuMzk4NEM5LjYzMjkyIDExLjQwNjQgOS42MzA3NSAxMS40MTQzIDkuNjI2OTMgMTEuNDIxNEM5LjYyMzExIDExLjQyODUgOS42MTc3NCAxMS40MzQ2IDkuNjExMjEgMTEuNDM5NEw2LjM4NDcgMTMuMzAwMkM0Ljk1MDg5IDE0LjEyNjIgMy4xMTkwNSAxMy42MzUxIDIuMjkwODMgMTIuMjAyN1pNMS40NTE4MiA1LjI2Mzc3QzEuODA1NzUgNC42NTI5NSAyLjM2NDQgNC4xODcwNSAzLjAyODg1IDMuOTQ4NTdWNy43MzMzM0MzLjAyNzY1IDcuODI0NzggMy4wNTEwMiA3LjkxNDg3IDMuMDk2NTEgNy45OTQyQzMuMTQyIDguMDczNTQgMy4yMDc5NSA4LjEzOTIxIDMuMjg3NDggOC4xODQzN0w3LjE2MzczIDEwLjQyMDZMNS44MTY5NiAxMS4xOTk2QzUuODA5NjggMTEuMjAzNSA1LjgwMTU2IDExLjIwNTUgNS43OTMzMiAxMS4yMDU1QzUuNzg1MDcgMTEuMjA1NSA1Ljc3Njk2IDExLjIwMzUgNS43Njk2NyAxMS4xOTk2TDIuNTQ5NDUgOS4zNDE5OUMxLjExODQ3IDguNTEyNTQgMC42Mjc3MjggNi42ODIxMiAxLjQ1MTgyIDUuMjQ4MDVWNS4yNjM3N1pNMTIuNTE2MSA3LjgzNDMxTDguNjI3MTQgNS41NzYwNEw5Ljk3MDgyIDQuODAwMTZDOS45NzgxMSA0Ljc5NjI5IDkuOTg2MjQgNC43OTQyNiA5Ljk5NDUgNC43OTQyNkMxMC4wMDI4IDQuNzk0MjYgMTAuMDEwOSA0Ljc5NjI5IDEwLjAxODIgNC44MDAxNkwxMy4yMzg0IDYuNjYxMDNDMTMuNzMwOCA2Ljk0NTEzIDE0LjEzMjIgNy4zNjM0NCAxNC4zOTU3IDcuODY3MTFDMTQuNjU5MyA4LjM3MDc4IDE0Ljc3NDEgOC45MzkwMyAxNC43MjY4IDkuNTA1NTFDMTQuNjc5NSAxMC4wNzIgMTQuNDcyIDEwLjYxMzMgMTQuMTI4NiAxMS4wNjYzQzEzLjc4NTIgMTEuNTE5MyAxMy4zMiAxMS44NjUzIDEyLjc4NzQgMTIuMDYzOFY4LjI3OUMxMi43ODQ2IDguMTg3NzMgMTIuNzU4MSA4LjA5ODc0IDEyLjcxMDUgOC4wMjA3OEMxMi42NjMgNy45NDI4MiAxMi41OTYgNy44Nzg1NiAxMi41MTYxIDcuODM0MzFaTTEzLjg1NjUgNS44MTg5NEwxMy43NjE5IDUuNzYyMUwxMC41Nzk1IDMuOTA3NTdDMTAuNTAwMSAzLjg2MSAxMC40MDk4IDMuODM2NDQgMTAuMzE3NyAzLjgzNjQ0QzEwLjIyNTcgMy44MzY0NCAxMC4xMzUzIDMuODYxIDEwLjA1NiAzLjkwNzU3TDYuMTYzODcgNi4xNTMyN1Y0LjU5ODM3QzYuMTYzMDQgNC41OTA0NyA2LjE2NDM2IDQuNTgyNDkgNi4xNjc3IDQuNTc1MjdDNi4xNzEwMyA0LjU2ODA2IDYuMTc2MjQgNC41NjE4NyA2LjE4MjggNC41NTczOEw5LjQwMzAyIDIuNjk5NjRDOS44OTY1NiAyLjQxNTMzIDEwLjQ2MDggMi4yNzc0MSAxMS4wMjk5IDIuMzAyMDJDMTEuNTk4OSAyLjMyNjY0IDEyLjE0OTIgMi41MTI3NyAxMi42MTY0IDIuODM4NjRDMTMuMDgzNSAzLjE2NDUyIDEzLjQ0ODIgMy42MTY2NiAxMy42Njc4IDQuMTQyMkMxMy44ODc0IDQuNjY3NzQgMTMuOTUyOCA1LjI0NDk0IDEzLjg1NjQgNS44MDYzVjUuODE4OTRIMTMuODU2NVpNNS40MjkwNSA4LjU3NTQ4TDQuMDgyMjggNy43OTk2MUM0LjA3NTU1IDcuNzk1NTQgNC4wNjk4IDcuNzkwMDMgNC4wNjU0MyA3Ljc4MzQ5QzQuMDYxMDYgNy43NzY5NSA0LjA1ODE5IDcuNzY5NTMgNC4wNTcwMSA3Ljc2MTc1VjQuMDQ5NTZDNC4wNTc3NSAzLjQ4MDA4IDQuMjIwNiAyLjkyMjU4IDQuNTI2NTIgMi40NDIyNEM0LjgzMjQzIDEuOTYxOTEgNS4yNjg3NyAxLjU3ODU4IDUuNzg0NSAxLjMzNzA5QzYuMzAwMjQgMS4wOTU1OSA2Ljg3NDA3IDEuMDA1OTEgNy40Mzg5MSAxLjA3ODUyQzguMDAzNzQgMS4xNTExNCA4LjUzNjIyIDEuMzgzMDUgOC45NzQxMSAxLjc0NzE0TDguODc5NDggMS44MDA3N0w1LjY5Mzk3IDMuNjM5NTFDNS42MTQ2OSAzLjY4NjAyIDUuNTQ4ODggMy43NTIzNCA1LjUwMjk4IDMuODMxOTdDNS40NTcwOSAzLjkxMTYgNS40MzI2OSA0LjAwMTc5IDUuNDMyMiA0LjA5MzdMNS40MjkwNSA4LjU3NTU1VjguNTc1NDhaTTYuMTYwNzMgNi45OTg0NUw3Ljg5NTQ2IDUuOTk4NjVMOS42MzMyOCA2Ljk5ODUxVjguOTk4MUw3LjkwMTc1IDkuOTk3OTZMNi4xNjM5MyA4Ljk5ODFMNi4xNjA3MyA2Ljk5ODQ1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==",
+    "partner": true,
+    "group": "Brands",
+    "font": "soehne-mono",
+    "lineNumbers": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#171717",
+        "--ray-token-constant": "#DF3079",
+        "--ray-token-string": "#171717",
+        "--ray-token-comment": "hsla(240, 12%, 71%, 1)",
+        "--ray-token-keyword": "#2E95D3",
+        "--ray-token-parameter": "#ededed",
+        "--ray-token-function": "#00A67D",
+        "--ray-token-string-expression": "#00a67d",
+        "--ray-token-punctuation": "#171717",
+        "--ray-token-link": "#F22C3D",
+        "--ray-token-number": "#e9950c",
+        "--ray-token-property": "#F22C3D",
+        "--ray-highlight": "rgba(0,0,0,0.02)",
+        "--ray-highlight-hover": "rgba(0,0,0,0.015)",
+        "--ray-token-diff-deleted": "#F22C3D",
+        "--ray-token-diff-inserted": "#00A67D"
+      },
+      "dark": {
+        "--ray-foreground": "#fff",
+        "--ray-token-constant": "#df3079",
+        "--ray-token-string": "#fff",
+        "--ray-token-comment": "rgba(255,255,255,0.4)",
+        "--ray-token-keyword": "#2E95D3",
+        "--ray-token-parameter": "#fff",
+        "--ray-token-function": "#00A67D",
+        "--ray-token-string-expression": "#00A67D",
+        "--ray-token-punctuation": "#fff",
+        "--ray-token-link": "#F22C3D",
+        "--ray-token-number": " #e9950c",
+        "--ray-token-property": "#F22C3D",
+        "--ray-highlight": "rgba(255, 255, 255, 0.05)",
+        "--ray-highlight-hover": "rgba(255, 255, 255, 0.03)",
+        "--ray-token-diff-deleted": "#F22C3D",
+        "--ray-token-diff-inserted": "#00A67D"
+      }
+    }
+  },
+  "mintlify": {
+    "id": "mintlify",
+    "name": "Mintlify",
+    "background": {
+      "from": "#000",
+      "to": "#000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuMjEzODEgNS44MzQ4OUM0LjIyNDk5IDQuMzEyMDIgNC44Mjg5NCAyLjg1MzM2IDUuODk3NTUgMS43NjgzMUg1Ljg5NTU5TDEuNzY5OTEgNS44OTM5OUgxLjc3MTg4QzEuNzU2NTIgNS45MDYwNyAxLjc0MjA1IDUuOTE5MjIgMS43Mjg1NiA1LjkzMzM4QzAuNzI1MjA0IDYuOTM1NDMgMC4xMTY4NjYgOC4yNjU3MiAwLjAxNTIyNDUgOS42ODAxMUMtMC4wODY0MTc1IDExLjA5NDUgMC4zMjU0MzYgMTIuNDk4MSAxLjE3NTIgMTMuNjMzM0w1LjM0MjIzIDkuNDY2M0w1LjM4NTU1IDkuNDI0OTNDNC42MDg5IDguMzkwNjggNC4xOTY4NCA3LjEyODE5IDQuMjEzODEgNS44MzQ4OVoiIGZpbGw9IiMwQzhDNUUiLz4KPHBhdGggZD0iTTE0LjIzMTYgMTAuMTA0NEMxMy40NDIgMTAuODc4MiAxMi40NTA4IDExLjQxNDYgMTEuMzcxMSAxMS42NTI1QzEwLjI5MTMgMTEuODkwMyA5LjE2NjUgMTEuODE5OSA4LjEyNDgyIDExLjQ0OTRDNy41Njk0MSAxMS4yNTIzIDcuMDQ3NDUgMTAuOTcxMyA2LjU3Njk1IDEwLjYxNjRMNi41MzM2MyAxMC42NTk3TDIuMzY2NTggMTQuODI0OEMzLjUwMjI3IDE1LjY3MjQgNC45MDUxMyAxNi4wODMgNi4zMTg2MSAxNS45ODE0QzcuNzMyMTIgMTUuODc5NyA5LjA2MTggMTUuMjcyOCAxMC4wNjQ2IDE0LjI3MTRMMTAuMTA1OSAxNC4yM0wxNC4yMzE2IDEwLjEwNDRaIiBmaWxsPSIjMEM4QzVFIi8+CjxwYXRoIGQ9Ik0xNi4wMDAxIDUuODk0Vi0wLjAwMDExOTE2MUgxMC4xMDZDOS4zMzE4OCAtMC4wMDA4ODkzNzggOC41NjUyNCAwLjE1MTI5NSA3Ljg1MDE0IDAuNDQ3NjY5QzcuMTM1MDMgMC43NDQwNDMgNi40ODU1MyAxLjE3ODgyIDUuOTM4OTQgMS43MjY5N0w1Ljg5NzU2IDEuNzY4MzJDNS4xNzcxMiAyLjQ5OTc0IDQuNjYxNjMgMy40MDc3NCA0LjQwMjg2IDQuNDAxMjdDNC44NzEyOSA0LjI3OTk3IDUuMzUyNjcgNC4yMTU4MyA1LjgzNjUzIDQuMjEwMjZDNy4xMjk4OCA0LjE5NTAxIDguMzkyIDQuNjA3NjYgOS40MjY1NiA1LjM4Mzk2QzEwLjM1NjQgNi4wNzczNyAxMS4wNjAxIDcuMDMwNSAxMS40NDkgOC4xMjMyNUMxMS44NDU0IDkuMjQwMTEgMTEuODk3NSAxMC40NTAzIDExLjU5ODcgMTEuNTk3MUMxMi41OTI0IDExLjMzODggMTMuNTAwNSAxMC44MjMyIDE0LjIzMTYgMTAuMTAyNEwxNC4yNzMgMTAuMDYzQzE0LjgyMTQgOS41MTYxNyAxNS4yNTYzIDguODY2MzUgMTUuNTUyNyA4LjE1MDlDMTUuODQ5IDcuNDM1NDIgMTYuMDAxMSA2LjY2ODQxIDE2LjAwMDEgNS44OTRaIiBmaWxsPSIjMThFMjk5Ii8+Cjwvc3ZnPgo=",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#171717",
+        "--ray-token-constant": "#0d9373",
+        "--ray-token-string": "#171717",
+        "--ray-token-comment": "#707070",
+        "--ray-token-keyword": "#0d548f",
+        "--ray-token-parameter": "#0576b7",
+        "--ray-token-function": "#0576b7",
+        "--ray-token-string-expression": "#d55d2e",
+        "--ray-token-punctuation": "#808080",
+        "--ray-token-link": "#4aab15",
+        "--ray-token-number": "#4aab15",
+        "--ray-token-property": "#4aab15",
+        "--ray-highlight": "#dfbe5b3a",
+        "--ray-highlight-border": "#e8bc39",
+        "--ray-highlight-hover": "#dfbe5b1b",
+        "--ray-token-diff-deleted": "#DC2625",
+        "--ray-token-diff-inserted": "#0d9373"
+      },
+      "dark": {
+        "--ray-foreground": "#F3F7F6",
+        "--ray-token-constant": "#4ec9b0",
+        "--ray-token-string": "#F3F7F6",
+        "--ray-token-comment": "#707070",
+        "--ray-token-keyword": "#569cd6",
+        "--ray-token-parameter": "#9cdcfe",
+        "--ray-token-function": "#9cdcfe",
+        "--ray-token-string-expression": "#ce9178",
+        "--ray-token-punctuation": "#808080",
+        "--ray-token-link": "#b5cea8",
+        "--ray-token-number": "#b5cea8",
+        "--ray-token-property": "#b5cea8",
+        "--ray-highlight": "rgb(131 114 55 / 30%)",
+        "--ray-highlight-border": "#f7d87c",
+        "--ray-highlight-hover": "rgb(131 114 55 / 15%)",
+        "--ray-token-diff-deleted": "#E17271",
+        "--ray-token-diff-inserted": "#4ec9b0"
+      }
+    }
+  },
+  "prisma": {
+    "id": "prisma",
+    "name": "Prisma",
+    "background": {
+      "from": "#000",
+      "to": "#000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjE2MjQgMTIuMTg5TDcuNjYwMDIgMC41MDM4ODRDNy41OTE2NCAwLjM2MDEwNiA3LjQ4NTY3IDAuMjM3NDg2IDcuMzUzMzIgMC4xNDlDNy4yMjA5NiAwLjA2MDUxMzkgNy4wNjcxNSAwLjAwOTQ1MzUgNi45MDgxNSAwLjAwMTIyMTg3QzYuNzQ4ODUgLTAuMDA5NDUzMzQgNi41ODk2NyAwLjAyMzc1MzEgNi40NDc5MyAwLjA5NzIyOTlDNi4zMDYxOSAwLjE3MDcwNyA2LjE4NzMxIDAuMjgxNjQxIDYuMTA0MjEgMC40MTc5NjhMMC4xMzYyODIgMTAuMDg0QzAuMDQ1NTM2OCAxMC4yMyAtMC4wMDE3MjEyOSAxMC4zOTg4IDQuNzkxNTdlLTA1IDEwLjU3MDZDMC4wMDE4MTcxMyAxMC43NDI1IDAuMDUyNTQwMyAxMC45MTAzIDAuMTQ2MjcxIDExLjA1NDNMMy4wNjQwMSAxNS41NzI3QzMuMTc0NCAxNS43NDI0IDMuMzM2NjYgMTUuODcxNyAzLjUyNjU5IDE1Ljk0MTZDMy43MTY1MyAxNi4wMTE0IDMuOTIzOTYgMTYuMDE4IDQuMTE3OTQgMTUuOTYwM0wxMi41ODUzIDEzLjQ1NTdDMTIuNzEyOCAxMy40MTg1IDEyLjgzMDggMTMuMzU0MiAxMi45MzEzIDEzLjI2NzRDMTMuMDMxOSAxMy4xODA2IDEzLjExMjYgMTMuMDczMiAxMy4xNjgxIDEyLjk1MjVDMTMuMjIyOCAxMi44MzI1IDEzLjI1MDYgMTIuNzAxOSAxMy4yNDk3IDEyLjU3QzEzLjI0ODggMTIuNDM4MSAxMy4yMTkyIDEyLjMwNzkgMTMuMTYyOSAxMi4xODg2TDEzLjE2MjQgMTIuMTg5Wk0xMS45MzA1IDEyLjY5MDJMNC43NDU0OSAxNC44MTQ4QzQuNTI2MyAxNC44OCA0LjMxNTkxIDE0LjY5IDQuMzYxNSAxNC40Njg4TDYuOTI4NTQgMi4xNzczOUM2Ljk3NjUyIDEuOTQ3NDMgNy4yOTQxIDEuOTExIDcuMzk0NTEgMi4xMjM4MkwxMi4xNDY1IDEyLjIxNUMxMi4xNjc1IDEyLjI2IDEyLjE3ODUgMTIuMzA5IDEyLjE3ODggMTIuMzU4NkMxMi4xNzkgMTIuNDA4MiAxMi4xNjg1IDEyLjQ1NzMgMTIuMTQ3OSAxMi41MDI1QzEyLjEyNzQgMTIuNTQ3NiAxMi4wOTcyIDEyLjU4NzggMTIuMDU5NiAxMi42MjAyQzEyLjAyMjEgMTIuNjUyNiAxMS45Nzc5IDEyLjY3NjUgMTEuOTMwMiAxMi42OTAxTDExLjkzMDUgMTIuNjkwMloiIGZpbGw9ImN1cnJlbnRDb2xvciIvPgo8L3N2Zz4K",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": false,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#1A202C",
+        "--ray-token-constant": "#5A67D8",
+        "--ray-token-string": "#16A394",
+        "--ray-token-comment": "#718096",
+        "--ray-token-keyword": "#16A394",
+        "--ray-token-parameter": "#805AD5",
+        "--ray-token-function": "#5A67D8",
+        "--ray-token-string-expression": "#16A394",
+        "--ray-token-punctuation": "#1A202C",
+        "--ray-token-link": "#5A67D8",
+        "--ray-token-number": "#16A394",
+        "--ray-token-property": "#16A394",
+        "--ray-highlight": "#16a39528",
+        "--ray-highlight-border": "#16A394",
+        "--ray-highlight-hover": "#16a3950e",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#16A394"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#7F9CF5",
+        "--ray-token-string": "#71E8DF",
+        "--ray-token-comment": "#718096",
+        "--ray-token-keyword": "#71E8DF",
+        "--ray-token-parameter": "#71E8DF",
+        "--ray-token-function": "#7F9CF5",
+        "--ray-token-string-expression": "#71E8DF",
+        "--ray-token-punctuation": "#FFFFFF",
+        "--ray-token-link": "#7F9CF5",
+        "--ray-token-number": "#71E8DF",
+        "--ray-token-property": "#71E8DF",
+        "--ray-highlight": "#71e8de2e",
+        "--ray-highlight-border": "#71E8DF",
+        "--ray-highlight-hover": "#71e8de1b",
+        "--ray-token-diff-deleted": "#FC8280",
+        "--ray-token-diff-inserted": "#16A394"
+      }
+    }
+  },
+  "clerk": {
+    "id": "clerk",
+    "name": "Clerk",
+    "background": {
+      "from": "#000000",
+      "to": "#000000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjE2IiBmaWxsPSIjZmZmIj4KICA8cGF0aAogICAgZD0iTTE2IDIxYTUgNSAwIDEgMCAwLTEwIDUgNSAwIDAgMCAwIDEwWk0yNS4wMSAyNy44MzhjLjQyNS40MjYuMzgyIDEuMTMtLjExOCAxLjQ2NUExNS45MjUgMTUuOTI1IDAgMCAxIDE2IDMyYy0zLjI5IDAtNi4zNS0uOTk0LTguODkzLTIuNjk3LS41LS4zMzUtLjU0Mi0xLjA0LS4xMTctMS40NjVsMy42NTQtMy42NTNjLjMzLS4zMy44NDMtLjM4MyAxLjI1OC0uMTcgMS4yMy42MyAyLjYyMi45ODUgNC4wOTguOTg1YTguOTYxIDguOTYxIDAgMCAwIDQuMDk4LS45ODVjLjQxNi0uMjEzLjkyOC0uMTYgMS4yNTguMTdsMy42NTQgMy42NTRaIiAvPgogIDxwYXRoIGZpbGwtb3BhY2l0eT0iLjUiCiAgICBkPSJNMjQuODkzIDIuNjk3Yy41LjMzNS41NDIgMS4wNC4xMTcgMS40NjRsLTMuNjU0IDMuNjU0Yy0uMzMuMzMtLjg0My4zODMtMS4yNTguMTdBOSA5IDAgMCAwIDcuOTg1IDIwLjA5OGMuMjEzLjQxNi4xNi45MjgtLjE3IDEuMjU4TDQuMTYxIDI1LjAxYy0uNDI1LjQyNS0xLjEzLjM4My0xLjQ2NC0uMTE3QTE1LjkyNiAxNS45MjYgMCAwIDEgMCAxNkMwIDcuMTYzIDcuMTYzIDAgMTYgMGMzLjI5IDAgNi4zNS45OTQgOC44OTMgMi42OTdaIiAvPgo8L3N2Zz4K",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": true,
+    "font": "geist-mono",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#131316",
+        "--ray-token-constant": "#22c543",
+        "--ray-token-string": "#00aee3",
+        "--ray-token-comment": "#9394a1",
+        "--ray-token-keyword": "#6c47ff",
+        "--ray-token-parameter": "#22c543",
+        "--ray-token-function": "#6c47ff",
+        "--ray-token-string-expression": "#00aee3",
+        "--ray-token-punctuation": "#747686",
+        "--ray-token-link": "#22c543",
+        "--ray-token-number": "#22c543",
+        "--ray-token-property": "#22c543",
+        "--ray-highlight": "#00aee313",
+        "--ray-highlight-border": "#00000000",
+        "--ray-highlight-hover": "#00aee306",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#22c543"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#86ef9b",
+        "--ray-token-string": "#5de3ff",
+        "--ray-token-comment": "#9394a1",
+        "--ray-token-keyword": "#bab1ff",
+        "--ray-token-parameter": "#86ef9b",
+        "--ray-token-function": "#bab1ff",
+        "--ray-token-string-expression": "#5de3ff",
+        "--ray-token-punctuation": "#b7b8c2",
+        "--ray-token-link": "#86ef9b",
+        "--ray-token-number": "#86ef9b",
+        "--ray-token-property": "#86ef9b",
+        "--ray-highlight": "#5de3ff1a",
+        "--ray-highlight-border": "#00000000",
+        "--ray-highlight-hover": "#5de3ff0d",
+        "--ray-token-diff-deleted": "#E17271",
+        "--ray-token-diff-inserted": "#86ef9b"
+      }
+    }
+  },
+  "elevenlabs": {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "background": {
+      "from": "#000",
+      "to": "#000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuMzMzMDEgMTZIM1YwSDYuMzMzMDFWMTZaTTEyLjMzMyAxNkg5VjBIMTIuMzMzVjE2WiIgZmlsbD0iY3VycmVudENvbG9yIi8+Cjwvc3ZnPgo=",
+    "font": "roboto-mono",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#1c1c1c",
+        "--ray-token-constant": "#4c3fff",
+        "--ray-token-string": "#00a890",
+        "--ray-token-comment": "hsla(0, 0%, 40%,1)",
+        "--ray-token-keyword": "#1c1c1c",
+        "--ray-token-parameter": "#4c3fff",
+        "--ray-token-function": "#e85c5c",
+        "--ray-token-string-expression": "#00a890",
+        "--ray-token-punctuation": "#1c1c1c",
+        "--ray-token-link": "#4c3fff",
+        "--ray-token-number": "#4c3fff",
+        "--ray-token-property": "#4c3fff",
+        "--ray-highlight": "hsla(244, 100%, 62%, 0.09)",
+        "--ray-highlight-border": "hsla(244, 100%, 62%, 0.45)",
+        "--ray-highlight-hover": "hsla(244, 100%, 62%, 0.05)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#00a890"
+      },
+      "dark": {
+        "--ray-foreground": "#fff",
+        "--ray-token-constant": "#8F8FFF",
+        "--ray-token-string": "#a1ffe0",
+        "--ray-token-comment": "hsla(0, 0%, 63%,1)",
+        "--ray-token-keyword": "#fff9b2",
+        "--ray-token-parameter": "#8F8FFF",
+        "--ray-token-function": "#ff8080",
+        "--ray-token-string-expression": "#A1FFE0",
+        "--ray-token-punctuation": "#fff",
+        "--ray-token-link": "#8F8FFF",
+        "--ray-token-number": "#8F8FFF",
+        "--ray-token-property": "#8F8FFF",
+        "--ray-highlight": "hsla(240, 100%, 78%, 0.09)",
+        "--ray-highlight-border": "hsla(240, 100%, 78%, 0.45)",
+        "--ray-highlight-hover": "hsla(240, 100%, 78%, 0.05)",
+        "--ray-token-diff-deleted": "#ff8080",
+        "--ray-token-diff-inserted": "#a1ffe0"
+      }
+    }
+  },
+  "resend": {
+    "id": "resend",
+    "name": "Resend",
+    "background": {
+      "from": "#B1B1B1",
+      "to": "#181818"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwNCIgaGVpZ2h0PSI5OTciIHZpZXdCb3g9IjAgMCAxMDA0IDk5NyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aAogICAgZD0iTTYwMi40NiA1MkM3NzYuNzcgNTIgODgwLjQzIDE1NS42NjkgODgwLjQzIDI5My4yODJDODgwLjQzIDQzMC44OTYgNzc2Ljc3IDUzNC41NjMgNjAyLjQ2IDUzNC41NjNINTE0LjM4Mkw5NTIgOTUySDY0Mi44MkwzMDkuNzk0IDYzNS40OEMyODUuOTQ0IDYxMy40NyAyNzQuOTM2IDU4Ny43ODEgMjc0LjkzNSA1NjUuNzY1QzI3NC45MzUgNTM0LjU3MiAyOTYuOTU5IDUwNy4wNDkgMzM5LjE2MSA0OTUuMTIyTDUxMC43MTIgNDQ5LjI0NEM1NzUuODUgNDMxLjgxMiA2MjAuODEgMzgxLjM1MyA2MjAuODEgMzE1LjI5OEM2MjAuOCAyMzQuNTY3IDU1NC43NDUgMTg3Ljc4IDQ3My4wOTUgMTg3Ljc4SDUyVjUySDYwMi40NloiCiAgICBmaWxsPSIjRkRGREZEIiAvPgo8L3N2Zz4=",
+    "font": "commit-mono",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#111111",
+        "--ray-token-constant": "#666666",
+        "--ray-token-string": "#666666",
+        "--ray-token-comment": "#999999",
+        "--ray-token-keyword": "#666666",
+        "--ray-token-parameter": "#666666",
+        "--ray-token-function": "#111111",
+        "--ray-token-string-expression": "#666666",
+        "--ray-token-punctuation": "#666666",
+        "--ray-token-link": "#666666",
+        "--ray-token-number": "#111111",
+        "--ray-token-property": "#666666",
+        "--ray-token-diff-deleted": "#666666",
+        "--ray-token-diff-inserted": "#666666"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#a7a7a7",
+        "--ray-token-string": "#a7a7a7",
+        "--ray-token-comment": "#666666",
+        "--ray-token-keyword": "#a7a7a7",
+        "--ray-token-parameter": "#a7a7a7",
+        "--ray-token-function": "#ffffff",
+        "--ray-token-string-expression": "#a7a7a7",
+        "--ray-token-punctuation": "#a7a7a7",
+        "--ray-token-link": "#a7a7a7",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "#a7a7a7",
+        "--ray-token-diff-deleted": "#a7a7a7",
+        "--ray-token-diff-inserted": "#a7a7a7"
+      }
+    }
+  },
+  "triggerdev": {
+    "id": "triggerdev",
+    "name": "Trigger.dev",
+    "background": {
+      "from": "#121317",
+      "to": "#121317"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNyAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01LjcwMjM3IDUuNzQ2NjZMOC45MzA0MiAwLjE1NjI1TDE2LjkzMDQgMTQuMDExM0gwLjkzMDQyTDQuMTU4NDcgOC40MjA2OUw2LjQ0MTkyIDkuNzM4OTRMNS40OTc1MiAxMS4zNzQ2SDEyLjM2MzNMOC45MzA0MiA1LjQyOTQ0TDcuOTg2MDEgNy4wNjUwOUw1LjcwMjM3IDUuNzQ2NjZaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTg3OV8xNDk0NykiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xODc5XzE0OTQ3IiB4MT0iMTMuODg0OSIgeTE9IjE0LjAxMTMiIHgyPSIxMy43MzU2IiB5Mj0iNC4yMzAwOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjNDFGRjU0Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0U3RkY1MiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=",
+    "font": "geist-mono",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#2E2E4B",
+        "--ray-token-constant": "#1E1E1E",
+        "--ray-token-string": "#262626",
+        "--ray-token-comment": "#5F6570",
+        "--ray-token-keyword": "#B114D3",
+        "--ray-token-parameter": "#404040",
+        "--ray-token-function": "#5C40FF",
+        "--ray-token-string-expression": "#0879E2",
+        "--ray-token-punctuation": "#333333",
+        "--ray-token-link": "#1A1A1A",
+        "--ray-token-number": "#262626",
+        "--ray-token-property": "#222222"
+      },
+      "dark": {
+        "--ray-foreground": "#CCCBFF",
+        "--ray-token-constant": "#9C9AF2",
+        "--ray-token-string": "#AFEC73",
+        "--ray-token-comment": "#5F6570",
+        "--ray-token-keyword": "#E888F8",
+        "--ray-token-parameter": "#CCCBFF",
+        "--ray-token-function": "#9684FF",
+        "--ray-token-string-expression": "#AFEC73",
+        "--ray-token-punctuation": "#878C99",
+        "--ray-token-link": "#826DFF",
+        "--ray-token-number": "#b5cea8",
+        "--ray-token-property": "#CCCBFF"
+      }
+    }
+  },
+  "nuxt": {
+    "id": "nuxt",
+    "name": "Nuxt",
+    "background": {
+      "from": "#292D3E",
+      "to": "#292D3E"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjU2IDE2OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjE2OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPjxwYXRoIGZpbGw9IiMwMERDODIiIGQ9Ik0xNDMuNjE4IDE2Ny4wMjloOTUuMTY2YzMuMDIzIDAgNS45OTItLjc3MSA4LjYxLTIuMjM3YTE2Ljk2MyAxNi45NjMgMCAwIDAgNi4zMDItNi4xMTUgMTYuMzI0IDE2LjMyNCAwIDAgMCAyLjMwNC04LjM1MmMwLTIuOTMyLS43OTktNS44MTEtMi4zMTItOC4zNUwxODkuNzc4IDM0LjZhMTYuOTY2IDE2Ljk2NiAwIDAgMC02LjMwMS02LjExMyAxNy42MjYgMTcuNjI2IDAgMCAwLTguNjA4LTIuMjM4Yy0zLjAyMyAwLTUuOTkxLjc3Mi04LjYwOSAyLjIzOGExNi45NjQgMTYuOTY0IDAgMCAwLTYuMyA2LjExM2wtMTYuMzQyIDI3LjQ3My0zMS45NS01My43MjRhMTYuOTczIDE2Ljk3MyAwIDAgMC02LjMwNC02LjExMkExNy42MzggMTcuNjM4IDAgMCAwIDk2Ljc1NCAwYy0zLjAyMiAwLTUuOTkyLjc3Mi04LjYxIDIuMjM3YTE2Ljk3MyAxNi45NzMgMCAwIDAtNi4zMDMgNi4xMTJMMi4zMSAxNDEuOTc1QTE2LjMwMiAxNi4zMDIgMCAwIDAgMCAxNTAuMzI1YzAgMi45MzIuNzkzIDUuODEzIDIuMzA0IDguMzUyYTE2Ljk2NCAxNi45NjQgMCAwIDAgNi4zMDIgNi4xMTUgMTcuNjI4IDE3LjYyOCAwIDAgMCA4LjYxIDIuMjM3aDU5LjczN2MyMy42NjkgMCA0MS4xMjMtMTAuMDg0IDUzLjEzNC0yOS43NThsMjkuMTU5LTQ4Ljk4MyAxNS42MTgtMjYuMjE1IDQ2Ljg3NCA3OC43NDJoLTYyLjQ5MmwtMTUuNjI4IDI2LjIxNFptLTY3LjY0LTI2LjI0LTQxLjY4OC0uMDFMOTYuNzgyIDM1Ljc5NmwzMS4xODEgNTIuNDkyLTIwLjg3NyAzNS4wODRjLTcuOTc2IDEyLjc2NS0xNy4wMzcgMTcuNDE2LTMxLjEwNyAxNy40MTZaIi8+PC9zdmc+",
+    "font": "geist-mono",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#90A4AE",
+        "--ray-token-constant": "#39ADB5",
+        "--ray-token-string": "#91B859",
+        "--ray-token-comment": "#90A4AE",
+        "--ray-token-keyword": "#39ADB5",
+        "--ray-token-parameter": "#90A4AE",
+        "--ray-token-function": "#6182B8",
+        "--ray-token-string-expression": "#E53935",
+        "--ray-token-punctuation": "#39ADB5",
+        "--ray-token-link": "#80CBC4",
+        "--ray-token-number": "#F76D47",
+        "--ray-token-property": "#E53935",
+        "--ray-highlight": "rgba(128, 203, 196, 0.25)",
+        "--ray-highlight-border": "#80CBC4",
+        "--ray-highlight-hover": "rgba(128, 203, 196, 0.15)",
+        "--ray-token-diff-deleted": "#E53935",
+        "--ray-token-diff-inserted": "#91B859"
+      },
+      "dark": {
+        "--ray-foreground": "#babed8",
+        "--ray-token-constant": "#BABED8",
+        "--ray-token-string": "#C3E88D",
+        "--ray-token-comment": "#676E95",
+        "--ray-token-keyword": "#C793EA",
+        "--ray-token-parameter": "#babed8",
+        "--ray-token-function": "#82AAFF",
+        "--ray-token-string-expression": "#f07178",
+        "--ray-token-punctuation": "#89DDFF",
+        "--ray-token-link": "#80CBC4",
+        "--ray-token-number": "#F78C6C",
+        "--ray-token-property": "#f07178",
+        "--ray-highlight": "rgba(113, 124, 180, 0.31)",
+        "--ray-highlight-border": "#80CBC4",
+        "--ray-highlight-hover": "rgba(113, 124, 180, 0.2)",
+        "--ray-token-diff-deleted": "#f07178",
+        "--ray-token-diff-inserted": "#C3E88D"
+      }
+    }
+  },
+  "browserbase": {
+    "id": "browserbase",
+    "name": "Browserbase",
+    "background": {
+      "from": "#FF4500",
+      "to": "#000000"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTAwIDBIMFYxMDBIMTAwVjBaTTM2LjAyNzggMjcuNzc3OFY3Mi4yMjIySDUyLjUzNTdDNTguODg0OSA3Mi4yMjIyIDYzLjk2NDIgNjcuMTQyOSA2My45NjQyIDYwLjc5MzdWNTguMjU0QzYzLjk2NDIgNTQuNjM0OSA2Mi4zMTM0IDUxLjQ2MDMgNTkuNzczOCA0OS4zNjUxQzYxLjYxNSA0Ny4zOTY4IDYyLjY5NDQgNDQuNjY2NyA2Mi42OTQ0IDQxLjc0NlYzOS4yMDYzQzYyLjY5NDQgMzIuODU3MSA1Ny42MTUxIDI3Ljc3NzggNTEuMjY1OSAyNy43Nzc4SDM2LjAyNzhaTTUyLjUzNTcgNjUuODczSDQyLjM3N1Y1My4xNzQ2SDUyLjUzNTdDNTUuMzkyOSA1My4xNzQ2IDU3LjYxNTEgNTUuMzk2OCA1Ny42MTUxIDU4LjI1NFY2MC43OTM3QzU3LjYxNTEgNjMuNjUwOCA1NS4zOTI5IDY1Ljg3MyA1Mi41MzU3IDY1Ljg3M1pNNTEuMjY1OSA0Ni44MjU0SDQyLjM3N1YzNC4xMjdINTEuMjY1OUM1NC4xMjMgMzQuMTI3IDU2LjM0NTMgMzYuMzQ5MiA1Ni4zNDUzIDM5LjIwNjNWNDEuNzQ2QzU2LjM0NTMgNDQuNjAzMiA1NC4xMjMgNDYuODI1NCA1MS4yNjU5IDQ2LjgyNTRaIiBmaWxsPSIjRjAzNjAzIi8+Cjwvc3ZnPgo=",
+    "partner": true,
+    "group": "Brands",
+    "font": "space-mono",
+    "lineNumbers": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#000",
+        "--ray-token-constant": "#FF4500",
+        "--ray-token-string": "#FF6B35",
+        "--ray-token-comment": "#6B7280",
+        "--ray-token-keyword": "#FF4500",
+        "--ray-token-parameter": "#FF4500",
+        "--ray-token-function": "#000000",
+        "--ray-token-string-expression": "hsla(42.948, 100%, 61.838%)",
+        "--ray-token-punctuation": "#374151",
+        "--ray-token-link": "#FF4500",
+        "--ray-token-number": "#FF4500",
+        "--ray-token-property": "#FF4500",
+        "--ray-highlight": "rgba(255, 69, 0, 0.1)",
+        "--ray-highlight-border": "#FF4500",
+        "--ray-highlight-hover": "rgba(255, 69, 0, 0.05)",
+        "--ray-token-diff-deleted": "#EF4444",
+        "--ray-token-diff-inserted": "#10B981"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#FF6B35",
+        "--ray-token-string": "#FFB800",
+        "--ray-token-comment": "#6B7280",
+        "--ray-token-keyword": "#FF4500",
+        "--ray-token-parameter": "#FF6B35",
+        "--ray-token-function": "#FFFFFF",
+        "--ray-token-string-expression": "#FFB800",
+        "--ray-token-punctuation": "#D1D5DB",
+        "--ray-token-link": "#FF6B35",
+        "--ray-token-number": "#FF6B35",
+        "--ray-token-property": "#FF6B35",
+        "--ray-highlight": "rgba(255, 107, 53, 0.15)",
+        "--ray-highlight-border": "#FF6B35",
+        "--ray-highlight-hover": "rgba(255, 107, 53, 0.08)",
+        "--ray-token-diff-deleted": "#F87171",
+        "--ray-token-diff-inserted": "#34D399"
+      }
+    }
+  },
+  "cloudflare": {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "background": {
+      "from": "#0C0C0C",
+      "to": "#0C0C0C"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NiIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDY2IDMwIiBmaWxsPSJub25lIiBjbGFzcz0ic2hyaW5rLTAgdHJhbnNpdGlvbi1jb2xvcnMgZHVyYXRpb24tMjAwIGVhc2Utb3V0IHRleHQtYmFja2dyb3VuZC0xMDAiIGlkPSJuYXYtbG9nby1pY29uIj48cGF0aCBmaWxsPSIjRjU4NTJCIiBjbGFzcz0idHJhbnNpdGlvbi1jb2xvcnMgZHVyYXRpb24tNDAwIGVhc2Utb3V0IiBkPSJNNTIuNjg4IDEzLjAyOGMtLjIyIDAtLjQzNy4wMDgtLjY1NC4wMTVhLjMuMyAwIDAgMC0uMTAyLjAyNC4zNy4zNyAwIDAgMC0uMjM2LjI1NWwtLjkzIDMuMjQ5Yy0uNDAxIDEuMzk3LS4yNTIgMi42ODcuNDIyIDMuNjM0LjYxOC44NzYgMS42NDYgMS4zOSAyLjg5NCAxLjQ1bDUuMDQ1LjMwNmEuNDUuNDUgMCAwIDEgLjQzNS40MS41LjUgMCAwIDEtLjAyNS4yMjMuNjQuNjQgMCAwIDEtLjU0Ny40MjZsLTUuMjQyLjMwNmMtMi44NDguMTMyLTUuOTEyIDIuNDU2LTYuOTg3IDUuMjlsLS4zNzggMWEuMjguMjggMCAwIDAgLjI0OC4zODJoMTguMDU0YS40OC40OCAwIDAgMCAuNDY0LS4zNWMuMzItMS4xNTMuNDgyLTIuMzQ0LjQ4LTMuNTQgMC03LjIyLTUuNzktMTMuMDcyLTEyLjkzMy0xMy4wNzJNNDQuODA3IDI5LjU3OGwuMzM0LTEuMTc1Yy40MDItMS4zOTcuMjUzLTIuNjg3LS40Mi0zLjYzNC0uNjItLjg3Ni0xLjY0Ny0xLjM5LTIuODk2LTEuNDVsLTIzLjY2NS0uMzA2YS40Ny40NyAwIDAgMS0uMzc0LS4xOTkuNS41IDAgMCAxLS4wNTItLjQzNC42NC42NCAwIDAgMSAuNTUyLS40MjZsMjMuODg2LS4zMDZjMi44MzYtLjEzMSA1LjktMi40NTYgNi45NzUtNS4yOWwxLjM2Mi0zLjZhLjkuOSAwIDAgMCAuMDQtLjQ3N0M0OC45OTcgNS4yNTkgNDIuNzg5IDAgMzUuMzY3IDBjLTYuODQyIDAtMTIuNjQ3IDQuNDYyLTE0LjczIDEwLjY2NWE2LjkyIDYuOTIgMCAwIDAtNC45MTEtMS4zNzRjLTMuMjguMzMtNS45MiAzLjAwMi02LjI0NiA2LjMxOGE3LjIgNy4yIDAgMCAwIC4xOCAyLjQ3MkM0LjMgMTguMjQxIDAgMjIuNjc5IDAgMjguMTMzcTAgLjc0LjEwNiAxLjQ1M2EuNDYuNDYgMCAwIDAgLjQ1Ny40MDJoNDMuNzA0YS41Ny41NyAwIDAgMCAuNTQtLjQxOCI+PC9wYXRoPjwvc3ZnPg==",
+    "font": "ibm-plex-mono",
+    "partner": true,
+    "group": "Brands",
+    "lineNumbers": true,
+    "lineNumbersToggleable": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#521000",
+        "--ray-token-constant": "#5a11cc",
+        "--ray-token-string": "#0876d9",
+        "--ray-token-comment": "#52100080",
+        "--ray-token-keyword": "#d94008",
+        "--ray-token-parameter": "#c77700",
+        "--ray-token-function": "#7612cc",
+        "--ray-token-string-expression": "#0876d9",
+        "--ray-token-punctuation": "#52100080",
+        "--ray-token-link": "#0876d9",
+        "--ray-token-number": "#5a11cc",
+        "--ray-token-property": "#5a11cc",
+        "--ray-highlight": "rgba(255, 80, 10, 0.1)",
+        "--ray-highlight-border": "#FF500A",
+        "--ray-highlight-hover": "rgba(255, 80, 10, 0.05)",
+        "--ray-token-diff-deleted": "#d94008",
+        "--ray-token-diff-inserted": "#00C853"
+      },
+      "dark": {
+        "--ray-foreground": "#E8E8E8",
+        "--ray-token-constant": "#79b8ff",
+        "--ray-token-string": "#0A95FF",
+        "--ray-token-comment": "#888888",
+        "--ray-token-keyword": "#FF7F4D",
+        "--ray-token-parameter": "#FFB366",
+        "--ray-token-function": "#B084FF",
+        "--ray-token-string-expression": "#0A95FF",
+        "--ray-token-punctuation": "#AAAAAA",
+        "--ray-token-link": "#0A95FF",
+        "--ray-token-number": "#79b8ff",
+        "--ray-token-property": "#79b8ff",
+        "--ray-highlight": "rgba(255, 80, 10, 0.15)",
+        "--ray-highlight-border": "#FF500A",
+        "--ray-highlight-hover": "rgba(255, 80, 10, 0.08)",
+        "--ray-token-diff-deleted": "#FF7F4D",
+        "--ray-token-diff-inserted": "#00C853"
+      }
+    }
+  },
+  "gemini": {
+    "id": "gemini",
+    "name": "Gemini",
+    "background": {
+      "from": "#16181d",
+      "to": "#16181d"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CiAgPHBhdGggZD0iTSAyNDEgMzAgCiAgICAgICAgICAgUSAyNTYgMTUsIDI3MSAzMAogICAgICAgICAgIEMgMjcxIDE0MCwgMzcyIDI0MSwgNDgyIDI0MQogICAgICAgICAgIFEgNDk3IDI1NiwgNDgyIDI3MQogICAgICAgICAgIEMgMzcyIDI3MSwgMjcxIDM3MiwgMjcxIDQ4MgogICAgICAgICAgIFEgMjU2IDQ5NywgMjQxIDQ4MgogICAgICAgICAgIEMgMjQxIDM3MiwgMTQwIDI3MSwgMzAgMjcxCiAgICAgICAgICAgUSAxNSAyNTYsIDMwIDI0MQogICAgICAgICAgIEMgMTQwIDI0MSwgMjQxIDE0MCwgMjQxIDMwIFoiIAogICAgICAgIGZpbGw9ImN1cnJlbnRDb2xvciIgLz4KPC9zdmc+",
+    "font": "google-sans-code",
+    "partner": true,
+    "group": "Brands",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#37474f",
+        "--ray-token-constant": "#37474f",
+        "--ray-token-string": "#188038",
+        "--ray-token-comment": "hsla(0, 0%, 40%,1)",
+        "--ray-token-keyword": "#1967d2",
+        "--ray-token-parameter": "#37474f",
+        "--ray-token-function": "#37474f",
+        "--ray-token-string-expression": "#188038",
+        "--ray-token-punctuation": "#37474f",
+        "--ray-token-link": "#4c3fff",
+        "--ray-token-number": "#4c3fff",
+        "--ray-token-property": "#4c3fff",
+        "--ray-highlight": "hsla(244, 100%, 62%, 0.09)",
+        "--ray-highlight-border": "hsla(244, 100%, 62%, 0.45)",
+        "--ray-highlight-hover": "hsla(244, 100%, 62%, 0.05)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#188038"
+      },
+      "dark": {
+        "--ray-foreground": "#abb2bf",
+        "--ray-token-constant": "#56b6c2",
+        "--ray-token-string": "#98c379",
+        "--ray-token-comment": "#5c6370",
+        "--ray-token-keyword": "#5c9dc7",
+        "--ray-token-parameter": "#d19a66",
+        "--ray-token-function": "#98c379",
+        "--ray-token-string-expression": "#98c379",
+        "--ray-token-punctuation": "#abb2bf",
+        "--ray-token-link": "#5c9dc7",
+        "--ray-token-number": "#56b6c2",
+        "--ray-token-property": "#56b6c2",
+        "--ray-highlight": "rgba(92, 157, 199, 0.15)",
+        "--ray-highlight-border": "#5c9dc7",
+        "--ray-highlight-hover": "rgba(92, 157, 199, 0.1)",
+        "--ray-token-diff-deleted": "#e06c75",
+        "--ray-token-diff-inserted": "#98c379"
+      }
+    }
+  },
+  "stripe": {
+    "id": "stripe",
+    "name": "Stripe",
+    "background": {
+      "from": "#0a2540",
+      "to": "#0a2540"
+    },
+    "iconUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDI1MCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMCAyNTBMMjUwIDE5Ny40VjBMMCA1MS42VjI1MFoiIGZpbGw9ImN1cnJlbnRDb2xvciIvPgo8L3N2Zz4K",
+    "partner": true,
+    "group": "Brands",
+    "font": "source-code-pro",
+    "lineNumbers": true,
+    "syntax": {
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#FFFFFF",
+        "--ray-token-string": "#ffa956",
+        "--ray-token-comment": "#a9bcce",
+        "--ray-token-keyword": "#8095ff",
+        "--ray-token-parameter": "#FF6B35",
+        "--ray-token-function": "#00d4ff",
+        "--ray-token-string-expression": "#ffa956",
+        "--ray-token-punctuation": "#FFFFFF",
+        "--ray-token-link": "#ffa956",
+        "--ray-token-number": "#ffa956",
+        "--ray-token-property": "#1abdc0",
+        "--ray-highlight": "rgba(255, 107, 53, 0.15)",
+        "--ray-highlight-border": "#FF6B35",
+        "--ray-highlight-hover": "rgba(255, 107, 53, 0.08)",
+        "--ray-token-diff-deleted": "#F87171",
+        "--ray-token-diff-inserted": "#34D399",
+        "--ray-token-object-literal": "#1abdc0"
+      }
+    }
+  },
+  "bitmap": {
+    "id": "bitmap",
+    "name": "Bitmap",
+    "background": {
+      "from": "#881616",
+      "to": "#F1393F"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#685B5B",
+        "--ray-token-constant": "#C90028",
+        "--ray-token-string": "#836250",
+        "--ray-token-comment": "#B83737",
+        "--ray-token-keyword": "#D63838",
+        "--ray-token-parameter": "#5E4040",
+        "--ray-token-function": "#C90028",
+        "--ray-token-string-expression": "#836250",
+        "--ray-token-punctuation": "#BE3B3B",
+        "--ray-token-link": "#BE3B3B",
+        "--ray-token-number": "#C94F0A",
+        "--ray-token-property": "#D15510",
+        "--ray-highlight": "hsla(348, 100%, 39%, 0.08)",
+        "--ray-highlight-border": "#C90028",
+        "--ray-highlight-hover": "hsla(348, 100%, 39%, 0.05)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#00A67D"
+      },
+      "dark": {
+        "--ray-foreground": "#FEFDFD",
+        "--ray-token-constant": "#E42B37",
+        "--ray-token-string": "#E42B37",
+        "--ray-token-comment": "#996B6D",
+        "--ray-token-keyword": "#EB6F6F",
+        "--ray-token-parameter": "#C88E8E",
+        "--ray-token-function": "#E42B37",
+        "--ray-token-string-expression": "#EBB99D",
+        "--ray-token-punctuation": "#EB6F6F",
+        "--ray-token-link": "#EB6F6F",
+        "--ray-token-number": "#E42B37",
+        "--ray-token-property": "#E42B37",
+        "--ray-highlight": "hsla(355, 76%, 63%, 0.25)",
+        "--ray-highlight-border": "#E42B37",
+        "--ray-highlight-hover": "hsla(355, 76%, 63%, 0.16)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#00DE55"
+      }
+    }
+  },
+  "noir": {
+    "id": "noir",
+    "name": "Noir",
+    "background": {
+      "from": "#B1B1B1",
+      "to": "#181818"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#111111",
+        "--ray-token-constant": "#666666",
+        "--ray-token-string": "#666666",
+        "--ray-token-comment": "#999999",
+        "--ray-token-keyword": "#666666",
+        "--ray-token-parameter": "#666666",
+        "--ray-token-function": "#111111",
+        "--ray-token-string-expression": "#666666",
+        "--ray-token-punctuation": "#666666",
+        "--ray-token-link": "#666666",
+        "--ray-token-number": "#111111",
+        "--ray-token-property": "#666666",
+        "--ray-token-diff-deleted": "#666666",
+        "--ray-token-diff-inserted": "#666666"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#a7a7a7",
+        "--ray-token-string": "#a7a7a7",
+        "--ray-token-comment": "#666666",
+        "--ray-token-keyword": "#a7a7a7",
+        "--ray-token-parameter": "#a7a7a7",
+        "--ray-token-function": "#ffffff",
+        "--ray-token-string-expression": "#a7a7a7",
+        "--ray-token-punctuation": "#a7a7a7",
+        "--ray-token-link": "#a7a7a7",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "#a7a7a7",
+        "--ray-token-diff-deleted": "#a7a7a7",
+        "--ray-token-diff-inserted": "#a7a7a7"
+      }
+    }
+  },
+  "ice": {
+    "id": "ice",
+    "name": "Ice",
+    "background": {
+      "from": "#fff",
+      "to": "#80deea"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#1C1B29",
+        "--ray-token-constant": "#00B0E9",
+        "--ray-token-string": "#6ABAD8",
+        "--ray-token-comment": "#BDC0C1",
+        "--ray-token-keyword": "#81909D",
+        "--ray-token-parameter": "#1E3C78",
+        "--ray-token-function": "#1E3C78",
+        "--ray-token-string-expression": "#7BBCD8",
+        "--ray-token-punctuation": "#1E3C78",
+        "--ray-token-link": "#1E3C78",
+        "--ray-token-number": "#00B0E9",
+        "--ray-token-property": "#00B0E9",
+        "--ray-highlight": "rgba(0,167,219,0.1)",
+        "--ray-highlight-border": "#00B0E9",
+        "--ray-highlight-hover": "rgba(0,167,219,0.05)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#00B0E9"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#92DEF6",
+        "--ray-token-string": "#92DEF6",
+        "--ray-token-comment": "#5C6A70",
+        "--ray-token-keyword": "#BFC4C9",
+        "--ray-token-parameter": "#778CB6",
+        "--ray-token-function": "#778CB6",
+        "--ray-token-string-expression": "#89C3DC",
+        "--ray-token-punctuation": "#778CB6",
+        "--ray-token-link": "#778CB6",
+        "--ray-token-number": "#00B0E9",
+        "--ray-token-property": "#00B0E9",
+        "--ray-highlight": "rgba(146,222,246,0.14)",
+        "--ray-highlight-border": "#92DEF6",
+        "--ray-highlight-hover": "rgba(146,222,246,0.09)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#00B0E9"
+      }
+    }
+  },
+  "sand": {
+    "id": "sand",
+    "name": "Sand",
+    "background": {
+      "from": "#EED5B6",
+      "to": "#AF8856"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#262217",
+        "--ray-token-constant": "#A28C4E",
+        "--ray-token-string": "#A28C4E",
+        "--ray-token-comment": "#C4B39C",
+        "--ray-token-keyword": "#906937",
+        "--ray-token-parameter": "#DA8744",
+        "--ray-token-function": "#DA8744",
+        "--ray-token-string-expression": "#C57416",
+        "--ray-token-punctuation": "#DA8744",
+        "--ray-token-link": "#DA8744",
+        "--ray-token-number": "#A28C4E",
+        "--ray-token-property": "#A28C4E",
+        "--ray-highlight": "rgba(218,135,68,0.1)",
+        "--ray-highlight-border": "#DA8744",
+        "--ray-highlight-hover": "rgba(218,135,68,0.05)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#A28C4E"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#C2B181",
+        "--ray-token-string": "#C2B181",
+        "--ray-token-comment": "#837E77",
+        "--ray-token-keyword": "#D3B48C",
+        "--ray-token-parameter": "#F4A361",
+        "--ray-token-function": "#F4A361",
+        "--ray-token-string-expression": "#EED5B8",
+        "--ray-token-punctuation": "#F4A361",
+        "--ray-token-link": "#F4A361",
+        "--ray-token-number": "#C2B181",
+        "--ray-token-property": "#C2B181",
+        "--ray-highlight": "rgba(244,163,97,0.14)",
+        "--ray-highlight-border": "#F4A361",
+        "--ray-highlight-hover": "rgba(244,163,97,0.09)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#A28C4E"
+      }
+    }
+  },
+  "forest": {
+    "id": "forest",
+    "name": "Forest",
+    "background": {
+      "from": "#506853",
+      "to": "#213223"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#262217",
+        "--ray-token-constant": "#55725A",
+        "--ray-token-string": "#828069",
+        "--ray-token-comment": "#869288",
+        "--ray-token-keyword": "#6A8458",
+        "--ray-token-parameter": "#6B8F71",
+        "--ray-token-function": "#4B8042",
+        "--ray-token-string-expression": "#9D891C",
+        "--ray-token-punctuation": "#78876E",
+        "--ray-token-link": "#78876E",
+        "--ray-token-number": "#78876E",
+        "--ray-token-property": "#2E382F",
+        "--ray-highlight": "rgba(75,148,66,0.12)",
+        "--ray-highlight-border": "#4B9442",
+        "--ray-highlight-hover": "rgba(75,148,66,0.07)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#4B9442"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#6B8F71",
+        "--ray-token-string": "#C9C8BC",
+        "--ray-token-comment": "#555E56",
+        "--ray-token-keyword": "#AAB4A3",
+        "--ray-token-parameter": "#6B8F71",
+        "--ray-token-function": "#87B882",
+        "--ray-token-string-expression": "#CCBD6E",
+        "--ray-token-punctuation": "#AAB4A3",
+        "--ray-token-link": "#AAB4A3",
+        "--ray-token-number": "#AAB4A3",
+        "--ray-token-property": "#C9C7BC",
+        "--ray-highlight": "rgba(170,180,163,0.14)",
+        "--ray-highlight-border": "#6B8F71",
+        "--ray-highlight-hover": "rgba(170,180,163,0.09)",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#6B8F71"
+      }
+    }
+  },
+  "mono": {
+    "id": "mono",
+    "name": "Mono",
+    "background": {
+      "from": "#333",
+      "to": "#181818"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#111111",
+        "--ray-token-constant": "#666666",
+        "--ray-token-string": "#666666",
+        "--ray-token-comment": "#999999",
+        "--ray-token-keyword": "#666666",
+        "--ray-token-parameter": "#666666",
+        "--ray-token-function": "#111111",
+        "--ray-token-string-expression": "#666666",
+        "--ray-token-punctuation": "#666666",
+        "--ray-token-link": "#666666",
+        "--ray-token-number": "#111111",
+        "--ray-token-property": "#666666",
+        "--ray-token-diff-deleted": "#666666",
+        "--ray-token-diff-inserted": "#666666"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "#a7a7a7",
+        "--ray-token-string": "#a7a7a7",
+        "--ray-token-comment": "#666666",
+        "--ray-token-keyword": "#a7a7a7",
+        "--ray-token-parameter": "#a7a7a7",
+        "--ray-token-function": "#ffffff",
+        "--ray-token-string-expression": "#a7a7a7",
+        "--ray-token-punctuation": "#a7a7a7",
+        "--ray-token-link": "#a7a7a7",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "#a7a7a7",
+        "--ray-token-diff-deleted": "#a7a7a7",
+        "--ray-token-diff-inserted": "#a7a7a7"
+      }
+    }
+  },
+  "breeze": {
+    "id": "breeze",
+    "name": "Breeze",
+    "background": {
+      "from": "#CF2F98",
+      "to": "#6A3DEC"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#434447",
+        "--ray-token-constant": "#0B7880",
+        "--ray-token-string": "#886594",
+        "--ray-token-comment": "#8C828B",
+        "--ray-token-keyword": "#496EB8",
+        "--ray-token-parameter": "#C44170",
+        "--ray-token-function": "#C44170",
+        "--ray-token-string-expression": "#886594",
+        "--ray-token-punctuation": "#C44170",
+        "--ray-token-link": "#625B6B",
+        "--ray-token-number": "#24805E",
+        "--ray-token-property": "#0B7880",
+        "--ray-token-diff-deleted": "#C44170",
+        "--ray-token-diff-inserted": "#00A67D"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#49E8F2",
+        "--ray-token-string": "#E9AEFE",
+        "--ray-token-comment": "#8A757D",
+        "--ray-token-keyword": "#6599FF",
+        "--ray-token-parameter": "#F8518D",
+        "--ray-token-function": "#F8518D",
+        "--ray-token-string-expression": "#E9AEFE",
+        "--ray-token-punctuation": "#F8518D",
+        "--ray-token-link": "#ECFEEF",
+        "--ray-token-number": "#55E7B2",
+        "--ray-token-property": "#49E8F2",
+        "--ray-token-diff-deleted": "#F8518D",
+        "--ray-token-diff-inserted": "#00A67D"
+      }
+    }
+  },
+  "candy": {
+    "id": "candy",
+    "name": "Candy",
+    "background": {
+      "from": "#A58EFB",
+      "to": "#E9BFF8"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#434447",
+        "--ray-token-constant": "#2286A6",
+        "--ray-token-string": "#B2762E",
+        "--ray-token-comment": "#8D949B",
+        "--ray-token-keyword": "#DC155E",
+        "--ray-token-parameter": "#009033",
+        "--ray-token-function": "#009033",
+        "--ray-token-string-expression": "#B2762E",
+        "--ray-token-punctuation": "#d15a8b",
+        "--ray-token-link": "#d15a8b",
+        "--ray-token-number": "#676DFF",
+        "--ray-token-property": "#2286A6",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#009033"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#1AC8FF",
+        "--ray-token-string": "#DFD473",
+        "--ray-token-comment": "#807796",
+        "--ray-token-keyword": "#FF659C",
+        "--ray-token-parameter": "#1AC8FF",
+        "--ray-token-function": "#73DFA5",
+        "--ray-token-string-expression": "#DFD473",
+        "--ray-token-punctuation": "#FF659C",
+        "--ray-token-link": "#FF659C",
+        "--ray-token-number": "#7A7FFD",
+        "--ray-token-property": "#1AC8FF",
+        "--ray-token-diff-deleted": "#FF605E",
+        "--ray-token-diff-inserted": "#73DFA5"
+      }
+    }
+  },
+  "crimson": {
+    "id": "crimson",
+    "name": "Crimson",
+    "background": {
+      "from": "#FF6363",
+      "to": "#733434"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#685B5B",
+        "--ray-token-constant": "#C94F0A",
+        "--ray-token-string": "#836250",
+        "--ray-token-comment": "#978A8A",
+        "--ray-token-keyword": "#BE3B3B",
+        "--ray-token-parameter": "#9E7070",
+        "--ray-token-function": "#9E7070",
+        "--ray-token-string-expression": "#836250",
+        "--ray-token-punctuation": "#BE3B3B",
+        "--ray-token-link": "#BE3B3B",
+        "--ray-token-number": "#C94F0A",
+        "--ray-token-property": "#D15510",
+        "--ray-token-diff-deleted": "#BE3B3B",
+        "--ray-token-diff-inserted": "#00A67D"
+      },
+      "dark": {
+        "--ray-foreground": "#FEFDFD",
+        "--ray-token-constant": "#D15510",
+        "--ray-token-string": "#EBB99D",
+        "--ray-token-comment": "#895E60",
+        "--ray-token-keyword": "#EB6F6F",
+        "--ray-token-parameter": "#C88E8E",
+        "--ray-token-function": "#C88E8E",
+        "--ray-token-string-expression": "#EBB99D",
+        "--ray-token-punctuation": "#EB6F6F",
+        "--ray-token-link": "#EB6F6F",
+        "--ray-token-number": "#FDA97A",
+        "--ray-token-property": "#D15510",
+        "--ray-token-diff-deleted": "#EB6F6F",
+        "--ray-token-diff-inserted": "#6FEB71"
+      }
+    }
+  },
+  "falcon": {
+    "id": "falcon",
+    "name": "Falcon",
+    "background": {
+      "from": "#BDE3EC",
+      "to": "#363654"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#464C65",
+        "--ray-token-constant": "#839AA7",
+        "--ray-token-string": "#506483",
+        "--ray-token-comment": "#9DA4AD",
+        "--ray-token-keyword": "#5C827D",
+        "--ray-token-parameter": "#6A7C9F",
+        "--ray-token-function": "#6A7C9F",
+        "--ray-token-string-expression": "#46615D",
+        "--ray-token-punctuation": "#5C827D",
+        "--ray-token-link": "#5C827D",
+        "--ray-token-number": "#AE6A65",
+        "--ray-token-property": "#839AA7",
+        "--ray-token-diff-deleted": "#AE6A65",
+        "--ray-token-diff-inserted": "#5C827D"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#799DB1",
+        "--ray-token-string": "#6A8697",
+        "--ray-token-comment": "#6D7E88",
+        "--ray-token-keyword": "#9AB6B2",
+        "--ray-token-parameter": "#6D88BB",
+        "--ray-token-function": "#6D88BB",
+        "--ray-token-string-expression": "#789083",
+        "--ray-token-punctuation": "#9AB6B2",
+        "--ray-token-link": "#9AB6B2",
+        "--ray-token-number": "#BD9C9C",
+        "--ray-token-property": "#799DB1",
+        "--ray-token-diff-deleted": "#BD9C9C",
+        "--ray-token-diff-inserted": "#9AB6B2"
+      }
+    }
+  },
+  "meadow": {
+    "id": "meadow",
+    "name": "Meadow",
+    "background": {
+      "from": "#59D499",
+      "to": "#A0872D"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#54594D",
+        "--ray-token-constant": "#B6781B",
+        "--ray-token-string": "#837E50",
+        "--ray-token-comment": "#72806E",
+        "--ray-token-keyword": "#049649",
+        "--ray-token-parameter": "#798B52",
+        "--ray-token-function": "#798B52",
+        "--ray-token-string-expression": "#837E50",
+        "--ray-token-punctuation": "#049649",
+        "--ray-token-link": "#049649",
+        "--ray-token-number": "#2C8801",
+        "--ray-token-property": "#B6781B",
+        "--ray-token-diff-deleted": "#B6781B",
+        "--ray-token-diff-inserted": "#049649"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#E4B165",
+        "--ray-token-string": "#E9EB9D",
+        "--ray-token-comment": "#708B6C",
+        "--ray-token-keyword": "#6DD79F",
+        "--ray-token-parameter": "#B3D767",
+        "--ray-token-function": "#B3D767",
+        "--ray-token-string-expression": "#E9EB9D",
+        "--ray-token-punctuation": "#6DD79F",
+        "--ray-token-link": "#6DD79F",
+        "--ray-token-number": "#46B114",
+        "--ray-token-property": "#E4B165",
+        "--ray-token-diff-deleted": "#E4B165",
+        "--ray-token-diff-inserted": "#B3D767"
+      }
+    }
+  },
+  "midnight": {
+    "id": "midnight",
+    "name": "Midnight",
+    "background": {
+      "from": "#4CC8C8",
+      "to": "#202033"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#434447",
+        "--ray-token-constant": "#766599",
+        "--ray-token-string": "#5F758F",
+        "--ray-token-comment": "#78808C",
+        "--ray-token-keyword": "#587678",
+        "--ray-token-parameter": "#2F788F",
+        "--ray-token-function": "#2F788F",
+        "--ray-token-string-expression": "#5F758F",
+        "--ray-token-punctuation": "#587678",
+        "--ray-token-link": "#5A797A",
+        "--ray-token-number": "#2D8264",
+        "--ray-token-property": "#766599",
+        "--ray-token-diff-deleted": "#766599",
+        "--ray-token-diff-inserted": "#2D8264"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#9681C2",
+        "--ray-token-string": "#6D86A4",
+        "--ray-token-comment": "#4A4C56",
+        "--ray-token-keyword": "#7DA9AB",
+        "--ray-token-parameter": "#51D0F8",
+        "--ray-token-function": "#51D0F8",
+        "--ray-token-string-expression": "#6D86A4",
+        "--ray-token-punctuation": "#7DA9AB",
+        "--ray-token-link": "#7DA9AB",
+        "--ray-token-number": "#75D2B1",
+        "--ray-token-property": "#9681C2",
+        "--ray-token-diff-deleted": "#9681C2",
+        "--ray-token-diff-inserted": "#75D2B1"
+      }
+    }
+  },
+  "raindrop": {
+    "id": "raindrop",
+    "name": "Raindrop",
+    "background": {
+      "from": "#8EC7FB",
+      "to": "#1C55AA"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#687077",
+        "--ray-token-constant": "#007BA1",
+        "--ray-token-string": "#507683",
+        "--ray-token-comment": "#6E7780",
+        "--ray-token-keyword": "#008DAC",
+        "--ray-token-parameter": "#4F9488",
+        "--ray-token-function": "#4F9488",
+        "--ray-token-string-expression": "#507683",
+        "--ray-token-punctuation": "#008DAC",
+        "--ray-token-link": "#008DAC",
+        "--ray-token-number": "#7459E1",
+        "--ray-token-property": "#007BA1",
+        "--ray-token-diff-deleted": "#7459E1",
+        "--ray-token-diff-inserted": "#008DAC"
+      },
+      "dark": {
+        "--ray-foreground": "#E4F2FF",
+        "--ray-token-constant": "#008BB7",
+        "--ray-token-string": "#9DD8EB",
+        "--ray-token-comment": "#6C808B",
+        "--ray-token-keyword": "#2ED9FF",
+        "--ray-token-parameter": "#1AD6B5",
+        "--ray-token-function": "#1AD6B5",
+        "--ray-token-string-expression": "#9DD8EB",
+        "--ray-token-punctuation": "#2ED9FF",
+        "--ray-token-link": "#2ED9FF",
+        "--ray-token-number": "#9984EE",
+        "--ray-token-property": "#008BB7",
+        "--ray-token-diff-deleted": "#9984EE",
+        "--ray-token-diff-inserted": "#2ED9FF"
+      }
+    }
+  },
+  "sunset": {
+    "id": "sunset",
+    "name": "Sunset",
+    "background": {
+      "from": "#FFCF73",
+      "to": "#FF7A2F"
+    },
+    "group": "Defaults",
+    "syntax": {
+      "light": {
+        "--ray-foreground": "#737568",
+        "--ray-token-constant": "#AD5A78",
+        "--ray-token-string": "#8C703C",
+        "--ray-token-comment": "#7A7055",
+        "--ray-token-keyword": "#A1642C",
+        "--ray-token-parameter": "#807410",
+        "--ray-token-function": "#807410",
+        "--ray-token-string-expression": "#8C703C",
+        "--ray-token-punctuation": "#A1642C",
+        "--ray-token-link": "#A1642C",
+        "--ray-token-number": "#856F00",
+        "--ray-token-property": "#AD5A78",
+        "--ray-token-diff-deleted": "#AD5A78",
+        "--ray-token-diff-inserted": "#856F00"
+      },
+      "dark": {
+        "--ray-foreground": "#FFFFFF",
+        "--ray-token-constant": "#E978A1",
+        "--ray-token-string": "#F9D38C",
+        "--ray-token-comment": "#878572",
+        "--ray-token-keyword": "#FFAF65",
+        "--ray-token-parameter": "#E2D66B",
+        "--ray-token-function": "#E2D66B",
+        "--ray-token-string-expression": "#F9D38C",
+        "--ray-token-punctuation": "#FFAF65",
+        "--ray-token-link": "#FFAF65",
+        "--ray-token-number": "#E7CF55",
+        "--ray-token-property": "#E978A1",
+        "--ray-token-diff-deleted": "#E978A1",
+        "--ray-token-diff-inserted": "#E7CF55"
+      }
+    }
+  },
+  "firecrawl": {
+    "id": "firecrawl",
+    "name": "Firecrawl",
+    "background": {
+      "from": "#000",
+      "to": "#000"
+    },
+    "group": "Brands",
+    "iconUrl": "http://localhost:3000undefined",
+    "font": "geist-mono",
+    "partner": true,
+    "syntax": {
+      "light": {
+        "--ray-foreground": "hsla(0, 0%, 9%,1)",
+        "--ray-token-constant": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-string": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-comment": "hsla(180, 0%, 45.776%)",
+        "--ray-token-keyword": "hsla(180, 0%, 45.776%)",
+        "--ray-token-parameter": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-function": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-string-expression": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-punctuation": "hsla(180, 0%, 45.776%)",
+        "--ray-token-link": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-number": "#f97316",
+        "--ray-token-property": "hsla(180, 0%, 45.776%)",
+        "--ray-highlight": "oklch(94.58% 0.0293 249.84870859673202)",
+        "--ray-highlight-border": "oklch(53.18% 0.2399 256.9900584162342)",
+        "--ray-highlight-hover": "oklch(94.58% 0.0293 249.84870859673202 / 30%)",
+        "--ray-token-diff-deleted": "oklch(58.01% 0.227 25.12)",
+        "--ray-token-diff-inserted": "oklch(57.81% 0.1776 147.5)"
+      },
+      "dark": {
+        "--ray-foreground": "#ffffff",
+        "--ray-token-constant": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-string": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-comment": "#666666",
+        "--ray-token-keyword": "#a7a7a7",
+        "--ray-token-parameter": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-function": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-string-expression": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-punctuation": "#a7a7a7",
+        "--ray-token-link": "hsla(26.433, 82.533%, 50.131%)",
+        "--ray-token-number": "#ffffff",
+        "--ray-token-property": "#a7a7a7",
+        "--ray-token-diff-deleted": "#a7a7a7",
+        "--ray-token-diff-inserted": "#a7a7a7"
+      }
+    }
+  }
+}

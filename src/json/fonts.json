@@ -1,0 +1,208 @@
+[
+  {
+    "name": "Almamono",
+    "value": "Almamono",
+    "src": "/fonts/Almamono/Almamono.woff2"
+  },
+  {
+    "name": "Amit Light",
+    "value": "AmitLight",
+    "src": "/fonts/Ligaturized/Amit Light.otf"
+  },
+  {
+    "name": "Anomaly",
+    "value": "Anomaly",
+    "src": "/fonts/Anomaly/Anomaly.otf"
+  },
+  {
+    "name": "Anymous",
+    "value": "Anymous",
+    "src": "/fonts/Ligaturized/Anymous.ttf"
+  },
+  {
+    "name": "Cascadia Code",
+    "value": "CascadiaCode",
+    "src": "/fonts/CascadiaCode/Cascadia Code.woff2"
+  },
+  {
+    "name": "Comic Mono",
+    "value": "ComicMono",
+    "src": "/fonts/ComicMono/Comic Mono.ttf"
+  },
+  {
+    "name": "Droid Sans Mono",
+    "value": "DroidSansMono",
+    "src": "/fonts/Ligaturized/DroidSansMono.ttf"
+  },
+  {
+    "name": "Fantasque Sans Mono",
+    "value": "FantasqueSansMono",
+    "src": "/fonts/Ligaturized/FantasqueSansMono.ttf"
+  },
+  {
+    "name": "FiraCode Regular",
+    "value": "FiraCodeRegular",
+    "src": "/fonts/FiraCode/FiraCode-Regular.woff2"
+  },
+  {
+    "name": "HachiMaruPop",
+    "value": "HachiMaruPop",
+    "src": "/fonts/HachiMaruPop/HachiMaruPop.woff"
+  },
+  {
+    "name": "Hack",
+    "value": "Hack",
+    "src": "/fonts/Ligaturized/Hack.ttf"
+  },
+  {
+    "name": "Hasklig",
+    "value": "Hasklig",
+    "src": "/fonts/Hasklig/Hasklig-Regular.ttf"
+  },
+  {
+    "name": "Hasklig Italic",
+    "value": "HaskligItalic",
+    "src": "/fonts/Hasklig/Hasklig-It.ttf"
+  },
+  {
+    "name": "IBMPlex Mono",
+    "value": "IBMPlexMono",
+    "src": "/fonts/IBMPlexMono/IBMPlex Mono.ttf"
+  },
+  {
+    "name": "Inconsolata",
+    "value": "Inconsolata",
+    "src": "/fonts/Inconsolata/Inconsolata.ttf"
+  },
+  {
+    "name": "Input Mono",
+    "value": "InputMono",
+    "src": "/fonts/InputMono/Input Mono.woff2"
+  },
+  {
+    "name": "Iosevka",
+    "value": "Iosevka",
+    "src": "/fonts/Iosevka/iosevka-regular.woff2"
+  },
+  {
+    "name": "JetBrains Mono",
+    "value": "JetBrainsMono",
+    "src": "/fonts/JetBrainsMono/JetBrainsMono.ttf"
+  },
+  {
+    "name": "Lex Mono",
+    "value": "LexMono",
+    "src": "/fonts/Ligaturized/LexMono.ttf"
+  },
+  {
+    "name": "Lex Mono Italic",
+    "value": "LexMonoItalic",
+    "src": "/fonts/Ligaturized/LexMono Italic.ttf"
+  },
+  {
+    "name": "LigaSrc Pro Regular",
+    "value": "LigaSrcProRegular",
+    "src": "/fonts/Ligaturized/LigaSrcPro-Regular.ttf"
+  },
+  {
+    "name": "Major Mono Display",
+    "value": "MajorMonoDisplay",
+    "src": "/fonts/MajorMono/MajorMonoDisplay.ttf"
+  },
+  {
+    "name": "Monoid Italic",
+    "value": "MonoidItalic",
+    "src": "/fonts/Monoid/Monoid-Italic.ttf"
+  },
+  {
+    "name": "Monoid Regular",
+    "value": "MonoidRegular",
+    "src": "/fonts/Monoid/Monoid-Regular.ttf"
+  },
+  {
+    "name": "Monoid Retina",
+    "value": "MonoidRetina",
+    "src": "/fonts/Monoid/Monoid-Retina.ttf"
+  },
+
+  {
+    "name": "Operator Mono",
+    "value": "OperatorMono",
+    "src": "/fonts/OperatorMono/OperatorMono.otf"
+  },
+  {
+    "name": "Operator Mono Italic",
+    "value": "OperatorMonoItalic",
+    "src": "/fonts/OperatorMono/OperatorMono Italic.otf"
+  },
+  {
+    "name": "Roboto Mono",
+    "value": "RobotoMono",
+    "src": "/fonts/RobotoMono/RobotoMono.ttf"
+  },
+  {
+    "name": "Roboto Mono X",
+    "value": "RobotoMonoX",
+    "src": "/fonts/Ligaturized/RobotoMono X.ttf"
+  },
+  {
+    "name": "SFMonoLigaturized",
+    "value": "SFMonoLigaturized",
+    "src": "/fonts/SFMono/SFMonoLigaturized.ttf"
+  },
+  {
+    "name": "Source Pro Italic",
+    "value": "SourceProItalic",
+    "src": "/fonts/Ligaturized/SourcePro Italic.ttf"
+  },
+  {
+    "name": "SourceCodePro",
+    "value": "SourceCodePro",
+    "src": "/fonts/SourceCodePro/SourceCodePro.ttf"
+  },
+  {
+    "name": "Space Mono X",
+    "value": "SpaceMonoX",
+    "src": "/fonts/Ligaturized/SpaceMono X.ttf"
+  },
+  {
+    "name": "Sweet",
+    "value": "Sweet",
+    "src": "/fonts/Sweet16/Sweet.ttf"
+  },
+  {
+    "name": "Syne Mono",
+    "value": "SyneMono",
+    "src": "/fonts/SyneMono/SyneMono.ttf"
+  },
+  {
+    "name": "Ubuntu Mono",
+    "value": "UbuntuMono",
+    "src": "/fonts/UbuntuMono/UbuntuMono.ttf"
+  },
+  {
+    "name": "Ubuntu Mono X",
+    "value": "UbuntuMonoX",
+    "src": "/fonts/Ligaturized/UbuntuMono X.ttf"
+  },
+  {
+    "name": "Victor Mono Italic",
+    "value": "VictorMonoItalic",
+    "src": "/fonts/VictorMonoAll/VictorMono Italic.woff2"
+  },
+  {
+    "name": "Victor Mono Regular",
+    "value": "VictorMonoRegular",
+    "src": "/fonts/VictorMonoAll/VictorMono Regular.woff2"
+  },
+  {
+    "name": "XanhMono Italic",
+    "value": "XanhMonoItalic",
+    "src": "/fonts/XanhMono/XanhMono Italic.ttf"
+  },
+  {
+    "name": "XanhMono Regular",
+    "value": "XanhMonoRegular",
+    "src": "/fonts/XanhMono/XanhMono Regular.ttf"
+  }
+]

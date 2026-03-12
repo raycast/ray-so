@@ -1,0 +1,183 @@
+{
+  "twitter": [
+    {
+      "name": "White",
+      "hex": "#000000",
+      "rgba": "rgba(0, 0, 0, 1)"
+    },
+    {
+      "name": "Black",
+      "hex": "#ffffff",
+      "rgba": "rgba(255, 255, 255, 1)"
+    },
+    {
+      "name": "Carolina Blue",
+      "hex": "#1D9BF0",
+      "rgba": "rgba(29, 155, 240, 1)"
+    },
+    {
+      "name": "Cyber Yellow",
+      "hex": "#FFD400",
+      "rgba": "rgba(255, 212, 0, 1)"
+    },
+    {
+      "name": "Flickr Pink",
+      "hex": "#F91880",
+      "rgba": "rgba(249, 24, 128, 1)"
+    },
+    {
+      "name": "Medium Slate Blue",
+      "hex": "#7856FF",
+      "rgba": "rgba(120, 86, 255, 1)"
+    },
+    {
+      "name": "Heat Wave",
+      "hex": "#FF7A00",
+      "rgba": "rgba(255, 122, 0, 1)"
+    },
+    {
+      "name": "Medium Sea Green",
+      "hex": "#00BA7C",
+      "rgba": "rgba(0, 186, 124, 1)"
+    }
+  ],
+  "ios": [
+    {
+      "name": "Blue",
+      "hex": "#007AFF",
+      "rgba": "rgba(0, 122, 255, 1)"
+    },
+    {
+      "name": "Green",
+      "hex": "#34C759",
+      "rgba": "rgba(52, 199, 89, 1)"
+    },
+    {
+      "name": "Indigo",
+      "hex": "#5856D6",
+      "rgba": "rgba(88, 86, 214, 1)"
+    },
+    {
+      "name": "Orange",
+      "hex": "#FF9500",
+      "rgba": "rgba(255, 149, 0, 1)"
+    },
+    {
+      "name": "Pink",
+      "hex": "#FF2D55",
+      "rgba": "rgba(255, 45, 85, 1)"
+    },
+    {
+      "name": "Purple",
+      "hex": "#AF52DE",
+      "rgba": "rgba(175, 82, 222, 1)"
+    },
+    {
+      "name": "Red",
+      "hex": "#FF3B30",
+      "rgba": "rgba(255, 59, 48, 1)"
+    },
+    {
+      "name": "Teal",
+      "hex": "#5AC8FA",
+      "rgba": "rgba(90, 200, 250, 1)"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#FFCC00",
+      "rgba": "rgba(255, 204, 0, 1)"
+    }
+  ],
+  "material": [
+    {
+      "name": "Red",
+      "hex": "#F44336",
+      "rgba": "rgba(244, 67, 54, 1)"
+    },
+    {
+      "name": "Pink",
+      "hex": "#E91E63",
+      "rgba": "rgba(233, 30, 99, 1)"
+    },
+    {
+      "name": "Purple",
+      "hex": "#9C27B0",
+      "rgba": "rgba(156, 39, 176, 1)"
+    },
+    {
+      "name": "Deep Purple",
+      "hex": "#673AB7",
+      "rgba": "rgba(103, 58, 183, 1)"
+    },
+    {
+      "name": "Indigo",
+      "hex": "#3F51B5",
+      "rgba": "rgba(63, 81, 181, 1)"
+    },
+    {
+      "name": "Blue",
+      "hex": "#2196F3",
+      "rgba": "rgba(33, 150, 243, 1)"
+    },
+    {
+      "name": "Light Blue",
+      "hex": "#03A9F4",
+      "rgba": "rgba(3, 169, 244, 1)"
+    },
+    {
+      "name": "Cyan",
+      "hex": "#00BCD4",
+      "rgba": "rgba(0, 188, 212, 1)"
+    },
+    {
+      "name": "Teal",
+      "hex": "#009688",
+      "rgba": "rgba(0, 150, 136, 1)"
+    },
+    {
+      "name": "Green",
+      "hex": "#4CAF50",
+      "rgba": "rgba(76, 175, 80, 1)"
+    },
+    {
+      "name": "Light Green",
+      "hex": "#8BC34A",
+      "rgba": "rgba(139, 195, 74, 1)"
+    },
+    {
+      "name": "Lime",
+      "hex": "#CDDC39",
+      "rgba": "rgba(205, 220, 57, 1)"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#FFEB3B",
+      "rgba": "rgba(255, 235, 59, 1)"
+    },
+    {
+      "name": "Amber",
+      "hex": "#FFC107",
+      "rgba": "rgba(255, 193, 7, 1)"
+    },
+    {
+      "name": "Orange",
+      "hex": "#FF5722",
+      "rgba": "rgba(255, 87, 34, 1)"
+    },
+    {
+      "name": "Deep Orange",
+      "hex": "#795548",
+      "rgba": "rgba(121, 85, 72, 1)"
+    },
+    {
+      "name": "Grey",
+      "hex": "#9E9E9E",
+      "rgba": "rgba(158, 158, 158, 1)"
+    },
+    {
+      "name": "Blue Grey",
+      "hex": "#607D8B",
+      "rgba": "rgba(96, 125, 139, 1)"
+    }
+  ]
+}

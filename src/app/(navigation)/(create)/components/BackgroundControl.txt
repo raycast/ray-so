@@ -1,0 +1,18 @@
+import { useAtom } from "jotai";
+import React from "react";
+import { showBackgroundAtom } from "../store";
+import useHotkeys from "../../../../utils/useHotkeys";
+import { Switch } from "@/components/ui/switch";
+import { Field, FieldLabel } from "@/components/ui/field";
+
+const BackgroundControl: React.FC = () => {
+  const [showBackground, setShowBackground] = useAtom(showBackgroundAtom);
+
+  useHotkeys("b", () => {
+    setShowBackground((old) => !old);
+  });
+
+  return <Switch checked={showBackground} onCheckedChange={(checked) => setShowBackground(checked)} />;
+};
+
+export default BackgroundControl;

@@ -1,0 +1,5 @@
+{
+  "ios": "ios::terminal",
+  "unix": "unix::terminal",
+  "windows": "windows::terminal"
+}

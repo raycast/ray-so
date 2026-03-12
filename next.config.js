@@ -57,16 +57,16 @@ const nextConfig = {
       },
     },
   },
-  async rewrites() {
-    return {
-      fallback: [
-        {
-          source: "/:path*",
-          destination: "https://go.ray.so/:path*",
-        },
-      ],
-    };
-  },
+  // async rewrites() {
+  //   return {
+  //     fallback: [
+  //       {
+  //         source: "/:path*",
+  //         destination: "https://go.ray.so/:path*",
+  //       },
+  //     ],
+  //   };
+  // },
   async redirects() {
     return [
       {

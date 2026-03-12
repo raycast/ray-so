@@ -1,0 +1,169 @@
+{
+  "instagram": [
+    {
+      "title": "Feed - Square",
+      "ratio": "1:1",
+      "description": "Instagram Feed Square",
+      "resolution": {
+        "height": 1080,
+        "width": 1080
+      }
+    },
+    {
+      "title": "Feed - Portrait",
+      "ratio": "4:5",
+      "description": "Instagram Feed Portrait",
+      "resolution": {
+        "height": 1350,
+        "width": 1080
+      }
+    },
+    {
+      "title": "Stories",
+      "ratio": "9:16",
+      "description": "Instagram Stories",
+      "resolution": {
+        "height": 1920,
+        "width": 1080
+      }
+    },
+    {
+      "title": "Reels",
+      "ratio": "9:16",
+      "description": "Instagram Reels",
+      "resolution": {
+        "height": 1920,
+        "width": 1080
+      }
+    },
+    {
+      "title": "Feed - Landscape",
+      "ratio": "16:9",
+      "description": "Instagram Feed Landscape",
+      "resolution": {
+        "height": 1080,
+        "width": 1920
+      }
+    }
+  ],
+  "twitter": [
+    {
+      "title": "Tweet Image",
+      "ratio": "16:9",
+      "description": "Twitter Landscape Image",
+      "resolution": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "title": "Tweet Video",
+      "ratio": "16:9",
+      "description": "Twitter Video",
+      "resolution": {
+        "height": 720,
+        "width": 1280
+      }
+    }
+  ],
+  "facebook": [
+    {
+      "title": "Facebook Feed",
+      "ratio": "16:9",
+      "description": "Facebook Landscape Feed",
+      "resolution": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "title": "Facebook Cover",
+      "ratio": "820:312",
+      "description": "Facebook Cover Photo",
+      "resolution": {
+        "height": 312,
+        "width": 820
+      }
+    }
+  ],
+  "linkedIn": [
+    {
+      "title": "LinkedIn Post",
+      "ratio": "1.91:1",
+      "description": "LinkedIn Post Image",
+      "resolution": {
+        "height": 628,
+        "width": 1200
+      }
+    },
+    {
+      "title": "LinkedIn Banner",
+      "ratio": "4:1",
+      "description": "LinkedIn Banner Image",
+      "resolution": {
+        "height": 280,
+        "width": 1120
+      }
+    }
+  ],
+  "youtube": [
+    {
+      "title": "YouTube Thumbnail",
+      "ratio": "16:9",
+      "description": "YouTube Video Thumbnail",
+      "resolution": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "title": "YouTube Channel Art",
+      "ratio": "16:9",
+      "description": "YouTube Channel Art",
+      "resolution": {
+        "height": 720,
+        "width": 2560
+      }
+    }
+  ],
+  "pinterest": [
+    {
+      "title": "Pinterest Pin",
+      "ratio": "2:3",
+      "description": "Pinterest Pin",
+      "resolution": {
+        "height": 1500,
+        "width": 1000
+      }
+    },
+    {
+      "title": "Pinterest Board Cover",
+      "ratio": "1:1",
+      "description": "Pinterest Board Cover",
+      "resolution": {
+        "height": 800,
+        "width": 800
+      }
+    }
+  ],
+  "snapchat": [
+    {
+      "title": "Snapchat Story",
+      "ratio": "9:16",
+      "description": "Snapchat Story",
+      "resolution": {
+        "height": 1920,
+        "width": 1080
+      }
+    },
+    {
+      "title": "Snapchat Geofilter",
+      "ratio": "1:1",
+      "description": "Snapchat Geofilter",
+      "resolution": {
+        "height": 1080,
+        "width": 1080
+      }
+    }
+  ]
+}
