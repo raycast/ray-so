@@ -496,7 +496,20 @@ const search: Quicklink[] = [
     link: "itms-apps://itunes.apple.com/search?term={App}",
     icon: {
       name: "brand-apple",
+    }
+  },
+  {
+    id: "raycast-store",
+    name: "Search Raycast Store",
+    link: "https://raycast.com/search?q={Extension}",
+    icon: {
+      name: "store"
     },
+    description: "Search for Raycast extensions (macOS and Windows)",
+    author: {
+      name: "Muhammadrizo",
+      link: "https://www.raycast.com/muhammadrizo"
+    }
   },
   {
     id: "google-images",
