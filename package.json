@@ -87,7 +87,6 @@
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
     "lodash": "^4.17.23",
-    "lodash-es": "^4.17.23",
-    "ajv": ">=6.14.0"
+    "lodash-es": "^4.17.23"
   }
 }
