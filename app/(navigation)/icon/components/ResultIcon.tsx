@@ -2,14 +2,13 @@ import React, { useId } from "react";
 
 import noisePicture from "../assets/noise.inline.png";
 
-import { SettingsType } from "../lib/types";
+import type { IconComponentType, SettingsType } from "../lib/types";
 
 type PropTypes = {
   settings: SettingsType;
   size?: number;
   isPreview?: boolean;
-  // TODO: fix icon type?
-  IconComponent?: React.FC<React.SVGProps<SVGSVGElement>>;
+  IconComponent?: IconComponentType;
 };
 
 const ResultIcon = React.forwardRef<SVGSVGElement, PropTypes>(

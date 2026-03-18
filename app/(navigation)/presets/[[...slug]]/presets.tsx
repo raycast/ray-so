@@ -17,6 +17,7 @@ import { Button } from "@/components/button";
 import { InfoDialog } from "../components/InfoDialog";
 import { AiModel } from "@/api/ai";
 import { Extension } from "@/api/store";
+import Image from "next/image";
 
 type Props = {
   models: AiModel[];
@@ -160,7 +161,7 @@ export default function Presets({ models, extensions }: Props) {
                             className="flex items-center gap-2 flex-1 hover:text-gray-12 transition-colors"
                           >
                             {icon ? (
-                              <img src={icon} alt={extension.title} width={16} height={16} />
+                              <Image src={icon} alt={extension.title} width={16} height={16} sizes="16px" />
                             ) : (
                               <div className="w-4 h-4 bg-gray-4 rounded" />
                             )}

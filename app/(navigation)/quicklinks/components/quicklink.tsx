@@ -22,6 +22,7 @@ import { makeUrl, addQuicklinkToRaycast } from "../utils/actions";
 import { shortenUrl } from "@/utils/common";
 import { useRouter } from "next/navigation";
 import { isValidLink } from "../utils/isValidLink";
+import Image from "next/image";
 
 type QuicklinkComponentProps = {
   quicklink: Quicklink;
@@ -108,11 +109,12 @@ export function QuicklinkComponent({ quicklink, isSelected, setIsSelected, updat
                 ) : imgError ? (
                   <IconComponent icon="link" />
                 ) : (
-                  <img
+                  <Image
                     src={`https://api.ray.so/favicon?url=%5C${domain}&size=64`}
                     alt="logo"
                     width={16}
                     height={16}
+                    sizes="16px"
                     className={cn(
                       `grayscale rounded overflow-hidden contrast-150 group-hover:grayscale-0`,
                       quicklink?.icon?.invert && "invert",

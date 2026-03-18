@@ -8,6 +8,7 @@ import LanguageControl from "./LanguageControl";
 import PaddingControl from "./PaddingControl";
 import ThemeControl from "./ThemeControl";
 import LineNumberControl from "./LineNumberControl";
+import { DiffModeControl } from "./DiffModeControl";
 
 const Controls: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Controls: React.FC = () => {
       <BackgroundControl />
       <DarkModeControl />
       <LineNumberControl />
+      <DiffModeControl />
       <PaddingControl />
       <LanguageControl />
     </div>

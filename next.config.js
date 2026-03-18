@@ -16,6 +16,10 @@ const nextConfig = {
         hostname: "files.raycast.com",
         protocol: "https",
       },
+      {
+        hostname: "api.ray.so",
+        protocol: "https",
+      },
     ],
   },
   turbopack: {

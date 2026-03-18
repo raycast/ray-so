@@ -51,9 +51,11 @@ export function Quicklinks() {
   }, []);
 
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
-
-  useEffect(() => {
-    const flavoredCategories = originalCategories.map((category) => {
+  const flavoredCategories = React.useMemo(() => {
+    if (!raycastProtocol) {
+      return categories;
+    }
+    return categories.map((category) => {
       return {
         ...category,
         quicklinks: category.quicklinks.map((quicklink) => {
@@ -66,8 +68,7 @@ export function Quicklinks() {
         }),
       };
     });
-    setCategories(flavoredCategories);
-  }, [raycastProtocol]);
+  }, [categories, raycastProtocol]);
 
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
@@ -87,14 +88,14 @@ export function Quicklinks() {
     setCategories(updatedCategories);
   };
 
-  const filteredQuicklinks = categories.flatMap((category) => {
+  const filteredQuicklinks = flavoredCategories.flatMap((category) => {
     return category.quicklinks.filter((quicklink) => quicklink.name.toLowerCase().includes(search.toLowerCase()));
   });
 
   const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
 
   const router = useRouter();
-  const selectedQuicklinks = categories.flatMap((category) => {
+  const selectedQuicklinks = flavoredCategories.flatMap((category) => {
     return category.quicklinks.filter((quicklink) => selectedQuicklinkIds.includes(quicklink.id));
   });
 
@@ -113,8 +114,8 @@ export function Quicklinks() {
       changed: { added, removed },
     },
   }: SelectionEvent) => {
-    const addedQuicklinks = extractQuicklinks(added, categories);
-    const removedQuicklinks = extractQuicklinks(removed, categories);
+    const addedQuicklinks = extractQuicklinks(added, flavoredCategories);
+    const removedQuicklinks = extractQuicklinks(removed, flavoredCategories);
 
     setSelectedQuicklinkIds((prevQuicklinkIds) => {
       let quicklinkIds = [...prevQuicklinkIds];
@@ -215,7 +216,7 @@ export function Quicklinks() {
     return () => document.removeEventListener("keydown", down);
   }, [setActionsOpen, selectedQuicklinks, handleCopyData, handleDownload, handleCopyUrl, handleAddToRaycast]);
 
-  const filteredCategories = categories.filter((c) => {
+  const filteredCategories = flavoredCategories.filter((c) => {
     if (!search) return true;
     return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
   });

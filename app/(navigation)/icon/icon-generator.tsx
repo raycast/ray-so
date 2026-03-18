@@ -44,7 +44,7 @@ import ExportModal from "./components/ExportModal";
 
 import styles from "./icon-generator.module.css";
 
-import type { SettingsType } from "./lib/types";
+import type { IconComponentType, SettingsType } from "./lib/types";
 import { BASE_URL } from "@/utils/common";
 import { ButtonGroup } from "@/components/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/dropdown-menu";
@@ -248,10 +248,18 @@ type ColorInputPropTypes = {
   name: string;
   recentColors: string[];
   onChange: ColorChangeHandler;
+  onChangeComplete?: ColorChangeHandler;
   disabled?: boolean;
 };
 
-const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: ColorInputPropTypes) => {
+const ColorInput = ({
+  value,
+  name,
+  recentColors,
+  onChange,
+  onChangeComplete,
+  disabled = false,
+}: ColorInputPropTypes) => {
   return (
     <Popover.Root>
       <div className={cn(styles.inputWrapper)}>
@@ -266,7 +274,13 @@ const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: C
         <Popover.Portal>
           <Popover.Content align="end" sideOffset={4} className="z-10">
             <div className={styles.colorInput}>
-              <SketchPicker onChange={onChange} color={value} disableAlpha={true} presetColors={recentColors} />
+              <SketchPicker
+                onChange={onChange}
+                onChangeComplete={onChangeComplete}
+                color={value}
+                disableAlpha={true}
+                presetColors={recentColors}
+              />
             </div>
           </Popover.Content>
         </Popover.Portal>
@@ -431,7 +445,7 @@ export const IconGenerator = () => {
       window.devicePixelRatio = realPixelRatio;
       showInfoMessage("Image copied to clipboard", false);
     }
-  }, []);
+  }, [showInfoMessage]);
 
   const onCopyShareUrl = async () => {
     showInfoMessage("Copying URL to clipboard…", false);
@@ -655,7 +669,6 @@ export const IconGenerator = () => {
         [settingName]: color,
         selectedPresetIndex: null,
       });
-      onSaveRecentColor(color);
     };
 
   const onChangeAngle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -665,10 +678,14 @@ export const IconGenerator = () => {
     });
   };
 
-  // TODO: update to the latest react-color when it is released and use onChangeComplete
   const onSaveRecentColor = debounce((color: string) => {
     setRecentColors((colors) => uniq([color, ...colors]).slice(0, 16));
   });
+
+  const onChangeColorComplete: ColorChangeHandler = (newValue) => {
+    const color = newValue.hex.toUpperCase();
+    onSaveRecentColor(color);
+  };
 
   const onChangeFillType = (newValue: string) => {
     if (newValue) {
@@ -694,7 +711,7 @@ export const IconGenerator = () => {
     }
   };
 
-  let IconComponent: React.FC<React.SVGProps<SVGSVGElement>> = () => null;
+  let IconComponent: IconComponentType | undefined;
   const customSvgIsPng = settings.customSvg?.startsWith("data:image/png");
   const customSvgIsText = settings.customSvg?.startsWith("data:text/plaintext");
   if (settings.customSvg) {
@@ -1125,6 +1142,7 @@ export const IconGenerator = () => {
                           value={settings.backgroundStartColor}
                           name="backgroundStartColor"
                           onChange={onChangeColorSetting("backgroundStartColor")}
+                          onChangeComplete={onChangeColorComplete}
                           recentColors={recentColors}
                         />
                       </label>
@@ -1137,6 +1155,7 @@ export const IconGenerator = () => {
                             value={settings.backgroundEndColor}
                             name="backgroundEndColor"
                             onChange={onChangeColorSetting("backgroundEndColor")}
+                            onChangeComplete={onChangeColorComplete}
                             recentColors={recentColors}
                           />
                         </label>
