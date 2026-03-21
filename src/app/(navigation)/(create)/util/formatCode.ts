@@ -1,3 +1,4 @@
+import { PositionEncoding } from "@astral-sh/ruff-wasm-web";
 import { Language } from "./languages";
 
 const parsers = {
@@ -28,7 +29,7 @@ const formatCode = async (code: string, language: Language | null) => {
     const { default: initRuff, Workspace } = await import("@astral-sh/ruff-wasm-web");
     await initRuff();
 
-    const workspace = new Workspace(Workspace.defaultSettings());
+    const workspace = new Workspace(Workspace.defaultSettings(), PositionEncoding.Utf16);
     const formatted = workspace.format(code);
     return formatted.replace(/\n$/, "");
   }

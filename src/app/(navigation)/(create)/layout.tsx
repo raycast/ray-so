@@ -6,10 +6,11 @@ import "swiper/css/scrollbar";
 import React from "react";
 import { cn } from "@/lib/utils";
 import EditorProvider from "./store/providers/editor";
+import FrameContextProvider from "./store/context/frame";
 
 export default function CodeLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <FrameContextProvider>
       <div className="relative layout-fill">
         <div
           className={cn(
@@ -24,6 +25,6 @@ export default function CodeLayout({ children }: { children: React.ReactNode }) 
 
         <EditorProvider>{children}</EditorProvider>
       </div>
-    </>
+    </FrameContextProvider>
   );
 }

@@ -1,8 +1,8 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { produce } from "immer";
 import initialState from "../editor/state";
+import { useAtomValue, useSetAtom } from "jotai";
 import { editorAtom, editorStateAtom } from "../editor";
 import { SlideTypes, ElementType, EditorState } from "@/typings/editor";
-import { produce } from "immer";
 
 const useEditor = () => {
   const state = useAtomValue(editorStateAtom);

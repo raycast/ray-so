@@ -5,7 +5,7 @@ import ImageIcon from "../assets/icons/image-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
 
-import { FrameContext } from "../store/FrameContextStore";
+import { FrameContext } from "../store/context/frame";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import { fileNameAtom } from "../store";
 import download from "../util/download";

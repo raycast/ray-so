@@ -7,7 +7,6 @@ import { shikiTheme } from "./store/themes";
 
 import Frame from "./components/Frame";
 import Controls from "./components/Controls";
-import FrameContextStore from "./store/FrameContextStore";
 
 import styles from "./code.module.css";
 import NoSSR from "./components/NoSSR";
@@ -33,13 +32,11 @@ export function Code() {
   }, []);
 
   return (
-    <FrameContextStore>
-      <NoSSR>
-        <div className={cn(styles.app, "layout-scroll")}>
-          <Frame />
-          <Controls />
-        </div>
-      </NoSSR>
-    </FrameContextStore>
+    <NoSSR>
+      <div className={cn(styles.app, "layout-scroll")}>
+        <Frame />
+        <Controls />
+      </div>
+    </NoSSR>
   );
 }

@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { useContext } from "react";
 
 import { themeAtom, themeDarkModeAtom } from "../store/themes";
-import { FrameContext } from "../store/FrameContextStore";
+import { FrameContext } from "../store/context/frame";
 
 import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
