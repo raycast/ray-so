@@ -61,14 +61,25 @@
 
 .controls {
   display: flex;
-  gap: 9px;
+  gap: 8px;
 }
 
 .control {
-  width: 14px;
-  height: 14px;
-  border-radius: 7px;
-  background-color: var(--frame-control-color);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.control:nth-child(1) {
+  background-color: #ff5f56;
+}
+
+.control:nth-child(2) {
+  background-color: #ffbd2e;
+}
+
+.control:nth-child(3) {
+  background-color: #27c93f;
 }
 
 .fileName {
