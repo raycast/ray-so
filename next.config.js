@@ -7,9 +7,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["highlight.js"],
-  experimental: {
-    optimizePackageImports: ["shiki"],
-  },
+  // optimizePackageImports: ["shiki"],
   images: {
     remotePatterns: [
       {
@@ -59,16 +57,16 @@ const nextConfig = {
       },
     },
   },
-  async rewrites() {
-    return {
-      fallback: [
-        {
-          source: "/:path*",
-          destination: "https://go.ray.so/:path*",
-        },
-      ],
-    };
-  },
+  // async rewrites() {
+  //   return {
+  //     fallback: [
+  //       {
+  //         source: "/:path*",
+  //         destination: "https://go.ray.so/:path*",
+  //       },
+  //     ],
+  //   };
+  // },
   async redirects() {
     return [
       {

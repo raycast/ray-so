@@ -1,0 +1,47 @@
+[
+  {
+    "value": "story",
+    "label": "Instagram Story",
+    "resolution": { "width": 540, "height": 960 }
+  },
+  {
+    "value": "shorts",
+    "label": "Shorts / Reels / TikTok",
+    "resolution": { "width": 540, "height": 960 }
+  },
+  {
+    "value": "square",
+    "label": "Instagram Square",
+    "resolution": { "width": 540, "height": 540 }
+  },
+  {
+    "value": "portrait",
+    "label": "Instagram Portrait",
+    "resolution": { "width": 540, "height": 675 }
+  },
+  {
+    "value": "fb_post",
+    "label": "Facebook Post",
+    "resolution": { "width": 600, "height": 315 }
+  },
+  {
+    "value": "youtube_thumbnail",
+    "label": "YouTube Thumbnail",
+    "resolution": { "width": 640, "height": 360 }
+  },
+  {
+    "value": "yt_cover",
+    "label": "YouTube Channel Cover",
+    "resolution": { "width": 1280, "height": 720 }
+  },
+  {
+    "value": "x_post",
+    "label": "X Post",
+    "resolution": { "width": 600, "height": 338 }
+  },
+  {
+    "value": "ad_linkedin_post",
+    "label": "LinkedIn Post",
+    "resolution": { "width": 600, "height": 314 }
+  }
+]

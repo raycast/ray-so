@@ -1,0 +1,65 @@
+[
+  {
+    "key": "F",
+    "description": "Focus editor",
+    "icon": "solar:keyboard-line-duotone",
+    "keys": ["f"],
+    "text": "Focus"
+  },
+  {
+    "key": "Esc",
+    "description": "Unfocus editor",
+    "icon": "solar:keyboard-line-duotone",
+    "keys": [""],
+    "text": "Unfocus"
+  },
+  {
+    "key": "F",
+    "description": "Format code",
+    "icon": "solar:code-line-duotone",
+    "keys": ["option", "shift", "f"],
+    "text": "Format"
+  },
+  {
+    "key": "E",
+    "description": "Open export menu",
+    "icon": "solar:archive-down-minimlistic-line-duotone",
+    "keys": ["command", "k"],
+    "text": "Export"
+  },
+  {
+    "key": "I",
+    "description": "Copy image",
+    "icon": "solar:copy-line-duotone",
+    "keys": ["command", "c"],
+    "text": "Copy Image"
+  },
+  {
+    "key": "C",
+    "description": "Copy URL",
+    "icon": "solar:link-minimalistic-2-line-duotone",
+    "keys": ["command", "shift", "c"],
+    "text": "Copy URL"
+  },
+  {
+    "key": "?",
+    "description": "Open shortcuts",
+    "icon": "solar:question-circle-line-duotone",
+    "keys": ["?"],
+    "text": "Shortcuts"
+  },
+  {
+    "key": "Z",
+    "description": "Undo action",
+    "icon": "solar:undo-left-round-bold-duotone",
+    "keys": ["command"],
+    "text": "Undo"
+  },
+  {
+    "key": "U",
+    "description": "Redo action",
+    "icon": "solar:undo-right-round-bold-duotone",
+    "keys": ["command"],
+    "text": "Redo"
+  }
+]

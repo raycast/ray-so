@@ -1,0 +1,667 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./mask-wallpaper.css";
+@plugin "@tailwindcss/typography";
+/* ============================================================
+   Tailwind v4 Theme Configuration
+   (migrated from tailwind.config.ts)
+   ============================================================ */
+
+@theme {
+  /* Font family */
+  --font-family-sans:
+    Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+
+  /* Custom colors — values are defined as hsl() using CSS vars resolved at runtime */
+  --color-background: hsl(var(--background));
+  --color-panel: hsl(var(--panel));
+  --color-brand: hsl(var(--brand));
+  --color-purple: hsl(var(--purple));
+  --color-blue: hsl(var(--blue));
+
+  --color-gray-1: hsl(var(--gray-1));
+  --color-gray-2: hsl(var(--gray-2));
+  --color-gray-3: hsl(var(--gray-3));
+  --color-gray-4: hsl(var(--gray-4));
+  --color-gray-5: hsl(var(--gray-5));
+  --color-gray-6: hsl(var(--gray-6));
+  --color-gray-7: hsl(var(--gray-7));
+  --color-gray-8: hsl(var(--gray-8));
+  --color-gray-9: hsl(var(--gray-9));
+  --color-gray-10: hsl(var(--gray-10));
+  --color-gray-11: hsl(var(--gray-11));
+  --color-gray-12: hsl(var(--gray-12));
+
+  --color-gray-a1: var(--gray-a1);
+  --color-gray-a2: var(--gray-a2);
+  --color-gray-a3: var(--gray-a3);
+  --color-gray-a4: var(--gray-a4);
+  --color-gray-a5: var(--gray-a5);
+  --color-gray-a6: var(--gray-a6);
+  --color-gray-a7: var(--gray-a7);
+  --color-gray-a8: var(--gray-a8);
+  --color-gray-a9: var(--gray-a9);
+  --color-gray-a10: var(--gray-a10);
+  --color-gray-a11: var(--gray-a11);
+  --color-gray-a12: var(--gray-a12);
+
+  /* Custom spacing */
+  --spacing-scrollbar-offset: calc(16px + var(--removed-body-scroll-bar-size, 0px));
+
+  /* Custom border radius */
+  --radius-inherit: inherit;
+
+  /* Custom font sizes */
+  --text-xxs: 11px;
+
+  /* Animations — migrated from JS config keyframes/animation */
+  --animate-slideDownAndFade: slideDownAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideLeftAndFade: slideLeftAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideUpAndFade: slideUpAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slideRightAndFade: slideRightAndFade 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-overlayShow: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-contentShow: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideLeftAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideRightAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translateY(-1%) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0%) scale(1);
+    }
+  }
+}
+
+/* ============================================================
+   Custom Variants
+   (migrated from screens with `raw` media queries in config)
+   ============================================================ */
+
+@custom-variant tall (@media (min-height: 840px));
+@custom-variant tallx2 (@media (min-height: 1000px));
+@custom-variant desktop (@media (min-height: 840px) and (min-width: 960px));
+
+/* Dark mode via class strategy (replaces darkMode: "class" in config) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   CSS Custom Properties (design tokens)
+   ============================================================ */
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --panel: 0 0% 9.4118%; /* gray-2 */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+    --brand: 0 100% 69%;
+    --purple: 255.6 99.2% 75.9%;
+    --blue: 201.4 99.4% 66.8%;
+    --gray-1: 0 0% 5.098%;
+    --gray-2: 0 0% 9.4118%;
+    --gray-3: 0 0% 13.333%;
+    --gray-4: 0 0% 16.078%;
+    --gray-5: 0 0% 19.216%;
+    --gray-6: 0 0% 22.745%;
+    --gray-7: 0 0% 28.235%;
+    --gray-8: 0 0% 37.647%;
+    --gray-9: 0 0% 43.137%;
+    --gray-10: 0 0% 48.235%;
+    --gray-11: 0 0% 70.588%;
+    --gray-12: 0 0% 93.333%;
+    --gray-a1: hsla(0, 0%, 0%, 0);
+    --gray-a2: hsla(0, 0%, 100%, 0.0353);
+    --gray-a3: hsla(0, 0%, 100%, 0.0706);
+    --gray-a4: hsla(0, 0%, 100%, 0.1059);
+    --gray-a5: hsla(0, 0%, 100%, 0.1333);
+    --gray-a6: hsla(0, 0%, 100%, 0.1725);
+    --gray-a7: hsla(0, 0%, 100%, 0.2314);
+    --gray-a8: hsla(0, 0%, 100%, 0.3333);
+    --gray-a9: hsla(0, 0%, 100%, 0.3922);
+    --gray-a10: hsla(0, 0%, 100%, 0.4471);
+    --gray-a11: hsla(0, 0%, 100%, 0.6863);
+    --gray-a12: hsla(0, 0%, 100%, 0.9294);
+  }
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0 0% 100% / 0.2) 0, hsl(0 0% 100% / 0) 100%);
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.light {
+  --background: 0 0% 94%;
+  --panel: 0 0% 95%;
+  --brand: 0 100% 69%;
+  --gray-1: 0 0% 92.549%;
+  --gray-2: 0 0% 90.588%;
+  --gray-3: 0 0% 86.667%;
+  --gray-4: 0 0% 83.137%;
+  --gray-5: 0 0% 80%;
+  --gray-6: 0 0% 76.471%;
+  --gray-7: 0 0% 72.157%;
+  --gray-8: 0 0% 64.314%;
+  --gray-9: 0 0% 46.667%;
+  --gray-10: 0 0% 42.745%;
+  --gray-11: 0 0% 31.373%;
+  --gray-12: 0 0% 12.549%;
+  --gray-a1: hsla(0, 0%, 0%, 0.0118);
+  --gray-a2: hsla(0, 0%, 0%, 0.0235);
+  --gray-a3: hsla(0, 0%, 0%, 0.0588);
+  --gray-a4: hsla(0, 0%, 0%, 0.0902);
+  --gray-a5: hsla(0, 0%, 0%, 0.1216);
+  --gray-a6: hsla(0, 0%, 0%, 0.149);
+  --gray-a7: hsla(0, 0%, 0%, 0.1922);
+  --gray-a8: hsla(0, 0%, 0%, 0.2667);
+  --gray-a9: hsla(0, 0%, 0%, 0.4471);
+  --gray-a10: hsla(0, 0%, 0%, 0.4863);
+  --gray-a11: hsla(0, 0%, 0%, 0.6078);
+  --gray-a12: hsla(0, 0%, 0%, 0.8745);
+
+  .themes-body {
+    background-image: radial-gradient(43.48% 62.9% at 50% 31.28%, hsl(0, 0%, 0%, 0.2) 0, transparent 100%);
+  }
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+
+@utility layout-fill {
+  @apply flex flex-1 flex-col min-h-0;
+}
+
+@utility layout-scroll {
+  @apply flex flex-1 flex-col min-h-0 overflow-auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  @apply cursor-default;
+}
+
+main {
+  min-height: calc(100% - 50px);
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+select {
+  appearance: none;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+
+  & > *:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  & > * ~ * {
+    margin-left: -1px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+svg {
+  width: 16px;
+  height: 16px;
+}
+
+.selection-area {
+  border: 1px solid #56c2ff;
+  border-radius: 2px;
+  background: rgba(86, 194, 255, 0.15);
+}
+
+@keyframes flicker {
+  0%,
+  24% {
+    opacity: 1;
+  }
+  25%,
+  29% {
+    opacity: 0.5;
+  }
+  30%,
+  69% {
+    opacity: 1;
+  }
+  70%,
+  74% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flicker {
+  animation: flicker 2000ms linear infinite;
+}
+
+/* ============================================================
+   Code Images Legacy Variables
+   ============================================================ */
+
+:root {
+  --panel-background: #191919;
+  --panel-border: 1px solid rgba(255, 255, 255, 0.2);
+  --panel-text-color: rgba(255, 255, 255, 0.4);
+  --panel-dropdown-border: rgba(255, 255, 255, 0.1);
+  --panel-padding-selected: #fff;
+
+  --frame-background: rgba(255, 255, 255, 0.75);
+  --frame-control-color: rgba(0, 0, 0, 0.2);
+  --frame-title-placeholder-color: rgba(0, 0, 0, 0.3);
+  --frame-title-color: rgba(0, 0, 0, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.1);
+  --frame-highlight-border: rgba(255, 255, 255, 0.75);
+  --ray-highlight-hover: rgba(0, 0, 0, 0.05);
+  --ray-highlight: rgba(0, 0, 0, 0.1);
+  --ray-highlight-border: transparent;
+  --line-number: rgba(0, 0, 0, 0.2);
+  --radius: 0.625rem;
+  --background: var(--color-white);
+  --foreground: var(--color-neutral-800);
+  --card: var(--color-white);
+  --card-foreground: var(--color-neutral-800);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-neutral-800);
+  --primary: var(--color-neutral-800);
+  --primary-foreground: var(--color-neutral-50);
+  --secondary: --alpha(var(--color-black) / 4%);
+  --secondary-foreground: var(--color-neutral-800);
+  --muted: --alpha(var(--color-black) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-black));
+  --accent: --alpha(var(--color-black) / 4%);
+  --accent-foreground: var(--color-neutral-800);
+  --destructive: var(--color-red-500);
+  --border: --alpha(var(--color-black) / 8%);
+  --input: --alpha(var(--color-black) / 10%);
+  --ring: var(--color-neutral-400);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --destructive-foreground: var(--color-red-700);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-700);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-700);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-700);
+}
+
+[data-theme="dark"] {
+  --frame-background: rgba(0, 0, 0, 0.75);
+  --frame-control-color: rgba(255, 255, 255, 0.2);
+  --frame-title-placeholder-color: rgba(255, 255, 255, 0.3);
+  --frame-title-color: rgba(255, 255, 255, 0.6);
+  --frame-shadow-border: rgba(0, 0, 0, 0.8);
+  --frame-highlight-border: rgba(255, 255, 255, 0.3);
+  --ray-highlight-hover: rgba(255, 255, 255, 0.05);
+  --ray-highlight: rgba(255, 255, 255, 0.1);
+  --line-number: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   Icon Maker — Sketch Picker Overrides
+   ============================================================ */
+
+.sketch-picker {
+  border: 1px solid #333333 !important;
+  border-radius: 12px !important;
+  background: #17191a !important;
+  box-shadow: 0px 8px 24px -8px #000000 !important;
+
+  color: rgba(255, 255, 255, 0.6) !important;
+  label {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  .flexbox-fix {
+    border-top: none !important;
+
+    & > div:has(input) {
+      padding: 0 !important;
+      input {
+        width: 100% !important;
+      }
+      &:nth-child(2) {
+        padding-left: 4px !important;
+      }
+      &:nth-child(3) {
+        padding-left: 2px !important;
+      }
+      &:nth-child(4) {
+        padding-left: 2px !important;
+      }
+    }
+
+    input {
+      font-size: 13px !important;
+      text-align: center;
+    }
+
+    &:last-child::before {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      content: "Recents";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+
+  &::before {
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    content: "Pick color";
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}
+
+/* ============================================================
+   Theme Explorer Animations
+   ============================================================ */
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nightRider {
+  0%,
+  100% {
+    left: -2%;
+    transform: translateX(0%);
+  }
+  50% {
+    left: 102%;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: scaleX(0);
+  }
+  30% {
+    transform: scaleX(0.3);
+  }
+  50% {
+    transform: scaleX(0.3);
+  }
+  70% {
+    transform: scaleX(0.7);
+  }
+  75% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+[data-loader] {
+  position: fixed;
+  z-index: 1000;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100dvh - 50px);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 500ms 250ms ease-in-out;
+  will-change: opacity;
+}
+
+[data-loader-progress] {
+  animation: load 500ms linear forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+[data-loader] svg {
+  animation: flicker 1000ms linear;
+}
+
+/* ============================================================
+   Theme Visibility Utilities
+   ============================================================ */
+
+.dark [data-hide-on-theme="dark"],
+.light [data-hide-on-theme="light"] {
+  display: none;
+}
+
+.dark [data-theme-toggle="dark"] {
+  @apply bg-white/10;
+}
+
+.light [data-theme-toggle="light"] {
+  @apply bg-black/10;
+}
+
+[data-wallpaper] {
+  transition: opacity 200ms ease-in-out;
+}
+
+.light [data-wallpaper="dark"] {
+  opacity: 0 !important;
+}
+.dark [data-wallpaper="light"] {
+  opacity: 0 !important;
+}
+
+[data-raycast] {
+  transition: all 200ms ease-in-out;
+}
+
+/* ============================================================
+   Scrollbar Utilities
+   ============================================================ */
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@theme inline {
+  --animate-skeleton: skeleton 2s -1s infinite linear;
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning: var(--warning);
+  --color-success-foreground: var(--success-foreground);
+  --color-success: var(--success);
+  --color-info-foreground: var(--info-foreground);
+  --color-info: var(--info);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  @keyframes skeleton {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+.dark {
+  --background: color-mix(in srgb, var(--color-neutral-950) 95%, var(--color-white));
+  --foreground: var(--color-neutral-100);
+  --card: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --card-foreground: var(--color-neutral-100);
+  --popover: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --popover-foreground: var(--color-neutral-100);
+  --primary: var(--color-neutral-100);
+  --primary-foreground: var(--color-neutral-800);
+  --secondary: --alpha(var(--color-white) / 4%);
+  --secondary-foreground: var(--color-neutral-100);
+  --muted: --alpha(var(--color-white) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-white));
+  --accent: --alpha(var(--color-white) / 4%);
+  --accent-foreground: var(--color-neutral-100);
+  --destructive: color-mix(in srgb, var(--color-red-500) 90%, var(--color-white));
+  --border: --alpha(var(--color-white) / 6%);
+  --input: --alpha(var(--color-white) / 8%);
+  --ring: var(--color-neutral-500);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --destructive-foreground: var(--color-red-400);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-400);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-400);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-400);
+}

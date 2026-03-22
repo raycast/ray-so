@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Almamono",
+    "variable": "--font-almamono",
+    "src": "/fonts/almamono/almamono.woff2"
+  },
+  {
+    "name": "Amit Light",
+    "variable": "--font-amit-light",
+    "src": "/fonts/ligaturized/amit-light.otf"
+  },
+  {
+    "name": "Anomaly",
+    "variable": "--font-anomaly",
+    "src": "/fonts/anomaly/anomaly.otf"
+  },
+  {
+    "name": "Anymous",
+    "variable": "--font-anymous",
+    "src": "/fonts/ligaturized/anymous.ttf"
+  },
+  {
+    "name": "Cascadia Code",
+    "variable": "--font-cascadia-code",
+    "src": "/fonts/cascadia-code/cascadia-code.woff2"
+  },
+  {
+    "name": "Comic Mono",
+    "variable": "--font-comic-mono",
+    "src": "/fonts/comic-mono/comic-mono.ttf"
+  },
+  {
+    "name": "DM Mono",
+    "variable": "--font-dm-mono",
+    "type": "google"
+  },
+  {
+    "name": "Droid Sans Mono",
+    "variable": "--font-droid-sans-mono",
+    "src": "/fonts/ligaturized/droid-sans-mono.ttf"
+  },
+  {
+    "name": "Fantasque Sans Mono",
+    "variable": "--font-fantasque-sans-mono",
+    "src": "/fonts/ligaturized/fantasque-sans-mono.ttf"
+  },
+  {
+    "name": "Fira Code Regular",
+    "variable": "--font-fira-code-regular",
+    "src": "/fonts/fira-code/fira-code-regular.woff2"
+  },
+  {
+    "name": "Hachi Maru Pop",
+    "variable": "--font-hachi-maru-pop",
+    "src": "/fonts/hachi-maru-pop/hachi-maru-pop.woff"
+  },
+  {
+    "name": "Hack",
+    "variable": "--font-hack",
+    "src": "/fonts/ligaturized/hack.ttf"
+  },
+  {
+    "name": "Hasklig It",
+    "variable": "--font-hasklig-it",
+    "src": "/fonts/hasklig/hasklig-it.ttf"
+  },
+  {
+    "name": "Hasklig Regular",
+    "variable": "--font-hasklig-regular",
+    "src": "/fonts/hasklig/hasklig-regular.ttf"
+  },
+  {
+    "name": "I B M Plex Mono",
+    "variable": "--font-i-b-m-plex-mono",
+    "src": "/fonts/i-b-m-plex-mono/i-b-m-plex-mono.ttf"
+  },
+  {
+    "name": "Inconsolata",
+    "variable": "--font-inconsolata",
+    "src": "/fonts/inconsolata/inconsolata.ttf"
+  },
+  {
+    "name": "Input Mono",
+    "variable": "--font-input-mono",
+    "src": "/fonts/input-mono/input-mono.woff2"
+  },
+  {
+    "name": "Iosevka Regular",
+    "variable": "--font-iosevka-regular",
+    "src": "/fonts/iosevka/iosevka-regular.woff2"
+  },
+  {
+    "name": "Jet Brains Mono",
+    "variable": "--font-jet-brains-mono",
+    "src": "/fonts/jet-brains-mono/jet-brains-mono.ttf"
+  },
+  {
+    "name": "Lex Mono",
+    "variable": "--font-lex-mono",
+    "src": "/fonts/ligaturized/lex-mono.ttf"
+  },
+  {
+    "name": "Lex Mono Italic",
+    "variable": "--font-lex-mono-italic",
+    "src": "/fonts/ligaturized/lex-mono-italic.ttf"
+  },
+  {
+    "name": "Liga Src Pro Regular",
+    "variable": "--font-liga-src-pro-regular",
+    "src": "/fonts/ligaturized/liga-src-pro-regular.ttf"
+  },
+  {
+    "name": "Major Mono Display",
+    "variable": "--font-major-mono-display",
+    "src": "/fonts/major-mono/major-mono-display.ttf"
+  },
+  {
+    "name": "Mono Lisa",
+    "variable": "--font-mono-lisa",
+    "src": "/fonts/monolisa/mono-lisa.woff2"
+  },
+  {
+    "name": "Monoid Italic",
+    "variable": "--font-monoid-italic",
+    "src": "/fonts/monoid/monoid-italic.ttf"
+  },
+  {
+    "name": "Monoid Regular",
+    "variable": "--font-monoid-regular",
+    "src": "/fonts/monoid/monoid-regular.ttf"
+  },
+  {
+    "name": "Monoid Retina",
+    "variable": "--font-monoid-retina",
+    "src": "/fonts/monoid/monoid-retina.ttf"
+  },
+  {
+    "name": "Operator Mono",
+    "variable": "--font-operator-mono",
+    "src": "/fonts/operator-mono/operator-mono.otf"
+  },
+  {
+    "name": "Operator Mono Italic",
+    "variable": "--font-operator-mono-italic",
+    "src": "/fonts/operator-mono/operator-mono-italic.otf"
+  },
+  {
+    "name": "Roboto Mono",
+    "variable": "--font-roboto-mono",
+    "src": "/fonts/roboto-mono/roboto-mono.ttf"
+  },
+  {
+    "name": "Roboto Mono X",
+    "variable": "--font-roboto-mono-x",
+    "src": "/fonts/ligaturized/roboto-mono-x.ttf"
+  },
+  {
+    "name": "S F Mono",
+    "variable": "--font-s-f-mono",
+    "src": "/fonts/s-f-mono/s-f-mono.otf"
+  },
+  {
+    "name": "S F Mono Ligaturized",
+    "variable": "--font-s-f-mono-ligaturized",
+    "src": "/fonts/s-f-mono/s-f-mono-ligaturized.ttf"
+  },
+  {
+    "name": "Source Code Pro",
+    "variable": "--font-source-code-pro",
+    "src": "/fonts/source-code-pro/source-code-pro.ttf"
+  },
+  {
+    "name": "Source Pro Italic",
+    "variable": "--font-source-pro-italic",
+    "src": "/fonts/ligaturized/source-pro-italic.ttf"
+  },
+  {
+    "name": "Space Mono X",
+    "variable": "--font-space-mono-x",
+    "src": "/fonts/ligaturized/space-mono-x.ttf"
+  },
+  {
+    "name": "Sweet",
+    "variable": "--font-sweet",
+    "src": "/fonts/sweet16/sweet.ttf"
+  },
+  {
+    "name": "Syne Mono",
+    "variable": "--font-syne-mono",
+    "src": "/fonts/syne-mono/syne-mono.ttf"
+  },
+  {
+    "name": "Ubuntu Mono",
+    "variable": "--font-ubuntu-mono",
+    "src": "/fonts/ubuntu-mono/ubuntu-mono.ttf"
+  },
+  {
+    "name": "Ubuntu Mono X",
+    "variable": "--font-ubuntu-mono-x",
+    "src": "/fonts/ligaturized/ubuntu-mono-x.ttf"
+  },
+  {
+    "name": "Victor Mono Italic",
+    "variable": "--font-victor-mono-italic",
+    "src": "/fonts/victor-mono-all/victor-mono-italic.woff2"
+  },
+  {
+    "name": "Victor Mono Regular",
+    "variable": "--font-victor-mono-regular",
+    "src": "/fonts/victor-mono-all/victor-mono-regular.woff2"
+  },
+  {
+    "name": "Xanh Mono Italic",
+    "variable": "--font-xanh-mono-italic",
+    "src": "/fonts/xanh-mono/xanh-mono-italic.ttf"
+  },
+  {
+    "name": "Xanh Mono Regular",
+    "variable": "--font-xanh-mono-regular",
+    "src": "/fonts/xanh-mono/xanh-mono-regular.ttf"
+  }
+]
