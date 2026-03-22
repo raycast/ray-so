@@ -2,28 +2,13 @@
 
 import React from "react";
 import View from "@/components/view";
-import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  ArrowBigUpDash,
-  Blend,
-  BookmarkIcon,
-  CircleAlertIcon,
-  EllipsisIcon,
-  EllipsisVerticalIcon,
-  HeartIcon,
-  MessageCircle,
-  MessageCircleMore,
-  Share2,
-  ShareIcon,
-  ThumbsUp,
-} from "lucide-react";
+import { ArrowBigUpDash, Blend, BookmarkIcon, EllipsisVerticalIcon, MessageCircle, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { wallpaperOptions } from "./share/config";
 import MaskWallpaper from "@/plugings/mask-wallpaper";
 import PreviewLayout from "@/components/layouts/preview";
 import { Field, FieldLabel } from "@/components/ui/field";
-import { Card, CardDescription, CardFooter, CardHeader, CardPanel, CardTitle } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardPanel, CardTitle } from "@/components/ui/card";
 import { Select, SelectItem, SelectPopup, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionItem, AccordionPanel, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -34,9 +19,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider, SliderValue } from "@/components/ui/slider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ClerkFrame from "../(code)/components/frames/ClerkFrame";
-import ProfileDropdown from "./x";
-import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipPopup, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const frameworkOptions = [
@@ -73,17 +55,13 @@ const PreviewSnippetClient: React.FC<ShareWidgetProps> = ({}) => {
                 February 2, 2024
               </Badge>
             </View>
-            <Particle>
-              <ClerkFrame />
-            </Particle>
+            <Particle>{/* <ClerkFrame /> */}</Particle>
             <View className="flex items-center justify-center">
               <Badge variant="secondary" className="bg-background/75 backdrop-blur-lg">
                 February 4, 2024
               </Badge>
             </View>
-            <Particle>
-              <ClerkFrame />
-            </Particle>
+            <Particle>{/* <ClerkFrame /> */}</Particle>
           </View>
           {/* Widget Section with Ads and sponsorship */}
           <View className="flex flex-col gap-3 flex-1 sticky top-2 self-start z-10">

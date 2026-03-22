@@ -66,18 +66,18 @@ const themeDarkModeAtom = atom<boolean>((get) => {
   return get(darkModeAtom);
 });
 
-const themeCSSAtom = atom<CSSProperties>((get) => {
-  const isDark = get(themeDarkModeAtom);
-  const syntax = get(themeAtom).syntax;
-  return (isDark ? syntax.dark : syntax.light) || syntax.light || syntax.dark || {};
-});
+// const themeCSSAtom = atom<CSSProperties>((get) => {
+//   const isDark = get(themeDarkModeAtom);
+//   const syntax = get(themeAtom).syntax;
+//   return (isDark ? syntax.dark : syntax.light) || syntax.light || syntax.dark || {};
+// });
 
 const themeBackgroundAtom = atom<string>((get) => {
   const { from, to } = get(themeAtom).background;
   return `linear-gradient(140deg, ${from}, ${to})`;
 });
 
-const themeFontAtom = atom<string | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
+// const themeFontAtom = atom<string | null>((get) => get(themeAtom)?.font || "jetbrains-mono");
 
 const themeLineNumbersAtom = atom<boolean>((get) => {
   const theme = get(themeAtom);
@@ -92,13 +92,4 @@ const themeLineNumbersAtom = atom<boolean>((get) => {
 
 const unlockedThemesAtom = atomWithStorage<Theme["id"][]>("unlockedThemes", []);
 
-export {
-  darkModeAtom,
-  themeAtom,
-  themeBackgroundAtom,
-  themeCSSAtom,
-  themeDarkModeAtom,
-  themeFontAtom,
-  themeLineNumbersAtom,
-  unlockedThemesAtom,
-};
+export { darkModeAtom, themeAtom, themeBackgroundAtom, themeDarkModeAtom, themeLineNumbersAtom, unlockedThemesAtom };

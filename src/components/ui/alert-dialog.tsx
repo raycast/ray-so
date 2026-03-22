@@ -2,7 +2,7 @@
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const AlertDialogCreateHandle = AlertDialogPrimitive.createHandle;
 

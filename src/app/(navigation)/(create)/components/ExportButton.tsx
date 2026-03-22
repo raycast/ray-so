@@ -18,7 +18,6 @@ import { EXPORT_SIZE_OPTIONS, exportSizeAtom } from "../store/image";
 import { autoDetectLanguageAtom, selectedLanguageAtom } from "../store/code";
 import { LANGUAGES } from "../util/languages";
 
-import { DownloadIcon } from "@raycast/icons";
 import { Kbd, Kbds } from "@/components/kbd";
 
 import { Popover, PopoverDescription, PopoverPopup, PopoverTitle, PopoverTrigger } from "@/components/ui/popover";
@@ -28,14 +27,22 @@ import { LinkIcon, SparklesIcon } from "lucide-react";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import { Select, SelectItem, SelectPopup, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { randomBytes } from "crypto";
+import { Select, SelectItem, SelectPopup, SelectTrigger } from "@/components/ui/select";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Download02Icon } from "@hugeicons/core-free-icons";
+import { currentSlideIdAtom } from "../store/editor";
 
 const ExportButton: React.FC = () => {
+  const frameRefs = useContext(FrameContext);
+  const slideId = useAtomValue(currentSlideIdAtom);
+
+  const getCurrentFrame = () => {
+    const frame = frameRefs.current.get(slideId!);
+    if (!frame) throw new Error("Couldn't find a frame to export");
+    return frame;
+  };
+
   const pngClipboardSupported = usePngClipboardSupported();
-  const frameContext = useContext(FrameContext);
   const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
   const [, setFlashShown] = useAtom(flashShownAtom);
   const [customFileName, setCustomFileName] = useAtom(fileNameAtom);
@@ -49,13 +56,11 @@ const ExportButton: React.FC = () => {
   };
 
   const savePng = async () => {
-    if (!frameContext?.current) {
-      throw new Error("Couldn't find a frame to export");
-    }
+    const frame = getCurrentFrame();
 
     setFlashMessage({ icon: <ImageIcon />, message: "Exporting PNG" });
 
-    const dataUrl = await toPng(frameContext.current, {
+    const dataUrl = await toPng(frame, {
       pixelRatio: exportSize,
     });
 
@@ -65,13 +70,12 @@ const ExportButton: React.FC = () => {
   };
 
   const copyPng = async () => {
+    const frame = getCurrentFrame();
+
     setFlashMessage({ icon: <ClipboardIcon />, message: "Copying PNG" });
-    if (!frameContext?.current) {
-      throw new Error("Couldn't find a frame to export");
-    }
 
     const clipboardItem = new ClipboardItem({
-      "image/png": toBlob(frameContext.current, {
+      "image/png": toBlob(frame, {
         pixelRatio: exportSize,
       }).then((blob) => {
         if (!blob) {
@@ -87,13 +91,11 @@ const ExportButton: React.FC = () => {
   };
 
   const saveSvg = async () => {
-    if (!frameContext?.current) {
-      throw new Error("Couldn't find a frame to export");
-    }
+    const frame = getCurrentFrame();
 
     setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
 
-    const dataUrl = await toSvg(frameContext.current);
+    const dataUrl = await toSvg(frame);
     download(dataUrl, `${fileName}.svg`);
 
     setFlashShown(false);

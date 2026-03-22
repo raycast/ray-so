@@ -3,7 +3,7 @@
 import { Toast } from "@base-ui/react/toast";
 import { CircleAlertIcon, CircleCheckIcon, InfoIcon, LoaderCircleIcon, TriangleAlertIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { buttonVariants } from "@/components/ui/button";
 
 const toastManager = Toast.createToastManager();

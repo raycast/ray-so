@@ -1,9 +1,6 @@
-import { useAtom, useAtomValue } from "jotai";
 import { useContext } from "react";
-
-import { themeAtom, themeDarkModeAtom } from "../store/themes";
+import { useAtomValue, useSetAtom } from "jotai";
 import { FrameContext } from "../store/context/frame";
-
 import FlashMessage from "./FlashMessage";
 import ResizableFrame from "./ResizableFrame";
 import BrowserbaseFrame from "./frames/BrowserbaseFrame";
@@ -29,23 +26,26 @@ import { THEMES } from "../constants/themes";
 import ToolbarParticle from "./Toolbar";
 import View from "@/components/view";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { editorAtom } from "../store/editor";
-import { useSelection } from "../store/hooks/use-selection";
+import { currentElementAtom, currentSlideIdAtom, selectSlideAtom, slidesAtom } from "../store/editor";
 import React from "react";
 import type { Swiper as SwiperType } from "swiper";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 type Presets = {
   id: string;
 };
 
 const Frame = () => {
-  const frameContext = useContext(FrameContext);
-  const [theme] = useAtom(themeAtom);
-  const darkMode = useAtomValue(themeDarkModeAtom);
-  const editor = useAtomValue(editorAtom);
-  const { slideId, selectSlide } = useSelection();
-  const slides = Object.values(editor.slides);
+  const frameRefs = useContext(FrameContext);
+
+  const slides = useAtomValue(slidesAtom);
+  const elementState = useAtomValue(currentElementAtom);
+  const themeId = elementState?.properties?.theme!;
+  const darkMode = (elementState?.properties?.darkMode as boolean) ?? false;
+
+  const selectSlide = useSetAtom(selectSlideAtom);
+  const slideId = useAtomValue(currentSlideIdAtom);
+
   const [activeIndex, setActiveIndex] = React.useState(0);
   const swiperRef = React.useRef<SwiperType | null>(null);
 
@@ -76,8 +76,14 @@ const Frame = () => {
               </View>
               <ResizableFrame>
                 <FlashMessage />
-                <div className={styles.outerFrame} ref={frameContext} id="frame">
-                  <Presets id={theme.id} />
+                <div
+                  id="frame"
+                  className={styles.outerFrame}
+                  ref={(el) => {
+                    frameRefs.current.set(slide.id, el);
+                  }}
+                >
+                  <Presets id={themeId} />
                 </div>
               </ResizableFrame>
             </SwiperSlide>

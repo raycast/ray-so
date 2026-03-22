@@ -1,11 +1,14 @@
-import React, { createContext, PropsWithChildren, RefObject, useRef } from "react";
+"use client";
 
-export const FrameContext = createContext<RefObject<HTMLDivElement | null> | null>(null);
+import React, { createContext, PropsWithChildren, useRef } from "react";
+
+export const FrameContext = createContext<React.MutableRefObject<Map<string, HTMLDivElement | null>>>({
+  current: new Map(),
+});
 
 const FrameContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  return <FrameContext.Provider value={ref}>{children}</FrameContext.Provider>;
+  const frameRefs = useRef<Map<string, HTMLDivElement | null>>(new Map());
+  return <FrameContext.Provider value={frameRefs}>{children}</FrameContext.Provider>;
 };
 
 export default FrameContextProvider;

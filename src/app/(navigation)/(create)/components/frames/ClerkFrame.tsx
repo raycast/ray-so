@@ -9,25 +9,25 @@ import clerkPattern from "../../assets/clerk/pattern.svg?url";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./ClerkFrame.module.css";
+import { elementDarkModeAtom, elementPaddingAtom, elementTransparentAtom } from "../../store/editor";
 
 const ClerkFrame = () => {
-  const darkMode = useAtomValue(themeDarkModeAtom);
-  const [padding] = useAtom(paddingAtom);
-  const [showBackground] = useAtom(showBackgroundAtom);
-
+  const padding = useAtomValue(elementPaddingAtom);
+  const darkMode = useAtomValue(elementDarkModeAtom);
+  const transparent = useAtomValue(elementTransparentAtom);
   return (
     <div
       className={classNames(
         sharedStyles.frame,
-        showBackground && styles.frame,
+        transparent && styles.frame,
         !darkMode && styles.frameLightMode,
-        !showBackground && sharedStyles.noBackground,
-        !showBackground && styles.noBackground,
+        !transparent && sharedStyles.noBackground,
+        !transparent && styles.noBackground,
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      {showBackground && <img src={clerkPattern} alt="" className={styles.pattern} />}
+      {!transparent && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
+      {transparent && <img src={clerkPattern} alt="" className={styles.pattern} />}
       <div className={styles.window}>
         <div className={styles.code}>
           <Editor />

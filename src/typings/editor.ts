@@ -58,6 +58,15 @@ export type StyleObject = CSSProperties & AnyRecord;
 export type ElementProperties = {
   language?: string;
   theme?: string;
+  darkMode?: boolean;
+  transparent?: boolean;
+  showLineNumbers?: boolean;
+  highlightedLines?: number[];
+  // glassmorphism?: {
+  //   opacity: number;
+  //   enabled: boolean;
+  //   blur: number;
+  // };
 } & AnyRecord;
 
 export type ElementType = {

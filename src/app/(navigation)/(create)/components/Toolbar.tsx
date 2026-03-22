@@ -1,18 +1,19 @@
 "use client";
 
-import { Copy, CopyPlus, Plus, Trash2 } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
+import { CopyPlus, Plus, Trash2 } from "lucide-react";
 import { Toolbar, ToolbarButton, ToolbarGroup } from "@/components/ui/toolbar";
 import { Tooltip, TooltipPopup, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import useEditor from "../store/hooks/use-editor";
-import { useSelection } from "../store/hooks/use-selection";
+import { useAtomValue, useSetAtom } from "jotai";
+import { createSlideAtom, deleteSlideAtom, duplicateSlideAtom, slidesAtom } from "../store/editor";
 
 export default function ToolbarParticle() {
-  const { slideId, selectSlide } = useSelection();
-  const { createSlide, duplicateSlide, deleteSlide, state } = useEditor();
+  const slides = useAtomValue(slidesAtom);
+  const createSlide = useSetAtom(createSlideAtom);
+  const duplicateSlide = useSetAtom(duplicateSlideAtom);
+  const deleteSlide = useSetAtom(deleteSlideAtom);
 
-  const handleAddSlide = () => {
+  const onCreateSlide = () => {
     createSlide({
       id: crypto.randomUUID(),
       name: "New Slide",
@@ -21,46 +22,33 @@ export default function ToolbarParticle() {
     });
   };
 
-  const handleDuplicateSlide = () => {
-    if (!slideId) return;
-    duplicateSlide(slideId);
-  };
-
-  const handleDeleteSlide = () => {
-    if (!slideId) return;
-
-    const nextSlideId = Object.values(state.slides).find((slide) => slide.id !== slideId)?.id;
-    deleteSlide(slideId);
-    // Automaticaly selct next slide after deletion
-    selectSlide(nextSlideId!);
-  };
-
   return (
     <TooltipProvider>
       <Toolbar>
         <ToolbarGroup>
           {/* Delete */}
-          <Tooltip>
-            <TooltipTrigger
-              render={
-                <ToolbarButton
-                  aria-label="Delete slide"
-                  render={<Button size="icon-sm" variant="outline" onClick={handleDeleteSlide} />}
-                >
-                  <Trash2 className="text-accent-foreground" />
-                </ToolbarButton>
-              }
-            />
-            <TooltipPopup sideOffset={8}>Delete</TooltipPopup>
-          </Tooltip>
-
+          {slides?.length > 1 && (
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <ToolbarButton
+                    aria-label="Delete slide"
+                    render={<Button size="icon-sm" variant="outline" onClick={deleteSlide} />}
+                  >
+                    <Trash2 className="text-accent-foreground" />
+                  </ToolbarButton>
+                }
+              />
+              <TooltipPopup sideOffset={8}>Delete</TooltipPopup>
+            </Tooltip>
+          )}
           {/* Duplicate */}
           <Tooltip>
             <TooltipTrigger
               render={
                 <ToolbarButton
                   aria-label="Duplicate slide"
-                  render={<Button size="icon-sm" variant="outline" onClick={handleDuplicateSlide} />}
+                  render={<Button size="icon-sm" variant="outline" onClick={duplicateSlide} />}
                 >
                   <CopyPlus className="text-accent-foreground" />
                 </ToolbarButton>
@@ -75,7 +63,7 @@ export default function ToolbarParticle() {
               render={
                 <ToolbarButton
                   aria-label="Add slide"
-                  render={<Button size="icon-sm" variant="outline" onClick={handleAddSlide} />}
+                  render={<Button size="icon-sm" variant="outline" onClick={onCreateSlide} />}
                 >
                   <Plus className="text-accent-foreground" />
                 </ToolbarButton>

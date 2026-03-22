@@ -2,7 +2,7 @@
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 function Avatar({ className, ...props }: AvatarPrimitive.Root.Props) {
   return (

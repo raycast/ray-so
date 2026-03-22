@@ -1,31 +1,27 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
-
-import { showBackgroundAtom } from "../../store";
-import { paddingAtom } from "../../store/padding";
-import { themeDarkModeAtom } from "../../store/themes";
+import { useAtomValue } from "jotai";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./VercelFrame.module.css";
+import { elementDarkModeAtom, elementPaddingAtom, elementTransparentAtom } from "../../store/editor";
 
 const VercelFrame = () => {
-  const darkMode = useAtomValue(themeDarkModeAtom);
-  const [padding] = useAtom(paddingAtom);
-  const [showBackground] = useAtom(showBackgroundAtom);
-
+  const padding = useAtomValue(elementPaddingAtom);
+  const darkMode = useAtomValue(elementDarkModeAtom);
+  const transparent = useAtomValue(elementTransparentAtom);
   return (
     <div
       className={classNames(
         sharedStyles.frame,
-        showBackground && styles.frame,
-        showBackground && !darkMode && styles.frameLightMode,
-        !showBackground && sharedStyles.noBackground,
-        !showBackground && styles.noBackground,
+        transparent && styles.frame,
+        transparent && !darkMode && styles.frameLightMode,
+        !transparent && sharedStyles.noBackground,
+        !transparent && styles.noBackground,
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
+      {!transparent && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       <div className={styles.window}>
         <span className={styles.gridlinesHorizontal} data-grid></span>
         <span className={styles.gridlinesVertical} data-grid></span>

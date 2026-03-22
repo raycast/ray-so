@@ -1,15 +1,13 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 
-import { showBackgroundAtom } from "../../store";
 import { exportSizeAtom } from "../../store/image";
-import { paddingAtom } from "../../store/padding";
-import { darkModeAtom } from "../../store/themes";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./FirecrawlFrame.module.css";
+import { elementDarkModeAtom, elementPaddingAtom, elementTransparentAtom } from "../../store/editor";
 
 const FIRECRAWL_ASCII_ART = `                                   .. ..-
                                    :          .
@@ -116,33 +114,38 @@ function FirecrawlFrameCanvas({
 }
 
 const FirecrawlFrame = () => {
-  const [darkMode] = useAtom(darkModeAtom);
-  const [padding] = useAtom(paddingAtom);
-  const [showBackground] = useAtom(showBackgroundAtom);
   const exportSize = useAtomValue(exportSizeAtom);
+
+  const padding = useAtomValue(elementPaddingAtom);
+  const darkMode = useAtomValue(elementDarkModeAtom);
+  const transparent = useAtomValue(elementTransparentAtom);
   const gridColor = darkMode ? "#444" : "#ededed";
 
   return (
     <div
       className={classNames(
         sharedStyles.frame,
-        showBackground && styles.frame,
-        showBackground && !darkMode && styles.frameLightMode,
-        !showBackground && sharedStyles.noBackground,
-        !showBackground && styles.noBackground,
+        transparent && styles.frame,
+        transparent && !darkMode && styles.frameLightMode,
+        !transparent && sharedStyles.noBackground,
+        !transparent && styles.noBackground,
       )}
       style={{ padding, ["--frame-padding" as string]: `${padding}px` }}
     >
-      {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
+      {!transparent && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       <div className={styles.window}>
-        {showBackground && (
+        {transparent && (
           <div className={styles.asciiArtContainer}>
             <pre className={styles.asciiArt}>{FIRECRAWL_ASCII_ART}</pre>
           </div>
         )}
         <Editor />
-        {showBackground && (
-          <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} exportPixelRatio={exportSize} />
+        {transparent && (
+          <FirecrawlFrameCanvas
+            gridColor={gridColor}
+            padding={parseInt(padding.toString().replace("px", ""))}
+            exportPixelRatio={exportSize}
+          />
         )}
       </div>
     </div>

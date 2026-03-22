@@ -1,34 +1,37 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import React from "react";
-
-import { fileNameAtom, showBackgroundAtom } from "../../store";
-import { paddingAtom } from "../../store/padding";
-import { themeDarkModeAtom } from "../../store/themes";
-
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./BrowserbaseFrame.module.css";
+import {
+  elementDarkModeAtom,
+  elementFileNameAtom,
+  elementPaddingAtom,
+  elementTransparentAtom,
+  updateSlideElementAtom,
+} from "../../store/editor";
 
 const BrowserbaseFrame = () => {
-  const darkMode = useAtomValue(themeDarkModeAtom);
-  const [padding] = useAtom(paddingAtom);
-  const [showBackground] = useAtom(showBackgroundAtom);
-  const [fileName, setFileName] = useAtom(fileNameAtom);
+  const padding = useAtomValue(elementPaddingAtom);
+  const darkMode = useAtomValue(elementDarkModeAtom);
+  const transparent = useAtomValue(elementTransparentAtom);
+  const fileName = useAtomValue(elementFileNameAtom);
+  const update = useSetAtom(updateSlideElementAtom);
 
   return (
     <div
       className={classNames(
         sharedStyles.frame,
-        showBackground && styles.frame,
+        transparent && styles.frame,
         !darkMode && styles.frameLightMode,
-        !showBackground && sharedStyles.noBackground,
-        !showBackground && styles.noBackground,
+        !transparent && sharedStyles.noBackground,
+        !transparent && styles.noBackground,
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      {showBackground && (
+      {!transparent && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
+      {transparent && (
         <div className={styles.background}>
           <div className={styles.backgroundGridline}></div>
           <div className={styles.backgroundGridline}></div>
@@ -50,7 +53,7 @@ const BrowserbaseFrame = () => {
             <input
               type="text"
               value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
+              onChange={(event) => update({ header: { properties: { title: { text: event.target.value } } } })}
               spellCheck={false}
               tabIndex={-1}
             />

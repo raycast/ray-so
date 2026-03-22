@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { shikiTheme } from "./store/themes";
 
 import Frame from "./components/Frame";
-import Controls from "./components/Controls";
+import Controls from "./components/controls";
 
 import styles from "./code.module.css";
 import NoSSR from "./components/NoSSR";
@@ -16,7 +16,7 @@ import { LANGUAGES } from "./util/languages";
 
 import tailwindLight from "./assets/tailwind/light.json";
 import tailwindDark from "./assets/tailwind/dark.json";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 export function Code() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
@@ -32,11 +32,11 @@ export function Code() {
   }, []);
 
   return (
-    <NoSSR>
-      <div className={cn(styles.app, "layout-scroll")}>
+    <div className={cn(styles.app, "layout-scroll")}>
+      <NoSSR>
         <Frame />
         <Controls />
-      </div>
-    </NoSSR>
+      </NoSSR>
+    </div>
   );
 }

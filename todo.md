@@ -43,3 +43,6 @@ animated code
 AI code explanation
 custom backgrounds
 team sharing
+
+Today To Do
+(A) Migrate to our state management sturcture start with small piece

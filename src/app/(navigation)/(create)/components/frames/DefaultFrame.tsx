@@ -1,40 +1,48 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 
-import { fileNameAtom, showBackgroundAtom } from "../../store";
-import { paddingAtom } from "../../store/padding";
-import { themeAtom, themeBackgroundAtom, themeDarkModeAtom } from "../../store/themes";
 import useIsSafari from "../../util/useIsSafari";
 import Editor from "../Editor";
 import styles from "./DefaultFrame.module.css";
+import {
+  elementDarkModeAtom,
+  elementFileNameAtom,
+  elementPaddingAtom,
+  elementThemeAtom,
+  elementTransparentAtom,
+  themeBackgroundAtom,
+  updateSlideElementAtom,
+} from "../../store/editor";
 
 const DefaultFrame = () => {
-  const [padding] = useAtom(paddingAtom);
   const isSafari = useIsSafari();
-  const [showBackground] = useAtom(showBackgroundAtom);
-  const [fileName, setFileName] = useAtom(fileNameAtom);
-  const [themeBackground] = useAtom(themeBackgroundAtom);
-  const [theme] = useAtom(themeAtom);
-  const darkMode = useAtomValue(themeDarkModeAtom);
+  const themeBackground = useAtomValue(themeBackgroundAtom);
+  const themeId = useAtomValue(elementThemeAtom);
+
+  const padding = useAtomValue(elementPaddingAtom);
+  const darkMode = useAtomValue(elementDarkModeAtom);
+  const transparent = useAtomValue(elementTransparentAtom);
+  const fileName = useAtomValue(elementFileNameAtom);
+  const update = useSetAtom(updateSlideElementAtom);
 
   return (
     <div
       className={classNames(
         styles.frame,
-        styles[theme.id],
+        styles[themeId],
         darkMode && styles.darkMode,
-        showBackground && styles.withBackground,
+        transparent && styles.withBackground,
       )}
       style={{
         padding,
-        backgroundImage: showBackground ? themeBackground : "",
+        backgroundImage: transparent ? themeBackground : "",
       }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {!transparent && <div data-ignore-in-export className={styles.transparentPattern}></div>}
       <div
         className={classNames(styles.window, {
           [styles.withBorder]: !isSafari,
-          [styles.withShadow]: !isSafari && showBackground,
+          [styles.withShadow]: !isSafari && transparent,
         })}
       >
         <div className={styles.header}>
@@ -47,7 +55,7 @@ const DefaultFrame = () => {
             <input
               type="text"
               value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
+              onChange={(event) => update({ header: { properties: { title: { text: event.target.value } } } })}
               spellCheck={false}
               tabIndex={-1}
             />

@@ -8,16 +8,65 @@ import React, {
   useEffect,
 } from "react";
 import styles from "./Editor.module.css";
-import { useAtom, useSetAtom } from "jotai";
-import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
-import { themeAtom, themeCSSAtom, themeFontAtom, themeLineNumbersAtom, unlockedThemesAtom } from "../store/themes";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { isCodeExampleAtom } from "../store/code";
+import { themeLineNumbersAtom } from "../store/themes";
 import useHotkeys from "../../../../utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
-import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
-import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
-import { THEMES } from "../constants/themes";
+import {
+  elementContentAtom,
+  elementFontFamilyAtom,
+  elementHighlightedLinesAtom,
+  elementPaddingAtom,
+  selectedLanguageAtom,
+  themeCSSAtom,
+  updateSlideElementAtom,
+} from "../store/editor";
+import { cn } from "@/utils/cn";
+import fonts from "@/fonts/editor/fonts.json";
+
+/* ------------------------------- */
+/* Native insert (no execCommand)  */
+/* ------------------------------- */
+
+function insertText(textarea: HTMLTextAreaElement, text: string) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const value = textarea.value;
+  const newValue = value.slice(0, start) + text + value.slice(end);
+  const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")?.set;
+  nativeSetter?.call(textarea, newValue);
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  return { start, end, inserted: text, newValue };
+}
+
+function setSelection(textarea: HTMLTextAreaElement, start: number, end: number) {
+  requestAnimationFrame(() => textarea.setSelectionRange(start, end));
+}
+
+/* ------------------------------- */
+/* Line utilities                  */
+/* ------------------------------- */
+
+function getLineStart(value: string, pos: number) {
+  const before = value.slice(0, pos);
+  const idx = before.lastIndexOf("\n");
+  return idx === -1 ? 0 : idx + 1;
+}
+
+function getLineEnd(value: string, pos: number) {
+  const after = value.slice(pos);
+  const idx = after.indexOf("\n");
+  return idx === -1 ? value.length : pos + idx;
+}
+
+function getCurrentlySelectedLine(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart } = textarea;
+  const lineStart = getLineStart(value, selectionStart);
+  return value.slice(lineStart).split("\n")[0];
+}
 
 function indentText(text: string) {
   return text
@@ -33,111 +82,207 @@ function dedentText(text: string) {
     .join("\n");
 }
 
-function getCurrentlySelectedLine(textarea: HTMLTextAreaElement) {
-  const original = textarea.value;
-
-  const selectionStart = textarea.selectionStart;
-  const beforeStart = original.slice(0, selectionStart);
-
-  return original.slice(beforeStart.lastIndexOf("\n") != -1 ? beforeStart.lastIndexOf("\n") + 1 : 0).split("\n")[0];
-}
+/* ------------------------------- */
+/* Key handlers                    */
+/* ------------------------------- */
 
 function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
-  const original = textarea.value;
-
-  const start = textarea.selectionStart;
-  const end = textarea.selectionEnd;
-
-  const beforeStart = original.slice(0, start);
-
+  const { value, selectionStart: start, selectionEnd: end } = textarea;
+  const beforeStart = value.slice(0, start);
   const currentLine = getCurrentlySelectedLine(textarea);
 
   if (start === end) {
-    // No text selected
     if (shiftKey) {
-      // dedent
       const newStart = beforeStart.lastIndexOf("\n") + 1;
       textarea.setSelectionRange(newStart, end);
-      document.execCommand("insertText", false, dedentText(original.slice(newStart, end)));
+      const newText = dedentText(value.slice(newStart, end));
+      insertText(textarea, newText);
+      setSelection(textarea, newStart, newStart + newText.length);
     } else {
-      // indent
-      document.execCommand("insertText", false, "  ");
+      insertText(textarea, "  ");
+      setSelection(textarea, start + 2, start + 2);
     }
   } else {
-    // Text selected
     const newStart = beforeStart.lastIndexOf("\n") + 1 || 0;
     textarea.setSelectionRange(newStart, end);
-
     if (shiftKey) {
-      // dedent
-      const newText = dedentText(original.slice(newStart, end));
-      document.execCommand("insertText", false, newText);
-
-      if (currentLine.startsWith("  ")) {
-        textarea.setSelectionRange(start - 2, start - 2 + newText.length);
-      } else {
-        textarea.setSelectionRange(start, start + newText.length);
-      }
+      const newText = dedentText(value.slice(newStart, end));
+      insertText(textarea, newText);
+      setSelection(
+        textarea,
+        currentLine.startsWith("  ") ? start - 2 : start,
+        (currentLine.startsWith("  ") ? start - 2 : start) + newText.length,
+      );
     } else {
-      // indent
-      const newText = indentText(original.slice(newStart, end));
-      document.execCommand("insertText", false, newText);
-      textarea.setSelectionRange(start + 2, start + 2 + newText.length);
+      const newText = indentText(value.slice(newStart, end));
+      insertText(textarea, newText);
+      setSelection(textarea, start + 2, start + 2 + newText.length);
     }
   }
 }
 
 function handleEnter(textarea: HTMLTextAreaElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
-
-  const currentIndentationMatch = currentLine.match(/^(\s+)/);
-  let wantedIndentation = currentIndentationMatch ? currentIndentationMatch[0] : "";
-
-  if (currentLine.match(/([{\[:>])$/)) {
-    wantedIndentation += "  ";
-  }
-
-  document.execCommand("insertText", false, `\n${wantedIndentation}`);
+  const match = currentLine.match(/^(\s+)/);
+  let indent = match ? match[0] : "";
+  if (currentLine.match(/([{\[:>])$/)) indent += "  ";
+  const { start } = insertText(textarea, `\n${indent}`);
+  setSelection(textarea, start + 1 + indent.length, start + 1 + indent.length);
 }
 
 function handleBracketClose(textarea: HTMLTextAreaElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
   const { selectionStart, selectionEnd } = textarea;
-
   if (selectionStart === selectionEnd && currentLine.match(/^\s{2,}$/)) {
     textarea.setSelectionRange(selectionStart - 2, selectionEnd);
   }
-
-  document.execCommand("insertText", false, "}");
+  const { start } = insertText(textarea, "}");
+  setSelection(textarea, start + 1, start + 1);
 }
 
-const fontMap = {
-  "jetbrains-mono": styles.jetBrainsMono,
-  "geist-mono": styles.geistMono,
-  "ibm-plex-mono": styles.ibmPlexMono,
-  "fira-code": styles.firaCode,
-  "soehne-mono": styles.soehneMono,
-  "roboto-mono": styles.robotoMono,
-  "commit-mono": styles.commitMono,
-  "space-mono": styles.spaceMono,
-  "source-code-pro": styles.sourceCodePro,
-  "google-sans-code": styles.googleSansCode,
-} as const;
+function handleAutoPair(textarea: HTMLTextAreaElement, open: string, close: string) {
+  const { selectionStart: start, selectionEnd: end, value } = textarea;
+  const selected = value.slice(start, end);
+  const text = selected ? `${open}${selected}${close}` : `${open}${close}`;
+  insertText(textarea, text);
+  setSelection(textarea, selected ? start + 1 : start + 1, selected ? end + 1 : start + 1);
+}
+
+function handleCommentToggle(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart, selectionEnd } = textarea;
+  const lineStart = getLineStart(value, selectionStart);
+  const lineEnd = getLineEnd(value, selectionEnd);
+  const lines = value.slice(lineStart, lineEnd).split("\n");
+  const allCommented = lines.every((l) => l.trimStart().startsWith("//"));
+  const newLines = lines.map((line) =>
+    allCommented ? line.replace(/^(\s*)\/\/\s?/, "$1") : `${line.match(/^(\s*)/)?.[0] ?? ""}// ${line.trimStart()}`,
+  );
+  const newText = newLines.join("\n");
+  textarea.setSelectionRange(lineStart, lineEnd);
+  insertText(textarea, newText);
+  setSelection(textarea, lineStart, lineStart + newText.length);
+}
+
+function handleDeleteLine(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart } = textarea;
+  const lineStart = getLineStart(value, selectionStart);
+  const lineEnd = getLineEnd(value, selectionStart);
+  const before = lineStart > 0 ? value.slice(0, lineStart) : "";
+  const after =
+    lineEnd < value.length ? value.slice(lineEnd + 1) : value.slice(lineStart > 0 ? lineStart - 1 : 0, lineStart);
+  const newValue = before + after;
+  const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")?.set;
+  nativeSetter?.call(textarea, newValue);
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  const newPos = Math.min(lineStart, newValue.length);
+  setSelection(textarea, newPos, newPos);
+}
+
+function handleMoveLine(textarea: HTMLTextAreaElement, direction: "up" | "down") {
+  const { value, selectionStart } = textarea;
+  const lineStart = getLineStart(value, selectionStart);
+  const lineEnd = getLineEnd(value, selectionStart);
+  const currentLine = value.slice(lineStart, lineEnd);
+
+  if (direction === "up") {
+    if (lineStart === 0) return;
+    const prevLineStart = getLineStart(value, lineStart - 1);
+    const prevLine = value.slice(prevLineStart, lineStart - 1);
+    const newValue = value.slice(0, prevLineStart) + currentLine + "\n" + prevLine + value.slice(lineEnd);
+    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")?.set;
+    nativeSetter?.call(textarea, newValue);
+    textarea.dispatchEvent(new Event("input", { bubbles: true }));
+    setSelection(textarea, prevLineStart, prevLineStart + currentLine.length);
+  } else {
+    if (lineEnd >= value.length) return;
+    const nextLineEnd = getLineEnd(value, lineEnd + 1);
+    const nextLine = value.slice(lineEnd + 1, nextLineEnd);
+    const before = value.slice(0, lineStart);
+    const newValue = before + nextLine + "\n" + currentLine + value.slice(nextLineEnd);
+    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")?.set;
+    nativeSetter?.call(textarea, newValue);
+    textarea.dispatchEvent(new Event("input", { bubbles: true }));
+    const offset = before.length + nextLine.length + 1;
+    setSelection(textarea, offset, offset + currentLine.length);
+  }
+}
+
+function handleDuplicateLine(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart, selectionEnd } = textarea;
+  const lineStart = getLineStart(value, selectionStart);
+  const lineEnd = getLineEnd(value, selectionEnd);
+  const currentLine = value.slice(lineStart, lineEnd);
+  const newValue = value.slice(0, lineEnd) + "\n" + currentLine + value.slice(lineEnd);
+  const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")?.set;
+  nativeSetter?.call(textarea, newValue);
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+  const offset = lineEnd + 1;
+  setSelection(textarea, offset, offset + currentLine.length);
+}
+
+function handleSelectLine(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart } = textarea;
+  setSelection(textarea, getLineStart(value, selectionStart), getLineEnd(value, selectionStart));
+}
+
+function handleSelectWord(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart } = textarea;
+  const wordRegex = /\w+/g;
+  let match;
+  while ((match = wordRegex.exec(value)) !== null) {
+    if (match.index <= selectionStart && wordRegex.lastIndex >= selectionStart) {
+      setSelection(textarea, match.index, wordRegex.lastIndex);
+      break;
+    }
+  }
+}
+
+function handleBlockCommentToggle(textarea: HTMLTextAreaElement) {
+  const { value, selectionStart, selectionEnd } = textarea;
+  const selected = value.slice(selectionStart, selectionEnd);
+
+  if (!selected) {
+    // No selection — insert block comment at cursor
+    const text = `/* */`;
+    insertText(textarea, text);
+    setSelection(textarea, selectionStart + 3, selectionStart + 3);
+    return;
+  }
+
+  // Toggle — if already wrapped in /* */, remove it
+  const trimmed = selected.trim();
+  if (trimmed.startsWith("/*") && trimmed.endsWith("*/")) {
+    const unwrapped = trimmed.slice(2, -2).trim();
+    insertText(textarea, unwrapped);
+    setSelection(textarea, selectionStart, selectionStart + unwrapped.length);
+  } else {
+    const wrapped = `/* ${selected} */`;
+    insertText(textarea, wrapped);
+    setSelection(textarea, selectionStart, selectionStart + wrapped.length);
+  }
+}
+/* ------------------------------- */
+/* Component                       */
+/* ------------------------------- */
 
 function Editor() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [code, setCode] = useAtom(codeAtom);
-  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
-  const [themeCSS] = useAtom(themeCSSAtom);
+  const themeCSS = useAtomValue(themeCSSAtom);
+  const selectedLanguage = useAtomValue(selectedLanguageAtom);
+  const code = useAtomValue(elementContentAtom);
+  const fontFamily = useAtomValue(elementFontFamilyAtom);
+  const highlightedLines = useAtomValue(elementHighlightedLinesAtom);
+
+  const currentFont = fonts.find((f) => f.name === fontFamily) ?? null;
+
   const [isCodeExample] = useAtom(isCodeExampleAtom);
-  const [themeFont] = useAtom(themeFontAtom);
-  const [theme, setTheme] = useAtom(themeAtom);
-  const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
+  const updateSlideElement = useSetAtom(updateSlideElementAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
-  const setHighlightedLines = useSetAtom(highlightedLinesAtom);
+
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
   const [showLineNumbers] = useAtom(themeLineNumbersAtom);
   const numberOfLines = (code.match(/\n/g) || []).length;
+  const language = selectedLanguage?.name ?? "";
 
   useHotkeys("f", (event) => {
     event.preventDefault();
@@ -146,13 +291,16 @@ function Editor() {
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((event) => {
     const textarea = textareaRef.current!;
+    const isMod = event.metaKey || event.ctrlKey;
+
     switch (event.key) {
+      /* ---- Existing ---- */
       case "Tab":
         event.preventDefault();
         handleTab(textarea, event.shiftKey);
         break;
       case "}":
-        event?.preventDefault();
+        event.preventDefault();
         handleBracketClose(textarea);
         break;
       case "Escape":
@@ -163,102 +311,153 @@ function Editor() {
         event.preventDefault();
         handleEnter(textarea);
         break;
+
+      /* ---- Auto-pair ---- */
+      case "(":
+        event.preventDefault();
+        handleAutoPair(textarea, "(", ")");
+        break;
+      case "[":
+        event.preventDefault();
+        handleAutoPair(textarea, "[", "]");
+        break;
+      case "{":
+        event.preventDefault();
+        handleAutoPair(textarea, "{", "}");
+        break;
+      case '"':
+        event.preventDefault();
+        handleAutoPair(textarea, '"', '"');
+        break;
+      case "'":
+        event.preventDefault();
+        handleAutoPair(textarea, "'", "'");
+        break;
+      case "`":
+        event.preventDefault();
+        handleAutoPair(textarea, "`", "`");
+        break;
+
+      /* ---- Line movement ---- */
+      case "ArrowUp":
+        if (event.altKey) {
+          event.preventDefault();
+          handleMoveLine(textarea, "up");
+        }
+        break;
+      case "ArrowDown":
+        if (event.altKey) {
+          event.preventDefault();
+          handleMoveLine(textarea, "down");
+        }
+        break;
+
+      /* ---- Mod shortcuts ---- */
+      case "/":
+        if (isMod && event.shiftKey) {
+          event.preventDefault();
+          handleBlockCommentToggle(textarea);
+        } else if (isMod) {
+          event.preventDefault();
+          handleCommentToggle(textarea);
+        }
+        break;
+      case "d":
+        if (isMod && event.shiftKey) {
+          event.preventDefault();
+          handleDuplicateLine(textarea);
+        } else if (isMod) {
+          event.preventDefault();
+          handleSelectWord(textarea);
+        }
+        break;
+      case "l":
+        if (isMod) {
+          event.preventDefault();
+          handleSelectLine(textarea);
+        }
+        break;
+      case "k":
+        if (isMod && event.shiftKey) {
+          event.preventDefault();
+          handleDeleteLine(textarea);
+        }
+        break;
     }
   }, []);
 
-  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
+  useEffect(() => {
+    if (textareaRef.current && textareaRef.current.value !== code) {
+      textareaRef.current.value = code;
+    }
+  }, [code]);
+
+  const onChangeEditor = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
-      if (event.target.value.includes("🐰") && theme.id !== THEMES.rabbit.id) {
-        if (!unlockedThemes.includes(THEMES.rabbit.id)) {
-          setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
-        }
-        setTheme(THEMES.rabbit);
-        try {
-          localStorage.setItem("codeTheme", THEMES.rabbit.id);
-        } catch (error) {
-          console.log("Could not set theme in localStorage", error);
-        }
-        setFlashMessage({
-          message: "Evil Rabbit Theme Unlocked",
-          variant: "unlock",
-          timeout: 2000,
-          icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
-        });
-      }
-      setCode(event.target.value);
+      updateSlideElement({ content: event.target.value });
     },
-    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
+    [updateSlideElement],
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
     if (isCodeExample && textareaRef.current) {
-      // Safari needs a timeout otherwise the selection flickers
       const textarea = textareaRef.current;
-      setTimeout(() => {
-        textarea.select();
-      }, 1);
+      setTimeout(() => textarea.select(), 1);
     }
   }, [isCodeExample]);
 
+  /* Alt hold → line highlight mode */
   useEffect(() => {
     const listener = (event: MouseEvent) => {
+      if (!isHighlightingLines) return;
       const target = event.target as HTMLElement;
-      const lineNumber = (target.closest("[data-line]") as HTMLElement)?.dataset?.line;
-      if (lineNumber && isHighlightingLines) {
-        setHighlightedLines((prev) => {
-          const line = Number(lineNumber);
-          if (prev.includes(line)) {
-            return prev.filter((l) => l !== line);
-          } else {
-            return [...prev, line];
-          }
-        });
-      }
+      const lineNumber = Number((target.closest("[data-line]") as HTMLElement)?.dataset?.line);
+      if (!lineNumber) return;
+      updateSlideElement({
+        properties: {
+          highlightedLines: highlightedLines.includes(lineNumber)
+            ? highlightedLines.filter((l) => l !== lineNumber)
+            : [...highlightedLines, lineNumber],
+        },
+      });
     };
-
     document.addEventListener("click", listener);
-
-    return () => {
-      document.removeEventListener("click", listener);
-    };
-  }, [setHighlightedLines, isHighlightingLines]);
+    return () => document.removeEventListener("click", listener);
+  }, [updateSlideElement, highlightedLines, isHighlightingLines]);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Alt") {
-        setIsHighlightingLines(true);
-      }
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Alt") setIsHighlightingLines(true);
     };
-
-    const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.key === "Alt") {
-        setIsHighlightingLines(false);
-      }
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.key === "Alt") setIsHighlightingLines(false);
     };
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
-
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("keyup", onKeyUp);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("keyup", onKeyUp);
     };
   }, []);
 
   return (
     <div
-      className={classNames(
+      className={cn(
         styles.editor,
-        // @ts-expect-error
-        themeFont ? fontMap[themeFont] : styles.jetBrainsMono,
         isHighlightingLines && styles.isHighlightingLines,
         showLineNumbers &&
-          selectedLanguage !== LANGUAGES.plaintext && [
+          language !== LANGUAGES.plaintext.name && [
             styles.showLineNumbers,
             numberOfLines > 8 && styles.showLineNumbersLarge,
           ],
       )}
-      style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
+      style={
+        {
+          "--editor-padding": "16px",
+          ...themeCSS,
+          fontFamily: `var(${currentFont?.variable})`,
+        } as React.CSSProperties
+      }
       data-value={code}
     >
       <textarea
@@ -266,17 +465,17 @@ function Editor() {
         tabIndex={-1}
         autoComplete="off"
         autoCorrect="off"
-        spellCheck="false"
+        spellCheck={false}
         autoCapitalize="off"
         ref={textareaRef}
         className={styles.textarea}
-        value={code}
-        onChange={handleChange}
+        defaultValue={code}
+        onChange={onChangeEditor}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         data-enable-grammarly="false"
       />
-      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
+      <HighlightedCode code={code} selectedLanguage={selectedLanguage!} />
     </div>
   );
 }

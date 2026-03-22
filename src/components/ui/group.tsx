@@ -5,7 +5,7 @@ import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { Separator } from "@/components/ui/separator";
 
 const groupVariants = cva(

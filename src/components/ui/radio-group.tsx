@@ -3,7 +3,7 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return <RadioGroupPrimitive className={cn("flex flex-col gap-3", className)} data-slot="radio-group" {...props} />;
