@@ -41,6 +41,7 @@ import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
 import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
+import { FloatingActionBar } from "@/components/floating-action-bar";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
 
@@ -549,23 +550,27 @@ export default function Snippets() {
         </div>
       </div>
 
-      {/* Floating Action Bar for Mobile */}
-      {isTouch && selectedSnippets.length > 0 && (
-        <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
-            <PlusCircleIcon />
-            Add to Raycast
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyData}>
-            <CopyClipboardIcon />
-            Copy JSON
-          </button>
-          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
-            <LinkIcon />
-            Share URL
-          </button>
-        </div>
-      )}
+      <FloatingActionBar
+        isVisible={isTouch === true && selectedSnippets.length > 0}
+        actions={[
+          {
+            icon: <PlusCircleIcon />,
+            label: "Add to Raycast",
+            onClick: handleAddToRaycast,
+            variant: "primary",
+          },
+          {
+            icon: <CopyClipboardIcon />,
+            label: "Copy JSON",
+            onClick: handleCopyData,
+          },
+          {
+            icon: <LinkIcon />,
+            label: "Share URL",
+            onClick: handleCopyUrl,
+          },
+        ]}
+      />
     </div>
   );
 }
