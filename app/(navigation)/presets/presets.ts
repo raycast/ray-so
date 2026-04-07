@@ -808,7 +808,7 @@ Follow these instructions unless otherwise stated and without specifically menti
     description: `Anthropic's core system prompt used for Claude 3.7 Sonnet on the web and its apps. Added web search capability ("For extra world knowledge, Claude can search the web through Raycast AI…"), elaboration options ("it may mention the other options if the user seems interested"), writing style guidelines ("avoids superfluous prose… avoids using these specific terms: delve, intricate…"), and removed Anthropic-specific product info and support resources. See docs.anthropic.com/en/release-notes/system-prompts#feb-24th-2025.`,
     icon: "brand-anthropic",
     creativity: "medium",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-4-5",
     web_search: true,
     date: "2025-02-25",
     author: {
@@ -891,7 +891,7 @@ Here are some rules your must follow:
       "Provides comprehensive culinary assistance by analyzing recipes, answering cooking questions, offering technique guidance, suggesting substitutions, and sharing food knowledge while maintaining natural conversation flow and adapting responses.",
     icon: "leaf",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-4-5",
     web_search: true,
     date: "2024-12-08",
     author: {
@@ -908,7 +908,7 @@ Here are some rules your must follow:
       "Generates detailed, keyword-rich descriptions of images that capture their visual elements, style, composition, and emotional impact in a concise, searchable format. Requires vision capabilities.",
     icon: "image",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-4-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
@@ -924,7 +924,7 @@ Here are some rules your must follow:
       "Generates comprehensive font family descriptions by analyzing visual characteristics, stylistic influences, emotional impact, and genre suitability, with emphasis on capturing both technical details and expressive potential for future reference. Requires vision capabilities.",
     icon: "lowercase",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-4-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
