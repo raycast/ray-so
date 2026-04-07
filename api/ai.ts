@@ -18,7 +18,7 @@ export type Model =
   | "openai_o1-o3-mini"
   | "groq-openai/gpt-oss-20b"
   | "groq-openai/gpt-oss-120b"
-  | "anthropic-claude-haiku"
+  | "anthropic-claude-4-5-haiku"
   | "anthropic-claude-sonnet"
   | "anthropic-claude-3-7-sonnet-latest"
   | "anthropic-claude-3-7-sonnet-latest-reasoning"

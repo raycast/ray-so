@@ -665,7 +665,7 @@ const fun: Preset[] = [
     description: "Imagine google translate but it turns everything into emojis, what else could you need?",
     icon: "emoji",
     creativity: "maximum",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
     web_search: true,
     date: "2024-03-26",
   },
