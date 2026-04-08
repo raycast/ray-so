@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Voltage",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0A0A0A",
+    "backgroundSecondary": "#141414",
+    "text": "#F0F0F0",
+    "selection": "#A6FF00",
+    "loader": "#A6FF00",
+    "red": "#F25A5A",
+    "orange": "#F2A15A",
+    "yellow": "#F2D85A",
+    "green": "#5AF28C",
+    "blue": "#5A99F2",
+    "purple": "#A65AF2",
+    "magenta": "#F25ABF"
+  }
+}
