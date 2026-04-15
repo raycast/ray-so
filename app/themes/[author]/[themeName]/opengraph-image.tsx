@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 /* eslint-disable jsx-a11y/alt-text */
 
 import { alpha } from "@themes/lib/alpha";
@@ -257,6 +257,41 @@ export default async function Image({ params }: { params: Promise<{ author: stri
               position: "relative",
             }}
           >
+            {/* macOS-style dots */}
+            <div
+              style={{
+                display: "flex",
+                gap: "8px",
+                marginRight: "auto",
+                paddingLeft: "8px",
+              }}
+            >
+              <span
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#FF605C",
+                }}
+              ></span>
+              <span
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#FFBD44",
+                }}
+              ></span>
+              <span
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  backgroundColor: "#00CA4E",
+                }}
+              ></span>
+            </div>
+
             <div
               style={{
                 width: "24px",
@@ -267,6 +302,7 @@ export default async function Image({ params }: { params: Promise<{ author: stri
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                marginLeft: "auto",
               }}
             >
               <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" width={16} height={16}>
@@ -279,29 +315,6 @@ export default async function Image({ params }: { params: Promise<{ author: stri
                 />
               </svg>
             </div>
-            <div
-              style={{
-                width: "100%",
-                lineHeight: "1",
-                backgroundColor: "transparent",
-                border: "none",
-                fontSize: "16px",
-                marginLeft: "10px",
-                color: tokens.text400,
-              }}
-            >
-              Search for apps and commands...
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                top: "100%",
-                left: "35%",
-                width: "30%",
-                height: "1px",
-                backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0), ${tokens.loader}, rgba(255, 255, 255, 0))`,
-              }}
-            ></div>
           </header>
 
           <main
