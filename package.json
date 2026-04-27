@@ -86,7 +86,7 @@
   "overrides": {
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
-    "lodash": "^4.17.23",
+    "lodash": "^4.18.1",
     "lodash-es": "^4.17.23"
   }
 }
