@@ -33,7 +33,6 @@ function fileNameFromPath(src: string) {
 
 export function IosIcons({ icons }: { icons: IconFeature[] }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [status, setStatus] = useState<string>("");
   const [isSaving, setIsSaving] = useState(false);
   const [installGuideOpen, setInstallGuideOpen] = useState(false);
   const [installGuideSession, setInstallGuideSession] = useState(0);
@@ -82,19 +81,16 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
 
   const selectAll = () => {
     setSelected(new Set(allEntries.map((entry) => keyFor(entry.id, entry.theme))));
-    setStatus("");
   };
 
   const selectAllByTheme = (theme: ThemeKey) => {
     setSelected(
       new Set(allEntries.filter((entry) => entry.theme === theme).map((entry) => keyFor(entry.id, entry.theme))),
     );
-    setStatus("");
   };
 
   const clearSelection = () => {
     setSelected(new Set());
-    setStatus("");
   };
 
   const saveSelected = async () => {
@@ -103,7 +99,6 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
     }
 
     setIsSaving(true);
-    setStatus("");
 
     try {
       const files = await Promise.all(
@@ -120,7 +115,6 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
           title: "Raycast iOS Shortcut Icons",
           text: "Save these icon images to Photos.",
         });
-        setStatus("Share sheet opened. Tap Save Image/Save to Photos in iOS.");
         return;
       }
 
@@ -134,10 +128,7 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
         anchor.remove();
         URL.revokeObjectURL(url);
       }
-
-      setStatus("Downloaded selected icons.");
     } catch {
-      setStatus("Could not save icons. Please try again.");
     } finally {
       setIsSaving(false);
     }
@@ -173,35 +164,51 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
         </div>
 
         <div className="sticky top-[58px] z-20 rounded-xl border border-gray-5 bg-gray-2/95 backdrop-blur px-3 py-3 md:px-4 md:py-3 mb-6">
-          <div className="flex flex-wrap items-center gap2 md:gap-3">
-            <div className="flex items-center">
-              <Button variant="secondary" onClick={selectAll} className="rounded-r-none">
-                Select All
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="secondary" iconOnly className="rounded-l-none border-l border-gray-6">
-                    <ChevronDownIcon className="w-4 h-4" />
+          <div className="flex flex-wrap items-center justify-between gap-2 md:gap-3">
+            <div className="flex min-w-0 flex-wrap items-center gap-2 md:gap-3">
+              <div className="flex items-center">
+                <Button variant="secondary" onClick={selectAll} className="rounded-r-none md:rounded-md">
+                  Select All
+                </Button>
+                <div className="md:hidden">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="secondary" iconOnly className="rounded-l-none border-l border-gray-6">
+                        <ChevronDownIcon className="w-4 h-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start">
+                      <DropdownMenuItem onSelect={() => selectAllByTheme("default")}>
+                        Select all default
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onSelect={() => selectAllByTheme("dark")}>Select all dark</DropdownMenuItem>
+                      <DropdownMenuItem onSelect={() => selectAllByTheme("clearLight")}>
+                        Select all clear light
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onSelect={() => selectAllByTheme("clearDark")}>
+                        Select all clear dark
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+              <div className="hidden md:flex flex-wrap items-center gap-2">
+                {(Object.keys(THEME_LABELS) as ThemeKey[]).map((theme) => (
+                  <Button key={theme} variant="secondary" onClick={() => selectAllByTheme(theme)}>
+                    {THEME_LABELS[theme]}
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start">
-                  <DropdownMenuItem onSelect={() => selectAllByTheme("dark")}>Select all dark</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => selectAllByTheme("default")}>Select all default</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => selectAllByTheme("clearLight")}>
-                    Select all clear light
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => selectAllByTheme("clearDark")}>
-                    Select all clear dark
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                ))}
+              </div>
             </div>
-            <Button variant="secondary" onClick={clearSelection} disabled={selectedEntries.length === 0}>
+            <Button
+              variant="secondary"
+              onClick={clearSelection}
+              disabled={selectedEntries.length === 0}
+              className="shrink-0"
+            >
               Clear
             </Button>
-            <span className="ml-auto text-xs md:text-sm text-gray-10">{allEntries.length} icons total</span>
           </div>
-          {status && <p className="mt-2 text-xs md:text-sm text-gray-10">{status}</p>}
         </div>
 
         <div className="space-y-8">
