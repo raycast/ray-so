@@ -118,7 +118,8 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
         return;
       }
 
-      for (const file of files) {
+      if (files.length === 1) {
+        const file = files[0]!;
         const url = URL.createObjectURL(file);
         const anchor = document.createElement("a");
         anchor.href = url;
@@ -127,7 +128,23 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
         anchor.click();
         anchor.remove();
         URL.revokeObjectURL(url);
+        return;
       }
+
+      const { default: JSZip } = await import("jszip");
+      const zip = new JSZip();
+      for (const file of files) {
+        zip.file(file.name, file);
+      }
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const zipUrl = URL.createObjectURL(zipBlob);
+      const zipAnchor = document.createElement("a");
+      zipAnchor.href = zipUrl;
+      zipAnchor.download = "raycast-ios-shortcut-icons.zip";
+      document.body.appendChild(zipAnchor);
+      zipAnchor.click();
+      zipAnchor.remove();
+      URL.revokeObjectURL(zipUrl);
     } catch {
     } finally {
       setIsSaving(false);
