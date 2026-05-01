@@ -16,6 +16,7 @@ import Link from "next/link";
 import { cn } from "@/utils/cn";
 import CodeImagesIcon from "@/app/assets/code-images.svg";
 import IconMakerIcon from "@/app/assets/icon-maker.svg";
+import IosIconsIcon from "@/app/assets/ios-icons.svg";
 import SnippetExplorerIcon from "@/app/assets/snippet-explorer.svg";
 import PresetExplorerIcon from "@/app/assets/preset-explorer.svg";
 import QuicklinkExplorerIcon from "@/app/assets/quicklink-explorer.svg";
@@ -65,6 +66,12 @@ const links = [
     label: "Themes",
     description: "Browse and import Raycast Themes",
     icon: ThemeExplorerIcon,
+  },
+  {
+    href: "/ios-icons",
+    label: "iOS App Icons",
+    description: "Save iOS shortcut icons for Raycast features",
+    icon: IosIconsIcon,
   },
 ];
 
