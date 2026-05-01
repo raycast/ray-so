@@ -177,13 +177,13 @@ export function InstallGuideDialog({ open, onOpenChange }: InstallGuideDialogPro
           </div>
         </div>
 
-        <div className="mt-4 flex shrink-0 flex-col gap-3 border-t border-gray-5 pt-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-center text-xs text-gray-10 sm:text-left">
+        <div className="mt-4 flex shrink-0 flex-row items-center justify-between gap-2 border-t border-gray-5 pt-4">
+          <p className="shrink-0 text-left text-xs text-gray-10">
             Step <span className="inline-block min-w-[2ch] text-center font-mono tabular-nums">{step + 1}</span> of{" "}
             <span className="inline-block min-w-[2ch] text-center font-mono tabular-nums">{total}</span>
           </p>
 
-          <div className="flex flex-1 justify-center gap-1.5">
+          <div className="flex min-w-0 flex-1 justify-center gap-1.5">
             {INSTALL_GUIDE_STEPS.map((_, i) => (
               <button
                 key={`step-dot-${i}`}
@@ -199,7 +199,7 @@ export function InstallGuideDialog({ open, onOpenChange }: InstallGuideDialogPro
             ))}
           </div>
 
-          <div className="flex justify-center gap-2 sm:justify-end">
+          <div className="flex shrink-0 justify-end gap-2">
             <Button
               type="button"
               variant="secondary"
