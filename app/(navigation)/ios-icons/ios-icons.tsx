@@ -251,28 +251,26 @@ export function IosIcons({ icons }: { icons: IconFeature[] }) {
                       aria-pressed={isSelected}
                     >
                       <div
-                        className={`relative mx-auto aspect-square w-full max-w-[136px] overflow-hidden rounded-[30px] bg-gray-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] ${
+                        className={`relative mx-auto aspect-square w-full max-w-[136px] rounded-[30px] bg-gray-1 ${
                           isSelected
                             ? "ring-2 ring-brand ring-offset-2 ring-offset-gray-2"
                             : "ring-1 ring-gray-6 group-hover:ring-gray-7"
                         }`}
                       >
-                        <Image
-                          src={src}
-                          alt={`${icon.label} ${THEME_LABELS[theme]} icon`}
-                          fill
-                          className="object-cover select-none"
-                          draggable={false}
-                        />
-                        <span
-                          className={`absolute right-3 top-3 inline-flex h-6 w-6 items-center justify-center rounded-full border ${
-                            isSelected
-                              ? "border-brand bg-brand text-white"
-                              : "border-gray-7 bg-gray-2/75 text-transparent"
-                          }`}
-                        >
-                          <CheckIcon className="h-3.5 w-3.5" />
-                        </span>
+                        <div className="absolute inset-0 overflow-hidden rounded-[30px] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
+                          <Image
+                            src={src}
+                            alt={`${icon.label} ${THEME_LABELS[theme]} icon`}
+                            fill
+                            className="object-cover select-none"
+                            draggable={false}
+                          />
+                        </div>
+                        {isSelected ? (
+                          <span className="absolute right-2.5 top-2.5 z-10 inline-flex h-6 w-6 items-center justify-center rounded-full border border-brand bg-brand text-white">
+                            <CheckIcon className="h-3.5 w-3.5" />
+                          </span>
+                        ) : null}
                       </div>
                       <div className="mt-3 space-y-0.5">
                         <p className="text-[14px] leading-tight font-medium text-gray-12">{icon.label}</p>
