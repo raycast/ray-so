@@ -1,0 +1,206 @@
+.frame {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  background: linear-gradient(215deg, #191919 30%, #4612a7 60%, #375aed 100%);
+
+  ::selection {
+    background: #8b66f4;
+    color: #f1f1f1;
+  }
+}
+
+.frameLightMode {
+  background: linear-gradient(215deg, #f7f6ff 8%, #efe8ff 48%, #e5eeff 100%);
+
+  ::selection {
+    background: #8b66f4;
+    color: #f1f1f1;
+  }
+
+  .shell {
+    background-color: rgb(255 255 255 / 78%);
+    box-shadow:
+      0 0 0 1px rgb(124 92 224 / 10%),
+      0 12px 30px rgb(46 52 89 / 10%);
+  }
+
+  .control {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #dedede;
+  }
+
+  .badge {
+    color: #2a2c36;
+  }
+
+  .runtime {
+    color: #7a8092;
+  }
+
+  .gridlinesHorizontal,
+  .gridlinesVertical {
+    &:before,
+    &:after {
+      background: rgb(42 44 54 / 0.12);
+    }
+  }
+
+  .window {
+    background: linear-gradient(180deg, rgb(255 255 255 / 100%), rgb(245 243 241 / 50%) 15%), #ffffff;
+    box-shadow:
+      0 0 0 1px rgb(124 92 224 / 10%),
+      0 1px 3px rgb(0 0 0 / 4%),
+      0 1px 2px -1px rgb(0 0 0 / 5%);
+    --line-number: #9aa4bd;
+  }
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(17, 18, 23, 1);
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.gridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 0;
+    top: -0.05rem;
+    bottom: 0;
+    left: -3rem;
+    width: calc(100% + 6rem);
+    height: 1px;
+    background: rgb(255 255 255 / 0.12);
+    content: "";
+    -webkit-mask-image: linear-gradient(to left, transparent, white 3rem, white calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(to left, transparent, white 3rem, white calc(100% - 3rem), transparent);
+  }
+
+  &:after {
+    top: auto;
+    bottom: -0.05rem;
+  }
+}
+
+.gridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 0;
+    top: -3rem;
+    bottom: 0;
+    left: -0.05rem;
+    width: 1px;
+    height: calc(100% + 6rem);
+    background: rgb(255 255 255 / 0.12);
+    content: "";
+    -webkit-mask-image: linear-gradient(to top, transparent, white 3rem, white calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(to top, transparent, white 3rem, white calc(100% - 3rem), transparent);
+  }
+
+  &:after {
+    right: -0.05rem;
+    left: auto;
+  }
+}
+
+.toolbar {
+  display: grid;
+  align-items: center;
+  gap: 8px;
+  grid-template-columns: 60px minmax(0, 1fr) 60px;
+  padding: 4px 20px 8px 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #373737;
+}
+
+.badge {
+  position: relative;
+  display: grid;
+  color: #dedede;
+  font-size: 1rem;
+  font-weight: 500;
+  font-optical-sizing: 0.875rem;
+  font-variant-numeric: slashed-zero;
+  line-height: 1.5;
+}
+
+.runtime {
+  position: relative;
+  display: grid;
+  color: #727272;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.06%;
+  text-align: right;
+}
+
+.badge input,
+.badge > span,
+.badge:after,
+.runtime input,
+.runtime > span {
+  grid-area: 1 / 1;
+}
+
+.badge input,
+.badge > span,
+.runtime input,
+.runtime > span {
+  min-width: 1em;
+  padding: 0;
+  border: none;
+  margin: 0;
+  appearance: none;
+  background: none;
+  font: inherit;
+}
+
+.badge input,
+.runtime input {
+  color: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.badge:after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre;
+}
+
+.badge > span,
+.runtime > span {
+  pointer-events: none;
+}
+
+.window {
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 2.5%), transparent 15%), #171717;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 10%),
+    0 1px 3px rgb(0 0 0 / 6%),
+    0 1px 2px -1px rgb(0 0 0 / 6%);
+  --line-number: #636d83;
+}
