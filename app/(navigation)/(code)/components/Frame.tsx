@@ -9,6 +9,7 @@ import ResizableFrame from "./ResizableFrame";
 import BrowserbaseFrame from "./frames/BrowserbaseFrame";
 import ClerkFrame from "./frames/ClerkFrame";
 import CloudflareFrame from "./frames/CloudflareFrame";
+import Auth0Frame from "./frames/Auth0Frame";
 import DefaultFrame from "./frames/DefaultFrame";
 import ElevenLabsFrame from "./frames/ElevenLabsFrame";
 import FirecrawlFrame from "./frames/FirecrawlFrame";
@@ -56,6 +57,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <ResendFrame />;
       case THEMES.browserbase.id:
         return <BrowserbaseFrame />;
+      case THEMES.auth0.id:
+        return <Auth0Frame />;
       case THEMES.nuxt.id:
         return <NuxtFrame />;
       case THEMES.gemini.id:

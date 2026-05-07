@@ -37,6 +37,8 @@ import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
 import StripeLogo from "../assets/stripe/logo.svg";
 import StripeLogoUrl from "../assets/stripe/logo.svg?url";
+import Auth0Logo from "../assets/auth0.svg";
+import Auth0LogoUrl from "../assets/auth0.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -1545,6 +1547,62 @@ export const THEMES: { [index: string]: Theme } = {
         property: "#a7a7a7",
         diffInserted: "#a7a7a7",
         diffDeleted: "#a7a7a7",
+      }),
+    },
+  },
+  auth0: {
+    id: "auth0",
+    name: "Auth0",
+    background: {
+      from: "#171717",
+      to: "#24173A",
+    },
+    icon: Auth0Logo,
+    iconUrl: Auth0LogoUrl,
+    font: "commit-mono",
+    partner: true,
+    lineNumbers: true,
+    lineNumbersToggleable: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#252733",
+        constant: "#5E72E4",
+        string: "#2F946F",
+        comment: "#8C8C96",
+        keyword: "#7C5CE0",
+        parameter: "#252733",
+        function: "#5A37C8",
+        stringExpression: "#2F946F",
+        punctuation: "#BE9A24",
+        link: "#5E72E4",
+        number: "#7C5CE0",
+        property: "#7383E8",
+        objectLiteral: "#5E72E4",
+        highlight: "rgba(82, 139, 255, 0.16)",
+        highlightHover: "rgba(82, 139, 255, 0.08)",
+        highlightBorder: "#528BFF",
+        diffDeleted: "#D27A55",
+        diffInserted: "#2F946F",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#F1F1F1",
+        constant: "#99A7F1",
+        string: "#98D2B2",
+        comment: "#808080",
+        keyword: "#B59DF8",
+        parameter: "#F1F1F1",
+        function: "#8B66F4",
+        stringExpression: "#98D2B2",
+        punctuation: "#FDE66F",
+        link: "#99A7F1",
+        number: "#B59DF8",
+        property: "#B9C3F5",
+        objectLiteral: "#99A7F1",
+        highlight: "rgba(82, 139, 255, 0.24)",
+        highlightHover: "rgba(82, 139, 255, 0.12)",
+        highlightBorder: "#528BFF",
+        diffDeleted: "#EA976A",
+        diffInserted: "#98D2B2",
       }),
     },
   },
