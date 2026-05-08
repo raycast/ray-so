@@ -62,12 +62,24 @@ const INSTALL_GUIDE_STEPS: GuideStep[] = [
   },
 ];
 
+const INSTALL_GUIDE_IMAGE_HREFS = INSTALL_GUIDE_STEPS.map((s) => s.imageSrc).filter((src): src is string =>
+  Boolean(src),
+);
+
 type InstallGuideDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
 
-function GuideStepImage({ src, alt }: { src: string; alt: string }) {
+function GuideStepImage({
+  src,
+  alt,
+  fetchPriority,
+}: {
+  src: string;
+  alt: string;
+  fetchPriority?: "high" | "low" | "auto";
+}) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
@@ -82,8 +94,11 @@ function GuideStepImage({ src, alt }: { src: string; alt: string }) {
         fill
         className="object-contain object-center"
         sizes="(max-width: 768px) 100vw, 720px"
+        loading="eager"
+        decoding="async"
+        unoptimized
+        fetchPriority={fetchPriority}
         onError={() => setFailed(true)}
-        priority={false}
       />
     </div>
   );
@@ -96,6 +111,27 @@ export function InstallGuideDialog({ open, onOpenChange }: InstallGuideDialogPro
 
   const goPrev = useCallback(() => setStep((s) => Math.max(0, s - 1)), []);
   const goNext = useCallback(() => setStep((s) => Math.min(total - 1, s + 1)), [total]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const preloadLinks = INSTALL_GUIDE_IMAGE_HREFS.map((href) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+      return link;
+    });
+
+    return () => {
+      for (const link of preloadLinks) {
+        link.remove();
+      }
+    };
+  }, [open]);
 
   useEffect(() => {
     if (!open) {
@@ -143,7 +179,12 @@ export function InstallGuideDialog({ open, onOpenChange }: InstallGuideDialogPro
 
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden py-2" aria-live="polite" aria-atomic="true">
           {current.imageSrc ? (
-            <GuideStepImage key={current.imageSrc} src={current.imageSrc} alt={`Screenshot: ${current.title}`} />
+            <GuideStepImage
+              key={current.imageSrc}
+              src={current.imageSrc}
+              alt={`Screenshot: ${current.title}`}
+              fetchPriority={step === 0 ? "high" : "auto"}
+            />
           ) : null}
           <div className="min-h-0 flex-1 overflow-y-auto">
             <div className="flex min-h-[7.5rem] flex-col space-y-2 sm:min-h-[7rem]">
