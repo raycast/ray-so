@@ -35,6 +35,17 @@ import { toast } from "@/components/toast";
 import { Input, InputSlot } from "@/components/input";
 import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
+const AND_TOKENS = new Set(["&", "and", "adn", "und", "oraz", "и", "e", "i"]);
+
+function normalizeSearch(str: string): string {
+  return str
+    .toLowerCase()
+    .split(/\s+/)
+    .map((token) => (AND_TOKENS.has(token) ? "&" : token))
+    .join(" ")
+    .trim();
+}
+
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
@@ -88,7 +99,7 @@ export function Quicklinks() {
   };
 
   const filteredQuicklinks = categories.flatMap((category) => {
-    return category.quicklinks.filter((quicklink) => quicklink.name.toLowerCase().includes(search.toLowerCase()));
+    return category.quicklinks.filter((quicklink) => normalizeSearch(quicklink.name).includes(normalizeSearch(search)));
   });
 
   const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
@@ -217,7 +228,7 @@ export function Quicklinks() {
 
   const filteredCategories = categories.filter((c) => {
     if (!search) return true;
-    return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
+    return c.quicklinks.some((q) => normalizeSearch(q.name).includes(normalizeSearch(search)));
   });
 
   return (
@@ -296,7 +307,7 @@ export function Quicklinks() {
                     const categoryWithFilteredQuicklinks = {
                       ...category,
                       quicklinks: category.quicklinks.filter((q) =>
-                        q.name.toLowerCase().includes(search.toLowerCase()),
+                        normalizeSearch(q.name).includes(normalizeSearch(search)),
                       ),
                     };
 
@@ -382,7 +393,7 @@ export function Quicklinks() {
               {categories
                 .filter((c) => {
                   if (!search) return true;
-                  return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
+                  return c.quicklinks.some((q) => normalizeSearch(q.name).includes(normalizeSearch(search)));
                 })
                 .map((category) => {
                   return (
@@ -401,7 +412,7 @@ export function Quicklinks() {
                         {category.quicklinks
                           .filter((q) => {
                             if (!search) return true;
-                            return q.name.toLowerCase().includes(search.toLowerCase());
+                            return normalizeSearch(q.name).includes(normalizeSearch(search));
                           })
                           .map((quicklink, index) => {
                             const isSelected = selectedQuicklinkIds.includes(quicklink.id);
