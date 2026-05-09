@@ -42,7 +42,7 @@ import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
 import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
 
-const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
+const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "#", "none"] as const;
 
 type Modifiers = (typeof modifiers)[number];
 

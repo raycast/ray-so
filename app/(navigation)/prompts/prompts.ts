@@ -32,7 +32,7 @@ Consider every element of a tech stack, from frameworks to APIs through tools (a
     creativity: "low",
     date: "2024-03-18",
     icon: "globe-01",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "summarize-youtube-video",
@@ -52,7 +52,7 @@ Consider every element of a tech stack, from frameworks to APIs through tools (a
 
 Transcript: {browser-tab}`,
     creativity: "low",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
     date: "2024-03-18",
     icon: "play-filled",
   },
@@ -1043,7 +1043,7 @@ Stricly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "fix-spelling-and-grammar-custom",
@@ -1119,7 +1119,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "change-tone-to-professional",
@@ -1333,7 +1333,7 @@ Here's the website information:
     creativity: "low",
     date: "2024-03-21",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
 ];
 
