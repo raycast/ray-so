@@ -126,11 +126,13 @@ export function AddToRaycast() {
             dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
             `}
           >
-            <Item onSelect={() => handleAddToRaycast("v2")}>
-              <span className="inline-flex items-center gap-2">
-                <PlusCircleIcon /> Add to Raycast v2
-              </span>
-            </Item>
+            {raycastImportVersion === "v1" && (
+              <Item onSelect={() => handleAddToRaycast("v2")}>
+                <span className="inline-flex items-center gap-2">
+                  <PlusCircleIcon /> Add to Raycast v2
+                </span>
+              </Item>
+            )}
             {raycastImportVersion === "v2" && (
               <Item onSelect={() => handleAddToRaycast("v1")}>
                 <span className="inline-flex items-center gap-2">

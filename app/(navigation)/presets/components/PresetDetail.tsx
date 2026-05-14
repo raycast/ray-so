@@ -219,9 +219,11 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onSelect={() => handleAddToRaycast("v2")}>
-                  <PlusCircleIcon /> Add to Raycast v2
-                </DropdownMenuItem>
+                {raycastImportVersion === "v1" && (
+                  <DropdownMenuItem onSelect={() => handleAddToRaycast("v2")}>
+                    <PlusCircleIcon /> Add to Raycast v2
+                  </DropdownMenuItem>
+                )}
                 {raycastImportVersion === "v2" && (
                   <DropdownMenuItem onSelect={() => handleAddToRaycast("v1")}>
                     <PlusCircleIcon /> Add to Raycast v1

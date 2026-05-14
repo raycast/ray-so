@@ -239,9 +239,14 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleAddToRaycast("v2")}>
-                    <PlusCircleIcon /> Add to Raycast v2
-                  </DropdownMenuItem>
+                  {raycastImportVersion === "v1" && (
+                    <DropdownMenuItem
+                      disabled={selectedSnippets.length === 0}
+                      onSelect={() => handleAddToRaycast("v2")}
+                    >
+                      <PlusCircleIcon /> Add to Raycast v2
+                    </DropdownMenuItem>
+                  )}
                   {raycastImportVersion === "v2" && (
                     <DropdownMenuItem
                       disabled={selectedSnippets.length === 0}
