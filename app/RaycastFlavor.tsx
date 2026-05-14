@@ -63,7 +63,7 @@ async function getWhoamiResponse(port: number): Promise<WhoamiResponse | undefin
       socket = currentSocket;
 
       currentSocket.onopen = () => {
-        currentSocket.send(JSON.stringify({ method: "whoami", id: "1" }));
+        currentSocket.send(JSON.stringify({ jsonrpc: "2.0", method: "whoami", id: "1" }));
       };
 
       currentSocket.onmessage = (event) => {
