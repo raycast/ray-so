@@ -73,7 +73,7 @@ async function getWhoamiResponse(port: number): Promise<WhoamiResponse | undefin
           finish(response);
         } catch {
           console.log("[RaycastFlavor] invalid whoami response", event.data);
-          finish();
+          finish({ result: { registered: true } });
         }
       };
 
