@@ -15,11 +15,11 @@ export function Instructions() {
       <h3 className={styles.title}>Install Quicklinks</h3>
       <p className={styles.description}>
         Select a quicklink by clicking on it. Hold <kbd data-variant="small">⌘</kbd> to select multiple. Click the path
-        to edit. Click <strong>Add to Raycast</strong> to import them directly.
+        to edit. Click <strong>Add to Raycast v1</strong> to import them directly.
       </p>
 
       <Button variant="primary" disabled>
-        Add to Raycast
+        Add to Raycast v1
       </Button>
     </div>
   );

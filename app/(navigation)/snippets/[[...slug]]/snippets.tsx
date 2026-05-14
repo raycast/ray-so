@@ -40,7 +40,12 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
+import {
+  getRaycastFlavor,
+  getIsWindows,
+  type RaycastImportVersion,
+  useRaycastImportVersion,
+} from "@/app/RaycastFlavor";
 
 const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "#", "none"] as const;
 
@@ -85,6 +90,7 @@ export default function Snippets() {
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [aboutOpen, setAboutOpen] = React.useState(false);
   const [isTouch, setIsTouch] = React.useState<boolean>();
+  const [raycastImportVersion, setRaycastImportVersion] = useRaycastImportVersion();
 
   const onStart = ({ event, selection }: SelectionEvent) => {
     if (!isTouch && !event?.ctrlKey && !event?.metaKey) {
@@ -191,41 +197,51 @@ export default function Snippets() {
     setToastMessage("Copied URL to clipboard!");
   }, [makeQueryString]);
 
-  const handleAddToRaycast = React.useCallback(async () => {
-    const raycastProtocol = await getRaycastFlavor();
-    const queryString = makeQueryString();
+  const handleAddToRaycast = React.useCallback(
+    async (importVersion: RaycastImportVersion = raycastImportVersion) => {
+      const queryString = makeQueryString();
 
-    // For mobile, always use the standard 'raycast' scheme since iOS apps
-    // are typically registered for 'raycast://' not 'raycastinternal://'
-    const protocolToUse = isTouch ? "raycast" : raycastProtocol;
-    const url = `${protocolToUse}://snippets/import?${queryString}`;
-
-    // For mobile, use window.location.href directly as it's more reliable
-    if (isTouch) {
-      window.location.href = url;
-    } else {
-      const isWindows = await getIsWindows();
-
-      if (isWindows) {
-        const snippetsData = selectedSnippets.map((snippet) => {
-          const { name, text, type } = snippet;
-          const keyword =
-            snippet.type === "spelling"
-              ? snippet.keyword
-              : addModifiersToKeyword({
-                  keyword: snippet.keyword,
-                  start: startMod,
-                  end: endMod,
-                });
-          return { name, text, keyword, type };
-        });
-        const context = encodeURIComponent(JSON.stringify(snippetsData));
-        router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+      // For mobile, always use the standard 'raycast' scheme since iOS apps
+      // are typically registered for 'raycast://' not 'raycastinternal://'
+      if (isTouch) {
+        window.location.href = `raycast://snippets/import?${queryString}`;
       } else {
-        router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+        setRaycastImportVersion(importVersion);
+
+        const raycastProtocol = await getRaycastFlavor(importVersion);
+        const isWindows = await getIsWindows(importVersion);
+
+        if (isWindows) {
+          const snippetsData = selectedSnippets.map((snippet) => {
+            const { name, text, type } = snippet;
+            const keyword =
+              snippet.type === "spelling"
+                ? snippet.keyword
+                : addModifiersToKeyword({
+                    keyword: snippet.keyword,
+                    start: startMod,
+                    end: endMod,
+                  });
+            return { name, text, keyword, type };
+          });
+          const context = encodeURIComponent(JSON.stringify(snippetsData));
+          router.replace(`${raycastProtocol}://extensions/raycast/snippets/import-snippets?context=${context}`);
+        } else {
+          router.replace(`${raycastProtocol}://snippets/import?${makeQueryString()}`);
+        }
       }
-    }
-  }, [router, makeQueryString, selectedSnippets, startMod, endMod, isTouch]);
+    },
+    [
+      router,
+      makeQueryString,
+      selectedSnippets,
+      startMod,
+      endMod,
+      isTouch,
+      raycastImportVersion,
+      setRaycastImportVersion,
+    ],
+  );
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -363,7 +379,7 @@ export default function Snippets() {
               </Dialog>
               <ButtonGroup>
                 <Button variant="primary" disabled={selectedSnippets.length === 0} onClick={() => handleAddToRaycast()}>
-                  <PlusCircleIcon /> Add to Raycast
+                  <PlusCircleIcon /> Add to Raycast {raycastImportVersion}
                 </Button>
 
                 <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
@@ -373,6 +389,20 @@ export default function Snippets() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
+                    <DropdownMenuItem
+                      disabled={selectedSnippets.length === 0}
+                      onSelect={() => handleAddToRaycast("v2")}
+                    >
+                      <PlusCircleIcon /> Add to Raycast v2
+                    </DropdownMenuItem>
+                    {raycastImportVersion === "v2" && (
+                      <DropdownMenuItem
+                        disabled={selectedSnippets.length === 0}
+                        onSelect={() => handleAddToRaycast("v1")}
+                      >
+                        <PlusCircleIcon /> Add to Raycast v1
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem disabled={selectedSnippets.length === 0} onSelect={() => handleDownload()}>
                       <DownloadIcon /> Download JSON
                       <Kbds>
@@ -461,8 +491,8 @@ export default function Snippets() {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
-                        Add to Raycast
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
+                        Add to Raycast {raycastImportVersion}
                       </Button>
 
                       <Button onClick={() => setSelectedSnippets([])}>Clear selected</Button>
@@ -552,7 +582,7 @@ export default function Snippets() {
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedSnippets.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

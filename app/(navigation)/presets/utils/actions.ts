@@ -3,7 +3,7 @@ import { Preset } from "../presets";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BASE_URL } from "@/utils/common";
 import { Model } from "@/api/ai";
-import { getRaycastFlavor } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, setRaycastImportVersion, type RaycastImportVersion } from "@/app/RaycastFlavor";
 
 function prepareModel(model: Model) {
   if (model && /^".*"$/.test(model)) {
@@ -68,17 +68,25 @@ export function copyUrl(preset: Preset) {
   copy(makeUrl(preset));
 }
 
-export async function addToRaycast(router: AppRouterInstance, preset: Preset, isTouch?: boolean) {
-  const raycastProtocol = await getRaycastFlavor();
+export async function addToRaycast(
+  router: AppRouterInstance,
+  preset: Preset,
+  isTouch?: boolean,
+  importVersion?: RaycastImportVersion,
+) {
   const queryString = makeQueryString(preset);
-
-  const protocolToUse = isTouch ? "raycast" : raycastProtocol;
-  const url = `${protocolToUse}://presets/import?${queryString}`;
 
   // For mobile, use window.location.href directly as it's more reliable
   if (isTouch) {
-    window.location.href = url;
+    window.location.href = `raycast://presets/import?${queryString}`;
   } else {
+    if (importVersion) {
+      setRaycastImportVersion(importVersion);
+    }
+
+    const raycastProtocol = await getRaycastFlavor(importVersion);
+    const url = `${raycastProtocol}://presets/import?${queryString}`;
+
     // For desktop, use router.replace
     router.replace(url);
   }

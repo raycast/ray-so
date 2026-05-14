@@ -40,6 +40,7 @@ import { TooltipTrigger } from "@/components/tooltip";
 import { Extension } from "@/api/store";
 import { AIExtension } from "@/components/ai-extension";
 import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
+import { type RaycastImportVersion, useRaycastImportVersion } from "@/app/RaycastFlavor";
 
 type Props = {
   models: AiModel[];
@@ -59,6 +60,7 @@ export function Prompts({ models, extensions }: Props) {
 
   const [actionsOpen, setActionsOpen] = React.useState(false);
   const [isTouch, setIsTouch] = React.useState<boolean>();
+  const [raycastImportVersion, setRaycastImportVersion] = useRaycastImportVersion();
 
   const onStart = ({ event, selection }: SelectionEvent) => {
     if (!isTouch && !event?.ctrlKey && !event?.metaKey) {
@@ -133,8 +135,14 @@ export function Prompts({ models, extensions }: Props) {
   }, []);
 
   const handleAddToRaycast = React.useCallback(
-    () => addToRaycast(router, selectedPrompts, isTouch),
-    [router, selectedPrompts, isTouch],
+    (importVersion: RaycastImportVersion = raycastImportVersion) => {
+      if (!isTouch) {
+        setRaycastImportVersion(importVersion);
+      }
+
+      return addToRaycast(router, selectedPrompts, isTouch, importVersion);
+    },
+    [router, selectedPrompts, isTouch, raycastImportVersion, setRaycastImportVersion],
   );
 
   React.useEffect(() => {
@@ -208,7 +216,7 @@ export function Prompts({ models, extensions }: Props) {
           <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" disabled={selectedPrompts.length === 0} onClick={() => handleAddToRaycast()}>
-              <PlusCircleIcon /> Add to Raycast
+              <PlusCircleIcon /> Add to Raycast {raycastImportVersion}
             </Button>
 
             <DropdownMenu open={actionsOpen} onOpenChange={setActionsOpen}>
@@ -218,6 +226,14 @@ export function Prompts({ models, extensions }: Props) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleAddToRaycast("v2")}>
+                  <PlusCircleIcon /> Add to Raycast v2
+                </DropdownMenuItem>
+                {raycastImportVersion === "v2" && (
+                  <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleAddToRaycast("v1")}>
+                    <PlusCircleIcon /> Add to Raycast v1
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleDownload()}>
                   <DownloadIcon /> Download JSON
                   <Kbds>
@@ -300,8 +316,8 @@ export function Prompts({ models, extensions }: Props) {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
-                        Add to Raycast
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
+                        Add to Raycast {raycastImportVersion}
                       </Button>
 
                       <Button onClick={() => setSelectedPrompts([])}>Clear selected</Button>
@@ -456,7 +472,7 @@ export function Prompts({ models, extensions }: Props) {
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedPrompts.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>
