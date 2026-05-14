@@ -87,7 +87,7 @@ export default function Presets({ models, extensions }: Props) {
           <InfoDialog />
           <ButtonGroup>
             <Button variant="primary" disabled>
-              <PlusCircleIcon /> Add to Raycast
+              <PlusCircleIcon /> Add to Raycast v1
             </Button>
 
             <Button variant="primary" disabled aria-label="Export options">

@@ -2,14 +2,16 @@
 import React from "react";
 import copy from "copy-to-clipboard";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { ChevronDownIcon, PlusCircleIcon, PlusIcon } from "@raycast/icons";
+import { ChevronDownIcon, PlusCircleIcon } from "@raycast/icons";
 import { useRaycastTheme } from "@themes/components/raycast-theme-provider";
 import { isTouchDevice } from "@themes/lib/isTouchDevice";
 import { makeRaycastImportUrl } from "@themes/lib/url";
+import { type RaycastImportVersion, useRaycastImportVersion } from "@/app/RaycastFlavor";
 
 export function AddToRaycast() {
   const [isTouch, setIsTouch] = React.useState<boolean | null>(null);
   const [showActions, setShowActions] = React.useState(false);
+  const [raycastImportVersion, setRaycastImportVersion] = useRaycastImportVersion();
   const { activeTheme } = useRaycastTheme();
 
   const handleCopyTheme = React.useCallback(() => {
@@ -51,13 +53,17 @@ export function AddToRaycast() {
     link.click();
   }, [activeTheme]);
 
-  const handleAddToRaycast = React.useCallback(async () => {
-    if (!activeTheme) return;
+  const handleAddToRaycast = React.useCallback(
+    async (importVersion: RaycastImportVersion = raycastImportVersion) => {
+      if (!activeTheme) return;
 
-    console.log("Opening theme in Raycast from button");
-    const importUrl = await makeRaycastImportUrl(activeTheme);
-    window.open(importUrl);
-  }, [activeTheme]);
+      setRaycastImportVersion(importVersion);
+      console.log("Opening theme in Raycast from button");
+      const importUrl = await makeRaycastImportUrl(activeTheme, importVersion);
+      window.open(importUrl);
+    },
+    [activeTheme, raycastImportVersion, setRaycastImportVersion],
+  );
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -99,7 +105,7 @@ export function AddToRaycast() {
   return !isTouch ? (
     <span className="inline-flex items-center text-sm font-medium shadow-[0px_0px_29px_10px_rgba(0,0,0,0.03)] dark:shadow-[0px_0px_29px_10px_rgba(255,255,255,.06)] rounded-md">
       <Button className="flex-1 rounded-tl-md rounded-bl-md" onClick={() => handleAddToRaycast()}>
-        <PlusCircleIcon /> Add to Raycast
+        <PlusCircleIcon /> Add to Raycast {raycastImportVersion}
       </Button>
 
       <DropdownMenu.Root open={showActions} onOpenChange={setShowActions}>
@@ -120,6 +126,18 @@ export function AddToRaycast() {
             dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.2),0px_10px_38px_-10px_rgba(22,23,24,0.35),_0px_10px_20px_-15px_rgba(22,23,24,0.2)]
             `}
           >
+            <Item onSelect={() => handleAddToRaycast("v2")}>
+              <span className="inline-flex items-center gap-2">
+                <PlusCircleIcon /> Add to Raycast v2
+              </span>
+            </Item>
+            {raycastImportVersion === "v2" && (
+              <Item onSelect={() => handleAddToRaycast("v1")}>
+                <span className="inline-flex items-center gap-2">
+                  <PlusCircleIcon /> Add to Raycast v1
+                </span>
+              </Item>
+            )}
             <Item onSelect={() => handleDownload()}>
               Download JSON
               <Shortcut keys={["⌘", "D"]} />
