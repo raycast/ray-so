@@ -1,12 +1,19 @@
 "use client";
 
-type Flavor = "raycast" | "raycastinternal" | "raycastdebug" | "raycast-x-internal" | "raycast-x-development";
+type Flavor =
+  | "raycast"
+  | "raycast-x"
+  | "raycastinternal"
+  | "raycastdebug"
+  | "raycast-x-internal"
+  | "raycast-x-development";
 
 const FLAVOR_PORTS: Record<Flavor, number> = {
   "raycast-x-development": 7261,
   "raycast-x-internal": 7262,
   raycastdebug: 7263,
   raycastinternal: 7264,
+  "raycast-x": 7265,
   raycast: 7265,
 };
 
@@ -26,26 +33,66 @@ async function isWebsocketOpen(port: number): Promise<boolean> {
   });
 }
 
-async function supportsWhoami(port: number): Promise<boolean> {
+type WhoamiResponse = {
+  error?: unknown;
+  result?: {
+    registered?: boolean;
+  };
+};
+
+async function getWhoamiResponse(port: number): Promise<WhoamiResponse | undefined> {
   return new Promise((resolve) => {
+    let socket: WebSocket | undefined;
+    let resolved = false;
+
+    function finish(response?: WhoamiResponse) {
+      if (resolved) {
+        return;
+      }
+
+      resolved = true;
+      window.clearTimeout(timeout);
+      socket?.close();
+      resolve(response);
+    }
+
+    const timeout = window.setTimeout(() => finish(), 500);
+
     try {
-      const socket = new WebSocket(`ws://localhost:${port}`);
+      const currentSocket = new WebSocket(`ws://localhost:${port}`);
+      socket = currentSocket;
 
-      socket.onopen = () => {
-        socket.send(JSON.stringify({ method: "whoami", id: "1" }));
+      currentSocket.onopen = () => {
+        currentSocket.send(JSON.stringify({ method: "whoami", id: "1" }));
       };
 
-      socket.onmessage = (event) => {
-        const response = JSON.parse(event.data);
-        resolve(!response.error);
-        socket.close();
+      currentSocket.onmessage = (event) => {
+        try {
+          const response = JSON.parse(event.data);
+          console.log("[RaycastFlavor] whoami response", response);
+          finish(response);
+        } catch {
+          console.log("[RaycastFlavor] invalid whoami response", event.data);
+          finish();
+        }
       };
 
-      socket.onerror = () => resolve(false);
+      currentSocket.onerror = () => finish();
+      currentSocket.onclose = () => finish();
     } catch {
-      resolve(false);
+      finish();
     }
   });
+}
+
+async function supportsWhoami(port: number): Promise<boolean> {
+  const response = await getWhoamiResponse(port);
+  return Boolean(response && !response.error);
+}
+
+async function isRaycastV2(port: number): Promise<boolean> {
+  const response = await getWhoamiResponse(port);
+  return response?.result?.registered === true;
 }
 
 let cachedFlavor: Flavor;
@@ -64,6 +111,8 @@ export async function getRaycastFlavor(): Promise<Flavor> {
     cachedFlavor = "raycastdebug";
   } else if (await isWebsocketOpen(FLAVOR_PORTS.raycastinternal)) {
     cachedFlavor = "raycastinternal";
+  } else if (await isRaycastV2(FLAVOR_PORTS.raycast)) {
+    cachedFlavor = "raycast-x";
   } else {
     cachedFlavor = "raycast";
   }
@@ -78,7 +127,7 @@ export async function getIsWindows(): Promise<boolean> {
 
   const flavor = await getRaycastFlavor();
 
-  if (flavor === "raycast-x-development" || flavor === "raycast-x-internal") {
+  if (flavor === "raycast-x" || flavor === "raycast-x-development" || flavor === "raycast-x-internal") {
     cachedIsWindows = true;
     return true;
   }
