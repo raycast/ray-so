@@ -226,9 +226,11 @@ export function Prompts({ models, extensions }: Props) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleAddToRaycast("v2")}>
-                  <PlusCircleIcon /> Add to Raycast v2
-                </DropdownMenuItem>
+                {raycastImportVersion === "v1" && (
+                  <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleAddToRaycast("v2")}>
+                    <PlusCircleIcon /> Add to Raycast v2
+                  </DropdownMenuItem>
+                )}
                 {raycastImportVersion === "v2" && (
                   <DropdownMenuItem disabled={selectedPrompts.length === 0} onSelect={() => handleAddToRaycast("v1")}>
                     <PlusCircleIcon /> Add to Raycast v1

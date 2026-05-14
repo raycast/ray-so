@@ -251,9 +251,14 @@ export function Quicklinks() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem disabled={selectedQuicklinks.length === 0} onSelect={() => handleAddToRaycast("v2")}>
-                  <PlusCircleIcon /> Add to Raycast v2
-                </DropdownMenuItem>
+                {raycastImportVersion === "v1" && (
+                  <DropdownMenuItem
+                    disabled={selectedQuicklinks.length === 0}
+                    onSelect={() => handleAddToRaycast("v2")}
+                  >
+                    <PlusCircleIcon /> Add to Raycast v2
+                  </DropdownMenuItem>
+                )}
                 {raycastImportVersion === "v2" && (
                   <DropdownMenuItem
                     disabled={selectedQuicklinks.length === 0}
