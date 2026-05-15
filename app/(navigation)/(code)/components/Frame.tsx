@@ -22,6 +22,33 @@ import clerkPattern from "../assets/clerk/pattern.svg?url";
 import triggerPattern from "../assets/triggerdev/pattern.svg?url";
 import { flashShownAtom } from "../store/flash";
 
+const AWSFrame = () => {
+  const darkMode = useAtomValue(themeDarkModeAtom);
+  const [padding] = useAtom(paddingAtom);
+  const [showBackground] = useAtom(showBackgroundAtom);
+
+  return (
+    <div
+      className={classNames(
+        styles.frame,
+        showBackground && styles.awsFrame,
+        showBackground && !darkMode && styles.awsFrameLightMode,
+        !showBackground && styles.noBackground,
+      )}
+      style={{ padding }}
+    >
+      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      <div className={styles.awsWindow}>
+        <span className={styles.awsGridlinesHorizontal} data-grid></span>
+        <span className={styles.awsGridlinesVertical} data-grid></span>
+        <span className={styles.awsBracketLeft} data-grid></span>
+        <span className={styles.awsBracketRight} data-grid></span>
+        <Editor />
+      </div>
+    </div>
+  );
+};
+
 const VercelFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
@@ -861,6 +888,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.aws.id:
+        return <AWSFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;
