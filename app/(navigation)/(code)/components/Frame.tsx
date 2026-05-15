@@ -23,6 +23,7 @@ import SupabaseFrame from "./frames/SupabaseFrame";
 import TailwindFrame from "./frames/TailwindFrame";
 import TriggerdevFrame from "./frames/TriggerdevFrame";
 import VercelFrame from "./frames/VercelFrame";
+import AwsFrame from "./frames/AwsFrame";
 
 import styles from "./Frame.module.css";
 
@@ -33,6 +34,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.aws.id:
+        return <AwsFrame />;
       case THEMES.vercel.id:
       case THEMES.rabbit.id:
         return <VercelFrame />;
