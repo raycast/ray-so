@@ -8,6 +8,8 @@ import FirecrawlLogoUrl from "../assets/firecrawl/logo.svg?url";
 import CloudflareLogo from "../assets/cloudflare.svg";
 import CloudflareLogoUrl from "../assets/cloudflare.svg?url";
 import VercelLogo from "../assets/vercel.svg";
+import AWSLogo from "../assets/aws.svg";
+import AWSLogoUrl from "../assets/aws.svg?url";
 import VercelLogoUrl from "../assets/vercel.svg?url";
 import RabbitLogo from "../assets/rabbit.svg";
 import RabbitLogoUrl from "../assets/rabbit.svg?url";
@@ -116,6 +118,58 @@ export type Theme = {
 };
 
 export const THEMES: { [index: string]: Theme } = {
+  aws: {
+    id: "aws",
+    name: "AWS",
+    background: {
+      from: "#151D26",
+      to: "#151D26",
+    },
+    icon: AWSLogo,
+    iconUrl: `${BASE_URL}${AWSLogoUrl.src}`,
+    font: "jetbrains-mono",
+    partner: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "oklch(25% 0.02 220)",
+        constant: "oklch(65% 0.15 25)",
+        string: "oklch(50% 0.12 140)",
+        comment: "oklch(60% 0.02 220)",
+        keyword: "oklch(55% 0.18 280)",
+        parameter: "oklch(45% 0.08 200)",
+        function: "oklch(50% 0.15 200)",
+        stringExpression: "oklch(50% 0.12 140)",
+        punctuation: "oklch(30% 0.02 220)",
+        link: "oklch(55% 0.18 25)",
+        number: "oklch(65% 0.15 320)",
+        property: "oklch(50% 0.15 200)",
+        highlight: "oklch(95% 0.05 280 / 0.12)",
+        highlightHover: "oklch(95% 0.05 280 / 0.18)",
+        highlightBorder: "oklch(70% 0.12 280)",
+        diffDeleted: "oklch(60% 0.18 15)",
+        diffInserted: "oklch(60% 0.15 140)",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "hsla(0, 0%, 93%,1)",
+        constant: "oklch(80% 0.12 320)",
+        string: "oklch(75% 0.15 140)",
+        comment: "oklch(70% 0.02 220)",
+        keyword: "oklch(85% 0.15 280)",
+        parameter: "oklch(85% 0.08 200)",
+        function: "oklch(80% 0.12 200)",
+        stringExpression: "oklch(88.626% 0.09229 320.948)",
+        punctuation: "oklch(90% 0.02 220)",
+        link: "oklch(80% 0.15 180)",
+        number: "oklch(85% 0.12 320)",
+        property: "oklch(80% 0.12 200)",
+        highlight: "oklch(30% 0.08 280 / 0.15)",
+        highlightHover: "oklch(30% 0.08 280 / 0.22)",
+        highlightBorder: "oklch(70% 0.12 280)",
+        diffDeleted: "oklch(70% 0.15 15)",
+        diffInserted: "oklch(70% 0.15 140)",
+      }),
+    },
+  },
   vercel: {
     id: "vercel",
     name: "Vercel",

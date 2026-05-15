@@ -1,0 +1,53 @@
+.awsFrame {
+  --grid-line-color: #233242;
+
+  background-color: #151d26;
+}
+
+.awsFrameLightMode {
+  --grid-line-color: #d2d2d2;
+
+  background: white;
+}
+
+.awsWindow {
+  position: relative;
+}
+
+.awsGridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -150px;
+    width: 1200px;
+    height: 1px;
+    background: var(--grid-line-color);
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: 0;
+  }
+}
+
+.awsGridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -150px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 300px);
+    background: var(--grid-line-color);
+    content: "";
+  }
+
+  &:after {
+    right: 0;
+    left: auto;
+  }
+}
