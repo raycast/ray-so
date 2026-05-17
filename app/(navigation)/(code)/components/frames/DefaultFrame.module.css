@@ -71,6 +71,18 @@
   background-color: var(--frame-control-color);
 }
 
+.control:nth-child(1) {
+  background-color: #ff5f56;
+}
+
+.control:nth-child(2) {
+  background-color: #ffbd2e;
+}
+
+.control:nth-child(3) {
+  background-color: #27c93f;
+}
+
 .fileName {
   position: relative;
   display: flex;
