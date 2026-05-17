@@ -1,0 +1,21 @@
+{
+  "author": "Sean Peters",
+  "authorUsername": "snptrs",
+  "version": "1",
+  "name": "Vague",
+  "appearance": "dark",
+  "colors": {
+    "background": "#141415",
+    "backgroundSecondary": "#252530",
+    "text": "#CDCDCD",
+    "selection": "#BEBEDA",
+    "loader": "#AEAED1",
+    "red": "#D8647E",
+    "orange": "#F3BE7C",
+    "yellow": "#F5CB96",
+    "green": "#7FA563",
+    "blue": "#6E94B2",
+    "purple": "#AEAED1",
+    "magenta": "#BB9DBD"
+  }
+}
