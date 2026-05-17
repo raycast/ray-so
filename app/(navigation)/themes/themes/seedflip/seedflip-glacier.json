@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Glacier",
+  "appearance": "light",
+  "colors": {
+    "background": "#F8FAFC",
+    "backgroundSecondary": "#FFFFFF",
+    "text": "#0F172A",
+    "selection": "#0EA5E9",
+    "loader": "#0EA5E9",
+    "red": "#D41111",
+    "orange": "#D46C11",
+    "yellow": "#D4B411",
+    "green": "#11D452",
+    "blue": "#1162D4",
+    "purple": "#7311D4",
+    "magenta": "#D41193"
+  }
+}
