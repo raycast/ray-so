@@ -6,6 +6,7 @@ import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
 
 import Editor from "../Editor";
+import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./AwsFrame.module.css";
 
 const AwsFrame = () => {
@@ -19,11 +20,12 @@ const AwsFrame = () => {
         styles.frame,
         showBackground && styles.awsFrame,
         showBackground && !darkMode && styles.awsFrameLightMode,
+        !showBackground && sharedStyles.noBackground,
         !showBackground && styles.noBackground,
       )}
       style={{ padding }}
     >
-      {!showBackground && <div data-ignore-in-export className={styles.transparentPattern}></div>}
+      {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       <div className={styles.awsWindow}>
         <span className={styles.awsGridlinesHorizontal} data-grid></span>
         <span className={styles.awsGridlinesVertical} data-grid></span>
