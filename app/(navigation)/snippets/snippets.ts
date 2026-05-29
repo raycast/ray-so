@@ -280,7 +280,7 @@ const technical: Snippet[] = [
   },
   {
     id: nanoid(),
-    text: "",
+    text: "",
     name: "Apple",
     keyword: "apple",
     type: "symbol",
@@ -363,6 +363,27 @@ const currency: Snippet[] = [
     text: "₫",
     name: "Dong",
     keyword: "vnd",
+    type: "symbol",
+  },
+  {
+    id: nanoid(),
+    text: "₺",
+    name: "Turkish Lira",
+    keyword: "try",
+    type: "symbol",
+  },
+  {
+    id: nanoid(),
+    text: "₴",
+    name: "Ukrainian Hryvnia",
+    keyword: "uah",
+    type: "symbol",
+  },
+  {
+    id: nanoid(),
+    text: "₽",
+    name: "Russian Ruble",
+    keyword: "rub",
     type: "symbol",
   },
   {
@@ -560,11 +581,7 @@ const feedback: Snippet[] = [
   {
     name: "Feedback Thanks",
     id: nanoid(),
-    text: `Hi 👋
-
-Thanks for taking the time to give us your feedback.
-
-{cursor}`,
+    text: `Hi 👋\n\nThanks for taking the time to give us your feedback.\n\n{cursor}`,
     keyword: "feedback-thanks",
     type: "template",
   },
@@ -578,9 +595,7 @@ Thanks for taking the time to give us your feedback.
   {
     name: "LinkedIn Feedback",
     id: nanoid(),
-    text: `Hey {cursor},
-
-I'm thrilled about the opportunity. Unfortunately, I'm currently not available to accept new offers. However, I hope we can stay connected for future positions if you don't mind. Thank you again and hope to talk to you soon.`,
+    text: `Hey {cursor},\n\nI'm thrilled about the opportunity. Unfortunately, I'm currently not available to accept new offers. However, I hope we can stay connected for future positions if you don't mind. Thank you again and hope to talk to you soon.`,
     keyword: "feedback-lkdn",
     type: "template",
   },
@@ -597,27 +612,14 @@ const coding: Snippet[] = [
   {
     name: "Try Catch",
     id: nanoid(),
-    text: `try {
-  {cursor}
-} catch (error) {
-
-} finally {
-
-}`,
+    text: `try {\n  {cursor}\n} catch (error) {\n\n} finally {\n\n}`,
     keyword: "try",
     type: "template",
   },
   {
     name: "Switch Statement",
     id: nanoid(),
-    text: `switch ({cursor}) {
-  case 'value': {
-    break
-  }
-  default: {
-    break
-  }
-}`,
+    text: `switch ({cursor}) {\n  case 'value': {\n    break\n  }\n  default: {\n    break\n  }\n}`,
     keyword: "switch",
     type: "template",
   },
@@ -631,109 +633,70 @@ const coding: Snippet[] = [
   {
     name: "React: useEffect",
     id: nanoid(),
-    text: `React.useEffect(() => {
-  {cursor}
-}, [])`,
+    text: `React.useEffect(() => {\n  {cursor}\n}, [])`,
     keyword: "rue",
     type: "template",
   },
   {
     name: "XML tags",
     id: nanoid(),
-    text: `<{argument name="tag name"}>
-{cursor}
-</{argument name="tag name"}>`,
+    text: `<{argument name="tag name"}>\n{cursor}\n</{argument name="tag name"}>`,
     keyword: "xml",
     type: "template",
   },
   {
     name: "Vue: Base Single File Component",
     id: nanoid(),
-    text: `<script lang="ts" setup>
-  {cursor}
-</script>
-
-<template>
-  <div>
-    <h1>Vue Component</h1>
-  </div>
-</template>
-
-<style lang="scss" scoped>
-
-</style>`,
+    text: `<script lang="ts" setup>\n  {cursor}\n</script>\n\n<template>\n  <div>\n    <h1>Vue Component</h1>\n  </div>\n</template>\n\n<style lang="scss" scoped>\n\n</style>`,
     keyword: "vbase",
     type: "template",
   },
   {
     name: "Svelte: If Block",
     id: nanoid(),
-    text: `{#if {cursor}}
-
-{/if}`,
+    text: `{#if {cursor}}\n\n{/if}`,
     keyword: "sif",
     type: "template",
   },
   {
     name: "Svelte: If Else Block",
     id: nanoid(),
-    text: `{#if {cursor}}
-
-{:else}
-
-{/if}`,
+    text: `{#if {cursor}}\n\n{:else}\n\n{/if}`,
     keyword: "selse",
     type: "template",
   },
   {
     name: "Svelte: Each Block",
     id: nanoid(),
-    text: `{#each {cursor} as item}
-
-{/each}`,
+    text: `{#each {cursor} as item}\n\n{/each}`,
     keyword: "seach",
     type: "template",
   },
   {
     name: "Svelte: Await Block",
     id: nanoid(),
-    text: `{#await {cursor}}
-  {#then thing}
-
-  {/then}
-  {#catch error}
-
-  {/catch}
-{/await}`,
+    text: `{#await {cursor}}\n  {#then thing}\n\n  {/then}\n  {#catch error}\n\n  {/catch}\n{/await}`,
     keyword: "sawait",
     type: "template",
   },
   {
     name: "Raycast View Command",
     id: nanoid(),
-    text: `export default function Command() {
-  return {cursor}
-}`,
+    text: `export default function Command() {\n  return {cursor}\n}`,
     keyword: "ray-vc",
     type: "template",
   },
   {
     name: "Export Functional Component",
     id: nanoid(),
-    text: `export function Component() {
-  return null
-}`,
+    text: `export function Component() {\n  return null\n}`,
     keyword: "rfc",
     type: "template",
   },
   {
     name: "CSS Center Align",
     id: nanoid(),
-    text: `.selector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}`,
+    text: `.selector {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}`,
     keyword: "css-ac",
     type: "template",
   },
@@ -757,76 +720,44 @@ const github: Snippet[] = [
   {
     id: nanoid(),
     name: "GitHub Issue Template",
-    text: `## Expected Behavior
-
-## Actual Behavior
-
-## Steps to Reproduce the Problem
-
-  1.
-  1.
-  1.
-
-## Specifications
-
-  - Version:
-  - Platform:
-  - Subsystem:
-`,
+    text: `## Expected Behavior\n\n## Actual Behavior\n\n## Steps to Reproduce the Problem\n\n  1.\n  1.\n  1.\n\n## Specifications\n\n  - Version:\n  - Platform:\n  - Subsystem:\n`,
     keyword: "gh-issue",
     type: "template",
   },
   {
     id: nanoid(),
     name: "GitHub Pull Request Template",
-    text: `<!-- Thanks for opening a PR! Your contribution is much appreciated.-->
-
-Fixes #
-
-## Proposed Changes
-
-  -
-  -
-  -
-`,
+    text: `<!-- Thanks for opening a PR! Your contribution is much appreciated.-->\n\nFixes #\n\n## Proposed Changes\n\n  -\n  -\n  -\n`,
     keyword: "gh-pr",
     type: "template",
   },
   {
     id: nanoid(),
     name: "GitHub Table",
-    text: `| Title1 | Title2 |
-| ------- | ------- |
-| Content1 | Content2 |
-  `,
+    text: `| Title1 | Title2 |\n| ------- | ------- |\n| Content1 | Content2 |\n  `,
     keyword: "gh-table",
     type: "template",
   },
   {
     id: nanoid(),
     name: "GitHub Details",
-    text: `<details>
-<summary>Title</summary>
-{cursor}
-</details>`,
+    text: `<details>\n<summary>Title</summary>\n{cursor}\n</details>`,
     keyword: "gh-details",
     type: "template",
   },
   {
     id: nanoid(),
     name: "GitHub Note",
-    text: `> [!NOTE]
-> {cursor}`,
+    text: `> [!NOTE]\n> {cursor}`,
     keyword: "gh-note",
     type: "template",
   },
   {
     id: nanoid(),
     name: "GitHub Warning",
-    text: `> [!WARNING]
-> {cursor}`,
+    text: `> [!WARNING]\n> {cursor}`,
     keyword: "gh-warning",
-    type: "template",
+    type: "symbol",
   },
 ];
 
@@ -1081,22 +1012,7 @@ const misc: Snippet[] = [
   {
     id: nanoid(),
     name: "Weekly Standup Template",
-    text: `Good morning ✨
-
-*Last week:*
-- {cursor}
-
-*Didn't do:*
--
-
-*This week:*
--
-
-*Blockers:*
--
-
-*Highlights:*
-- `,
+    text: `Good morning ✨\n\n*Last week:*\n- {cursor}\n\n*Didn't do:*\n-\n\n*This week:*\n-\n\n*Blockers:*\n-\n\n*Highlights:*\n- `,
     keyword: "standup",
     type: "template",
   },
