@@ -219,7 +219,7 @@ const development: Quicklink[] = [
     link: "https://caniuse.com/?search={Query}",
     author: {
       name: "Frankie",
-      link: "https://github.com/toFrankie",
+      link: "https://github.com/tofrankie",
     },
   },
   {
@@ -345,7 +345,7 @@ const development: Quicklink[] = [
     link: "https://developers.weixin.qq.com/doc/search.html?doc_type=miniprogram&query={Query}",
     author: {
       name: "Frankie",
-      link: "https://github.com/toFrankie",
+      link: "https://github.com/tofrankie",
     },
   },
 ];
@@ -396,12 +396,12 @@ const design: Quicklink[] = [
     link: "https://icones.js.org/collection/all?s={Query}",
   },
   {
-    id: "freepik",
-    name: "Search Freepik",
-    link: "https://www.freepik.com/search?ai=excluded&format=search&orientation=landscape&type=photo&license=free&query={Query}",
+    id: "magnific",
+    name: "Search Magnific",
+    link: "https://www.magnific.com/search?ai=excluded&format=search&orientation=landscape&type=photo&license=free&query={Query}",
     author: {
       name: "Frankie",
-      link: "https://github.com/toFrankie",
+      link: "https://github.com/tofrankie",
     },
   },
 ];
@@ -496,20 +496,20 @@ const search: Quicklink[] = [
     link: "itms-apps://itunes.apple.com/search?term={App}",
     icon: {
       name: "brand-apple",
-    }
+    },
   },
   {
     id: "raycast-store",
     name: "Search Raycast Store",
     link: "https://raycast.com/search?q={Extension}",
     icon: {
-      name: "store"
+      name: "store",
     },
     description: "Search for Raycast extensions (macOS and Windows)",
     author: {
       name: "Muhammadrizo",
-      link: "https://www.raycast.com/muhammadrizo"
-    }
+      link: "https://www.raycast.com/muhammadrizo",
+    },
   },
   {
     id: "google-images",
