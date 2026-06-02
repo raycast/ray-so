@@ -5,6 +5,7 @@ import { fileNameAtom, showBackgroundAtom, subtitleAtom } from "../../store";
 import { selectedLanguageAtom } from "../../store/code";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
+import useIsSafari from "../../util/useIsSafari";
 
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
@@ -16,6 +17,7 @@ const Auth0Frame = () => {
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const [subtitle, setSubtitle] = useAtom(subtitleAtom);
   const darkMode = useAtomValue(themeDarkModeAtom);
+  const isSafari = useIsSafari();
   const selectedLanguage = useAtomValue(selectedLanguageAtom);
   const subtitleFallback = selectedLanguage?.name ?? "Plain Text";
   const subtitleDisplayValue = subtitle || subtitleFallback;
@@ -24,9 +26,11 @@ const Auth0Frame = () => {
     <div
       className={classNames(
         sharedStyles.frame,
-        showBackground && styles.frame,
+        styles.frame,
         !darkMode && styles.frameLightMode,
+        showBackground && styles.withBackground,
         !showBackground && sharedStyles.noBackground,
+        isSafari && styles.isSafari,
       )}
       style={{ padding }}
     >
