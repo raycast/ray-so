@@ -439,14 +439,28 @@ export const IconGenerator = () => {
       Object.entries(settings).map(([key, value]) => [key, String(value)]),
     ).toString()}`;
 
-    let urlToCopy = url;
-    const encodedUrl = encodeURIComponent(url);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=icons`).then((res) =>
-      res.json(),
-    );
+    // The shorten-url endpoint rejects URLs above ~2KB. Custom images get serialized
+    // into the URL as base64 and blow past that ceiling, which previously left the
+    // "Copying URL to clipboard…" toast stuck with no error. Skip the shorten step
+    // for those cases and copy the unshortened URL with a clarifying message.
+    if (url.length > 2000) {
+      navigator.clipboard.writeText(url);
+      showInfoMessage("URL copied (too long to shorten — custom images stay inline)", true);
+      return;
+    }
 
-    if (response.link) {
-      urlToCopy = response.link;
+    let urlToCopy = url;
+    try {
+      const encodedUrl = encodeURIComponent(url);
+      const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=icons`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Network/CORS failure — fall through to the unshortened URL below.
     }
 
     navigator.clipboard.writeText(urlToCopy);
