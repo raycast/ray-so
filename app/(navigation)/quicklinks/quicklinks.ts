@@ -146,9 +146,9 @@ const development: Quicklink[] = [
   },
   {
     id: "githubPullRequests",
-    name: "GitHub Pull Requests (Created)",
-    link: "https://github.com/pulls",
-    description: "View your created GitHub Pull Requests",
+    name: "GitHub Pull Requests (Authored by Me)",
+    link: "https://github.com/pulls/authored",
+    description: "View your authored GitHub Pull Requests",
     author: {
       name: "a2c",
       link: "https://github.com/atzzCokeK",
@@ -156,8 +156,8 @@ const development: Quicklink[] = [
   },
   {
     id: "githubReviewRequestedPullRequests",
-    name: "GitHub Pull Requests (Review Requested)",
-    link: "https://github.com/pulls/review-requested",
+    name: "GitHub Pull Requests (Review Requests)",
+    link: "https://github.com/pulls/reviews",
     description: "View GitHub Pull Requests where your review is requested",
     author: {
       name: "a2c",
