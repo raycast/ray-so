@@ -108,7 +108,7 @@ export default function Snippets() {
     const removedSnippets = extractSnippets(removed, snippetGroups);
 
     setSelectedSnippets((prevSnippets) => {
-      const snippets = [...prevSnippets];
+      let snippets = [...prevSnippets];
 
       addedSnippets.forEach((snippet) => {
         if (!snippet) {
@@ -121,7 +121,7 @@ export default function Snippets() {
       });
 
       removedSnippets.forEach((snippet) => {
-        return snippets.filter((s) => s?.id !== snippet?.id);
+        snippets = snippets.filter((s) => s?.id !== snippet?.id);
       });
 
       return snippets;

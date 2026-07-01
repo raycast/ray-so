@@ -89,7 +89,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
     const removedPrompts = extractPrompts(removed, categories);
 
     setSelectedPrompts((prevPrompts) => {
-      const prompts = [...prevPrompts];
+      let prompts = [...prevPrompts];
 
       addedPrompts.forEach((prompt) => {
         if (!prompt) {
@@ -102,7 +102,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
       });
 
       removedPrompts.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+        prompts = prompts.filter((s) => s?.id !== prompt?.id);
       });
 
       return prompts;

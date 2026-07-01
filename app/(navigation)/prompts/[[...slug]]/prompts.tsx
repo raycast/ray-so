@@ -78,7 +78,7 @@ export function Prompts({ models, extensions }: Props) {
     const removedPrompts = extractPrompts(removed, categories);
 
     setSelectedPrompts((prevPrompts) => {
-      const prompts = [...prevPrompts];
+      let prompts = [...prevPrompts];
 
       addedPrompts.forEach((prompt) => {
         if (!prompt) {
@@ -91,7 +91,7 @@ export function Prompts({ models, extensions }: Props) {
       });
 
       removedPrompts.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+        prompts = prompts.filter((s) => s?.id !== prompt?.id);
       });
 
       return prompts;

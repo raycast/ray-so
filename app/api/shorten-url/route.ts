@@ -24,38 +24,54 @@ const getTagId = (ref: refProps) => {
   return ref ? tagIdsByRef[ref] : undefined;
 };
 
+function isAllowedHostname(hostname: string) {
+  return (
+    hostname === "ray.so" ||
+    hostname.endsWith(".ray.so") ||
+    hostname === "raycastapp.vercel.app" ||
+    hostname.endsWith("-raycastapp.vercel.app") ||
+    hostname === "localhost"
+  );
+}
+
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const urlQuery = searchParams.get("url");
   const refQuery = searchParams.get("ref");
 
-  const url = new URL(urlQuery as string);
-  const tagId = getTagId(refQuery as refProps);
-
-  if (!url) {
-    return NextResponse.json({ error: "Missing URL" });
+  if (!urlQuery) {
+    return NextResponse.json({ error: "Missing URL" }, { status: 400 });
   }
 
   if (!refQuery) {
-    return NextResponse.json({ error: "Missing ref" });
+    return NextResponse.json({ error: "Missing ref" }, { status: 400 });
   }
+
+  const tagId = getTagId(refQuery as refProps);
 
   if (!tagId) {
-    return NextResponse.json({ error: "Invalid ref" });
+    return NextResponse.json({ error: "Invalid ref" }, { status: 400 });
   }
 
-  if (
-    url.hostname.endsWith("ray.so") ||
-    url.hostname.includes("raycastapp.vercel.app") ||
-    url.hostname === "localhost"
-  ) {
+  let url: URL;
+  try {
+    url = new URL(urlQuery);
+  } catch {
+    return NextResponse.json({ error: "Invalid URL" }, { status: 400 });
+  }
+
+  if (!isAllowedHostname(url.hostname)) {
+    return NextResponse.json({ error: "Unable to shorten this link" }, { status: 400 });
+  }
+
+  try {
     const link = await dub.links.create({
       url: url.href,
       domain: "go.ray.so",
       tagIds: [tagId],
     });
     return NextResponse.json({ link: `https://ray.so/${link.key}` });
+  } catch {
+    return NextResponse.json({ error: "Unable to shorten this link" }, { status: 500 });
   }
-
-  return NextResponse.json({ error: "Unable to shorten this link" }, { status: 400 });
 }

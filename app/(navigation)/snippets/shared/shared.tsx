@@ -82,7 +82,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
     const removedSnippets = extractSnippets(removed, categories);
 
     setSelectedSnippets((prevSnippets) => {
-      const snippets = [...prevSnippets];
+      let snippets = [...prevSnippets];
 
       addedSnippets.forEach((snippet) => {
         if (!snippet) {
@@ -95,7 +95,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
       });
 
       removedSnippets.forEach((snippet) => {
-        return snippets.filter((s) => s?.id !== snippet?.id);
+        snippets = snippets.filter((s) => s?.id !== snippet?.id);
       });
 
       return snippets;
