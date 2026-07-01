@@ -24,13 +24,11 @@ const getTagId = (ref: refProps) => {
   return ref ? tagIdsByRef[ref] : undefined;
 };
 
-function isAllowedHostname(hostname: string) {
+// requestHostname covers preview deployments: they may only shorten links
+// pointing to themselves, so no *.vercel.app wildcard is needed.
+function isAllowedHostname(hostname: string, requestHostname: string) {
   return (
-    hostname === "ray.so" ||
-    hostname.endsWith(".ray.so") ||
-    hostname === "raycastapp.vercel.app" ||
-    hostname.endsWith("-raycastapp.vercel.app") ||
-    hostname === "localhost"
+    hostname === "ray.so" || hostname.endsWith(".ray.so") || hostname === "localhost" || hostname === requestHostname
   );
 }
 
@@ -60,7 +58,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Invalid URL" }, { status: 400 });
   }
 
-  if (!isAllowedHostname(url.hostname)) {
+  if (!isAllowedHostname(url.hostname, req.nextUrl.hostname)) {
     return NextResponse.json({ error: "Unable to shorten this link" }, { status: 400 });
   }
 
