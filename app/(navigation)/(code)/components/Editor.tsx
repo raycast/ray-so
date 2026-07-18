@@ -6,10 +6,11 @@ import React, {
   FocusEventHandler,
   useState,
   useEffect,
+  useMemo,
 } from "react";
 import styles from "./Editor.module.css";
-import { useAtom, useSetAtom } from "jotai";
-import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { codeExampleAtom, detectBlockLanguage, getBlockLanguage, isCodeExampleAtom } from "../store/code";
 import {
   THEMES,
   themeAtom,
@@ -22,8 +23,15 @@ import useHotkeys from "../../../../utils/useHotkeys";
 import HighlightedCode from "./HighlightedCode";
 import classNames from "classnames";
 import { derivedFlashMessageAtom } from "../store/flash";
-import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
+import {
+  activeBlockIdAtom,
+  blocksAtom,
+  createEmptyBlock,
+  resolvedActiveBlockIdAtom,
+  setBlocksAndPersistAtom,
+  updateBlockAtom,
+} from "../store/blocks";
 
 function indentText(text: string) {
   return text
@@ -130,22 +138,41 @@ const fontMap = {
   "google-sans-code": styles.googleSansCode,
 } as const;
 
-function Editor() {
+type EditorProps = {
+  blockId: string;
+};
+
+function Editor({ blockId }: EditorProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [code, setCode] = useAtom(codeAtom);
-  const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
-  const [themeCSS] = useAtom(themeCSSAtom);
+  const blocks = useAtomValue(blocksAtom);
+  const setBlocksAndPersist = useSetAtom(setBlocksAndPersistAtom);
+  const updateBlock = useSetAtom(updateBlockAtom);
+  const setActiveBlockId = useSetAtom(activeBlockIdAtom);
+  const codeExample = useAtomValue(codeExampleAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
+  const [themeCSS] = useAtom(themeCSSAtom);
   const [themeFont] = useAtom(themeFontAtom);
   const [theme, setTheme] = useAtom(themeAtom);
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
-  const setHighlightedLines = useSetAtom(highlightedLinesAtom);
   const [isHighlightingLines, setIsHighlightingLines] = useState(false);
   const [showLineNumbers] = useAtom(themeLineNumbersAtom);
+
+  const block = blocks.find((b) => b.id === blockId);
+  const showingExample = blocks.length === 1 && !blocks.some((b) => b.code.length > 0);
+  const code = showingExample && block ? (codeExample?.code ?? "") : (block?.code ?? "");
+  const selectedLanguage = useMemo(() => {
+    if (!block) return null;
+    if (showingExample && codeExample) return codeExample.language;
+    return getBlockLanguage(block);
+  }, [block, showingExample, codeExample]);
+
   const numberOfLines = (code.match(/\n/g) || []).length;
 
+  const isActive = useAtomValue(resolvedActiveBlockIdAtom) === blockId;
+
   useHotkeys("f", (event) => {
+    if (!isActive) return;
     event.preventDefault();
     textareaRef.current?.focus();
   });
@@ -191,34 +218,70 @@ function Editor() {
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
         });
       }
-      setCode(event.target.value);
+
+      const nextCode = event.target.value;
+
+      if (showingExample) {
+        const detectedLanguageKey = codeExample
+          ? (Object.keys(LANGUAGES).find((key) => LANGUAGES[key] === codeExample.language) ?? null)
+          : null;
+        setBlocksAndPersist([
+          createEmptyBlock({
+            id: blockId,
+            code: nextCode,
+            languageKey: null,
+            detectedLanguageKey,
+            title: block?.title ?? "",
+          }),
+        ]);
+      } else {
+        updateBlock({ blockId, update: { code: nextCode } });
+      }
+
+      detectBlockLanguage(nextCode).then((language) => {
+        if (LANGUAGES[language]) {
+          updateBlock({ blockId, update: { detectedLanguageKey: language } });
+        }
+      });
     },
-    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
+    [
+      block?.title,
+      blockId,
+      codeExample,
+      setBlocksAndPersist,
+      setFlashMessage,
+      setTheme,
+      setUnlockedThemes,
+      showingExample,
+      theme.id,
+      unlockedThemes,
+      updateBlock,
+    ],
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
-    if (isCodeExample && textareaRef.current) {
+    setActiveBlockId(blockId);
+    if (isCodeExample && showingExample && textareaRef.current) {
       // Safari needs a timeout otherwise the selection flickers
       const textarea = textareaRef.current;
       setTimeout(() => {
         textarea.select();
       }, 1);
     }
-  }, [isCodeExample]);
+  }, [blockId, isCodeExample, setActiveBlockId, showingExample]);
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       const lineNumber = (target.closest("[data-line]") as HTMLElement)?.dataset?.line;
+      const editorRoot = textareaRef.current?.closest("[data-block-id]") as HTMLElement | null;
+      if (!editorRoot || !editorRoot.contains(target)) return;
+
       if (lineNumber && isHighlightingLines) {
-        setHighlightedLines((prev) => {
-          const line = Number(lineNumber);
-          if (prev.includes(line)) {
-            return prev.filter((l) => l !== line);
-          } else {
-            return [...prev, line];
-          }
-        });
+        const line = Number(lineNumber);
+        const prev = block?.highlightedLines ?? [];
+        const next = prev.includes(line) ? prev.filter((l) => l !== line) : [...prev, line];
+        updateBlock({ blockId, update: { highlightedLines: next } });
       }
     };
 
@@ -227,7 +290,7 @@ function Editor() {
     return () => {
       document.removeEventListener("click", listener);
     };
-  }, [setHighlightedLines, isHighlightingLines]);
+  }, [block?.highlightedLines, blockId, isHighlightingLines, updateBlock]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -251,6 +314,8 @@ function Editor() {
     };
   }, []);
 
+  if (!block) return null;
+
   return (
     <div
       className={classNames(
@@ -265,6 +330,8 @@ function Editor() {
       )}
       style={{ "--editor-padding": "16px", ...themeCSS } as React.CSSProperties}
       data-value={code}
+      data-block-id={blockId}
+      onMouseDown={() => setActiveBlockId(blockId)}
     >
       <textarea
         rows={1}
@@ -281,7 +348,7 @@ function Editor() {
         onFocus={handleFocus}
         data-enable-grammarly="false"
       />
-      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
+      <HighlightedCode code={code} selectedLanguage={selectedLanguage} highlightedLines={block.highlightedLines} />
     </div>
   );
 }

@@ -6,7 +6,9 @@ import { showBackgroundAtom } from "../../store";
 import { exportSizeAtom } from "../../store/image";
 import { paddingAtom } from "../../store/padding";
 import { darkModeAtom } from "../../store/themes";
+import { useIsMultiBlock, usePrimaryBlockId } from "../../hooks/usePrimaryBlockId";
 
+import CodeBlocks from "../CodeBlocks";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./FirecrawlFrame.module.css";
@@ -121,6 +123,8 @@ const FirecrawlFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const exportSize = useAtomValue(exportSizeAtom);
   const gridColor = darkMode ? "#444" : "#ededed";
+  const isMulti = useIsMultiBlock();
+  const primaryBlockId = usePrimaryBlockId();
 
   return (
     <div
@@ -134,17 +138,35 @@ const FirecrawlFrame = () => {
       style={{ padding, ["--frame-padding" as string]: `${padding}px` }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      <div className={styles.window}>
-        {showBackground && (
-          <div className={styles.asciiArtContainer}>
-            <pre className={styles.asciiArt}>{FIRECRAWL_ASCII_ART}</pre>
-          </div>
-        )}
-        <Editor />
-        {showBackground && (
-          <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} exportPixelRatio={exportSize} />
-        )}
-      </div>
+      {isMulti ? (
+        <div style={{ position: "relative" }}>
+          <CodeBlocks
+            windowClassName={styles.window}
+            renderChrome={() =>
+              showBackground ? (
+                <div className={styles.asciiArtContainer}>
+                  <pre className={styles.asciiArt}>{FIRECRAWL_ASCII_ART}</pre>
+                </div>
+              ) : null
+            }
+          />
+          {showBackground && (
+            <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} exportPixelRatio={exportSize} />
+          )}
+        </div>
+      ) : (
+        <div className={styles.window}>
+          {showBackground && (
+            <div className={styles.asciiArtContainer}>
+              <pre className={styles.asciiArt}>{FIRECRAWL_ASCII_ART}</pre>
+            </div>
+          )}
+          {primaryBlockId ? <Editor blockId={primaryBlockId} /> : null}
+          {showBackground && (
+            <FirecrawlFrameCanvas gridColor={gridColor} padding={padding} exportPixelRatio={exportSize} />
+          )}
+        </div>
+      )}
     </div>
   );
 };

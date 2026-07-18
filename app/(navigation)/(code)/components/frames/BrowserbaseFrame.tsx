@@ -1,10 +1,13 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 import { fileNameAtom, showBackgroundAtom } from "../../store";
+import { updateBlockAtom, type CodeBlock } from "../../store/blocks";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
+import { useIsMultiBlock, usePrimaryBlockId } from "../../hooks/usePrimaryBlockId";
 
+import CodeBlocks from "../CodeBlocks";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./BrowserbaseFrame.module.css";
@@ -17,6 +20,30 @@ const BrowserbaseFrame = () => {
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const isMulti = useIsMultiBlock();
+  const primaryBlockId = usePrimaryBlockId();
+  const updateBlock = useSetAtom(updateBlockAtom);
+
+  const renderChrome = (block: CodeBlock, index: number) => (
+    <div className={classNames(sharedStyles.header, styles.header)}>
+      <div className={sharedStyles.controls}>
+        <div className={sharedStyles.control}></div>
+        <div className={sharedStyles.control}></div>
+        <div className={sharedStyles.control}></div>
+      </div>
+      <div className={classNames(sharedStyles.fileName, styles.fileName)}>
+        <input
+          type="text"
+          value={block.title}
+          onChange={(event) => updateBlock({ blockId: block.id, update: { title: event.target.value } })}
+          spellCheck={false}
+          tabIndex={-1}
+        />
+        {block.title.length === 0 ? <span data-ignore-in-export>{`Untitled-${index + 1}`}</span> : null}
+      </div>
+      <div />
+    </div>
+  );
 
   return (
     <div
@@ -48,27 +75,31 @@ const BrowserbaseFrame = () => {
           ))}
         </div>
       )}
-      <div className={styles.window}>
-        <div className={classNames(sharedStyles.header, styles.header)}>
-          <div className={sharedStyles.controls}>
-            <div className={sharedStyles.control}></div>
-            <div className={sharedStyles.control}></div>
-            <div className={sharedStyles.control}></div>
+      {isMulti ? (
+        <CodeBlocks windowClassName={styles.window} renderChrome={renderChrome} />
+      ) : (
+        <div className={styles.window}>
+          <div className={classNames(sharedStyles.header, styles.header)}>
+            <div className={sharedStyles.controls}>
+              <div className={sharedStyles.control}></div>
+              <div className={sharedStyles.control}></div>
+              <div className={sharedStyles.control}></div>
+            </div>
+            <div className={classNames(sharedStyles.fileName, styles.fileName)}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+              />
+              {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
+            </div>
+            <div />
           </div>
-          <div className={classNames(sharedStyles.fileName, styles.fileName)}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-            />
-            {fileName.length === 0 ? <span data-ignore-in-export>Untitled-1</span> : null}
-          </div>
-          <div />
+          {primaryBlockId ? <Editor blockId={primaryBlockId} /> : null}
         </div>
-        <Editor />
-      </div>
+      )}
     </div>
   );
 };

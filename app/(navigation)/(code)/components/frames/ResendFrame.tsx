@@ -1,11 +1,14 @@
 import classNames from "classnames";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 import { fileNameAtom, showBackgroundAtom } from "../../store";
-import { selectedLanguageAtom } from "../../store/code";
+import { updateBlockAtom, type CodeBlock } from "../../store/blocks";
+import { getBlockLanguage, selectedLanguageAtom } from "../../store/code";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
+import { useIsMultiBlock, usePrimaryBlockId } from "../../hooks/usePrimaryBlockId";
 
+import CodeBlocks from "../CodeBlocks";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./ResendFrame.module.css";
@@ -16,6 +19,26 @@ const ResendFrame = () => {
   const [showBackground] = useAtom(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
   const selectedLanguage = useAtomValue(selectedLanguageAtom);
+  const isMulti = useIsMultiBlock();
+  const primaryBlockId = usePrimaryBlockId();
+  const updateBlock = useSetAtom(updateBlockAtom);
+
+  const renderChrome = (block: CodeBlock, index: number) => (
+    <div className={styles.header}>
+      <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={block.title}>
+        <input
+          type="text"
+          value={block.title}
+          onChange={(event) => updateBlock({ blockId: block.id, update: { title: event.target.value } })}
+          spellCheck={false}
+          tabIndex={-1}
+          size={1}
+        />
+        {block.title.length === 0 ? <span>{`Untitled-${index + 1}`}</span> : null}
+      </div>
+      <span className={styles.language}>{getBlockLanguage(block)?.name}</span>
+    </div>
+  );
 
   return (
     <div
@@ -28,23 +51,27 @@ const ResendFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      <div className={styles.window}>
-        <div className={styles.header}>
-          <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={fileName}>
-            <input
-              type="text"
-              value={fileName}
-              onChange={(event) => setFileName(event.target.value)}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            {fileName.length === 0 ? <span>Untitled-1</span> : null}
+      {isMulti ? (
+        <CodeBlocks windowClassName={styles.window} renderChrome={renderChrome} />
+      ) : (
+        <div className={styles.window}>
+          <div className={styles.header}>
+            <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={fileName}>
+              <input
+                type="text"
+                value={fileName}
+                onChange={(event) => setFileName(event.target.value)}
+                spellCheck={false}
+                tabIndex={-1}
+                size={1}
+              />
+              {fileName.length === 0 ? <span>Untitled-1</span> : null}
+            </div>
+            <span className={styles.language}>{selectedLanguage?.name}</span>
           </div>
-          <span className={styles.language}>{selectedLanguage?.name}</span>
+          {primaryBlockId ? <Editor blockId={primaryBlockId} /> : null}
         </div>
-        <Editor />
-      </div>
+      )}
     </div>
   );
 };

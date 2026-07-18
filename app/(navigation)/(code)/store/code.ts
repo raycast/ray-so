@@ -1,8 +1,15 @@
 import { atom } from "jotai";
-import { Base64 } from "js-base64";
 import hljs from "highlight.js";
-import { atomWithHash } from "jotai-location";
 import { LANGUAGES, Language } from "../util/languages";
+import {
+  activeBlockAtom,
+  blocksAtom,
+  createEmptyBlock,
+  resolvedActiveBlockIdAtom,
+  setBlocksAndPersistAtom,
+  updateBlockAtom,
+  type CodeBlock,
+} from "./blocks";
 
 type CodeSample = {
   language: Language;
@@ -61,102 +68,104 @@ const detectLanguage: (input: string) => Promise<string> = async (input) => {
   });
 };
 
-export const autoDetectLanguageAtom = atom<boolean>((get) => {
-  return get(userInputtedLanguageAtom) === null;
-});
-
-const detectedLanguageAtom = atom<Language | null>(null);
-const userInputtedLanguageAtom = atomWithHash<Language | null>("language", null, {
-  serialize(language) {
-    const key = Object.keys(LANGUAGES).find((key) => LANGUAGES[key] === language);
-
-    if (key) {
-      return key;
-    } else {
-      return "";
-    }
-  },
-  deserialize(key) {
-    if (key && LANGUAGES[key]) {
-      return LANGUAGES[key];
-    } else {
-      return null;
-    }
-  },
-});
-
-export const selectedLanguageAtom = atom(
-  (get) => {
-    if (get(userInputtedLanguageAtom) === null) {
-      const codeSampleValue = get(codeExampleAtom);
-      if (get(userInputtedCodeAtom) === null && codeSampleValue) {
-        return codeSampleValue.language;
-      } else {
-        return get(detectedLanguageAtom);
-      }
-    } else {
-      return get(userInputtedLanguageAtom);
-    }
-  },
-  (get, set, newLanguage: Language | null) => {
-    set(userInputtedLanguageAtom, newLanguage);
-  },
-);
+function getLanguageKey(language: Language | null) {
+  if (!language) return null;
+  return Object.keys(LANGUAGES).find((key) => LANGUAGES[key] === language) ?? null;
+}
 
 export const codeExampleAtom = atom<CodeSample | null>(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
 
-export const isCodeExampleAtom = atom<boolean>(
-  (get) => !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom)),
-);
-
-const isSSR = () => typeof window === "undefined";
-
-function getUserInputtedCodeFromHash() {
-  const searchParams = new URLSearchParams(location.hash.slice(1));
-  const searchParamsCode = searchParams.get("code");
-
-  if (typeof searchParamsCode === "string") {
-    try {
-      const code = Base64.decode(searchParamsCode);
-      return code;
-    } catch (e) {
-      console.error("decoding code query parameter failed");
-      console.error(e);
-    }
-  }
-
-  return null;
+function hasPersistedCode(blocks: CodeBlock[]) {
+  return blocks.some((block) => block.code.length > 0);
 }
-
-function getInitialUserInputtedCode() {
-  if (isSSR()) {
-    return null;
-  } else {
-    return getUserInputtedCodeFromHash();
-  }
-}
-
-export const userInputtedCodeAtom = atom<string | null>(getInitialUserInputtedCode());
 
 export const codeAtom = atom(
-  (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
-  (get, set, newCode: string) => {
-    const searchParams = new URLSearchParams(location.hash.slice(1));
-    set(userInputtedCodeAtom, newCode);
+  (get) => {
+    const block = get(activeBlockAtom);
+    if (!block) return "";
 
-    searchParams.set("code", Base64.encodeURI(newCode));
-    window.location.hash = `#${searchParams.toString()}`;
+    if (!hasPersistedCode(get(blocksAtom))) {
+      return get(codeExampleAtom)?.code ?? "";
+    }
+
+    return block.code;
+  },
+  (get, set, newCode: string) => {
+    const activeId = get(resolvedActiveBlockIdAtom);
+    if (!activeId) return;
+
+    const blocks = get(blocksAtom);
+    const showingExample = !hasPersistedCode(blocks);
+
+    if (showingExample) {
+      const example = get(codeExampleAtom);
+      set(setBlocksAndPersistAtom, [
+        createEmptyBlock({
+          id: activeId,
+          code: newCode,
+          languageKey: null,
+          detectedLanguageKey: getLanguageKey(example?.language ?? null),
+        }),
+      ]);
+    } else {
+      set(updateBlockAtom, { blockId: activeId, update: { code: newCode } });
+    }
 
     detectLanguage(newCode).then((language) => {
       if (LANGUAGES[language]) {
-        set(detectedLanguageAtom, LANGUAGES[language]);
+        set(updateBlockAtom, { blockId: activeId, update: { detectedLanguageKey: language } });
       }
     });
   },
 );
 
-codeAtom.onMount = (setValue) => {
-  const code = getUserInputtedCodeFromHash();
+export const isCodeExampleAtom = atom<boolean>((get) => {
+  const code = get(codeAtom);
+  return !hasPersistedCode(get(blocksAtom)) && !!CODE_SAMPLES.find((codeSample) => codeSample.code === code);
+});
 
-  if (code) setValue(code);
-};
+export const autoDetectLanguageAtom = atom<boolean>((get) => {
+  const block = get(activeBlockAtom);
+  return block?.languageKey == null;
+});
+
+export const selectedLanguageAtom = atom(
+  (get) => {
+    const block = get(activeBlockAtom);
+    if (!block) return null;
+
+    if (block.languageKey && LANGUAGES[block.languageKey]) {
+      return LANGUAGES[block.languageKey];
+    }
+
+    if (get(isCodeExampleAtom)) {
+      return get(codeExampleAtom)?.language ?? null;
+    }
+
+    if (block.detectedLanguageKey && LANGUAGES[block.detectedLanguageKey]) {
+      return LANGUAGES[block.detectedLanguageKey];
+    }
+
+    return null;
+  },
+  (get, set, newLanguage: Language | null) => {
+    set(activeBlockAtom, { languageKey: getLanguageKey(newLanguage) });
+  },
+);
+
+export function getBlockLanguage(block: {
+  languageKey: string | null;
+  detectedLanguageKey?: string | null;
+}): Language | null {
+  if (block.languageKey && LANGUAGES[block.languageKey]) {
+    return LANGUAGES[block.languageKey];
+  }
+  if (block.detectedLanguageKey && LANGUAGES[block.detectedLanguageKey]) {
+    return LANGUAGES[block.detectedLanguageKey];
+  }
+  return null;
+}
+
+export function detectBlockLanguage(code: string) {
+  return detectLanguage(code);
+}

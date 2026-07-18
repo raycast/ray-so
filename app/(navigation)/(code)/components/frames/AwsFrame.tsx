@@ -4,7 +4,9 @@ import { useAtom, useAtomValue } from "jotai";
 import { showBackgroundAtom } from "../../store";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
+import { useIsMultiBlock, usePrimaryBlockId } from "../../hooks/usePrimaryBlockId";
 
+import CodeBlocks from "../CodeBlocks";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./AwsFrame.module.css";
@@ -13,6 +15,8 @@ const AwsFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
+  const isMulti = useIsMultiBlock();
+  const primaryBlockId = usePrimaryBlockId();
 
   return (
     <div
@@ -26,13 +30,27 @@ const AwsFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
-      <div className={styles.awsWindow}>
-        <span className={styles.awsGridlinesHorizontal} data-grid></span>
-        <span className={styles.awsGridlinesVertical} data-grid></span>
-        <span className={styles.awsBracketLeft} data-grid></span>
-        <span className={styles.awsBracketRight} data-grid></span>
-        <Editor />
-      </div>
+      {isMulti ? (
+        <CodeBlocks
+          windowClassName={styles.awsWindow}
+          renderChrome={() => (
+            <>
+              <span className={styles.awsGridlinesHorizontal} data-grid />
+              <span className={styles.awsGridlinesVertical} data-grid />
+              <span className={styles.awsBracketLeft} data-grid />
+              <span className={styles.awsBracketRight} data-grid />
+            </>
+          )}
+        />
+      ) : (
+        <div className={styles.awsWindow}>
+          <span className={styles.awsGridlinesHorizontal} data-grid></span>
+          <span className={styles.awsGridlinesVertical} data-grid></span>
+          <span className={styles.awsBracketLeft} data-grid></span>
+          <span className={styles.awsBracketRight} data-grid></span>
+          {primaryBlockId ? <Editor blockId={primaryBlockId} /> : null}
+        </div>
+      )}
     </div>
   );
 };

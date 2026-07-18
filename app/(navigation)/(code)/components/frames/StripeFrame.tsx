@@ -3,11 +3,13 @@ import { useAtom, useAtomValue } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
 
 import { showBackgroundAtom, windowWidthAtom } from "../../store";
-import { codeAtom } from "../../store/code";
+import { totalCodeAtom } from "../../store/blocks";
 import { paddingAtom } from "../../store/padding";
 import { themeDarkModeAtom } from "../../store/themes";
 import useIsSafari from "../../util/useIsSafari";
+import { useIsMultiBlock, usePrimaryBlockId } from "../../hooks/usePrimaryBlockId";
 
+import CodeBlocks from "../CodeBlocks";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./StripeFrame.module.css";
@@ -16,9 +18,11 @@ const StripeFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const [padding] = useAtom(paddingAtom);
   const [showBackground] = useAtom(showBackgroundAtom);
-  const code = useAtomValue(codeAtom);
+  const code = useAtomValue(totalCodeAtom);
   const windowWidth = useAtomValue(windowWidthAtom);
   const isSafari = useIsSafari();
+  const isMulti = useIsMultiBlock();
+  const primaryBlockId = usePrimaryBlockId();
 
   const windowRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -57,6 +61,8 @@ const StripeFrame = () => {
       clearTimeout(endId);
     };
   }, [padding]);
+
+  const windowClassName = classNames(styles.window, isSafari && styles.isSafari);
 
   return (
     <div
@@ -105,9 +111,15 @@ const StripeFrame = () => {
         </div>
       )}
 
-      <div className={classNames(styles.window, isSafari && styles.isSafari)} ref={windowRef}>
-        <Editor />
-      </div>
+      {isMulti ? (
+        <div ref={windowRef}>
+          <CodeBlocks windowClassName={windowClassName} />
+        </div>
+      ) : (
+        <div className={windowClassName} ref={windowRef}>
+          {primaryBlockId ? <Editor blockId={primaryBlockId} /> : null}
+        </div>
+      )}
     </div>
   );
 };

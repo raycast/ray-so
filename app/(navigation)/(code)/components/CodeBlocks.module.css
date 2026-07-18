@@ -1,0 +1,45 @@
+.blocks {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.windowWrap {
+  position: relative;
+}
+
+.removeButton {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 0.35);
+  color: rgb(255 255 255 / 0.75);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 120ms ease,
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.windowWrap:hover .removeButton,
+.windowWrap:focus-within .removeButton {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.removeButton:hover {
+  background: rgb(0 0 0 / 0.55);
+  color: rgb(255 255 255 / 0.95);
+}
