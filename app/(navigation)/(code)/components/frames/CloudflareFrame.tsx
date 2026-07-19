@@ -29,36 +29,20 @@ const CloudflareFrame = () => {
     <>
       <span className={styles.gridlinesHorizontal} data-grid></span>
       <span className={styles.gridlinesVertical} data-grid></span>
-      {block.title.length > 0 ? (
-        <div className={styles.header}>
-          <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={block.title}>
-            <input
-              type="text"
-              value={block.title}
-              onChange={(event) => updateBlock({ blockId: block.id, update: { title: event.target.value } })}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-          </div>
-          <span className={styles.language}>{getBlockLanguage(block)?.name}</span>
+      <div className={styles.header}>
+        <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={block.title}>
+          <input
+            type="text"
+            value={block.title}
+            onChange={(event) => updateBlock({ blockId: block.id, update: { title: event.target.value } })}
+            spellCheck={false}
+            tabIndex={-1}
+            size={1}
+          />
+          {block.title.length === 0 ? <span data-ignore-in-export>{`Untitled-${index + 1}`}</span> : null}
         </div>
-      ) : flashShown ? null : (
-        <div className={styles.header} data-ignore-in-export>
-          <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={block.title}>
-            <input
-              type="text"
-              value={block.title}
-              onChange={(event) => updateBlock({ blockId: block.id, update: { title: event.target.value } })}
-              spellCheck={false}
-              tabIndex={-1}
-              size={1}
-            />
-            <span>{`Untitled-${index + 1}`}</span>
-          </div>
-          <span className={styles.language}>{getBlockLanguage(block)?.name}</span>
-        </div>
-      )}
+        <span className={styles.language}>{getBlockLanguage(block)?.name}</span>
+      </div>
     </>
   );
 
