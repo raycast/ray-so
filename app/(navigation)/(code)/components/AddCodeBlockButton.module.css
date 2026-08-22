@@ -1,0 +1,57 @@
+.addButton {
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  right: 0;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--panel-background);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transform: translate(50%, -50%);
+  transition:
+    color 120ms ease,
+    background 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.addButton::before {
+  position: absolute;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    20deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.28) 40%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  content: "";
+  inset: 0;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.addButton:hover {
+  background: color-mix(in srgb, var(--panel-background) 85%, white 8%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 767px) {
+  .addButton {
+    top: 12px;
+    right: 12px;
+    transform: none;
+  }
+}

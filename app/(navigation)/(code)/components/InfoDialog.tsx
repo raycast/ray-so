@@ -28,7 +28,7 @@ export function InfoDialog() {
             <p>Code Images by Raycast is a tool to create beautiful screenshots of your code.</p>
             <p>
               Pick a theme from a range of syntax colors and backgrounds, the language of your code and choose between
-              light or dark mode.
+              light or dark mode. You can also stack multiple code blocks with different languages in one image.
             </p>
             <p>
               Customize the padding and when you’re ready, click export image in the top-right corner to save the image

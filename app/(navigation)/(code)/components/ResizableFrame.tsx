@@ -1,6 +1,15 @@
-import React, { MouseEventHandler, PropsWithChildren, useCallback, useRef, useState } from "react";
-import { useAtom } from "jotai";
+import React, {
+  MouseEventHandler,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { useAtom, useAtomValue } from "jotai";
 import { windowWidthAtom } from "../store";
+import { blocksAtom } from "../store/blocks";
 import classnames from "classnames";
 import { CSSTransition } from "react-transition-group";
 
@@ -10,18 +19,56 @@ import XMarkIcon from "../assets/icons/x-mark-circle-filled-16.svg";
 
 type Handle = "right" | "left";
 
-let maxWidth = 920;
-let minWidth = 520;
+const maxWidth = 920;
+const minWidth = 520;
 
 const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
-  const currentHandleRef = useRef<Handle>(undefined);
+  const currentHandleRef = useRef<Handle | undefined>(undefined);
+  const frameRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
-  const startWidthRef = useRef<number>(undefined);
-  const startXRef = useRef<number>(undefined);
+  const startWidthRef = useRef<number | undefined>(undefined);
+  const startXRef = useRef<number | undefined>(undefined);
   const [windowWidth, setWindowWidth] = useAtom(windowWidthAtom);
   const [isResizing, setResizing] = useState(false);
   const resetWindowWidthRef = useRef<HTMLDivElement>(null);
   const rulerRef = useRef<HTMLDivElement>(null);
+  const blocks = useAtomValue(blocksAtom);
+  const [handleTops, setHandleTops] = useState<number[]>([0]);
+
+  const measureHandleTops = useCallback(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const windows = frame.querySelectorAll<HTMLElement>("[data-code-window]");
+    const frameTop = frame.getBoundingClientRect().top;
+
+    if (windows.length === 0) {
+      setHandleTops([frame.getBoundingClientRect().height / 2]);
+      return;
+    }
+
+    setHandleTops(
+      Array.from(windows).map((el) => {
+        const rect = el.getBoundingClientRect();
+        return rect.top - frameTop + rect.height / 2;
+      }),
+    );
+  }, []);
+
+  useLayoutEffect(() => {
+    measureHandleTops();
+  }, [measureHandleTops, blocks, windowWidth]);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const observer = new ResizeObserver(() => measureHandleTops());
+    observer.observe(frame);
+    frame.querySelectorAll("[data-code-window]").forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [measureHandleTops, blocks.length]);
 
   const mouseMoveHandler = useCallback(
     (event: MouseEvent) => {
@@ -77,15 +124,23 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
   );
 
   return (
-    <div className={classnames(styles.resizableFrame, isResizing && styles.isResizing)}>
-      <div
-        className={classnames(styles.windowSizeDragPoint, styles.left)}
-        onMouseDown={handleResizeFrameX("left")}
-      ></div>
-      <div
-        className={classnames(styles.windowSizeDragPoint, styles.right)}
-        onMouseDown={handleResizeFrameX("right")}
-      ></div>
+    <div ref={frameRef} className={classnames(styles.resizableFrame, isResizing && styles.isResizing)}>
+      {handleTops.map((top, index) => (
+        <React.Fragment key={index}>
+          <div
+            className={classnames(styles.windowSizeDragPoint, styles.left)}
+            style={{ top }}
+            data-ignore-in-export
+            onMouseDown={handleResizeFrameX("left")}
+          />
+          <div
+            className={classnames(styles.windowSizeDragPoint, styles.right)}
+            style={{ top }}
+            data-ignore-in-export
+            onMouseDown={handleResizeFrameX("right")}
+          />
+        </React.Fragment>
+      ))}
       <div ref={windowRef} style={{ width: windowWidth || "auto" }}>
         {children}
       </div>

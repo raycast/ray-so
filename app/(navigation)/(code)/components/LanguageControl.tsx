@@ -36,7 +36,6 @@ const LanguageControl: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   const [autoDetectLanguage] = useAtom(autoDetectLanguageAtom);
   const [isLoadingLanguage] = useAtom(loadingLanguageAtom);
-
   const items: LanguageItem[] = useMemo(() => {
     const languageItems = Object.entries(LANGUAGES).map(([key, lang]) => ({
       id: key,

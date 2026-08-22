@@ -10,7 +10,6 @@
 .windowSizeDragPoint {
   position: absolute;
   z-index: 2;
-  top: 50%;
   width: 24px;
   height: 24px;
   cursor: col-resize;
