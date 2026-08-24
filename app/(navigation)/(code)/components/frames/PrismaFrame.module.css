@@ -1,6 +1,9 @@
 .frame {
   --gradient-angle: 140deg;
-  background: linear-gradient(var(--gradient-angle), #0c1d26 0%, #0a0c17 100%);
+  background: radial-gradient(80% 65% at 15% 100%, rgba(1, 215, 228, 0.14) 0%, transparent 70%),
+    radial-gradient(70% 55% at 55% 100%, rgba(243, 195, 6, 0.1) 0%, transparent 70%),
+    radial-gradient(80% 65% at 95% 100%, rgba(255, 118, 130, 0.12) 0%, transparent 70%),
+    linear-gradient(var(--gradient-angle), #151515 0%, #0f0f0f 100%);
 }
 
 .window {
@@ -10,8 +13,8 @@
   border-radius: var(--radius);
   background-color: var(--background);
   --radius: 10px;
-  --frame-border-gradient: linear-gradient(var(--gradient-angle), #3e4083, #16544f);
-  --background: hsla(223, 41%, 7%, 75%);
+  --frame-border-gradient: linear-gradient(var(--gradient-angle), #01d7e4, #f34a60, #f3c306);
+  --background: hsla(0, 0%, 6%, 80%);
 
   [data-frameborder] {
     &:before {
@@ -58,7 +61,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid #141818;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(0, 0, 0, 0.2);
   gap: 12px;
 }
@@ -68,7 +71,7 @@
   display: grid;
   height: 40px;
   align-items: center;
-  color: #31baaf;
+  color: #01d7e4;
   font-size: 12px;
   line-height: 40px;
   vertical-align: top;
@@ -123,25 +126,28 @@
 }
 
 .frameLightMode {
-  background: linear-gradient(140deg, #e8e8ff 0%, #e7fefc 100%);
+  background: radial-gradient(80% 65% at 15% 100%, rgba(1, 215, 228, 0.2) 0%, transparent 70%),
+    radial-gradient(70% 55% at 55% 100%, rgba(243, 195, 6, 0.16) 0%, transparent 70%),
+    radial-gradient(80% 65% at 95% 100%, rgba(255, 118, 130, 0.17) 0%, transparent 70%),
+    linear-gradient(140deg, #ffffff 0%, #f9faf5 100%);
 
   &.noBackground {
     .window {
-      --background: hsl(193, 72%, 96%, 0.9);
+      --background: hsla(0, 0%, 100%, 0.9);
     }
   }
 
   .window {
-    --background: hsl(193, 72%, 96%, 0.5);
-    --frame-border-gradient: linear-gradient(var(--gradient-angle), #6164cc, #31baaf);
+    --background: hsla(0, 0%, 100%, 0.75);
+    --frame-border-gradient: linear-gradient(var(--gradient-angle), #00bbcb, #f34a60, #eaa700);
   }
 
   .header {
-    border-color: #dfdfdf;
-    background: hsla(192, 72%, 96%, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+    background: hsla(0, 0%, 100%, 0.9);
   }
 
   .fileName {
-    color: #16a394;
+    color: #007f8d;
   }
 }
