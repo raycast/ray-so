@@ -1,68 +1,55 @@
 .frame {
   --gradient-angle: 140deg;
-  background: radial-gradient(80% 65% at 15% 100%, rgba(1, 215, 228, 0.14) 0%, transparent 70%),
-    radial-gradient(70% 55% at 55% 100%, rgba(243, 195, 6, 0.1) 0%, transparent 70%),
-    radial-gradient(80% 65% at 95% 100%, rgba(255, 118, 130, 0.12) 0%, transparent 70%),
-    linear-gradient(var(--gradient-angle), #151515 0%, #0f0f0f 100%);
+  background: radial-gradient(60% 55% at 0% 100%, rgba(1, 215, 228, 0.24) 0%, transparent 70%),
+    radial-gradient(55% 50% at 100% 100%, rgba(243, 74, 96, 0.26) 0%, transparent 70%),
+    radial-gradient(45% 40% at 100% 0%, rgba(255, 118, 130, 0.12) 0%, transparent 70%),
+    linear-gradient(var(--gradient-angle), #111111 0%, #0c0c0c 100%);
 }
 
 .window {
   position: relative;
-  overflow: visible;
-  border: 1px solid transparent;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
   background-color: var(--background);
-  --radius: 10px;
-  --frame-border-gradient: linear-gradient(var(--gradient-angle), #01d7e4, #f34a60, #f3c306);
-  --background: hsla(0, 0%, 6%, 80%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --radius: 12px;
+  --background: hsla(0, 0%, 10%, 55%);
+  --stripe-cyan: rgba(1, 215, 228, 0.2);
+  --stripe-yellow: rgba(212, 135, 0, 0.24);
+  --stripe-red: rgba(208, 35, 68, 0.24);
 
-  [data-frameborder] {
-    &:before {
-      position: absolute;
-      border: 1px solid transparent;
-      border-radius: var(--radius);
-      background: var(--frame-border-gradient) border-box;
-      content: "";
-      inset: 0;
-      mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    &:nth-of-type(1):before {
-      inset: -1px;
-    }
-
-    &:nth-of-type(2):before {
-      border-radius: calc(var(--radius) + 6px);
-      inset: -6px;
-      opacity: 50%;
-    }
-
-    &:nth-of-type(3):before {
-      border-radius: calc(var(--radius) + 11px);
-      inset: -11px;
-      opacity: 30%;
-    }
-
-    &:nth-of-type(4):before {
-      border-radius: calc(var(--radius) + 16px);
-      inset: -16px;
-      opacity: 10%;
-    }
+  &:before {
+    position: absolute;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 62%,
+      var(--stripe-cyan) 62%,
+      var(--stripe-cyan) 73%,
+      var(--stripe-yellow) 73%,
+      var(--stripe-yellow) 84%,
+      var(--stripe-red) 84%,
+      var(--stripe-red) 95%,
+      transparent 95%
+    );
+    content: "";
+    inset: 0;
+    pointer-events: none;
   }
 }
 
 .header {
+  position: relative;
   display: flex;
   height: 40px;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   gap: 12px;
 }
 
@@ -109,42 +96,40 @@
     content: attr(data-value) " ";
     visibility: hidden;
   }
-
-  &:before {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    content: "";
-  }
 }
 
 .frame.noBackground {
   background: transparent;
+
+  .window {
+    --background: hsla(0, 0%, 7%, 95%);
+  }
 }
 
 .frameLightMode {
-  background: radial-gradient(80% 65% at 15% 100%, rgba(1, 215, 228, 0.2) 0%, transparent 70%),
-    radial-gradient(70% 55% at 55% 100%, rgba(243, 195, 6, 0.16) 0%, transparent 70%),
-    radial-gradient(80% 65% at 95% 100%, rgba(255, 118, 130, 0.17) 0%, transparent 70%),
+  background: radial-gradient(60% 55% at 0% 100%, rgba(1, 215, 228, 0.2) 0%, transparent 70%),
+    radial-gradient(55% 50% at 100% 100%, rgba(255, 118, 130, 0.24) 0%, transparent 70%),
+    radial-gradient(45% 40% at 100% 0%, rgba(255, 118, 130, 0.14) 0%, transparent 70%),
     linear-gradient(140deg, #ffffff 0%, #f9faf5 100%);
 
   &.noBackground {
     .window {
-      --background: hsla(0, 0%, 100%, 0.9);
+      --background: hsla(0, 0%, 100%, 0.95);
     }
   }
 
   .window {
-    --background: hsla(0, 0%, 100%, 0.75);
-    --frame-border-gradient: linear-gradient(var(--gradient-angle), #00bbcb, #f34a60, #eaa700);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    --background: hsla(60, 20%, 98%, 0.6);
+    --stripe-cyan: rgba(1, 215, 228, 0.18);
+    --stripe-yellow: rgba(243, 195, 6, 0.2);
+    --stripe-red: rgba(255, 118, 130, 0.24);
   }
 
   .header {
     border-color: rgba(0, 0, 0, 0.06);
-    background: hsla(0, 0%, 100%, 0.9);
+    background: rgba(0, 0, 0, 0.025);
   }
 
   .fileName {

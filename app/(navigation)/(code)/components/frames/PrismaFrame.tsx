@@ -30,10 +30,6 @@ const PrismaFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       <div className={styles.window}>
-        <span data-frameborder />
-        <span data-frameborder />
-        <span data-frameborder />
-        <span data-frameborder />
         {fileName.length > 0 ? (
           <div className={styles.header}>
             <div className={classNames(sharedStyles.fileName, styles.fileName)} data-value={fileName}>
