@@ -1,0 +1,21 @@
+{
+  "author": "Ivan Tomica",
+  "authorUsername": "tomica",
+  "version": "1",
+  "name": "Modus Operandi",
+  "appearance": "light",
+  "colors": {
+    "background": "#ffffff",
+    "backgroundSecondary": "#ffffff",
+    "text": "#000000",
+    "selection": "#bdbdbd",
+    "loader": "#0031a9",
+    "red": "#a60000",
+    "orange": "#884900",
+    "yellow": "#6f5500",
+    "green": "#006800",
+    "blue": "#0031a9",
+    "purple": "#531ab6",
+    "magenta": "#721045"
+  }
+}
