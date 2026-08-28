@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Retro Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#EDEEF2",
+    "backgroundSecondary": "#E2E3E8",
+    "text": "#282930",
+    "selection": "#8A6539",
+    "loader": "#8A6539",
+    "red": "#5F7982",
+    "orange": "#8A6539",
+    "yellow": "#BF5238",
+    "green": "#4A704E",
+    "blue": "#456A82",
+    "purple": "#BF5238",
+    "magenta": "#C99730"
+  }
+}

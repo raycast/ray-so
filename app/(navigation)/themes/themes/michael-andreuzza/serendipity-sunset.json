@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Serendipity Sunset",
+  "appearance": "dark",
+  "colors": {
+    "background": "#202231",
+    "backgroundSecondary": "#272938",
+    "text": "#DEE0EF",
+    "selection": "#D6B4B4",
+    "loader": "#D6B4B4",
+    "red": "#D1918F",
+    "orange": "#D6B4B4",
+    "yellow": "#A392DC",
+    "green": "#709BBD",
+    "blue": "#A0B6E8",
+    "purple": "#A392DC",
+    "magenta": "#AAC9D4"
+  }
+}

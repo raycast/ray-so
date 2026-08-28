@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Serendipity Midnight",
+  "appearance": "dark",
+  "colors": {
+    "background": "#151726",
+    "backgroundSecondary": "#1C1E2D",
+    "text": "#DEE0EF",
+    "selection": "#F8D2C9",
+    "loader": "#F8D2C9",
+    "red": "#EE8679",
+    "orange": "#F8D2C9",
+    "yellow": "#A78BFA",
+    "green": "#5BA2D0",
+    "blue": "#94B8FF",
+    "purple": "#A78BFA",
+    "magenta": "#9CCFD8"
+  }
+}
