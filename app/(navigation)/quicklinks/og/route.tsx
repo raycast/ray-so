@@ -9,6 +9,20 @@ import { Base64 } from "js-base64";
 
 export const runtime = "edge";
 
+// Icon URLs are only ever generated via Google's favicon service (see shared/page.tsx),
+// so anything else is rejected to prevent the edge runtime from fetching arbitrary URLs.
+function isAllowedIconUrl(value: string | null): value is string {
+  if (!value) {
+    return false;
+  }
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && url.hostname === "www.google.com" && url.pathname === "/s2/favicons";
+  } catch {
+    return false;
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -19,8 +33,9 @@ export async function GET(request: Request) {
     const ellipsedDescription = description.length > 120 ? `${description.slice(0, 120)}...` : description;
     const hasIconName = searchParams.has("iconName");
     const iconName = searchParams.get("iconName") || "link";
-    const hasIconUrl = searchParams.has("iconUrl");
-    const iconUrl = searchParams.get("iconUrl");
+    const iconUrlParam = searchParams.get("iconUrl");
+    const iconUrl = isAllowedIconUrl(iconUrlParam) ? iconUrlParam : null;
+    const hasIconUrl = iconUrl !== null;
 
     const interRegular = await fetch(new URL(`./Inter-Regular.ttf`, import.meta.url)).then((res) => res.arrayBuffer());
     const interSemiBold = await fetch(new URL(`./Inter-SemiBold.ttf`, import.meta.url)).then((res) =>

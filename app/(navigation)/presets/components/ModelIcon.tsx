@@ -30,7 +30,7 @@ export default function ModelIcon({ model }: { model: Preset["model"] }) {
     component = <BrandMetaIcon />;
   }
 
-  if (model?.includes("mixtral")) {
+  if (model?.includes("mistral")) {
     component = <BrandMistralIcon />;
   }
 

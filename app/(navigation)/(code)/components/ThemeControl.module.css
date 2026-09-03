@@ -10,5 +10,6 @@
 .logo {
   width: 14px;
   height: auto;
+  max-height: 14px;
   color: white;
 }

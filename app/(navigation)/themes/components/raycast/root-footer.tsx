@@ -11,7 +11,7 @@ export function RootFooter({ mode = "dark" }: { mode?: "dark" | "light" }) {
       <div className="flex gap-3 items-center">
         <div className="flex gap-3 items-center">
           <div className="text-xs text-[--text] font-semibold">Open Command</div>
-          <div className="w-[24px] h-[24px] rounded-md flex items-center justify-center bg-[--text-100] text-[--text]">
+          <div className="w-[22px] h-[20px] rounded-md flex items-center justify-center bg-[--text-100] text-[--text]">
             <svg
               width="12"
               height="9"
@@ -30,10 +30,10 @@ export function RootFooter({ mode = "dark" }: { mode?: "dark" | "light" }) {
         <div className="w-[2px] h-[12px] bg-[--text-100]" />
         <div className="flex gap-3 items-center">
           <div className="text-xs font-semibold text-[--text-600]">Actions</div>
-          <div className="w-[24px] h-[24px] rounded-md flex items-center justify-center text-xs bg-[--text-100] text-[--text]">
+          <div className="w-[24px] h-[20px] rounded-md flex items-center justify-center text-xs bg-[--text-100] text-[--text]">
             ⌘
           </div>
-          <div className="w-[24px] h-[24px] rounded-md flex items-center justify-center text-xs bg-[--text-100] text-[--text] -ml-2">
+          <div className="w-[24px] h-[20px] rounded-md flex items-center justify-center text-xs bg-[--text-100] text-[--text] -ml-2">
             K
           </div>
         </div>

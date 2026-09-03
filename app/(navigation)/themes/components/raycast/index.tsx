@@ -53,7 +53,7 @@ export function Raycast({
   return (
     <div
       data-raycast
-      className={`w-[750px] h-[475px] rounded-xl shadow flex flex-col relative select-none shrink-0 text-left overflow-hidden ${
+      className={`w-[750px] h-[475px] rounded-[18px] shadow flex flex-col relative select-none shrink-0 text-left overflow-hidden ${
         !thumbnail ? "backdrop-blur-[72px]" : ""
       }`}
       style={{

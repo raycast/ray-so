@@ -220,7 +220,7 @@ export default async function Image({ params }: { params: Promise<{ author: stri
       >
         <div
           style={{
-            borderRadius: "12px",
+            borderRadius: "18px",
             border: "1px solid",
             borderColor: tokens.border200,
             display: "flex",
@@ -340,7 +340,7 @@ export default async function Image({ params }: { params: Promise<{ author: stri
                   justifyContent: "space-between",
                   height: "40px",
                   padding: "8px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                   backgroundColor: tokens.selection100,
                 }}
               >
@@ -393,7 +393,7 @@ export default async function Image({ params }: { params: Promise<{ author: stri
                   alignItems: "center",
                   height: "40px",
                   padding: "8px",
-                  borderRadius: "8px",
+                  borderRadius: "10px",
                 }}
               >
                 <div style={{ display: "flex", marginRight: "10px" }}>{checkIcon}</div>

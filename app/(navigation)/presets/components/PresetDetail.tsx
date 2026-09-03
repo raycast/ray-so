@@ -38,6 +38,10 @@ import { AiModel } from "@/api/ai";
 import { Extension } from "@/api/store";
 import { getExtensionIdsFromString } from "@/utils/getExtensionIdsFromString";
 import { AIExtension } from "@/components/ai-extension";
+import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
+import { isTouchDevice } from "../utils/isTouchDevice";
+import { shortenUrl } from "@/utils/common";
+import { toast } from "@/components/toast";
 
 type PresetPageProps = {
   preset: Preset;
@@ -53,9 +57,14 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
   const modelObj = models?.find((m) => m.id === preset.model);
   const modelSupportsImageGen = modelObj?.abilities?.image_generation;
   const router = useRouter();
+  const [isTouch, setIsTouch] = React.useState<boolean>();
 
   const [showToast, setShowToast] = React.useState(false);
   const [toastMessage, setToastMessage] = React.useState("");
+
+  React.useEffect(() => {
+    setIsTouch(isTouchDevice());
+  }, []);
 
   React.useEffect(() => {
     if (showCopied) {
@@ -73,7 +82,9 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
     }
   }, [showToast]);
 
-  const handleAddToRaycast = React.useCallback(() => addToRaycast(router, preset), [router, preset]);
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, preset, isTouch);
+  }, [router, preset, isTouch]);
 
   const handleCopyInstructions = () => {
     copy(instructions);
@@ -269,14 +280,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
                       const extension = extensions.find((e) => e.id === match[2]);
                       return <AIExtension key={index} extension={extension} fallback={match[1]} />;
                     }
-                    return (
-                      <span
-                        key={index}
-                        dangerouslySetInnerHTML={{
-                          __html: part.replace(/\{[^}]+\}/g, `<span class="${styles.placeholder}">$&</span>`),
-                        }}
-                      />
-                    );
+                    return <span key={index}>{renderSafePromptContent(part, styles.placeholder)}</span>;
                   })}
                 </pre>
               </div>
@@ -367,6 +371,24 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
           <CopyClipboardIcon /> {toastMessage}
         </ToastTitle>
       </Toast>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </>
   );
 }

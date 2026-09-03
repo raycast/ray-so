@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cn from "classnames";
 
 import { PlusIcon, TrashIcon } from "@raycast/icons";
@@ -29,9 +29,8 @@ const exportToPng = async (svgRef: SvgRefType, fileName: string, size: number) =
   }
 
   let dataUrl = await htmlToPng(svgRef.current, { pixelRatio: 1, quality: 1, width: size, height: size });
-  setTimeout(() => {
-    download(dataUrl, `${fileName}.png`);
-  }, 100);
+  // Download immediately since timing is handled in the export loop
+  download(dataUrl, `${fileName}.png`);
   return dataUrl;
 };
 
@@ -65,16 +64,44 @@ function ExportModal({ open, onOpenChange, onStartExport, fileName, svgRef }: Ex
     },
   ]);
 
+  // Update export options when fileName changes
+  useEffect(() => {
+    setExportOptions((prevOptions) =>
+      prevOptions.map((option, index) => {
+        if (index === 0) {
+          // Update the first option's fileName to match the current fileName
+          return {
+            ...option,
+            fileName: option.format === "SVG" ? fileName : fileName,
+          };
+        } else {
+          // Update other options to use the new fileName as base
+          return {
+            ...option,
+            fileName: option.format === "SVG" ? fileName : `${fileName}@${option.size}px`,
+          };
+        }
+      }),
+    );
+  }, [fileName]);
+
   const onExport = async () => {
     onOpenChange(false);
     onStartExport();
     // Fixes @2x png export instead of the same size as png
     const realPixelRatio = window.devicePixelRatio;
     window.devicePixelRatio = 1;
-    const exportPromises = exportOptions.map((option) => {
-      return Exporters[option.format](svgRef, option.fileName, option.size);
-    });
-    await Promise.all(exportPromises);
+
+    // Export each option sequentially to avoid browser download blocking
+    for (let i = 0; i < exportOptions.length; i++) {
+      const option = exportOptions[i];
+      await Exporters[option.format](svgRef, option.fileName, option.size);
+      // Add a small delay between downloads to prevent browser blocking
+      if (i < exportOptions.length - 1) {
+        await new Promise((resolve) => setTimeout(resolve, 150));
+      }
+    }
+
     window.devicePixelRatio = realPixelRatio;
   };
 

@@ -17,6 +17,15 @@ export const fileNameAtom = atomWithHash<string>("title", "", {
   },
 });
 
+export const subtitleAtom = atomWithHash<string>("subtitle", "", {
+  serialize(val) {
+    return val;
+  },
+  deserialize(str) {
+    return str || "";
+  },
+});
+
 export const highlighterAtom = atom<Highlighter | null>(null);
 
 export const loadingLanguageAtom = atom<boolean>(false);

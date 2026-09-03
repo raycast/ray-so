@@ -118,13 +118,13 @@ const ResultIcon = React.forwardRef<SVGSVGElement, PropTypes>(
             height={settings.iconSize}
             x={(size - settings.iconSize) / 2 + +settings.iconOffsetX}
             y={(size - settings.iconSize) / 2 + +settings.iconOffsetY}
-            style={{ color: settings.iconColor }}
+            style={{ color: settings.iconColor, width: settings.iconSize, height: settings.iconSize }}
             alignmentBaseline="middle"
           />
         ) : null}
       </svg>
     );
-  }
+  },
 );
 
 ResultIcon.displayName = "ResultIcon";

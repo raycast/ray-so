@@ -1,0 +1,90 @@
+.frame {
+  position: relative;
+  height: 100%;
+  background-color: #000000;
+}
+
+.background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.backgroundGridline {
+  position: absolute;
+  border-style: solid;
+  border-color: rgba(197, 211, 232, 0.12);
+}
+
+.backgroundGridlineVertical {
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-width: 0 0 0 1px;
+}
+
+.backgroundGridlineHorizontal {
+  right: 0;
+  left: 0;
+  height: 0;
+  border-width: 1px 0 0;
+}
+
+.window {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(197, 211, 232, 0.16);
+  background: #0f0f0f;
+
+  .header {
+    height: 30px;
+    padding-top: 10px;
+  }
+
+  .fileName {
+    height: 24px;
+    color: #ffffff;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+
+    > input,
+    & > span,
+    &:after {
+      font-family: var(--font-space-mono), monospace;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    & > span {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.frameLightMode {
+  background: #f8fafc;
+
+  .window {
+    border-color: rgba(70, 99, 159, 0.24);
+    background: #ffffff;
+  }
+
+  .backgroundGridline {
+    border-color: rgba(70, 99, 159, 0.08);
+  }
+
+  .fileName {
+    color: rgba(0, 0, 0, 0.6);
+
+    & > span {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+.noBackground {
+  background: transparent;
+}

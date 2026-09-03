@@ -39,6 +39,7 @@ import { Tooltip, TooltipContent } from "@/components/tooltip";
 import { TooltipTrigger } from "@/components/tooltip";
 import { Extension } from "@/api/store";
 import { AIExtension } from "@/components/ai-extension";
+import { renderSafePromptContent } from "@/utils/sanitizePromptContent";
 
 type Props = {
   models: AiModel[];
@@ -75,7 +76,7 @@ export function Prompts({ models, extensions }: Props) {
     const removedPrompts = extractPrompts(removed, categories);
 
     setSelectedPrompts((prevPrompts) => {
-      const prompts = [...prevPrompts];
+      let prompts = [...prevPrompts];
 
       addedPrompts.forEach((prompt) => {
         if (!prompt) {
@@ -88,7 +89,7 @@ export function Prompts({ models, extensions }: Props) {
       });
 
       removedPrompts.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+        prompts = prompts.filter((s) => s?.id !== prompt?.id);
       });
 
       return prompts;
@@ -131,7 +132,9 @@ export function Prompts({ models, extensions }: Props) {
     setToastMessage("Copied to clipboard");
   }, []);
 
-  const handleAddToRaycast = React.useCallback(() => addToRaycast(router, selectedPrompts), [router, selectedPrompts]);
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, selectedPrompts, isTouch);
+  }, [router, selectedPrompts, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -296,7 +299,7 @@ export function Prompts({ models, extensions }: Props) {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
                         Add to Raycast
                       </Button>
 
@@ -369,15 +372,7 @@ export function Prompts({ models, extensions }: Props) {
                                           );
                                         }
                                         return (
-                                          <span
-                                            key={index}
-                                            dangerouslySetInnerHTML={{
-                                              __html: part.replace(
-                                                /\{[^}]+\}/g,
-                                                `<span class="${styles.placeholder}">$&</span>`,
-                                              ),
-                                            }}
-                                          />
+                                          <span key={index}>{renderSafePromptContent(part, styles.placeholder)}</span>
                                         );
                                       })}
                                     </pre>
@@ -456,6 +451,24 @@ export function Prompts({ models, extensions }: Props) {
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedPrompts.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }

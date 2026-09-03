@@ -36,7 +36,7 @@ import ResultIcon from "./components/ResultIcon";
 import { Button } from "@/components/button";
 import CustomSvgIcon from "./components/CustomSvgIcon";
 
-import { randomElement, debounce, uniq, randomNumberBetween, getPastedSvgFile } from "./lib/utils";
+import { randomElement, debounce, uniq, getPastedSvgFile } from "./lib/utils";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
 
@@ -256,7 +256,7 @@ const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: C
     <Popover.Root>
       <div className={cn(styles.inputWrapper)}>
         <Popover.Trigger className={styles.popoverTrigger}>
-          <Input name={name} type="text" value={value} disabled={disabled} className="w-[120px]" size="large">
+          <Input name={name} type="text" value={value} disabled={disabled} readOnly className="w-[120px]" size="large">
             <InputSlot side="left">
               <div className={styles.colorExample} style={{ backgroundColor: value }} />
             </InputSlot>
@@ -278,16 +278,61 @@ const ColorInput = ({ value, name, recentColors, onChange, disabled = false }: C
 let infoMessageTimeout: NodeJS.Timeout | undefined;
 
 export const IconGenerator = () => {
-  const randomPresetIndex = randomNumberBetween(0, presets.length - 1);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get("q") || "";
 
-  const [urlParsed, setUrlParsed] = useState<boolean>(false);
-  const [scale, setScale] = useState<number>(1);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [history, setHistory] = useState<SettingsType[]>([]);
+  const [scale, setScale] = useState<number>(() =>
+    typeof window !== "undefined" && window.innerWidth < 512 ? window.innerWidth / 512 - 0.03125 * 2 : 1,
+  );
+  const [initialSettings] = useState<SettingsType>(() => {
+    const defaultPresetIndex = 0;
+    const defaultIcon = (Object.keys(Icons)[0] || "Dots") as IconName;
+    const baseSettings: SettingsType = {
+      fileName: "extension_icon",
+      icon: defaultIcon,
+      backgroundRadius: 128,
+      backgroundStrokeSize: 0,
+      backgroundStrokeColor: "#FFFFFF",
+      backgroundRadialGlare: false,
+      backgroundNoiseTexture: false,
+      backgroundNoiseTextureOpacity: 25,
+      backgroundStrokeOpacity: 100,
+      backgroundPosition: "50%,0%",
+      backgroundSpread: 100,
+      backgroundAngle: 0,
+      iconSize: 352,
+      iconOffsetX: 0,
+      iconOffsetY: 0,
+      selectedPresetIndex: defaultPresetIndex,
+      customSvg: undefined,
+      ...presets[defaultPresetIndex],
+    };
+
+    const settingsFromUrl = Object.keys(baseSettings).reduce((acc, key) => {
+      if (key === "customSvg") return acc;
+      const rawValue = searchParams.get(key);
+      if (rawValue === null) return acc;
+
+      let value: string | boolean | number | undefined = rawValue;
+      if (value === "undefined") value = undefined;
+      if (key === "backgroundRadialGlare" || key === "backgroundNoiseTexture") {
+        value = value === "true" || value === "1";
+      }
+
+      return {
+        ...acc,
+        [key]: value,
+      };
+    }, {} as Partial<SettingsType>);
+
+    return { ...baseSettings, ...settingsFromUrl };
+  });
+  const [history, setHistory] = useState<SettingsType[]>(() => [initialSettings]);
   const [redoHistory, setRedoHistory] = useState<SettingsType[]>([]);
   const [recentColors, setRecentColors] = useState<string[]>([]);
   const [showExportModal, setShowExportModal] = useState<boolean>(false);
-  const [panelsVisible, setPanelsVisible] = useState<boolean>(false);
+  const [panelsVisible, setPanelsVisible] = useState<boolean>(true);
   const [headerVisible, setHeaderVisible] = useState<boolean>(true);
   const [infoMessage, setInfoMessage] = useState<string>();
   const [infoMessageVisible, setInfoMessageVisible] = useState<boolean>(false);
@@ -298,29 +343,7 @@ export const IconGenerator = () => {
   const [showTextIconInput, setShowTextIconInput] = useState<boolean>(false);
 
   const [draggingFile, setDraggingFile] = useState<boolean>(false);
-  const [settings, setSettings] = useState<SettingsType>({
-    fileName: "extension_icon",
-    icon: "raycast-logo-pos",
-    backgroundRadius: 128,
-    backgroundStrokeSize: 0,
-    backgroundStrokeColor: "#FFFFFF",
-    backgroundRadialGlare: false,
-    backgroundNoiseTexture: false,
-    backgroundNoiseTextureOpacity: 25,
-    backgroundStrokeOpacity: 100,
-    backgroundPosition: "50%,0%",
-    backgroundSpread: 100,
-    backgroundAngle: 0,
-    iconSize: 352,
-    iconOffsetX: 0,
-    iconOffsetY: 0,
-    selectedPresetIndex: randomPresetIndex,
-    customSvg: undefined,
-    ...presets[randomPresetIndex],
-  });
-
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const [settings, setSettings] = useState<SettingsType>(initialSettings);
   const pngClipboardSupported = usePngClipboardSupported();
 
   const searchRef = useRef<HTMLInputElement>(null);
@@ -429,22 +452,6 @@ export const IconGenerator = () => {
     navigator.clipboard.writeText(urlToCopy);
     showInfoMessage("URL copied to clipboard", false);
   };
-
-  useEffect(() => {
-    if (window.innerWidth < 512) {
-      setScale(window.innerWidth / 512 - 0.03125 * 2);
-    }
-    setSettings((currentSettings) => {
-      const randomIcon = randomElement(Object.keys(Icons) as IconName[]);
-      const settingsToSet = {
-        ...currentSettings,
-        icon: randomIcon,
-      };
-      setHistory([settingsToSet]);
-      setPanelsVisible(true);
-      return settingsToSet;
-    });
-  }, []);
 
   const onSelectCustomIcon = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -567,6 +574,14 @@ export const IconGenerator = () => {
   });
   useHotkeys("ctrl+k,cmd+k", () => setExportDropdownOpen((opened) => !opened));
 
+  const onWheel = useCallback((event: WheelEvent) => {
+    if (event.ctrlKey || event.metaKey) {
+      setScale((currentScale) => currentScale + 0.0001 * event.deltaY);
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, []);
+
   useEffect(() => {
     const mainRefCurent = mainRef?.current;
 
@@ -579,41 +594,7 @@ export const IconGenerator = () => {
         mainRefCurent.removeEventListener("wheel", onWheel);
       }
     };
-  }, [mainRef]);
-
-  useEffect(() => {
-    const q = searchParams.get("q") || "";
-
-    if (q !== undefined) {
-      setSearchTerm(q as string);
-    }
-
-    if (!urlParsed) {
-      // Parse settings from query string
-      const settingsFromUrl = Object.keys(Object.fromEntries(searchParams)).reduce((acc, key) => {
-        if (
-          key in settings &&
-          key !== "customSvg" // Do not allow to pass customSvg in url to prevent XSS attacks
-        ) {
-          let value = searchParams.get(key) as string | boolean | number | undefined;
-          if (value === "undefined") {
-            value = undefined;
-          }
-          if (key === "backgroundRadialGlare" || key === "backgroundNoiseTexture") {
-            value = value === "true" || value === "1";
-          }
-
-          return {
-            ...acc,
-            [key]: value,
-          };
-        }
-        return acc;
-      }, {} as Partial<SettingsType>);
-      setUrlParsed(true);
-      setSettings((settings) => ({ ...settings, ...settingsFromUrl }));
-    }
-  }, [router, settings, urlParsed, searchParams]);
+  }, [mainRef, onWheel]);
 
   const onFormChange = () => {
     if (!formRef.current) {
@@ -710,14 +691,6 @@ export const IconGenerator = () => {
   const onChangeScale = (newValue: string) => {
     if (newValue) {
       setScale(Number(newValue));
-    }
-  };
-
-  const onWheel = (event: WheelEvent) => {
-    if (event.ctrlKey || event.metaKey) {
-      setScale((currentScale) => currentScale + 0.0001 * event.deltaY);
-      event.preventDefault();
-      event.stopPropagation();
     }
   };
 
@@ -849,7 +822,13 @@ export const IconGenerator = () => {
             <span className={styles.label}>Redo</span>
           </Button>
         </div>
-        <div className={styles.filename} contentEditable onBlur={onFileNameBlured} onKeyDown={onFileNameKeydown}>
+        <div
+          className={styles.filename}
+          contentEditable
+          suppressContentEditableWarning
+          onBlur={onFileNameBlured}
+          onKeyDown={onFileNameKeydown}
+        >
           {settings.fileName}
         </div>
         <div className={cn(styles.actions, styles.actionsRight)}>
@@ -935,7 +914,7 @@ export const IconGenerator = () => {
               <Input
                 type="text"
                 placeholder="Search icons…"
-                defaultValue={searchTerm}
+                value={searchTerm}
                 ref={searchRef}
                 size="large"
                 variant="soft"

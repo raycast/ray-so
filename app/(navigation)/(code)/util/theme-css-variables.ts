@@ -230,6 +230,10 @@ export function createCssVariablesTheme(options: CssVariablesThemeOptions = {}):
         settings: { foreground: variable("token-number") },
       },
       {
+        scope: ["meta.objectliteral"],
+        settings: { foreground: variable("token-object-literal") },
+      },
+      {
         scope: ["support.variable.property"],
         settings: { foreground: variable("token-property") },
       },

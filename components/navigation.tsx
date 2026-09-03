@@ -16,6 +16,7 @@ import Link from "next/link";
 import { cn } from "@/utils/cn";
 import CodeImagesIcon from "@/app/assets/code-images.svg";
 import IconMakerIcon from "@/app/assets/icon-maker.svg";
+import IosIconsIcon from "@/app/assets/ios-icons.svg";
 import SnippetExplorerIcon from "@/app/assets/snippet-explorer.svg";
 import PresetExplorerIcon from "@/app/assets/preset-explorer.svg";
 import QuicklinkExplorerIcon from "@/app/assets/quicklink-explorer.svg";
@@ -66,6 +67,12 @@ const links = [
     description: "Browse and import Raycast Themes",
     icon: ThemeExplorerIcon,
   },
+  {
+    href: "/ios-icons",
+    label: "iOS App Icons",
+    description: "Save iOS shortcut icons for Raycast features",
+    icon: IosIconsIcon,
+  },
 ];
 
 export function Navigation() {
@@ -99,13 +106,11 @@ export function Navigation() {
             <ChevronLeftIcon className="w-4 h-4 shrink-0" />
           </Link>
         </Button>
-
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="transparent" className="py-1 pl-1 pr-2 gap-2 data-[state=open]:bg-gray-4 text-gray-12">
               {activeLink.icon && <activeLink.icon className="w-6 h-6" />}
               <span className="text-[15px] font-medium">{activeLink.label}</span>
-              <ChevronDownIcon className="w-4 h-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="p-2 gap-1.5 flex flex-col">
@@ -126,6 +131,15 @@ export function Navigation() {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        <div className="-ml-2 flex items-center relative z-10 gap-[4px]">
+          <span className="text-sm text-gray-9">by </span>
+          <Button variant="transparent" asChild className="pl-[8px]">
+            <a href="https://raycast.com#ref=ray-so" target="_blank" rel="noopener">
+              <RaycastLogoNegIcon className="w-5 h-5 text-brand" />
+              <span className="text-sm text-gray-12 font-medium hidden sm:block">Raycast</span>
+            </a>
+          </Button>
+        </div>
       </div>
     </nav>
   );
@@ -135,7 +149,7 @@ export function NavigationActions({ children, className }: { children: React.Rea
   return (
     <div
       className={cn(
-        "h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-44",
+        "h-[50px] flex items-center justify-end fixed top-0 right-scrollbar-offset gap-2 z-10 left-[275px]",
         className,
       )}
     >

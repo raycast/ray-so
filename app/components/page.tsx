@@ -44,6 +44,16 @@ import {
   SelectLabel,
   SelectSeparator,
 } from "@/components/select";
+import {
+  Combobox,
+  ComboboxTrigger,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxItemText,
+  ComboboxValue,
+  ComboboxEmpty,
+} from "@/components/combobox";
 import { toast } from "@/components/toast";
 
 export default function Components() {
@@ -392,6 +402,78 @@ export default function Components() {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 items-start">
+        <h2 className="font-medium">Combobox</h2>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4 items-center">
+            <Combobox<string>
+              items={["TypeScript", "JavaScript", "Python", "C++", "Rust", "Go", "Ruby", "Java", "Swift", "Kotlin"]}
+            >
+              <ComboboxTrigger className="w-[200px]">
+                <ComboboxValue<string>>{(value) => value ?? "Select language"}</ComboboxValue>
+              </ComboboxTrigger>
+              <ComboboxContent>
+                <ComboboxEmpty>No languages found.</ComboboxEmpty>
+                <ComboboxList<string>>
+                  {(item) => (
+                    <ComboboxItem key={item} value={item}>
+                      {item}
+                    </ComboboxItem>
+                  )}
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
+            <Combobox<string>
+              items={["TypeScript", "JavaScript", "Python", "C++", "Rust", "Go", "Ruby", "Java", "Swift", "Kotlin"]}
+              defaultValue="Python"
+            >
+              <ComboboxTrigger className="w-[200px]" size="large">
+                <ComboboxValue<string>>{(value) => value ?? "Select language"}</ComboboxValue>
+              </ComboboxTrigger>
+              <ComboboxContent>
+                <ComboboxEmpty>No languages found.</ComboboxEmpty>
+                <ComboboxList<string>>
+                  {(item) => (
+                    <ComboboxItem key={item} value={item}>
+                      {item}
+                    </ComboboxItem>
+                  )}
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
+          </div>
+          <div className="flex gap-4 items-center">
+            <Combobox<{ id: string; name: string; icon: React.ElementType }>
+              items={[
+                { id: "typescript", name: "TypeScript", icon: BrandTypescriptIcon },
+                { id: "javascript", name: "JavaScript", icon: BrandJavascriptIcon },
+                { id: "python", name: "Python", icon: BrandPythonIcon },
+                { id: "cpp", name: "C++", icon: BrandCplusplusIcon },
+              ]}
+              itemToStringLabel={(item) => item?.name ?? ""}
+            >
+              <ComboboxTrigger className="w-[200px]">
+                <ComboboxValue<{ id: string; name: string; icon: React.ElementType }>>
+                  {(value) => value?.name ?? "Select language"}
+                </ComboboxValue>
+              </ComboboxTrigger>
+              <ComboboxContent>
+                <ComboboxEmpty>No languages found.</ComboboxEmpty>
+                <ComboboxList<{ id: string; name: string; icon: React.ElementType }>>
+                  {(item) => (
+                    <ComboboxItem key={item.id} value={item}>
+                      <ComboboxItemText>
+                        <item.icon className="w-4 h-4" />
+                      </ComboboxItemText>
+                      {item.name}
+                    </ComboboxItem>
+                  )}
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-4 items-start">

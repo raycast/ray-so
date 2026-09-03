@@ -145,6 +145,26 @@ const development: Quicklink[] = [
     },
   },
   {
+    id: "githubPullRequests",
+    name: "GitHub Pull Requests (Created)",
+    link: "https://github.com/pulls",
+    description: "View your created GitHub Pull Requests",
+    author: {
+      name: "a2c",
+      link: "https://github.com/atzzCokeK",
+    },
+  },
+  {
+    id: "githubReviewRequestedPullRequests",
+    name: "GitHub Pull Requests (Review Requested)",
+    link: "https://github.com/pulls/review-requested",
+    description: "View GitHub Pull Requests where your review is requested",
+    author: {
+      name: "a2c",
+      link: "https://github.com/atzzCokeK",
+    },
+  },
+  {
     id: "huggingface",
     name: "Search Hugging Face",
     description: "Search for models, datasets, and more",
@@ -163,6 +183,15 @@ const development: Quicklink[] = [
     id: "npm",
     name: "Search NPM",
     link: "https://www.npmjs.com/search?q={Query}",
+  },
+  {
+    id: "pypi",
+    name: "Search PyPI",
+    link: "https://pypi.org/search/?q={Query}",
+    author: {
+      name: "Hasan Sezer Taşan",
+      link: "https://github.com/hasansezertasan",
+    },
   },
   {
     id: "packagist",
@@ -185,12 +214,26 @@ const development: Quicklink[] = [
     link: "https://developer.mozilla.org/en-US/search?q={Query}",
   },
   {
+    id: "can-i-use",
+    name: "Can I Use",
+    link: "https://caniuse.com/?search={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/tofrankie",
+    },
+  },
+  {
     id: "apple",
     name: "Search Apple Dev Docs",
     link: "https://developer.apple.com/search/?q={Query}&type=Documentation",
     icon: {
       name: "brand-apple",
     },
+  },
+  {
+    id: "devdocs",
+    name: "Search Dev Docs",
+    link: "https://devdocs.io?q={Query}",
   },
   {
     id: "radix",
@@ -296,6 +339,15 @@ const development: Quicklink[] = [
     link: "https://kotlinlang.org/docs/home.html?q={argument}&s=full",
     name: "Kotlin Docs",
   },
+  {
+    id: "weixin-docs",
+    name: "Search Weixin Docs",
+    link: "https://developers.weixin.qq.com/doc/search.html?doc_type=miniprogram&query={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/tofrankie",
+    },
+  },
 ];
 
 const design: Quicklink[] = [
@@ -342,6 +394,15 @@ const design: Quicklink[] = [
     id: "icones",
     name: "Search Icones",
     link: "https://icones.js.org/collection/all?s={Query}",
+  },
+  {
+    id: "magnific",
+    name: "Search Magnific",
+    link: "https://www.magnific.com/search?ai=excluded&format=search&orientation=landscape&type=photo&license=free&query={Query}",
+    author: {
+      name: "Frankie",
+      link: "https://github.com/tofrankie",
+    },
   },
 ];
 
@@ -435,6 +496,19 @@ const search: Quicklink[] = [
     link: "itms-apps://itunes.apple.com/search?term={App}",
     icon: {
       name: "brand-apple",
+    },
+  },
+  {
+    id: "raycast-store",
+    name: "Search Raycast Store",
+    link: "https://raycast.com/search?q={Extension}",
+    icon: {
+      name: "store",
+    },
+    description: "Search for Raycast extensions (macOS and Windows)",
+    author: {
+      name: "Muhammadrizo",
+      link: "https://www.raycast.com/muhammadrizo",
     },
   },
   {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSectionInView, useSectionInViewObserver } from "@/utils/useSectionInViewObserver";
 import { SelectionArea, SelectionEvent } from "@viselect/react";
 import { Category, Quicklink, categories as originalCategories } from "../quicklinks";
@@ -35,6 +35,11 @@ import { toast } from "@/components/toast";
 import { Input, InputSlot } from "@/components/input";
 import { getRaycastFlavor } from "@/app/RaycastFlavor";
 
+function withRaycastProtocol(link: string, protocol: string) {
+  if (!protocol) return link;
+  return link.replace(/^raycast(?:internal|debug|-x(?:-internal|-development)?)?:\/\//, `${protocol}://`);
+}
+
 export function Quicklinks() {
   const [enableViewObserver, setEnableViewObserver] = React.useState(false);
   useSectionInViewObserver({ headerHeight: 50, enabled: enableViewObserver });
@@ -42,32 +47,21 @@ export function Quicklinks() {
 
   const [raycastProtocol, setRaycastProtocol] = React.useState("");
 
-  React.useEffect(() => {
-    async function fetchRaycastProtocol() {
-      const protocol = await getRaycastFlavor();
-      setRaycastProtocol(protocol);
-    }
-    fetchRaycastProtocol();
-  }, []);
-
   const [categories, setCategories] = React.useState<Category[]>(originalCategories);
 
-  useEffect(() => {
-    const flavoredCategories = originalCategories.map((category) => {
+  const categoriesWithRaycastProtocol = React.useMemo(() => {
+    return categories.map((category) => {
       return {
         ...category,
         quicklinks: category.quicklinks.map((quicklink) => {
           return {
             ...quicklink,
-            link: quicklink.link
-              .replace("raycast://", `${raycastProtocol}://`)
-              .replace("raycastinternal://", `${raycastProtocol}://`),
+            link: withRaycastProtocol(quicklink.link, raycastProtocol),
           };
         }),
       };
     });
-    setCategories(flavoredCategories);
-  }, [raycastProtocol]);
+  }, [categories, raycastProtocol]);
 
   const updateQuicklink = (updatedQuicklink: Quicklink) => {
     const updatedCategories = categories.map((category) => {
@@ -87,19 +81,27 @@ export function Quicklinks() {
     setCategories(updatedCategories);
   };
 
-  const filteredQuicklinks = categories.flatMap((category) => {
+  const filteredQuicklinks = categoriesWithRaycastProtocol.flatMap((category) => {
     return category.quicklinks.filter((quicklink) => quicklink.name.toLowerCase().includes(search.toLowerCase()));
   });
 
   const [selectedQuicklinkIds, setSelectedQuicklinkIds] = React.useState<string[]>([]);
 
   const router = useRouter();
-  const selectedQuicklinks = categories.flatMap((category) => {
+  const selectedQuicklinks = categoriesWithRaycastProtocol.flatMap((category) => {
     return category.quicklinks.filter((quicklink) => selectedQuicklinkIds.includes(quicklink.id));
   });
 
   const [actionsOpen, setActionsOpen] = React.useState(false);
   const [isTouch, setIsTouch] = React.useState<boolean>();
+
+  React.useEffect(() => {
+    async function fetchRaycastProtocol() {
+      const protocol = await getRaycastFlavor();
+      setRaycastProtocol(protocol);
+    }
+    fetchRaycastProtocol();
+  }, []);
 
   const onStart = ({ event, selection }: SelectionEvent) => {
     if (!isTouch && !event?.ctrlKey && !event?.metaKey) {
@@ -113,8 +115,8 @@ export function Quicklinks() {
       changed: { added, removed },
     },
   }: SelectionEvent) => {
-    const addedQuicklinks = extractQuicklinks(added, categories);
-    const removedQuicklinks = extractQuicklinks(removed, categories);
+    const addedQuicklinks = extractQuicklinks(added, categoriesWithRaycastProtocol);
+    const removedQuicklinks = extractQuicklinks(removed, categoriesWithRaycastProtocol);
 
     setSelectedQuicklinkIds((prevQuicklinkIds) => {
       let quicklinkIds = [...prevQuicklinkIds];
@@ -163,10 +165,9 @@ export function Quicklinks() {
     );
   }, [selectedQuicklinks]);
 
-  const handleAddToRaycast = React.useCallback(
-    () => addToRaycast(router, selectedQuicklinks),
-    [router, selectedQuicklinks],
-  );
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, selectedQuicklinks, isTouch);
+  }, [router, selectedQuicklinks, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -215,7 +216,7 @@ export function Quicklinks() {
     return () => document.removeEventListener("keydown", down);
   }, [setActionsOpen, selectedQuicklinks, handleCopyData, handleDownload, handleCopyUrl, handleAddToRaycast]);
 
-  const filteredCategories = categories.filter((c) => {
+  const filteredCategories = categoriesWithRaycastProtocol.filter((c) => {
     if (!search) return true;
     return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
   });
@@ -341,7 +342,7 @@ export function Quicklinks() {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
                         Add to Raycast
                       </Button>
 
@@ -379,58 +380,71 @@ export function Quicklinks() {
                   </Button>
                 </div>
               )}
-              {categories
-                .filter((c) => {
-                  if (!search) return true;
-                  return c.quicklinks.some((q) => q.name.toLowerCase().includes(search.toLowerCase()));
-                })
-                .map((category) => {
-                  return (
-                    <div
-                      key={category.name}
-                      data-section-slug={`/quicklinks${category.slug}`}
-                      style={{
-                        outline: "none",
-                      }}
-                      tabIndex={-1}
-                    >
-                      <h2 className={styles.subtitle}>
-                        <category.iconComponent /> {category.name}
-                      </h2>
-                      <div className={styles.prompts}>
-                        {category.quicklinks
-                          .filter((q) => {
-                            if (!search) return true;
-                            return q.name.toLowerCase().includes(search.toLowerCase());
-                          })
-                          .map((quicklink, index) => {
-                            const isSelected = selectedQuicklinkIds.includes(quicklink.id);
-                            const setIsSelected = (value: boolean) => {
-                              if (isSelected) {
-                                return setSelectedQuicklinkIds((prevQuicklinkIds) =>
-                                  prevQuicklinkIds.filter((prevQuicklinkId) => prevQuicklinkId !== quicklink.id),
-                                );
-                              }
-                              setSelectedQuicklinkIds((prevQuicklinkIds) => [...prevQuicklinkIds, quicklink.id]);
-                            };
-                            return (
-                              <QuicklinkComponent
-                                key={quicklink.id}
-                                quicklink={quicklink}
-                                updateQuicklink={updateQuicklink}
-                                isSelected={isSelected}
-                                setIsSelected={setIsSelected}
-                              />
-                            );
-                          })}
-                      </div>
+              {filteredCategories.map((category) => {
+                return (
+                  <div
+                    key={category.name}
+                    data-section-slug={`/quicklinks${category.slug}`}
+                    style={{
+                      outline: "none",
+                    }}
+                    tabIndex={-1}
+                  >
+                    <h2 className={styles.subtitle}>
+                      <category.iconComponent /> {category.name}
+                    </h2>
+                    <div className={styles.prompts}>
+                      {category.quicklinks
+                        .filter((q) => {
+                          if (!search) return true;
+                          return q.name.toLowerCase().includes(search.toLowerCase());
+                        })
+                        .map((quicklink, index) => {
+                          const isSelected = selectedQuicklinkIds.includes(quicklink.id);
+                          const setIsSelected = (value: boolean) => {
+                            if (isSelected) {
+                              return setSelectedQuicklinkIds((prevQuicklinkIds) =>
+                                prevQuicklinkIds.filter((prevQuicklinkId) => prevQuicklinkId !== quicklink.id),
+                              );
+                            }
+                            setSelectedQuicklinkIds((prevQuicklinkIds) => [...prevQuicklinkIds, quicklink.id]);
+                          };
+                          return (
+                            <QuicklinkComponent
+                              key={quicklink.id}
+                              quicklink={quicklink}
+                              updateQuicklink={updateQuicklink}
+                              isSelected={isSelected}
+                              setIsSelected={setIsSelected}
+                            />
+                          );
+                        })}
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
             </SelectionArea>
           )}
         </div>
       </div>
+
+      {/* Floating Action Bar for Mobile */}
+      {isTouch && selectedQuicklinks.length > 0 && (
+        <div className={styles.floatingActionBar}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
+            <PlusCircleIcon />
+            Add to Raycast
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyData}>
+            <CopyClipboardIcon />
+            Copy JSON
+          </button>
+          <button className={styles.floatingActionButton} onClick={handleCopyUrl}>
+            <LinkIcon />
+            Share URL
+          </button>
+        </div>
+      )}
     </div>
   );
 }

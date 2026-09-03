@@ -4,6 +4,10 @@ export type Language = {
 };
 
 export const LANGUAGES: { [index: string]: Language } = {
+  cedar: {
+    name: "Cedar",
+    src: () => import("./langs/cedar"),
+  },
   shell: {
     name: "Bash",
     src: () => import("shiki/langs/bash.mjs"),
@@ -120,6 +124,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "LaTeX",
     src: () => import("shiki/langs/latex.mjs"),
   },
+  liquid: {
+    name: "Liquid",
+    src: () => import("shiki/langs/liquid.mjs"),
+  },
   lisp: {
     name: "Lisp",
     src: () => import("shiki/langs/lisp.mjs"),
@@ -139,6 +147,10 @@ export const LANGUAGES: { [index: string]: Language } = {
   move: {
     name: "Move",
     src: () => import("shiki/langs/move.mjs"),
+  },
+  nix: {
+    name: "Nix",
+    src: () => import("shiki/langs/nix.mjs"),
   },
   plaintext: {
     name: "Plaintext",

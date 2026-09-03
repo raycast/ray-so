@@ -32,7 +32,7 @@ Consider every element of a tech stack, from frameworks to APIs through tools (a
     creativity: "low",
     date: "2024-03-18",
     icon: "globe-01",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "summarize-youtube-video",
@@ -52,7 +52,7 @@ Consider every element of a tech stack, from frameworks to APIs through tools (a
 
 Transcript: {browser-tab}`,
     creativity: "low",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
     date: "2024-03-18",
     icon: "play-filled",
   },
@@ -199,6 +199,64 @@ Crontab: `,
     author: {
       name: "Philipp Daun",
       link: "https://github.com/daun",
+    },
+  },
+  {
+    id: "honest-code-feedback",
+    title: "Honest Code Feedback",
+    prompt:
+      `Be brutally honest, don't be a yes man. If I am wrong, point it out bluntly.     
+I need honest feedback on my code. Review the following code and provide brutally honest feedback.     
+Point out any issues, bad practices, inefficiencies, or areas for improvement. Don't sugarcoat anything - I want the truth about what's wrong and how to fix it.` +
+      generateSelection("Code", "Review"),
+    creativity: "low",
+    date: "2025-06-30",
+    icon: "code",
+    author: {
+      name: "Tommy Nguyen",
+      link: "https://github.com/tuannvm",
+    },
+  },
+  {
+    id: "refactor-for-readability",
+    title: "Refactor for Readability",
+    prompt:
+      "Refactor the following code to improve readability and maintainability. Focus on clear variable names, proper function decomposition, and removing code smells. Explain the changes you made and why." +
+      generateSelection("Code", "Refactored code"),
+    creativity: "low",
+    date: "2025-02-14",
+    icon: "code",
+    author: {
+      name: "Tanweer Ahmed",
+      link: "https://github.com/Tanweer-Ahmed-Chiktay",
+    },
+  },
+  {
+    id: "optimize-performance",
+    title: "Optimize Performance",
+    prompt:
+      "Analyze the following code for performance bottlenecks and suggest optimizations. Consider time complexity, space complexity, and runtime performance. Provide the optimized version with explanations." +
+      generateSelection("Code", "Optimized code"),
+    creativity: "low",
+    date: "2025-02-14",
+    icon: "bolt",
+    author: {
+      name: "Tanweer Ahmed",
+      link: "https://github.com/Tanweer-Ahmed-Chiktay",
+    },
+  },
+  {
+    id: "component-props-interface",
+    title: "Generate Component Props Interface",
+    prompt:
+      "Generate a TypeScript interface for the component props based on the component code. Include JSDoc comments for each prop explaining its purpose. Make the interface strict and type-safe." +
+      generateSelection("Component code", "Props interface"),
+    creativity: "low",
+    date: "2025-02-14",
+    icon: "code",
+    author: {
+      name: "Tanweer Ahmed",
+      link: "https://github.com/Tanweer-Ahmed-Chiktay",
     },
   },
 ];
@@ -419,6 +477,34 @@ The "imagine prompt" should strictly contain under 1,500 words. Use the end argu
     icon: "image",
     model: "raycast-ray1",
     date: "2025-02-26",
+  },
+  {
+    id: "design-system-colors",
+    title: "Generate Design System Colors",
+    prompt:
+      "Generate a complete color palette for a design system based on the brand color. Include primary, secondary, accent, neutral, success, warning, error, and info colors. For each color, provide shades from 50 to 900. Output as CSS custom properties and Tailwind config." +
+      generateSelection("Brand color (hex)", "Color palette"),
+    creativity: "low",
+    date: "2025-02-14",
+    icon: "swatch",
+    author: {
+      name: "Tanweer Ahmed",
+      link: "https://github.com/Tanweer-Ahmed-Chiktay",
+    },
+  },
+  {
+    id: "responsive-breakpoints",
+    title: "Generate Responsive Breakpoints",
+    prompt:
+      "Analyze the design and suggest optimal responsive breakpoints. Provide CSS media queries and explain the reasoning for each breakpoint based on content and common device sizes." +
+      generateSelection("Design description", "Breakpoints"),
+    creativity: "low",
+    date: "2025-02-14",
+    icon: "mobile",
+    author: {
+      name: "Tanweer Ahmed",
+      link: "https://github.com/Tanweer-Ahmed-Chiktay",
+    },
   },
 ];
 
@@ -957,7 +1043,7 @@ Stricly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "fix-spelling-and-grammar-custom",
@@ -1033,7 +1119,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
   {
     id: "change-tone-to-professional",
@@ -1247,7 +1333,7 @@ Here's the website information:
     creativity: "low",
     date: "2024-03-21",
     icon: "raycast-logo-neg",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
   },
 ];
 
