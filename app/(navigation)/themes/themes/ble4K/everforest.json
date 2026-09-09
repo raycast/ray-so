@@ -1,0 +1,21 @@
+{
+"author": "Sam-Ashley",
+"authorUsername": "Ble4K",
+"version": "1",
+"name": "Everforest",
+"appearance": "dark",
+"colors": {
+"background": "#272e33",
+"backgroundSecondary": "#272e33",
+"text": "#d3c6aa",
+"selection": "#ffffff",
+"loader": "#ffffff",
+"red": "#e67e80",
+"orange": "#e69875",
+"yellow": "#dbbc7f",
+"green": "#a7c080",
+"blue": "#7fbbb3",
+"purple": "#d699b6",
+"magenta": "#cf2f98"
+}
+}
