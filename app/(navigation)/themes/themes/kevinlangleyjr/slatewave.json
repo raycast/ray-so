@@ -1,0 +1,21 @@
+{
+  "author": "Kevin Langley Jr",
+  "authorUsername": "kevinlangleyjr",
+  "version": "1",
+  "name": "Slatewave",
+  "appearance": "dark",
+  "colors": {
+    "background": "#282c34",
+    "backgroundSecondary": "#1e293b",
+    "text": "#e2e8f0",
+    "selection": "#5eead4",
+    "loader": "#5eead4",
+    "red": "#fb7185",
+    "orange": "#ff4500",
+    "yellow": "#fbbf24",
+    "green": "#5eead4",
+    "blue": "#38bdf8",
+    "purple": "#b388ff",
+    "magenta": "#f472b6"
+  }
+}
