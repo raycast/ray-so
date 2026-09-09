@@ -1,0 +1,46 @@
+name: Update AI models
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st and 15th of every month (roughly every two weeks)
+    - cron: "0 9 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Regenerate Model type from Raycast API
+        run: node scripts/update-ai-models.mjs
+
+      - name: Read report
+        id: report
+        run: |
+          {
+            echo "body<<REPORT_EOF"
+            cat scripts/update-ai-models-report.md
+            echo "REPORT_EOF"
+          } >> "$GITHUB_OUTPUT"
+          rm scripts/update-ai-models-report.md
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/update-ai-models
+          delete-branch: true
+          commit-message: "chore: update AI models from Raycast API"
+          title: "chore: update AI models from Raycast API"
+          body: ${{ steps.report.outputs.body }}
+          labels: automated
+          add-paths: api/ai.ts
