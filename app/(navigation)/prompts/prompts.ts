@@ -61,7 +61,7 @@ Transcript: {browser-tab}`,
     title: "Deepwikit",
     prompt: `Replace "github.com" of the {browser-tab} url with "deepwiki.com". Output the new url only, without explanations or instructions.`,
     creativity: "none",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-04-28",
     icon: "plus-top-right-square",
   },
@@ -466,7 +466,7 @@ The "imagine prompt" should strictly contain under 1,500 words. Use the end argu
     prompt:
       "Summarize my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @github{id=89648e03-cceb-4205-9f40-75fcb039a4c6} inbox to identify urgent issues and tasks. Check my @calendar{id=builtin_package_calendar} and return a list of things to focus on today.",
     icon: "check-circle",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -475,7 +475,7 @@ The "imagine prompt" should strictly contain under 1,500 words. Use the end argu
     prompt:
       "@media-converter{id=dbec16d9-89d5-4255-a360-e9cd150076f4} convert all mov files in @finder{id=builtin_package_finder} Downloads folder to mp4.",
     icon: "image",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -558,14 +558,14 @@ const writing: Prompt[] = [
     prompt:
       "Get my last @raycast-notes{id=builtin_package_raycastNotes} note and add it as a new page to @notion{id=5f2e08d5-fdf1-4171-b252-aa53065621b4}.",
     icon: "paragraph",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
     id: "weekly-update-to-weekly-note",
     title: "Weekly Update to Weekly Note",
     icon: "check-list",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     prompt:
       'Convert my weekly update to a markdown list with a checkbox for each list item \n\nexample: \n* Update landing page -> [] update landing page\n\nAdd the markdown list to a new @raycast-notes{id=builtin_package_raycastNotes}. \n\nALWAYS start the note with this weeks number as the title e.g. "# Week 16".\n\nALWAYS return a link to the newly created note.\n\nHere:s my weekly update: \n\n{selection}',
     date: "2025-03-11",
@@ -599,7 +599,7 @@ const music: Prompt[] = [
     prompt:
       "Create a high energy @spotify{id=320f40ef-a633-415a-ab0e-1e99515478f7} playlist, with songs similar to marea from fred again.",
     icon: "music",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -609,7 +609,7 @@ const music: Prompt[] = [
       "@music{id=2bfe94cd-50ab-4e48-a6cd-f1ff47a72706} Take the currently playing track, @spotify-player{id=320f40ef-a633-415a-ab0e-1e99515478f7} search that track and @clipboard{id=builtin_package_clipboardHistory} copy the link of the spotify song. Not in markdown, just the link.",
     icon: "music",
     creativity: "none",
-    model: "raycast-ray1-mini",
+    model: "openai-gpt-5.6-luna",
     date: "2025-03-16",
     author: {
       name: "Kian Pasani",
@@ -623,7 +623,7 @@ const music: Prompt[] = [
       "@spotify-player{id=320f40ef-a633-415a-ab0e-1e99515478f7} Take the currently playing track, @music{id=2bfe94cd-50ab-4e48-a6cd-f1ff47a72706} search that track and @clipboard{id=builtin_package_clipboardHistory} copy the link of the spotify song. Not in markdown, just the link.",
     icon: "music",
     creativity: "none",
-    model: "raycast-ray1-mini",
+    model: "openai-gpt-5.6-luna",
     date: "2025-03-16",
     author: {
       name: "Kian Pasani",
@@ -885,7 +885,7 @@ You can use the following template to create the summary:
     prompt:
       "Convert my @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} tasks marked as 'Todo' to @things{id=1e915fb4-4a40-4555-8fad-99319ca35f19} tasks.",
     icon: "check",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -893,7 +893,7 @@ You can use the following template to create the summary:
     title: "Clean Desktop",
     prompt: "@finder{id=builtin_package_finder} Move all desktop files to a new folder named after today's date.",
     icon: "trash",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -902,7 +902,7 @@ You can use the following template to create the summary:
     prompt:
       "Create a new @zoom{id=4d342edf-4371-498e-8ead-a424d65f933f} meeting today for 1h based on my @calendar{id=builtin_package_calendar} availability. Avoid gaps between meetings and prefer to have meetings in the afternoon.",
     icon: "calendar",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -911,7 +911,7 @@ You can use the following template to create the summary:
     prompt:
       "Get my last 5 @workouts{id=e7c677b5-5a43-4094-96a5-4fffffdfdc72} and @chart{id=builtin_package_chart} them by distance",
     icon: "bar-chart",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -919,7 +919,7 @@ You can use the following template to create the summary:
     title: "Application Support Directory",
     prompt: "@finder{id=builtin_package_finder} go to application support directory",
     icon: "folder",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -927,7 +927,7 @@ You can use the following template to create the summary:
     title: "Create Calendar Event",
     prompt: "Create @calendar{id=builtin_package_calendar} event with {selection} in my personal calendar",
     icon: "calendar",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     author: {
       name: "Berenger Zantangni",
@@ -940,7 +940,7 @@ You can use the following template to create the summary:
     prompt:
       'Start a @raycast-focus{id=builtin_package_raycastFocus} session for 1h blocking all the default categories of apps. Set my @slack{id=d5d27df2-9818-41ea-b683-0e4af3f4be3d} status for 1h to "Focus mode" with the :focus: icon.',
     icon: "circle-disabled",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -982,7 +982,7 @@ Time: [Calendar Timeframe] [Timezone i.e. CET]
 4. **Save and Update**:
 - @raycast-notes{id=builtin_package_raycastNotes} For every meeting i confirmed, create a new note. Insert the template into each note.`,
     icon: "new-document",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     author: {
       name: "Torsten Bergler",
@@ -995,7 +995,7 @@ Time: [Calendar Timeframe] [Timezone i.e. CET]
     prompt:
       'Reply with the latest ice report (israpport) from Nacka Kommun.  \n\nHere are some rules:\n- Always start with the date of the latest report\n- Reply with a markdown formatted table of all lakes starting with Bastusjön (my local favorite lake). \n- Always include columns of the thickness of the ice, and the exact description as written on the website\n- use @curl{id=a5faaafa-956f-45a2-a5a0-4bb69a4fe81c} to get the html from the official ice report: "https://www.nacka.se/uppleva--gora/friluftsliv-motion/trana-i-naturen/skridskoakning-pa-sjoisar-och-israpport/"',
     icon: "snowflake",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     author: {
       name: "Samuel Kraft",
@@ -1008,7 +1008,7 @@ Time: [Calendar Timeframe] [Timezone i.e. CET]
     prompt:
       "What tasks do I have from @todoist{id=f9e9c663-3b16-4d34-a9b0-00f4af260acf}, @linear{id=a9696c4c-a4e8-4ff1-bf49-c9015f796200} and @calendar{id=builtin_package_calendar} for today? Create a new note with @raycast-notes{id=builtin_package_raycastNotes} formatted as a markdown list with the tasks as checkboxes.",
     icon: "check-circle",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
   {
@@ -1016,7 +1016,7 @@ Time: [Calendar Timeframe] [Timezone i.e. CET]
     title: "Decline Message",
     prompt: "@messages{id=f872e5ef-af26-4086-8b11-261e5c6f6c93} politely decline the party invitation",
     icon: "x-mark-circle",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
   },
 ];
@@ -1060,7 +1060,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "explain-this-in-simple-terms-custom",
@@ -1082,7 +1082,7 @@ Explanation: Philosophy is the study of the fundamental nature of knowledge, rea
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "make-longer-custom",
@@ -1100,7 +1100,7 @@ Stictly follow these rules:
     creativity: "high",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "make-shorter-custom",
@@ -1140,7 +1140,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "change-tone-to-friendly",
@@ -1158,7 +1158,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "change-tone-to-confident-custom",
@@ -1179,7 +1179,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "change-tone-to-casual-custom",
@@ -1201,7 +1201,7 @@ Strictly follow these rules:
     creativity: "low",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "rephrase-as-tweet-custom",
@@ -1226,7 +1226,7 @@ Tweet:
     creativity: "high",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "explain-code-custom",
@@ -1259,7 +1259,7 @@ The code is a React component that goes to the previous page.
     creativity: "medium",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "find-bugs-custom",
@@ -1308,7 +1308,7 @@ Nothing found - LGTM 👌` + generateSelection("Code", "Review"),
     creativity: "medium",
     date: "2024-04-23",
     icon: "raycast-logo-neg",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
   },
   {
     id: "summarize-website-custom",

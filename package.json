@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "prepare": "husky install",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "update-models": "node scripts/update-ai-models.mjs"
   },
   "engines": {
     "node": "^22"
