@@ -78,12 +78,9 @@ const compareVersions = (a, b) => {
   return 0;
 };
 
-function pickLatest(candidates, original) {
-  const family = familyOf(original.id);
-  const tier = byId.get(original.id)?.requires_better_ai;
+function pickLatest(candidates, originalId) {
+  const tier = byId.get(originalId)?.requires_better_ai;
   return [...candidates].sort((a, b) => {
-    const familyDiff = Number(familyOf(b.id) === family) - Number(familyOf(a.id) === family);
-    if (familyDiff) return familyDiff;
     if (tier !== undefined) {
       const tierDiff = Number(b.requires_better_ai === tier) - Number(a.requires_better_ai === tier);
       if (tierDiff) return tierDiff;
@@ -110,15 +107,20 @@ function resolveReplacement(id) {
   }
 
   const provider = providerOf(id);
-  const candidates = models.filter((m) => m.provider === provider && !isDeprecated(m));
-  if (candidates.length) {
-    const best = pickLatest(candidates, { id });
-    const sameFamily = familyOf(best.id) === familyOf(id);
-    return { id: best.id, reason: sameFamily ? "latest in family" : "latest from provider" };
-  }
+  const family = familyOf(id);
+  const fromProvider = models.filter((m) => m.provider === provider && !isDeprecated(m));
+  const defaultChat = isCurrent(defaultModels?.chat) ? byId.get(defaultModels.chat) : null;
 
-  const fallback = defaultModels?.chat;
-  if (fallback && isCurrent(fallback)) return { id: fallback, reason: "API default chat model" };
+  // Same family (e.g. opus -> opus, flash -> flash): take the newest one.
+  const sameFamily = fromProvider.filter((m) => familyOf(m.id) === family);
+  if (sameFamily.length) return { id: pickLatest(sameFamily, id).id, reason: "latest in family" };
+
+  // No successor in the family: prefer the provider's mainstream default over
+  // its most capable (and usually slowest, priciest) model.
+  if (defaultChat?.provider === provider) return { id: defaultChat.id, reason: "provider default" };
+  if (fromProvider.length) return { id: pickLatest(fromProvider, id).id, reason: "latest from provider" };
+
+  if (defaultChat) return { id: defaultChat.id, reason: "API default chat model" };
   return { id: null, reason: "no replacement found" };
 }
 

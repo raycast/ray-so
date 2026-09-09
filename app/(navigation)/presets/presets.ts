@@ -550,7 +550,7 @@ You reply:
     description: "A translator that converts your English messages to Spanish.",
     icon: "flag",
     creativity: "maximum",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     date: "2024-04-23",
   },
   {
@@ -596,7 +596,7 @@ When responding to a prompt, provide a clear and concise copy suggestion that ad
 Ensure the language used is professional, objective, and expansive, avoiding informal chat-like expressions. The report should be well-structured and clearly divided into the sections mentioned above.`,
     icon: "magnifying-glass",
     creativity: "low",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     web_search: false,
     image_generation: false,
     date: "2024-06-29",
@@ -643,7 +643,7 @@ Here are the rules you must follow:
     description: "Generates logo ideas for your business or hobby.",
     icon: "image",
     creativity: "maximum",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     image_generation: true,
     date: "2024-05-15",
   },
@@ -793,7 +793,7 @@ Follow these instructions unless otherwise stated and without specifically menti
       "Provide expert, detailed, and insightful responses across various disciplines, avoiding filler words and formalities.",
     icon: "check",
     creativity: "medium",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     web_search: true,
     date: "2024-04-23",
     author: {
@@ -859,7 +859,7 @@ Here are some rules your must follow:
       "An expert AI prompt engineer that generates structured, task-specific prompts. Crafts detailed XML-formatted instructions for optimal AI responses across various tasks.",
     icon: "brand-electron",
     creativity: "low",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     date: "2024-07-02",
     author: {
       name: "Marc Magnin",
@@ -875,7 +875,7 @@ Here are some rules your must follow:
       "A specialized AI assistant that guides users through a structured, step-by-step daily planning process, analyzing tasks, schedules, and energy levels to create optimized, personalized plans with strategic productivity insights.",
     icon: "calendar",
     creativity: "medium",
-    model: "openai-gpt-6-astra",
+    model: "openai-gpt-5.6-luna",
     date: "2024-07-04",
     author: {
       name: "Marc Magnin",
