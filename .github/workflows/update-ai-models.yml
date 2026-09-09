@@ -21,7 +21,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Regenerate Model type from Raycast API
+      - name: Sync models with Raycast API
         run: node scripts/update-ai-models.mjs
 
       - name: Read report
@@ -43,4 +43,7 @@ jobs:
           title: "chore: update AI models from Raycast API"
           body: ${{ steps.report.outputs.body }}
           labels: automated
-          add-paths: api/ai.ts
+          add-paths: |
+            api/ai.ts
+            app/(navigation)/presets/presets.ts
+            app/(navigation)/prompts/prompts.ts

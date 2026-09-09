@@ -378,7 +378,7 @@ Defaults:
 - If the user asks about non-accessibility topics, politely decline and remind them this preset is scoped only to accessibility standards.`,
     icon: "two-people",
     creativity: "low",
-    model: "openai_o1-gpt-5",
+    model: "openai-gpt-5.6-terra",
     web_search: true,
     date: "2025-09-08",
     author: {
@@ -504,7 +504,7 @@ Here are the rules you must follow:
       "A writing coach that helps you improve your writing skills and corrects your spelling, grammar and punctuation mistakes.",
     icon: "pencil",
     creativity: "low",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
     date: "2024-03-26",
   },
   {
@@ -550,7 +550,7 @@ You reply:
     description: "A translator that converts your English messages to Spanish.",
     icon: "flag",
     creativity: "maximum",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     date: "2024-04-23",
   },
   {
@@ -596,7 +596,7 @@ When responding to a prompt, provide a clear and concise copy suggestion that ad
 Ensure the language used is professional, objective, and expansive, avoiding informal chat-like expressions. The report should be well-structured and clearly divided into the sections mentioned above.`,
     icon: "magnifying-glass",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     web_search: false,
     image_generation: false,
     date: "2024-06-29",
@@ -643,7 +643,7 @@ Here are the rules you must follow:
     description: "Generates logo ideas for your business or hobby.",
     icon: "image",
     creativity: "maximum",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     image_generation: true,
     date: "2024-05-15",
   },
@@ -718,7 +718,7 @@ const misc: Preset[] = [
     instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
     description: "Helps the user with booking meetings and keeping track of their schedule.",
     icon: "calendar",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [
       { name: "calendar", id: "builtin_package_calendar" },
@@ -734,7 +734,7 @@ const misc: Preset[] = [
 - Always return the list of tasks and events in markdown format.`,
     description: "Helps the user plan their day based on their tasks and calendar availability.",
     icon: "person",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [
       { name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" },
@@ -758,7 +758,7 @@ If I just say something without much context and it doesn't sound like an instru
     `,
     description: "Helps the user with managing projects using Linear.",
     icon: "person",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [{ name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" }],
   },
@@ -793,7 +793,7 @@ Follow these instructions unless otherwise stated and without specifically menti
       "Provide expert, detailed, and insightful responses across various disciplines, avoiding filler words and formalities.",
     icon: "check",
     creativity: "medium",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     web_search: true,
     date: "2024-04-23",
     author: {
@@ -808,7 +808,7 @@ Follow these instructions unless otherwise stated and without specifically menti
     description: `Anthropic's core system prompt used for Claude 3.7 Sonnet on the web and its apps. Added web search capability ("For extra world knowledge, Claude can search the web through Raycast AI…"), elaboration options ("it may mention the other options if the user seems interested"), writing style guidelines ("avoids superfluous prose… avoids using these specific terms: delve, intricate…"), and removed Anthropic-specific product info and support resources. See docs.anthropic.com/en/release-notes/system-prompts#feb-24th-2025.`,
     icon: "brand-anthropic",
     creativity: "medium",
-    model: "anthropic-claude-sonnet-4-5",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-02-25",
     author: {
@@ -859,7 +859,7 @@ Here are some rules your must follow:
       "An expert AI prompt engineer that generates structured, task-specific prompts. Crafts detailed XML-formatted instructions for optimal AI responses across various tasks.",
     icon: "brand-electron",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     date: "2024-07-02",
     author: {
       name: "Marc Magnin",
@@ -875,7 +875,7 @@ Here are some rules your must follow:
       "A specialized AI assistant that guides users through a structured, step-by-step daily planning process, analyzing tasks, schedules, and energy levels to create optimized, personalized plans with strategic productivity insights.",
     icon: "calendar",
     creativity: "medium",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-6-astra",
     date: "2024-07-04",
     author: {
       name: "Marc Magnin",
@@ -891,7 +891,7 @@ Here are some rules your must follow:
       "Provides comprehensive culinary assistance by analyzing recipes, answering cooking questions, offering technique guidance, suggesting substitutions, and sharing food knowledge while maintaining natural conversation flow and adapting responses.",
     icon: "leaf",
     creativity: "high",
-    model: "anthropic-claude-sonnet-4-5",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-12-08",
     author: {
@@ -908,7 +908,7 @@ Here are some rules your must follow:
       "Generates detailed, keyword-rich descriptions of images that capture their visual elements, style, composition, and emotional impact in a concise, searchable format. Requires vision capabilities.",
     icon: "image",
     creativity: "high",
-    model: "anthropic-claude-sonnet-4-5",
+    model: "anthropic-claude-sonnet-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
@@ -924,7 +924,7 @@ Here are some rules your must follow:
       "Generates comprehensive font family descriptions by analyzing visual characteristics, stylistic influences, emotional impact, and genre suitability, with emphasis on capturing both technical details and expressive potential for future reference. Requires vision capabilities.",
     icon: "lowercase",
     creativity: "high",
-    model: "anthropic-claude-sonnet-4-5",
+    model: "anthropic-claude-sonnet-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
@@ -962,7 +962,7 @@ DO NOT GIVE ANSWERS OR DO HOMEWORK FOR THE USER. If the user asks a math or logi
       "Walks you through complex subjects in a step-by-step format akin to an unfolding academic lesson. Uses the same prompt as OpenAI's study mode.",
     icon: "book",
     creativity: "low",
-    model: "openai_o1-gpt-5",
+    model: "openai-gpt-5.6-terra",
     date: "2025-08-24",
   },
 ];
