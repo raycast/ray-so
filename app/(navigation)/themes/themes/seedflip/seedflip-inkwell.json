@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Inkwell",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0A0A0A",
+    "backgroundSecondary": "#141414",
+    "text": "#E8E4DF",
+    "selection": "#C8B8A0",
+    "loader": "#C8B8A0",
+    "red": "#D77575",
+    "orange": "#D7A275",
+    "yellow": "#D7C675",
+    "green": "#75D795",
+    "blue": "#759ED7",
+    "purple": "#A675D7",
+    "magenta": "#D775B6"
+  }
+}
