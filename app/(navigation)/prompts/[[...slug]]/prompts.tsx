@@ -113,12 +113,17 @@ export function Prompts({ models, extensions }: Props) {
     const url = makeUrl(selectedPrompts);
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
-      res.json(),
-    );
-
-    if (response.link) {
-      urlToCopy = response.link;
+    try {
+      const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Very long URLs are rejected before reaching the route, with a non-JSON body.
+      // Fall back to copying the unshortened URL instead of leaving the copy unfinished.
     }
 
     copy(urlToCopy);
