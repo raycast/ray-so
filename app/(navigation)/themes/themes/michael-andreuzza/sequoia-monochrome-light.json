@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Monochrome Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#EDEEF2",
+    "backgroundSecondary": "#E2E3E8",
+    "text": "#282930",
+    "selection": "#454752",
+    "loader": "#454752",
+    "red": "#525666",
+    "orange": "#454752",
+    "yellow": "#50535E",
+    "green": "#2E3038",
+    "blue": "#5F6370",
+    "purple": "#50535E",
+    "magenta": "#25262D"
+  }
+}

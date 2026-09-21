@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Moonlight Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0F1014",
+    "backgroundSecondary": "#111216",
+    "text": "#868690",
+    "selection": "#FFBB88",
+    "loader": "#FFBB88",
+    "red": "#F58EE0",
+    "orange": "#FFBB88",
+    "yellow": "#9898A6",
+    "green": "#8EB6F5",
+    "blue": "#C58FFF",
+    "purple": "#9898A6",
+    "magenta": "#FDFDFE"
+  }
+}

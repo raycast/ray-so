@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Monochrome Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0F1014",
+    "backgroundSecondary": "#111216",
+    "text": "#868690",
+    "selection": "#B6BAC8",
+    "loader": "#B6BAC8",
+    "red": "#999EB2",
+    "orange": "#B6BAC8",
+    "yellow": "#D3D5DE",
+    "green": "#626983",
+    "blue": "#7C829D",
+    "purple": "#D3D5DE",
+    "magenta": "#E2E4ED"
+  }
+}
