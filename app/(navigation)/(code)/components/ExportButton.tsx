@@ -134,10 +134,17 @@ const ExportButton: React.FC = () => {
     let urlToCopy = url;
 
     const encodedUrl = encodeURIComponent(url);
-    const response = await fetch(`/api/shorten-url?url=${encodedUrl}&ref=codeImage`).then((res) => res.json());
-
-    if (response.link) {
-      urlToCopy = response.link;
+    try {
+      const response = await fetch(`/api/shorten-url?url=${encodedUrl}&ref=codeImage`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Very long URLs are rejected before reaching the route, with a non-JSON body.
+      // Fall back to copying the unshortened URL instead of leaving the copy unfinished.
     }
 
     navigator.clipboard.writeText(urlToCopy);
