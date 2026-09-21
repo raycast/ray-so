@@ -1,0 +1,21 @@
+{
+  "author": "Ivan Tomica",
+  "authorUsername": "tomica",
+  "version": "1",
+  "name": "Modus Vivendi",
+  "appearance": "dark",
+  "colors": {
+    "background": "#000000",
+    "backgroundSecondary": "#000000",
+    "text": "#ffffff",
+    "selection": "#5a5a5a",
+    "loader": "#2fafff",
+    "red": "#ff5f59",
+    "orange": "#fec43f",
+    "yellow": "#d0bc00",
+    "green": "#44bc44",
+    "blue": "#2fafff",
+    "purple": "#b6a0ff",
+    "magenta": "#feacd0"
+  }
+}
