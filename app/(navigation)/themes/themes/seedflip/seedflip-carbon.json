@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Carbon",
+  "appearance": "light",
+  "colors": {
+    "background": "#FAFAFA",
+    "backgroundSecondary": "#FFFFFF",
+    "text": "#000000",
+    "selection": "#000000",
+    "loader": "#000000",
+    "red": "#B23434",
+    "orange": "#B26F34",
+    "yellow": "#B29D34",
+    "green": "#34B25E",
+    "blue": "#3468B2",
+    "purple": "#7334B2",
+    "magenta": "#B23488"
+  }
+}

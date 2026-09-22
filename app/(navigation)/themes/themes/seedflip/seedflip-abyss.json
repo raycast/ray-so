@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Abyss",
+  "appearance": "dark",
+  "colors": {
+    "background": "#050510",
+    "backgroundSecondary": "#0C0C1E",
+    "text": "#E0E0F0",
+    "selection": "#6E56CF",
+    "loader": "#6E56CF",
+    "red": "#D87474",
+    "orange": "#D8A274",
+    "yellow": "#D8C774",
+    "green": "#74D895",
+    "blue": "#749DD8",
+    "purple": "#A674D8",
+    "magenta": "#D874B6"
+  }
+}
