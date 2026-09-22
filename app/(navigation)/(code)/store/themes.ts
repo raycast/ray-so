@@ -37,6 +37,8 @@ import BrowserbaseLogo from "../assets/browserbase.svg";
 import BrowserbaseLogoUrl from "../assets/browserbase.svg?url";
 import NuxtLogo from "../assets/nuxt.svg";
 import NuxtLogoUrl from "../assets/nuxt.svg?url";
+import LaravelLogo from "../assets/laravel.svg";
+import LaravelLogoUrl from "../assets/laravel.svg?url";
 import StripeLogo from "../assets/stripe/logo.svg";
 import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import Auth0Logo from "../assets/auth0.svg";
@@ -73,6 +75,9 @@ type ShikiSyntaxObject = {
   highlightHover?: string;
   diffDeleted?: string;
   diffInserted?: string;
+  namespace?: string;
+  className?: string;
+  inheritedClass?: string;
 };
 
 function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
@@ -99,6 +104,9 @@ function convertToShikiTheme(syntaxObject: ShikiSyntaxObject): CSSProperties {
     "--ray-token-diff-deleted": syntaxObject.diffDeleted,
     "--ray-token-diff-inserted": syntaxObject.diffInserted,
     "--ray-token-object-literal": syntaxObject.objectLiteral,
+    "--ray-token-namespace": syntaxObject.namespace,
+    "--ray-token-class": syntaxObject.className,
+    "--ray-token-inherited-class": syntaxObject.inheritedClass,
   } as CSSProperties;
 }
 
@@ -694,6 +702,67 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#80CBC4",
         diffInserted: "#C3E88D",
         diffDeleted: "#f07178",
+      }),
+    },
+  },
+  laravel: {
+    id: "laravel",
+    name: "Laravel",
+    background: {
+      from: "#3A1410",
+      to: "#111113",
+    },
+    icon: LaravelLogo,
+    iconUrl: LaravelLogoUrl,
+    font: "commit-mono",
+    partner: true,
+    lineNumbers: true,
+    lineNumbersToggleable: true,
+    syntax: {
+      // ponytail: syntax hues from laravel.com/docs, neutrals from the Laravel Slate scale
+      light: convertToShikiTheme({
+        foreground: "#11181C",
+        constant: "#B45309",
+        string: "#4D7C0F",
+        comment: "#7C82A3",
+        keyword: "#9333C4",
+        parameter: "#11181C",
+        function: "#2F5FD0",
+        stringExpression: "#F53003",
+        punctuation: "#60646C",
+        link: "#F53003",
+        number: "#C2410C",
+        property: "#11181C",
+        highlight: "rgba(245, 48, 3, 0.07)",
+        highlightHover: "rgba(245, 48, 3, 0.04)",
+        highlightBorder: "#F53003",
+        diffInserted: "#4D7C0F",
+        diffDeleted: "#E53935",
+        namespace: "#11181C",
+        className: "#B45309",
+        inheritedClass: "#4D7C0F",
+      }),
+      dark: convertToShikiTheme({
+        foreground: "#EDEEF0",
+        constant: "#FFCB6B",
+        string: "#C3E88D",
+        comment: "#676E95",
+        keyword: "#C792EA",
+        parameter: "#EDEEF0",
+        function: "#82AAFF",
+        stringExpression: "#F07178",
+        punctuation: "#B0B4BA",
+        link: "#F07178",
+        number: "#F78C6C",
+        property: "#EDEEF0",
+        highlight: "rgba(245, 48, 3, 0.14)",
+        highlightHover: "rgba(245, 48, 3, 0.08)",
+        highlightBorder: "#F53003",
+        diffInserted: "#C3E88D",
+        diffDeleted: "#F07178",
+        namespace: "#EDEEF0",
+        className: "#FFCB6B",
+        inheritedClass: "#C3E88D",
       }),
     },
   },

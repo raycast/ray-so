@@ -1,0 +1,165 @@
+/* ponytail: one layout, light/dark only swap tokens so both modes stay identical in structure */
+.frame {
+  --laravel-red: #f53003;
+  --laravel-bg: #111113; /* Slate/dark/1 */
+  --laravel-glow-top: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(245, 48, 3, 0.22), transparent 70%);
+  --laravel-glow-bottom: radial-gradient(ellipse 50% 45% at 50% 100%, rgba(245, 48, 3, 0.08), transparent 70%);
+  --laravel-line: #363a3f; /* Border/strong */
+  --laravel-diamond: rgba(255, 255, 255, 0.045);
+  --laravel-window: #18191b; /* Slate/dark/2 */
+  --laravel-window-border: rgba(255, 255, 255, 0.08);
+  --laravel-window-shadow: rgba(0, 0, 0, 0.45);
+  --laravel-divider: #212225; /* Border/default */
+  --laravel-control: #363a3f;
+  --laravel-title: #b0b4ba; /* Text/default */
+  --laravel-placeholder: #696e77; /* Slate/dark/9 */
+  --laravel-highlight: rgba(245, 48, 3, 0.14);
+
+  position: relative;
+  overflow: hidden;
+  /* isometric diamond grid + red glow, lifted from laravel.com's hero */
+  background: var(--laravel-glow-top), var(--laravel-glow-bottom),
+    repeating-linear-gradient(30deg, var(--laravel-diamond) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(-30deg, var(--laravel-diamond) 0 1px, transparent 1px 28px), var(--laravel-bg);
+
+  &.noBackground {
+    background: transparent;
+  }
+}
+
+.frameLightMode {
+  --laravel-bg: linear-gradient(to bottom, #f0f0f3, #ffffff); /* Slate/3 -> white */
+  /* red core fading through warm orange, so the glow reads as Laravel red, not pink, on white */
+  --laravel-glow-top: radial-gradient(
+    ellipse 60% 50% at 50% 0%,
+    rgba(245, 48, 3, 0.28) 0%,
+    rgba(255, 110, 50, 0.12) 35%,
+    transparent 70%
+  );
+  --laravel-glow-bottom: radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255, 110, 50, 0.1), transparent 70%);
+  --laravel-line: #d9d9e0; /* Border/strong */
+  --laravel-diamond: rgba(0, 0, 0, 0.045);
+  --laravel-window: #ffffff;
+  --laravel-window-border: rgba(0, 0, 0, 0.08); /* Slate/A6 ring */
+  --laravel-window-shadow: rgba(17, 24, 28, 0.06);
+  --laravel-divider: #f0f0f3; /* Border/default */
+  --laravel-control: #d9d9e0;
+  --laravel-title: #60646c; /* Text/default */
+  --laravel-placeholder: #8b8d98; /* Slate/9 */
+  --laravel-highlight: rgba(245, 48, 3, 0.07);
+}
+
+.window {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--laravel-window-border);
+  border-radius: 6px; /* radius-md */
+  background-color: var(--laravel-window);
+  box-shadow: 0 24px 60px var(--laravel-window-shadow);
+
+  --line-number: var(--laravel-placeholder);
+  --line-number-opacity: 1;
+
+  :global(.highlighted-line) {
+    background-color: var(--laravel-highlight) !important;
+
+    &:after {
+      display: none !important;
+    }
+  }
+}
+
+/* Dashed guide lines on all sides, red squares where they cross */
+.gridlinesHorizontal,
+.gridlinesVertical,
+.markersTop,
+.markersBottom {
+  --offset: -16px;
+  pointer-events: none;
+}
+
+.gridlinesHorizontal {
+  &:before,
+  &:after {
+    position: absolute;
+    top: var(--offset);
+    left: -2000px;
+    width: 4000px;
+    height: 1px;
+    background: repeating-linear-gradient(to right, var(--laravel-line) 0 4px, transparent 4px 8px);
+    content: "";
+  }
+
+  &:after {
+    top: auto;
+    bottom: var(--offset);
+  }
+}
+
+.gridlinesVertical {
+  &:before,
+  &:after {
+    position: absolute;
+    top: -2000px;
+    left: var(--offset);
+    width: 1px;
+    height: 4000px;
+    background: repeating-linear-gradient(to bottom, var(--laravel-line) 0 4px, transparent 4px 8px);
+    content: "";
+  }
+
+  &:after {
+    right: var(--offset);
+    left: auto;
+  }
+}
+
+.markersTop,
+.markersBottom {
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 2;
+    top: calc(var(--offset) - 3px);
+    left: calc(var(--offset) - 3px);
+    width: 7px;
+    height: 7px;
+    background: var(--laravel-red);
+    content: "";
+  }
+
+  &:after {
+    right: calc(var(--offset) - 3px);
+    left: auto;
+  }
+}
+
+.markersBottom {
+  &:before,
+  &:after {
+    top: auto;
+    bottom: calc(var(--offset) - 3px);
+  }
+}
+
+.header {
+  display: grid;
+  height: 44px;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--laravel-divider);
+  grid-gap: 12px;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--laravel-control);
+}
+
+.fileName {
+  --frame-title-color: var(--laravel-title);
+  --frame-title-placeholder-color: var(--laravel-placeholder);
+}

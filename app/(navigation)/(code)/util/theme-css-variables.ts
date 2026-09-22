@@ -237,6 +237,23 @@ export function createCssVariablesTheme(options: CssVariablesThemeOptions = {}):
         scope: ["support.variable.property"],
         settings: { foreground: variable("token-property") },
       },
+      // [Custom] Optional class/namespace roles; each falls back to the color it had before, so only themes that set them change
+      {
+        scope: ["support.other.namespace", "punctuation.separator.inheritance"],
+        settings: { foreground: `var(${variablePrefix}token-namespace, ${variable("token-constant")})` },
+      },
+      {
+        scope: ["entity.name.type.namespace"],
+        settings: { foreground: `var(${variablePrefix}token-namespace, ${variable("token-function")})` },
+      },
+      {
+        scope: ["entity.name.type.class"],
+        settings: { foreground: `var(${variablePrefix}token-class, ${variable("token-function")})` },
+      },
+      {
+        scope: ["entity.other.inherited-class"],
+        settings: { foreground: `var(${variablePrefix}token-inherited-class, ${variable("token-function")})` },
+      },
       {
         scope: ["punctuation.definition.deleted.diff", "markup.deleted.diff"],
         settings: { foreground: variable("token-diff-deleted") },
