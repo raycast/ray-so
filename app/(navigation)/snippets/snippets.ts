@@ -762,14 +762,14 @@ const coding: Snippet[] = [
     id: nanoid(),
     name: "Resolve Conflicts",
     text: "resolve conflicts",
-    keyword: "conf-f",
+    keyword: "conff",
     type: "template",
   },
   {
     id: nanoid(),
     name: "Agent Review Comment Fix",
     text: "agent review comment fix",
-    keyword: "agr-e",
+    keyword: "agre",
     type: "template",
   },
 ];
