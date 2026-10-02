@@ -404,6 +404,26 @@ const design: Quicklink[] = [
       link: "https://github.com/tofrankie",
     },
   },
+  {
+    id: "component-gallery",
+    name: "Search Component Gallery",
+    description: "Search a component by its exact name, e.g. button or accordion",
+    link: "https://component.gallery/components/{Query}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
+  {
+    id: "ui-guideline",
+    name: "Search UI Guideline",
+    description: "Search a component by its exact name, e.g. button or accordion",
+    link: "https://www.uiguideline.com/components/{Query}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
 ];
 
 const communication: Quicklink[] = [
@@ -807,6 +827,15 @@ const socials: Quicklink[] = [
     name: "Search Gist",
     link: "https://gist.github.com/search?q={Query}",
   },
+  {
+    id: "tweet-selection",
+    name: "Tweet Selected Text",
+    link: "https://x.com/intent/tweet?text={selection}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
 ];
 
 const misc: Quicklink[] = [
@@ -872,6 +901,24 @@ const misc: Quicklink[] = [
     author: {
       name: "Nate Whistler",
       link: "https://infosec.exchange/@Onyx/",
+    },
+  },
+  {
+    id: "create-snippet-from-selection",
+    name: "Create Snippet from Selected Text",
+    link: `raycast://extensions/raycast/snippets/create-snippet?fallbackText={selection}`,
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
+  {
+    id: "google-translate",
+    name: "Google Translate",
+    link: 'https://translate.google.com/?sl=auto&tl={argument name="Target language" default="en"}&text={Query}&op=translate',
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
     },
   },
 ];
