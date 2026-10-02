@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Wavelength",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0D1117",
+    "backgroundSecondary": "#161B22",
+    "text": "#E6EDF3",
+    "selection": "#238636",
+    "loader": "#238636",
+    "red": "#DA7171",
+    "orange": "#DAA271",
+    "yellow": "#DAC971",
+    "green": "#71DA94",
+    "blue": "#719DDA",
+    "purple": "#A671DA",
+    "magenta": "#DA71B7"
+  }
+}
