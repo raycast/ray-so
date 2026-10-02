@@ -951,7 +951,7 @@ const science: Quicklink[] = [
   {
     id: "search-googlescholar",
     name: "Search Google Scholar for a manuscript, books, or patents",
-    description: "Search for manuscripts in Pubmed",
+    description: "Search for manuscripts, books, or patents in Google Scholar",
     link: 'https://scholar.google.com/scholar?hl=en&as_sdt=0,5&q={argument name="Term"}',
     author: {
       name: "Yassine Souilmi",
