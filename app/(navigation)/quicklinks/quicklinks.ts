@@ -915,7 +915,7 @@ const misc: Quicklink[] = [
   {
     id: "google-translate",
     name: "Google Translate",
-    link: 'https://translate.google.com/?sl=auto&tl={argument name="Target language" default="en"}&text={Query}&op=translate',
+    link: 'https://translate.google.com/?sl=auto&text={Query}&tl={argument name="Target language" default="en"}&op=translate',
     author: {
       name: "princeberenger",
       link: "https://github.com/princeberenger",
