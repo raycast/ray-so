@@ -751,6 +751,27 @@ const coding: Snippet[] = [
     keyword: "qs",
     type: "template",
   },
+  {
+    id: nanoid(),
+    name: "Agent Continue",
+    text: "continue",
+    keyword: "contt",
+    type: "template",
+  },
+  {
+    id: nanoid(),
+    name: "Resolve Conflicts",
+    text: "resolve conflicts",
+    keyword: "conff",
+    type: "template",
+  },
+  {
+    id: nanoid(),
+    name: "Agent Review Comment Fix",
+    text: "agent review comment fix",
+    keyword: "agre",
+    type: "template",
+  },
 ];
 
 const github: Snippet[] = [
