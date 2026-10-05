@@ -404,6 +404,28 @@ const design: Quicklink[] = [
       link: "https://github.com/tofrankie",
     },
   },
+  {
+    id: "component-gallery",
+    name: "Search Component Gallery",
+    description:
+      "Browse real-world examples of a UI component from many design systems (use its exact name, e.g. button)",
+    link: "https://component.gallery/components/{Query}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
+  {
+    id: "ui-guideline",
+    name: "Search UI Guideline",
+    description:
+      "Look up a UI component's anatomy, props and best practices, synthesized from major design systems (use its exact name, e.g. accordion)",
+    link: "https://www.uiguideline.com/components/{Query}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
 ];
 
 const communication: Quicklink[] = [
@@ -807,6 +829,16 @@ const socials: Quicklink[] = [
     name: "Search Gist",
     link: "https://gist.github.com/search?q={Query}",
   },
+  {
+    id: "tweet-selection",
+    name: "Tweet Selected Text",
+    description: "Opens a new post on X prefilled with the selected text",
+    link: "https://x.com/intent/tweet?text={selection}",
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
 ];
 
 const misc: Quicklink[] = [
@@ -872,6 +904,26 @@ const misc: Quicklink[] = [
     author: {
       name: "Nate Whistler",
       link: "https://infosec.exchange/@Onyx/",
+    },
+  },
+  {
+    id: "create-snippet-from-selection",
+    name: "Create Snippet from Selected Text",
+    description: "Creates a Raycast Snippet with the selected text",
+    link: `raycast://extensions/raycast/snippets/create-snippet?fallbackText={selection}`,
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
+    },
+  },
+  {
+    id: "google-translate",
+    name: "Google Translate",
+    description: "Translate text with Google Translate, source language auto-detected",
+    link: 'https://translate.google.com/?sl=auto&text={Query}&tl={argument name="Target language" default="en"}&op=translate',
+    author: {
+      name: "princeberenger",
+      link: "https://github.com/princeberenger",
     },
   },
 ];
