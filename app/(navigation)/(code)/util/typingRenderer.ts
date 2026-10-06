@@ -14,6 +14,9 @@ type RendererOptions = {
   signal: AbortSignal;
 };
 
+type GlyphRegion = { x: number; y: number; width: number; height: number };
+type Caret = { x: number; y: number; height: number };
+
 async function waitForHighlightedCode(node: HTMLElement, signal: AbortSignal) {
   signal.throwIfAborted();
   if (node.dataset.exportReady === "true") return;
@@ -37,7 +40,7 @@ async function waitForHighlightedCode(node: HTMLElement, signal: AbortSignal) {
 }
 
 // Measure the existing typeset text, including wraps and grapheme clusters, once.
-function measureCarets(node: HTMLElement, characters: string[]) {
+function measureCharacters(node: HTMLElement, characters: string[]) {
   const bounds = node.getBoundingClientRect();
   const style = getComputedStyle(node);
   const scale = bounds.width / node.offsetWidth;
@@ -52,12 +55,20 @@ function measureCarets(node: HTMLElement, characters: string[]) {
   let fontOffset: number | undefined;
   const range = document.createRange();
 
-  const carets = characters.map((character) => {
+  const rowTop = (rect: DOMRect) => {
+    fontOffset ??= rect.top - bounds.top - paddingTop;
+    const row = Math.max(0, Math.round((rect.top - bounds.top - paddingTop - fontOffset) / lineHeight));
+    return paddingTop + row * lineHeight;
+  };
+
+  const layout = characters.map((character) => {
     while (nodeIndex < textNodes.length - 1 && offset >= textNodes[nodeIndex].length) {
       offset -= textNodes[nodeIndex].length;
       nodeIndex += 1;
     }
     range.setStart(textNodes[nodeIndex], offset);
+    range.collapse(true);
+    const caretRect = range.getBoundingClientRect();
     offset += character.length;
     while (nodeIndex < textNodes.length - 1 && offset > textNodes[nodeIndex].length) {
       offset -= textNodes[nodeIndex].length;
@@ -65,12 +76,18 @@ function measureCarets(node: HTMLElement, characters: string[]) {
     }
     range.setEnd(textNodes[nodeIndex], offset);
     const rect = range.getBoundingClientRect();
-    fontOffset ??= rect.top - bounds.top - paddingTop;
-    const row = Math.max(0, Math.round((rect.top - bounds.top - paddingTop - fontOffset) / lineHeight));
-    return { x: rect.left - bounds.left, y: paddingTop + row * lineHeight, height: lineHeight };
+    const caret: Caret = { x: caretRect.left - bounds.left, y: rowTop(rect), height: lineHeight };
+    const regions: GlyphRegion[] = Array.from(range.getClientRects(), (region) => ({
+      x: region.left - bounds.left,
+      y: rowTop(region),
+      width: region.width,
+      height: lineHeight,
+    })).filter((region) => region.width > 0);
+    return { caret, regions };
   });
 
-  return { bounds, carets, color: style.getPropertyValue("--ray-foreground").trim() || style.color };
+  const emptyCaret: Caret = { x: parseFloat(style.paddingLeft) * scale, y: paddingTop, height: lineHeight };
+  return { bounds, layout, emptyCaret, color: style.getPropertyValue("--ray-foreground").trim() || style.color };
 }
 
 async function captureAnnotations(code: HTMLElement, options: { pixelRatio: number; fontEmbedCSS: string }) {
@@ -114,7 +131,7 @@ export async function createTypingRenderer(
   signal.throwIfAborted();
 
   const characters = getTypingCharacters(code.textContent ?? "");
-  const { bounds: codeBounds, carets, color } = measureCarets(code, characters);
+  const { bounds: codeBounds, layout, emptyCaret, color } = measureCharacters(code, characters);
   const frameBounds = frame.getBoundingClientRect();
   const originalHtml = code.innerHTML;
   const resources: HTMLCanvasElement[] = [];
@@ -151,6 +168,16 @@ export async function createTypingRenderer(
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Could not create the animation canvas");
 
+    const revealedCode = document.createElement("canvas");
+    revealedCode.width = atlas.width;
+    revealedCode.height = atlas.height;
+    resources.push(revealedCode);
+    const codeContext = revealedCode.getContext("2d");
+    if (!codeContext) throw new Error("Could not create the code reveal canvas");
+    codeContext.drawImage(annotations, 0, 0);
+    const glyphXScale = atlas.width / codeBounds.width;
+    const glyphYScale = atlas.height / codeBounds.height;
+
     const xScale = base.width / frameBounds.width;
     const yScale = base.height / frameBounds.height;
     const x = (codeBounds.left - frameBounds.left) * xScale;
@@ -158,20 +185,17 @@ export async function createTypingRenderer(
     const width = codeBounds.width * xScale;
     const height = codeBounds.height * yScale;
     let previousState = "";
+    let revealedCount = 0;
 
-    const drawRegion = (source: HTMLCanvasElement, left: number, top: number, right: number, bottom: number) => {
+    const revealRegion = (region: GlyphRegion) => {
+      const left = Math.max(0, region.x * glyphXScale);
+      const top = Math.max(0, region.y * glyphYScale);
+      const right = Math.min(atlas.width, (region.x + region.width) * glyphXScale);
+      const bottom = Math.min(atlas.height, (region.y + region.height) * glyphYScale);
       if (right <= left || bottom <= top) return;
-      context.drawImage(
-        source,
-        left,
-        top,
-        right - left,
-        bottom - top,
-        x + (left * width) / atlas.width,
-        y + (top * height) / atlas.height,
-        ((right - left) * width) / atlas.width,
-        ((bottom - top) * height) / atlas.height,
-      );
+      // Replace rather than blend: translucent line highlights must only be drawn once.
+      codeContext.clearRect(left, top, right - left, bottom - top);
+      codeContext.drawImage(atlas, left, top, right - left, bottom - top, left, top, right - left, bottom - top);
     };
 
     return {
@@ -184,16 +208,22 @@ export async function createTypingRenderer(
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(base, 0, 0);
         const count = getVisibleCharacterCount(characters.length, progress);
-        const caret = carets[count];
-        if (!caret) context.drawImage(atlas, x, y, width, height);
+        const caret = layout[count]?.caret ?? (characters.length === 0 && progress < 1 ? emptyCaret : undefined);
+        if (progress >= 1) context.drawImage(atlas, x, y, width, height);
         else {
-          const left = Math.max(0, Math.min(atlas.width, (caret.x * atlas.width) / codeBounds.width));
-          const top = Math.max(0, Math.min(atlas.height, (caret.y * atlas.height) / codeBounds.height));
-          const bottom = Math.min(atlas.height, top + (caret.height * atlas.height) / codeBounds.height);
-          drawRegion(atlas, 0, 0, atlas.width, top);
-          drawRegion(atlas, 0, top, left, bottom);
-          drawRegion(annotations, left, top, atlas.width, bottom);
-          if (showCursor && progress < 1) {
+          if (count < revealedCount) {
+            codeContext.clearRect(0, 0, atlas.width, atlas.height);
+            codeContext.drawImage(annotations, 0, 0);
+            revealedCount = 0;
+          }
+          // Paint only newly typed graphemes in logical order, even inside bidi runs.
+          for (; revealedCount < count; revealedCount += 1) {
+            for (const region of layout[revealedCount].regions) revealRegion(region);
+          }
+          const bottom = Math.min(atlas.height, ((caret ?? emptyCaret).y + (caret ?? emptyCaret).height) * glyphYScale);
+          if (bottom > 0)
+            context.drawImage(revealedCode, 0, 0, atlas.width, bottom, x, y, width, (bottom / glyphYScale) * yScale);
+          if (showCursor && caret) {
             context.fillStyle = color;
             context.fillRect(
               x + caret.x * xScale,

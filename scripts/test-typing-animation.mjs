@@ -28,6 +28,26 @@ function loadModule(name, imports = {}, globals = {}) {
 
 const animation = loadModule("typingAnimation");
 
+const { getCodeWorkspaceHref } = loadModule("../../_code/shared/navigation");
+
+test("both code modes preserve the snippet hash, including same-mode navigation", () => {
+  const hash = "#code=ZXhhbXBsZQ&theme=tailwind&padding=128&lineNumbers=true&typingDuration=6";
+  for (const pathname of ["/", "/videos"]) {
+    for (const destination of ["/", "/videos"]) {
+      assert.equal(getCodeWorkspaceHref(destination, pathname, hash), destination + hash);
+      assert.equal(getCodeWorkspaceHref(destination, pathname, ""), destination);
+    }
+  }
+});
+
+test("other tools never receive a code workspace hash", () => {
+  const hash = "#code=ZXhhbXBsZQ&theme=tailwind";
+  assert.equal(getCodeWorkspaceHref("/icon", "/videos", hash), "/icon");
+  assert.equal(getCodeWorkspaceHref("/videos", "/prompts", hash), "/videos");
+  assert.equal(getCodeWorkspaceHref("/videos", null, hash), "/videos");
+  assert.equal(getCodeWorkspaceHref("/videos/example", "/", hash), "/videos/example");
+});
+
 test("typing reveals whole graphemes, including combined accents and emoji", () => {
   const text = "A\u0065\u0301\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66Z";
   assert.equal(animation.getTypingCharacters(text).length, 4);

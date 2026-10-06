@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter, useSelectedLayoutSegments } from "next/navigation";
+import { usePathname, useRouter, useSelectedLayoutSegments } from "next/navigation";
+import { getCodeWorkspaceHref } from "@/app/(navigation)/_code/shared/navigation";
 
 import {
   BrandGithubIcon,
@@ -83,6 +84,7 @@ const links = [
 
 export function Navigation() {
   const router = useRouter();
+  const pathname = usePathname();
   const segments = useSelectedLayoutSegments();
   const segment = segments[0] || "(code)";
   const showBackButton = segments.find((s) => s === "shared") ? segments.length > 1 : segments.length > 2;
@@ -123,7 +125,7 @@ export function Navigation() {
             {links.map((link) => (
               <DropdownMenuItem
                 key={link.href}
-                onSelect={() => router.push(link.href)}
+                onSelect={() => router.push(getCodeWorkspaceHref(link.href, pathname, window.location.hash))}
                 className="pl-[10px] pr-6 py-2 group"
               >
                 <div className="flex gap-3 items-center">
