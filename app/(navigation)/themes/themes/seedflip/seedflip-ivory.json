@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Ivory",
+  "appearance": "light",
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#F6F9FC",
+    "text": "#0A2540",
+    "selection": "#635BFF",
+    "loader": "#635BFF",
+    "red": "#D41111",
+    "orange": "#D46C11",
+    "yellow": "#D4B411",
+    "green": "#11D452",
+    "blue": "#1162D4",
+    "purple": "#7311D4",
+    "magenta": "#D41193"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Canopy",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0F1714",
+    "backgroundSecondary": "#171F1B",
+    "text": "#EDEDED",
+    "selection": "#3ECF8E",
+    "loader": "#3ECF8E",
+    "red": "#DB7070",
+    "orange": "#DBA270",
+    "yellow": "#DBCA70",
+    "green": "#70DB94",
+    "blue": "#709DDB",
+    "purple": "#A670DB",
+    "magenta": "#DB70B8"
+  }
+}
