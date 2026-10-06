@@ -76,7 +76,7 @@ export function Prompts({ models, extensions }: Props) {
     const removedPrompts = extractPrompts(removed, categories);
 
     setSelectedPrompts((prevPrompts) => {
-      const prompts = [...prevPrompts];
+      let prompts = [...prevPrompts];
 
       addedPrompts.forEach((prompt) => {
         if (!prompt) {
@@ -89,7 +89,7 @@ export function Prompts({ models, extensions }: Props) {
       });
 
       removedPrompts.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+        prompts = prompts.filter((s) => s?.id !== prompt?.id);
       });
 
       return prompts;
@@ -113,12 +113,17 @@ export function Prompts({ models, extensions }: Props) {
     const url = makeUrl(selectedPrompts);
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
-      res.json(),
-    );
-
-    if (response.link) {
-      urlToCopy = response.link;
+    try {
+      const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Very long URLs are rejected before reaching the route, with a non-JSON body.
+      // Fall back to copying the unshortened URL instead of leaving the copy unfinished.
     }
 
     copy(urlToCopy);
@@ -132,10 +137,9 @@ export function Prompts({ models, extensions }: Props) {
     setToastMessage("Copied to clipboard");
   }, []);
 
-  const handleAddToRaycast = React.useCallback(
-    () => addToRaycast(router, selectedPrompts, isTouch),
-    [router, selectedPrompts, isTouch],
-  );
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, selectedPrompts, isTouch);
+  }, [router, selectedPrompts, isTouch]);
 
   React.useEffect(() => {
     setIsTouch(isTouchDevice());
@@ -300,7 +304,7 @@ export function Prompts({ models, extensions }: Props) {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
                         Add to Raycast
                       </Button>
 
@@ -456,7 +460,7 @@ export function Prompts({ models, extensions }: Props) {
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedPrompts.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

@@ -42,7 +42,7 @@ Here are some rules:
     description: "Pair program with a frontend developer specialized in React",
     icon: "brand-react",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -67,7 +67,7 @@ Here are some rules:
     description: "Expert guidance on Vue 3 development with Composition API and TypeScript",
     icon: "brand-vuejs",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-07-04",
   },
@@ -89,7 +89,7 @@ Here are some rules:
     description: "An expert developer, helping you with Swift programming questions.",
     icon: "brand-swift",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -108,7 +108,7 @@ Here are some rules:
     description: "An expert in Python best practices and solutions.",
     icon: "brand-python",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -132,7 +132,7 @@ Here are some rules:
     description: "A Python Expert helping you through technical interview questions.",
     icon: "brand-python",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-04-24",
     author: {
@@ -172,7 +172,7 @@ Here are some rules to follow:
     description: "Work with an expert in the stack of Next.js, React and Tailwind CSS.",
     icon: "brand-nextjs",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -196,7 +196,7 @@ Animation curve rules:
     description: "An expert in crafting delightful React Animations for the web.",
     icon: "stars",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -223,7 +223,7 @@ You reply:
     description: "Organizes your data into structured formats.",
     icon: "layers",
     creativity: "low",
-    model: "anthropic-claude-opus-4",
+    model: "anthropic-claude-opus-5",
     date: "2024-03-26",
   },
   {
@@ -243,7 +243,7 @@ Here are the rules you must follow:
     description: "Provides feedback on code quality and best practices.",
     icon: "magnifying-glass",
     creativity: "low",
-    model: "anthropic-claude-opus-4",
+    model: "anthropic-claude-opus-5",
     date: "2024-03-26",
   },
   {
@@ -280,13 +280,13 @@ Constraints:
 - Use environment.canAccess from @raycast/api to check API access.
 - Use getSelectedFinderItems from @raycast/api for accessing Finder selections.
 - Use getSelectedText from @raycast/api for interacting with selected text.
- 
+
 Task:
 - Provide real-world examples or code snippets to illustrate solutions.`,
     description: "An expert in building Raycast extensions with best practices.",
     icon: "raycast-logo-neg",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-05-31",
   },
@@ -305,7 +305,7 @@ Here are some rules:
 `,
     icon: "brand-javascript",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-06-21",
     author: {
@@ -317,27 +317,27 @@ Here are some rules:
     id: "svelte-expert",
     name: "Svelte Expert",
     description: "Pair program with a Svelte developer",
-    instructions: `You are a Svelte and SvelteKit Developer that provides expert-level insights and solutions.\nYour responses should include examples of code snippets (where applicable), best practices, and explanations of underlying concepts.
-    
+    instructions: `You are a Svelte and SvelteKit Developer that provides expert-level insights and solutions using Svelte 5.\nYour responses should include examples of code snippets (where applicable), best practices, and explanations of underlying concepts.
+
 Here are some rules:
+- Use Svelte 5 syntax, idiomatic Runes ($state, $derived, $effect, $props, etc.), and modern reactivity patterns by default.
 - Use TypeScript when applicable and provide type definitions.
+- Avoid legacy Svelte 3/4 syntax (e.g., replace export let with $props(), replace $: with $derived/$effect) unless explicitly asked for backward compatibility.
 - Avoid adding code comments unless necessary.
-- Avoid runes ($state, $derived...) unless is asked or the vestion of Svelte is 5.
 - Avoid adding third-party libraries unless necessary.
 - Provide real-world examples or code snippets to illustrate solutions.
 - Highlight any considerations, such as browser compatibility or potential performance impacts, with advised solutions.
 - Include links to reputable sources for further reading (when beneficial).
-- Use the latest stable version of Svelte and SvelteKit.
-- Use the latest stable version of Svelte and SvelteKit.
+- Use the latest stable version of Svelte 5 and SvelteKit.
 `,
     icon: "brand-svelte",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-06-24",
     author: {
       name: "Luca Deltort",
-      link: "https://github.com/StEgo2103",
+      link: "https://github.com/LucaDeltort",
     },
   },
   {
@@ -378,7 +378,7 @@ Defaults:
 - If the user asks about non-accessibility topics, politely decline and remind them this preset is scoped only to accessibility standards.`,
     icon: "two-people",
     creativity: "low",
-    model: "openai_o1-gpt-5",
+    model: "openai-gpt-5.6-terra",
     web_search: true,
     date: "2025-09-08",
     author: {
@@ -408,7 +408,7 @@ Here are some rules:
 - Consider SEO, accessibility, and web performance best practices.`,
     icon: "rocket",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-09-27",
     author: {
@@ -438,7 +438,7 @@ Here are some rules:
 - Consider mobile-first design principles.`,
     icon: "swatch",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-02-14",
     author: {
@@ -470,7 +470,7 @@ Here are some rules:
 - Avoid prop drilling by using context or state management when needed.`,
     icon: "box",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-02-14",
     author: {
@@ -504,7 +504,7 @@ Here are the rules you must follow:
       "A writing coach that helps you improve your writing skills and corrects your spelling, grammar and punctuation mistakes.",
     icon: "pencil",
     creativity: "low",
-    model: "openai-gpt-4o-mini",
+    model: "openai-gpt-5.6-luna",
     date: "2024-03-26",
   },
   {
@@ -523,7 +523,7 @@ Here are the rules you must follow:
     description: "Helps you with the correct pronunciation of anything you ask for.",
     icon: "quote-block",
     creativity: "low",
-    model: "anthropic-claude-sonnet-4",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-03-26",
   },
@@ -550,7 +550,7 @@ You reply:
     description: "A translator that converts your English messages to Spanish.",
     icon: "flag",
     creativity: "maximum",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     date: "2024-04-23",
   },
   {
@@ -573,7 +573,7 @@ When responding to a prompt, provide a clear and concise copy suggestion that ad
     description: "Writes UX copy for a software product.",
     icon: "pencil",
     creativity: "none",
-    model: "anthropic-claude-opus-4",
+    model: "anthropic-claude-opus-5",
     date: "2024-04-23",
   },
   {
@@ -596,7 +596,7 @@ When responding to a prompt, provide a clear and concise copy suggestion that ad
 Ensure the language used is professional, objective, and expansive, avoiding informal chat-like expressions. The report should be well-structured and clearly divided into the sections mentioned above.`,
     icon: "magnifying-glass",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     web_search: false,
     image_generation: false,
     date: "2024-06-29",
@@ -626,7 +626,7 @@ Here are the rules you must follow:
     description: "Create recipes based on your available ingredients.",
     icon: "mug-steam",
     creativity: "medium",
-    model: "anthropic-claude-opus-4",
+    model: "anthropic-claude-opus-5",
     date: "2024-04-23",
   },
   {
@@ -643,7 +643,7 @@ Here are the rules you must follow:
     description: "Generates logo ideas for your business or hobby.",
     icon: "image",
     creativity: "maximum",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     image_generation: true,
     date: "2024-05-15",
   },
@@ -665,7 +665,7 @@ const fun: Preset[] = [
     description: "Imagine google translate but it turns everything into emojis, what else could you need?",
     icon: "emoji",
     creativity: "maximum",
-    model: "anthropic-claude-haiku",
+    model: "anthropic-claude-4-5-haiku",
     web_search: true,
     date: "2024-03-26",
   },
@@ -688,7 +688,7 @@ Here are the rules the player should follow:
     description: "Play the classic game “20 Questions” by letting the AI guess what you are thinking on!",
     icon: "question-mark-circle",
     creativity: "maximum",
-    model: "anthropic-claude-opus-4",
+    model: "anthropic-claude-opus-5",
     date: "2024-03-26",
   },
   {
@@ -706,7 +706,7 @@ Here are the rules you must follow:
     description: "Create engaging and creative stories where you decide what happens next.",
     icon: "book",
     creativity: "maximum",
-    model: "groq-llama-3.3-70b-versatile",
+    model: "groq-openai/gpt-oss-120b",
     date: "2024-04-23",
   },
 ];
@@ -718,7 +718,7 @@ const misc: Preset[] = [
     instructions: `Act as my personal assistant managing my work schedule. Inform me about relevant events happening, and coworkers schedules, whenever I ask about a specific day.`,
     description: "Helps the user with booking meetings and keeping track of their schedule.",
     icon: "calendar",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [
       { name: "calendar", id: "builtin_package_calendar" },
@@ -729,12 +729,12 @@ const misc: Preset[] = [
   {
     id: "daily-assistant",
     name: "Daily Assistant",
-    instructions: `You are an assistant specializing in using Linear and GitHub for project tracking and management. You are able to help the user plan their day based on their tasks and calendar availability. 
+    instructions: `You are an assistant specializing in using Linear and GitHub for project tracking and management. You are able to help the user plan their day based on their tasks and calendar availability.
 - Always return links to the tasks in Linear and GitHub.
 - Always return the list of tasks and events in markdown format.`,
     description: "Helps the user plan their day based on their tasks and calendar availability.",
     icon: "person",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [
       { name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" },
@@ -758,7 +758,7 @@ If I just say something without much context and it doesn't sound like an instru
     `,
     description: "Helps the user with managing projects using Linear.",
     icon: "person",
-    model: "raycast-ray1",
+    model: "openai-gpt-5.6-luna",
     date: "2025-02-26",
     tools: [{ name: "linear", id: "a9696c4c-a4e8-4ff1-bf49-c9015f796200" }],
   },
@@ -793,7 +793,7 @@ Follow these instructions unless otherwise stated and without specifically menti
       "Provide expert, detailed, and insightful responses across various disciplines, avoiding filler words and formalities.",
     icon: "check",
     creativity: "medium",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     web_search: true,
     date: "2024-04-23",
     author: {
@@ -808,7 +808,7 @@ Follow these instructions unless otherwise stated and without specifically menti
     description: `Anthropic's core system prompt used for Claude 3.7 Sonnet on the web and its apps. Added web search capability ("For extra world knowledge, Claude can search the web through Raycast AI…"), elaboration options ("it may mention the other options if the user seems interested"), writing style guidelines ("avoids superfluous prose… avoids using these specific terms: delve, intricate…"), and removed Anthropic-specific product info and support resources. See docs.anthropic.com/en/release-notes/system-prompts#feb-24th-2025.`,
     icon: "brand-anthropic",
     creativity: "medium",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2025-02-25",
     author: {
@@ -843,7 +843,7 @@ Here are some rules your must follow:
       "Helps students understand the steps behind solving their math problems without revealing the answer, similar to KhanMigo.",
     icon: "calculator",
     creativity: "medium",
-    model: "groq-llama-3.3-70b-versatile",
+    model: "groq-openai/gpt-oss-120b",
     date: "2024-06-03",
     author: {
       name: "Vaibhav Satishkumar",
@@ -859,7 +859,7 @@ Here are some rules your must follow:
       "An expert AI prompt engineer that generates structured, task-specific prompts. Crafts detailed XML-formatted instructions for optimal AI responses across various tasks.",
     icon: "brand-electron",
     creativity: "low",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     date: "2024-07-02",
     author: {
       name: "Marc Magnin",
@@ -875,7 +875,7 @@ Here are some rules your must follow:
       "A specialized AI assistant that guides users through a structured, step-by-step daily planning process, analyzing tasks, schedules, and energy levels to create optimized, personalized plans with strategic productivity insights.",
     icon: "calendar",
     creativity: "medium",
-    model: "openai-gpt-4o",
+    model: "openai-gpt-5.6-luna",
     date: "2024-07-04",
     author: {
       name: "Marc Magnin",
@@ -891,7 +891,7 @@ Here are some rules your must follow:
       "Provides comprehensive culinary assistance by analyzing recipes, answering cooking questions, offering technique guidance, suggesting substitutions, and sharing food knowledge while maintaining natural conversation flow and adapting responses.",
     icon: "leaf",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-5",
     web_search: true,
     date: "2024-12-08",
     author: {
@@ -908,7 +908,7 @@ Here are some rules your must follow:
       "Generates detailed, keyword-rich descriptions of images that capture their visual elements, style, composition, and emotional impact in a concise, searchable format. Requires vision capabilities.",
     icon: "image",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
@@ -924,7 +924,7 @@ Here are some rules your must follow:
       "Generates comprehensive font family descriptions by analyzing visual characteristics, stylistic influences, emotional impact, and genre suitability, with emphasis on capturing both technical details and expressive potential for future reference. Requires vision capabilities.",
     icon: "lowercase",
     creativity: "high",
-    model: "anthropic-claude-sonnet",
+    model: "anthropic-claude-sonnet-5",
     date: "2024-07-03",
     author: {
       name: "Nathan Cheng",
@@ -962,7 +962,7 @@ DO NOT GIVE ANSWERS OR DO HOMEWORK FOR THE USER. If the user asks a math or logi
       "Walks you through complex subjects in a step-by-step format akin to an unfolding academic lesson. Uses the same prompt as OpenAI's study mode.",
     icon: "book",
     creativity: "low",
-    model: "openai_o1-gpt-5",
+    model: "openai-gpt-5.6-terra",
     date: "2025-08-24",
   },
 ];

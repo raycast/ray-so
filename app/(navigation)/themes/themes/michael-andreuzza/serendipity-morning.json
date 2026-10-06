@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Serendipity Morning",
+  "appearance": "light",
+  "colors": {
+    "background": "#F6F7FB",
+    "backgroundSecondary": "#EAEBEE",
+    "text": "#3F4363",
+    "selection": "#E58678",
+    "loader": "#E58678",
+    "red": "#C25A4D",
+    "orange": "#E58678",
+    "yellow": "#785FD0",
+    "green": "#2F7AAB",
+    "blue": "#6288D8",
+    "purple": "#785FD0",
+    "magenta": "#629AA5"
+  }
+}

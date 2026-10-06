@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { useAtom, useAtomValue } from "jotai";
-import React from "react";
 
 import { fileNameAtom, showBackgroundAtom } from "../../store";
 import { paddingAtom } from "../../store/padding";
@@ -9,6 +8,9 @@ import { themeDarkModeAtom } from "../../store/themes";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./BrowserbaseFrame.module.css";
+
+const VERTICAL_GRID_POSITIONS = [12.5, 25, 37.5, 50, 62.5, 75, 87.5];
+const HORIZONTAL_GRID_POSITIONS = [25, 50, 75];
 
 const BrowserbaseFrame = () => {
   const darkMode = useAtomValue(themeDarkModeAtom);
@@ -29,14 +31,21 @@ const BrowserbaseFrame = () => {
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern}></div>}
       {showBackground && (
-        <div className={styles.background}>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
-          <div className={styles.backgroundGridline}></div>
+        <div className={styles.background} aria-hidden="true">
+          {VERTICAL_GRID_POSITIONS.map((position) => (
+            <div
+              className={classNames(styles.backgroundGridline, styles.backgroundGridlineVertical)}
+              key={position}
+              style={{ left: `${position}%` }}
+            ></div>
+          ))}
+          {HORIZONTAL_GRID_POSITIONS.map((position) => (
+            <div
+              className={classNames(styles.backgroundGridline, styles.backgroundGridlineHorizontal)}
+              key={position}
+              style={{ top: `${position}%` }}
+            ></div>
+          ))}
         </div>
       )}
       <div className={styles.window}>
@@ -46,7 +55,7 @@ const BrowserbaseFrame = () => {
             <div className={sharedStyles.control}></div>
             <div className={sharedStyles.control}></div>
           </div>
-          <div className={sharedStyles.fileName}>
+          <div className={classNames(sharedStyles.fileName, styles.fileName)}>
             <input
               type="text"
               value={fileName}
@@ -60,7 +69,6 @@ const BrowserbaseFrame = () => {
         </div>
         <Editor />
       </div>
-      <div className={styles.outline} style={{ "--padding": `${padding}px` } as React.CSSProperties}></div>
     </div>
   );
 };

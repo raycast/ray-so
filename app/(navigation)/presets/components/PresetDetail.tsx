@@ -82,7 +82,9 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
     }
   }, [showToast]);
 
-  const handleAddToRaycast = React.useCallback(() => addToRaycast(router, preset, isTouch), [router, preset, isTouch]);
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, preset, isTouch);
+  }, [router, preset, isTouch]);
 
   const handleCopyInstructions = () => {
     copy(instructions);
@@ -373,7 +375,7 @@ export function PresetDetail({ preset, relatedPresets, models, extensions }: Pre
       {/* Floating Action Bar for Mobile */}
       {isTouch && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

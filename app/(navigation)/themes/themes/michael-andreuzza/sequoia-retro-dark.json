@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Retro Dark",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0F1014",
+    "backgroundSecondary": "#111216",
+    "text": "#868690",
+    "selection": "#A27E57",
+    "loader": "#A27E57",
+    "red": "#829FA7",
+    "orange": "#A27E57",
+    "yellow": "#DA674B",
+    "green": "#648F68",
+    "blue": "#5C87A4",
+    "purple": "#DA674B",
+    "magenta": "#E8B246"
+  }
+}

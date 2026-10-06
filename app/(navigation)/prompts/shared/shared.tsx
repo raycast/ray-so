@@ -87,7 +87,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
     const removedPrompts = extractPrompts(removed, categories);
 
     setSelectedPrompts((prevPrompts) => {
-      const prompts = [...prevPrompts];
+      let prompts = [...prevPrompts];
 
       addedPrompts.forEach((prompt) => {
         if (!prompt) {
@@ -100,7 +100,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
       });
 
       removedPrompts.forEach((prompt) => {
-        return prompts.filter((s) => s?.id !== prompt?.id);
+        prompts = prompts.filter((s) => s?.id !== prompt?.id);
       });
 
       return prompts;
@@ -120,19 +120,26 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
     const url = makeUrl(selectedPrompts);
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`).then((res) =>
-      res.json(),
-    );
-
-    if (response.link) {
-      urlToCopy = response.link;
+    try {
+      const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=prompts`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Very long URLs are rejected before reaching the route, with a non-JSON body.
+      // Fall back to copying the unshortened URL instead of leaving the copy unfinished.
     }
 
     copy(urlToCopy);
     setCopied(true);
   }, [selectedPrompts]);
 
-  const handleAddToRaycast = React.useCallback(() => addToRaycast(router, selectedPrompts), [router, selectedPrompts]);
+  const handleAddToRaycast = React.useCallback(() => {
+    return addToRaycast(router, selectedPrompts, isTouch);
+  }, [router, selectedPrompts, isTouch]);
 
   const handleCopyText = React.useCallback((prompt: Prompt) => {
     copy(prompt.prompt);
@@ -349,7 +356,7 @@ export function Shared({ prompts, extensions }: { prompts: Prompt[]; extensions:
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedPrompts.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

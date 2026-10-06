@@ -148,6 +148,10 @@ export const LANGUAGES: { [index: string]: Language } = {
     name: "Move",
     src: () => import("shiki/langs/move.mjs"),
   },
+  nix: {
+    name: "Nix",
+    src: () => import("shiki/langs/nix.mjs"),
+  },
   plaintext: {
     name: "Plaintext",
     src: () => import("shiki/langs/javascript.mjs"),

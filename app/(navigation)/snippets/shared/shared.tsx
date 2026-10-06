@@ -10,7 +10,7 @@ import { Toast, ToastTitle } from "../components/Toast";
 import { ScrollArea } from "@/components/scroll-area";
 import { Button } from "@/components/button";
 import { isTouchDevice } from "../utils/isTouchDevice";
-import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsRaycastV2 } from "@/app/RaycastFlavor";
 import styles from "../[[...slug]]/snippets.module.css";
 import { ChevronDownIcon, CopyClipboardIcon, DownloadIcon, PlusCircleIcon } from "@raycast/icons";
 import { extractSnippets } from "../utils/extractSnippets";
@@ -76,7 +76,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
     const removedSnippets = extractSnippets(removed, categories);
 
     setSelectedSnippets((prevSnippets) => {
-      const snippets = [...prevSnippets];
+      let snippets = [...prevSnippets];
 
       addedSnippets.forEach((snippet) => {
         if (!snippet) {
@@ -89,7 +89,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
       });
 
       removedSnippets.forEach((snippet) => {
-        return snippets.filter((s) => s?.id !== snippet?.id);
+        snippets = snippets.filter((s) => s?.id !== snippet?.id);
       });
 
       return snippets;
@@ -135,9 +135,9 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
       window.location.href = url;
     } else {
       const raycastProtocol = await getRaycastFlavor();
-      const isWindows = await getIsWindows();
+      const isRaycastV2 = await getIsRaycastV2();
 
-      if (isWindows) {
+      if (isRaycastV2) {
         const snippetsData = selectedSnippets.map((snippet) => {
           const { name, text, keyword, type } = snippet;
           return { name, text, keyword, type };
@@ -322,7 +322,7 @@ export function Shared({ snippets }: { snippets: Snippet[] }) {
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedSnippets.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

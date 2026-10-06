@@ -40,9 +40,9 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { ButtonGroup } from "@/components/button-group";
 import { InfoDialog } from "../components/InfoDialog";
 import { Kbd, Kbds } from "@/components/kbd";
-import { getRaycastFlavor, getIsWindows } from "@/app/RaycastFlavor";
+import { getRaycastFlavor, getIsRaycastV2 } from "@/app/RaycastFlavor";
 
-const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "none"] as const;
+const modifiers = ["!", ":", "_", "__", "-", "@", "@@", "$", ";", ";;", "/", "//", "#", "none"] as const;
 
 type Modifiers = (typeof modifiers)[number];
 
@@ -102,7 +102,7 @@ export default function Snippets() {
     const removedSnippets = extractSnippets(removed, snippetGroups);
 
     setSelectedSnippets((prevSnippets) => {
-      const snippets = [...prevSnippets];
+      let snippets = [...prevSnippets];
 
       addedSnippets.forEach((snippet) => {
         if (!snippet) {
@@ -115,7 +115,7 @@ export default function Snippets() {
       });
 
       removedSnippets.forEach((snippet) => {
-        return snippets.filter((s) => s?.id !== snippet?.id);
+        snippets = snippets.filter((s) => s?.id !== snippet?.id);
       });
 
       return snippets;
@@ -178,12 +178,17 @@ export default function Snippets() {
     const url = `${BASE_URL}/snippets/shared?${makeQueryString()}`;
     let urlToCopy = url;
     const encodedUrl = encodeURIComponent(urlToCopy);
-    const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=snippets`).then((res) =>
-      res.json(),
-    );
-
-    if (response.link) {
-      urlToCopy = response.link;
+    try {
+      const response = await fetch(`https://ray.so/api/shorten-url?url=${encodedUrl}&ref=snippets`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.link) {
+          urlToCopy = data.link;
+        }
+      }
+    } catch {
+      // Very long URLs are rejected before reaching the route, with a non-JSON body.
+      // Fall back to copying the unshortened URL instead of leaving the copy unfinished.
     }
 
     copy(urlToCopy);
@@ -192,21 +197,17 @@ export default function Snippets() {
   }, [makeQueryString]);
 
   const handleAddToRaycast = React.useCallback(async () => {
-    const raycastProtocol = await getRaycastFlavor();
     const queryString = makeQueryString();
 
     // For mobile, always use the standard 'raycast' scheme since iOS apps
     // are typically registered for 'raycast://' not 'raycastinternal://'
-    const protocolToUse = isTouch ? "raycast" : raycastProtocol;
-    const url = `${protocolToUse}://snippets/import?${queryString}`;
-
-    // For mobile, use window.location.href directly as it's more reliable
     if (isTouch) {
-      window.location.href = url;
+      window.location.href = `raycast://snippets/import?${queryString}`;
     } else {
-      const isWindows = await getIsWindows();
+      const raycastProtocol = await getRaycastFlavor();
+      const isRaycastV2 = await getIsRaycastV2();
 
-      if (isWindows) {
+      if (isRaycastV2) {
         const snippetsData = selectedSnippets.map((snippet) => {
           const { name, text, type } = snippet;
           const keyword =
@@ -461,7 +462,7 @@ export default function Snippets() {
                     </Collapsible.Root>
 
                     <div className={styles.summaryControls}>
-                      <Button onClick={handleAddToRaycast} variant="primary">
+                      <Button onClick={() => handleAddToRaycast()} variant="primary">
                         Add to Raycast
                       </Button>
 
@@ -552,7 +553,7 @@ export default function Snippets() {
       {/* Floating Action Bar for Mobile */}
       {isTouch && selectedSnippets.length > 0 && (
         <div className={styles.floatingActionBar}>
-          <button className={styles.floatingActionButton} data-variant="primary" onClick={handleAddToRaycast}>
+          <button className={styles.floatingActionButton} data-variant="primary" onClick={() => handleAddToRaycast()}>
             <PlusCircleIcon />
             Add to Raycast
           </button>

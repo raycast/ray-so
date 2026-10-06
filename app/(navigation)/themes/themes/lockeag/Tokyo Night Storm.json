@@ -1,0 +1,21 @@
+{
+  "appearance": "dark",
+  "name": "Tokyo Night Storm",
+  "version": "1",
+  "author": "Locke",
+  "authorUsername": "lockeag",
+  "colors": {
+    "background": "#24283B",
+    "backgroundSecondary": "#1D202F",
+    "text": "#C0CAF5",
+    "selection": "#7AA2F7",
+    "loader": "#FF9E64",
+    "red": "#F7768E",
+    "orange": "#FF9E64",
+    "yellow": "#E0AF68",
+    "green": "#9ECE6A",
+    "blue": "#7AA2F7",
+    "purple": "#7DCFFF",
+    "magenta": "#BB9AF7"
+  }
+}

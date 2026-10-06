@@ -1,0 +1,21 @@
+{
+  "author": "Micheal Andreuzza",
+  "authorUsername": "michael-andreuzza",
+  "version": 1,
+  "name": "Sequoia Moonlight Light",
+  "appearance": "light",
+  "colors": {
+    "background": "#EDEEF2",
+    "backgroundSecondary": "#E2E3E8",
+    "text": "#282930",
+    "selection": "#D9884A",
+    "loader": "#D9884A",
+    "red": "#C94DA8",
+    "orange": "#D9884A",
+    "yellow": "#6A6A78",
+    "green": "#4A85D4",
+    "blue": "#9A5FD9",
+    "purple": "#6A6A78",
+    "magenta": "#282930"
+  }
+}

@@ -2,7 +2,7 @@
 import React from "react";
 import copy from "copy-to-clipboard";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { ChevronDownIcon, PlusCircleIcon, PlusIcon } from "@raycast/icons";
+import { ChevronDownIcon, PlusCircleIcon } from "@raycast/icons";
 import { useRaycastTheme } from "@themes/components/raycast-theme-provider";
 import { isTouchDevice } from "@themes/lib/isTouchDevice";
 import { makeRaycastImportUrl } from "@themes/lib/url";
