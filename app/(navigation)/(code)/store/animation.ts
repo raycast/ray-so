@@ -6,7 +6,7 @@ export const TYPING_VIDEO_FPS_OPTIONS = [12, 24, 30, 60] as const;
 
 export type TypingVideoFps = (typeof TYPING_VIDEO_FPS_OPTIONS)[number];
 
-export function isTypingVideoFps(value: TypingVideoFps | unknown): value is TypingVideoFps {
+export function isTypingVideoFps(value: unknown): value is TypingVideoFps {
   return TYPING_VIDEO_FPS_OPTIONS.indexOf(value as TypingVideoFps) !== -1;
 }
 
@@ -31,6 +31,14 @@ export const typingDurationAtom = atomWithHash<number>("typingDuration", 4, {
 
 export const typingCursorAtom = atomWithHash<boolean>("typingCursor", true);
 
-export const typingPlaybackProgressAtom = atom<number | null>(null);
+const storedTypingVideoFpsAtom = atomWithStorage<unknown>("typingVideoFps", TYPING_VIDEO_FPS_OPTIONS[0]);
 
-export const typingVideoFpsAtom = atomWithStorage<TypingVideoFps>("typingVideoFps", TYPING_VIDEO_FPS_OPTIONS[0]);
+export const typingVideoFpsAtom = atom(
+  (get) => {
+    const value = get(storedTypingVideoFpsAtom);
+    return isTypingVideoFps(value) ? value : TYPING_VIDEO_FPS_OPTIONS[0];
+  },
+  (_get, set, value: TypingVideoFps) => {
+    if (isTypingVideoFps(value)) set(storedTypingVideoFpsAtom, value);
+  },
+);

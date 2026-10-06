@@ -5,16 +5,14 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { Input } from "@/components/input";
 import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger, SelectValue } from "@/components/select";
 import { Switch } from "@/components/switch";
-import { useAtom, useAtomValue } from "jotai";
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { toBlob } from "../lib/image";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { fileNameAtom } from "../store";
 import {
   isTypingVideoFps,
   TYPING_VIDEO_FPS_OPTIONS,
   typingCursorAtom,
   typingDurationAtom,
-  typingPlaybackProgressAtom,
   typingVideoFpsAtom,
 } from "../store/animation";
 import { codeAtom } from "../store/code";
@@ -22,15 +20,10 @@ import { derivedFlashMessageAtom } from "../store/flash";
 import { EXPORT_SIZE_OPTIONS, exportSizeAtom, isExportSize, SIZE_LABELS } from "../store/image";
 import { FrameContext } from "../store/FrameContextStore";
 import download from "../util/download";
-import {
-  createRenderableCanvas,
-  createRenderableImage,
-  getSupportedVideoFormat,
-  recordVideo,
-  waitForNextPaint,
-} from "../util/exportVideo";
-import type { RenderableFrame } from "../util/exportVideo";
-import { getTypingRenderStateKey } from "../util/typingAnimation";
+import { getSupportedVideoFormat, recordVideo } from "../util/exportVideo";
+import { FINAL_HOLD_DURATION_SECONDS, getTypingCharacters } from "../util/typingAnimation";
+import { createTypingRenderer, TypingRenderer } from "../util/typingRenderer";
+import { useTypingPreview } from "../util/useTypingPreview";
 
 import KeyboardIcon from "../assets/icons/keyboard-16.svg";
 
@@ -39,283 +32,124 @@ type TypingExportDialogProps = {
   onOpenChange: (open: boolean) => void;
 };
 
-const FINAL_HOLD_DURATION_SECONDS = 0.75;
-
-async function waitForCodeLayerRenderState(codeLayerNode: HTMLElement, renderStateKey: string, timeoutMs = 5000) {
-  if (codeLayerNode.dataset.exportRenderState === renderStateKey) {
-    return;
-  }
-
-  const startedAt = performance.now();
-
-  await new Promise<void>((resolve, reject) => {
-    const check = () => {
-      if (codeLayerNode.dataset.exportRenderState === renderStateKey) {
-        resolve();
-        return;
-      }
-
-      if (performance.now() - startedAt >= timeoutMs) {
-        reject(new Error("Timed out while waiting for the highlighted code layer to render"));
-        return;
-      }
-
-      requestAnimationFrame(check);
-    };
-
-    requestAnimationFrame(check);
-  });
-}
-
 export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogProps) {
   const frameContext = useContext(FrameContext);
   const [typingDuration, setTypingDuration] = useAtom(typingDurationAtom);
   const [typingCursor, setTypingCursor] = useAtom(typingCursorAtom);
   const [typingVideoFps, setTypingVideoFps] = useAtom(typingVideoFpsAtom);
   const [exportSize, setExportSize] = useAtom(exportSizeAtom);
-  const [, setTypingPlaybackProgress] = useAtom(typingPlaybackProgressAtom);
-  const [, setFlashMessage] = useAtom(derivedFlashMessageAtom);
+  const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
   const code = useAtomValue(codeAtom);
   const customFileName = useAtomValue(fileNameAtom);
   const supportedFormat = useMemo(() => getSupportedVideoFormat(), []);
   const fileName = customFileName.replaceAll(" ", "-") || "ray-so-export";
   const [isExporting, setIsExporting] = useState(false);
-  const [isPreviewing, setIsPreviewing] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const previewFrameRef = useRef<number | null>(null);
-  const previewTimeoutRef = useRef<number | null>(null);
-  const characterCount = useMemo(() => Array.from(code).length, [code]);
+  const exportControllerRef = useRef<AbortController | null>(null);
+  const { isPreviewing, playPreview, stopPreview } = useTypingPreview();
+  const characterCount = getTypingCharacters(code).length;
   const estimatedFrameCount = Math.max(1, Math.ceil(typingDuration * typingVideoFps));
-  const estimatedVideoDuration =
-    (estimatedFrameCount + Math.round(typingVideoFps * FINAL_HOLD_DURATION_SECONDS)) / typingVideoFps;
+  const finalHoldFrameCount = Math.round(typingVideoFps * FINAL_HOLD_DURATION_SECONDS);
+  const estimatedVideoDuration = (estimatedFrameCount + finalHoldFrameCount) / typingVideoFps;
 
-  const stopPreview = useCallback(() => {
-    if (previewFrameRef.current !== null) {
-      cancelAnimationFrame(previewFrameRef.current);
-      previewFrameRef.current = null;
-    }
-
-    if (previewTimeoutRef.current !== null) {
-      window.clearTimeout(previewTimeoutRef.current);
-      previewTimeoutRef.current = null;
-    }
-
-    setTypingPlaybackProgress(null);
-    setIsPreviewing(false);
-  }, [setTypingPlaybackProgress]);
-
-  const playPreview = useCallback(() => {
-    stopPreview();
-    setErrorMessage(null);
-    setIsPreviewing(true);
-
-    const durationMs = Math.max(250, typingDuration * 1000);
-    const startedAt = performance.now();
-
-    const tick = (timestamp: number) => {
-      const progress = Math.min((timestamp - startedAt) / durationMs, 1);
-      setTypingPlaybackProgress(progress);
-
-      if (progress < 1) {
-        previewFrameRef.current = requestAnimationFrame(tick);
-        return;
-      }
-
-      previewTimeoutRef.current = window.setTimeout(() => {
-        stopPreview();
-      }, 450);
-    };
-
-    setTypingPlaybackProgress(0);
-    previewFrameRef.current = requestAnimationFrame(tick);
-  }, [setTypingPlaybackProgress, stopPreview, typingDuration]);
-
-  const handlePreviewClick = useCallback(() => {
-    if (isPreviewing) {
-      stopPreview();
-      return;
-    }
-
-    onOpenChange(false);
-    playPreview();
-  }, [isPreviewing, onOpenChange, playPreview, stopPreview]);
-
-  const exportVideo = useCallback(async () => {
-    if (!supportedFormat) {
-      setErrorMessage("This browser cannot record the frame as a video. Try a recent Chromium-based browser.");
-      return;
-    }
-
-    if (!frameContext?.current) {
-      setErrorMessage("Could not find the code frame to export.");
-      return;
-    }
-
-    stopPreview();
-    setErrorMessage(null);
-    setIsExporting(true);
-    setFlashMessage({ icon: <KeyboardIcon />, message: "Exporting typing video" });
-
-    const frameNode = frameContext.current;
-    const codeLayerNode = frameNode.querySelector<HTMLElement>("[data-export-layer='code']");
-
-    if (!codeLayerNode) {
-      setIsExporting(false);
-      setTypingPlaybackProgress(null);
-      setErrorMessage("Could not find the highlighted code layer to export.");
-      return;
-    }
-
-    const frameRect = frameNode.getBoundingClientRect();
-    const codeLayerRect = codeLayerNode.getBoundingClientRect();
-    const width = Math.round(frameRect.width * exportSize);
-    const height = Math.round(frameRect.height * exportSize);
-    const codeLayerX = Math.round((codeLayerRect.left - frameRect.left) * exportSize);
-    const codeLayerY = Math.round((codeLayerRect.top - frameRect.top) * exportSize);
-    const codeLayerWidth = Math.round(codeLayerRect.width * exportSize);
-    const codeLayerHeight = Math.round(codeLayerRect.height * exportSize);
-    const frameCount = Math.max(1, Math.ceil(typingDuration * typingVideoFps));
-    const finalHoldFrameCount = Math.max(1, Math.round(typingVideoFps * FINAL_HOLD_DURATION_SECONDS));
-
-    try {
-      const previousIgnoreValue = codeLayerNode.dataset.ignoreInExport;
-      let baseFrameBlob: Blob | null = null;
-
-      codeLayerNode.dataset.ignoreInExport = "true";
-
-      try {
-        baseFrameBlob = await toBlob(frameNode, {
-          pixelRatio: exportSize,
-        });
-      } finally {
-        if (previousIgnoreValue === undefined) {
-          delete codeLayerNode.dataset.ignoreInExport;
-        } else {
-          codeLayerNode.dataset.ignoreInExport = previousIgnoreValue;
-        }
-      }
-
-      if (!baseFrameBlob) {
-        throw new Error("Could not render the static frame for the typing animation export");
-      }
-
-      const baseFrameImage = await createRenderableImage(baseFrameBlob);
-      const compositeCanvas = createRenderableCanvas(width, height);
-
-      const compositeContext = compositeCanvas.getContext("2d");
-
-      if (!compositeContext) {
-        throw new Error("Could not create a canvas context for the typing animation export");
-      }
-
-      let lastRenderStateKey = "";
-
-      const videoBlob = await (async () => {
-        try {
-          return await recordVideo({
-            fps: typingVideoFps,
-            frameCount,
-            width,
-            height,
-            mimeType: supportedFormat.mimeType,
-            finalHoldFrameCount,
-            renderFrame: async (frameIndex): Promise<RenderableFrame> => {
-              const progress = frameCount === 1 ? 1 : frameIndex / (frameCount - 1);
-              const renderStateKey = getTypingRenderStateKey(characterCount, progress, typingCursor);
-
-              if (renderStateKey === lastRenderStateKey) {
-                return compositeCanvas;
-              }
-
-              setTypingPlaybackProgress(progress);
-              await waitForNextPaint();
-              await waitForCodeLayerRenderState(codeLayerNode, renderStateKey);
-
-              const frameBlob = await toBlob(codeLayerNode, {
-                pixelRatio: exportSize,
-              });
-
-              if (!frameBlob) {
-                throw new Error("Could not render the code layer for the typing animation export");
-              }
-
-              const codeLayerImage = await createRenderableImage(frameBlob);
-
-              compositeContext.clearRect(0, 0, width, height);
-              compositeContext.drawImage(baseFrameImage, 0, 0, width, height);
-              compositeContext.drawImage(codeLayerImage, codeLayerX, codeLayerY, codeLayerWidth, codeLayerHeight);
-
-              if ("close" in codeLayerImage && typeof codeLayerImage.close === "function") {
-                codeLayerImage.close();
-              }
-
-              lastRenderStateKey = renderStateKey;
-
-              return compositeCanvas;
-            },
-          });
-        } finally {
-          if ("close" in baseFrameImage && typeof baseFrameImage.close === "function") {
-            baseFrameImage.close();
-          }
-        }
-      })();
-
-      const objectUrl = URL.createObjectURL(videoBlob);
-      download(objectUrl, `${fileName}.${supportedFormat.extension}`);
-
-      window.setTimeout(() => {
-        URL.revokeObjectURL(objectUrl);
-      }, 30_000);
-
-      setFlashMessage({
-        icon: <KeyboardIcon />,
-        message: `${supportedFormat.extension.toUpperCase()} exported!`,
-        timeout: 2000,
-      });
-      onOpenChange(false);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Typing video export failed";
-      setErrorMessage(message);
-      setFlashMessage({
-        icon: <KeyboardIcon />,
-        message: "Typing video export failed",
-        timeout: 2500,
-      });
-    } finally {
-      setTypingPlaybackProgress(null);
-      setIsPreviewing(false);
-      setIsExporting(false);
-    }
-  }, [
-    characterCount,
-    exportSize,
-    fileName,
-    frameContext,
-    onOpenChange,
-    setFlashMessage,
-    setTypingPlaybackProgress,
-    stopPreview,
-    supportedFormat,
-    typingCursor,
-    typingDuration,
-    typingVideoFps,
-  ]);
+  useEffect(
+    () => () => {
+      exportControllerRef.current?.abort();
+      exportControllerRef.current = null;
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!open) {
+      exportControllerRef.current?.abort();
       setErrorMessage(null);
     }
   }, [open]);
 
-  useEffect(() => {
-    return () => {
+  function handleOpenChange(nextOpen: boolean) {
+    if (!nextOpen) exportControllerRef.current?.abort();
+    onOpenChange(nextOpen);
+  }
+
+  function handlePreviewClick() {
+    if (isPreviewing) {
       stopPreview();
-    };
-  }, [stopPreview]);
+      return;
+    }
+    if (!frameContext?.current) {
+      setErrorMessage("Could not find the code frame to preview.");
+      return;
+    }
+    setErrorMessage(null);
+    onOpenChange(false);
+    void playPreview(frameContext.current, typingDuration, typingCursor, (error) => {
+      setFlashMessage({
+        icon: <KeyboardIcon />,
+        message: error instanceof Error ? error.message : "Typing preview failed",
+        timeout: 2500,
+      });
+    });
+  }
+
+  async function exportVideo() {
+    if (exportControllerRef.current) return;
+    if (!supportedFormat || !frameContext?.current) {
+      setErrorMessage("Video export requires a code frame and a recent Chromium-based browser.");
+      return;
+    }
+
+    stopPreview();
+    const controller = new AbortController();
+    exportControllerRef.current = controller;
+    setErrorMessage(null);
+    setProgress(null);
+    setIsExporting(true);
+    let renderer: TypingRenderer | undefined;
+
+    try {
+      renderer = await createTypingRenderer(frameContext.current, {
+        pixelRatio: isExportSize(exportSize) ? exportSize : 2,
+        showCursor: typingCursor,
+        signal: controller.signal,
+      });
+      const preparedRenderer = renderer;
+      const videoBlob = await recordVideo({
+        canvas: renderer.canvas,
+        fps: typingVideoFps,
+        frameCount: estimatedFrameCount,
+        finalHoldFrameCount,
+        signal: controller.signal,
+        renderFrame: (index) =>
+          preparedRenderer.render(estimatedFrameCount === 1 ? 1 : index / (estimatedFrameCount - 1)),
+        onProgress: (value) => {
+          if (exportControllerRef.current === controller && !controller.signal.aborted) setProgress(value);
+        },
+      });
+      controller.signal.throwIfAborted();
+
+      const objectUrl = URL.createObjectURL(videoBlob);
+      download(objectUrl, `${fileName}.${supportedFormat.extension}`);
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30_000);
+      setFlashMessage({ icon: <KeyboardIcon />, message: "WEBM exported!", timeout: 2000 });
+      onOpenChange(false);
+    } catch (error) {
+      if (exportControllerRef.current === controller && !controller.signal.aborted) {
+        setErrorMessage(error instanceof Error ? error.message : "Typing video export failed");
+      }
+    } finally {
+      renderer?.dispose();
+      if (exportControllerRef.current === controller) {
+        exportControllerRef.current = null;
+        setIsExporting(false);
+        setProgress(null);
+      }
+    }
+  }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent size="medium">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
@@ -335,6 +169,7 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
                 max={15}
                 step={0.5}
                 value={typingDuration}
+                disabled={isExporting}
                 onChange={(event) => {
                   const nextDuration = event.currentTarget.valueAsNumber;
 
@@ -349,6 +184,7 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
               <span className="font-medium text-gray-12">Frame rate</span>
               <Select
                 value={typingVideoFps.toString()}
+                disabled={isExporting}
                 onValueChange={(value) => {
                   const nextFps = Number(value);
 
@@ -374,6 +210,7 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
               <span className="font-medium text-gray-12">Export size</span>
               <Select
                 value={exportSize.toString()}
+                disabled={isExporting}
                 onValueChange={(value) => {
                   const nextSize = Number(value);
 
@@ -399,7 +236,7 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
               <span className="font-medium text-gray-12">Cursor</span>
               <div className="flex h-[30px] items-center justify-between rounded-md border border-gray-a4 bg-gray-2 px-3">
                 <span className="text-gray-11">Show typing cursor</span>
-                <Switch checked={typingCursor} onCheckedChange={setTypingCursor} />
+                <Switch disabled={isExporting} checked={typingCursor} onCheckedChange={setTypingCursor} />
               </div>
             </div>
           </div>
@@ -407,10 +244,24 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
           <div className="rounded-md border border-gray-a4 bg-gray-a2 p-3 text-sm text-gray-11">
             <p className="font-medium text-gray-12">Export summary</p>
             <p className="mt-1">
-              {characterCount} characters, {estimatedFrameCount} frames, about {estimatedVideoDuration.toFixed(1)}s of
-              video in {supportedFormat?.extension.toUpperCase() ?? "video"} format.
+              {characterCount} characters, {estimatedFrameCount + finalHoldFrameCount} frames, about{" "}
+              {estimatedVideoDuration.toFixed(1)}s of video in {supportedFormat?.extension.toUpperCase() ?? "video"}{" "}
+              format.
             </p>
           </div>
+
+          {isExporting ? (
+            <div className="flex flex-col gap-2 text-sm text-gray-11" role="status" aria-live="polite">
+              <span>
+                {progress === null
+                  ? "Preparing animation…"
+                  : progress === 1
+                    ? "Finalizing video…"
+                    : `Encoding video: ${Math.round(progress * 100)}%`}
+              </span>
+              <progress className="w-full" max={1} value={progress ?? undefined} aria-label="Video export progress" />
+            </div>
+          ) : null}
 
           {errorMessage ? (
             <div className="rounded-md border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">
@@ -419,6 +270,11 @@ export function TypingExportDialog({ open, onOpenChange }: TypingExportDialogPro
           ) : null}
 
           <div className="flex items-center justify-end gap-2">
+            {isExporting ? (
+              <Button variant="secondary" onClick={() => exportControllerRef.current?.abort()}>
+                Cancel export
+              </Button>
+            ) : null}
             <Button variant="secondary" onClick={handlePreviewClick} disabled={isExporting}>
               {isPreviewing ? "Stop preview" : "Play preview"}
             </Button>

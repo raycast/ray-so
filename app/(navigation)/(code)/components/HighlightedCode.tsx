@@ -1,10 +1,8 @@
 import classNames from "classnames";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
-import { typingCursorAtom, typingPlaybackProgressAtom } from "../store/animation";
 import { themeDarkModeAtom, themeAtom } from "../store/themes";
-import { getTypingRenderStateKey, getVisibleCode } from "../util/typingAnimation";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./Editor.module.css";
@@ -15,45 +13,33 @@ type PropTypes = {
 };
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
-  const [highlightedHtml, setHighlightedHtml] = useState("");
-  const [renderedStateKey, setRenderedStateKey] = useState("");
+  const [rendered, setRendered] = useState({ html: "", key: "" });
   const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const highlightedLines = useAtomValue(highlightedLinesAtom);
   const darkMode = useAtomValue(themeDarkModeAtom);
   const theme = useAtomValue(themeAtom);
-  const typingPlaybackProgress = useAtomValue(typingPlaybackProgressAtom);
-  const showTypingCursor = useAtomValue(typingCursorAtom);
-  const characterCount = useMemo(() => Array.from(code).length, [code]);
   const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
-  const targetRenderStateKey = useMemo(
-    () => getTypingRenderStateKey(characterCount, typingPlaybackProgress, showTypingCursor),
-    [characterCount, showTypingCursor, typingPlaybackProgress],
-  );
-  const displayCode = useMemo(() => {
-    const visibleCode = getVisibleCode(code, typingPlaybackProgress);
-
-    if (typingPlaybackProgress === null || !showTypingCursor || typingPlaybackProgress >= 1) {
-      return visibleCode;
-    }
-
-    return `${visibleCode}▍`;
-  }, [code, typingPlaybackProgress, showTypingCursor]);
+  const renderKey = JSON.stringify([code, selectedLanguage?.name, themeName, highlightedLines]);
 
   useEffect(() => {
     let cancelled = false;
+    let loadingLanguage = false;
 
     const generateHighlightedHtml = async () => {
       if (!highlighter || !selectedLanguage || selectedLanguage === LANGUAGES.plaintext) {
-        return displayCode.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
+        return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
       }
 
       const loadedLanguages = highlighter.getLoadedLanguages() || [];
       const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
 
       if (!hasLoadedLanguage && selectedLanguage.src) {
+        loadingLanguage = true;
         setIsLoadingLanguage(true);
         await highlighter.loadLanguage(selectedLanguage.src);
+        if (cancelled) return "";
+        loadingLanguage = false;
         setIsLoadingLanguage(false);
       }
 
@@ -62,7 +48,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
         lang = "tsx";
       }
 
-      return highlighter.codeToHtml(displayCode, {
+      return highlighter.codeToHtml(code, {
         lang: lang,
         theme: themeName,
         transformers: [
@@ -76,33 +62,31 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
       });
     };
 
-    generateHighlightedHtml().then((newHtml) => {
-      if (!cancelled) {
-        setHighlightedHtml(newHtml);
-        setRenderedStateKey(targetRenderStateKey);
-      }
-    });
+    generateHighlightedHtml().then(
+      (html) => {
+        if (!cancelled) setRendered({ html, key: renderKey });
+      },
+      (error) => {
+        if (!cancelled) {
+          setIsLoadingLanguage(false);
+          console.error("Could not highlight code", error);
+        }
+      },
+    );
 
     return () => {
       cancelled = true;
+      if (loadingLanguage) setIsLoadingLanguage(false);
     };
-  }, [
-    displayCode,
-    highlightedLines,
-    highlighter,
-    selectedLanguage,
-    setIsLoadingLanguage,
-    targetRenderStateKey,
-    themeName,
-  ]);
+  }, [code, highlightedLines, highlighter, selectedLanguage, setIsLoadingLanguage, renderKey, themeName]);
 
   return (
     <div
       className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
       data-export-layer="code"
-      data-export-render-state={renderedStateKey}
+      data-export-ready={rendered.key === renderKey}
       dangerouslySetInnerHTML={{
-        __html: highlightedHtml,
+        __html: rendered.html,
       }}
     />
   );

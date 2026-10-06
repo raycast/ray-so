@@ -1,171 +1,94 @@
-import { BufferTarget, CanvasSource, getFirstEncodableVideoCodec, Output, WebMOutputFormat } from "mediabunny";
-
-type SupportedVideoFormat = {
-  extension: "webm";
-  mimeType: "video/webm";
-};
-
-export type RenderableFrame = HTMLCanvasElement | HTMLImageElement | ImageBitmap;
+import { BufferTarget, CanvasSource, getFirstEncodableVideoCodec, Output, Quality, WebMOutputFormat } from "mediabunny";
 
 type RecordVideoOptions = {
+  canvas: HTMLCanvasElement;
   fps: number;
   frameCount: number;
-  width: number;
-  height: number;
-  mimeType: string;
-  finalHoldFrameCount?: number;
-  renderFrame: (frameIndex: number) => Promise<RenderableFrame>;
+  finalHoldFrameCount: number;
+  signal: AbortSignal;
+  renderFrame: (frameIndex: number) => void;
+  onProgress: (progress: number) => void;
 };
-
-const VIDEO_FORMAT: SupportedVideoFormat = {
-  extension: "webm",
-  mimeType: "video/webm",
-};
-
-const WEBM_ENCODER_CODECS = ["vp9", "vp8"] as const;
-const TARGET_VIDEO_BITRATE = 12_000_000;
 
 export function getSupportedVideoFormat() {
   if (typeof window === "undefined" || typeof VideoEncoder === "undefined" || typeof VideoFrame === "undefined") {
     return null;
   }
-
-  return VIDEO_FORMAT;
-}
-
-export async function waitForNextPaint() {
-  return new Promise<void>((resolve) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => resolve());
-    });
-  });
-}
-
-export async function createRenderableImage(blob: Blob) {
-  if (typeof createImageBitmap === "function") {
-    return createImageBitmap(blob);
-  }
-
-  return new Promise<HTMLImageElement>((resolve, reject) => {
-    const image = new Image();
-    const objectUrl = URL.createObjectURL(blob);
-
-    image.onload = () => {
-      URL.revokeObjectURL(objectUrl);
-      resolve(image);
-    };
-    image.onerror = () => {
-      URL.revokeObjectURL(objectUrl);
-      reject(new Error("Could not decode the generated animation frame"));
-    };
-    image.src = objectUrl;
-  });
-}
-
-export function createRenderableCanvas(width: number, height: number): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-
-  return canvas;
-}
-
-function closeRenderableFrame(frame: RenderableFrame) {
-  if ("close" in frame && typeof frame.close === "function") {
-    frame.close();
-  }
-}
-
-async function getSupportedEncoderCodec(width: number, height: number) {
-  if (typeof VideoEncoder === "undefined" || typeof VideoFrame === "undefined") {
-    throw new Error("WebCodecs video export is not supported in this browser");
-  }
-
-  const codec = await getFirstEncodableVideoCodec([...WEBM_ENCODER_CODECS], {
-    width,
-    height,
-    bitrate: TARGET_VIDEO_BITRATE,
-  });
-
-  if (!codec) {
-    throw new Error("This browser does not support VP8 or VP9 encoding for WebM export");
-  }
-
-  return codec;
+  return { extension: "webm", mimeType: "video/webm" } as const;
 }
 
 export async function recordVideo({
+  canvas,
   fps,
   frameCount,
-  width,
-  height,
-  mimeType,
-  finalHoldFrameCount = 0,
+  finalHoldFrameCount,
+  signal,
   renderFrame,
+  onProgress,
 }: RecordVideoOptions) {
-  if (typeof VideoEncoder === "undefined" || typeof VideoFrame === "undefined") {
-    throw new Error("WebCodecs video export is not supported in this browser");
+  signal.throwIfAborted();
+  if (!getSupportedVideoFormat()) throw new Error("WebCodecs video export is not supported in this browser");
+  if (
+    !Number.isFinite(fps) ||
+    fps <= 0 ||
+    !Number.isInteger(frameCount) ||
+    frameCount < 1 ||
+    !Number.isInteger(finalHoldFrameCount) ||
+    finalHoldFrameCount < 0 ||
+    !canvas.width ||
+    !canvas.height
+  ) {
+    throw new Error("Invalid video export settings");
   }
 
-  const encoderCodec = await getSupportedEncoderCodec(width, height);
-  const target = new BufferTarget();
-  const output = new Output({
-    format: new WebMOutputFormat(),
-    target,
+  const quality = new Quality({ bitrate: 12_000_000, bitrateMode: "variable" });
+  const codec = await getFirstEncodableVideoCodec(["vp9", "vp8"], {
+    width: canvas.width,
+    height: canvas.height,
+    quality,
   });
-  const encoderCanvas = createRenderableCanvas(width, height);
-  const encoderContext = encoderCanvas.getContext("2d");
+  signal.throwIfAborted();
+  if (!codec) throw new Error("This browser does not support VP8 or VP9 encoding for WebM export");
 
-  if (!encoderContext) {
-    throw new Error("Could not create a canvas context for video export");
-  }
-
-  const totalFrames = Math.max(1, frameCount) + Math.max(0, finalHoldFrameCount);
-  const frameDuration = 1 / fps;
-  const videoSource = new CanvasSource(encoderCanvas, {
-    codec: encoderCodec,
-    bitrate: TARGET_VIDEO_BITRATE,
-    bitrateMode: "variable",
+  const target = new BufferTarget();
+  const output = new Output({ format: new WebMOutputFormat(), target });
+  const source = new CanvasSource(canvas, {
+    codec,
+    quality,
+    contentHint: "text",
     keyFrameInterval: 1,
     latencyMode: "quality",
   });
-
-  output.addVideoTrack(videoSource, {
-    frameRate: fps,
-    maximumPacketCount: totalFrames,
-  });
-
-  let finalized = false;
+  const totalFrames = frameCount + finalHoldFrameCount;
+  output.addVideoTrack(source, { frameRate: fps, maximumPacketCount: totalFrames });
+  const cancel = () => {
+    if (output.state !== "canceled" && output.state !== "finalized") void output.cancel().catch(() => {});
+  };
+  signal.addEventListener("abort", cancel, { once: true });
 
   try {
     await output.start();
-
-    for (let frameIndex = 0; frameIndex < totalFrames; frameIndex += 1) {
-      const sourceFrame = await renderFrame(Math.min(frameIndex, Math.max(0, frameCount - 1)));
-
-      try {
-        encoderContext.clearRect(0, 0, width, height);
-        encoderContext.drawImage(sourceFrame, 0, 0, width, height);
-        await videoSource.add(frameIndex * frameDuration, frameDuration);
-      } finally {
-        closeRenderableFrame(sourceFrame);
+    for (let index = 0; index < totalFrames; index += 1) {
+      signal.throwIfAborted();
+      renderFrame(Math.min(index, frameCount - 1));
+      // Encoding timestamps follow the timeline, not the time spent rendering.
+      await source.add(index / fps, 1 / fps);
+      if (index % Math.max(1, Math.round(fps / 10)) === 0 || index === totalFrames - 1) {
+        onProgress((index + 1) / totalFrames);
+        // Allow cancellation and navigation even when encoding resolves synchronously.
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
       }
     }
-
-    videoSource.close();
+    signal.throwIfAborted();
+    source.close();
     await output.finalize();
-    finalized = true;
-
-    if (!target.buffer) {
-      throw new Error("Video export did not produce any output data");
-    }
-
-    return new Blob([target.buffer], { type: mimeType });
+    signal.throwIfAborted();
+    if (!target.buffer) throw new Error("Video export did not produce output data");
+    return new Blob([target.buffer], { type: "video/webm" });
   } catch (error) {
-    if (!finalized && output.state !== "canceled" && output.state !== "finalized") {
-      await output.cancel().catch(() => {});
-    }
-
+    if (output.state !== "canceled" && output.state !== "finalized") await output.cancel().catch(() => {});
     throw error;
+  } finally {
+    signal.removeEventListener("abort", cancel);
   }
 }

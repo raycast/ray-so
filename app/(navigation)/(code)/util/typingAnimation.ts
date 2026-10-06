@@ -1,3 +1,16 @@
+export const FINAL_HOLD_DURATION_SECONDS = 0.75;
+
+export function getTypingCharacters(code: string) {
+  if (typeof Intl.Segmenter === "function") {
+    return Array.from(
+      new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(code),
+      ({ segment }) => segment,
+    );
+  }
+
+  return Array.from(code);
+}
+
 export function getVisibleCharacterCount(characterCount: number, progress: number | null) {
   if (progress === null) {
     return characterCount;
@@ -15,7 +28,7 @@ export function getVisibleCode(code: string, progress: number | null) {
     return code;
   }
 
-  const characters = Array.from(code);
+  const characters = getTypingCharacters(code);
 
   if (characters.length === 0) {
     return "";
