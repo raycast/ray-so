@@ -12,8 +12,8 @@
   --line-number: #636d83ff;
 
   position: relative;
-  isolation: isolate;
   min-height: 100%;
+  isolation: isolate;
 
   &::selection {
     background: var(--selection-background);
@@ -57,10 +57,10 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--shell-background);
-  border-radius: 14px;
-  box-shadow: var(--shell-shadow);
   padding: 4px;
+  border-radius: 14px;
+  background-color: var(--shell-background);
+  box-shadow: var(--shell-shadow);
 }
 
 .gridlinesHorizontal {
@@ -110,9 +110,9 @@
 .toolbar {
   display: grid;
   align-items: center;
+  padding: 4px 20px 8px 16px;
   gap: 8px;
   grid-template-columns: 60px minmax(0, 1fr) 60px;
-  padding: 4px 20px 8px 16px;
 }
 
 .controls {
@@ -131,10 +131,10 @@
   position: relative;
   display: grid;
   color: var(--badge-color);
-  font-size: 1rem;
-  font-weight: 500;
   font-optical-sizing: 0.875rem;
+  font-size: 1rem;
   font-variant-numeric: slashed-zero;
+  font-weight: 500;
   line-height: 1.5;
 }
 

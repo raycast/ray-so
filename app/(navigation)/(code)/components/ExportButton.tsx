@@ -70,18 +70,16 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    const clipboardItem = new ClipboardItem(
-      {
-        "image/png": toBlob(frameContext.current, {
-          pixelRatio: exportSize,
-        }).then((blob) => {
-            if (!blob) {
-              throw new Error("expected toBlob to return a blob");
-            }
-            return blob;
-        }),
-      }
-    );
+    const clipboardItem = new ClipboardItem({
+      "image/png": toBlob(frameContext.current, {
+        pixelRatio: exportSize,
+      }).then((blob) => {
+        if (!blob) {
+          throw new Error("expected toBlob to return a blob");
+        }
+        return blob;
+      }),
+    });
 
     await navigator.clipboard.write([clipboardItem]);
 

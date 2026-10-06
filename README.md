@@ -30,6 +30,7 @@
 This repository contains the source code for [ray.so](https://ray.so), a collection of tools built by [Raycast](https://raycast.com/#ref=ray.so). It includes:
 
 - [**Code Images**](</app/(navigation)/(code)>): Create beautiful images of your code.
+- [**Code Videos**](</app/(navigation)/videos/>): Create polished typing animations of your code.
 - [**Icon Maker**](</app/(navigation)/icon/>): Create beautiful icons for Raycast Extensions.
 - [**Prompt Explorer**](</app/(navigation)/prompts/>): Explore AI Prompts for Raycast.
 - [**Preset Explorer**](</app/(navigation)/presets/>): Explore AI Presets for Raycast.

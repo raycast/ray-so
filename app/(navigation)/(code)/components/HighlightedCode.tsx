@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
+import { themeDarkModeAtom, themeAtom } from "../store/themes";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./Editor.module.css";
-import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { themeDarkModeAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
@@ -13,15 +13,19 @@ type PropTypes = {
 };
 
 const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
-  const [highlightedHtml, setHighlightedHtml] = useState("");
+  const [rendered, setRendered] = useState({ html: "", key: "" });
   const highlighter = useAtomValue(highlighterAtom);
   const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
   const highlightedLines = useAtomValue(highlightedLinesAtom);
   const darkMode = useAtomValue(themeDarkModeAtom);
   const theme = useAtomValue(themeAtom);
   const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
+  const renderKey = JSON.stringify([code, selectedLanguage?.name, themeName, highlightedLines]);
 
   useEffect(() => {
+    let cancelled = false;
+    let loadingLanguage = false;
+
     const generateHighlightedHtml = async () => {
       if (!highlighter || !selectedLanguage || selectedLanguage === LANGUAGES.plaintext) {
         return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
@@ -31,8 +35,11 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
       const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
 
       if (!hasLoadedLanguage && selectedLanguage.src) {
+        loadingLanguage = true;
         setIsLoadingLanguage(true);
         await highlighter.loadLanguage(selectedLanguage.src);
+        if (cancelled) return "";
+        loadingLanguage = false;
         setIsLoadingLanguage(false);
       }
 
@@ -55,16 +62,31 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
       });
     };
 
-    generateHighlightedHtml().then((newHtml) => {
-      setHighlightedHtml(newHtml);
-    });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
+    generateHighlightedHtml().then(
+      (html) => {
+        if (!cancelled) setRendered({ html, key: renderKey });
+      },
+      (error) => {
+        if (!cancelled) {
+          setIsLoadingLanguage(false);
+          console.error("Could not highlight code", error);
+        }
+      },
+    );
+
+    return () => {
+      cancelled = true;
+      if (loadingLanguage) setIsLoadingLanguage(false);
+    };
+  }, [code, highlightedLines, highlighter, selectedLanguage, setIsLoadingLanguage, renderKey, themeName]);
 
   return (
     <div
       className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
+      data-export-layer="code"
+      data-export-ready={rendered.key === renderKey}
       dangerouslySetInnerHTML={{
-        __html: highlightedHtml,
+        __html: rendered.html,
       }}
     />
   );
