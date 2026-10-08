@@ -87,7 +87,7 @@ const PaperPrintBackground = ({ className }: { className: string }) => {
   );
 
   return (
-    <div ref={ref} className={className} aria-hidden="true">
+    <div ref={ref} className={className} data-export-shader aria-hidden="true">
       {size.width > 0 && size.height > 0 && (
         <HalftoneCmyk
           width="100%"
