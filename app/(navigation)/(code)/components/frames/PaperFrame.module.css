@@ -60,7 +60,7 @@
 }
 
 .bottomRuler {
-  top: 100%;
+  top: calc(100% + 1px);
   padding-top: 4px;
 }
 
