@@ -38,6 +38,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
     switch (theme.id) {
       case THEMES.paper.id:
         return <PaperFrame />;
+      case THEMES.paperPrint.id:
+        return <PaperFrame variant="print" />;
       case THEMES.aws.id:
         return <AwsFrame />;
       case THEMES.vercel.id:

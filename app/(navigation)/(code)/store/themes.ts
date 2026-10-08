@@ -1697,6 +1697,41 @@ export const THEMES: { [index: string]: Theme } = {
       }),
     },
   },
+  paperPrint: {
+    id: "paperPrint",
+    name: "Paper Print",
+    background: {
+      from: "#FAF9F3",
+      to: "#FAF9F3",
+    },
+    icon: PaperLogo,
+    iconUrl: PaperLogoUrl,
+    font: "paper-mono",
+    partner: true,
+    lineNumbersToggleable: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#222222",
+        constant: "#222222",
+        string: "#967341",
+        comment: "#8A8A84",
+        keyword: "#292A26",
+        parameter: "#222222",
+        function: "#292A26",
+        stringExpression: "#967341",
+        punctuation: "#8D8B80",
+        link: "#292A26",
+        number: "#657D9D",
+        property: "#657D9D",
+        objectLiteral: "#222222",
+        highlight: "rgba(131, 173, 239, 0.18)",
+        highlightHover: "rgba(131, 173, 239, 0.09)",
+        highlightBorder: "#292A26",
+        diffDeleted: "#B45E55",
+        diffInserted: "#58805F",
+      }),
+    },
+  },
 };
 
 const themeAtom = atomWithHash<Theme>(

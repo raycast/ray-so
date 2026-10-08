@@ -3,12 +3,15 @@ import { useAtom, useAtomValue } from "jotai";
 import { useLayoutEffect, useRef, useState } from "react";
 
 import { fileNameAtom, showBackgroundAtom } from "../../store";
+import { codeAtom } from "../../store/code";
 import { paddingAtom } from "../../store/padding";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
 import styles from "./PaperFrame.module.css";
+import PaperPrintBackground from "./PaperPrintBackground";
 
-const PaperFrame = () => {
+const PaperFrame = ({ variant = "grid" }: { variant?: "grid" | "print" }) => {
+  const isPrint = variant === "print";
   const frameRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const sideLabelRef = useRef<HTMLSpanElement>(null);
@@ -16,6 +19,20 @@ const PaperFrame = () => {
   const padding = useAtomValue(paddingAtom);
   const showBackground = useAtomValue(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const code = useAtomValue(codeAtom);
+  const fileNameField = (
+    <div className={styles.fileName}>
+      <input
+        aria-label="File name"
+        type="text"
+        value={fileName}
+        onChange={(event) => setFileName(event.target.value)}
+        spellCheck={false}
+        tabIndex={-1}
+      />
+      {fileName.length === 0 && <span data-ignore-in-export>Untitled-1</span>}
+    </div>
+  );
 
   const gridWidth = dimensions.width / Math.max(1, Math.round(dimensions.width / 12));
   const gridHeight = dimensions.height / Math.max(1, Math.round(dimensions.height / 24));
@@ -23,7 +40,7 @@ const PaperFrame = () => {
   const backgroundHeight = dimensions.height + 1 + padding * 2;
   const gridLines: string[] = [];
 
-  if (gridWidth > 0 && gridHeight > 0) {
+  if (!isPrint && gridWidth > 0 && gridHeight > 0) {
     // Position each stroke from the window origin; repeated background tiles can
     // round fractional cell sizes and drift away from the opposite border.
     for (let x = -Math.ceil(padding / gridWidth); x <= Math.ceil((dimensions.width + padding) / gridWidth); x++) {
@@ -37,6 +54,7 @@ const PaperFrame = () => {
   }
 
   useLayoutEffect(() => {
+    if (isPrint) return;
     const frame = frameRef.current;
     const window = windowRef.current;
     if (!frame || !window) return;
@@ -84,7 +102,7 @@ const PaperFrame = () => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", measure);
     };
-  }, []);
+  }, [isPrint]);
 
   useLayoutEffect(() => {
     const frame = frameRef.current;
@@ -105,17 +123,23 @@ const PaperFrame = () => {
   return (
     <div
       ref={frameRef}
-      className={classNames(sharedStyles.frame, styles.frame, showBackground && styles.withBackground)}
+      className={classNames(
+        sharedStyles.frame,
+        styles.frame,
+        isPrint && styles.print,
+        showBackground && styles.withBackground,
+      )}
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern} />}
-      {showBackground && (
+      {showBackground && isPrint && <PaperPrintBackground className={styles.grid} />}
+      {showBackground && !isPrint && (
         <svg className={styles.grid} width="100%" height="100%" aria-hidden="true">
           <path d={gridLines.join(" ")} fill="none" stroke="#cbdcf5" strokeWidth="1" />
         </svg>
       )}
       <div className={styles.windowContainer}>
-        {showBackground && dimensions.width > 0 && (
+        {showBackground && !isPrint && dimensions.width > 0 && (
           <div className={styles.measurements} aria-hidden="true">
             {[styles.topRuler, styles.bottomRuler].map((position) => (
               <div key={position} className={classNames(styles.horizontalRuler, position)}>
@@ -136,20 +160,16 @@ const PaperFrame = () => {
           </div>
         )}
         <div ref={windowRef} className={styles.window}>
-          <div className={styles.header}>
-            <div className={styles.fileName}>
-              <input
-                aria-label="File name"
-                type="text"
-                value={fileName}
-                onChange={(event) => setFileName(event.target.value)}
-                spellCheck={false}
-                tabIndex={-1}
-              />
-              {fileName.length === 0 && <span data-ignore-in-export>Untitled-1</span>}
-            </div>
-          </div>
+          {!isPrint && <div className={styles.header}>{fileNameField}</div>}
           <Editor />
+          {isPrint && (
+            <div className={styles.footer}>
+              {fileNameField}
+              <span className={styles.characterCount} aria-label={`${code.length} characters`}>
+                {code.length}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -12,6 +12,44 @@
   background-color: var(--paper-background);
 }
 
+.print {
+  --paper-background: #faf9f3;
+  --paper-blue: #292a26;
+  --line-number: #a5a398;
+
+  .window,
+  .header {
+    border-width: 1.5px;
+  }
+
+  .windowContainer::before {
+    transform: translate(4px, 4px);
+  }
+}
+
+.footer {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-top: 1.5px solid var(--paper-blue);
+  color: var(--paper-blue);
+  font-family: var(--font-paper-mono), monospace;
+  font-size: 11px;
+  gap: 12px;
+
+  .fileName {
+    min-width: 0;
+    font-size: inherit;
+  }
+}
+
+.characterCount {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 .grid {
   position: absolute;
   width: 100%;
