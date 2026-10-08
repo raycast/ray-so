@@ -128,6 +128,7 @@ const fontMap = {
   "space-mono": styles.spaceMono,
   "source-code-pro": styles.sourceCodePro,
   "google-sans-code": styles.googleSansCode,
+  "paper-mono": styles.paperMono,
 } as const;
 
 function Editor() {

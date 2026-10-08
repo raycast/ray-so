@@ -25,6 +25,7 @@ import TailwindFrame from "./frames/TailwindFrame";
 import TriggerdevFrame from "./frames/TriggerdevFrame";
 import VercelFrame from "./frames/VercelFrame";
 import AwsFrame from "./frames/AwsFrame";
+import PaperFrame from "./frames/PaperFrame";
 
 import styles from "./Frame.module.css";
 
@@ -35,6 +36,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
 
   function renderFrame() {
     switch (theme.id) {
+      case THEMES.paper.id:
+        return <PaperFrame />;
       case THEMES.aws.id:
         return <AwsFrame />;
       case THEMES.vercel.id:

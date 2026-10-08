@@ -183,3 +183,22 @@
   font-family: var(--font-google-sans-code), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
   font-weight: 400;
 }
+
+.paperMono {
+  font-family: var(--font-paper-mono), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monospace;
+  font-feature-settings: "ss01" 1;
+  font-weight: 400;
+
+  pre,
+  code {
+    font-feature-settings: inherit;
+    letter-spacing: inherit;
+  }
+
+  .textarea,
+  .formatted,
+  &:after {
+    font-variant-ligatures: normal;
+    letter-spacing: 0;
+  }
+}

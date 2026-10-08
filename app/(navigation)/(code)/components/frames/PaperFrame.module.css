@@ -1,0 +1,154 @@
+.frame {
+  --paper-background: #f7f7f5;
+  --paper-blue: #83adef;
+  --paper-side-gap: 6px;
+  --line-number: #8a9bb5;
+
+  position: relative;
+}
+
+.withBackground {
+  background-color: var(--paper-background);
+  background-image: linear-gradient(to right, #cbdcf5 1px, transparent 1px),
+    linear-gradient(to bottom, #cbdcf5 1px, transparent 1px);
+  background-origin: content-box;
+  background-position: left top;
+  background-size: var(--paper-grid-width, 12px) var(--paper-grid-height, 24px);
+}
+
+.windowContainer {
+  position: relative;
+}
+
+.measurements {
+  position: absolute;
+  color: var(--paper-blue);
+  font-family: var(--font-paper-mono), monospace;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  inset: 0 1px 1px 0;
+  line-height: 12px;
+  pointer-events: none;
+}
+
+.horizontalRuler {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 16px;
+
+  > span {
+    position: absolute;
+    left: 0;
+    padding: 0 2px;
+    background: var(--paper-background);
+    transform: translateX(calc(-50% + 0.5px));
+
+    &:nth-child(2) {
+      left: var(--paper-grid-middle-x, 50%);
+    }
+
+    &:last-child {
+      left: 100%;
+    }
+  }
+}
+
+.topRuler {
+  bottom: 100%;
+  padding-bottom: 4px;
+}
+
+.bottomRuler {
+  top: 100%;
+  padding-top: 4px;
+}
+
+.verticalRuler {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  visibility: var(--paper-side-visibility, hidden);
+
+  > span {
+    width: max-content;
+    padding: 0 2px;
+    background: var(--paper-background);
+
+    &:first-child {
+      transform: translateY(2px);
+    }
+
+    &:last-child {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.leftRuler {
+  right: calc(100% + var(--paper-side-gap));
+  align-items: flex-end;
+  text-align: right;
+}
+
+.rightRuler {
+  left: calc(100% + var(--paper-side-gap) + 1px);
+  align-items: flex-start;
+  text-align: left;
+}
+
+.window {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--paper-blue);
+  border-radius: 5px;
+  background: var(--paper-background);
+  box-shadow: 3px 3px 0 var(--paper-blue);
+}
+
+.header {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--paper-blue);
+  color: #30302f;
+  gap: 12px;
+}
+
+.fileName {
+  position: relative;
+  height: 24px;
+  flex: 1;
+  font-family: var(--font-paper-mono), monospace;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+
+  > input {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    inset: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus + span {
+      display: none;
+    }
+  }
+
+  > span {
+    pointer-events: none;
+  }
+}
