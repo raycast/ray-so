@@ -17,25 +17,45 @@ const PaperFrame = () => {
   const showBackground = useAtomValue(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
 
+  const gridWidth = dimensions.width / Math.max(1, Math.round(dimensions.width / 12));
+  const gridHeight = dimensions.height / Math.max(1, Math.round(dimensions.height / 24));
+  const backgroundWidth = dimensions.width + 1 + padding * 2;
+  const backgroundHeight = dimensions.height + 1 + padding * 2;
+  const gridLines: string[] = [];
+
+  if (gridWidth > 0 && gridHeight > 0) {
+    // Position each stroke from the window origin; repeated background tiles can
+    // round fractional cell sizes and drift away from the opposite border.
+    for (let x = -Math.ceil(padding / gridWidth); x <= Math.ceil((dimensions.width + padding) / gridWidth); x++) {
+      const position = padding + x * gridWidth + 0.5;
+      gridLines.push(`M${position} 0V${backgroundHeight}`);
+    }
+    for (let y = -Math.ceil(padding / gridHeight); y <= Math.ceil((dimensions.height + padding) / gridHeight); y++) {
+      const position = padding + y * gridHeight + 0.5;
+      gridLines.push(`M0 ${position}H${backgroundWidth}`);
+    }
+  }
+
   useLayoutEffect(() => {
     const frame = frameRef.current;
     const window = windowRef.current;
     if (!frame || !window) return;
 
     const alignGrid = (width: number, height: number) => {
+      // Hidden previews can briefly report zero dimensions.
+      if (!(width > 1 && height > 1)) return;
+
       // Fit whole cells between the one-pixel borders without changing the window size.
       const horizontalSpan = width - 1;
       const verticalSpan = height - 1;
       const columns = Math.max(1, Math.round(horizontalSpan / 12));
       const gridWidth = horizontalSpan / columns;
       const middleX = Math.round(columns / 2) * gridWidth;
-      frame.style.setProperty("--paper-grid-width", `${gridWidth}px`);
       frame.style.setProperty("--paper-grid-middle-x", `${middleX}px`);
-      frame.style.setProperty("--paper-grid-height", `${verticalSpan / Math.max(1, Math.round(verticalSpan / 24))}px`);
       setDimensions((previous) => {
         const next = {
-          width: Math.round(horizontalSpan),
-          height: Math.round(verticalSpan),
+          width: horizontalSpan,
+          height: verticalSpan,
           middleX: Math.round(middleX),
         };
         return previous.width === next.width && previous.height === next.height && previous.middleX === next.middleX
@@ -44,13 +64,26 @@ const PaperFrame = () => {
       });
     };
 
-    alignGrid(window.offsetWidth, window.offsetHeight);
+    const measure = () => {
+      const style = getComputedStyle(window);
+      alignGrid(parseFloat(style.width), parseFloat(style.height));
+    };
+
+    measure();
     const observer = new ResizeObserver(([entry]) => {
-      const { inlineSize, blockSize } = entry.borderBoxSize[0];
-      alignGrid(inlineSize, blockSize);
+      const size = entry.borderBoxSize[0];
+      if (size?.inlineSize > 1 && size.blockSize > 1) {
+        alignGrid(size.inlineSize, size.blockSize);
+      } else {
+        measure();
+      }
     });
-    observer.observe(window);
-    return () => observer.disconnect();
+    observer.observe(window, { box: "border-box" });
+    document.addEventListener("visibilitychange", measure);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", measure);
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -76,6 +109,11 @@ const PaperFrame = () => {
       style={{ padding }}
     >
       {!showBackground && <div data-ignore-in-export className={sharedStyles.transparentPattern} />}
+      {showBackground && (
+        <svg className={styles.grid} width="100%" height="100%" aria-hidden="true">
+          <path d={gridLines.join(" ")} fill="none" stroke="#cbdcf5" strokeWidth="1" />
+        </svg>
+      )}
       <div className={styles.windowContainer}>
         {showBackground && dimensions.width > 0 && (
           <div className={styles.measurements} aria-hidden="true">
@@ -83,14 +121,16 @@ const PaperFrame = () => {
               <div key={position} className={classNames(styles.horizontalRuler, position)}>
                 <span>0</span>
                 <span>{dimensions.middleX}</span>
-                <span>{dimensions.width}</span>
+                <span>{Math.round(dimensions.width)}</span>
               </div>
             ))}
             {[styles.leftRuler, styles.rightRuler].map((position) => (
               <div key={position} className={classNames(styles.verticalRuler, position)}>
                 <span>0</span>
                 <span>{Math.round(dimensions.height / 2)}</span>
-                <span ref={position === styles.rightRuler ? sideLabelRef : undefined}>{dimensions.height}</span>
+                <span ref={position === styles.rightRuler ? sideLabelRef : undefined}>
+                  {Math.round(dimensions.height)}
+                </span>
               </div>
             ))}
           </div>
