@@ -43,6 +43,8 @@ import Auth0Logo from "../assets/auth0.svg";
 import Auth0LogoUrl from "../assets/auth0.svg?url";
 import PaperLogo from "../assets/paper.svg";
 import PaperLogoUrl from "../assets/paper.svg?url";
+import GraphPaperLogo from "../assets/paper-outline.svg";
+import GraphPaperLogoUrl from "../assets/paper-outline.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -1664,15 +1666,16 @@ export const THEMES: { [index: string]: Theme } = {
   },
   paper: {
     id: "paper",
-    name: "Paper",
+    name: "Graph Paper",
     background: {
       from: "#F7F7F5",
       to: "#F7F7F5",
     },
-    icon: PaperLogo,
-    iconUrl: PaperLogoUrl,
+    icon: GraphPaperLogo,
+    iconUrl: GraphPaperLogoUrl,
     font: "paper-mono",
     partner: true,
+    hidden: true,
     lineNumbersToggleable: true,
     syntax: {
       light: convertToShikiTheme({
@@ -1699,7 +1702,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   paperPrint: {
     id: "paperPrint",
-    name: "Paper Print",
+    name: "Paper",
     background: {
       from: "#FAF9F3",
       to: "#FAF9F3",

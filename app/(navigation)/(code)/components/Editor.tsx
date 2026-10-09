@@ -25,6 +25,8 @@ import { derivedFlashMessageAtom } from "../store/flash";
 import { highlightedLinesAtom, showLineNumbersAtom } from "../store";
 import { LANGUAGES } from "../util/languages";
 
+const graphPaperTrigger = /^[\t ]*\/\/[\t ]*graph[\t ]*$/im;
+
 function indentText(text: string) {
   return text
     .split("\n")
@@ -175,26 +177,31 @@ function Editor() {
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (event) => {
-      if (event.target.value.includes("🐰") && theme.id !== THEMES.rabbit.id) {
-        if (!unlockedThemes.includes(THEMES.rabbit.id)) {
-          setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
+      const secretTheme = event.target.value.includes("🐰")
+        ? THEMES.rabbit
+        : graphPaperTrigger.test(event.target.value) && !graphPaperTrigger.test(code)
+          ? THEMES.paper
+          : null;
+      if (secretTheme && theme.id !== secretTheme.id) {
+        if (!unlockedThemes.includes(secretTheme.id)) {
+          setUnlockedThemes([...unlockedThemes, secretTheme.id]);
         }
-        setTheme(THEMES.rabbit);
+        setTheme(secretTheme);
         try {
-          localStorage.setItem("codeTheme", THEMES.rabbit.id);
+          localStorage.setItem("codeTheme", secretTheme.id);
         } catch (error) {
           console.log("Could not set theme in localStorage", error);
         }
         setFlashMessage({
-          message: "Evil Rabbit Theme Unlocked",
+          message: `${secretTheme.name} Theme Unlocked`,
           variant: "unlock",
           timeout: 2000,
-          icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
+          icon: React.createElement(secretTheme.icon || "", { style: { color: "black" } }),
         });
       }
       setCode(event.target.value);
     },
-    [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
+    [code, setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
   );
 
   const handleFocus = useCallback<FocusEventHandler>(() => {
