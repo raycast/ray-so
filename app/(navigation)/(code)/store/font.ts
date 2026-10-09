@@ -11,6 +11,7 @@ export const FONTS = [
   "space-mono",
   "source-code-pro",
   "google-sans-code",
+  "paper-mono",
 ] as const;
 
 export type Font = (typeof FONTS)[number];

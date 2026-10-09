@@ -41,6 +41,10 @@ import StripeLogo from "../assets/stripe/logo.svg";
 import StripeLogoUrl from "../assets/stripe/logo.svg?url";
 import Auth0Logo from "../assets/auth0.svg";
 import Auth0LogoUrl from "../assets/auth0.svg?url";
+import PaperLogo from "../assets/paper.svg";
+import PaperLogoUrl from "../assets/paper.svg?url";
+import GraphPaperLogo from "../assets/paper-outline.svg";
+import GraphPaperLogoUrl from "../assets/paper-outline.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
 import { BASE_URL } from "@/utils/common";
@@ -1657,6 +1661,77 @@ export const THEMES: { [index: string]: Theme } = {
         highlightBorder: "#528BFF",
         diffDeleted: "#EA976A",
         diffInserted: "#98D2B2",
+      }),
+    },
+  },
+  paper: {
+    id: "paper",
+    name: "Graph Paper",
+    background: {
+      from: "#F7F7F5",
+      to: "#F7F7F5",
+    },
+    icon: GraphPaperLogo,
+    iconUrl: GraphPaperLogoUrl,
+    font: "paper-mono",
+    partner: true,
+    hidden: true,
+    lineNumbersToggleable: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#222222",
+        constant: "#222222",
+        string: "#BC8700",
+        comment: "#8A8A84",
+        keyword: "#4570BC",
+        parameter: "#222222",
+        function: "#4570BC",
+        stringExpression: "#BC8700",
+        punctuation: "#B5AA8F",
+        link: "#4570BC",
+        number: "#845CAD",
+        property: "#845CAD",
+        objectLiteral: "#222222",
+        highlight: "rgba(131, 173, 239, 0.18)",
+        highlightHover: "rgba(131, 173, 239, 0.09)",
+        highlightBorder: "#83ADEF",
+        diffDeleted: "#B45E55",
+        diffInserted: "#58805F",
+      }),
+    },
+  },
+  paperPrint: {
+    id: "paperPrint",
+    name: "Paper",
+    background: {
+      from: "#FAF9F3",
+      to: "#FAF9F3",
+    },
+    icon: PaperLogo,
+    iconUrl: PaperLogoUrl,
+    font: "paper-mono",
+    partner: true,
+    lineNumbersToggleable: true,
+    syntax: {
+      light: convertToShikiTheme({
+        foreground: "#222222",
+        constant: "#222222",
+        string: "#BC8700",
+        comment: "#8A8A84",
+        keyword: "#4570BC",
+        parameter: "#222222",
+        function: "#4570BC",
+        stringExpression: "#BC8700",
+        punctuation: "#B5AA8F",
+        link: "#4570BC",
+        number: "#845CAD",
+        property: "#845CAD",
+        objectLiteral: "#222222",
+        highlight: "rgba(131, 173, 239, 0.18)",
+        highlightHover: "rgba(131, 173, 239, 0.09)",
+        highlightBorder: "#292A26",
+        diffDeleted: "#B45E55",
+        diffInserted: "#58805F",
       }),
     },
   },
