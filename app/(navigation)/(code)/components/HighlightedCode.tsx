@@ -20,7 +20,7 @@ const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
   const darkMode = useAtomValue(themeDarkModeAtom);
   const theme = useAtomValue(themeAtom);
   const themeName =
-    theme.id === "paper"
+    theme.id === "paper" || theme.id === "paperPrint"
       ? "paper"
       : theme.id === "tailwind"
         ? darkMode
