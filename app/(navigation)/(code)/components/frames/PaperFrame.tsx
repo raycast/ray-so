@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 import { fileNameAtom, showBackgroundAtom } from "../../store";
 import { codeAtom } from "../../store/code";
+import { flashShownAtom } from "../../store/flash";
 import { paddingAtom } from "../../store/padding";
 import Editor from "../Editor";
 import sharedStyles from "./DefaultFrame.module.css";
@@ -19,6 +20,9 @@ const PaperFrame = ({ variant = "grid" }: { variant?: "grid" | "print" }) => {
   const padding = useAtomValue(paddingAtom);
   const showBackground = useAtomValue(showBackgroundAtom);
   const [fileName, setFileName] = useAtom(fileNameAtom);
+  const flashShown = useAtomValue(flashShownAtom);
+  const hasTitle = fileName.trim().length > 0;
+  const showTitleBar = hasTitle || !flashShown;
   const code = useAtomValue(codeAtom);
   const fileNameField = (
     <div className={styles.fileName}>
@@ -102,7 +106,7 @@ const PaperFrame = ({ variant = "grid" }: { variant?: "grid" | "print" }) => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", measure);
     };
-  }, [isPrint]);
+  }, [isPrint, showTitleBar]);
 
   useLayoutEffect(() => {
     const frame = frameRef.current;
@@ -160,10 +164,14 @@ const PaperFrame = ({ variant = "grid" }: { variant?: "grid" | "print" }) => {
           </div>
         )}
         <div ref={windowRef} className={styles.window}>
-          {!isPrint && <div className={styles.header}>{fileNameField}</div>}
+          {!isPrint && showTitleBar && (
+            <div className={styles.header} data-ignore-in-export={!hasTitle || undefined}>
+              {fileNameField}
+            </div>
+          )}
           <Editor />
-          {isPrint && (
-            <div className={styles.footer}>
+          {isPrint && showTitleBar && (
+            <div className={styles.footer} data-ignore-in-export={!hasTitle || undefined}>
               {fileNameField}
               <span className={styles.characterCount} aria-label={`${code.length} characters`}>
                 {code.length}

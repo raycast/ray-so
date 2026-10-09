@@ -10,6 +10,11 @@ const htmlToImageOptions = {
 
 type PngOptions = Parameters<typeof htmlToPng>[1];
 
+// Export UI changes can collapse an empty title bar. Let React and resize
+// observers update the frame, grid, and shader dimensions before cloning it.
+const waitForExportLayout = () =>
+  new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+
 const svgDataUrl = (svg: SVGSVGElement) =>
   `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(svg))}`;
 
@@ -52,6 +57,7 @@ const shaderCanvas = async (layers: NonNullable<Awaited<ReturnType<typeof shader
 };
 
 export const toPng = async (node: HTMLElement, options?: PngOptions) => {
+  await waitForExportLayout();
   const layers = await shaderLayers(node, options);
   if (layers) {
     await shaderCanvas(layers, options);
@@ -70,6 +76,7 @@ export const toPng = async (node: HTMLElement, options?: PngOptions) => {
 
 type BlobOptions = Parameters<typeof htmlToBlob>[1];
 export const toBlob = async (node: HTMLElement, options?: BlobOptions) => {
+  await waitForExportLayout();
   const layers = await shaderLayers(node, options);
   if (layers) {
     const canvas = await shaderCanvas(layers, options);
@@ -83,6 +90,7 @@ export const toBlob = async (node: HTMLElement, options?: BlobOptions) => {
 
 type SvgOptions = Parameters<typeof htmlToSvg>[1];
 export const toSvg = async (node: HTMLElement, options?: SvgOptions) => {
+  await waitForExportLayout();
   const layers = await shaderLayers(node, options);
   if (layers) {
     const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
