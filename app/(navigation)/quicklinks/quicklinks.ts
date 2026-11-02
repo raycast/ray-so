@@ -675,6 +675,15 @@ const shopping: Quicklink[] = [
 
 const entertainment: Quicklink[] = [
   {
+    id: "poople-daily-hints",
+    name: "Open Poople Daily Hints",
+    description: "Open staged hints for the daily four-letter word ladder",
+    link: "https://poopleanswers.com/answer",
+    author: {
+      name: "Ethan Lee",
+    },
+  },
+  {
     id: "spotify-player",
     name: "Search Spotify Extension",
     link: `raycast://extensions/mattisssa/spotify-player/search?context=%7B%22query%22%3A%22{Query}%22%7D`,
