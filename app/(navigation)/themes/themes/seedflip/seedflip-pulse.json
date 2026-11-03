@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Pulse",
+  "appearance": "dark",
+  "colors": {
+    "background": "#121212",
+    "backgroundSecondary": "#1A1A1A",
+    "text": "#FFFFFF",
+    "selection": "#1DB954",
+    "loader": "#1DB954",
+    "red": "#E76565",
+    "orange": "#E7A165",
+    "yellow": "#E7D165",
+    "green": "#65E790",
+    "blue": "#659BE7",
+    "purple": "#A665E7",
+    "magenta": "#E765BB"
+  }
+}

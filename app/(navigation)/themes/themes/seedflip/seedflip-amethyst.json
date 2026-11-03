@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Amethyst",
+  "appearance": "light",
+  "colors": {
+    "background": "#F8F7F6",
+    "backgroundSecondary": "#FFFFFF",
+    "text": "#1A0A2E",
+    "selection": "#635BFF",
+    "loader": "#635BFF",
+    "red": "#D41111",
+    "orange": "#D46C11",
+    "yellow": "#D4B411",
+    "green": "#11D452",
+    "blue": "#1162D4",
+    "purple": "#7311D4",
+    "magenta": "#D41193"
+  }
+}
