@@ -1,0 +1,21 @@
+{
+  "author": "Maciej Szamowski",
+  "authorUsername": "szamski",
+  "version": "1",
+  "name": "Grok Day",
+  "appearance": "light",
+  "colors": {
+    "background": "#F5F5F5",
+    "backgroundSecondary": "#DEDEDE",
+    "text": "#262626",
+    "selection": "#7D4BC6",
+    "loader": "#7D4BC6",
+    "red": "#CD3048",
+    "orange": "#B8532D",
+    "yellow": "#A27612",
+    "green": "#378E23",
+    "blue": "#2F64D2",
+    "purple": "#7D4BC6",
+    "magenta": "#A53E87"
+  }
+}

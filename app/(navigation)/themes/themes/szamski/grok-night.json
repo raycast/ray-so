@@ -1,0 +1,21 @@
+{
+  "author": "Maciej Szamowski",
+  "authorUsername": "szamski",
+  "version": "1",
+  "name": "Grok Night",
+  "appearance": "dark",
+  "colors": {
+    "background": "#141414",
+    "backgroundSecondary": "#242424",
+    "text": "#E1E1E1",
+    "selection": "#E0AF68",
+    "loader": "#E0AF68",
+    "red": "#F7768E",
+    "orange": "#EC927B",
+    "yellow": "#E0AF68",
+    "green": "#9ECE6A",
+    "blue": "#7AA2F7",
+    "purple": "#BB9AF7",
+    "magenta": "#D988C2"
+  }
+}
