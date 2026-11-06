@@ -50,7 +50,6 @@ export type Model =
   | "gateway-moonshotai/kimi-k3.1-pro"
   | "gateway-google/gemma-4-31b-it"
   | "gateway-thinkingmachines/inkling"
-  | "gateway-thinkingmachines/inkling-small"
   | "gateway-deepseek/deepseek-v4-flash"
   | "gateway-deepseek/deepseek-v4.1-flash"
   | "gateway-deepseek/deepseek-v4-pro-0813"
