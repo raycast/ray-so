@@ -1,0 +1,117 @@
+/* E2B colour system v0.18 (github.com/e2b-dev, design/color-system): neutral steps for the window, orange only in the cover */
+.frame {
+  --frame-background: #0a0a0a; /* surface, neutral 2 */
+  --selection-background: rgba(255, 255, 255, 0.16);
+  --selection-text-color: #f4f4f4;
+  --frame-header-background: #0a0a0a; /* surface, neutral 2 */
+  --frame-border: #1f1f1f; /* line-subtle, neutral 4 */
+  --frame-border-radius: 8px;
+  --frame-text-color: #f4f4f4; /* heading, neutral 12 */
+
+  &.withBackground {
+    position: relative;
+    overflow: hidden;
+    background-color: #ff3001; /* Fire Orange, the cover's base */
+  }
+
+  &::selection {
+    background: var(--selection-background);
+    color: var(--selection-text-color);
+  }
+
+  &.darkMode {
+    --frame-background: #0a0a0a;
+    --frame-header-background: #0a0a0a;
+    --frame-border: #1f1f1f;
+    --frame-text-color: #f4f4f4;
+    --selection-background: rgba(255, 255, 255, 0.16);
+    --selection-text-color: #f4f4f4;
+  }
+}
+
+/* Real element instead of ::after so html-to-image inlines the image on export */
+.background {
+  position: absolute;
+  z-index: 0;
+  /* E2B cover rocks as a vector tile: one seamless vertical period of the 480x270 pixel art plus orange spacing,
+     repeated down so any frame height keeps getting rocks, and crisp at every export size */
+  background-image: url("/e2b-rocks.svg"); /* in public/, like stars.svg, so SVGR does not turn it into a component */
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: 130% auto;
+  inset: 0;
+  pointer-events: none;
+}
+
+.window {
+  position: relative;
+  z-index: 1;
+  border: 0.5px solid var(--frame-border);
+  border-radius: var(--frame-border-radius);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: var(--frame-background);
+}
+
+.header {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--frame-border);
+  background: var(--frame-header-background);
+  border-top-left-radius: calc(var(--frame-border-radius) - 0.5px);
+  border-top-right-radius: calc(var(--frame-border-radius) - 0.5px);
+  gap: 12px;
+}
+
+.fileName {
+  position: relative;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  color: var(--frame-text-color);
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: top;
+
+  input,
+  & > span,
+  &:after {
+    position: static;
+    z-index: 2;
+    width: auto;
+    min-width: 1em;
+    padding: 0;
+    border: none;
+    margin: 0;
+    appearance: none;
+    background: none;
+    font: inherit;
+    grid-area: 1 / 2;
+    resize: none;
+    text-align: left;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  input {
+    color: inherit;
+  }
+
+  &:after {
+    content: attr(data-value) " ";
+    visibility: hidden;
+  }
+}
+
+.language {
+  height: 40px;
+  color: #8a8a8a; /* muted, neutral 8 */
+  font-size: 14px;
+  line-height: 40px;
+}
