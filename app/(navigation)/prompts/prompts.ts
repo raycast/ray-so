@@ -692,6 +692,17 @@ const fun: Prompt[] = [
 
 const misc: Prompt[] = [
   {
+    id: "source-checked-study-questions",
+    title: "Practice from a Passage",
+    prompt:
+      "Create up to three practice questions using only the source passage. Use multiple-choice or true/false questions. Each question must have exactly one answer supported by the passage; preserve qualifiers such as may, only, and usually. Do not invent facts, page numbers, or citations. Keep the questions separate from an answer key. In the answer key, give the correct answer, a short explanation, and a brief supporting quotation from the passage. If the passage cannot support three distinct questions, create fewer and briefly explain why." +
+      generateSelection("Source passage", "Practice questions and answer key"),
+    creativity: "low",
+    date: "2026-11-03",
+    icon: "question-mark-circle",
+    author: { name: "Ethan Lee", link: "https://aistudytools.app/" },
+  },
+  {
     id: "tldr",
     title: "TL;DR",
     prompt:
