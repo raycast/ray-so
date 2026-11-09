@@ -34,6 +34,12 @@ const commitMono = localFont({
   src: "../assets/commit-mono-regular.woff2",
   variable: "--font-commitmono",
 });
+const paperMono = localFont({
+  src: "../assets/paper-mono-regular.woff2",
+  weight: "400",
+  display: "swap",
+  variable: "--font-paper-mono",
+});
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   weight: "400",
@@ -79,6 +85,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         firaCode.variable,
         soehneMono.variable,
         commitMono.variable,
+        paperMono.variable,
         robotoMono.variable,
         spaceMono.variable,
         sourceCodePro.variable,

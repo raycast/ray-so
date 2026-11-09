@@ -5,6 +5,7 @@ import { highlighterAtom } from "./store";
 import { useAtom } from "jotai";
 
 import { shikiTheme } from "./store/themes";
+import { paperTheme } from "./util/paper-theme";
 
 import Frame from "./components/Frame";
 import Controls from "./components/Controls";
@@ -28,7 +29,7 @@ export function Code() {
 
   useEffect(() => {
     getHighlighterCore({
-      themes: [shikiTheme, tailwindLight, tailwindDark],
+      themes: [shikiTheme, paperTheme, tailwindLight, tailwindDark],
       langs: [LANGUAGES.javascript.src(), LANGUAGES.tsx.src(), LANGUAGES.swift.src(), LANGUAGES.python.src()],
       loadWasm: getWasm,
     }).then((highlighter) => {
