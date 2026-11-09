@@ -1,4 +1,4 @@
-import { toPng as htmlToPng, toSvg as htmlToSvg, toBlob as htmlToBlob } from "html-to-image";
+import { toPng as htmlToPng, toSvg as htmlToSvg, toBlob as htmlToBlob, toCanvas as htmlToCanvas } from "html-to-image";
 
 const imageFilter = (node: HTMLElement) => node.tagName !== "TEXTAREA" && !node.dataset?.ignoreInExport;
 
@@ -7,6 +7,9 @@ const htmlToImageOptions = {
   pixelRatio: 2,
   skipAutoScale: true,
 };
+
+export const toCanvas = (node: HTMLElement, options?: Parameters<typeof htmlToCanvas>[1]) =>
+  htmlToCanvas(node, { ...htmlToImageOptions, ...options });
 
 type PngOptions = Parameters<typeof htmlToPng>[1];
 export const toPng = async (node: HTMLElement, options?: PngOptions) => {

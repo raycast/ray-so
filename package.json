@@ -51,6 +51,7 @@
     "js-base64": "^3.7.3",
     "jszip": "^3.10.1",
     "lodash.debounce": "^4.0.8",
+    "mediabunny": "^1.61.3",
     "nanoid": "^5.1.16",
     "next": "16.3.8",
     "prettier": "^3.3.3",
