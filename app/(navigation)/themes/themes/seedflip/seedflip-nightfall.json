@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Nightfall",
+  "appearance": "dark",
+  "colors": {
+    "background": "#0A0A0F",
+    "backgroundSecondary": "#12121A",
+    "text": "#E4E4E7",
+    "selection": "#818CF8",
+    "loader": "#818CF8",
+    "red": "#F25A5A",
+    "orange": "#F2A15A",
+    "yellow": "#F2D85A",
+    "green": "#5AF28C",
+    "blue": "#5A99F2",
+    "purple": "#A65AF2",
+    "magenta": "#F25ABF"
+  }
+}
