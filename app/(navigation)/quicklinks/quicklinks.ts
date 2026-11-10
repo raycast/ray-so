@@ -733,6 +733,15 @@ const entertainment: Quicklink[] = [
     link: "https://www.imdb.com/find?s=all&q={query}",
   },
   {
+    id: "mydramadb",
+    name: "Search MyDramaDB",
+    link: "https://mydramadb.com/search?q={query}",
+    author: {
+      name: "Jonathan Greve",
+      link: "https://mydramadb.com",
+    },
+  },
+  {
     id: "netflix",
     name: "Search Netflix",
     link: "https://www.netflix.com/search?q={query}",
