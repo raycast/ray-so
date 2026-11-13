@@ -1665,7 +1665,7 @@ export const THEMES: { [index: string]: Theme } = {
   e2b: {
     id: "e2b",
     name: "E2B",
-    // E2B colour system v0.18: Fire Orange canvas under the dither cover image (E2bFrame)
+    // Fire Orange is E2B's accent; the frame itself is a black canvas with the rock pattern (E2bFrame)
     background: {
       from: "#FF3001",
       to: "#FF3001",

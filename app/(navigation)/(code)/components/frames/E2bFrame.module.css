@@ -1,4 +1,4 @@
-/* E2B colour system v0.18 (github.com/e2b-dev, design/color-system): neutral steps for the window, orange only in the cover */
+/* E2B colour system v0.18 (github.com/e2b-dev, design/color-system): neutral steps for the window, orange only in the pattern */
 .frame {
   --frame-background: #0a0a0a; /* surface, neutral 2 */
   --selection-background: rgba(255, 255, 255, 0.16);
@@ -11,7 +11,7 @@
   &.withBackground {
     position: relative;
     overflow: hidden;
-    background-color: #ff3001; /* Fire Orange, the cover's base */
+    background-color: #000; /* black canvas, one step under the window's surface */
   }
 
   &::selection {
@@ -33,12 +33,15 @@
 .background {
   position: absolute;
   z-index: 0;
-  /* E2B cover rocks as a vector tile: one seamless vertical period of the 480x270 pixel art plus orange spacing,
-     repeated down so any frame height keeps getting rocks, and crisp at every export size */
+  /* E2B's rock pattern as 480x270 vector pixel art in Fire Orange, drawn at a fixed 2px per pixel (960x540) from the
+     top of the frame. It is always wider than the frame (920px at most), is densest towards the top right and thins
+     out to nothing towards the bottom left and the bottom edge through an ordered dither baked into the file. So the
+     pattern recedes without any opacity, the pixels stay the same size for a one-liner and a very long snippet, and
+     a frame taller than the pattern just continues in black */
   background-image: url("/e2b-rocks.svg"); /* in public/, like stars.svg, so SVGR does not turn it into a component */
   background-position: center top;
-  background-repeat: repeat-y;
-  background-size: 130% auto;
+  background-repeat: no-repeat;
+  background-size: 960px auto;
   inset: 0;
   pointer-events: none;
 }
