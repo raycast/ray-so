@@ -11,6 +11,7 @@ import ClerkFrame from "./frames/ClerkFrame";
 import CloudflareFrame from "./frames/CloudflareFrame";
 import Auth0Frame from "./frames/Auth0Frame";
 import DefaultFrame from "./frames/DefaultFrame";
+import E2bFrame from "./frames/E2bFrame";
 import ElevenLabsFrame from "./frames/ElevenLabsFrame";
 import FirecrawlFrame from "./frames/FirecrawlFrame";
 import GeminiFrame from "./frames/GeminiFrame";
@@ -56,6 +57,8 @@ const Frame = ({ resize = true }: { resize?: boolean }) => {
         return <PrismaFrame />;
       case THEMES.elevenlabs.id:
         return <ElevenLabsFrame />;
+      case THEMES.e2b.id:
+        return <E2bFrame />;
       case THEMES.resend.id:
         return <ResendFrame />;
       case THEMES.browserbase.id:
