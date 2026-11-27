@@ -80,15 +80,15 @@ function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
       document.execCommand("insertText", false, newText);
 
       if (currentLine.startsWith("  ")) {
-        textarea.setSelectionRange(start - 2, start - 2 + newText.length);
+        textarea.setSelectionRange(Math.max(newStart, start - 2), newStart + newText.length);
       } else {
-        textarea.setSelectionRange(start, start + newText.length);
+        textarea.setSelectionRange(start, newStart + newText.length);
       }
     } else {
       // indent
       const newText = indentText(original.slice(newStart, end));
       document.execCommand("insertText", false, newText);
-      textarea.setSelectionRange(start + 2, start + 2 + newText.length);
+      textarea.setSelectionRange(start + 2, newStart + newText.length);
     }
   }
 }
