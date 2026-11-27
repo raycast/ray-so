@@ -352,6 +352,17 @@ const development: Quicklink[] = [
 
 const design: Quicklink[] = [
   {
+    id: "free-photo-editor",
+    name: "Open Free Photo Editor",
+    description:
+      "Open the browser image editor for local conversion, compression and optional AI edits",
+    link: "https://freephotoeditor.io/",
+    author: {
+      name: "Ethan Lee",
+      link: "https://freephotoeditor.io/",
+    },
+  },
+  {
     id: "mobbin",
     name: "Search Mobbin",
     link: 'https://mobbin.com/search/{argument name="Device" options=" ios , android , web " default=" ios "}/screens?filter=aiDescriptionSearch.{argument name="Query"}',
