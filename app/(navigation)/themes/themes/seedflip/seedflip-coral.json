@@ -1,0 +1,21 @@
+{
+  "author": "SeedFlip",
+  "authorUsername": "seedflip",
+  "version": "1",
+  "name": "SeedFlip Coral",
+  "appearance": "light",
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundSecondary": "#F5F5F5",
+    "text": "#1D1D1D",
+    "selection": "#F24E1E",
+    "loader": "#F24E1E",
+    "red": "#D41111",
+    "orange": "#D46C11",
+    "yellow": "#D4B411",
+    "green": "#11D452",
+    "blue": "#1162D4",
+    "purple": "#7311D4",
+    "magenta": "#D41193"
+  }
+}
